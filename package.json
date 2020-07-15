@@ -1,0 +1,13 @@
+{
+  "name": "node-insim",
+  "version": "0.0.1",
+  "description": "An InSim library for NodeJS",
+  "main": "index.js",
+  "repository": "git@github.com:simbroadcasts/node-insim.git",
+  "author": "Peter Butcher <pete@pbutcher.uk> (https://pbutcher.uk)",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "bufferpack": "^0.0.6"
+  }
+}
