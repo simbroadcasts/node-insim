@@ -24,6 +24,7 @@
     "eslint": "^8.5.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
     "prettier": "^2.5.1",
     "rimraf": "^3.0.2",
     "ts-node-dev": "^1.1.8",
@@ -40,12 +41,17 @@
     },
     "parser": "@typescript-eslint/parser",
     "plugins": [
-      "@typescript-eslint"
+      "@typescript-eslint",
+      "simple-import-sort"
     ],
     "extends": [
       "eslint:recommended",
       "plugin:@typescript-eslint/recommended",
       "prettier"
-    ]
+    ],
+    "rules": {
+      "simple-import-sort/exports": "warn",
+      "simple-import-sort/imports": "warn"
+    }
   }
 }
