@@ -33,6 +33,7 @@ export class InSim extends EventEmitter {
   private readonly options: InSimOptions = defaultInSimOptions;
   private connection: Tcp;
 
+  // TODO: Move passing options to connect()
   constructor(options?: Partial<InSimOptions>) {
     super();
 
