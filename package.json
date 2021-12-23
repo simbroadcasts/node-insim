@@ -7,7 +7,45 @@
   "author": "Peter Butcher <pete@pbutcher.uk> (https://pbutcher.uk)",
   "license": "MIT",
   "private": false,
-  "dependencies": {
-    "bufferpack": "^0.0.6"
+  "scripts": {
+    "prebuild": "rimraf ./dist",
+    "build": "tsc",
+    "dev": "ts-node-dev --respawn ./src/index.ts",
+    "start": "node ./build/index.js",
+    "format": "prettier --write \"./**/*.{js,ts,md,json,yml,yaml}\"",
+    "lint": "eslint ./src/**/* --ext .js,.ts",
+    "lint:fix": "eslint ./src/**/* --ext .js,.ts --fix"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^17.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.8.0",
+    "@typescript-eslint/parser": "^5.8.0",
+    "eslint": "^8.5.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.5.1",
+    "rimraf": "^3.0.2",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.5.4"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "prettier"
+    ]
   }
 }
