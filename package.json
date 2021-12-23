@@ -16,8 +16,11 @@
     "lint": "eslint ./src/**/* --ext .js,.ts",
     "lint:fix": "eslint ./src/**/* --ext .js,.ts --fix"
   },
-  "dependencies": {},
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
   "devDependencies": {
+    "@types/lodash": "^4.14.178",
     "@types/node": "^17.0.3",
     "@typescript-eslint/eslint-plugin": "^5.8.0",
     "@typescript-eslint/parser": "^5.8.0",

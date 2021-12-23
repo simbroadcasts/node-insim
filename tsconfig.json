@@ -10,7 +10,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "allowJs": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "noImplicitAny": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]
