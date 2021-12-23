@@ -2,22 +2,22 @@ import { PacketType } from '../packetTypes';
 import { unpack } from '../utils/jspack';
 import { IPacket } from './IPacket';
 
-export abstract class BasePacket<T extends Record<string, unknown>>
-  implements IPacket
-{
+type Data = Record<string, unknown>;
+
+export abstract class BasePacket implements IPacket {
   abstract _format: string;
 
   ReqI: number;
   abstract readonly Size: number;
   abstract readonly Type: PacketType;
 
-  populateData(data: Partial<T>) {
+  populateData(data: Partial<Data>) {
     if (!data) {
       return;
     }
 
     (Object.keys(data) as string[]).forEach((key) => {
-      (this as Record<string, unknown>)[key] = data[key];
+      (this as Data)[key] = data[key];
     });
   }
 

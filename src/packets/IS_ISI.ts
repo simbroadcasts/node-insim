@@ -18,9 +18,9 @@ export type IS_ISI_Data = {
   IName: string;
 };
 
-export const INSIM_VER = 9;
+export const INSIM_VERSION = 9;
 
-export class IS_ISI extends BasePacket<IS_ISI_Data> implements IS_ISI_Data {
+export class IS_ISI extends BasePacket implements IS_ISI_Data {
   readonly _format = '<BBBxHHBBH16s16s';
   readonly Size = 44;
   readonly Type = PacketType.ISP_ISI;
@@ -29,7 +29,7 @@ export class IS_ISI extends BasePacket<IS_ISI_Data> implements IS_ISI_Data {
   Flags: InSimFlags = 0;
   Admin = '';
   IName = '';
-  InSimVer = INSIM_VER;
+  InSimVer = INSIM_VERSION;
   Interval = 0;
   Prefix = '!';
 
