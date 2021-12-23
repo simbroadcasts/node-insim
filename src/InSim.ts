@@ -2,7 +2,7 @@ import EventEmitter from 'events';
 import defaults from 'lodash/defaults';
 
 import { IPacket } from './packets/IPacket';
-import { INSIM_VER, IS_ISI, IS_ISI_Data, IS_ISI_ReqI } from './packets/IS_ISI';
+import { INSIM_VERSION, IS_ISI, IS_ISI_Data } from './packets/IS_ISI';
 import { IS_VER } from './packets/IS_VER';
 import { packetMap } from './packets/packetMap';
 import { PacketType } from './packetTypes';
@@ -17,7 +17,7 @@ type InSimOptions = IS_ISI_Data & {
 
 const defaultInSimOptions: InSimOptions = {
   IName: '',
-  InSimVer: INSIM_VER,
+  InSimVer: INSIM_VERSION,
   ReqI: 0,
   protocol: 'tcp',
   host: '127.0.0.1',
@@ -71,12 +71,9 @@ export class InSim extends EventEmitter {
 
       const packetTypeString = PacketType[packetType];
       console.log('Insim packet received:', packetTypeString, data);
-      const packetClassName = packetMap[packetType];
+      const packetClass = packetMap[packetType] as typeof IS_VER;
 
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      const file = require(`./packets/${packetClassName}`);
-
-      this.emit(packetTypeString, new file[packetClassName]().unpack(data));
+      this.emit(packetTypeString, new packetClass().unpack(data));
     });
   }
 
