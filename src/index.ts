@@ -21,6 +21,9 @@ function onVersion(packet: IS_VER, insim: InSim) {
 }
 
 inSim.on(PacketType[PacketType.ISP_VER], onVersion);
+inSim.on('error', (error) => {
+  console.error('Error:', error);
+});
 
 export { PacketType, SmallType, TinyType, TtcType };
 

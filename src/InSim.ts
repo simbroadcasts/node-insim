@@ -68,10 +68,17 @@ export class InSim extends EventEmitter {
     this.connection.on('packet', (data) => {
       const header = unpack('<BB', data);
       const packetType: PacketType = header[1];
-
       const packetTypeString = PacketType[packetType];
-      console.log('Insim packet received:', packetTypeString, data);
       const packetClass = packetMap[packetType] as typeof IS_VER;
+
+      console.log('InSim packet received:', packetTypeString, data);
+
+      if (packetClass === undefined) {
+        console.error('Unknown packet received!');
+        this.emit('error', { message: 'Unknown packet received' });
+
+        return;
+      }
 
       this.emit(packetTypeString, new packetClass().unpack(data));
     });
