@@ -1,5 +1,4 @@
 import { PacketType } from '../packetTypes';
-import { pack } from '../utils/jspack';
 import { BasePacket } from './BasePacket';
 import { INSIM_VERSION } from './IS_ISI';
 
@@ -25,20 +24,5 @@ export class IS_VER extends BasePacket implements IS_VER_Data {
   constructor(data?: Partial<IS_VER_Data>) {
     super();
     this.populateData(data);
-  }
-
-  pack(): string | Uint8Array {
-    const values = [
-      this.Size / 4,
-      this.Type,
-      this.ReqI,
-      0,
-      this.Version,
-      this.Product,
-      this.InSimVer,
-      this.Spare,
-    ];
-
-    return pack(this._format, values);
   }
 }

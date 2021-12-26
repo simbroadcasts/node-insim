@@ -1,5 +1,5 @@
 import { PacketType } from '../packetTypes';
-import { unpack } from '../utils/jspack';
+import { pack, unpack } from '../utils/jspack';
 import { IPacket } from './IPacket';
 
 type Data = Record<string, unknown>;
@@ -11,7 +11,7 @@ export abstract class BasePacket implements IPacket {
   abstract readonly Size: number;
   abstract readonly Type: PacketType;
 
-  populateData(data: Partial<Data>) {
+  protected populateData(data: Partial<Data>) {
     if (!data) {
       return;
     }
@@ -41,5 +41,26 @@ export abstract class BasePacket implements IPacket {
     return this;
   }
 
-  abstract pack(): string | Uint8Array;
+  pack(): string | Uint8Array {
+    const values = [];
+
+    for (const propertyName in this) {
+      if (typeof this[propertyName] === 'function') {
+        continue;
+      }
+
+      if (propertyName.startsWith('_')) {
+        continue;
+      }
+
+      if (propertyName === 'Size') {
+        values.push((this[propertyName] as unknown as number) / 4);
+        continue;
+      }
+
+      values.push(this[propertyName]);
+    }
+
+    return pack(this._format, values);
+  }
 }

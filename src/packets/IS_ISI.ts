@@ -1,5 +1,4 @@
 import { PacketType } from '../packetTypes';
-import { pack } from '../utils/jspack';
 import { BasePacket } from './BasePacket';
 
 export enum IS_ISI_ReqI {
@@ -25,35 +24,18 @@ export class IS_ISI extends BasePacket implements IS_ISI_Data {
   readonly Size = 44;
   readonly Type = PacketType.ISP_ISI;
   ReqI = 0;
+  Zero = 0;
   UDPPort = 0;
   Flags: InSimFlags = 0;
+  InSimVer = INSIM_VERSION;
+  Prefix = '!';
+  Interval = 0;
   Admin = '';
   IName = '';
-  InSimVer = INSIM_VERSION;
-  Interval = 0;
-  Prefix = '!';
 
   constructor(data?: Partial<IS_ISI_Data>) {
     super();
     this.populateData(data);
-  }
-
-  pack(): string | Uint8Array {
-    const values = [
-      this.Size / 4,
-      this.Type,
-      this.ReqI,
-      0,
-      this.UDPPort,
-      this.Flags,
-      this.InSimVer,
-      this.Prefix,
-      this.Interval,
-      this.Admin,
-      this.IName,
-    ];
-
-    return pack(this._format, values);
   }
 }
 
