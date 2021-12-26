@@ -11,6 +11,7 @@
     "prebuild": "rimraf ./dist",
     "build": "tsc",
     "dev": "ts-node-dev --respawn ./src/index.ts",
+    "dev:example:insim": "ts-node-dev --respawn src/examples/insim.ts",
     "start": "node ./build/index.js",
     "format": "prettier --write \"./**/*.{js,ts,md,json,yml,yaml}\"",
     "lint": "eslint ./src/**/* --ext .js,.ts",
