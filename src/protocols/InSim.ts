@@ -1,13 +1,13 @@
 import EventEmitter from 'events';
 import defaults from 'lodash/defaults';
 
-import { IPacket } from './packets/IPacket';
-import { INSIM_VERSION, IS_ISI, IS_ISI_Data } from './packets/IS_ISI';
-import { IS_VER } from './packets/IS_VER';
-import { packetMap } from './packets/packetMap';
-import { PacketType } from './packets/packetTypes';
+import { IPacket } from '../packets/IPacket';
+import { INSIM_VERSION, IS_ISI, IS_ISI_Data } from '../packets/IS_ISI';
+import { IS_VER } from '../packets/IS_VER';
+import { packetMap } from '../packets/packetMap';
+import { PacketType } from '../packets/packetTypes';
+import { unpack } from '../utils/jspack';
 import { TCP } from './TCP';
-import { unpack } from './utils/jspack';
 
 type InSimOptions = IS_ISI_Data & {
   Protocol: 'tcp' | 'udp';

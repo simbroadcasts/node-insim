@@ -342,4 +342,4 @@ var unpack = function (fmt, ab, offset) {
   return results;
 };
 
-export { pack, unpack, determineLength };
+export { determineLength, pack, unpack };
