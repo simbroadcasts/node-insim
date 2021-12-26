@@ -1,5 +1,5 @@
-import { PacketType } from '../packetTypes';
 import { BasePacket } from './BasePacket';
+import { PacketType } from './packetTypes';
 
 export enum IS_ISI_ReqI {
   REQI_ZERO,

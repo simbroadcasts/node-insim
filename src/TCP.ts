@@ -1,10 +1,7 @@
 import EventEmitter from 'events';
 import net from 'net';
 
-import { IS_ISI } from './packets/IS_ISI';
-import { unpack } from './utils/jspack';
-
-export class Tcp extends EventEmitter {
+export class TCP extends EventEmitter {
   private stream: net.Socket = null;
 
   private readonly host: string;

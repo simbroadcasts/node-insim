@@ -1,7 +1,7 @@
-import { PacketType } from '../packetTypes';
 import { BasePacket } from './BasePacket';
 import { IS_ISI } from './IS_ISI';
 import { IS_VER } from './IS_VER';
+import { PacketType } from './packetTypes';
 
 // TODO handle all packets
 export const packetMap: Partial<Record<PacketType, typeof BasePacket>> = {

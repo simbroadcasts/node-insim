@@ -5,42 +5,44 @@ import { IPacket } from './packets/IPacket';
 import { INSIM_VERSION, IS_ISI, IS_ISI_Data } from './packets/IS_ISI';
 import { IS_VER } from './packets/IS_VER';
 import { packetMap } from './packets/packetMap';
-import { PacketType } from './packetTypes';
-import { Tcp } from './Tcp';
+import { PacketType } from './packets/packetTypes';
+import { TCP } from './TCP';
 import { unpack } from './utils/jspack';
 
 type InSimOptions = IS_ISI_Data & {
-  protocol: 'tcp' | 'udp';
-  host: string;
-  port: number;
+  Protocol: 'tcp' | 'udp';
+  Host: string;
+  Port: number;
 };
 
 const defaultInSimOptions: InSimOptions = {
-  IName: '',
-  InSimVer: INSIM_VERSION,
+  Host: '127.0.0.1',
+  Port: 29999,
+  Protocol: 'tcp',
   ReqI: 0,
-  protocol: 'tcp',
-  host: '127.0.0.1',
-  port: 29999,
   UDPPort: 0,
-  Admin: '',
-  Prefix: '!',
   Flags: 0,
+  InSimVer: INSIM_VERSION,
+  Prefix: '!',
   Interval: 0,
+  Admin: '',
+  IName: '',
 };
 
 export class InSim extends EventEmitter {
-  private readonly options: InSimOptions = defaultInSimOptions;
-  private connection: Tcp;
+  private options: InSimOptions = defaultInSimOptions;
+  private connection: TCP;
 
-  // TODO: Move passing options to connect()
-  constructor(options?: Partial<InSimOptions>) {
+  constructor() {
     super();
+  }
 
+  connect(options?: Partial<InSimOptions>) {
     this.options = defaults(options, defaultInSimOptions);
     console.log('InSim options:', this.options);
 
-    this.connection = new Tcp(this.options.host, this.options.port);
+    this.connection = new TCP(this.options.Host, this.options.Port);
+    this.connection.connect();
 
     this.connection.on('connect', () => {
       this.send(
@@ -82,10 +84,6 @@ export class InSim extends EventEmitter {
 
       this.emit(packetTypeString, new packetClass().unpack(data));
     });
-  }
-
-  connect() {
-    this.connection.connect();
   }
 
   disconnect() {

@@ -1,4 +1,4 @@
-import { PacketType } from '../packetTypes';
+import { PacketType } from './packetTypes';
 
 export type IPacket = {
   readonly _format: string;

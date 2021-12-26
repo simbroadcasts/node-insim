@@ -1,6 +1,6 @@
-import { PacketType } from '../packetTypes';
 import { pack, unpack } from '../utils/jspack';
 import { IPacket } from './IPacket';
+import { PacketType } from './packetTypes';
 
 type Data = Record<string, unknown>;
 

@@ -1,6 +1,6 @@
-import { PacketType } from '../packetTypes';
 import { BasePacket } from './BasePacket';
 import { INSIM_VERSION } from './IS_ISI';
+import { PacketType } from './packetTypes';
 
 export type IS_VER_Data = {
   ReqI: number;
