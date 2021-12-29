@@ -13,6 +13,8 @@
     "dev": "ts-node-dev --respawn ./src/index.ts",
     "dev:example:insim": "ts-node-dev --respawn src/examples/insim.ts",
     "start": "node ./build/index.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
     "format": "prettier --write \"./**/*.{js,ts,md,json,yml,yaml}\"",
     "lint": "eslint ./src/**/* --ext .js,.ts",
     "lint:fix": "eslint ./src/**/* --ext .js,.ts --fix"
@@ -22,14 +24,20 @@
     "tiny-typed-emitter": "^2.1.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.16.5",
+    "@babel/preset-env": "^7.16.5",
+    "@babel/preset-typescript": "^7.16.5",
+    "@types/jest": "^27.0.3",
     "@types/lodash": "^4.14.178",
     "@types/node": "^17.0.3",
     "@typescript-eslint/eslint-plugin": "^5.8.0",
     "@typescript-eslint/parser": "^5.8.0",
+    "babel-jest": "^27.4.5",
     "eslint": "^8.5.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
+    "jest": "^27.4.5",
     "prettier": "^2.5.1",
     "rimraf": "^3.0.2",
     "ts-node-dev": "^1.1.8",
@@ -58,5 +66,8 @@
       "simple-import-sort/exports": "warn",
       "simple-import-sort/imports": "warn"
     }
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }

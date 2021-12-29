@@ -24,6 +24,10 @@ export abstract class BasePacket implements IPacket {
   unpack(buffer: Buffer): this {
     const data = unpack(this._format, buffer);
 
+    if (!data) {
+      return this;
+    }
+
     let i = 0;
     for (const propertyName in this) {
       if (typeof this[propertyName] === 'function') {
