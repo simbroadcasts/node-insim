@@ -1,5 +1,4 @@
 import { BasePacket } from './BasePacket';
-import { INSIM_VERSION } from './IS_ISI';
 import { PacketType } from './packetTypes';
 
 export type IS_VER_Data = {
@@ -18,8 +17,8 @@ export class IS_VER extends BasePacket implements IS_VER_Data {
   Zero = 0;
   Version = '0';
   Product = '';
-  InSimVer = INSIM_VERSION;
-  Spare: number;
+  InSimVer = 0;
+  readonly Spare: number;
 
   constructor(data?: Partial<IS_VER_Data>) {
     super();

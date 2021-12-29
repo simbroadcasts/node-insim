@@ -1,10 +1,8 @@
 import defaults from 'lodash/defaults';
 import { TypedEmitter } from 'tiny-typed-emitter';
 
-import { IPacket } from '../packets/IPacket';
-import { INSIM_VERSION, IS_ISI, IS_ISI_Data } from '../packets/IS_ISI';
-import { IS_VER } from '../packets/IS_VER';
-import { PacketType } from '../packets/packetTypes';
+import { INSIM_VERSION } from '../index';
+import { IPacket, IS_ISI, IS_ISI_Data, IS_VER, PacketType } from '../packets';
 import { unpack } from '../utils/jspack';
 import { TCP } from './TCP';
 
@@ -41,7 +39,7 @@ const defaultInSimOptions: InSimOptions = {
   UDPPort: 0,
   Flags: 0,
   InSimVer: INSIM_VERSION,
-  Prefix: '!',
+  Prefix: '',
   Interval: 0,
   Admin: '',
   IName: '',

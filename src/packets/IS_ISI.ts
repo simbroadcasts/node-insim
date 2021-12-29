@@ -1,9 +1,24 @@
 import { BasePacket } from './BasePacket';
 import { PacketType } from './packetTypes';
 
-export enum IS_ISI_ReqI {
-  REQI_ZERO,
-  REQI_SEND_VERSION,
+export class IS_ISI extends BasePacket implements IS_ISI_Data {
+  readonly _format = '<BBBxHHBBH16s16s';
+  readonly Size = 44;
+  readonly Type = PacketType.ISP_ISI;
+  ReqI = 0;
+  readonly Zero = 0;
+  UDPPort = 0;
+  Flags: InSimFlags = 0;
+  InSimVer = 0;
+  Prefix = '';
+  Interval = 0;
+  Admin = '';
+  IName = '';
+
+  constructor(data?: Partial<IS_ISI_Data>) {
+    super();
+    this.populateData(data);
+  }
 }
 
 export type IS_ISI_Data = {
@@ -17,26 +32,9 @@ export type IS_ISI_Data = {
   IName: string;
 };
 
-export const INSIM_VERSION = 9;
-
-export class IS_ISI extends BasePacket implements IS_ISI_Data {
-  readonly _format = '<BBBxHHBBH16s16s';
-  readonly Size = 44;
-  readonly Type = PacketType.ISP_ISI;
-  ReqI = 0;
-  Zero = 0;
-  UDPPort = 0;
-  Flags: InSimFlags = 0;
-  InSimVer = INSIM_VERSION;
-  Prefix = '!';
-  Interval = 0;
-  Admin = '';
-  IName = '';
-
-  constructor(data?: Partial<IS_ISI_Data>) {
-    super();
-    this.populateData(data);
-  }
+export enum IS_ISI_ReqI {
+  ZERO,
+  SEND_VERSION,
 }
 
 export enum InSimFlags {

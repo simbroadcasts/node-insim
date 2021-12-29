@@ -9,7 +9,7 @@ const insimName = 'TestNodeApp';
 inSim.connect({
   Host: '10.0.0.100',
   Port: 29998,
-  ReqI: IS_ISI_ReqI.REQI_SEND_VERSION,
+  ReqI: IS_ISI_ReqI.SEND_VERSION,
   IName: insimName,
 });
 
