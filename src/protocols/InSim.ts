@@ -1,10 +1,9 @@
-import EventEmitter from 'events';
 import defaults from 'lodash/defaults';
+import { TypedEmitter } from 'tiny-typed-emitter';
 
 import { IPacket } from '../packets/IPacket';
 import { INSIM_VERSION, IS_ISI, IS_ISI_Data } from '../packets/IS_ISI';
 import { IS_VER } from '../packets/IS_VER';
-import { packetMap } from '../packets/packetMap';
 import { PacketType } from '../packets/packetTypes';
 import { unpack } from '../utils/jspack';
 import { TCP } from './TCP';
@@ -13,6 +12,25 @@ type InSimOptions = IS_ISI_Data & {
   Protocol: 'tcp' | 'udp';
   Host: string;
   Port: number;
+};
+
+export type InSimPacketEvents = {
+  [PacketType.ISP_ISI]: (packet: IS_ISI, insim: InSim) => void;
+  [PacketType.ISP_VER]: (packet: IS_VER, insim: InSim) => void;
+};
+
+class InSimError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'InSimError';
+  }
+}
+
+export type InSimEvents = InSimPacketEvents & {
+  connect: () => void;
+  disconnect: () => void;
+  error: (error: InSimError) => void;
+  test: () => void;
 };
 
 const defaultInSimOptions: InSimOptions = {
@@ -29,12 +47,15 @@ const defaultInSimOptions: InSimOptions = {
   IName: '',
 };
 
-export class InSim extends EventEmitter {
+export class InSim extends TypedEmitter<InSimEvents> {
   private options: InSimOptions = defaultInSimOptions;
   private connection: TCP;
 
   constructor() {
     super();
+
+    this.on('connect', () => console.log('InSim: connected'));
+    this.on('disconnect', () => console.log('InSim: disconnected'));
   }
 
   connect(options?: Partial<InSimOptions>) {
@@ -58,32 +79,14 @@ export class InSim extends EventEmitter {
         }),
       );
       this.emit('connect');
-      console.log('InSim connected');
     });
 
     this.connection.on('disconnect', () => {
       // TODO send TINY_CLOSE
       this.emit('disconnect');
-      console.log('InSim disconnected');
     });
 
-    this.connection.on('packet', (data) => {
-      const header = unpack('<BB', data);
-      const packetType: PacketType = header[1];
-      const packetTypeString = PacketType[packetType];
-      const packetClass = packetMap[packetType] as typeof IS_VER;
-
-      console.log('InSim packet received:', packetTypeString, data);
-
-      if (packetClass === undefined) {
-        console.error('Unknown packet received!');
-        this.emit('error', { message: 'Unknown packet received' });
-
-        return;
-      }
-
-      this.emit(packetTypeString, new packetClass().unpack(data));
-    });
+    this.connection.on('packet', (data) => this.handlePacket(data));
   }
 
   disconnect() {
@@ -94,5 +97,35 @@ export class InSim extends EventEmitter {
   send(packet: IPacket) {
     console.log('InSim send packet', packet);
     this.connection.send(packet.pack());
+  }
+
+  private handlePacket(data: Buffer) {
+    const header = unpack('<BB', data);
+    const packetType: PacketType = header[1];
+    const packetTypeString = PacketType[packetType];
+
+    console.log('InSim: packet received:', packetTypeString, data);
+
+    if (packetTypeString === undefined) {
+      this.emit('error', new InSimError('Unknown packet received'));
+      return;
+    }
+
+    switch (packetType) {
+      case PacketType.ISP_ISI:
+        this.emit(packetType, new IS_ISI().unpack(data), this);
+        break;
+      case PacketType.ISP_VER:
+        this.emit(packetType, new IS_VER().unpack(data), this);
+        break;
+      default:
+        this.emit(
+          'error',
+          new InSimError(
+            `Packet handler not implemented for ${packetTypeString}`,
+          ),
+        );
+        break;
+    }
   }
 }

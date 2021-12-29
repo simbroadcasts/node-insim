@@ -18,7 +18,8 @@
     "lint:fix": "eslint ./src/**/* --ext .js,.ts --fix"
   },
   "dependencies": {
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "tiny-typed-emitter": "^2.1.0"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.178",

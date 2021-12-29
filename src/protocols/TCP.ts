@@ -7,30 +7,30 @@ export class TCP extends EventEmitter {
   private readonly host: string;
   private readonly port: number;
 
-  // Temp buffer
   tempBuf: Buffer = null;
 
   constructor(host: string, port: number) {
     super();
     this.host = host;
     this.port = port;
+
+    this.on('connect', () => console.log('TCP: connected'));
+    this.on('disconnect', () => console.log('TCP: disconnected'));
   }
 
   connect = () => {
     this.stream = net.connect(this.port, this.host);
 
     this.stream.on('connect', () => {
-      console.log('TCP connected');
       this.emit('connect', this);
     });
 
     this.stream.on('close', () => {
-      console.log('TCP disconnected');
       this.emit('disconnect', this);
     });
 
     this.stream.on('data', (data: string) => {
-      console.log('TCP received data: ' + data);
+      console.log('TCP: received data: ' + data);
 
       // Set or append to temp buffer
       if (this.tempBuf === null) {
@@ -75,7 +75,7 @@ export class TCP extends EventEmitter {
       // Recurse on remaining buffer
       this.processBuf();
     } else {
-      console.log('processBuf: Got incomplete LFS packet');
+      console.log('TCP: Got incomplete LFS packet');
     }
   }
 }
