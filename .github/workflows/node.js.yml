@@ -19,6 +19,11 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'yarn'
+    - name: Install Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+    - run: python my_script.py
     - name: Install
       uses: borales/actions-yarn@v2.3.0
       with:
