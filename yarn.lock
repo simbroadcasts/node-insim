@@ -2391,6 +2391,11 @@ iconv-lite@0.4.24:
   dependencies:
     safer-buffer ">= 2.1.2 < 3"
 
+iconv@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/iconv/-/iconv-3.0.1.tgz#31d319d71b59415cf348362c382961b1eb6f0e81"
+  integrity sha512-lJnFLxVc0d82R7GfU7a9RujKVUQ3Eee19tPKWZWBJtAEGRHVEyFzCtbNl3GPKuDnHBBRT4/nDS4Ru9AIDT72qA==
+
 ignore@^4.0.6:
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-4.0.6.tgz#750e3db5862087b4737ebac8207ffd1ef27b25fc"
@@ -3280,6 +3285,13 @@ parent-module@^1.0.0:
   integrity sha512-GQ2EWRpQV8/o+Aw8YqtfZZPfNRWZYkbidE9k5rpl/hC3vtHHBfGm2Ifi6qWV+coDGkrUKZAxE3Lot5kcsRlh+g==
   dependencies:
     callsites "^3.0.0"
+
+parse-lfs-message@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/parse-lfs-message/-/parse-lfs-message-1.0.0.tgz#0817c2ba7824255230054fb77fc3dc9962a593b0"
+  integrity sha512-TDIDQW/vJU/t1XkkKPSLsdNFLRW4wrgdq/7Rafupz/VpAFL6y99+z8dYzOgj8Xvm2ppuJ0HiL0nDGckfNj0PtA==
+  dependencies:
+    iconv "^3.0.0"
 
 parse5@6.0.1:
   version "6.0.1"

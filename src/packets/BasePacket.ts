@@ -1,3 +1,5 @@
+import parseLFSMessage from 'parse-lfs-message';
+
 import { unpack } from '../utils/jspack';
 import { IPacket } from './IPacket';
 import { PacketType } from './packetTypes';
@@ -40,14 +42,20 @@ export abstract class BasePacket implements IPacket {
         continue;
       }
 
+      let value = data[i];
+
+      if (typeof value === 'string' && value.length > 0) {
+        value = parseLFSMessage(value);
+      }
+
       if (propertyName === 'Size') {
         (this[propertyName] as unknown as number) =
-          data[i] * BasePacket.SIZE_MULTIPLIER;
+          value * BasePacket.SIZE_MULTIPLIER;
         i++;
         continue;
       }
 
-      this[propertyName] = data[i];
+      this[propertyName] = value;
       i++;
     }
 
