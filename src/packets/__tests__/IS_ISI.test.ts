@@ -1,6 +1,6 @@
 import { INSIM_VERSION } from '../../protocols/InSim';
 import { checkPacketDataSize } from '../../utils/testutils';
-import { IS_ISI } from '../IS_ISI';
+import { IS_ISI, IS_ISI_Data } from '../IS_ISI';
 import { PacketType } from '../packetTypes';
 
 describe('IS_ISI', () => {
@@ -29,7 +29,7 @@ describe('IS_ISI', () => {
   });
 
   it('should pack data into a buffer', () => {
-    const data = {
+    const data: IS_ISI_Data = {
       ReqI: 1,
       UDPPort: 257,
       Flags: 2,
