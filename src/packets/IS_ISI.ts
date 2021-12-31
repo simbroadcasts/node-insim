@@ -1,8 +1,8 @@
-import { BasePacket } from './BasePacket';
+import { BaseSendablePacket } from './BaseSendablePacket';
 import { PacketType } from './packetTypes';
 
-export class IS_ISI extends BasePacket implements IS_ISI_Data {
-  readonly _format = '<BBBxHHBBH16s16s';
+export class IS_ISI extends BaseSendablePacket implements IS_ISI_Data {
+  readonly _format = '<BBBxHHBcH16s16s';
   Size = 44;
   Type = PacketType.ISP_ISI;
   ReqI = 0;

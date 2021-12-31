@@ -1,4 +1,4 @@
-import { pack, unpack } from '../utils/jspack';
+import { unpack } from '../utils/jspack';
 import { IPacket } from './IPacket';
 import { PacketType } from './packetTypes';
 
@@ -11,7 +11,7 @@ export abstract class BasePacket implements IPacket {
   abstract Type: PacketType;
   ReqI: number;
 
-  private static SIZE_MULTIPLIER = 4;
+  protected static readonly SIZE_MULTIPLIER = 4;
 
   protected populateData(data: Partial<Data>) {
     if (!data) {
@@ -52,31 +52,5 @@ export abstract class BasePacket implements IPacket {
     }
 
     return this;
-  }
-
-  pack(): string | Uint8Array {
-    const values = [];
-
-    for (const propertyName in this) {
-      if (typeof this[propertyName] === 'function') {
-        continue;
-      }
-
-      if (propertyName.startsWith('_')) {
-        continue;
-      }
-
-      if (propertyName === 'Size') {
-        values.push(
-          (this[propertyName] as unknown as number) /
-            BasePacket.SIZE_MULTIPLIER,
-        );
-        continue;
-      }
-
-      values.push(this[propertyName]);
-    }
-
-    return pack(this._format, values);
   }
 }
