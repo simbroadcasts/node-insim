@@ -68,6 +68,9 @@
     }
   },
   "jest": {
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "roots": [
+      "<rootDir>/src"
+    ]
   }
 }
