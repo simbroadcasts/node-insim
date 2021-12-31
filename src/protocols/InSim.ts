@@ -8,6 +8,7 @@ import {
   IS_VER,
   ISendable,
   PacketType,
+  TinyType,
 } from '../packets';
 import { unpack } from '../utils/jspack';
 import { TCP } from './TCP';
@@ -63,6 +64,7 @@ export class InSim extends TypedEmitter<InSimEvents> {
 
     this.on('connect', () => console.log('InSim: connected'));
     this.on('disconnect', () => console.log('InSim: disconnected'));
+    this.on(PacketType.ISP_TINY, (packet) => this.handleKeepAlive(packet));
   }
 
   connect(options?: Partial<InSimOptions>) {
@@ -136,6 +138,17 @@ export class InSim extends TypedEmitter<InSimEvents> {
           ),
         );
         break;
+    }
+  }
+
+  private handleKeepAlive(packet: IS_TINY) {
+    console.log('InSim: Send a keep-alive packet');
+    if (packet.SubT === TinyType.TINY_NONE) {
+      this.send(
+        new IS_TINY({
+          SubT: TinyType.TINY_NONE,
+        }),
+      );
     }
   }
 }

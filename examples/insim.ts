@@ -20,7 +20,6 @@ function onVersion(packet: IS_VER) {
   console.log(`${insimName}: LFS version`, packet.Version);
 }
 
-
 inSim.on('error', (error) => {
   console.error(`${insimName}: Error:`, error);
 });
