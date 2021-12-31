@@ -3,8 +3,8 @@ import { PacketType } from './packetTypes';
 
 export class IS_ISI extends BasePacket implements IS_ISI_Data {
   readonly _format = '<BBBxHHBBH16s16s';
-  readonly Size = 44;
-  readonly Type = PacketType.ISP_ISI;
+  Size = 44;
+  Type = PacketType.ISP_ISI;
   ReqI = 0;
   readonly Zero = 0;
   UDPPort = 0;

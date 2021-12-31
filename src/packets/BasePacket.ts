@@ -7,9 +7,11 @@ type Data = Record<string, unknown>;
 export abstract class BasePacket implements IPacket {
   abstract _format: string;
 
+  abstract Size: number;
+  abstract Type: PacketType;
   ReqI: number;
-  abstract readonly Size: number;
-  abstract readonly Type: PacketType;
+
+  private static SIZE_MULTIPLIER = 4;
 
   protected populateData(data: Partial<Data>) {
     if (!data) {
@@ -38,6 +40,13 @@ export abstract class BasePacket implements IPacket {
         continue;
       }
 
+      if (propertyName === 'Size') {
+        (this[propertyName] as unknown as number) =
+          data[i] * BasePacket.SIZE_MULTIPLIER;
+        i++;
+        continue;
+      }
+
       this[propertyName] = data[i];
       i++;
     }
@@ -58,7 +67,10 @@ export abstract class BasePacket implements IPacket {
       }
 
       if (propertyName === 'Size') {
-        values.push((this[propertyName] as unknown as number) / 4);
+        values.push(
+          (this[propertyName] as unknown as number) /
+            BasePacket.SIZE_MULTIPLIER,
+        );
         continue;
       }
 

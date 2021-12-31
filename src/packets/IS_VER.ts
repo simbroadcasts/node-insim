@@ -10,15 +10,15 @@ export type IS_VER_Data = {
 };
 
 export class IS_VER extends BasePacket implements IS_VER_Data {
-  readonly _format = '<BBBB8s6sH';
+  readonly _format = '<BBBB8s6sBB';
   readonly Size = 20;
   readonly Type = PacketType.ISP_VER;
   ReqI = 0;
-  Zero = 0;
-  Version = '0';
+  readonly Zero = 0;
+  Version = '';
   Product = '';
   InSimVer = 0;
-  readonly Spare: number;
+  readonly Spare = 0;
 
   constructor(data?: Partial<IS_VER_Data>) {
     super();

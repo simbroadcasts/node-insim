@@ -5,6 +5,5 @@ export type IPacket = {
   readonly Size: number;
   readonly Type: PacketType;
   ReqI: number;
-  pack: () => string | Uint8Array;
   unpack: (data: Buffer) => IPacket;
 };
