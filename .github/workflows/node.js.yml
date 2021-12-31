@@ -19,15 +19,15 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'yarn'
-    - uses: borales/actions-yarn@v2.3.0
     - name: Install
+      uses: borales/actions-yarn@v2.3.0
       with:
         cmd: install
-    - uses: borales/actions-yarn@v2.3.0
     - name: Build
+      uses: borales/actions-yarn@v2.3.0
       with:
         cmd: build
-    - uses: borales/actions-yarn@v2.3.0
     - name: Test
+      uses: borales/actions-yarn@v2.3.0
       with:
         cmd: test
