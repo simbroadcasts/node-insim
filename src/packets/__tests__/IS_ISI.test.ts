@@ -56,8 +56,7 @@ describe('IS_ISI', () => {
           '!'.charCodeAt(0), // Prefix
           30, // Interval (1)
           0, // Interval (2)
-
-          'a'.charCodeAt(0),
+          'a'.charCodeAt(0), // Admin[16]
           'd'.charCodeAt(0),
           'm'.charCodeAt(0),
           'i'.charCodeAt(0),
@@ -73,8 +72,7 @@ describe('IS_ISI', () => {
           0,
           0,
           0,
-
-          'a'.charCodeAt(0),
+          'a'.charCodeAt(0), // IName[16]
           'p'.charCodeAt(0),
           'p'.charCodeAt(0),
           0,
