@@ -7,8 +7,8 @@ import { PacketType } from './packetTypes';
 export class IS_ISI extends BaseSendablePacket implements IS_ISI_Data {
   readonly _format = '<BBBxHHBcH16s16s';
 
-  Size = 44;
-  Type = PacketType.ISP_ISI;
+  readonly Size = 44;
+  readonly Type = PacketType.ISP_ISI;
 
   /** If non-zero LFS will send an IS_VER packet */
   ReqI = 0;

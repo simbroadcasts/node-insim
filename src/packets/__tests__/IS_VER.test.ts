@@ -1,10 +1,11 @@
+import { BasePacket } from '../BasePacket';
 import { IS_VER } from '../IS_VER';
 import { PacketType } from '../packetTypes';
 
 describe('IS_VER', () => {
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
-      5, // Size
+      20 / BasePacket.SIZE_MULTIPLIER, // Size
       PacketType.ISP_VER, // Type
       1, // ReqI
       0, // Zero

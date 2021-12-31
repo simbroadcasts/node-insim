@@ -1,13 +1,14 @@
 import { INSIM_VERSION } from '../../protocols/InSim';
 import { checkPacketDataSize } from '../../utils/testutils';
+import { BasePacket } from '../BasePacket';
 import { IS_ISI, IS_ISI_Data } from '../IS_ISI';
 import { PacketType } from '../packetTypes';
 
 describe('IS_ISI', () => {
   checkPacketDataSize(new IS_ISI());
 
-  it('should fill data from constructor', () => {
-    const data = {
+  it('should fill data from the constructor', () => {
+    const data: IS_ISI_Data = {
       ReqI: 1,
       UDPPort: 12345,
       Flags: 2,
@@ -44,7 +45,7 @@ describe('IS_ISI', () => {
     expect(
       buffer.equals(
         Buffer.from([
-          11, // Size
+          44 / BasePacket.SIZE_MULTIPLIER, // Size
           PacketType.ISP_ISI, // Type
           1, // ReqI
           0, // Zero

@@ -12,12 +12,14 @@ inSim.connect({
   IName: insimName,
 });
 
+inSim.on('connect', () => console.log(`${insimName}: connected`));
+inSim.on('disconnect', () => console.log(`${insimName}: disconnected`));
+inSim.on(PacketType.ISP_VER, onVersion);
+
 function onVersion(packet: IS_VER) {
   console.log(`${insimName}: LFS version`, packet.Version);
 }
-inSim.on(PacketType.ISP_VER, onVersion);
-inSim.on('connect', () => console.log(`${insimName}: connected`));
-inSim.on('disconnect', () => console.log(`${insimName}: disconnected`));
+
 
 inSim.on('error', (error) => {
   console.error(`${insimName}: Error:`, error);

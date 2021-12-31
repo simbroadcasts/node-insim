@@ -7,13 +7,13 @@ import { PacketType } from './packetTypes';
 type Data = Record<string, unknown>;
 
 export abstract class BasePacket implements IPacket {
+  static readonly SIZE_MULTIPLIER = 4;
+
   abstract _format: string;
 
   abstract Size: number;
   abstract Type: PacketType;
   ReqI: number;
-
-  protected static readonly SIZE_MULTIPLIER = 4;
 
   protected populateData(data: Partial<Data>) {
     if (!data) {

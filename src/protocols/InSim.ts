@@ -1,7 +1,14 @@
 import defaults from 'lodash/defaults';
 import { TypedEmitter } from 'tiny-typed-emitter';
 
-import { IS_ISI, IS_ISI_Data, IS_VER, ISendable, PacketType } from '../packets';
+import {
+  IS_ISI,
+  IS_ISI_Data,
+  IS_TINY,
+  IS_VER,
+  ISendable,
+  PacketType,
+} from '../packets';
 import { unpack } from '../utils/jspack';
 import { TCP } from './TCP';
 
@@ -14,6 +21,7 @@ type InSimOptions = IS_ISI_Data & {
 export type InSimPacketEvents = {
   [PacketType.ISP_ISI]: (packet: IS_ISI, insim: InSim) => void;
   [PacketType.ISP_VER]: (packet: IS_VER, insim: InSim) => void;
+  [PacketType.ISP_TINY]: (packet: IS_TINY, insim: InSim) => void;
 };
 
 export const INSIM_VERSION = 9;
@@ -116,6 +124,9 @@ export class InSim extends TypedEmitter<InSimEvents> {
         break;
       case PacketType.ISP_VER:
         this.emit(packetType, new IS_VER().unpack(data), this);
+        break;
+      case PacketType.ISP_TINY:
+        this.emit(packetType, new IS_TINY().unpack(data), this);
         break;
       default:
         this.emit(
