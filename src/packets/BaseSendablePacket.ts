@@ -1,5 +1,3 @@
-import { Buffer } from 'buffer';
-
 import { pack } from '../utils/jspack';
 import { BasePacket } from './BasePacket';
 import { ISendable } from './ISendable';
@@ -8,7 +6,7 @@ export abstract class BaseSendablePacket
   extends BasePacket
   implements ISendable
 {
-  pack(): Buffer {
+  pack(): Uint8Array {
     const values = [];
 
     for (const propertyName in this) {
