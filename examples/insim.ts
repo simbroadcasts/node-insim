@@ -1,5 +1,5 @@
-import NodeInSim, { PacketType } from '../index';
-import { IS_ISI_ReqI, IS_VER } from '../packets';
+import NodeInSim, { PacketType } from '../src';
+import { IS_ISI_ReqI, IS_VER } from '../src/packets';
 
 const inSim = new NodeInSim.InSim();
 

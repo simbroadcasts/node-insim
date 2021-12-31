@@ -11,13 +11,13 @@
     "prebuild": "rimraf ./dist",
     "build": "tsc",
     "dev": "ts-node-dev --respawn ./src/index.ts",
-    "dev:example:insim": "ts-node-dev --respawn src/examples/insim.ts",
+    "dev:example:insim": "ts-node-dev --respawn examples/insim.ts",
     "start": "node ./build/index.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "format": "prettier --write \"./**/*.{js,ts,md,json,yml,yaml}\"",
-    "lint": "eslint ./src/**/* --ext .js,.ts",
-    "lint:fix": "eslint ./src/**/* --ext .js,.ts --fix"
+    "lint": "eslint \"./{src,examples}/**/*\" --ext .js,.ts",
+    "lint:fix": "eslint \"./{src,examples}/**/*\" --ext .js,.ts --fix"
   },
   "dependencies": {
     "lodash": "^4.17.21",
