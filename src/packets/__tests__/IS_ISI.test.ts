@@ -1,6 +1,5 @@
 import { INSIM_VERSION } from '../../protocols/InSim';
 import { checkPacketDataSize } from '../../utils/testutils';
-import { typedArraysAreEqual } from '../../utils/typedArrays';
 import { IS_ISI } from '../IS_ISI';
 import { PacketType } from '../packetTypes';
 
@@ -43,9 +42,8 @@ describe('IS_ISI', () => {
     const buffer = new IS_ISI(data).pack();
 
     expect(
-      typedArraysAreEqual(
-        buffer,
-        new Uint8Array([
+      buffer.equals(
+        Buffer.from([
           11, // Size
           PacketType.ISP_ISI, // Type
           1, // ReqI

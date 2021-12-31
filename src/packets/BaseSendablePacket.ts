@@ -6,7 +6,7 @@ export abstract class BaseSendablePacket
   extends BasePacket
   implements ISendable
 {
-  pack(): Uint8Array {
+  pack(): Buffer {
     const values = [];
 
     for (const propertyName in this) {
