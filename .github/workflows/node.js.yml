@@ -24,18 +24,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: '3.x'
-    - name: Check PATH
-      run: echo $PATH
-    - name: Check python
-      run: which python
-    - name: Check python3
-      run: which python3
-    - name: Set NPM python path
-      run: npm config --global set python ${{ env.pythonLocation }}/python
-    - name: Show NPM config
-      run: npm config --global list
     - name: Install
       uses: borales/actions-yarn@v2.3.0
+      env:
+        PYTHON: ${{ env.pythonLocation }}
       with:
         cmd: install
     - name: Build
