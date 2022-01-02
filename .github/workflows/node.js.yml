@@ -36,8 +36,6 @@ jobs:
       run: npm config list
     - name: Install
       uses: borales/actions-yarn@v2.3.0
-      env:
-        PYTHON: ${{ env.pythonLocation }}
       with:
         cmd: install
     - name: Build
