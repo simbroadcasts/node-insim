@@ -31,9 +31,9 @@ jobs:
     - name: Check python3
       run: which python3
     - name: Set NPM python path
-      run: npm config set python ${{ env.pythonLocation }}/python
+      run: npm config --global set python ${{ env.pythonLocation }}/python
     - name: Show NPM config
-      run: npm config list
+      run: npm config --global list
     - name: Install
       uses: borales/actions-yarn@v2.3.0
       with:
