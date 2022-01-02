@@ -24,10 +24,16 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: '3.x'
+    - name: Check python
+      run: which /usr/bin/python3
+    - name: Check python3
+      run: which /usr/bin/python3
     - name: Set Python environment variable
       run: npm config --global set python /usr/bin/python3
     - name: Install
       uses: borales/actions-yarn@v2.3.0
+      env:
+        PYTHON: ${{ matrix.python }}
       with:
         cmd: install
     - name: Build
