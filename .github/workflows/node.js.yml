@@ -24,12 +24,12 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: '3.x'
-    - name: Check python
-      run: which /usr/bin/python3
     - name: Check PATH
       run: echo $PATH
-    - name: Check python dir
-      run: ls -la ${{ env.pythonLocation }}
+    - name: Check python
+      run: which python
+    - name: Check python3
+      run: which python3
     - name: Install
       uses: borales/actions-yarn@v2.3.0
       env:
