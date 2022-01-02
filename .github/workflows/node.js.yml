@@ -26,6 +26,8 @@ jobs:
         python-version: '3.x'
     - name: Check python
       run: which /usr/bin/python3
+    - name: Check PATH
+      run: echo $PATH
     - name: Install
       uses: borales/actions-yarn@v2.3.0
       env:
