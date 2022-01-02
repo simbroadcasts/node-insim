@@ -21,7 +21,8 @@
   "dependencies": {
     "lodash": "^4.17.21",
     "parse-lfs-message": "^1.0.0",
-    "tiny-typed-emitter": "^2.1.0"
+    "tiny-typed-emitter": "^2.1.0",
+    "tslog": "^3.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.16.5",

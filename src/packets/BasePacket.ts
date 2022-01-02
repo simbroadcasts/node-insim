@@ -1,6 +1,7 @@
 import parseLFSMessage from 'parse-lfs-message';
 
 import { unpack } from '../utils/jspack';
+import { log } from '../utils/log';
 import { IPacket } from './IPacket';
 import { PacketType } from './packetTypes';
 
@@ -58,6 +59,8 @@ export abstract class BasePacket implements IPacket {
       this[propertyName] = value;
       i++;
     }
+
+    log.debug('InSim packet received:', this);
 
     return this;
   }

@@ -1,6 +1,8 @@
 import EventEmitter from 'events';
 import net from 'net';
 
+import { log } from '../utils/log';
+
 export class TCP extends EventEmitter {
   private stream: net.Socket = null;
 
@@ -14,8 +16,11 @@ export class TCP extends EventEmitter {
     this.host = host;
     this.port = port;
 
-    this.on('connect', () => console.log('TCP: connected'));
-    this.on('disconnect', () => console.log('TCP: disconnected'));
+    this.on('connect', () =>
+      log.info(`TCP connected to ${this.host}:${this.port}`),
+    );
+    this.on('disconnect', () => log.info('TCP disconnected'));
+    this.on('packet', (data) => log.debug('TCP packet received:', data));
   }
 
   connect = () => {
@@ -30,7 +35,7 @@ export class TCP extends EventEmitter {
     });
 
     this.stream.on('data', (data: string) => {
-      console.log('TCP: received data: ' + data);
+      log.debug('TCP data received:', data);
 
       // Set or append to temp buffer
       if (this.tempBuf === null) {
@@ -56,13 +61,12 @@ export class TCP extends EventEmitter {
 
   processBuf() {
     if (this.tempBuf.length < 4) {
-      console.log('processBuf: Got packet with <4 bytes');
+      log.warn('processBuf: Got packet with <4 bytes');
       return; // Haven't got a full 32 bit header
     }
 
     const size = this.tempBuf[0] * 4;
 
-    // If SizeLarge
     if (this.tempBuf.length === size) {
       // We have at least one full packet
       this.emit('packet', this.tempBuf);
@@ -75,7 +79,7 @@ export class TCP extends EventEmitter {
       // Recurse on remaining buffer
       this.processBuf();
     } else {
-      console.log('TCP: Got incomplete LFS packet');
+      log.warn('TCP: Got incomplete LFS packet');
     }
   }
 }

@@ -11,6 +11,7 @@ import {
   TinyType,
 } from '../packets';
 import { unpack } from '../utils/jspack';
+import { log } from '../utils/log';
 import { TCP } from './TCP';
 
 type InSimOptions = IS_ISI_Data & {
@@ -62,14 +63,15 @@ export class InSim extends TypedEmitter<InSimEvents> {
   constructor() {
     super();
 
-    this.on('connect', () => console.log('InSim: connected'));
-    this.on('disconnect', () => console.log('InSim: disconnected'));
+    this.on('connect', () => log.info('InSim connected'));
+    this.on('disconnect', () => log.info('InSim disconnected'));
+    this.on('error', (error: InSimError) => log.error('InSim error', error));
     this.on(PacketType.ISP_TINY, (packet) => this.handleKeepAlive(packet));
   }
 
   connect(options?: Partial<InSimOptions>) {
     this.options = defaults(options, defaultInSimOptions);
-    console.log('InSim options:', this.options);
+    log.debug('InSim options:', this.options);
 
     this.connection = new TCP(this.options.Host, this.options.Port);
     this.connection.connect();
@@ -104,16 +106,17 @@ export class InSim extends TypedEmitter<InSimEvents> {
   }
 
   send(packet: ISendable) {
-    console.log('InSim send packet', packet);
-    this.connection.send(packet.pack());
+    const data = packet.pack();
+    log.info('Send packet:', PacketType[packet.Type]);
+    log.debug('Send packet:', packet, data);
+
+    this.connection.send(data);
   }
 
   private handlePacket(data: Buffer) {
     const header = unpack('<BB', data);
     const packetType: PacketType = header[1];
     const packetTypeString = PacketType[packetType];
-
-    console.log('InSim: packet received:', packetTypeString, data);
 
     if (packetTypeString === undefined) {
       this.emit('error', new InSimError('Unknown packet received'));
@@ -142,7 +145,6 @@ export class InSim extends TypedEmitter<InSimEvents> {
   }
 
   private handleKeepAlive(packet: IS_TINY) {
-    console.log('InSim: Send a keep-alive packet');
     if (packet.SubT === TinyType.TINY_NONE) {
       this.send(
         new IS_TINY({
