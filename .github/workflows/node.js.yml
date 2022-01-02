@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x, 17.x]
+        node-version: [16.x]
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -25,8 +25,7 @@ jobs:
       with:
         python-version: '3.x'
     - name: Set Python environment variable
-      with:
-        cmd: npm config --global set python /usr/bin/python3
+      run: npm config --global set python /usr/bin/python3
     - name: Install
       uses: borales/actions-yarn@v2.3.0
       with:
