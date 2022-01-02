@@ -28,6 +28,8 @@ jobs:
       run: which /usr/bin/python3
     - name: Check PATH
       run: echo $PATH
+    - name: Check python dir
+      run: ls -la ${{ env.pythonLocation }}
     - name: Install
       uses: borales/actions-yarn@v2.3.0
       env:
