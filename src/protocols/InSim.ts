@@ -91,7 +91,6 @@ export class InSim extends TypedEmitter<InSimEvents> {
     });
 
     this.connection.on('disconnect', () => {
-      // TODO send TINY_CLOSE
       this.emit('disconnect');
     });
 
@@ -99,7 +98,7 @@ export class InSim extends TypedEmitter<InSimEvents> {
   }
 
   disconnect() {
-    // TODO send TINY_CLOSE
+    this.send(new IS_TINY({ SubT: TinyType.TINY_CLOSE }));
     this.connection.disconnect();
   }
 
