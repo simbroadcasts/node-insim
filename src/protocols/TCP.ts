@@ -24,6 +24,7 @@ export class TCP extends EventEmitter {
   }
 
   connect = () => {
+    log.info('TCP connecting...');
     this.stream = net.connect(this.port, this.host);
 
     this.stream.on('connect', () => {
@@ -32,6 +33,10 @@ export class TCP extends EventEmitter {
 
     this.stream.on('close', () => {
       this.emit('disconnect', this);
+    });
+
+    this.stream.on('error', (error) => {
+      log.error('TCP error', error.name, error.message);
     });
 
     this.stream.on('data', (data: string) => {
@@ -46,7 +51,7 @@ export class TCP extends EventEmitter {
           Buffer.from(data, 'binary'),
         ]);
       }
-      // this.tempBuf.length += data.length;
+
       this.processBuf();
     });
   };

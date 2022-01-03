@@ -69,6 +69,8 @@ export class InSim extends TypedEmitter<InSimEvents> {
 
   connect(options?: Partial<InSimOptions>) {
     this.options = defaults(options, defaultInSimOptions);
+
+    log.info('InSim connecting...');
     log.debug('InSim options:', this.options);
 
     this.connection = new TCP(this.options.Host, this.options.Port);
