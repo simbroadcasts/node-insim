@@ -15,7 +15,6 @@ import { log } from '../utils/log';
 import { TCP } from './TCP';
 
 type InSimOptions = IS_ISI_Data & {
-  Protocol: 'tcp' | 'udp';
   Host: string;
   Port: number;
 };
@@ -45,7 +44,6 @@ export type InSimEvents = InSimPacketEvents & {
 const defaultInSimOptions: InSimOptions = {
   Host: '127.0.0.1',
   Port: 29999,
-  Protocol: 'tcp',
   ReqI: 0,
   UDPPort: 0,
   Flags: 0,
