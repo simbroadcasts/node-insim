@@ -1,13 +1,20 @@
-import { LoggerWithoutCallSite } from 'tslog';
-import { TLogLevelName } from 'tslog/dist/types/interfaces';
+import { LoggerWithoutCallSite, TLogLevelName } from 'tslog';
 
-const isDevelopment = process.env.NODE_ENV === 'development';
-const minLevel: TLogLevelName =
-  (process.env.DEBUG_MIN_LEVEL as TLogLevelName) ??
-  (isDevelopment ? 'debug' : 'info');
+import { NodeEnvironment } from '../types';
+
+const env = process.env.NODE_ENV as NodeEnvironment;
+const debugMinLevel = process.env.DEBUG_MIN_LEVEL as TLogLevelName;
+
+const minLevelByEnv: Record<NodeEnvironment, TLogLevelName> = {
+  development: 'debug',
+  test: 'fatal',
+  production: 'info',
+};
+
+const minLevel: TLogLevelName = debugMinLevel ?? minLevelByEnv[env] ?? 'info';
 
 const log = new LoggerWithoutCallSite({
-  displayFilePath: isDevelopment ? 'hideNodeModulesOnly' : 'hidden',
+  displayFilePath: env === 'development' ? 'hideNodeModulesOnly' : 'hidden',
   displayInstanceName: false,
   displayFunctionName: false,
   minLevel,

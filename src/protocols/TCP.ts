@@ -57,10 +57,18 @@ export class TCP extends EventEmitter {
   };
 
   send = (data: Uint8Array | string) => {
+    if (this.stream === null) {
+      return;
+    }
+
     this.stream.write(data);
   };
 
   disconnect = () => {
+    if (this.stream === null) {
+      return;
+    }
+
     this.stream.end();
   };
 
@@ -84,7 +92,7 @@ export class TCP extends EventEmitter {
       // Recurse on remaining buffer
       this.processBuf();
     } else {
-      log.warn('TCP: Got incomplete LFS packet');
+      log.warn('TCP: Got incomplete packet');
     }
   }
 }
