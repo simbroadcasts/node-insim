@@ -58,14 +58,17 @@ export class TCP extends EventEmitter {
 
   send = (data: Uint8Array | string) => {
     if (this.stream === null) {
+      log.debug('TCP: cannot send data - not connected');
       return;
     }
 
+    log.debug('TCP: send data', data);
     this.stream.write(data);
   };
 
   disconnect = () => {
     if (this.stream === null) {
+      log.debug('TCP: cannot disconnect - not connected');
       return;
     }
 

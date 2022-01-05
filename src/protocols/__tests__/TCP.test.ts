@@ -1,12 +1,18 @@
-import mitm from 'mitm';
+import Mitm from 'mitm';
 
 import { TCP } from '../TCP';
 
 describe('TCP', () => {
+  let mitm: ReturnType<typeof Mitm>;
+
+  beforeEach(() => {
+    mitm = Mitm();
+  });
+
   it('should connect to a TCP socket', (done) => {
     const tcp = new TCP('127.0.0.1', 12345);
 
-    mitm().on('connection', () => {
+    mitm.on('connection', () => {
       done();
     });
 
@@ -16,7 +22,7 @@ describe('TCP', () => {
   it('should send a valid packet', (done) => {
     const tcp = new TCP('127.0.0.1', 12345);
 
-    mitm().on('connection', (socket) => {
+    mitm.on('connection', (socket) => {
       socket.write(new Uint8Array([1, 3, 0, 0]));
     });
 
@@ -38,7 +44,7 @@ describe('TCP', () => {
 
     const tcp = new TCP('127.0.0.1', 12345);
 
-    mitm().on('connection', (socket) => {
+    mitm.on('connection', (socket) => {
       socket.write(new Uint8Array(packetByteArray));
     });
 
