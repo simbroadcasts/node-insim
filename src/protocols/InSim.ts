@@ -14,10 +14,12 @@ import { unpack } from '../utils/jspack';
 import { log } from '../utils/log';
 import { TCP } from './TCP';
 
-type InSimOptions = IS_ISI_Data & {
+type InSimConnectionOptions = {
   Host: string;
   Port: number;
 };
+
+type InSimOptions = IS_ISI_Data & InSimConnectionOptions;
 
 export type InSimPacketEvents = {
   [PacketType.ISP_ISI]: (packet: IS_ISI, insim: InSim) => void;
@@ -38,7 +40,6 @@ export type InSimEvents = InSimPacketEvents & {
   connect: () => void;
   disconnect: () => void;
   error: (error: InSimError) => void;
-  test: () => void;
 };
 
 const defaultInSimOptions: InSimOptions = {
@@ -67,7 +68,7 @@ export class InSim extends TypedEmitter<InSimEvents> {
     this.on(PacketType.ISP_TINY, (packet) => this.handleKeepAlive(packet));
   }
 
-  connect(options?: Partial<InSimOptions>) {
+  connect(options: Partial<IS_ISI_Data> & InSimConnectionOptions) {
     this.options = defaults(options, defaultInSimOptions);
 
     log.info('InSim connecting...');
@@ -100,11 +101,21 @@ export class InSim extends TypedEmitter<InSimEvents> {
   }
 
   disconnect() {
+    if (this.connection === null) {
+      log.debug('InSim: cannot disconnect - not connected');
+      return;
+    }
+
     this.send(new IS_TINY({ SubT: TinyType.TINY_CLOSE }));
     this.connection.disconnect();
   }
 
   send(packet: ISendable) {
+    if (this.connection === null) {
+      log.debug('InSim: cannot send a packet - not connected');
+      return;
+    }
+
     const data = packet.pack();
     log.info('Send packet:', PacketType[packet.Type]);
     log.debug('Send packet:', packet, data);
