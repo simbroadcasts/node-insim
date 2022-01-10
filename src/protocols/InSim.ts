@@ -130,7 +130,9 @@ export class InSim extends TypedEmitter<InSimEvents> {
     if (header === undefined) {
       this.emit(
         'error',
-        new InSimError(`Incomplete packet header received: ${data.toJSON()}`),
+        new InSimError(
+          `InSim: incomplete packet header received: ${data.toJSON()}`,
+        ),
       );
       return;
     }
@@ -142,29 +144,29 @@ export class InSim extends TypedEmitter<InSimEvents> {
     if (packetTypeString === undefined) {
       this.emit(
         'error',
-        new InSimError(`Unknown packet received: ${data.toJSON()}`),
+        new InSimError(`InSim: unknown packet received: ${data.toJSON()}`),
       );
       return;
     }
 
-    switch (packetType) {
-      case PacketType.ISP_ISI:
-        this.emit(packetType, new IS_ISI(data), this);
-        break;
-      case PacketType.ISP_VER:
-        this.emit(packetType, new IS_VER(data), this);
-        break;
-      case PacketType.ISP_TINY:
-        this.emit(packetType, new IS_TINY(data), this);
-        break;
-      default:
-        this.emit(
-          'error',
-          new InSimError(
-            `Packet handler not implemented for ${packetTypeString}`,
-          ),
-        );
-        break;
+    const packetClassName = packetTypeString.replace(/^ISP_/, 'IS_');
+
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const packetModule = require(`../packets/${packetClassName}`);
+      const PacketClass = packetModule[packetClassName];
+
+      this.emit(
+        packetType as keyof InSimPacketEvents,
+        new PacketClass(data),
+        this,
+      );
+    } catch (e) {
+      log.error(
+        `InSim packet handler not found for ${packetTypeString} (class ${packetClassName})`,
+        e,
+      );
+      return;
     }
   }
 
