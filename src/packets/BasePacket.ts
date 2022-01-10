@@ -16,8 +16,13 @@ export abstract class BasePacket implements IPacket {
   abstract Type: PacketType;
   abstract ReqI: number;
 
-  protected populateData(data?: Partial<Data>) {
+  protected initialize(data?: Partial<Data> | Buffer) {
     if (!data) {
+      return;
+    }
+
+    if (data instanceof Buffer) {
+      this.unpack(data);
       return;
     }
 
@@ -26,7 +31,7 @@ export abstract class BasePacket implements IPacket {
     });
   }
 
-  unpack(buffer: Buffer): this {
+  private unpack(buffer: Buffer): this {
     const data = unpack(this._format, buffer);
 
     if (!data) {

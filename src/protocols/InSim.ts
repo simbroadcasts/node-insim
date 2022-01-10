@@ -149,13 +149,13 @@ export class InSim extends TypedEmitter<InSimEvents> {
 
     switch (packetType) {
       case PacketType.ISP_ISI:
-        this.emit(packetType, new IS_ISI().unpack(data), this);
+        this.emit(packetType, new IS_ISI(data), this);
         break;
       case PacketType.ISP_VER:
-        this.emit(packetType, new IS_VER().unpack(data), this);
+        this.emit(packetType, new IS_VER(data), this);
         break;
       case PacketType.ISP_TINY:
-        this.emit(packetType, new IS_TINY().unpack(data), this);
+        this.emit(packetType, new IS_TINY(data), this);
         break;
       default:
         this.emit(

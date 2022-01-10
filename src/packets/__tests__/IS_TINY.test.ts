@@ -24,7 +24,7 @@ describe('IS_TINY', () => {
       1, // ReqI
       TinyType.TINY_CLOSE, // SubT
     ]);
-    const packet = new IS_TINY().unpack(buffer);
+    const packet = new IS_TINY(buffer);
     expect(packet.Size).toEqual(20);
     expect(packet.Type).toEqual(PacketType.ISP_TINY);
     expect(packet.ReqI).toEqual(1);

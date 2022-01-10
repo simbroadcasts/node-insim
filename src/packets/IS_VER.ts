@@ -30,9 +30,9 @@ export class IS_VER extends BasePacket implements IS_VER_Data {
 
   readonly Spare = 0;
 
-  constructor(data?: Partial<IS_VER_Data>) {
+  constructor(data?: Partial<IS_VER_Data> | Buffer) {
     super();
-    this.populateData(data);
+    this.initialize(data);
   }
 }
 

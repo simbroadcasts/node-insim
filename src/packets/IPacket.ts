@@ -5,5 +5,4 @@ export type IPacket = {
   readonly Size: number;
   readonly Type: PacketType;
   ReqI: number;
-  unpack: (data: Buffer) => IPacket;
 };

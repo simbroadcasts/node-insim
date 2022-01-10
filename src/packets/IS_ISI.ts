@@ -36,9 +36,9 @@ export class IS_ISI extends BaseSendablePacket implements IS_ISI_Data {
   /** A short name for your program */
   IName = '';
 
-  constructor(data?: Partial<IS_ISI_Data>) {
+  constructor(data?: Partial<IS_ISI_Data> | Buffer) {
     super();
-    this.populateData(data);
+    this.initialize(data);
   }
 }
 
