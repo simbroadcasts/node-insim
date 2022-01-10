@@ -33,16 +33,11 @@ export abstract class BasePacket implements IPacket {
       return this;
     }
 
-    let i = 0;
-    for (const propertyName in this) {
-      if (typeof this[propertyName] === 'function') {
-        continue;
-      }
+    const propertyNames = Object.getOwnPropertyNames(this).filter(
+      (propertyName) => !propertyName.startsWith('_'),
+    );
 
-      if (propertyName.startsWith('_')) {
-        continue;
-      }
-
+    propertyNames.forEach((propertyName, i) => {
       let value = data[i];
 
       if (typeof value === 'string' && value.length > 0) {
@@ -52,14 +47,13 @@ export abstract class BasePacket implements IPacket {
       if (propertyName === 'Size') {
         (this[propertyName] as unknown as number) =
           value * BasePacket.SIZE_MULTIPLIER;
-        i++;
-        continue;
+        return;
       }
 
-      this[propertyName] = value;
-      i++;
-    }
+      this[propertyName as unknown as Extract<keyof this, string>] = value;
+    });
 
+    log.info('InSim packet received:', PacketType[this.Type]);
     log.debug('InSim packet received:', this);
 
     return this;

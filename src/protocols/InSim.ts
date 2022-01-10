@@ -116,9 +116,10 @@ export class InSim extends TypedEmitter<InSimEvents> {
       return;
     }
 
+    log.info('InSim: send packet:', PacketType[packet.Type]);
+    log.debug('InSim: send packet:', packet);
+
     const data = packet.pack();
-    log.info('Send packet:', PacketType[packet.Type]);
-    log.debug('Send packet:', packet, data);
 
     this.connection.send(data);
   }
