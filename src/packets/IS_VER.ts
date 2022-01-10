@@ -1,4 +1,5 @@
 import { BasePacket } from './BasePacket';
+import { byte, char } from './decorators';
 import { PacketType } from './packetTypes';
 
 /**
@@ -9,26 +10,24 @@ import { PacketType } from './packetTypes';
  * be sent a version packet on connection if you set ReqI in the {@link IS_ISI} packet.
  */
 export class IS_VER extends BasePacket implements IS_VER_Data {
-  readonly _format = '<BBBB8s6sBB';
-
-  readonly Size = 20;
-  readonly Type = PacketType.ISP_VER;
+  @byte() readonly Size = 20;
+  @byte() readonly Type = PacketType.ISP_VER;
 
   /** ReqI as received in the request packet */
-  ReqI = 0;
+  @byte() ReqI = 0;
 
-  readonly Zero = 0;
+  @byte() readonly Zero = 0;
 
   /** LFS version, e.g. 0.3G */
-  Version = '';
+  @char(8) Version = '';
 
   /** Product: DEMO / S1 / S2 / S3 */
-  Product = '';
+  @char(6) Product = '';
 
   /** InSim version */
-  InSimVer = 0;
+  @byte() InSimVer = 0;
 
-  readonly Spare = 0;
+  @byte() readonly Spare = 0;
 
   constructor(data?: Partial<IS_VER_Data> | Buffer) {
     super();

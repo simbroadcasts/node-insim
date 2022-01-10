@@ -2,6 +2,7 @@ import parseLFSMessage from 'parse-lfs-message';
 
 import { unpack } from '../utils/jspack';
 import { log } from '../utils/log';
+import { getFormat } from './decorators';
 import { IPacket } from './IPacket';
 import { PacketType } from './packetTypes';
 
@@ -9,8 +10,6 @@ type Data = Record<string, unknown>;
 
 export abstract class BasePacket implements IPacket {
   static readonly SIZE_MULTIPLIER = 4;
-
-  abstract _format: string;
 
   abstract Size: number;
   abstract Type: PacketType;
@@ -26,21 +25,26 @@ export abstract class BasePacket implements IPacket {
       return;
     }
 
-    (Object.keys(data) as string[]).forEach((key) => {
-      (this as Data)[key] = data[key];
-    });
+    Object.assign(this, data);
+  }
+
+  protected getValidPropertyNames() {
+    return Object.getOwnPropertyNames(this).filter(
+      (propertyName) => getFormat(this, propertyName) !== undefined,
+    );
   }
 
   private unpack(buffer: Buffer): this {
-    const data = unpack(this._format, buffer);
+    const propertyNames = this.getValidPropertyNames();
+    const format = propertyNames
+      .map((propertyName) => getFormat(this, propertyName))
+      .join('');
+    const data = unpack(`<${format}`, buffer);
 
     if (!data) {
+      log.debug('BasePacket: unpacked no data from buffer', buffer);
       return this;
     }
-
-    const propertyNames = Object.getOwnPropertyNames(this).filter(
-      (propertyName) => !propertyName.startsWith('_'),
-    );
 
     propertyNames.forEach((propertyName, i) => {
       let value = data[i];

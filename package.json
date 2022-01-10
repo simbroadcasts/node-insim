@@ -21,11 +21,14 @@
   "dependencies": {
     "lodash": "^4.17.21",
     "parse-lfs-message": "^1.0.0",
+    "reflect-metadata": "^0.1.13",
     "tiny-typed-emitter": "^2.1.0",
     "tslog": "^3.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.16.5",
+    "@babel/plugin-proposal-class-properties": "^7.16.7",
+    "@babel/plugin-proposal-decorators": "^7.16.7",
     "@babel/preset-env": "^7.16.5",
     "@babel/preset-typescript": "^7.16.5",
     "@types/jest": "^27.0.3",

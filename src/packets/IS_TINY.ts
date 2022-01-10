@@ -1,17 +1,16 @@
 import { BaseSendablePacket } from './BaseSendablePacket';
+import { byte } from './decorators';
 import { PacketType } from './packetTypes';
 
 export class IS_TINY extends BaseSendablePacket implements IS_TINY_Data {
-  readonly _format = '<BBBB';
-
-  readonly Size = 4;
-  readonly Type = PacketType.ISP_TINY;
+  @byte() readonly Size = 4;
+  @byte() readonly Type = PacketType.ISP_TINY;
 
   /** 0 unless it is an info request or a reply to an info request */
-  ReqI = 0;
+  @byte() ReqI = 0;
 
   /** Subtype */
-  SubT: TinyType = TinyType.TINY_NONE;
+  @byte() SubT: TinyType = TinyType.TINY_NONE;
 
   constructor(data?: Partial<IS_TINY_Data> | Buffer) {
     super();

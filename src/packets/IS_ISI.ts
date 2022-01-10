@@ -1,40 +1,39 @@
 import { BaseSendablePacket } from './BaseSendablePacket';
+import { byte, char, word } from './decorators';
 import { PacketType } from './packetTypes';
 
 /**
  * InSim Init - packet to initialise the InSim system
  */
 export class IS_ISI extends BaseSendablePacket implements IS_ISI_Data {
-  readonly _format = '<BBBxHHBcH16s16s';
-
-  readonly Size = 44;
-  readonly Type = PacketType.ISP_ISI;
+  @byte() readonly Size = 44;
+  @byte() readonly Type = PacketType.ISP_ISI;
 
   /** If non-zero LFS will send an IS_VER packet */
-  ReqI = 0;
+  @byte() ReqI = 0;
 
-  readonly Zero = 0;
+  @byte() readonly Zero = 0;
 
   /** Port for UDP replies from LFS (0 to 65535) */
-  UDPPort = 0;
+  @word() UDPPort = 0;
 
   /** Bit flags for options */
-  Flags: InSimFlags = 0;
+  @word() Flags: InSimFlags = 0;
 
   /** The INSIM_VERSION used by your program */
-  InSimVer = 0;
+  @byte() InSimVer = 0;
 
   /** Special host message prefix character */
-  Prefix = '';
+  @char(1) Prefix = '';
 
   /** Time in ms between {@link IS_NLP} or {@link IS_MCI} (0 = none) */
-  Interval = 0;
+  @word() Interval = 0;
 
   /** Admin password (if set in LFS) */
-  Admin = '';
+  @char(16) Admin = '';
 
   /** A short name for your program */
-  IName = '';
+  @char(16) IName = '';
 
   constructor(data?: Partial<IS_ISI_Data> | Buffer) {
     super();

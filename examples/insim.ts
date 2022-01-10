@@ -17,7 +17,7 @@ inSim.on('disconnect', () => console.log(`${insimName}: disconnected`));
 inSim.on(PacketType.ISP_VER, onVersion);
 
 function onVersion(packet: IS_VER) {
-  console.log(`${insimName}: LFS version`, packet.Version);
+  console.log(`${insimName}: LFS version ${packet.Product} ${packet.Version}`);
 }
 
 inSim.on('error', (error) => {
