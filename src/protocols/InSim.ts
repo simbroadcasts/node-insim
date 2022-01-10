@@ -57,7 +57,7 @@ const defaultInSimOptions: InSimOptions = {
 
 export class InSim extends TypedEmitter<InSimEvents> {
   private options: InSimOptions = defaultInSimOptions;
-  private connection: TCP;
+  private connection: TCP | null = null;
 
   constructor() {
     super();
@@ -125,11 +125,24 @@ export class InSim extends TypedEmitter<InSimEvents> {
 
   private handlePacket(data: Buffer) {
     const header = unpack('<BB', data);
+
+    if (header === undefined) {
+      this.emit(
+        'error',
+        new InSimError(`Incomplete packet header received: ${data.toJSON()}`),
+      );
+      return;
+    }
+
     const packetType: PacketType = header[1];
+
     const packetTypeString = PacketType[packetType];
 
     if (packetTypeString === undefined) {
-      this.emit('error', new InSimError('Unknown packet received'));
+      this.emit(
+        'error',
+        new InSimError(`Unknown packet received: ${data.toJSON()}`),
+      );
       return;
     }
 

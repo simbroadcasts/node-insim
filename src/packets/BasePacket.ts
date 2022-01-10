@@ -14,9 +14,9 @@ export abstract class BasePacket implements IPacket {
 
   abstract Size: number;
   abstract Type: PacketType;
-  ReqI: number;
+  abstract ReqI: number;
 
-  protected populateData(data: Partial<Data>) {
+  protected populateData(data?: Partial<Data>) {
     if (!data) {
       return;
     }

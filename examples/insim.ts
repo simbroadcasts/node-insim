@@ -6,10 +6,9 @@ const inSim = new NodeInSim.InSim();
 const insimName = 'TestNodeApp';
 
 inSim.connect({
-  Host: '188.122.74.155',
-  Port: 52317,
+  Host: '127.0.0.1',
+  Port: 29999,
   ReqI: IS_ISI_ReqI.SEND_VERSION,
-  Admin: 's4v4g3b4d',
   IName: insimName,
 });
 

@@ -4,12 +4,12 @@ import net from 'net';
 import { log } from '../utils/log';
 
 export class TCP extends EventEmitter {
-  private stream: net.Socket = null;
+  private stream: net.Socket | null = null;
 
   private readonly host: string;
   private readonly port: number;
 
-  tempBuf: Buffer = null;
+  tempBuf: Buffer | null = null;
 
   constructor(host: string, port: number) {
     super();
@@ -76,9 +76,15 @@ export class TCP extends EventEmitter {
   };
 
   processBuf() {
+    if (this.tempBuf === null) {
+      log.warn('TCP: No buffer to process');
+      return;
+    }
+
+    // Haven't got a full 32 bit header
     if (this.tempBuf.length < 4) {
-      log.warn('processBuf: Got packet with <4 bytes');
-      return; // Haven't got a full 32 bit header
+      log.warn('TCP: Got packet with <4 bytes');
+      return;
     }
 
     const size = this.tempBuf[0] * 4;
