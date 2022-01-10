@@ -25,18 +25,6 @@ export abstract class BaseSendablePacket
       getFormat(this, propertyName),
     );
 
-    if (formatArray.length !== values.length) {
-      log.error(
-        'InSim: not all packet properties are decorated with their binary types.',
-        { formatArray, values },
-        this,
-      );
-      // TODO what to do now?
-      throw new Error(
-        'InSim: not all packet properties are decorated with their binary types.',
-      );
-    }
-
     const format = formatArray.join('');
 
     return pack(`<${format}`, values);
