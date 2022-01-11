@@ -150,24 +150,27 @@ export class InSim extends TypedEmitter<InSimEvents> {
     }
 
     const packetClassName = packetTypeString.replace(/^ISP_/, 'IS_');
+    let PacketClass;
 
     try {
       // eslint-disable-next-line @typescript-eslint/no-var-requires
-      const packetModule = require(`../packets/${packetClassName}`);
-      const PacketClass = packetModule[packetClassName];
-
-      this.emit(
-        packetType as keyof InSimPacketEvents,
-        new PacketClass(data),
-        this,
-      );
+      const packetModule = require(`../packets/${packetClassName}a`);
+      PacketClass = packetModule[packetClassName];
     } catch (e) {
-      log.error(
-        `InSim packet handler not found for ${packetTypeString} (class ${packetClassName})`,
-        e,
+      this.emit(
+        'error',
+        new InSimError(
+          `InSim packet handler not found for ${packetTypeString} (class ${packetClassName})`,
+        ),
       );
       return;
     }
+
+    this.emit(
+      packetType as keyof InSimPacketEvents,
+      new PacketClass(data),
+      this,
+    );
   }
 
   private handleKeepAlive(packet: IS_TINY) {
