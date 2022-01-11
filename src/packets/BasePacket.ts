@@ -34,12 +34,18 @@ export abstract class BasePacket implements IPacket {
     );
   }
 
-  private unpack(buffer: Buffer): this {
+  protected get format() {
     const propertyNames = this.getValidPropertyNames();
     const format = propertyNames
       .map((propertyName) => getFormat(this, propertyName))
       .join('');
-    const data = unpack(`<${format}`, buffer);
+
+    return `<${format}`;
+  }
+
+  private unpack(buffer: Buffer): this {
+    const propertyNames = this.getValidPropertyNames();
+    const data = unpack(this.format, buffer);
 
     if (!data) {
       log.debug('BasePacket: unpacked no data from buffer', buffer);

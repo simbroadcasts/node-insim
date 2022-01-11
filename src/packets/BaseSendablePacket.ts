@@ -1,7 +1,5 @@
 import { pack } from '../utils/jspack';
-import { log } from '../utils/log';
 import { BasePacket } from './BasePacket';
-import { getFormat } from './decorators';
 import { ISendable } from './ISendable';
 
 export abstract class BaseSendablePacket
@@ -21,12 +19,6 @@ export abstract class BaseSendablePacket
       return this[propertyName as unknown as Extract<keyof this, string>];
     });
 
-    const formatArray = propertyNames.map((propertyName) =>
-      getFormat(this, propertyName),
-    );
-
-    const format = formatArray.join('');
-
-    return pack(`<${format}`, values);
+    return pack(this.format, values);
   }
 }
