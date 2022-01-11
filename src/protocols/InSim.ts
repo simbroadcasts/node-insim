@@ -154,7 +154,7 @@ export class InSim extends TypedEmitter<InSimEvents> {
 
     try {
       // eslint-disable-next-line @typescript-eslint/no-var-requires
-      const packetModule = require(`../packets/${packetClassName}a`);
+      const packetModule = require(`../packets/${packetClassName}`);
       PacketClass = packetModule[packetClassName];
     } catch (e) {
       this.emit(
