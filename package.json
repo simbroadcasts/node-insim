@@ -9,14 +9,17 @@
   "private": false,
   "scripts": {
     "prebuild": "rimraf ./dist",
-    "build": "tsc",
+    "build": "run-s build:*",
+    "build:ts": "tsc",
+    "build:copypackage": "cp -rf package.json dist",
     "dev": "cross-env NODE_ENV=development ts-node-dev --respawn ./src/index.ts",
     "dev:example:insim": "cross-env NODE_ENV=development ts-node-dev --respawn examples/insim.ts",
     "test": "jest",
     "test:watch": "jest --watch",
     "format": "prettier --write \"./**/*.{js,ts,md,json,yml,yaml}\"",
     "lint": "eslint \"./{src,examples}/**/*\" --ext .js,.ts",
-    "lint:fix": "eslint \"./{src,examples}/**/*\" --ext .js,.ts --fix"
+    "lint:fix": "eslint \"./{src,examples}/**/*\" --ext .js,.ts --fix",
+    "dist": "cd dist && npm publish"
   },
   "dependencies": {
     "lodash": "^4.17.21",
@@ -45,11 +48,13 @@
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "jest": "^27.4.5",
     "mitm": "^1.7.2",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.5.1",
     "rimraf": "^3.0.2",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.5.4"
   },
+  "files": ["**/*.js", "**/*.d.ts"],
   "prettier": {
     "singleQuote": true,
     "trailingComma": "all"
