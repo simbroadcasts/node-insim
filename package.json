@@ -10,10 +10,11 @@
   "scripts": {
     "prebuild": "rimraf ./dist",
     "build": "run-s build:*",
-    "build:ts": "tsc",
+    "build:ts": "tsc -p tsconfig.build.json",
     "build:copypackage": "cp -rf package.json dist",
     "dev": "cross-env NODE_ENV=development ts-node-dev --respawn ./src/index.ts",
-    "dev:example:insim": "cross-env NODE_ENV=development ts-node-dev --respawn examples/insim.ts",
+    "dev:example": "cross-env NODE_ENV=development ts-node-dev --respawn",
+    "dev:example:production": "cross-env NODE_ENV=production ts-node-dev --respawn",
     "test": "jest",
     "test:watch": "jest --watch",
     "format": "prettier --write \"./**/*.{js,ts,md,json,yml,yaml}\"",

@@ -1,9 +1,9 @@
-import NodeInSim, { PacketType } from '../src';
-import { IS_ISI_ReqI, IS_VER } from '../src/packets';
+import NodeInSim, { PacketType } from '../../src';
+import { IS_ISI_ReqI, IS_VER } from '../../src/packets';
 
 const inSim = new NodeInSim.InSim();
 
-const insimName = 'TestNodeApp';
+const insimName = 'Node InSim';
 
 inSim.connect({
   Host: '127.0.0.1',
