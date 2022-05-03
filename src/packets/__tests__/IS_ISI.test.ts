@@ -1,4 +1,4 @@
-import { INSIM_VERSION } from '../../protocols/InSim';
+import { InSim } from '../../protocols/InSim';
 import { checkPacketDataSize } from '../../utils/testutils';
 import { BasePacket } from '../BasePacket';
 import { IS_ISI, IS_ISI_Data } from '../IS_ISI';
@@ -34,7 +34,7 @@ describe('IS_ISI', () => {
       ReqI: 1,
       UDPPort: 257,
       Flags: 2,
-      InSimVer: INSIM_VERSION,
+      InSimVer: InSim.INSIM_VERSION,
       Prefix: '!',
       Interval: 30,
       Admin: 'admin',
@@ -50,7 +50,7 @@ describe('IS_ISI', () => {
       1, // UDPPort (2)
       2, // Flags (1)
       0, // flags (2)
-      INSIM_VERSION, // InSimVer
+      InSim.INSIM_VERSION, // InSimVer
       '!'.charCodeAt(0), // Prefix
       30, // Interval (1)
       0, // Interval (2)

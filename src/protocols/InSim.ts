@@ -4,6 +4,7 @@ import { TypedEmitter } from 'tiny-typed-emitter';
 import {
   IS_ISI,
   IS_ISI_Data,
+  IS_SMALL,
   IS_TINY,
   IS_VER,
   ISendable,
@@ -27,6 +28,7 @@ export type InSimPacketEvents = {
   [PacketType.ISP_ISI]: (packet: IS_ISI, insim: InSim) => void;
   [PacketType.ISP_VER]: (packet: IS_VER, insim: InSim) => void;
   [PacketType.ISP_TINY]: (packet: IS_TINY, insim: InSim) => void;
+  [PacketType.ISP_SMALL]: (packet: IS_SMALL, insim: InSim) => void;
 };
 
 export const INSIM_VERSION = 9;
