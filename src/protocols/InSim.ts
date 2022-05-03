@@ -31,8 +31,6 @@ export type InSimPacketEvents = {
   [PacketType.ISP_SMALL]: (packet: IS_SMALL, insim: InSim) => void;
 };
 
-export const INSIM_VERSION = 9;
-
 class InSimError extends Error {
   constructor(message: string) {
     super(message);
@@ -46,23 +44,11 @@ export type InSimEvents = InSimPacketEvents & {
   error: (error: InSimError) => void;
 };
 
-const defaultInSimOptions: InSimOptions = {
-  Host: '127.0.0.1',
-  Port: 29999,
-  ReqI: 0,
-  UDPPort: 0,
-  Flags: 0,
-  InSimVer: INSIM_VERSION,
-  Prefix: '',
-  Interval: 0,
-  Admin: '',
-  IName: '',
-};
-
 export class InSim extends TypedEmitter<InSimEvents> {
-  private options: InSimOptions = defaultInSimOptions;
-  private connection: TCP | null = null;
+  static INSIM_VERSION = 9;
+  private _options: InSimOptions = defaultInSimOptions;
 
+  private connection: TCP | null = null;
   constructor() {
     super();
 
@@ -72,10 +58,10 @@ export class InSim extends TypedEmitter<InSimEvents> {
   }
 
   connect(options: Partial<IS_ISI_Data> & InSimConnectionOptions) {
-    this.options = defaults(options, defaultInSimOptions);
+    this._options = defaults(options, defaultInSimOptions);
 
     log.info('Connecting...');
-    log.debug('Options:', this.options);
+    log.debug('Options:', this._options);
 
     if (options.IName && options.IName.length > 15) {
       this.handleError(
@@ -84,20 +70,20 @@ export class InSim extends TypedEmitter<InSimEvents> {
       return;
     }
 
-    this.connection = new TCP(this.options.Host, this.options.Port);
+    this.connection = new TCP(this._options.Host, this._options.Port);
     this.connection.connect();
 
     this.connection.on('connect', () => {
       this.send(
         new IS_ISI({
-          Flags: this.options.Flags,
-          Prefix: this.options.Prefix,
-          Admin: this.options.Admin,
-          UDPPort: this.options.UDPPort,
-          ReqI: this.options.ReqI,
-          Interval: this.options.Interval,
-          IName: this.options.IName,
-          InSimVer: this.options.InSimVer,
+          Flags: this._options.Flags,
+          Prefix: this._options.Prefix,
+          Admin: this._options.Admin,
+          UDPPort: this._options.UDPPort,
+          ReqI: this._options.ReqI,
+          Interval: this._options.Interval,
+          IName: this._options.IName,
+          InSimVer: this._options.InSimVer,
         }),
       );
       this.emit('connect');
@@ -132,6 +118,10 @@ export class InSim extends TypedEmitter<InSimEvents> {
     const data = packet.pack();
 
     this.connection.send(data);
+  }
+
+  get options(): InSimOptions {
+    return this._options;
   }
 
   private handlePacket(data: Buffer) {
@@ -187,3 +177,16 @@ export class InSim extends TypedEmitter<InSimEvents> {
     this.emit('error', new InSimError(message));
   }
 }
+
+const defaultInSimOptions: InSimOptions = {
+  Host: '127.0.0.1',
+  Port: 29999,
+  ReqI: 0,
+  UDPPort: 0,
+  Flags: 0,
+  InSimVer: InSim.INSIM_VERSION,
+  Prefix: '',
+  Interval: 0,
+  Admin: '',
+  IName: '',
+};
