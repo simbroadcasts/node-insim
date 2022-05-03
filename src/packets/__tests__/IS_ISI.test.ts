@@ -40,57 +40,54 @@ describe('IS_ISI', () => {
       Admin: 'admin',
       IName: 'app',
     };
-    const buffer = new IS_ISI(data).pack();
+    const actualBuffer = new IS_ISI(data).pack();
+    const expectedBuffer = Buffer.from([
+      44 / BasePacket.SIZE_MULTIPLIER, // Size
+      PacketType.ISP_ISI, // Type
+      1, // ReqI
+      0, // Zero
+      1, // UDPPort (1)
+      1, // UDPPort (2)
+      2, // Flags (1)
+      0, // flags (2)
+      INSIM_VERSION, // InSimVer
+      '!'.charCodeAt(0), // Prefix
+      30, // Interval (1)
+      0, // Interval (2)
+      'a'.charCodeAt(0), // Admin[16]
+      'd'.charCodeAt(0),
+      'm'.charCodeAt(0),
+      'i'.charCodeAt(0),
+      'n'.charCodeAt(0),
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      'a'.charCodeAt(0), // IName[16]
+      'p'.charCodeAt(0),
+      'p'.charCodeAt(0),
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+    ]);
 
-    expect(
-      buffer.equals(
-        Buffer.from([
-          44 / BasePacket.SIZE_MULTIPLIER, // Size
-          PacketType.ISP_ISI, // Type
-          1, // ReqI
-          0, // Zero
-          1, // UDPPort (1)
-          1, // UDPPort (2)
-          2, // Flags (1)
-          0, // flags (2)
-          INSIM_VERSION, // InSimVer
-          '!'.charCodeAt(0), // Prefix
-          30, // Interval (1)
-          0, // Interval (2)
-          'a'.charCodeAt(0), // Admin[16]
-          'd'.charCodeAt(0),
-          'm'.charCodeAt(0),
-          'i'.charCodeAt(0),
-          'n'.charCodeAt(0),
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          'a'.charCodeAt(0), // IName[16]
-          'p'.charCodeAt(0),
-          'p'.charCodeAt(0),
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-        ]),
-      ),
-    ).toEqual(true);
+    expect(actualBuffer).toEqual(expectedBuffer);
   });
 });

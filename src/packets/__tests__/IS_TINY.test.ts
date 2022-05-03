@@ -19,13 +19,14 @@ describe('IS_TINY', () => {
 
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
-      5, // Size
+      1, // Size
       PacketType.ISP_TINY, // Type
       1, // ReqI
       TinyType.TINY_CLOSE, // SubT
     ]);
     const packet = new IS_TINY(buffer);
-    expect(packet.Size).toEqual(20);
+
+    expect(packet.Size).toEqual(4);
     expect(packet.Type).toEqual(PacketType.ISP_TINY);
     expect(packet.ReqI).toEqual(1);
     expect(packet.SubT).toEqual(TinyType.TINY_CLOSE);
@@ -36,17 +37,14 @@ describe('IS_TINY', () => {
       ReqI: 1,
       SubT: TinyType.TINY_CLOSE,
     };
-    const buffer = new IS_TINY(data).pack();
+    const actualBuffer = new IS_TINY(data).pack();
+    const expectedBuffer = Buffer.from([
+      4 / BasePacket.SIZE_MULTIPLIER, // Size
+      PacketType.ISP_TINY, // Type
+      1, // ReqI
+      TinyType.TINY_CLOSE, // SubT
+    ]);
 
-    expect(
-      buffer.equals(
-        Buffer.from([
-          4 / BasePacket.SIZE_MULTIPLIER, // Size
-          PacketType.ISP_TINY, // Type
-          1, // ReqI
-          TinyType.TINY_CLOSE, // SubT
-        ]),
-      ),
-    ).toEqual(true);
+    expect(actualBuffer).toEqual(expectedBuffer);
   });
 });
