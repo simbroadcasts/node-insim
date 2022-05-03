@@ -1,68 +1,199 @@
 export enum PacketType {
-  ISP_NONE, //  0                    : not used
-  ISP_ISI, //  1 - instruction       : insim initialise
-  ISP_VER, //  2 - info              : version info
-  ISP_TINY, //  3 - both ways        : multi purpose
-  ISP_SMALL, //  4 - both ways        : multi purpose
-  ISP_STA, //  5 - info               : state info
-  ISP_SCH, //  6 - instruction        : single character
-  ISP_SFP, //  7 - instruction        : state flags pack
-  ISP_SCC, //  8 - instruction        : set car camera
-  ISP_CPP, //  9 - both ways        : cam pos pack
-  ISP_ISM, // 10 - info            : start multiplayer
-  ISP_MSO, // 11 - info            : message out
-  ISP_III, // 12 - info            : hidden /i message
-  ISP_MST, // 13 - instruction        : type message or /command
-  ISP_MTC, // 14 - instruction        : message to a connection
-  ISP_MOD, // 15 - instruction        : set screen mode
-  ISP_VTN, // 16 - info            : vote notification
-  ISP_RST, // 17 - info            : race start
-  ISP_NCN, // 18 - info            : new connection
-  ISP_CNL, // 19 - info            : connection left
-  ISP_CPR, // 20 - info            : connection renamed
-  ISP_NPL, // 21 - info            : new player (joined race)
-  ISP_PLP, // 22 - info            : player pit (keeps slot in race)
-  ISP_PLL, // 23 - info            : player leave (spectate - loses slot)
-  ISP_LAP, // 24 - info            : lap time
-  ISP_SPX, // 25 - info            : split x time
-  ISP_PIT, // 26 - info            : pit stop start
-  ISP_PSF, // 27 - info            : pit stop finish
-  ISP_PLA, // 28 - info            : pit lane enter / leave
-  ISP_CCH, // 29 - info            : camera changed
-  ISP_PEN, // 30 - info            : penalty given or cleared
-  ISP_TOC, // 31 - info            : take over car
-  ISP_FLG, // 32 - info            : flag (yellow or blue)
-  ISP_PFL, // 33 - info            : player flags (help flags)
-  ISP_FIN, // 34 - info            : finished race
-  ISP_RES, // 35 - info            : result confirmed
-  ISP_REO, // 36 - both ways        : reorder (info or instruction)
-  ISP_NLP, // 37 - info            : node and lap packet
-  ISP_MCI, // 38 - info            : multi car info
-  ISP_MSX, // 39 - instruction        : type message
-  ISP_MSL, // 40 - instruction        : message to local computer
-  ISP_CRS, // 41 - info            : car reset
-  ISP_BFN, // 42 - both ways        : delete buttons / receive button requests
-  ISP_AXI, // 43 - info            : autocross layout information
-  ISP_AXO, // 44 - info            : hit an autocross object
-  ISP_BTN, // 45 - instruction        : show a button on local or remote screen
-  ISP_BTC, // 46 - info            : sent when a user clicks a button
-  ISP_BTT, // 47 - info            : sent after typing into a button
-  ISP_RIP, // 48 - both ways        : replay information packet
-  ISP_SSH, // 49 - both ways        : screenshot
-  ISP_CON, // 50 - info            : contact between cars (collision report)
-  ISP_OBH, // 51 - info            : contact car + object (collision report)
-  ISP_HLV, // 52 - info            : report incidents that would violate HLVC
-  ISP_PLC, // 53 - instruction        : player cars
-  ISP_AXM, // 54 - both ways        : autocross multiple objects
-  ISP_ACR, // 55 - info            : admin command report
-  ISP_HCP, // 56 - instruction        : car handicaps
-  ISP_NCI, // 57 - info            : new connection - extra info for host
-  ISP_JRR, // 58 - instruction        : reply to a join request (allow / disallow)
-  ISP_UCO, // 59 - info            : report InSim checkpoint / InSim circle
-  ISP_OCO, // 60 - instruction        : object control (currently used for lights)
-  ISP_TTC, // 61 - instruction        : multi purpose - target to connection
-  ISP_SLC, // 62 - info            : connection selected a car
-  ISP_CSC, // 63 - info            : car state changed
-  ISP_CIM, // 64 - info            : connection's interface mode
-  ISP_MAL, // 65 - both ways        : set mods allowed
+  /** Not used */
+  ISP_NONE,
+
+  /** Instruction: insim initialise */
+  ISP_ISI,
+
+  /** Info: version info */
+  ISP_VER,
+
+  /** Both ways: multi purpose */
+  ISP_TINY,
+
+  /** Both ways: multi purpose */
+  ISP_SMALL,
+
+  /** Info: state info */
+  ISP_STA,
+
+  /** Instruction: single character */
+  ISP_SCH,
+
+  /** Instruction: state flags pack */
+  ISP_SFP,
+
+  /** Instruction: set car camera */
+  ISP_SCC,
+
+  /** Both ways: cam pos pack */
+  ISP_CPP,
+
+  /** Info: start multiplayer */
+  ISP_ISM,
+
+  /** Info: message out */
+  ISP_MSO,
+
+  /** Info: hidden /i message */
+  ISP_III,
+
+  /** Instruction: type message or /command */
+  ISP_MST,
+
+  /** Instruction: message to a connection */
+  ISP_MTC,
+
+  /** Instruction: set screen mode */
+  ISP_MOD,
+
+  /** Info: vote notification */
+  ISP_VTN,
+
+  /** Info: race start */
+  ISP_RST,
+
+  /** Info: new connection */
+  ISP_NCN,
+
+  /** Info: connection left */
+  ISP_CNL,
+
+  /** Info: connection renamed */
+  ISP_CPR,
+
+  /** Info: new player (joined race) */
+  ISP_NPL,
+
+  /** Info: player pit (keeps slot in race) */
+  ISP_PLP,
+
+  /** Info: player leave (spectate - loses slot) */
+  ISP_PLL,
+
+  /** Info: lap time */
+  ISP_LAP,
+
+  /** Info: split x time */
+  ISP_SPX,
+
+  /** Info: pit stop start */
+  ISP_PIT,
+
+  /** Info: pit stop finish */
+  ISP_PSF,
+
+  /** Info: pit lane enter / leave */
+  ISP_PLA,
+
+  /** Info: camera changed */
+  ISP_CCH,
+
+  /** Info: penalty given or cleared */
+  ISP_PEN,
+
+  /** Info: take over car */
+  ISP_TOC,
+
+  /** Info: flag (yellow or blue) */
+  ISP_FLG,
+
+  /** Info: player flags (help flags) */
+  ISP_PFL,
+
+  /** Info: finished race */
+  ISP_FIN,
+
+  /** Info: result confirmed */
+  ISP_RES,
+
+  /** Both ways: reorder (info or instruction) */
+  ISP_REO,
+
+  /** Info: node and lap packet */
+  ISP_NLP,
+
+  /** Info: multi car info */
+  ISP_MCI,
+
+  /** Instruction: type message */
+  ISP_MSX,
+
+  /** Instruction: message to local computer */
+  ISP_MSL,
+
+  /** Info: car reset */
+  ISP_CRS,
+
+  /** Both ways: delete buttons / receive button requests */
+  ISP_BFN,
+
+  /** Info: autocross layout information */
+  ISP_AXI,
+
+  /** Info: hit an autocross object */
+  ISP_AXO,
+
+  /** Instruction: show a button on local or remote screen */
+  ISP_BTN,
+
+  /** Info: sent when a user clicks a button */
+  ISP_BTC,
+
+  /** Info: sent after typing into a button */
+  ISP_BTT,
+
+  /** Both ways: replay information packet */
+  ISP_RIP,
+
+  /** Both ways: screenshot */
+  ISP_SSH,
+
+  /** Info: contact between cars (collision report) */
+  ISP_CON,
+
+  /** Info: contact car + object (collision report) */
+  ISP_OBH,
+
+  /** Info: report incidents that would violate HLVC */
+  ISP_HLV,
+
+  /** Instruction: player cars */
+  ISP_PLC,
+
+  /** Both ways: autocross multiple objects */
+  ISP_AXM,
+
+  /** Info: admin command report */
+  ISP_ACR,
+
+  /** Instruction: car handicaps */
+  ISP_HCP,
+
+  /** Info: new connection - extra info for host */
+  ISP_NCI,
+
+  /** Instruction: reply to a join request (allow / disallow) */
+  ISP_JRR,
+
+  /** Info: report InSim checkpoint / InSim circle */
+  ISP_UCO,
+
+  /** Instruction: object control (currently used for lights) */
+  ISP_OCO,
+
+  /** Instruction: multi purpose - target to connection */
+  ISP_TTC,
+
+  /** Info: connection selected a car */
+  ISP_SLC,
+
+  /** Info: car state changed */
+  ISP_CSC,
+
+  /** Info: connection's interface mode */
+  ISP_CIM,
+
+  /** Both ways: set mods allowed */
+  ISP_MAL,
 }
