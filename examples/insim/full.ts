@@ -1,9 +1,19 @@
 import NodeInSim, { PacketType } from '../../src';
-import { InSimFlags, IS_ISI_ReqI, IS_VER } from '../../src/packets';
+import {
+  InSimFlags,
+  IS_ISI_ReqI,
+  IS_SMALL,
+  IS_TINY,
+  IS_VER,
+  SmallType,
+  TinyType,
+} from '../../src/packets';
+import { InSim } from '../../src/protocols/InSim';
+import { createLog } from '../../src/utils/log';
 
 const inSim = new NodeInSim.InSim();
-
 const insimName = 'Node InSim Full';
+const log = createLog(insimName);
 
 inSim.connect({
   Host: '127.0.0.1',
@@ -23,22 +33,29 @@ inSim.connect({
   IName: insimName,
 });
 
-inSim.on('connect', () => console.log(`${insimName}: connected`));
-inSim.on('disconnect', () => console.log(`${insimName}: disconnected`));
+inSim.on('connect', () => log.info('Connected'));
+inSim.on('disconnect', () => log.info('Disconnected'));
 inSim.on(PacketType.ISP_VER, onVersion);
+inSim.on(PacketType.ISP_TINY, onTiny);
+inSim.on(PacketType.ISP_SMALL, onSmall);
 
-function onVersion(packet: IS_VER) {
-  log(`${insimName}: LFS version ${packet.Product} ${packet.Version}`);
+function onVersion(packet: IS_VER, inSim: InSim) {
+  log.info(
+    `Connected to LFS ${packet.Product} ${packet.Version}`,
+    inSim.options,
+  );
+}
+
+function onTiny(packet: IS_TINY) {
+  log.info('Received IS_TINY packet', TinyType[packet.SubT]);
+}
+
+function onSmall(packet: IS_SMALL) {
+  log.info(
+    `Received IS_SMALL packet ${SmallType[packet.SubT]}: ${packet.UVal}`,
+  );
 }
 
 inSim.on('error', (error) => {
-  logError(`${insimName}: Error:`, error);
+  log.error(`${insimName}: Error:`, error);
 });
-
-function log(...args: unknown[]) {
-  console.log(`${insimName}: `, ...args);
-}
-
-function logError(...args: unknown[]) {
-  console.error(`${insimName}: `, ...args);
-}

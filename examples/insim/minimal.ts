@@ -1,9 +1,10 @@
 import NodeInSim, { PacketType } from '../../src';
 import { IS_ISI_ReqI, IS_VER } from '../../src/packets';
+import { createLog } from '../../src/utils/log';
 
 const inSim = new NodeInSim.InSim();
-
 const insimName = 'Node InSim';
+const log = createLog(insimName);
 
 inSim.connect({
   Host: '127.0.0.1',
@@ -12,14 +13,14 @@ inSim.connect({
   IName: insimName,
 });
 
-inSim.on('connect', () => console.log(`${insimName}: connected`));
-inSim.on('disconnect', () => console.log(`${insimName}: disconnected`));
+inSim.on('connect', () => log.info('Connected'));
+inSim.on('disconnect', () => log.info('Disconnected'));
 inSim.on(PacketType.ISP_VER, onVersion);
 
 function onVersion(packet: IS_VER) {
-  console.log(`${insimName}: LFS version ${packet.Product} ${packet.Version}`);
+  log.info(`Connected to LFS ${packet.Product} ${packet.Version}`);
 }
 
 inSim.on('error', (error) => {
-  console.error(`${insimName}: Error:`, error);
+  log.error(`Error:`, error);
 });

@@ -15,6 +15,7 @@
     "dev": "cross-env NODE_ENV=development ts-node-dev --respawn ./src/index.ts",
     "dev:example": "cross-env NODE_ENV=development ts-node-dev --respawn",
     "dev:example:production": "cross-env NODE_ENV=production ts-node-dev --respawn",
+    "dev:example:nodebug": "cross-env LOG_LEVEL=info ts-node-dev --respawn",
     "test": "jest",
     "test:watch": "jest --watch",
     "format": "prettier --write \"./**/*.{js,ts,md,json,yml,yaml}\"",
