@@ -1,10 +1,12 @@
 import parseLFSMessage from 'parse-lfs-message';
 
 import { unpack } from '../utils/jspack';
-import { log } from '../utils/log';
+import { createLog } from '../utils/log';
 import { getFormat } from './decorators';
 import { IPacket } from './IPacket';
 import { PacketType } from './packetTypes';
+
+const log = createLog('BasePacket');
 
 type Data = Record<string, unknown>;
 
@@ -48,7 +50,7 @@ export abstract class BasePacket implements IPacket {
     const data = unpack(this.format, buffer);
 
     if (!data) {
-      log.debug('BasePacket: unpacked no data from buffer', buffer);
+      log.debug('Unpacked no data from buffer', buffer);
       return this;
     }
 
@@ -68,8 +70,8 @@ export abstract class BasePacket implements IPacket {
       this[propertyName as unknown as Extract<keyof this, string>] = value;
     });
 
-    log.info('InSim packet received:', PacketType[this.Type]);
-    log.debug('InSim packet received:', this);
+    log.info('Packet received:', PacketType[this.Type]);
+    log.debug('Packet received:', this);
 
     return this;
   }

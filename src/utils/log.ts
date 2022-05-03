@@ -13,11 +13,17 @@ const minLevelByEnv: Record<NodeEnvironment, TLogLevelName> = {
 
 const minLevel: TLogLevelName = debugMinLevel ?? minLevelByEnv[env] ?? 'info';
 
-const log = new LoggerWithoutCallSite({
-  displayFilePath: env === 'development' ? 'hideNodeModulesOnly' : 'hidden',
-  displayInstanceName: false,
-  displayFunctionName: false,
-  minLevel,
-});
+function createLog(name?: string) {
+  return new LoggerWithoutCallSite({
+    name,
+    displayFilePath: 'hidden',
+    displayInstanceName: false,
+    displayFunctionName: false,
+    minLevel,
+    exposeStack: false,
+  });
+}
 
-export { log };
+const log = createLog();
+
+export { createLog, log };

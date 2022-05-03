@@ -11,8 +11,10 @@ import {
   TinyType,
 } from '../packets';
 import { unpack } from '../utils/jspack';
-import { log } from '../utils/log';
+import { createLog } from '../utils/log';
 import { TCP } from './TCP';
+
+const log = createLog('InSim');
 
 type InSimConnectionOptions = {
   Host: string;
@@ -62,17 +64,23 @@ export class InSim extends TypedEmitter<InSimEvents> {
   constructor() {
     super();
 
-    this.on('connect', () => log.info('InSim connected'));
-    this.on('disconnect', () => log.info('InSim disconnected'));
-    this.on('error', (error: InSimError) => log.error('InSim error', error));
+    this.on('connect', () => log.info('Connected'));
+    this.on('disconnect', () => log.info('Disconnected'));
     this.on(PacketType.ISP_TINY, (packet) => this.handleKeepAlive(packet));
   }
 
   connect(options: Partial<IS_ISI_Data> & InSimConnectionOptions) {
     this.options = defaults(options, defaultInSimOptions);
 
-    log.info('InSim connecting...');
-    log.debug('InSim options:', this.options);
+    log.info('Connecting...');
+    log.debug('Options:', this.options);
+
+    if (options.IName && options.IName.length > 15) {
+      this.handleError(
+        'InSim option "IName" must not be greater than 15 characters',
+      );
+      return;
+    }
 
     this.connection = new TCP(this.options.Host, this.options.Port);
     this.connection.connect();
@@ -102,7 +110,7 @@ export class InSim extends TypedEmitter<InSimEvents> {
 
   disconnect() {
     if (this.connection === null) {
-      log.debug('InSim: cannot disconnect - not connected');
+      log.debug('Cannot disconnect - not connected');
       return;
     }
 
@@ -112,12 +120,12 @@ export class InSim extends TypedEmitter<InSimEvents> {
 
   send(packet: ISendable) {
     if (this.connection === null) {
-      log.debug('InSim: cannot send a packet - not connected');
+      log.debug('Cannot send a packet - not connected');
       return;
     }
 
-    log.info('InSim: send packet:', PacketType[packet.Type]);
-    log.debug('InSim: send packet:', packet);
+    log.info('Send packet:', PacketType[packet.Type]);
+    log.debug('Send packet:', packet);
 
     const data = packet.pack();
 
@@ -128,12 +136,7 @@ export class InSim extends TypedEmitter<InSimEvents> {
     const header = unpack('<BB', data);
 
     if (header === undefined) {
-      this.emit(
-        'error',
-        new InSimError(
-          `InSim: incomplete packet header received: ${data.toJSON()}`,
-        ),
-      );
+      this.handleError(`Incomplete packet header received: ${data.toJSON()}`);
       return;
     }
 
@@ -142,10 +145,7 @@ export class InSim extends TypedEmitter<InSimEvents> {
     const packetTypeString = PacketType[packetType];
 
     if (packetTypeString === undefined) {
-      this.emit(
-        'error',
-        new InSimError(`InSim: unknown packet received: ${data.toJSON()}`),
-      );
+      this.handleError(`Unknown packet received: ${data.toJSON()}`);
       return;
     }
 
@@ -157,11 +157,8 @@ export class InSim extends TypedEmitter<InSimEvents> {
       const packetModule = require(`../packets/${packetClassName}`);
       PacketClass = packetModule[packetClassName];
     } catch (e) {
-      this.emit(
-        'error',
-        new InSimError(
-          `InSim packet handler not found for ${packetTypeString} (class ${packetClassName})`,
-        ),
+      this.handleError(
+        `Packet handler not found for ${packetTypeString} (class ${packetClassName})`,
       );
       return;
     }
@@ -181,5 +178,10 @@ export class InSim extends TypedEmitter<InSimEvents> {
         }),
       );
     }
+  }
+
+  private handleError(message: string) {
+    log.error('Error', message);
+    this.emit('error', new InSimError(message));
   }
 }
