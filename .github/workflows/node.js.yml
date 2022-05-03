@@ -1,10 +1,8 @@
 name: Node.js CI
 
 on:
-  push:
-    branches: [ master ]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   build:
@@ -13,28 +11,28 @@ jobs:
       matrix:
         node-version: [16.x]
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'yarn'
-    - name: Install Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
-    - name: Install
-      uses: borales/actions-yarn@v2.3.0
-      env:
-        PYTHON: ${{ env.pythonLocation }}/bin/python
-      with:
-        cmd: install
-    - name: Build
-      uses: borales/actions-yarn@v2.3.0
-      with:
-        cmd: build
-    - name: Test
-      uses: borales/actions-yarn@v2.3.0
-      with:
-        cmd: test
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'yarn'
+      - name: Install Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Install
+        uses: borales/actions-yarn@v2.3.0
+        env:
+          PYTHON: ${{ env.pythonLocation }}/bin/python
+        with:
+          cmd: install
+      - name: Build
+        uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: build
+      - name: Test
+        uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: test
