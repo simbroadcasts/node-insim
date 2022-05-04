@@ -1,5 +1,6 @@
 import parseLFSMessage from 'parse-lfs-message';
 
+import { Byte } from '../types';
 import { unpack } from '../utils/jspack';
 import { createLog } from '../utils/log';
 import { getFormat } from './decorators';
@@ -13,9 +14,9 @@ type Data = Record<string, unknown>;
 export abstract class BasePacket implements IPacket {
   static readonly SIZE_MULTIPLIER = 4;
 
-  abstract Size: number;
+  abstract Size: Byte;
   abstract Type: PacketType;
-  abstract ReqI: number;
+  abstract ReqI: Byte;
 
   protected initialize(data?: Partial<Data> | Buffer) {
     if (!data) {
@@ -31,7 +32,12 @@ export abstract class BasePacket implements IPacket {
   }
 
   protected getValidPropertyNames() {
-    return Object.getOwnPropertyNames(this).filter(
+    const prototype = Object.getPrototypeOf(this);
+    const ownPropertyNames = Object.getOwnPropertyNames(this);
+    const prototypePropertyNames = Object.keys(
+      Object.getOwnPropertyDescriptors(prototype),
+    );
+    return [...ownPropertyNames, ...prototypePropertyNames].filter(
       (propertyName) => getFormat(this, propertyName) !== undefined,
     );
   }

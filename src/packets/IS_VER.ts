@@ -1,3 +1,4 @@
+import { Byte } from '../types';
 import { BasePacket } from './BasePacket';
 import { byte, char } from './decorators';
 import { PacketType } from './packetTypes';
@@ -9,14 +10,14 @@ import { PacketType } from './packetTypes';
  * avoid problems when connecting to a host with a later or earlier version. You will
  * be sent a version packet on connection if you set ReqI in the {@link IS_ISI} packet.
  */
-export class IS_VER extends BasePacket implements IS_VER_Data {
-  @byte() readonly Size = 20;
+export class IS_VER extends BasePacket {
+  @byte() readonly Size: Byte = 20;
   @byte() readonly Type = PacketType.ISP_VER;
 
   /** ReqI as received in the request packet */
-  @byte() ReqI = 0;
+  @byte() ReqI: Byte = 0;
 
-  @byte() readonly Zero = 0;
+  @byte() readonly Zero: 0 = 0;
 
   /** LFS version, e.g. 0.3G */
   @char(8) Version = '';
@@ -25,28 +26,12 @@ export class IS_VER extends BasePacket implements IS_VER_Data {
   @char(6) Product = '';
 
   /** InSim version */
-  @byte() InSimVer = 0;
+  @byte() InSimVer: Byte = 0;
 
-  @byte() readonly Spare = 0;
+  @byte() readonly Spare: 0 = 0;
 
-  constructor(data?: Partial<IS_VER_Data> | Buffer) {
+  constructor(data?: Buffer) {
     super();
     this.initialize(data);
   }
 }
-
-export type IS_VER_Data = {
-  /** ReqI as received in the request packet */
-  ReqI: number;
-
-  /** LFS version, e.g. 0.3G */
-  Version: string;
-
-  /** Product: DEMO / S1 / S2 / S3 */
-  Product: string;
-
-  /** InSim version */
-  InSimVer: number;
-
-  Spare: number;
-};

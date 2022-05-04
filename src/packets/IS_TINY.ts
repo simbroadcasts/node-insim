@@ -1,29 +1,52 @@
+import { Byte, ReqI } from '../types';
+import { createLog } from '../utils/log';
 import { BaseSendablePacket } from './BaseSendablePacket';
 import { byte } from './decorators';
 import { PacketType } from './packetTypes';
+
+const log = createLog('IS_TINY');
 
 export class IS_TINY extends BaseSendablePacket implements IS_TINY_Data {
   @byte() readonly Size = 4;
   @byte() readonly Type = PacketType.ISP_TINY;
 
   /** 0 unless it is an info request or a reply to an info request */
-  @byte() ReqI = 0;
+  @byte() ReqI: Byte = 0;
 
   /** Subtype */
   @byte() SubT: TinyType = TinyType.TINY_NONE;
 
-  constructor(data?: Partial<IS_TINY_Data> | Buffer) {
+  constructor(data?: IS_TINY_ConstructorData | Buffer) {
     super();
     this.initialize(data);
+  }
+
+  pack(): Buffer {
+    if (
+      this.ReqI === 0 &&
+      SENDABLE_TINY_TYPES.includes(this.SubT as SendableTinyType)
+    ) {
+      log.error(`${TinyType[this.SubT]} - ReqI must be greater than 0`);
+    }
+
+    return super.pack();
   }
 }
 
 export type IS_TINY_Data = {
   /** 0 unless it is an info request or a reply to an info request */
-  ReqI: number;
+  ReqI: Byte;
 
   /** Subtype */
   SubT: TinyType;
+};
+
+type IS_TINY_ConstructorData = {
+  /** 0 unless it is an info request or a reply to an info request */
+  ReqI?: ReqI;
+
+  /** Subtype */
+  SubT: SendableTinyType;
 };
 
 export enum TinyType {
@@ -111,3 +134,30 @@ export enum TinyType {
   /** Info request: send {@link IS_MAL} listing the currently allowed mods */
   TINY_MAL,
 }
+
+const SENDABLE_TINY_TYPES = [
+  TinyType.TINY_NONE,
+  TinyType.TINY_VER,
+  TinyType.TINY_CLOSE,
+  TinyType.TINY_PING,
+  TinyType.TINY_VTC,
+  TinyType.TINY_SCP,
+  TinyType.TINY_SST,
+  TinyType.TINY_GTH,
+  TinyType.TINY_ISM,
+  TinyType.TINY_NCN,
+  TinyType.TINY_NPL,
+  TinyType.TINY_RES,
+  TinyType.TINY_NLP,
+  TinyType.TINY_MCI,
+  TinyType.TINY_REO,
+  TinyType.TINY_RST,
+  TinyType.TINY_AXI,
+  TinyType.TINY_NCI,
+  TinyType.TINY_ALC,
+  TinyType.TINY_AXM,
+  TinyType.TINY_SLC,
+  TinyType.TINY_MAL,
+] as const;
+
+type SendableTinyType = typeof SENDABLE_TINY_TYPES[number];

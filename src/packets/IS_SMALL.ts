@@ -1,13 +1,18 @@
+import { Byte, ReqI } from '../types';
+import { createLog } from '../utils';
 import { BaseSendablePacket } from './BaseSendablePacket';
 import { byte, unsigned } from './decorators';
+import { TinyType } from './IS_TINY';
 import { PacketType } from './packetTypes';
+
+const log = createLog('IS_SMALL');
 
 export class IS_SMALL extends BaseSendablePacket implements IS_SMALL_Data {
   @byte() readonly Size = 8;
   @byte() readonly Type = PacketType.ISP_SMALL;
 
   /** 0 unless it is an info request or a reply to an info request */
-  @byte() ReqI = 0;
+  @byte() ReqI: Byte = 0;
 
   /** Subtype */
   @byte() SubT: SmallType = SmallType.SMALL_NONE;
@@ -15,18 +20,40 @@ export class IS_SMALL extends BaseSendablePacket implements IS_SMALL_Data {
   /** Value (e.g. for {@link SMALL_SSP} this would be the OutSim packet rate) */
   @unsigned() UVal = 0;
 
-  constructor(data?: Partial<IS_SMALL_Data> | Buffer) {
+  constructor(data?: IS_SMALL_ConstructorData | Buffer) {
     super();
     this.initialize(data);
+  }
+
+  pack(): Buffer {
+    if (
+      this.ReqI === 0 &&
+      SENDABLE_SMALL_TYPES.includes(this.SubT as SendableSmallType)
+    ) {
+      log.error(`${TinyType[this.SubT]} - ReqI must be greater than 0`);
+    }
+
+    return super.pack();
   }
 }
 
 export type IS_SMALL_Data = {
   /** 0 unless it is an info request or a reply to an info request */
-  ReqI: number;
+  ReqI: Byte;
 
   /** Subtype */
   SubT: SmallType;
+
+  /** Value (e.g. for {@link SMALL_SSP} this would be the OutSim packet rate) */
+  UVal: number;
+};
+
+type IS_SMALL_ConstructorData = {
+  /** 0 unless it is an info request or a reply to an info request */
+  ReqI: ReqI;
+
+  /** Subtype */
+  SubT: SendableSmallType;
 
   /** Value (e.g. for {@link SMALL_SSP} this would be the OutSim packet rate) */
   UVal: number;
@@ -63,3 +90,15 @@ export enum SmallType {
   /** Instruction: set local car switches (lights, horn, siren) */
   SMALL_LCS,
 }
+
+const SENDABLE_SMALL_TYPES = [
+  SmallType.SMALL_SSP,
+  SmallType.SMALL_SSG,
+  SmallType.SMALL_TMS,
+  SmallType.SMALL_STP,
+  SmallType.SMALL_NLI,
+  SmallType.SMALL_ALC,
+  SmallType.SMALL_LCS,
+];
+
+type SendableSmallType = typeof SENDABLE_SMALL_TYPES[number];

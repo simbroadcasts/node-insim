@@ -11,6 +11,7 @@ import {
   PacketType,
   TinyType,
 } from '../packets';
+import { Byte } from '../types';
 import { unpack } from '../utils/jspack';
 import { createLog } from '../utils/log';
 import { TCP } from './TCP';
@@ -45,7 +46,7 @@ export type InSimEvents = InSimPacketEvents & {
 };
 
 export class InSim extends TypedEmitter<InSimEvents> {
-  static INSIM_VERSION = 9;
+  static INSIM_VERSION: Byte = 9;
   private _options: InSimOptions = defaultInSimOptions;
 
   private connection: TCP | null = null;
