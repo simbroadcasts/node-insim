@@ -1,4 +1,3 @@
-import type { Byte } from '../types';
 import { BasePacket } from './BasePacket';
 import { byte, char } from './decorators';
 import { PacketType } from './packetTypes';
@@ -11,11 +10,11 @@ import { PacketType } from './packetTypes';
  * be sent a version packet on connection if you set ReqI in the {@link IS_ISI} packet.
  */
 export class IS_VER extends BasePacket {
-  @byte() readonly Size: Byte = 20;
+  @byte() readonly Size = 20;
   @byte() readonly Type = PacketType.ISP_VER;
 
   /** ReqI as received in the request packet */
-  @byte() ReqI: Byte = 0;
+  @byte() ReqI = 0;
 
   @byte() readonly Zero: 0 = 0;
 
@@ -26,7 +25,7 @@ export class IS_VER extends BasePacket {
   @char(6) Product = '';
 
   /** InSim version */
-  @byte() InSimVer: Byte = 0;
+  @byte() InSimVer = 0;
 
   @byte() readonly Spare: 0 = 0;
 

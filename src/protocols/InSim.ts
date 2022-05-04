@@ -3,7 +3,6 @@ import { TypedEmitter } from 'tiny-typed-emitter';
 
 import type { IS_ISI_Data, IS_SMALL, IS_VER, ISendable } from '../packets';
 import { IS_ISI, IS_TINY, PacketType, TinyType } from '../packets';
-import type { Byte } from '../types';
 import { createLog, unpack } from '../utils';
 import { TCP } from './TCP';
 
@@ -37,7 +36,7 @@ export type InSimEvents = InSimPacketEvents & {
 };
 
 export class InSim extends TypedEmitter<InSimEvents> {
-  static INSIM_VERSION: Byte = 9;
+  static INSIM_VERSION = 9;
   private _options: InSimOptions = defaultInSimOptions;
 
   private connection: TCP | null = null;

@@ -1,4 +1,3 @@
-import type { Byte, ReqI } from '../types';
 import { createLog } from '../utils';
 import { BaseSendablePacket } from './BaseSendablePacket';
 import { byte } from './decorators';
@@ -7,11 +6,11 @@ import { PacketType } from './packetTypes';
 const log = createLog('IS_TINY');
 
 export class IS_TINY extends BaseSendablePacket {
-  @byte() readonly Size: Byte = 4;
+  @byte() readonly Size = 4;
   @byte() readonly Type = PacketType.ISP_TINY;
 
   /** 0 unless it is an info request or a reply to an info request */
-  @byte() ReqI: Byte = 0;
+  @byte() ReqI = 0;
 
   /** Subtype */
   @byte() SubT: TinyType = TinyType.TINY_NONE;
@@ -36,14 +35,14 @@ export class IS_TINY extends BaseSendablePacket {
 export type IS_TINY_Data =
   | {
       /** 0 unless it is an info request or a reply to an info request */
-      ReqI: ReqI;
+      ReqI: number;
 
       /** Subtype */
       SubT: InfoRequestTinyType;
     }
   | {
       /** 0 unless it is an info request or a reply to an info request */
-      ReqI?: Byte;
+      ReqI?: number;
 
       /** Subtype */
       SubT: Exclude<SendableTinyType, InfoRequestTinyType>;

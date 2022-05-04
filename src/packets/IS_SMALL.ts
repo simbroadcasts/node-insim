@@ -1,14 +1,13 @@
-import type { Byte } from '../types';
 import { BaseSendablePacket } from './BaseSendablePacket';
 import { byte, unsigned } from './decorators';
 import { PacketType } from './packetTypes';
 
 export class IS_SMALL extends BaseSendablePacket {
-  @byte() readonly Size: Byte = 8;
+  @byte() readonly Size = 8;
   @byte() readonly Type = PacketType.ISP_SMALL;
 
   /** 0 unless it is an info request or a reply to an info request */
-  @byte() ReqI: Byte = 0;
+  @byte() ReqI = 0;
 
   /** Subtype */
   @byte() SubT: SmallType = SmallType.SMALL_NONE;
@@ -24,7 +23,7 @@ export class IS_SMALL extends BaseSendablePacket {
 
 export type IS_SMALL_Data = {
   /** 0 unless it is an info request or a reply to an info request */
-  ReqI?: Byte;
+  ReqI?: number;
 
   /** Subtype */
   SubT: SendableSmallType;

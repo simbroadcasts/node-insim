@@ -1,6 +1,5 @@
 import parseLFSMessage from 'parse-lfs-message';
 
-import type { Byte } from '../types';
 import { createLog, unpack } from '../utils';
 import { getFormat } from './decorators';
 import type { IPacket } from './IPacket';
@@ -13,9 +12,9 @@ type Data = Record<string, unknown>;
 export abstract class BasePacket implements IPacket {
   static readonly SIZE_MULTIPLIER = 4;
 
-  abstract Size: Byte;
+  abstract Size: number;
   abstract Type: PacketType;
-  abstract ReqI: Byte;
+  abstract ReqI: number;
 
   protected initialize(data?: Partial<Data> | Buffer) {
     if (!data) {

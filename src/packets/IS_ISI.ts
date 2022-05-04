@@ -1,4 +1,3 @@
-import type { Byte } from '../types';
 import { BaseSendablePacket } from './BaseSendablePacket';
 import { byte, char, word } from './decorators';
 import { PacketType } from './packetTypes';
@@ -7,11 +6,11 @@ import { PacketType } from './packetTypes';
  * InSim Init - packet to initialise the InSim system
  */
 export class IS_ISI extends BaseSendablePacket implements IS_ISI_Data {
-  @byte() readonly Size: Byte = 44;
+  @byte() readonly Size = 44;
   @byte() readonly Type = PacketType.ISP_ISI;
 
-  /** If non-zero LFS will send an IS_VER packet */
-  @byte() ReqI: Byte = 0;
+  /** If non-zero LFS will send an {@link IS_VER} packet */
+  @byte() ReqI = 0;
 
   @byte() readonly Zero: 0 = 0;
 
@@ -22,7 +21,7 @@ export class IS_ISI extends BaseSendablePacket implements IS_ISI_Data {
   @word() Flags: InSimFlags = 0;
 
   /** The INSIM_VERSION used by your program */
-  @byte() InSimVer: Byte = 0;
+  @byte() InSimVer = 0;
 
   /** Special host message prefix character */
   @char(1) Prefix = '';
@@ -53,7 +52,7 @@ export type IS_ISI_Data = {
   Flags: InSimFlags;
 
   /** The InSim version used by your program */
-  InSimVer: Byte;
+  InSimVer: number;
 
   /** Special host message prefix character */
   Prefix: string;
