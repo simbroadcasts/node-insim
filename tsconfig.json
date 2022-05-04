@@ -1,8 +1,6 @@
 {
   "compilerOptions": {
     "strict": true,
-    "rootDir": "./src",
-    "outDir": "./dist",
     "declaration": true,
     "moduleResolution": "node",
     "target": "es2015",

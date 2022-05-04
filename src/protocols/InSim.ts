@@ -1,7 +1,13 @@
 import defaults from 'lodash/defaults';
 import { TypedEmitter } from 'tiny-typed-emitter';
 
-import type { IS_ISI_Data, IS_SMALL, IS_VER, ISendable } from '../packets';
+import type {
+  IS_BTC,
+  IS_ISI_Data,
+  IS_SMALL,
+  IS_VER,
+  ISendable,
+} from '../packets';
 import { IS_ISI, IS_TINY, PacketType, TinyType } from '../packets';
 import { createLog, unpack } from '../utils';
 import { TCP } from './TCP';
@@ -20,6 +26,7 @@ export type InSimPacketEvents = {
   [PacketType.ISP_VER]: (packet: IS_VER, insim: InSim) => void;
   [PacketType.ISP_TINY]: (packet: IS_TINY, insim: InSim) => void;
   [PacketType.ISP_SMALL]: (packet: IS_SMALL, insim: InSim) => void;
+  [PacketType.ISP_BTC]: (packet: IS_BTC, insim: InSim) => void;
 };
 
 class InSimError extends Error {

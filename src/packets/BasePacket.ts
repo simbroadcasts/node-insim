@@ -40,10 +40,13 @@ export abstract class BasePacket implements IPacket {
     );
   }
 
-  protected get format() {
+  protected getFormat(propertyFormats?: Record<string, string>) {
     const propertyNames = this.getValidPropertyNames();
     const format = propertyNames
-      .map((propertyName) => getFormat(this, propertyName))
+      .map(
+        (propertyName) =>
+          propertyFormats?.[propertyName] ?? getFormat(this, propertyName),
+      )
       .join('');
 
     return `<${format}`;
@@ -51,7 +54,7 @@ export abstract class BasePacket implements IPacket {
 
   private unpack(buffer: Buffer): this {
     const propertyNames = this.getValidPropertyNames();
-    const data = unpack(this.format, buffer);
+    const data = unpack(this.getFormat(), buffer);
 
     if (!data) {
       log.debug('Unpacked no data from buffer', buffer);

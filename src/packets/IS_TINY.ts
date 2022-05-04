@@ -134,31 +134,32 @@ export enum TinyType {
   TINY_MAL,
 }
 
-export type SendableTinyType =
-  | TinyType.TINY_NONE
-  | TinyType.TINY_VER
-  | TinyType.TINY_CLOSE
-  | TinyType.TINY_PING
-  | TinyType.TINY_VTC
-  | TinyType.TINY_SCP
-  | TinyType.TINY_SST
-  | TinyType.TINY_GTH
-  | TinyType.TINY_ISM
-  | TinyType.TINY_NCN
-  | TinyType.TINY_NPL
-  | TinyType.TINY_RES
-  | TinyType.TINY_NLP
-  | TinyType.TINY_MCI
-  | TinyType.TINY_REO
-  | TinyType.TINY_RST
-  | TinyType.TINY_AXI
-  | TinyType.TINY_NCI
-  | TinyType.TINY_ALC
-  | TinyType.TINY_AXM
-  | TinyType.TINY_SLC
-  | TinyType.TINY_MAL;
+export const SENDABLE_TINY_TYPES = [
+  TinyType.TINY_NONE,
+  TinyType.TINY_VER,
+  TinyType.TINY_CLOSE,
+  TinyType.TINY_PING,
+  TinyType.TINY_VTC,
+  TinyType.TINY_SCP,
+  TinyType.TINY_SST,
+  TinyType.TINY_GTH,
+  TinyType.TINY_ISM,
+  TinyType.TINY_NCN,
+  TinyType.TINY_NPL,
+  TinyType.TINY_RES,
+  TinyType.TINY_NLP,
+  TinyType.TINY_MCI,
+  TinyType.TINY_REO,
+  TinyType.TINY_RST,
+  TinyType.TINY_AXI,
+  TinyType.TINY_NCI,
+  TinyType.TINY_ALC,
+  TinyType.TINY_AXM,
+  TinyType.TINY_SLC,
+  TinyType.TINY_MAL,
+] as const;
 
-const INFO_REQUEST_TINY_TYPES = [
+export const INFO_REQUEST_TINY_TYPES = [
   TinyType.TINY_VER,
   TinyType.TINY_PING,
   TinyType.TINY_SCP,
@@ -179,5 +180,7 @@ const INFO_REQUEST_TINY_TYPES = [
   TinyType.TINY_SLC,
   TinyType.TINY_MAL,
 ] as const;
+
+export type SendableTinyType = typeof SENDABLE_TINY_TYPES[number];
 
 export type InfoRequestTinyType = typeof INFO_REQUEST_TINY_TYPES[number];

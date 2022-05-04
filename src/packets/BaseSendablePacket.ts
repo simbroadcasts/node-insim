@@ -6,7 +6,7 @@ export abstract class BaseSendablePacket
   extends BasePacket
   implements ISendable
 {
-  pack(): Buffer {
+  pack(propertyFormatOverrides?: Record<string, string>): Buffer {
     const propertyNames = this.getValidPropertyNames();
 
     const values = propertyNames.map((propertyName) => {
@@ -19,6 +19,6 @@ export abstract class BaseSendablePacket
       return this[propertyName as unknown as Extract<keyof this, string>];
     });
 
-    return pack(this.format, values);
+    return pack(this.getFormat(propertyFormatOverrides), values);
   }
 }
