@@ -1,9 +1,10 @@
-import NodeInSim, { PacketType } from '../../../src';
+import NodeInSim from '../../../src';
 import type { IS_BTC, IS_SMALL, IS_VER } from '../../../src/packets';
 import {
   InSimFlags,
   IS_ISI_ReqI,
   IS_TINY,
+  PacketType,
   SENDABLE_TINY_TYPES,
   SmallType,
   TinyType,
