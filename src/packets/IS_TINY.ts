@@ -1,4 +1,4 @@
-import { Byte, ReqI } from '../types';
+import type { Byte, ReqI } from '../types';
 import { createLog } from '../utils';
 import { BaseSendablePacket } from './BaseSendablePacket';
 import { byte } from './decorators';

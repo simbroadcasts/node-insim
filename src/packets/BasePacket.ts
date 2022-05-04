@@ -1,9 +1,9 @@
 import parseLFSMessage from 'parse-lfs-message';
 
-import { Byte } from '../types';
+import type { Byte } from '../types';
 import { createLog, unpack } from '../utils';
 import { getFormat } from './decorators';
-import { IPacket } from './IPacket';
+import type { IPacket } from './IPacket';
 import { PacketType } from './packetTypes';
 
 const log = createLog('BasePacket');

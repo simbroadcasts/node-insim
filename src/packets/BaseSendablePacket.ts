@@ -1,6 +1,6 @@
 import { pack } from '../utils';
 import { BasePacket } from './BasePacket';
-import { ISendable } from './ISendable';
+import type { ISendable } from './ISendable';
 
 export abstract class BaseSendablePacket
   extends BasePacket

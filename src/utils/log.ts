@@ -1,6 +1,7 @@
-import { LoggerWithoutCallSite, TLogLevelName } from 'tslog';
+import type { TLogLevelName } from 'tslog';
+import { LoggerWithoutCallSite } from 'tslog';
 
-import { NodeEnvironment } from '../types';
+import type { NodeEnvironment } from '../types';
 
 const env = process.env.NODE_ENV as NodeEnvironment;
 const debugMinLevel = process.env.DEBUG_MIN_LEVEL as TLogLevelName;

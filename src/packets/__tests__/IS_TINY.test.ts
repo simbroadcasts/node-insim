@@ -1,6 +1,7 @@
 import { checkPacketDataSize } from '../../utils';
 import { BasePacket } from '../BasePacket';
-import { IS_TINY, IS_TINY_Data, TinyType } from '../IS_TINY';
+import type { IS_TINY_Data } from '../IS_TINY';
+import { IS_TINY, TinyType } from '../IS_TINY';
 import { PacketType } from '../packetTypes';
 
 describe('IS_TINY', () => {

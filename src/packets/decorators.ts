@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 
-import { BasePacket } from './BasePacket';
+import type { BasePacket } from './BasePacket';
 
 const formatMetadataKey = Symbol('format');
 

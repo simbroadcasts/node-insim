@@ -1,14 +1,12 @@
 import NodeInSim, { PacketType } from '../../src';
+import type { IS_SMALL, IS_TINY, IS_VER } from '../../src/packets';
 import {
   InSimFlags,
   IS_ISI_ReqI,
-  IS_SMALL,
-  IS_TINY,
-  IS_VER,
   SmallType,
   TinyType,
 } from '../../src/packets';
-import { InSim } from '../../src/protocols';
+import type { InSim } from '../../src/protocols';
 import { createLog } from '../../src/utils';
 
 const inSim = new NodeInSim.InSim();

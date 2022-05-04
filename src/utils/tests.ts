@@ -1,4 +1,4 @@
-import { ISendable } from '../packets';
+import type { ISendable } from '../packets';
 
 export const checkPacketDataSize = (packet: ISendable) => {
   it('should have the correct size when packed', () => {

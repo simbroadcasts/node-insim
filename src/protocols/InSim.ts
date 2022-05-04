@@ -1,17 +1,9 @@
 import defaults from 'lodash/defaults';
 import { TypedEmitter } from 'tiny-typed-emitter';
 
-import {
-  IS_ISI,
-  IS_ISI_Data,
-  IS_SMALL,
-  IS_TINY,
-  IS_VER,
-  ISendable,
-  PacketType,
-  TinyType,
-} from '../packets';
-import { Byte } from '../types';
+import type { IS_ISI_Data, IS_SMALL, IS_VER, ISendable } from '../packets';
+import { IS_ISI, IS_TINY, PacketType, TinyType } from '../packets';
+import type { Byte } from '../types';
 import { createLog, unpack } from '../utils';
 import { TCP } from './TCP';
 

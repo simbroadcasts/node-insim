@@ -1,4 +1,4 @@
-import { Byte } from '../types';
+import type { Byte } from '../types';
 import { BaseSendablePacket } from './BaseSendablePacket';
 import { byte, unsigned } from './decorators';
 import { PacketType } from './packetTypes';

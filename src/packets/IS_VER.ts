@@ -1,4 +1,4 @@
-import { Byte } from '../types';
+import type { Byte } from '../types';
 import { BasePacket } from './BasePacket';
 import { byte, char } from './decorators';
 import { PacketType } from './packetTypes';

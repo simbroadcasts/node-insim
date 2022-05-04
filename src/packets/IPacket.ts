@@ -1,5 +1,5 @@
-import { Byte } from '../types';
-import { PacketType } from './packetTypes';
+import type { Byte } from '../types';
+import type { PacketType } from './packetTypes';
 
 export type IPacket = {
   readonly Size: Byte;
