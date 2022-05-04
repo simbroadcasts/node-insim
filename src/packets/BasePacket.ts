@@ -1,8 +1,7 @@
 import parseLFSMessage from 'parse-lfs-message';
 
 import { Byte } from '../types';
-import { unpack } from '../utils/jspack';
-import { createLog } from '../utils/log';
+import { createLog, unpack } from '../utils';
 import { getFormat } from './decorators';
 import { IPacket } from './IPacket';
 import { PacketType } from './packetTypes';

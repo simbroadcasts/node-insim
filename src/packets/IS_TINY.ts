@@ -1,5 +1,5 @@
 import { Byte, ReqI } from '../types';
-import { createLog } from '../utils/log';
+import { createLog } from '../utils';
 import { BaseSendablePacket } from './BaseSendablePacket';
 import { byte } from './decorators';
 import { PacketType } from './packetTypes';

@@ -8,8 +8,8 @@ import {
   SmallType,
   TinyType,
 } from '../../src/packets';
-import { InSim } from '../../src/protocols/InSim';
-import { createLog } from '../../src/utils/log';
+import { InSim } from '../../src/protocols';
+import { createLog } from '../../src/utils';
 
 const inSim = new NodeInSim.InSim();
 const insimName = 'Node InSim Full';

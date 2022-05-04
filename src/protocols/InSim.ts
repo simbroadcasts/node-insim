@@ -12,8 +12,7 @@ import {
   TinyType,
 } from '../packets';
 import { Byte } from '../types';
-import { unpack } from '../utils/jspack';
-import { createLog } from '../utils/log';
+import { createLog, unpack } from '../utils';
 import { TCP } from './TCP';
 
 const log = createLog('InSim');

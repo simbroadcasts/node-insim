@@ -1,7 +1,7 @@
 import EventEmitter from 'events';
 import net from 'net';
 
-import { createLog } from '../utils/log';
+import { createLog } from '../utils';
 
 const log = createLog('TCP');
 

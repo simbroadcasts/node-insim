@@ -1,4 +1,4 @@
-import { pack } from '../utils/jspack';
+import { pack } from '../utils';
 import { BasePacket } from './BasePacket';
 import { ISendable } from './ISendable';
 
