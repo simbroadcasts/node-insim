@@ -1,14 +1,10 @@
-import { Byte, ReqI } from '../types';
-import { createLog } from '../utils';
+import { Byte } from '../types';
 import { BaseSendablePacket } from './BaseSendablePacket';
 import { byte, unsigned } from './decorators';
-import { TinyType } from './IS_TINY';
 import { PacketType } from './packetTypes';
 
-const log = createLog('IS_SMALL');
-
-export class IS_SMALL extends BaseSendablePacket implements IS_SMALL_Data {
-  @byte() readonly Size = 8;
+export class IS_SMALL extends BaseSendablePacket {
+  @byte() readonly Size: Byte = 8;
   @byte() readonly Type = PacketType.ISP_SMALL;
 
   /** 0 unless it is an info request or a reply to an info request */
@@ -20,37 +16,15 @@ export class IS_SMALL extends BaseSendablePacket implements IS_SMALL_Data {
   /** Value (e.g. for {@link SMALL_SSP} this would be the OutSim packet rate) */
   @unsigned() UVal = 0;
 
-  constructor(data?: IS_SMALL_ConstructorData | Buffer) {
+  constructor(data?: IS_SMALL_Data | Buffer) {
     super();
     this.initialize(data);
-  }
-
-  pack(): Buffer {
-    if (
-      this.ReqI === 0 &&
-      SENDABLE_SMALL_TYPES.includes(this.SubT as SendableSmallType)
-    ) {
-      log.error(`${TinyType[this.SubT]} - ReqI must be greater than 0`);
-    }
-
-    return super.pack();
   }
 }
 
 export type IS_SMALL_Data = {
   /** 0 unless it is an info request or a reply to an info request */
-  ReqI: Byte;
-
-  /** Subtype */
-  SubT: SmallType;
-
-  /** Value (e.g. for {@link SMALL_SSP} this would be the OutSim packet rate) */
-  UVal: number;
-};
-
-type IS_SMALL_ConstructorData = {
-  /** 0 unless it is an info request or a reply to an info request */
-  ReqI: ReqI;
+  ReqI?: Byte;
 
   /** Subtype */
   SubT: SendableSmallType;
@@ -99,6 +73,6 @@ const SENDABLE_SMALL_TYPES = [
   SmallType.SMALL_NLI,
   SmallType.SMALL_ALC,
   SmallType.SMALL_LCS,
-];
+] as const;
 
-type SendableSmallType = typeof SENDABLE_SMALL_TYPES[number];
+export type SendableSmallType = typeof SENDABLE_SMALL_TYPES[number];

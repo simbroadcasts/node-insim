@@ -1,4 +1,4 @@
-import { InSim } from '../../protocols/InSim';
+import { InSim } from '../../protocols';
 import { checkPacketDataSize } from '../../utils';
 import { BasePacket } from '../BasePacket';
 import { IS_ISI, IS_ISI_Data } from '../IS_ISI';

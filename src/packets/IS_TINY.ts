@@ -6,8 +6,8 @@ import { PacketType } from './packetTypes';
 
 const log = createLog('IS_TINY');
 
-export class IS_TINY extends BaseSendablePacket implements IS_TINY_Data {
-  @byte() readonly Size = 4;
+export class IS_TINY extends BaseSendablePacket {
+  @byte() readonly Size: Byte = 4;
   @byte() readonly Type = PacketType.ISP_TINY;
 
   /** 0 unless it is an info request or a reply to an info request */
@@ -16,7 +16,7 @@ export class IS_TINY extends BaseSendablePacket implements IS_TINY_Data {
   /** Subtype */
   @byte() SubT: TinyType = TinyType.TINY_NONE;
 
-  constructor(data?: IS_TINY_ConstructorData | Buffer) {
+  constructor(data?: IS_TINY_Data | Buffer) {
     super();
     this.initialize(data);
   }
@@ -24,7 +24,7 @@ export class IS_TINY extends BaseSendablePacket implements IS_TINY_Data {
   pack(): Buffer {
     if (
       this.ReqI === 0 &&
-      SENDABLE_TINY_TYPES.includes(this.SubT as SendableTinyType)
+      INFO_REQUEST_TINY_TYPES.includes(this.SubT as InfoRequestTinyType)
     ) {
       log.error(`${TinyType[this.SubT]} - ReqI must be greater than 0`);
     }
@@ -33,21 +33,21 @@ export class IS_TINY extends BaseSendablePacket implements IS_TINY_Data {
   }
 }
 
-export type IS_TINY_Data = {
-  /** 0 unless it is an info request or a reply to an info request */
-  ReqI: Byte;
+export type IS_TINY_Data =
+  | {
+      /** 0 unless it is an info request or a reply to an info request */
+      ReqI: ReqI;
 
-  /** Subtype */
-  SubT: TinyType;
-};
+      /** Subtype */
+      SubT: InfoRequestTinyType;
+    }
+  | {
+      /** 0 unless it is an info request or a reply to an info request */
+      ReqI?: Byte;
 
-type IS_TINY_ConstructorData = {
-  /** 0 unless it is an info request or a reply to an info request */
-  ReqI?: ReqI;
-
-  /** Subtype */
-  SubT: SendableTinyType;
-};
+      /** Subtype */
+      SubT: Exclude<SendableTinyType, InfoRequestTinyType>;
+    };
 
 export enum TinyType {
   /** Keep alive - maintain connection */
@@ -135,12 +135,33 @@ export enum TinyType {
   TINY_MAL,
 }
 
-const SENDABLE_TINY_TYPES = [
-  TinyType.TINY_NONE,
+export type SendableTinyType =
+  | TinyType.TINY_NONE
+  | TinyType.TINY_VER
+  | TinyType.TINY_CLOSE
+  | TinyType.TINY_PING
+  | TinyType.TINY_VTC
+  | TinyType.TINY_SCP
+  | TinyType.TINY_SST
+  | TinyType.TINY_GTH
+  | TinyType.TINY_ISM
+  | TinyType.TINY_NCN
+  | TinyType.TINY_NPL
+  | TinyType.TINY_RES
+  | TinyType.TINY_NLP
+  | TinyType.TINY_MCI
+  | TinyType.TINY_REO
+  | TinyType.TINY_RST
+  | TinyType.TINY_AXI
+  | TinyType.TINY_NCI
+  | TinyType.TINY_ALC
+  | TinyType.TINY_AXM
+  | TinyType.TINY_SLC
+  | TinyType.TINY_MAL;
+
+const INFO_REQUEST_TINY_TYPES = [
   TinyType.TINY_VER,
-  TinyType.TINY_CLOSE,
   TinyType.TINY_PING,
-  TinyType.TINY_VTC,
   TinyType.TINY_SCP,
   TinyType.TINY_SST,
   TinyType.TINY_GTH,
@@ -160,4 +181,4 @@ const SENDABLE_TINY_TYPES = [
   TinyType.TINY_MAL,
 ] as const;
 
-type SendableTinyType = typeof SENDABLE_TINY_TYPES[number];
+export type InfoRequestTinyType = typeof INFO_REQUEST_TINY_TYPES[number];
