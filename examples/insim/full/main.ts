@@ -102,9 +102,9 @@ function onButtonClick(packet: IS_BTC, inSim: InSim) {
 }
 
 function onButtonType(packet: IS_BTT, inSim: InSim) {
-  log.info(`Received IS_BTT packet - ClickID ${packet.ClickID}`, {
-    text: packet.Text,
-  });
+  log.info(
+    `Received IS_BTT packet - ClickID ${packet.ClickID}, input text: ${packet.Text}`,
+  );
 
   if (
     packet.ClickID >= SMALL_BUTTON_CLICK_ID_OFFSET &&
