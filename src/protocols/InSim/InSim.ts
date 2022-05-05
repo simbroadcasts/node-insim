@@ -1,16 +1,13 @@
 import defaults from 'lodash/defaults';
 import { TypedEmitter } from 'tiny-typed-emitter';
 
-import type {
-  IS_BTC,
-  IS_ISI_Data,
-  IS_SMALL,
-  IS_VER,
-  ISendable,
-} from '../packets';
-import { IS_ISI, IS_TINY, PacketType, TinyType } from '../packets';
-import { createLog, unpack } from '../utils';
-import { TCP } from './TCP';
+import type { IS_ISI_Data, ISendable } from '../../packets';
+import { IS_ISI, IS_TINY, PacketType, TinyType } from '../../packets';
+import { createLog, unpack } from '../../utils';
+import { TCP } from '../TCP';
+import type { InSimPacketEvents } from './InSimEvents';
+import type { InSimEvents } from './InSimEvents';
+import { InSimError } from './InSimEvents';
 
 const log = createLog('InSim');
 
@@ -20,27 +17,6 @@ type InSimConnectionOptions = {
 };
 
 type InSimOptions = IS_ISI_Data & InSimConnectionOptions;
-
-export type InSimPacketEvents = {
-  [PacketType.ISP_ISI]: (packet: IS_ISI, insim: InSim) => void;
-  [PacketType.ISP_VER]: (packet: IS_VER, insim: InSim) => void;
-  [PacketType.ISP_TINY]: (packet: IS_TINY, insim: InSim) => void;
-  [PacketType.ISP_SMALL]: (packet: IS_SMALL, insim: InSim) => void;
-  [PacketType.ISP_BTC]: (packet: IS_BTC, insim: InSim) => void;
-};
-
-class InSimError extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = 'InSimError';
-  }
-}
-
-export type InSimEvents = InSimPacketEvents & {
-  connect: () => void;
-  disconnect: () => void;
-  error: (error: InSimError) => void;
-};
 
 export class InSim extends TypedEmitter<InSimEvents> {
   static INSIM_VERSION = 9;
@@ -144,7 +120,7 @@ export class InSim extends TypedEmitter<InSimEvents> {
 
     try {
       // eslint-disable-next-line @typescript-eslint/no-var-requires
-      const packetModule = require(`../packets/${packetClassName}`);
+      const packetModule = require(`../../packets/${packetClassName}`);
       PacketClass = packetModule[packetClassName];
     } catch (e) {
       this.handleError(
