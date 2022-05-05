@@ -12,7 +12,7 @@ export {
 export { IS_BTT } from './IS_BTT';
 export type { IS_ISI_Data } from './IS_ISI';
 export { InSimFlags, IS_ISI, IS_ISI_ReqI } from './IS_ISI';
-export { IS_SMALL } from './IS_SMALL';
+export { IS_SMALL, SENDABLE_SMALL_TYPES } from './IS_SMALL';
 export { IS_SMALL_Data, SendableSmallType, SmallType } from './IS_SMALL';
 export type { InfoRequestTinyType, SendableTinyType } from './IS_TINY';
 export {

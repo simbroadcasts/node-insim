@@ -64,7 +64,7 @@ export enum SmallType {
   SMALL_LCS,
 }
 
-const SENDABLE_SMALL_TYPES = [
+export const SENDABLE_SMALL_TYPES = [
   SmallType.SMALL_SSP,
   SmallType.SMALL_SSG,
   SmallType.SMALL_TMS,
