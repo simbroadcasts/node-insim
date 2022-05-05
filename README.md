@@ -61,8 +61,8 @@ import { IS_TINY, TinyType } from 'node-insim/packets';
 const inSim = new NodeInSim.InSim();
 
 const pingPacket = new IS_TINY();
-packet.ReqI = 1;
-packet.SubT = TinyType.TINY_PING;
+pingPacket.ReqI = 1;
+pingPacket.SubT = TinyType.TINY_PING;
 
 inSim.send(pingPacket);
 ```
