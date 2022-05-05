@@ -40,9 +40,7 @@ export function startInSim(host = '127.0.0.1', port = 29999) {
 
   inSim.on('connect', () => log.info('Connected'));
   inSim.on('disconnect', () => log.info('Disconnected'));
-  inSim.on('error', (error) => {
-    log.error(`${insimName}: Error:`, error);
-  });
+  inSim.on('error', (error) => log.error('Error:', error));
   inSim.on(PacketType.ISP_VER, onVersion);
   inSim.on(PacketType.ISP_TINY, onTiny);
   inSim.on(PacketType.ISP_SMALL, onSmall);
