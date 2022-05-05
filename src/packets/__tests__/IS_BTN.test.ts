@@ -15,7 +15,7 @@ const data: IS_BTN_Data = {
   T: 30,
   W: 40,
   H: 50,
-  Text: 'abc',
+  Text: '123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789$',
 };
 
 describe('IS_BTN', () => {
@@ -38,8 +38,21 @@ describe('IS_BTN', () => {
   });
 
   it('should pack data into a buffer', () => {
+    const from1to9 = [
+      '1'.charCodeAt(0),
+      '2'.charCodeAt(0),
+      '3'.charCodeAt(0),
+      '4'.charCodeAt(0),
+      '5'.charCodeAt(0),
+      '6'.charCodeAt(0),
+      '7'.charCodeAt(0),
+      '8'.charCodeAt(0),
+      '9'.charCodeAt(0),
+      ' '.charCodeAt(0),
+    ];
+
     const expectedBuffer = Buffer.from([
-      16 / BasePacket.SIZE_MULTIPLIER, // Size
+      252 / BasePacket.SIZE_MULTIPLIER, // Size
       PacketType.ISP_BTN, // Type
       1, // ReqI
       2, // UCID
@@ -51,10 +64,39 @@ describe('IS_BTN', () => {
       30, // T
       40, // W
       50, // H
-      'a'.charCodeAt(0), // Text (4)
-      'b'.charCodeAt(0),
-      'c'.charCodeAt(0),
-      0,
+      ...from1to9, // Text[240]
+      ...from1to9,
+      ...from1to9,
+      ...from1to9,
+      ...from1to9,
+      ...from1to9,
+      ...from1to9,
+      ...from1to9,
+      ...from1to9,
+      ...from1to9,
+      ...from1to9,
+      ...from1to9,
+      ...from1to9,
+      ...from1to9,
+      ...from1to9,
+      ...from1to9,
+      ...from1to9,
+      ...from1to9,
+      ...from1to9,
+      ...from1to9,
+      ...from1to9,
+      ...from1to9,
+      ...from1to9,
+      '1'.charCodeAt(0),
+      '2'.charCodeAt(0),
+      '3'.charCodeAt(0),
+      '4'.charCodeAt(0),
+      '5'.charCodeAt(0),
+      '6'.charCodeAt(0),
+      '7'.charCodeAt(0),
+      '8'.charCodeAt(0),
+      '9'.charCodeAt(0),
+      '$'.charCodeAt(0),
     ]);
     const actualBuffer = new IS_BTN(data).pack();
 

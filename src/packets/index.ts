@@ -9,6 +9,7 @@ export {
   IS_BTN,
   IS_BTN_Data,
 } from './IS_BTN';
+export { IS_BTT } from './IS_BTT';
 export type { IS_ISI_Data } from './IS_ISI';
 export { InSimFlags, IS_ISI, IS_ISI_ReqI } from './IS_ISI';
 export { IS_SMALL } from './IS_SMALL';
