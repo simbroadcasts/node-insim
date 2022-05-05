@@ -60,36 +60,5 @@
   "files": [
     "**/*.js",
     "**/*.d.ts"
-  ],
-  "prettier": {
-    "singleQuote": true,
-    "trailingComma": "all"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "parser": "@typescript-eslint/parser",
-    "plugins": [
-      "@typescript-eslint",
-      "simple-import-sort"
-    ],
-    "extends": [
-      "eslint:recommended",
-      "plugin:@typescript-eslint/recommended",
-      "prettier"
-    ],
-    "rules": {
-      "@typescript-eslint/consistent-type-imports": "error",
-      "simple-import-sort/exports": "warn",
-      "simple-import-sort/imports": "warn"
-    }
-  },
-  "jest": {
-    "testEnvironment": "node",
-    "roots": [
-      "<rootDir>/src"
-    ]
-  }
+  ]
 }
