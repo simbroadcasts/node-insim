@@ -76,7 +76,6 @@ export class IS_BTN extends BaseSendablePacket implements IS_BTN_Data {
 
   pack(): Buffer {
     // TODO: Convert to LFS encoding
-    // TODO: Support text input caption
 
     const multiple = 4;
     const length = this.Text.length;
