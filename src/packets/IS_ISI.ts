@@ -5,7 +5,7 @@ import { PacketType } from './packetTypes';
 /**
  * InSim Init - packet to initialise the InSim system
  */
-export class IS_ISI extends BaseSendablePacket implements IS_ISI_Data {
+export class IS_ISI extends BaseSendablePacket {
   @byte() readonly Size = 44;
   @byte() readonly Type = PacketType.ISP_ISI;
 
@@ -35,37 +35,13 @@ export class IS_ISI extends BaseSendablePacket implements IS_ISI_Data {
   /** A short name for your program */
   @char(16) IName = '';
 
-  constructor(data?: Partial<IS_ISI_Data> | Buffer) {
+  constructor(data?: IS_ISI_Data | Buffer) {
     super();
     this.initialize(data);
   }
 }
 
-export type IS_ISI_Data = {
-  /** If non-zero LFS will send an {@link IS_VER} packet */
-  ReqI: IS_ISI_ReqI;
-
-  /** Port for UDP replies from LFS (0 to 65535) */
-  UDPPort: number;
-
-  /** Bit flags for options */
-  Flags: InSimFlags;
-
-  /** The InSim version used by your program */
-  InSimVer: number;
-
-  /** Special host message prefix character */
-  Prefix: string;
-
-  /** Time in ms between {@link IS_NLP} or {@link IS_MCI} (0 = none) */
-  Interval: number;
-
-  /** Admin password (if set in LFS) */
-  Admin: string;
-
-  /** A short name for your program */
-  IName: string;
-};
+export type IS_ISI_Data = Partial<IS_ISI>;
 
 export enum IS_ISI_ReqI {
   ZERO,

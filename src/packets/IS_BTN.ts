@@ -1,11 +1,34 @@
+import type { PartialExcept } from '../types';
 import { BaseSendablePacket } from './BaseSendablePacket';
 import { byte, char } from './decorators';
 import { PacketType } from './packetTypes';
 
 /**
  * BuTtoN - button header - followed by 0 to 240 characters
+ *
+ * You can make up to 240 buttons appear on the host or guests (ID = 0 to 239).
+ * You should set the {@link InSimFlags.ISF_LOCAL} flag (in {@link IS_ISI}) if
+ * your program is not a host control system, to make sure your buttons do not
+ * conflict with any buttons sent by the host.
+ *
+ * LFS can display normal buttons in these four screens:
+ * - main entry screen
+ * - race setup screen
+ * - in game
+ * - SHIFT+U mode
+ *
+ * The recommended area for most buttons is defined by:
+ * - {@link IS_X_MIN}
+ * - {@link IS_X_MAX}
+ * - {@link IS_Y_MIN}
+ * - {@link IS_Y_MAX}
+ *
+ * If you draw buttons in this area, the area will be kept clear to avoid
+ * overlapping LFS buttons with your InSim program's buttons. Buttons outside
+ * that area will not have a space kept clear. You can also make buttons visible
+ * in all screens by setting the {@link Inst} property to {@link ButtonInstFlags.INST_ALWAYS_ON}.
  */
-export class IS_BTN extends BaseSendablePacket implements IS_BTN_Data {
+export class IS_BTN extends BaseSendablePacket {
   private static readonly FIXED_DATA_SIZE = 12;
 
   /** 12 + text size (a multiple of 4) */
@@ -24,9 +47,13 @@ export class IS_BTN extends BaseSendablePacket implements IS_BTN_Data {
    *
    * This value is returned in {@link IS_BTC} and {@link IS_BTT} packets.
    *
-   * Host buttons and local buttons are stored separately, so there is no chance of a conflict between a host control system and a local system (although the buttons could overlap on screen).
+   * Host buttons and local buttons are stored separately, so there is no
+   * chance of a conflict between a host control system and a local system
+   * (although the buttons could overlap on screen).
    *
-   * Programmers of local InSim programs may wish to consider using a configurable button range and possibly screen position, in case their users will use more than one local InSim program at once.
+   * Programmers of local InSim programs may wish to consider using a
+   * configurable button range and possibly screen position, in case their
+   * users will use more than one local InSim program at once.
    * */
   @byte() ClickID = 0;
 
@@ -40,7 +67,7 @@ export class IS_BTN extends BaseSendablePacket implements IS_BTN_Data {
   @byte() Inst: ButtonInstFlags = 0;
 
   /** Button style flags */
-  @byte() BStyle: ButtonStyle = 0;
+  @byte() BStyle: ButtonStyle | ButtonTextColour = 0;
 
   /**
    * If set, the user can click this button to type in text.
@@ -65,11 +92,7 @@ export class IS_BTN extends BaseSendablePacket implements IS_BTN_Data {
   /** 0 to 240 characters of text */
   @char(0) Text = '';
 
-  constructor(
-    data?:
-      | (Partial<Omit<IS_BTN_Data, 'ReqI'>> & Pick<IS_BTN_Data, 'ReqI'>)
-      | Buffer,
-  ) {
+  constructor(data?: IS_BTN_Data | Buffer) {
     super();
     this.initialize(data);
   }
@@ -94,59 +117,7 @@ export class IS_BTN extends BaseSendablePacket implements IS_BTN_Data {
   }
 }
 
-export type IS_BTN_Data = {
-  /** Non-zero (returned in {@link IS_BTC} and {@link IS_BTT} packets) */
-  ReqI: number;
-
-  /** Connection to display the button (0 = local / 255 = all) */
-  UCID: number;
-
-  /**
-   * Button ID (0 to 239)
-   *
-   * This value is returned in {@link IS_BTC} and {@link IS_BTT} packets.
-   *
-   * Host buttons and local buttons are stored separately, so there is no chance of a conflict between a host control system and a local system (although the buttons could overlap on screen).
-   *
-   * Programmers of local InSim programs may wish to consider using a configurable button range and possibly screen position, in case their users will use more than one local InSim program at once.
-   * */
-  ClickID: number;
-
-  /**
-   * Mainly used internally by InSim but also provides some extra user flags
-   *
-   * NOTE: You should not use {@link ButtonInstFlags.INST_ALWAYS_ON} for most buttons.
-   * This is a special flag for buttons that really must be on in all screens (including the garage and options screens). You will probably need to confine these buttons to the top or bottom edge of the screen, to avoid overwriting LFS buttons. Most buttons should be defined without this flag, and positioned in the recommended area so LFS can keep a space clear in the main screens.
-   *
-   * */
-  Inst: ButtonInstFlags;
-
-  /** Button style flags */
-  BStyle: ButtonStyle | ButtonTextColour;
-
-  /**
-   * If set, the user can click this button to type in text.
-   *
-   * Lowest 7 bits are the maximum number of characters to type in (0 to 95)
-   * The highest bit (128) can be set to initialise dialog with the button's text
-   */
-  TypeIn: number;
-
-  /** Left offset (0 to 200) */
-  L: number;
-
-  /** Top offset (0 to 200) */
-  T: number;
-
-  /** Width (0 to 200) */
-  W: number;
-
-  /** Height (0 to 200) */
-  H: number;
-
-  /** 0 to 240 characters of text */
-  Text: string;
-};
+export type IS_BTN_Data = PartialExcept<IS_BTN, 'ReqI'>;
 
 export enum ButtonInstFlags {
   /** If this bit is set the button is visible in all screens */
@@ -184,3 +155,9 @@ export enum ButtonStyle {
   /** Align text to right */
   ISB_RIGHT = 128,
 }
+
+export const IS_X_MIN = 0;
+export const IS_X_MAX = 110;
+
+export const IS_Y_MIN = 30;
+export const IS_Y_MAX = 170;

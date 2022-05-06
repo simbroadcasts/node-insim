@@ -1,3 +1,4 @@
+import type { PartialExcept } from '../types';
 import { BaseSendablePacket } from './BaseSendablePacket';
 import { byte, unsigned } from './decorators';
 import { PacketType } from './packetTypes';
@@ -21,16 +22,7 @@ export class IS_SMALL extends BaseSendablePacket {
   }
 }
 
-export type IS_SMALL_Data = {
-  /** 0 unless it is an info request or a reply to an info request */
-  ReqI?: number;
-
-  /** Subtype */
-  SubT: SendableSmallType;
-
-  /** Value (e.g. for {@link SMALL_SSP} this would be the OutSim packet rate) */
-  UVal: number;
-};
+export type IS_SMALL_Data = PartialExcept<IS_SMALL, 'SubT' | 'UVal'>;
 
 export enum SmallType {
   /** Not used */
