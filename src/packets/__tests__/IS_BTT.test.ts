@@ -1,6 +1,6 @@
+import { ButtonInstFlags } from '..';
+import { IS_BTT } from '../';
 import { BasePacket } from '../BasePacket';
-import { ButtonInstFlags } from '../IS_BTN';
-import { IS_BTT } from '../IS_BTT';
 import { PacketType } from '../packetTypes';
 
 describe('IS_BTT', () => {

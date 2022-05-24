@@ -1,5 +1,5 @@
+import { IS_VER } from '../';
 import { BasePacket } from '../BasePacket';
-import { IS_VER } from '../IS_VER';
 import { PacketType } from '../packetTypes';
 
 describe('IS_VER', () => {

@@ -1,6 +1,5 @@
+import { ButtonClickFlags, ButtonInstFlags, IS_BTC } from '../';
 import { BasePacket } from '../BasePacket';
-import { ButtonClickFlags, IS_BTC } from '../IS_BTC';
-import { ButtonInstFlags } from '../IS_BTN';
 import { PacketType } from '../packetTypes';
 
 describe('IS_BTC', () => {

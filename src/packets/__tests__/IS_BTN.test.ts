@@ -1,7 +1,7 @@
 import { checkPacketDataSize } from '../../utils';
+import type { IS_BTN_Data } from '..';
+import { ButtonInstFlags, ButtonStyle, IS_BTN } from '../';
 import { BasePacket } from '../BasePacket';
-import type { IS_BTN_Data } from '../IS_BTN';
-import { ButtonInstFlags, ButtonStyle, IS_BTN } from '../IS_BTN';
 import { PacketType } from '../packetTypes';
 
 const data: IS_BTN_Data = {

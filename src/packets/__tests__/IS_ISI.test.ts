@@ -1,8 +1,8 @@
 import { InSim } from '../../protocols';
 import { checkPacketDataSize } from '../../utils';
+import type { IS_ISI_Data } from '..';
+import { IS_ISI } from '..';
 import { BasePacket } from '../BasePacket';
-import type { IS_ISI_Data } from '../IS_ISI';
-import { IS_ISI } from '../IS_ISI';
 import { PacketType } from '../packetTypes';
 
 describe('IS_ISI', () => {
