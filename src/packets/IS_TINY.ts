@@ -5,6 +5,9 @@ import { PacketType } from './packetTypes';
 
 const log = createLog('IS_TINY');
 
+/**
+ * General purpose 4 byte packet
+ */
 export class IS_TINY extends BaseSendablePacket {
   @byte() readonly Size = 4;
   @byte() readonly Type = PacketType.ISP_TINY;

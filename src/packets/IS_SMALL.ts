@@ -3,6 +3,9 @@ import { BaseSendablePacket } from './BaseSendablePacket';
 import { byte, unsigned } from './decorators';
 import { PacketType } from './packetTypes';
 
+/**
+ * General purpose 8 byte packet
+ */
 export class IS_SMALL extends BaseSendablePacket {
   @byte() readonly Size = 8;
   @byte() readonly Type = PacketType.ISP_SMALL;
