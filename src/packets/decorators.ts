@@ -36,7 +36,7 @@ export function int() {
 
 /** 4-byte float */
 export function float() {
-  return Reflect.metadata(formatMetadataKey, 'i');
+  return Reflect.metadata(formatMetadataKey, 'f');
 }
 
 export function getFormat(target: BasePacket, propertyKey: string) {
