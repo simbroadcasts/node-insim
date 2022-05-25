@@ -1,6 +1,6 @@
-import type { IS_BTN_Data } from '../../../src/packets';
-import { ButtonTextColour, IS_BTN } from '../../../src/packets';
-import type { InSim } from '../../../src/protocols';
+import type { IS_BTN_Data } from '../../../../src/packets';
+import { ButtonTextColour, IS_BTN } from '../../../../src/packets';
+import type { InSim } from '../../../../src/protocols';
 
 export type ButtonListProps = {
   title?: string;
@@ -63,10 +63,4 @@ export function drawButtonList(
     clickId++;
     top += height;
   });
-}
-
-export function buttonTextWithCaption(caption: string, text: string) {
-  const zero = String.fromCharCode(0);
-
-  return `${zero}${caption}${zero}${text}`;
 }
