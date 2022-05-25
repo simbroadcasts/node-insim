@@ -8,6 +8,10 @@ export {
   ButtonTextColour,
   IS_BTN,
   IS_BTN_Data,
+  IS_X_MAX,
+  IS_X_MIN,
+  IS_Y_MAX,
+  IS_Y_MIN,
 } from './IS_BTN';
 export { IS_BTT } from './IS_BTT';
 export type { IS_ISI_Data } from './IS_ISI';
