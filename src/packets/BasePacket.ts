@@ -57,7 +57,7 @@ export abstract class BasePacket implements IPacket {
     const data = unpack(this.getFormat(), buffer);
 
     if (!data) {
-      log.debug('Unpacked no data from buffer', buffer);
+      log.warn('Unpacked no data from buffer', buffer);
       return this;
     }
 
