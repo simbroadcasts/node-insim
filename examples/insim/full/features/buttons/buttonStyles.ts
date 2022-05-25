@@ -1,10 +1,15 @@
-import { ButtonStyle, ButtonTextColour } from '../../../../../src/packets';
+import {
+  ButtonStyle,
+  ButtonTextColour,
+  IS_Y_MIN,
+} from '../../../../../src/packets';
 import type { InSim } from '../../../../../src/protocols';
 import type { ButtonListProps } from '../../ui';
 import { drawButtonList } from '../../ui';
 import { getStringEnumValues } from '../../utils';
+import { BUTTON_HEIGHT } from './constants';
 
-export function drawButtonVariants(inSim: InSim) {
+export function drawButtonStyles(inSim: InSim) {
   const buttons: ButtonListProps['buttons'] = [];
 
   getStringEnumValues(ButtonStyle).forEach((styleString) => {
@@ -26,11 +31,11 @@ export function drawButtonVariants(inSim: InSim) {
 
   drawButtonList(inSim, {
     title: 'Button styles',
-    titleClickId: 0,
-    leftOffset: 50,
-    topOffset: 10,
+    titleClickId: 46,
+    leftOffset: 47,
+    topOffset: IS_Y_MIN,
     width: 20,
-    height: 4,
+    height: BUTTON_HEIGHT,
     buttons,
   });
 }
