@@ -133,7 +133,7 @@ export enum ViewIdentifier {
   /** Helicopter */
   VIEW_HELI,
 
-  /** TV camer */
+  /** TV camera */
   VIEW_CAM,
 
   /** Cockpit */
