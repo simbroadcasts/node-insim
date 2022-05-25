@@ -14,6 +14,7 @@ export type { IS_ISI_Data } from './IS_ISI';
 export { InSimFlags, IS_ISI, IS_ISI_ReqI } from './IS_ISI';
 export { IS_SMALL, SENDABLE_SMALL_TYPES } from './IS_SMALL';
 export { IS_SMALL_Data, SendableSmallType, SmallType } from './IS_SMALL';
+export { IS_STA, StateFlags } from './IS_STA';
 export type { InfoRequestTinyType, SendableTinyType } from './IS_TINY';
 export {
   INFO_REQUEST_TINY_TYPES,
