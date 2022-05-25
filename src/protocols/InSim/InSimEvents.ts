@@ -1,12 +1,13 @@
 import type {
   IS_BTC,
+  IS_BTT,
   IS_ISI,
   IS_SMALL,
+  IS_STA,
   IS_TINY,
   IS_VER,
   PacketType,
 } from '../../packets';
-import type { IS_BTT } from '../../packets';
 import type { InSim } from './InSim';
 
 export type InSimPacketEvents = {
@@ -16,6 +17,7 @@ export type InSimPacketEvents = {
   [PacketType.ISP_SMALL]: (packet: IS_SMALL, insim: InSim) => void;
   [PacketType.ISP_BTC]: (packet: IS_BTC, insim: InSim) => void;
   [PacketType.ISP_BTT]: (packet: IS_BTT, insim: InSim) => void;
+  [PacketType.ISP_STA]: (packet: IS_STA, insim: InSim) => void;
 };
 
 export type InSimEvents = InSimPacketEvents & {
