@@ -39,6 +39,9 @@ export function float() {
   return Reflect.metadata(formatMetadataKey, 'f');
 }
 
-export function getFormat(target: BasePacket, propertyKey: string) {
-  return Reflect.getMetadata(formatMetadataKey, target, propertyKey);
+export function getFormat<T extends BasePacket>(
+  target: T,
+  propertyKey: keyof T,
+) {
+  return Reflect.getMetadata(formatMetadataKey, target, propertyKey as string);
 }

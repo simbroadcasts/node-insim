@@ -29,23 +29,24 @@ export abstract class BasePacket implements IPacket {
     Object.assign(this, data);
   }
 
-  protected getValidPropertyNames() {
+  protected getValidPropertyNames(): (keyof this)[] {
     const prototype = Object.getPrototypeOf(this);
-    const ownPropertyNames = Object.getOwnPropertyNames(this);
+    const ownPropertyNames = Object.getOwnPropertyNames(this) as (keyof this)[];
     const prototypePropertyNames = Object.keys(
       Object.getOwnPropertyDescriptors(prototype),
-    );
+    ) as (keyof this)[];
     return [...ownPropertyNames, ...prototypePropertyNames].filter(
       (propertyName) => getFormat(this, propertyName) !== undefined,
     );
   }
 
-  protected getFormat(propertyFormats?: Record<string, string>) {
+  protected getFormat(propertyFormats?: Record<string, string>): string {
     const propertyNames = this.getValidPropertyNames();
     const format = propertyNames
       .map(
         (propertyName) =>
-          propertyFormats?.[propertyName] ?? getFormat(this, propertyName),
+          propertyFormats?.[propertyName as string] ??
+          getFormat(this, propertyName),
       )
       .join('');
 
