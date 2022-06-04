@@ -1,6 +1,6 @@
 import { checkPacketDataSize } from '../../utils';
-import type { IS_TINY_Data } from '../';
-import { IS_TINY, TinyType } from '../';
+import type { IS_TINY_Data } from '..';
+import { IS_TINY, TinyType } from '..';
 import { BasePacket } from '../BasePacket';
 import { PacketType } from '../packetTypes';
 

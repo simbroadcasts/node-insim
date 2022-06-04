@@ -1,4 +1,4 @@
-import { ButtonClickFlags, ButtonInstFlags, IS_BTC } from '../';
+import { ButtonClickFlags, ButtonInstFlags, IS_BTC } from '..';
 import { BasePacket } from '../BasePacket';
 import { PacketType } from '../packetTypes';
 

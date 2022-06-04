@@ -1,5 +1,5 @@
 import { ButtonInstFlags } from '..';
-import { IS_BTT } from '../';
+import { IS_BTT } from '..';
 import { BasePacket } from '../BasePacket';
 import { PacketType } from '../packetTypes';
 

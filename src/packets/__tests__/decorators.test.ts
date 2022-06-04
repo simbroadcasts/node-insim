@@ -1,4 +1,4 @@
-import { BasePacket } from '../';
+import { BasePacket } from '..';
 import {
   byte,
   char,

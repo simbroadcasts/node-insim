@@ -16,9 +16,17 @@ export {
 export { IS_BTT } from './IS_BTT';
 export type { IS_ISI_Data } from './IS_ISI';
 export { InSimFlags, IS_ISI, IS_ISI_ReqI } from './IS_ISI';
+export { IS_SCH, KeyFlags } from './IS_SCH';
 export { IS_SMALL, SENDABLE_SMALL_TYPES } from './IS_SMALL';
 export { IS_SMALL_Data, SendableSmallType, SmallType } from './IS_SMALL';
-export { IS_STA, StateFlags } from './IS_STA';
+export {
+  IS_STA,
+  RaceState,
+  ServerStatus,
+  StateFlags,
+  ViewIdentifier,
+  Wind,
+} from './IS_STA';
 export type { InfoRequestTinyType, SendableTinyType } from './IS_TINY';
 export {
   INFO_REQUEST_TINY_TYPES,

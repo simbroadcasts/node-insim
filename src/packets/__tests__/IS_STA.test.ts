@@ -1,6 +1,12 @@
-import { IS_STA, StateFlags } from '..';
+import {
+  IS_STA,
+  RaceState,
+  ServerStatus,
+  StateFlags,
+  ViewIdentifier,
+  Wind,
+} from '..';
 import { BasePacket } from '../BasePacket';
-import { RaceState, ServerStatus, ViewIdentifier, Wind } from '../IS_STA';
 import { PacketType } from '../packetTypes';
 
 describe('IS_STA', () => {

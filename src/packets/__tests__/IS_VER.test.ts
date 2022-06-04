@@ -1,4 +1,4 @@
-import { IS_VER } from '../';
+import { IS_VER } from '..';
 import { BasePacket } from '../BasePacket';
 import { PacketType } from '../packetTypes';
 
