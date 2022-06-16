@@ -1,3 +1,4 @@
+import { stringToBytes } from '../../utils';
 import { IS_VER } from '..';
 import { BasePacket } from '../BasePacket';
 import { PacketType } from '../packetTypes';
@@ -9,16 +10,12 @@ describe('IS_VER', () => {
       PacketType.ISP_VER, // Type
       1, // ReqI
       0, // Zero
-      '0'.charCodeAt(0), // Version[8]
-      '.'.charCodeAt(0),
-      '7'.charCodeAt(0),
-      'A'.charCodeAt(0),
+      ...stringToBytes('0.7A'), // Version[8]
       0,
       0,
       0,
       0,
-      'S'.charCodeAt(0), // Product[6]
-      '3'.charCodeAt(0),
+      ...stringToBytes('S3'), // Product[6]
       0,
       0,
       0,

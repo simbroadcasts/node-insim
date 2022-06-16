@@ -1,3 +1,4 @@
+import { stringToBytes } from '../../utils';
 import {
   IS_STA,
   RaceState,
@@ -32,10 +33,7 @@ describe('IS_STA', () => {
       12, // RaceLaps
       0, // Sp2
       ServerStatus.Success, // ServerStatus
-      'B'.charCodeAt(0), // Track[6]
-      'L'.charCodeAt(0),
-      '2'.charCodeAt(0),
-      'R'.charCodeAt(0),
+      ...stringToBytes('BL2R'), // Track[6]
       0,
       0,
       1, // Weather

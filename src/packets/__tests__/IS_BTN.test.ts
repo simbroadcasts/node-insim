@@ -1,8 +1,11 @@
-import { checkPacketDataSize } from '../../utils';
+import { checkPacketDataSize, stringToBytes } from '../../utils';
 import type { IS_BTN_Data } from '..';
 import { ButtonInstFlags, ButtonStyle, IS_BTN } from '..';
 import { BasePacket } from '../BasePacket';
 import { PacketType } from '../packetTypes';
+
+const text =
+  '123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789$';
 
 const data: IS_BTN_Data = {
   ReqI: 1,
@@ -15,7 +18,7 @@ const data: IS_BTN_Data = {
   T: 30,
   W: 40,
   H: 50,
-  Text: '123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789$',
+  Text: text,
 };
 
 describe('IS_BTN', () => {
@@ -38,19 +41,6 @@ describe('IS_BTN', () => {
   });
 
   it('should pack data into a buffer', () => {
-    const from1to9 = [
-      '1'.charCodeAt(0),
-      '2'.charCodeAt(0),
-      '3'.charCodeAt(0),
-      '4'.charCodeAt(0),
-      '5'.charCodeAt(0),
-      '6'.charCodeAt(0),
-      '7'.charCodeAt(0),
-      '8'.charCodeAt(0),
-      '9'.charCodeAt(0),
-      ' '.charCodeAt(0),
-    ];
-
     const expectedBuffer = Buffer.from([
       252 / BasePacket.SIZE_MULTIPLIER, // Size
       PacketType.ISP_BTN, // Type
@@ -64,39 +54,7 @@ describe('IS_BTN', () => {
       30, // T
       40, // W
       50, // H
-      ...from1to9, // Text[240]
-      ...from1to9,
-      ...from1to9,
-      ...from1to9,
-      ...from1to9,
-      ...from1to9,
-      ...from1to9,
-      ...from1to9,
-      ...from1to9,
-      ...from1to9,
-      ...from1to9,
-      ...from1to9,
-      ...from1to9,
-      ...from1to9,
-      ...from1to9,
-      ...from1to9,
-      ...from1to9,
-      ...from1to9,
-      ...from1to9,
-      ...from1to9,
-      ...from1to9,
-      ...from1to9,
-      ...from1to9,
-      '1'.charCodeAt(0),
-      '2'.charCodeAt(0),
-      '3'.charCodeAt(0),
-      '4'.charCodeAt(0),
-      '5'.charCodeAt(0),
-      '6'.charCodeAt(0),
-      '7'.charCodeAt(0),
-      '8'.charCodeAt(0),
-      '9'.charCodeAt(0),
-      '$'.charCodeAt(0),
+      ...stringToBytes(text), // Text[240]
     ]);
     const actualBuffer = new IS_BTN(data).pack();
 

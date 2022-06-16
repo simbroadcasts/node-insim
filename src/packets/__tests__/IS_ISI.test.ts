@@ -1,5 +1,5 @@
 import { InSim } from '../../protocols';
-import { checkPacketDataSize } from '../../utils';
+import { checkPacketDataSize, stringToBytes } from '../../utils';
 import type { IS_ISI_Data } from '..';
 import { IS_ISI } from '..';
 import { BasePacket } from '../BasePacket';
@@ -38,8 +38,8 @@ describe('IS_ISI', () => {
       InSimVer: InSim.INSIM_VERSION,
       Prefix: '!',
       Interval: 30,
-      Admin: 'admin',
-      IName: 'app',
+      Admin: 'admin adminadmin',
+      IName: 'app app app app ',
     };
     const actualBuffer = new IS_ISI(data).pack();
     const expectedBuffer = Buffer.from([
@@ -55,38 +55,8 @@ describe('IS_ISI', () => {
       '!'.charCodeAt(0), // Prefix
       30, // Interval (1)
       0, // Interval (2)
-      'a'.charCodeAt(0), // Admin[16]
-      'd'.charCodeAt(0),
-      'm'.charCodeAt(0),
-      'i'.charCodeAt(0),
-      'n'.charCodeAt(0),
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      'a'.charCodeAt(0), // IName[16]
-      'p'.charCodeAt(0),
-      'p'.charCodeAt(0),
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
+      ...stringToBytes('admin adminadmin'), // Admin[16]
+      ...stringToBytes('app app app app '), // IName[16]
     ]);
 
     expect(actualBuffer).toEqual(expectedBuffer);
