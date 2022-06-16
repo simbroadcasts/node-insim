@@ -1,7 +1,10 @@
 import type { PartialExcept } from '../types';
+import { createLog } from '../utils';
 import { BaseSendablePacket } from './BaseSendablePacket';
 import { byte, char } from './decorators';
 import { PacketType } from './packetTypes';
+
+const log = createLog('IS_BTN');
 
 /**
  * BuTtoN - button header - followed by 0 to 240 characters
@@ -99,6 +102,24 @@ export class IS_BTN extends BaseSendablePacket {
 
   pack(): Buffer {
     // TODO: Convert to LFS encoding
+
+    if (this.ReqI === 0) {
+      log.error('ReqI must be greater than 0');
+    }
+
+    if (this.W === 0) {
+      log.error('Invalid dimensions - W must be greater than 0');
+    }
+
+    if (this.H === 0) {
+      log.error('Invalid dimensions - H must be greater than 0');
+    }
+
+    if (this.ClickID > MAX_CLICK_ID) {
+      log.error(
+        `Invalid ClickID: ${this.ClickID} - must be less than or equal to ${MAX_CLICK_ID}`,
+      );
+    }
 
     const multiple = 4;
     const length = this.Text.length;
