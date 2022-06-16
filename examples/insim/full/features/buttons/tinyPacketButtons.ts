@@ -3,41 +3,31 @@ import {
   ButtonStyle,
   IS_TINY,
   IS_Y_MIN,
-  PacketType,
   SENDABLE_TINY_TYPES,
   TinyType,
 } from '../../../../../src/packets';
 import type { InSim } from '../../../../../src/protocols';
-import { TINY_BUTTON_CLICK_ID_OFFSET } from '../../constants';
 import { log } from '../../log';
 import { drawButtonList } from '../../ui';
-import { BUTTON_HEIGHT } from './constants';
+import { BUTTON_HEIGHT, TINY_BUTTON_ID_OFFSET } from './constants';
 
 export function drawTinyPacketButtons(inSim: InSim) {
   drawButtonList(inSim, {
     title: 'IS_TINY',
-    titleClickId: TINY_BUTTON_CLICK_ID_OFFSET - 1,
     leftOffset: 67,
     topOffset: IS_Y_MIN,
-    width: 20,
+    width: 15,
     height: BUTTON_HEIGHT,
     buttons: SENDABLE_TINY_TYPES.map((tinyTypeNumber) => ({
-      ClickID: tinyTypeNumber + TINY_BUTTON_CLICK_ID_OFFSET,
+      ReqI: tinyTypeNumber + TINY_BUTTON_ID_OFFSET,
       Text: `${TinyType[tinyTypeNumber]} (${tinyTypeNumber})`,
       BStyle: ButtonStyle.ISB_DARK | ButtonStyle.ISB_CLICK,
+      onClick: handleButtonClick,
     })),
   });
 
-  inSim.on(PacketType.ISP_BTC, onButtonClick);
-}
-
-function onButtonClick(packet: IS_BTC, inSim: InSim) {
-  if (
-    packet.ClickID >= TINY_BUTTON_CLICK_ID_OFFSET &&
-    packet.ClickID <=
-      TINY_BUTTON_CLICK_ID_OFFSET + Math.max(...SENDABLE_TINY_TYPES)
-  ) {
-    const tinyType = packet.ClickID - TINY_BUTTON_CLICK_ID_OFFSET;
+  function handleButtonClick(packet: IS_BTC, inSim: InSim) {
+    const tinyType = packet.ReqI - TINY_BUTTON_ID_OFFSET;
 
     if (SENDABLE_TINY_TYPES.includes(tinyType)) {
       log.info(`Send IS_TINY - ${TinyType[tinyType]} (${tinyType})`);

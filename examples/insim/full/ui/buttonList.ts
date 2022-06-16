@@ -1,56 +1,77 @@
-import type { IS_BTN_Data } from '../../../../src/packets';
-import { ButtonTextColour, IS_BTN } from '../../../../src/packets';
+import type { IS_BTC, IS_BTN_Data, IS_BTT } from '../../../../src/packets';
+import { ButtonTextColour, PacketType } from '../../../../src/packets';
 import type { InSim } from '../../../../src/protocols';
+import type { DrawButtonConfig } from './button';
+import { drawButton } from './button';
+
+type Button = Partial<Omit<IS_BTN_Data, ComputedButtonProps>> &
+  CustomButtonProps;
+
+type ComputedButtonProps = 'ClickID' | 'L' | 'T' | 'W' | 'H';
+
+type CustomButtonProps = {
+  onClick?: (packet: IS_BTC, inSim: InSim) => void;
+  onType?: (packet: IS_BTT, inSim: InSim) => void;
+};
 
 export type ButtonListProps = {
   title?: string;
-  titleClickId?: number;
   leftOffset: number;
   topOffset: number;
   width: number;
   height: number;
-  buttons: Partial<Omit<IS_BTN_Data, 'ReqI' | 'L' | 'T' | 'W' | 'H'>>[];
+  buttons: Button[];
 };
+
+export type ButtonListConfig = {
+  update: (buttons: Button[]) => void;
+};
+
+type CreatedButtonConfig = DrawButtonConfig & CustomButtonProps;
 
 export function drawButtonList(
   inSim: InSim,
   {
     title,
-    titleClickId = 0,
-    leftOffset,
+    leftOffset: left,
     topOffset,
     width,
     height,
     buttons,
   }: ButtonListProps,
-) {
-  const left = leftOffset;
+): ButtonListConfig {
   let top = topOffset;
-  let clickId = titleClickId;
 
   if (title) {
-    const titleButton = new IS_BTN({
-      ReqI: 1,
-      ClickID: clickId,
-      W: width,
-      H: height,
-      L: left,
-      T: top,
-      BStyle: ButtonTextColour.TitleColour,
+    drawNextButton(inSim, {
       Text: title,
+      BStyle: ButtonTextColour.TitleColour,
     });
-
-    inSim.send(titleButton);
-
-    clickId++;
-    top += height;
   }
 
-  buttons.forEach(({ ClickID, ...button }) => {
-    const actualClickId = ClickID ?? clickId;
-    const btn = new IS_BTN({
+  const buttonConfigs: CreatedButtonConfig[] = buttons.map(
+    ({ onClick, onType, ...button }) => {
+      const buttonConfig = drawNextButton(inSim, button);
+
+      return {
+        ...buttonConfig,
+        onClick,
+        onType,
+      };
+    },
+  );
+
+  inSim.on(PacketType.ISP_BTC, (packet, inSim) =>
+    handleButtonClick(packet, inSim, buttonConfigs),
+  );
+
+  inSim.on(PacketType.ISP_BTT, (packet, inSim) =>
+    handleButtonType(packet, inSim, buttonConfigs),
+  );
+
+  function drawNextButton(inSim: InSim, button: Button): DrawButtonConfig {
+    const buttonConfig = drawButton(inSim, {
       ReqI: 1,
-      ClickID: actualClickId,
       W: width,
       H: height,
       L: left,
@@ -58,9 +79,62 @@ export function drawButtonList(
       ...button,
     });
 
-    inSim.send(btn);
-
-    clickId++;
     top += height;
-  });
+
+    return buttonConfig;
+  }
+
+  return {
+    update: (buttons) => {
+      let top = topOffset;
+
+      if (title) {
+        top += height;
+      }
+
+      buttonConfigs.forEach(({ update }, idx) => {
+        update({
+          ReqI: 1,
+          W: width,
+          H: height,
+          L: left,
+          T: top,
+          ...buttons[idx],
+        });
+        top += height;
+      });
+    },
+  };
+}
+
+function handleButtonClick(
+  packet: IS_BTC,
+  inSim: InSim,
+  buttonConfigs: CreatedButtonConfig[],
+) {
+  const targetButton = buttonConfigs.find(
+    (config) => config.onClick && config.clickId === packet.ClickID,
+  );
+
+  if (!targetButton) {
+    return;
+  }
+
+  targetButton.onClick?.(packet, inSim);
+}
+
+function handleButtonType(
+  packet: IS_BTT,
+  inSim: InSim,
+  buttonConfigs: CreatedButtonConfig[],
+) {
+  const targetButton = buttonConfigs.find(
+    (config) => config.onType && config.clickId === packet.ClickID,
+  );
+
+  if (!targetButton) {
+    return;
+  }
+
+  targetButton.onType?.(packet, inSim);
 }

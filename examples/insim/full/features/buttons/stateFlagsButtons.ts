@@ -22,6 +22,26 @@ export function drawStateFlagsButtons(inSim: InSim) {
     }),
   );
 
+  const valueButtons: ButtonListProps['buttons'] = getStringEnumValues(
+    StateFlags,
+  ).map((stateFlag) => {
+    const stateNumber = StateFlags[stateFlag];
+
+    return {
+      Text: `${stateFlag} (${stateNumber})`,
+      BStyle: ButtonStyle.ISB_LIGHT | ButtonStyle.ISB_C2,
+    };
+  });
+
+  const { update: updateStateFlagButtons } = drawButtonList(inSim, {
+    title: 'State flags',
+    leftOffset: IS_X_MIN + 25,
+    topOffset: IS_Y_MIN,
+    width: 22,
+    height: BUTTON_HEIGHT,
+    buttons: valueButtons,
+  });
+
   inSim.on(PacketType.ISP_STA, (packet) => {
     const valueButtons: ButtonListProps['buttons'] = getStringEnumValues(
       StateFlags,
@@ -37,14 +57,6 @@ export function drawStateFlagsButtons(inSim: InSim) {
       };
     });
 
-    drawButtonList(inSim, {
-      title: 'State flags',
-      titleClickId: 29,
-      leftOffset: IS_X_MIN + 25,
-      topOffset: IS_Y_MIN,
-      width: 22,
-      height: BUTTON_HEIGHT,
-      buttons: valueButtons,
-    });
+    updateStateFlagButtons(valueButtons);
   });
 }

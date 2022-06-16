@@ -1,6 +1,7 @@
 import { IS_ISI_ReqI, PacketType } from '../../../../../src/packets';
 import type { InSim } from '../../../../../src/protocols';
 import { drawButtonStyles } from './buttonStyles';
+import { drawSendablePacketButtons } from './sendablePackets';
 import { drawSmallPacketButtons } from './smallPacketButtons';
 import { drawStateButtons } from './stateButtons';
 import { drawStateFlagsButtons } from './stateFlagsButtons';
@@ -14,6 +15,7 @@ export function drawTestButtons(inSim: InSim) {
       drawButtonStyles(inSim);
       drawTinyPacketButtons(inSim);
       drawSmallPacketButtons(inSim);
+      drawSendablePacketButtons(inSim);
     }
   });
 }

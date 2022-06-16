@@ -12,11 +12,12 @@ export {
   IS_X_MIN,
   IS_Y_MAX,
   IS_Y_MIN,
+  MAX_CLICK_ID,
 } from './IS_BTN';
 export { IS_BTT } from './IS_BTT';
 export type { IS_ISI_Data } from './IS_ISI';
 export { InSimFlags, IS_ISI, IS_ISI_ReqI } from './IS_ISI';
-export { IS_SCH, KeyFlags } from './IS_SCH';
+export { IS_SCH, IS_SCH_Data, KeyFlags } from './IS_SCH';
 export { IS_SMALL, SENDABLE_SMALL_TYPES } from './IS_SMALL';
 export { IS_SMALL_Data, SendableSmallType, SmallType } from './IS_SMALL';
 export {

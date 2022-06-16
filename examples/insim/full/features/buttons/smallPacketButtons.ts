@@ -8,24 +8,22 @@ import {
   SmallType,
 } from '../../../../../src/packets';
 import type { InSim } from '../../../../../src/protocols';
-import { SMALL_BUTTON_CLICK_ID_OFFSET } from '../../constants';
 import { log } from '../../log';
 import { buttonTextWithCaption, drawButtonList } from '../../ui';
-import { BUTTON_HEIGHT } from './constants';
+import { BUTTON_HEIGHT, SMALL_BUTTON_ID_OFFSET } from './constants';
 
 export function drawSmallPacketButtons(inSim: InSim) {
   drawButtonList(inSim, {
     title: 'IS_SMALL',
-    titleClickId: SMALL_BUTTON_CLICK_ID_OFFSET,
-    leftOffset: 87,
+    leftOffset: 82,
     topOffset: IS_Y_MIN,
-    width: 20,
+    width: 15,
     height: BUTTON_HEIGHT,
     buttons: SENDABLE_SMALL_TYPES.map((smallTypeNumber) => {
       const text = `${SmallType[smallTypeNumber]} (${smallTypeNumber})`;
 
       return {
-        ClickID: smallTypeNumber + SMALL_BUTTON_CLICK_ID_OFFSET,
+        ReqI: smallTypeNumber + SMALL_BUTTON_ID_OFFSET,
         Text: buttonTextWithCaption(`${text} - UVal`, text),
         BStyle: ButtonStyle.ISB_DARK | ButtonStyle.ISB_CLICK,
         TypeIn: 95,
@@ -38,11 +36,10 @@ export function drawSmallPacketButtons(inSim: InSim) {
 
 function onButtonType(packet: IS_BTT, inSim: InSim) {
   if (
-    packet.ClickID >= SMALL_BUTTON_CLICK_ID_OFFSET &&
-    packet.ClickID <=
-      SMALL_BUTTON_CLICK_ID_OFFSET + Math.max(...SENDABLE_SMALL_TYPES)
+    packet.ReqI >= SMALL_BUTTON_ID_OFFSET &&
+    packet.ReqI <= SMALL_BUTTON_ID_OFFSET + Math.max(...SENDABLE_SMALL_TYPES)
   ) {
-    const smallType = packet.ClickID - SMALL_BUTTON_CLICK_ID_OFFSET;
+    const smallType = packet.ReqI - SMALL_BUTTON_ID_OFFSET;
 
     if (SENDABLE_SMALL_TYPES.includes(smallType)) {
       const uVal = parseInt(packet.Text, 10);

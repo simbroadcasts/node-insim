@@ -161,3 +161,5 @@ export const IS_X_MAX = 110;
 
 export const IS_Y_MIN = 30;
 export const IS_Y_MAX = 170;
+
+export const MAX_CLICK_ID = 239;

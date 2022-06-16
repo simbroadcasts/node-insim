@@ -31,7 +31,6 @@ export function drawButtonStyles(inSim: InSim) {
 
   drawButtonList(inSim, {
     title: 'Button styles',
-    titleClickId: 46,
     leftOffset: 47,
     topOffset: IS_Y_MIN,
     width: 20,
