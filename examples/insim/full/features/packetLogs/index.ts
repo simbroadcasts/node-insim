@@ -14,10 +14,10 @@ export function logPackets(inSim: InSim) {
   inSim.on(PacketType.ISP_VER, onVersion);
   inSim.on(PacketType.ISP_TINY, onTiny);
   inSim.on(PacketType.ISP_SMALL, onSmall);
-  inSim.on(PacketType.ISP_BTC, onButtonClick);
-  inSim.on(PacketType.ISP_BTT, onButtonType);
   inSim.on(PacketType.ISP_STA, onState);
   inSim.on(PacketType.ISP_NCN, onNewConnection);
   inSim.on(PacketType.ISP_CNL, onConnectionLeave);
   inSim.on(PacketType.ISP_CPR, onConnectionPlayerRename);
+  inSim.on(PacketType.ISP_BTC, onButtonClick);
+  inSim.on(PacketType.ISP_BTT, onButtonType);
 }
