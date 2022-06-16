@@ -10,6 +10,6 @@ export function onVersion(packet: IS_VER, inSim: InSim) {
       inSim.options,
     );
   } else {
-    log.info(`Received IS_VER packet - ${packet.Product} ${packet.Version}`);
+    log.info(`Version requested: ${packet.Product} ${packet.Version}`);
   }
 }

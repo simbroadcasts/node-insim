@@ -3,6 +3,6 @@ import { log } from '../../log';
 
 export function onButtonType(packet: IS_BTT) {
   log.info(
-    `Received IS_BTT packet - ClickID ${packet.ClickID}, input text: ${packet.Text}`,
+    `Button text typed: ClickID ${packet.ClickID}, input text: ${packet.Text}`,
   );
 }
