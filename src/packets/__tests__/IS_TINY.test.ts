@@ -20,7 +20,7 @@ describe('IS_TINY', () => {
 
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
-      1, // Size
+      4 / BasePacket.SIZE_MULTIPLIER, // Size
       PacketType.ISP_TINY, // Type
       1, // ReqI
       TinyType.TINY_CLOSE, // SubT

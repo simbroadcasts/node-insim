@@ -22,7 +22,7 @@ describe('IS_SMALL', () => {
 
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
-      2, // Size
+      8 / BasePacket.SIZE_MULTIPLIER, // Size
       PacketType.ISP_SMALL, // Type
       1, // ReqI
       SmallType.SMALL_RTP, // SubT
