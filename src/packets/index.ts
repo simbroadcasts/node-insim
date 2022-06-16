@@ -17,6 +17,7 @@ export {
 export { IS_BTT } from './IS_BTT';
 export type { IS_ISI_Data } from './IS_ISI';
 export { InSimFlags, IS_ISI, IS_ISI_ReqI } from './IS_ISI';
+export { ConnectionFlags, IS_NCN } from './IS_NCN';
 export { IS_SCH, IS_SCH_Data, KeyFlags } from './IS_SCH';
 export { IS_SMALL, SENDABLE_SMALL_TYPES } from './IS_SMALL';
 export { IS_SMALL_Data, SendableSmallType, SmallType } from './IS_SMALL';

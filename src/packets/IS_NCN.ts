@@ -1,0 +1,44 @@
+import { BasePacket } from './BasePacket';
+import { byte, char } from './decorators';
+import { PacketType } from './packetTypes';
+
+/**
+ * New ConN
+ */
+export class IS_NCN extends BasePacket {
+  @byte() readonly Size = 56;
+  @byte() readonly Type = PacketType.ISP_NCN;
+
+  /** 0 unless this is a reply to a {@link TINY_NCN} */
+  @byte() ReqI = 0;
+
+  /** New connection's unique id (0 = host) */
+  @byte() UCID = 0;
+
+  /** Username */
+  @char(24) UName = '';
+
+  /** Nickname */
+  @char(24) PName = '';
+
+  /** 1 if admin */
+  @byte() Admin = 0;
+
+  /** Number of connections including host */
+  @byte() Total = 0;
+
+  /** Bit 2: remote */
+  @byte() Flags: ConnectionFlags = 0;
+
+  @byte() readonly Sp3: 0 = 0;
+
+  constructor(data?: Buffer) {
+    super();
+    this.initialize(data);
+  }
+}
+
+export enum ConnectionFlags {
+  /** Remote */
+  REMOTE = 4,
+}
