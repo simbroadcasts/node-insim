@@ -15,6 +15,7 @@ export {
   MAX_CLICK_ID,
 } from './IS_BTN';
 export { IS_BTT } from './IS_BTT';
+export { IS_CNL, LeaveReasons } from './IS_CNL';
 export type { IS_ISI_Data } from './IS_ISI';
 export { InSimFlags, IS_ISI, IS_ISI_ReqI } from './IS_ISI';
 export { ConnectionFlags, IS_NCN } from './IS_NCN';

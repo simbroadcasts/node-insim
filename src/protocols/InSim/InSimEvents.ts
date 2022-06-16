@@ -1,6 +1,7 @@
 import type {
   IS_BTC,
   IS_BTT,
+  IS_CNL,
   IS_ISI,
   IS_NCN,
   IS_SCH,
@@ -22,6 +23,7 @@ export type InSimPacketEvents = {
   [PacketType.ISP_STA]: (packet: IS_STA, inSim: InSim) => void;
   [PacketType.ISP_SCH]: (packet: IS_SCH, inSim: InSim) => void;
   [PacketType.ISP_NCN]: (packet: IS_NCN, inSim: InSim) => void;
+  [PacketType.ISP_CNL]: (packet: IS_CNL, inSim: InSim) => void;
 };
 
 export type InSimEvents = InSimPacketEvents & {
