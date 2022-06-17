@@ -2,9 +2,9 @@ import type { IS_BTT } from '../../../../../src/packets';
 import {
   ButtonStyle,
   ButtonTextColour,
+  CharacterModifiers,
   IS_SCH,
   IS_Y_MIN,
-  KeyFlags,
 } from '../../../../../src/packets';
 import type { InSim } from '../../../../../src/protocols';
 import { buttonTextWithCaption, drawButton } from '../../ui';
@@ -25,7 +25,7 @@ export function drawSendablePacketButtons(inSim: InSim) {
 }
 
 function drawSingleCharacterPacketButtons(inSim: InSim) {
-  let buttonFlags: KeyFlags = 0;
+  let buttonFlags: CharacterModifiers = 0;
 
   drawButton(inSim, {
     Text: buttonTextWithCaption(`Enter a character to send`, 'IS_SCH'),
@@ -51,26 +51,30 @@ function drawSingleCharacterPacketButtons(inSim: InSim) {
 
   function drawShiftButton(inSim: InSim) {
     const { update } = drawButton(inSim, {
-      ...getShiftButtonData(Boolean(buttonFlags & KeyFlags.SHIFT)),
+      ...getShiftButtonData(Boolean(buttonFlags & CharacterModifiers.SHIFT)),
       onClick: () => {
         buttonFlags =
-          buttonFlags & KeyFlags.SHIFT
-            ? buttonFlags & ~KeyFlags.SHIFT
-            : buttonFlags | KeyFlags.SHIFT;
-        update(getShiftButtonData(Boolean(buttonFlags & KeyFlags.SHIFT)));
+          buttonFlags & CharacterModifiers.SHIFT
+            ? buttonFlags & ~CharacterModifiers.SHIFT
+            : buttonFlags | CharacterModifiers.SHIFT;
+        update(
+          getShiftButtonData(Boolean(buttonFlags & CharacterModifiers.SHIFT)),
+        );
       },
     });
   }
 
   function drawCtrlButton(inSim: InSim) {
     const { update } = drawButton(inSim, {
-      ...getCtrlButtonData(Boolean(buttonFlags & KeyFlags.CTRL)),
+      ...getCtrlButtonData(Boolean(buttonFlags & CharacterModifiers.CTRL)),
       onClick: () => {
         buttonFlags =
-          buttonFlags & KeyFlags.CTRL
-            ? buttonFlags & ~KeyFlags.CTRL
-            : buttonFlags | KeyFlags.CTRL;
-        update(getCtrlButtonData(Boolean(buttonFlags & KeyFlags.CTRL)));
+          buttonFlags & CharacterModifiers.CTRL
+            ? buttonFlags & ~CharacterModifiers.CTRL
+            : buttonFlags | CharacterModifiers.CTRL;
+        update(
+          getCtrlButtonData(Boolean(buttonFlags & CharacterModifiers.CTRL)),
+        );
       },
     });
   }

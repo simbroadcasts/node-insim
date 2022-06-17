@@ -1,8 +1,7 @@
 import { checkPacketDataSize, stringToBytes } from '../../utils';
 import type { IS_BTN_Data } from '..';
-import { ButtonInstFlags, ButtonStyle, IS_BTN } from '..';
+import { ButtonStyle, INST_ALWAYS_ON, IS_BTN, PacketType } from '..';
 import { BasePacket } from '../BasePacket';
-import { PacketType } from '../packetTypes';
 
 const text =
   '123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789$';
@@ -11,7 +10,7 @@ const data: IS_BTN_Data = {
   ReqI: 1,
   UCID: 2,
   ClickID: 3,
-  Inst: ButtonInstFlags.INST_ALWAYS_ON,
+  Inst: INST_ALWAYS_ON,
   BStyle: ButtonStyle.ISB_C1 | ButtonStyle.ISB_CLICK,
   TypeIn: 3,
   L: 20,
@@ -66,7 +65,7 @@ describe('IS_BTN', () => {
       ReqI: 1,
       UCID: 2,
       ClickID: 3,
-      Inst: ButtonInstFlags.INST_ALWAYS_ON,
+      Inst: INST_ALWAYS_ON,
       BStyle: ButtonStyle.ISB_C1 | ButtonStyle.ISB_CLICK,
       TypeIn: 3,
       L: 20,

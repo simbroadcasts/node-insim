@@ -1,6 +1,5 @@
-import { stringToBytes } from '../../utils';
+import { byte, char, stringToBytes } from '../../utils';
 import { BasePacket, PacketType } from '..';
-import { byte, char } from '../decorators';
 
 describe('BasePacket', () => {
   describe('initialize', () => {

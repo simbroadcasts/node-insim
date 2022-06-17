@@ -1,6 +1,7 @@
+import { byte, char } from '../utils';
 import { BasePacket } from './BasePacket';
-import { byte, char } from './decorators';
-import { PacketType } from './packetTypes';
+import type { ConnectionFlags } from './enums';
+import { PacketType } from './enums';
 
 /**
  * New ConN
@@ -36,9 +37,4 @@ export class IS_NCN extends BasePacket {
     super();
     this.initialize(data);
   }
-}
-
-export enum ConnectionFlags {
-  /** Remote */
-  REMOTE = 4,
 }

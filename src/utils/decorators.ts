@@ -1,7 +1,5 @@
 import 'reflect-metadata';
 
-import type { BasePacket } from './BasePacket';
-
 const formatMetadataKey = Symbol('format');
 
 /** 1-byte character */
@@ -39,9 +37,6 @@ export function float() {
   return Reflect.metadata(formatMetadataKey, 'f');
 }
 
-export function getFormat<T extends BasePacket>(
-  target: T,
-  propertyKey: keyof T,
-) {
+export function getFormat<T>(target: T, propertyKey: keyof T) {
   return Reflect.getMetadata(formatMetadataKey, target, propertyKey as string);
 }

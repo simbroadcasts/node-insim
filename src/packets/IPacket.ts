@@ -1,4 +1,4 @@
-import type { PacketType } from './packetTypes';
+import type { PacketType } from './enums';
 
 export type IPacket = {
   readonly Size: number;

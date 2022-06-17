@@ -1,7 +1,6 @@
 import { stringToBytes } from '../../utils';
-import { ConnectionFlags, IS_NCN } from '..';
+import { ConnectionFlags, IS_NCN, PacketType } from '..';
 import { BasePacket } from '../BasePacket';
-import { PacketType } from '../packetTypes';
 
 describe('IS_NCN', () => {
   it('should unpack data from a buffer', () => {

@@ -1,7 +1,6 @@
 import { stringToBytes } from '../../utils';
-import { IS_VER } from '..';
+import { IS_VER, PacketType } from '..';
 import { BasePacket } from '../BasePacket';
-import { PacketType } from '../packetTypes';
 
 describe('IS_VER', () => {
   it('should unpack data from a buffer', () => {

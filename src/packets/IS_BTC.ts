@@ -1,6 +1,7 @@
+import { byte } from '../utils';
 import { BasePacket } from './BasePacket';
-import { byte } from './decorators';
-import { PacketType } from './packetTypes';
+import type { ButtonClickFlags } from './enums';
+import { PacketType } from './enums';
 
 /**
  * BuTton Click - sent back when user clicks a button
@@ -30,18 +31,4 @@ export class IS_BTC extends BasePacket {
     super();
     this.initialize(data);
   }
-}
-
-export enum ButtonClickFlags {
-  /** Left click */
-  ISB_LMB = 1,
-
-  /** Right click */
-  ISB_RMB = 2,
-
-  /** Ctrl + click */
-  ISB_CTRL = 4,
-
-  /** Shift + click */
-  ISB_SHIFT = 8,
 }

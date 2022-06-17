@@ -1,8 +1,7 @@
 import { stringToBytes } from '../../utils';
-import { ButtonInstFlags } from '..';
+import { INST_ALWAYS_ON, PacketType } from '..';
 import { IS_BTT } from '..';
 import { BasePacket } from '../BasePacket';
-import { PacketType } from '../packetTypes';
 
 describe('IS_BTT', () => {
   it('should unpack data from a buffer', () => {
@@ -12,7 +11,7 @@ describe('IS_BTT', () => {
       1, // ReqI
       2, // UCID
       3, // ClickID
-      ButtonInstFlags.INST_ALWAYS_ON, // Inst
+      INST_ALWAYS_ON, // Inst
       7, // TypeIn
       0, // Sp3
       ...stringToBytes(

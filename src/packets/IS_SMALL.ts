@@ -1,7 +1,7 @@
 import type { PartialExcept } from '../types';
+import { byte, unsigned } from '../utils';
 import { BaseSendablePacket } from './BaseSendablePacket';
-import { byte, unsigned } from './decorators';
-import { PacketType } from './packetTypes';
+import { PacketType, SmallType } from './enums';
 
 /**
  * General purpose 8 byte packet
@@ -26,38 +26,6 @@ export class IS_SMALL extends BaseSendablePacket {
 }
 
 export type IS_SMALL_Data = PartialExcept<IS_SMALL, 'SubT' | 'UVal'>;
-
-export enum SmallType {
-  /** Not used */
-  SMALL_NONE,
-
-  /** Instruction: start sending positions */
-  SMALL_SSP,
-
-  /** Instruction: start sending gauges */
-  SMALL_SSG,
-
-  /** Report: vote action */
-  SMALL_VTA,
-
-  /** Instruction: time stop */
-  SMALL_TMS,
-
-  /** Instruction: time step */
-  SMALL_STP,
-
-  /** Info: race time packet (reply to {@link TINY_GTH}) */
-  SMALL_RTP,
-
-  /** Instruction: set node lap interval */
-  SMALL_NLI,
-
-  /** Both ways: set or get allowed cars ({@link TINY_ALC}) */
-  SMALL_ALC,
-
-  /** Instruction: set local car switches (lights, horn, siren) */
-  SMALL_LCS,
-}
 
 export const SENDABLE_SMALL_TYPES = [
   SmallType.SMALL_SSP,

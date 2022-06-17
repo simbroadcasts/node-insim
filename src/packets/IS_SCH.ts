@@ -1,6 +1,7 @@
+import { byte } from '../utils';
 import { BaseSendablePacket } from './BaseSendablePacket';
-import { byte } from './decorators';
-import { PacketType } from './packetTypes';
+import type { CharacterModifiers } from './enums';
+import { PacketType } from './enums';
 
 /**
  * Single CHaracter
@@ -23,7 +24,7 @@ export class IS_SCH extends BaseSendablePacket {
   @byte() CharB = 0;
 
   /** bit 0: Shift / bit 1: Ctrl */
-  @byte() Flags: KeyFlags = 0;
+  @byte() Flags: CharacterModifiers = 0;
 
   @byte() readonly Spare2: 0 = 0;
 
@@ -36,11 +37,3 @@ export class IS_SCH extends BaseSendablePacket {
 }
 
 export type IS_SCH_Data = Partial<IS_SCH>;
-
-export enum KeyFlags {
-  /** Shift key */
-  SHIFT = 1,
-
-  /** Ctrl key */
-  CTRL = 2,
-}

@@ -1,6 +1,7 @@
 import { stringToBytes } from '../../utils';
 import {
   IS_STA,
+  PacketType,
   RaceState,
   ServerStatus,
   StateFlags,
@@ -8,7 +9,6 @@ import {
   Wind,
 } from '..';
 import { BasePacket } from '../BasePacket';
-import { PacketType } from '../packetTypes';
 
 describe('IS_STA', () => {
   it('should unpack data from a buffer', () => {

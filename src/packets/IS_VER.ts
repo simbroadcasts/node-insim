@@ -1,6 +1,6 @@
+import { byte, char } from '../utils';
 import { BasePacket } from './BasePacket';
-import { byte, char } from './decorators';
-import { PacketType } from './packetTypes';
+import { PacketType } from './enums';
 
 /**
  * Version request

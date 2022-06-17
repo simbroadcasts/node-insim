@@ -1,6 +1,5 @@
-import { ButtonClickFlags, ButtonInstFlags, IS_BTC } from '..';
+import { ButtonClickFlags, INST_ALWAYS_ON, IS_BTC, PacketType } from '..';
 import { BasePacket } from '../BasePacket';
-import { PacketType } from '../packetTypes';
 
 describe('IS_BTC', () => {
   it('should unpack data from a buffer', () => {
@@ -10,7 +9,7 @@ describe('IS_BTC', () => {
       1, // ReqI
       2, // UCID
       3, // ClickID
-      ButtonInstFlags.INST_ALWAYS_ON, // Inst
+      INST_ALWAYS_ON, // Inst
       ButtonClickFlags.ISB_RMB, // CFlags
       0, // Sp3
     ]);
@@ -21,7 +20,7 @@ describe('IS_BTC', () => {
     expect(packet.ReqI).toEqual(1);
     expect(packet.UCID).toEqual(2);
     expect(packet.ClickID).toEqual(3);
-    expect(packet.Inst).toEqual(ButtonInstFlags.INST_ALWAYS_ON);
+    expect(packet.Inst).toEqual(INST_ALWAYS_ON);
     expect(packet.CFlags).toEqual(ButtonClickFlags.ISB_RMB);
     expect(packet.Sp3).toEqual(0);
   });

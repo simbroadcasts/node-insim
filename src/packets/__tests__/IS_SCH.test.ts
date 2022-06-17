@@ -1,8 +1,7 @@
 import { checkPacketDataSize } from '../../utils';
 import type { IS_SCH_Data } from '..';
-import { IS_SCH, KeyFlags } from '..';
+import { CharacterModifiers, IS_SCH, PacketType } from '..';
 import { BasePacket } from '../BasePacket';
-import { PacketType } from '../packetTypes';
 
 describe('IS_SCH', () => {
   checkPacketDataSize(new IS_SCH());
@@ -10,19 +9,19 @@ describe('IS_SCH', () => {
   it('should fill data from the constructor', () => {
     const data: IS_SCH_Data = {
       CharB: 23,
-      Flags: KeyFlags.SHIFT,
+      Flags: CharacterModifiers.SHIFT,
     };
     const packet = new IS_SCH(data);
 
     expect(packet.ReqI).toEqual(0);
     expect(packet.CharB).toEqual(23);
-    expect(packet.Flags).toEqual(KeyFlags.SHIFT);
+    expect(packet.Flags).toEqual(CharacterModifiers.SHIFT);
   });
 
   it('should pack data into a buffer', () => {
     const data: IS_SCH_Data = {
       CharB: 23,
-      Flags: KeyFlags.SHIFT,
+      Flags: CharacterModifiers.SHIFT,
     };
     const actualBuffer = new IS_SCH(data).pack();
     const expectedBuffer = Buffer.from([

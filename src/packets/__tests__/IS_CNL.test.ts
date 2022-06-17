@@ -1,6 +1,5 @@
-import { IS_CNL, LeaveReasons } from '..';
+import { IS_CNL, LeaveReason, PacketType } from '..';
 import { BasePacket } from '../BasePacket';
-import { PacketType } from '../packetTypes';
 
 describe('IS_CNL', () => {
   it('should unpack data from a buffer', () => {
@@ -9,7 +8,7 @@ describe('IS_CNL', () => {
       PacketType.ISP_CNL, // Type
       0, // ReqI
       3, // UCID
-      LeaveReasons.LEAVR_KICKED, // Reason
+      LeaveReason.LEAVR_KICKED, // Reason
       14, // Total
       0, // Sp2
       0, // Sp3
@@ -20,7 +19,7 @@ describe('IS_CNL', () => {
     expect(packet.Type).toEqual(PacketType.ISP_CNL);
     expect(packet.ReqI).toEqual(0);
     expect(packet.UCID).toEqual(3);
-    expect(packet.Reason).toEqual(LeaveReasons.LEAVR_KICKED);
+    expect(packet.Reason).toEqual(LeaveReason.LEAVR_KICKED);
     expect(packet.Total).toEqual(14);
     expect(packet.Sp2).toEqual(0);
     expect(packet.Sp3).toEqual(0);

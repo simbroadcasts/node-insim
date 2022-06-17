@@ -1,8 +1,8 @@
 import type { PartialExcept } from '../types';
-import { createLog } from '../utils';
+import { byte, char, createLog } from '../utils';
 import { BaseSendablePacket } from './BaseSendablePacket';
-import { byte, char } from './decorators';
-import { PacketType } from './packetTypes';
+import type { ButtonStyle, ButtonTextColour } from './enums';
+import { PacketType } from './enums';
 
 const log = createLog('IS_BTN');
 
@@ -29,7 +29,7 @@ const log = createLog('IS_BTN');
  * If you draw buttons in this area, the area will be kept clear to avoid
  * overlapping LFS buttons with your InSim program's buttons. Buttons outside
  * that area will not have a space kept clear. You can also make buttons visible
- * in all screens by setting the {@link Inst} property to {@link ButtonInstFlags.INST_ALWAYS_ON}.
+ * in all screens by setting the {@link Inst} property to {@link INST_ALWAYS_ON}.
  */
 export class IS_BTN extends BaseSendablePacket {
   private static readonly FIXED_DATA_SIZE = 12;
@@ -63,11 +63,11 @@ export class IS_BTN extends BaseSendablePacket {
   /**
    * Mainly used internally by InSim but also provides some extra user flags
    *
-   * NOTE: You should not use {@link ButtonInstFlags.INST_ALWAYS_ON} for most buttons.
+   * NOTE: You should not use {@link INST_ALWAYS_ON} for most buttons.
    * This is a special flag for buttons that really must be on in all screens (including the garage and options screens). You will probably need to confine these buttons to the top or bottom edge of the screen, to avoid overwriting LFS buttons. Most buttons should be defined without this flag, and positioned in the recommended area so LFS can keep a space clear in the main screens.
    *
    * */
-  @byte() Inst: ButtonInstFlags = 0;
+  @byte() Inst = 0;
 
   /** Button style flags */
   @byte() BStyle: ButtonStyle | ButtonTextColour = 0;
@@ -140,47 +140,12 @@ export class IS_BTN extends BaseSendablePacket {
 
 export type IS_BTN_Data = PartialExcept<IS_BTN, 'ReqI'>;
 
-export enum ButtonInstFlags {
-  /** If this bit is set the button is visible in all screens */
-  INST_ALWAYS_ON = 128,
-}
-
-export enum ButtonTextColour {
-  LightGrey,
-  TitleColour,
-  UnselectedText,
-  SelectedText,
-  Ok,
-  Cancel,
-  TextString,
-  Unavailable,
-}
-
-export enum ButtonStyle {
-  ISB_C1 = 1,
-  ISB_C2 = 2,
-  ISB_C4 = 4,
-
-  /** Click this button to send {@link IS_BTC} */
-  ISB_CLICK = 8,
-
-  /** Light button */
-  ISB_LIGHT = 16,
-
-  /** Dark button */
-  ISB_DARK = 32,
-
-  /** Align text to left */
-  ISB_LEFT = 64,
-
-  /** Align text to right */
-  ISB_RIGHT = 128,
-}
+export const INST_ALWAYS_ON = 0;
 
 export const IS_X_MIN = 0;
 export const IS_X_MAX = 110;
-
 export const IS_Y_MIN = 30;
+
 export const IS_Y_MAX = 170;
 
 export const MAX_CLICK_ID = 239;

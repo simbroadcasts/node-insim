@@ -1,7 +1,6 @@
 import { stringToBytes } from '../../utils';
-import { IS_CPR } from '..';
+import { IS_CPR, PacketType } from '..';
 import { BasePacket } from '../BasePacket';
-import { PacketType } from '../packetTypes';
 
 describe('IS_CPR', () => {
   it('should unpack data from a buffer', () => {

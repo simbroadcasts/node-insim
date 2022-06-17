@@ -1,6 +1,6 @@
+import { byte, char } from '../utils';
 import { BasePacket } from './BasePacket';
-import { byte, char } from './decorators';
-import { PacketType } from './packetTypes';
+import { PacketType } from './enums';
 
 /**
  * BuTton Type - sent back when user types into a text entry button

@@ -1,6 +1,7 @@
+import { byte } from '../utils';
 import { BasePacket } from './BasePacket';
-import { byte } from './decorators';
-import { PacketType } from './packetTypes';
+import type { LeaveReason } from './enums';
+import { PacketType } from './enums';
 
 /**
  * ConN Leave
@@ -16,7 +17,7 @@ export class IS_CNL extends BasePacket {
   @byte() UCID = 0;
 
   /** Leave reason (see below) */
-  @byte() Reason: LeaveReasons = 0;
+  @byte() Reason: LeaveReason = 0;
 
   /** Number of connections including host */
   @byte() Total = 0;
@@ -29,38 +30,4 @@ export class IS_CNL extends BasePacket {
     super();
     this.initialize(data);
   }
-}
-
-export enum LeaveReasons {
-  /** None */
-  LEAVR_DISCO,
-
-  /** Timed out */
-  LEAVR_TIMEOUT,
-
-  /** Lost connection */
-  LEAVR_LOSTCONN,
-
-  /** Kicked */
-  LEAVR_KICKED,
-
-  /** Banned */
-  LEAVR_BANNED,
-
-  /** Security */
-  LEAVR_SECURITY,
-
-  /** Cheat protection warning */
-  LEAVR_CPW,
-
-  /** Out of sync with host */
-  LEAVR_OOS,
-
-  /** Join OOS (initial sync failed) */
-  LEAVR_JOOS,
-
-  /** Invalid packet */
-  LEAVR_HACK,
-
-  LEAVR_NUM,
 }

@@ -1,4 +1,3 @@
-import { BasePacket } from '..';
 import {
   byte,
   char,
@@ -8,8 +7,8 @@ import {
   short,
   unsigned,
   word,
-} from '../decorators';
-import { PacketType } from '../packetTypes';
+} from '../../utils';
+import { BasePacket, PacketType } from '..';
 
 describe('Packet property decorators', () => {
   it('should return the correct jspack char for each binary data type', () => {
