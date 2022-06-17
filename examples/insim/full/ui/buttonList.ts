@@ -1,5 +1,5 @@
 import type { IS_BTC, IS_BTN_Data, IS_BTT } from '../../../../src/packets';
-import { ButtonTextColour, PacketType } from '../../../../src/packets';
+import { ButtonTextColour } from '../../../../src/packets';
 import type { InSim } from '../../../../src/protocols';
 import type { DrawButtonConfig } from './button';
 import { drawButton } from './button';
@@ -49,24 +49,8 @@ export function drawButtonList(
     });
   }
 
-  const buttonConfigs: CreatedButtonConfig[] = buttons.map(
-    ({ onClick, onType, ...button }) => {
-      const buttonConfig = drawNextButton(inSim, button);
-
-      return {
-        ...buttonConfig,
-        onClick,
-        onType,
-      };
-    },
-  );
-
-  inSim.on(PacketType.ISP_BTC, (packet, inSim) =>
-    handleButtonClick(packet, inSim, buttonConfigs),
-  );
-
-  inSim.on(PacketType.ISP_BTT, (packet, inSim) =>
-    handleButtonType(packet, inSim, buttonConfigs),
+  const createdButtons: CreatedButtonConfig[] = buttons.map((button) =>
+    drawNextButton(inSim, button),
   );
 
   function drawNextButton(inSim: InSim, button: Button): DrawButtonConfig {
@@ -92,7 +76,7 @@ export function drawButtonList(
         top += height;
       }
 
-      buttonConfigs.forEach(({ update }, idx) => {
+      createdButtons.forEach(({ update }, idx) => {
         update({
           ReqI: 1,
           W: width,
@@ -105,36 +89,4 @@ export function drawButtonList(
       });
     },
   };
-}
-
-function handleButtonClick(
-  packet: IS_BTC,
-  inSim: InSim,
-  buttonConfigs: CreatedButtonConfig[],
-) {
-  const targetButton = buttonConfigs.find(
-    (config) => config.onClick && config.clickId === packet.ClickID,
-  );
-
-  if (!targetButton) {
-    return;
-  }
-
-  targetButton.onClick?.(packet, inSim);
-}
-
-function handleButtonType(
-  packet: IS_BTT,
-  inSim: InSim,
-  buttonConfigs: CreatedButtonConfig[],
-) {
-  const targetButton = buttonConfigs.find(
-    (config) => config.onType && config.clickId === packet.ClickID,
-  );
-
-  if (!targetButton) {
-    return;
-  }
-
-  targetButton.onType?.(packet, inSim);
 }
