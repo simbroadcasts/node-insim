@@ -140,7 +140,7 @@ export class IS_BTN extends BaseSendablePacket {
 
 export type IS_BTN_Data = PartialExcept<IS_BTN, 'ReqI'>;
 
-export const INST_ALWAYS_ON = 0;
+export const INST_ALWAYS_ON = 128;
 
 export const IS_X_MIN = 0;
 export const IS_X_MAX = 110;
