@@ -152,6 +152,8 @@ export class InSim extends TypedEmitter<InSimEvents> {
   }
 }
 
+InSim.defaultMaxListeners = 255;
+
 const defaultInSimOptions: InSimOptions = {
   Host: '127.0.0.1',
   Port: 29999,
