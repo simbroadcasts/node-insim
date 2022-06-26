@@ -19,6 +19,7 @@ export { IS_CPR } from './IS_CPR';
 export type { IS_ISI_Data } from './IS_ISI';
 export { IS_ISI, IS_ISI_ReqI } from './IS_ISI';
 export { IS_NCN } from './IS_NCN';
+export { IS_NPL, PLAYER_FUEL_HIDDEN } from './IS_NPL';
 export { IS_SCH, IS_SCH_Data } from './IS_SCH';
 export { IS_SMALL, SENDABLE_SMALL_TYPES } from './IS_SMALL';
 export { IS_SMALL_Data, SendableSmallType } from './IS_SMALL';
