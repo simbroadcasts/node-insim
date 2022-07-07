@@ -25,7 +25,10 @@ export class IS_SMALL extends BaseSendablePacket {
   }
 }
 
-export type IS_SMALL_Data = PartialExcept<IS_SMALL, 'SubT' | 'UVal'>;
+export type IS_SMALL_Data = PartialExcept<
+  Pick<IS_SMALL, 'ReqI' | 'SubT' | 'UVal'>,
+  'SubT' | 'UVal'
+>;
 
 export const SENDABLE_SMALL_TYPES = [
   SmallType.SMALL_SSP,

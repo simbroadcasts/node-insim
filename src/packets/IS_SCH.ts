@@ -16,7 +16,7 @@ export class IS_SCH extends BaseSendablePacket {
   @byte() readonly Size = 8;
   @byte() readonly Type = PacketType.ISP_SCH;
 
-  @byte() ReqI: 0 = 0;
+  @byte() readonly ReqI: 0 = 0;
 
   @byte() readonly Zero: 0 = 0;
 
@@ -36,4 +36,4 @@ export class IS_SCH extends BaseSendablePacket {
   }
 }
 
-export type IS_SCH_Data = Partial<IS_SCH>;
+export type IS_SCH_Data = Pick<Partial<IS_SCH>, 'CharB' | 'Flags'>;

@@ -10,7 +10,7 @@ export class IS_CPR extends BasePacket {
   @byte() readonly Type = PacketType.ISP_CPR;
 
   /** 0 */
-  @byte() ReqI: 0 = 0;
+  @byte() readonly ReqI: 0 = 0;
 
   /** Unique id of the connection */
   @byte() UCID = 0;

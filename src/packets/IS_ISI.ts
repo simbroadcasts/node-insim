@@ -2,6 +2,7 @@ import { byte, char, word } from '../utils';
 import { BaseSendablePacket } from './BaseSendablePacket';
 import type { InSimFlags } from './enums';
 import { PacketType } from './enums';
+import type { PacketData } from './types';
 
 /**
  * InSim Init - packet to initialise the InSim system
@@ -42,7 +43,7 @@ export class IS_ISI extends BaseSendablePacket {
   }
 }
 
-export type IS_ISI_Data = Partial<IS_ISI>;
+export type IS_ISI_Data = PacketData<IS_ISI>;
 
 export enum IS_ISI_ReqI {
   ZERO,

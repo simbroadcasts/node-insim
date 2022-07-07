@@ -3,6 +3,7 @@ import { byte, char, createLog } from '../utils';
 import { BaseSendablePacket } from './BaseSendablePacket';
 import type { ButtonStyle, ButtonTextColour } from './enums';
 import { PacketType } from './enums';
+import type { PacketData } from './types';
 
 const log = createLog('IS_BTN');
 
@@ -138,7 +139,7 @@ export class IS_BTN extends BaseSendablePacket {
   }
 }
 
-export type IS_BTN_Data = PartialExcept<IS_BTN, 'ReqI'>;
+export type IS_BTN_Data = PartialExcept<PacketData<IS_BTN>, 'ReqI'>;
 
 export const INST_ALWAYS_ON = 128;
 
