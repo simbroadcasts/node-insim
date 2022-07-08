@@ -12,7 +12,7 @@ describe('IS_CPR', () => {
       ...stringToBytes('123456789 123456789 user'), // UName[24]
       ...stringToBytes('12345678'), // Plate[8]
     ]);
-    const packet = new IS_CPR(buffer);
+    const packet = new IS_CPR().unpack(buffer);
 
     expect(packet.Size).toEqual(36);
     expect(packet.Type).toEqual(PacketType.ISP_CPR);

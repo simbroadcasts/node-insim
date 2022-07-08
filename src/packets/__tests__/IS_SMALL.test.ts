@@ -30,7 +30,7 @@ describe('IS_SMALL', () => {
       0, // UVal (3)
       0, // UVal (4)
     ]);
-    const packet = new IS_SMALL(buffer);
+    const packet = new IS_SMALL().unpack(buffer);
     expect(packet.Size).toEqual(8);
     expect(packet.Type).toEqual(PacketType.ISP_SMALL);
     expect(packet.ReqI).toEqual(1);

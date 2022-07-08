@@ -1,9 +1,8 @@
-import type { PartialExcept } from '../types';
 import { byte, char, createLog } from '../utils';
 import { BaseSendablePacket } from './BaseSendablePacket';
 import type { ButtonStyle, ButtonTextColour } from './enums';
 import { PacketType } from './enums';
-import type { PacketData } from './types';
+import type { PacketDataWithRequiredReqI } from './types';
 
 const log = createLog('IS_BTN');
 
@@ -96,7 +95,7 @@ export class IS_BTN extends BaseSendablePacket {
   /** 0 to 240 characters of text */
   @char(0) Text = '';
 
-  constructor(data?: IS_BTN_Data | Buffer) {
+  constructor(data?: IS_BTN_Data) {
     super();
     this.initialize(data);
   }
@@ -139,7 +138,7 @@ export class IS_BTN extends BaseSendablePacket {
   }
 }
 
-export type IS_BTN_Data = PartialExcept<PacketData<IS_BTN>, 'ReqI'>;
+export type IS_BTN_Data = PacketDataWithRequiredReqI<IS_BTN>;
 
 export const INST_ALWAYS_ON = 128;
 

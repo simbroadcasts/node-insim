@@ -31,9 +31,4 @@ export class IS_BTT extends BasePacket {
 
   /** Typed text, zero to {@link IS_BTN.TypeIn} specified in {@link IS_BTN} */
   @char(96) Text = '';
-
-  constructor(data?: Buffer) {
-    super();
-    this.initialize(data);
-  }
 }

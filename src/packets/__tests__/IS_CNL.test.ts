@@ -13,7 +13,7 @@ describe('IS_CNL', () => {
       0, // Sp2
       0, // Sp3
     ]);
-    const packet = new IS_CNL(buffer);
+    const packet = new IS_CNL().unpack(buffer);
 
     expect(packet.Size).toEqual(8);
     expect(packet.Type).toEqual(PacketType.ISP_CNL);

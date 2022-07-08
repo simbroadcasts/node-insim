@@ -2,6 +2,7 @@ import { byte } from '../utils';
 import { BaseSendablePacket } from './BaseSendablePacket';
 import type { CharacterModifiers } from './enums';
 import { PacketType } from './enums';
+import type { PacketData } from './types';
 
 /**
  * Single CHaracter
@@ -30,10 +31,10 @@ export class IS_SCH extends BaseSendablePacket {
 
   @byte() readonly Spare3: 0 = 0;
 
-  constructor(data?: IS_SCH_Data | Buffer) {
+  constructor(data?: IS_SCH_Data) {
     super();
     this.initialize(data);
   }
 }
 
-export type IS_SCH_Data = Pick<Partial<IS_SCH>, 'CharB' | 'Flags'>;
+export type IS_SCH_Data = Pick<PacketData<IS_SCH>, 'CharB' | 'Flags'>;

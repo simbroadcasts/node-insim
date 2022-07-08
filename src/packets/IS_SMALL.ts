@@ -1,7 +1,7 @@
-import type { PartialExcept } from '../types';
 import { byte, unsigned } from '../utils';
 import { BaseSendablePacket } from './BaseSendablePacket';
 import { PacketType, SmallType } from './enums';
+import type { PacketDataWithOptionalReqI } from './types';
 
 /**
  * General purpose 8 byte packet
@@ -19,16 +19,13 @@ export class IS_SMALL extends BaseSendablePacket {
   /** Value (e.g. for {@link SMALL_SSP} this would be the OutSim packet rate) */
   @unsigned() UVal = 0;
 
-  constructor(data?: IS_SMALL_Data | Buffer) {
+  constructor(data?: IS_SMALL_Data) {
     super();
     this.initialize(data);
   }
 }
 
-export type IS_SMALL_Data = PartialExcept<
-  Pick<IS_SMALL, 'ReqI' | 'SubT' | 'UVal'>,
-  'SubT' | 'UVal'
->;
+export type IS_SMALL_Data = PacketDataWithOptionalReqI<IS_SMALL>;
 
 export const SENDABLE_SMALL_TYPES = [
   SmallType.SMALL_SSP,

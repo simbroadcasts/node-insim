@@ -40,7 +40,7 @@ describe('IS_NPL', () => {
       1, // Config
       34, // Fuel
     ]);
-    const packet = new IS_NPL(buffer);
+    const packet = new IS_NPL().unpack(buffer);
 
     expect(packet.Size).toEqual(76);
     expect(packet.Type).toEqual(PacketType.ISP_NPL);

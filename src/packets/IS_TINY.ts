@@ -17,7 +17,7 @@ export class IS_TINY extends BaseSendablePacket {
   /** Subtype */
   @byte() SubT: TinyType = TinyType.TINY_NONE;
 
-  constructor(data?: IS_TINY_Data | Buffer) {
+  constructor(data?: IS_TINY_Data) {
     super();
     this.initialize(data);
   }

@@ -76,9 +76,4 @@ export class IS_STA extends BasePacket {
 
   /** 0 = off / 1 = weak / 2 = strong */
   @byte() Wind: Wind = 0;
-
-  constructor(data?: Buffer) {
-    super();
-    this.initialize(data);
-  }
 }

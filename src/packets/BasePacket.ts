@@ -6,27 +6,12 @@ import type { IPacket } from './IPacket';
 
 const log = createLog('BasePacket');
 
-type Data = Record<string, unknown>;
-
 export abstract class BasePacket implements IPacket {
   static readonly SIZE_MULTIPLIER = 4;
 
   abstract Size: number;
   abstract Type: PacketType;
   abstract ReqI: number;
-
-  protected initialize(data?: Partial<Data> | Buffer) {
-    if (!data) {
-      return;
-    }
-
-    if (data instanceof Buffer) {
-      this.unpack(data);
-      return;
-    }
-
-    Object.assign(this, data);
-  }
 
   protected getValidPropertyNames(): (keyof this)[] {
     const prototype = Object.getPrototypeOf(this);
@@ -52,7 +37,7 @@ export abstract class BasePacket implements IPacket {
     return `<${format}`;
   }
 
-  private unpack(buffer: Buffer): this {
+  public unpack(buffer: Buffer): this {
     const propertyNames = this.getValidPropertyNames();
     const data = unpack(this.getFormat(), buffer);
 

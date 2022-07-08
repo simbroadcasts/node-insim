@@ -16,7 +16,7 @@ describe('IS_NCN', () => {
       ConnectionFlags.REMOTE, // Flags
       0, // Sp3
     ]);
-    const packet = new IS_NCN(buffer);
+    const packet = new IS_NCN().unpack(buffer);
 
     expect(packet.Size).toEqual(56);
     expect(packet.Type).toEqual(PacketType.ISP_NCN);

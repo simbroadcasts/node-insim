@@ -28,9 +28,4 @@ export class IS_VER extends BasePacket {
   @byte() InSimVer = 0;
 
   @byte() readonly Spare: 0 = 0;
-
-  constructor(data?: Buffer) {
-    super();
-    this.initialize(data);
-  }
 }

@@ -26,9 +26,4 @@ export class IS_BTC extends BasePacket {
   @byte() CFlags: ButtonClickFlags = 0;
 
   @byte() readonly Sp3: 0 = 0;
-
-  constructor(data?: Buffer) {
-    super();
-    this.initialize(data);
-  }
 }

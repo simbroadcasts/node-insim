@@ -24,7 +24,7 @@ describe('IS_BTT', () => {
       '5'.charCodeAt(0),
       '$'.charCodeAt(0),
     ]);
-    const packet = new IS_BTT(buffer);
+    const packet = new IS_BTT().unpack(buffer);
 
     expect(packet.Size).toEqual(104);
     expect(packet.Type).toEqual(PacketType.ISP_BTT);

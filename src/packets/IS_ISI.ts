@@ -2,7 +2,7 @@ import { byte, char, word } from '../utils';
 import { BaseSendablePacket } from './BaseSendablePacket';
 import type { InSimFlags } from './enums';
 import { PacketType } from './enums';
-import type { PacketData } from './types';
+import type { PacketDataWithOptionalReqI } from './types';
 
 /**
  * InSim Init - packet to initialise the InSim system
@@ -37,13 +37,13 @@ export class IS_ISI extends BaseSendablePacket {
   /** A short name for your program */
   @char(16) IName = '';
 
-  constructor(data?: IS_ISI_Data | Buffer) {
+  constructor(data?: IS_ISI_Data) {
     super();
     this.initialize(data);
   }
 }
 
-export type IS_ISI_Data = PacketData<IS_ISI>;
+export type IS_ISI_Data = PacketDataWithOptionalReqI<IS_ISI>;
 
 export enum IS_ISI_ReqI {
   ZERO,

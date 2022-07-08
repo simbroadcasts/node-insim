@@ -25,9 +25,4 @@ export class IS_CNL extends BasePacket {
   @byte() readonly Sp2: 0 = 0;
 
   @byte() readonly Sp3: 0 = 0;
-
-  constructor(data?: Buffer) {
-    super();
-    this.initialize(data);
-  }
 }

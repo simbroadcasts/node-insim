@@ -39,7 +39,7 @@ describe('IS_STA', () => {
       1, // Weather
       Wind.Strong, // Wind
     ]);
-    const packet = new IS_STA(buffer);
+    const packet = new IS_STA().unpack(buffer);
 
     expect(packet.Size).toEqual(28);
     expect(packet.Type).toEqual(PacketType.ISP_STA);

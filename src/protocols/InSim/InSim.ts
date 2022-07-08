@@ -131,7 +131,7 @@ export class InSim extends TypedEmitter<InSimEvents> {
 
     this.emit(
       packetType as keyof InSimPacketEvents,
-      new PacketClass(data),
+      new PacketClass().unpack(data),
       this,
     );
   }

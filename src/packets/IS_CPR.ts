@@ -20,9 +20,4 @@ export class IS_CPR extends BasePacket {
 
   /** Number plate - NO ZERO AT END! */
   @char(8) Plate = '';
-
-  constructor(data?: Buffer) {
-    super();
-    this.initialize(data);
-  }
 }

@@ -88,11 +88,6 @@ export class IS_NPL extends BasePacket {
 
   /** /showfuel yes: fuel percent / no: 255 */
   @byte() Fuel: typeof PLAYER_FUEL_HIDDEN | number = 0;
-
-  constructor(data?: Buffer) {
-    super();
-    this.initialize(data);
-  }
 }
 
 export const PLAYER_FUEL_HIDDEN = 255;

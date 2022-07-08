@@ -22,7 +22,7 @@ describe('IS_VER', () => {
       9, // InSimVer
       0, // Spare
     ]);
-    const packet = new IS_VER(buffer);
+    const packet = new IS_VER().unpack(buffer);
 
     expect(packet.Size).toEqual(20);
     expect(packet.Type).toEqual(PacketType.ISP_VER);
