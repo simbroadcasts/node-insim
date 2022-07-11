@@ -135,6 +135,10 @@ yarn dev:example:production examples/insim/minimal
 yarn dev:example:production examples/insim/full
 ```
 
+### Code generators
+
+When adding new InSim packets to the library, you can use built-in code generators using `yarn generate`. It will create and update all the necessary files for you.
+
 ### Run tests
 
 ```shell

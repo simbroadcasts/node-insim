@@ -22,6 +22,7 @@
     "format": "prettier --write \"./**/*.{js,ts,md,json,yml,yaml}\"",
     "lint": "eslint \"./{src,examples}/**/*\" --ext .js,.ts",
     "lint:fix": "eslint \"./{src,examples}/**/*\" --ext .js,.ts --fix",
+    "generate": "plop",
     "dist": "cd dist && npm publish"
   },
   "dependencies": {
@@ -52,6 +53,7 @@
     "jest": "^28.0.3",
     "mitm": "^1.7.2",
     "npm-run-all": "^4.1.5",
+    "plop": "^3.1.1",
     "prettier": "^2.6.2",
     "rimraf": "^3.0.2",
     "ts-node-dev": "^1.1.8",
