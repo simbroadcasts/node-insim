@@ -2,6 +2,7 @@ import { PacketType } from '../../../../../src/packets';
 import type { InSim } from '../../../../../src/protocols';
 import { onButtonClick } from './onButtonClick';
 import { onButtonType } from './onButtonType';
+import { onCarReset } from './onCarReset';
 import { onConnectionLeave } from './onConnectionLeave';
 import { onConnectionPlayerRename } from './onConnectionPlayerRename';
 import { onNewConnection } from './onNewConnection';
@@ -24,6 +25,7 @@ export function logPackets(inSim: InSim) {
   inSim.on(PacketType.ISP_NPL, onNewPlayer);
   inSim.on(PacketType.ISP_PLP, onPlayerPit);
   inSim.on(PacketType.ISP_PLL, onPlayerLeave);
+  inSim.on(PacketType.ISP_CRS, onCarReset);
   inSim.on(PacketType.ISP_BTC, onButtonClick);
   inSim.on(PacketType.ISP_BTT, onButtonType);
 }

@@ -16,6 +16,7 @@ export {
 export { IS_BTT } from './IS_BTT';
 export { IS_CNL } from './IS_CNL';
 export { IS_CPR } from './IS_CPR';
+export { IS_CRS } from './IS_CRS';
 export type { IS_ISI_Data } from './IS_ISI';
 export { IS_ISI, IS_ISI_ReqI } from './IS_ISI';
 export { IS_NCN } from './IS_NCN';
