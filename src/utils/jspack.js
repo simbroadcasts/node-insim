@@ -318,6 +318,7 @@ var pack = function (fmt, values, offset) {
 // returns an array
 var unpack = function (fmt, ab, offset) {
   var littleendian = fmt.charAt(0) == '<',
+    // eslint-disable-next-line no-redeclare
     offset = offset ? offset : 0;
 
   var results = [],
