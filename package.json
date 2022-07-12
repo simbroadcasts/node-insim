@@ -22,7 +22,8 @@
     "format": "prettier --write \"./**/*.{js,ts,md,json,yml,yaml}\"",
     "lint": "eslint \"./{src,examples}/**/*\" --ext .js,.ts",
     "lint:fix": "eslint \"./{src,examples}/**/*\" --ext .js,.ts --fix",
-    "generate": "plop",
+    "generate": "run-s generate:plop lint:fix format",
+    "generate:plop": "plop",
     "dist": "cd dist && npm publish"
   },
   "dependencies": {
