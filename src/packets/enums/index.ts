@@ -8,6 +8,7 @@ export { InSimFlags } from './InSimFlags';
 export { LeaveReason } from './LeaveReason';
 export { PacketType } from './PacketType';
 export { PassengerFlags } from './PassengerFlags';
+export { PenaltyValue } from './PenaltyValue';
 export { PlayerFlags } from './PlayerFlags';
 export { PlayerType } from './PlayerType';
 export { RaceState } from './RaceState';

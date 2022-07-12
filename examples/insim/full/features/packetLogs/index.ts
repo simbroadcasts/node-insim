@@ -5,6 +5,7 @@ import { onButtonType } from './onButtonType';
 import { onCarReset } from './onCarReset';
 import { onConnectionLeave } from './onConnectionLeave';
 import { onConnectionPlayerRename } from './onConnectionPlayerRename';
+import { onLapTime } from './onLapTime';
 import { onNewConnection } from './onNewConnection';
 import { onNewPlayer } from './onNewPlayer';
 import { onPlayerLeave } from './onPlayerLeave';
@@ -25,6 +26,7 @@ export function logPackets(inSim: InSim) {
   inSim.on(PacketType.ISP_NPL, onNewPlayer);
   inSim.on(PacketType.ISP_PLP, onPlayerPit);
   inSim.on(PacketType.ISP_PLL, onPlayerLeave);
+  inSim.on(PacketType.ISP_LAP, onLapTime);
   inSim.on(PacketType.ISP_CRS, onCarReset);
   inSim.on(PacketType.ISP_BTC, onButtonClick);
   inSim.on(PacketType.ISP_BTT, onButtonType);

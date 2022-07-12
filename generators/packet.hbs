@@ -1,12 +1,12 @@
 import { byte } from '../utils';{{#ifEquals variant "info"}}
 import { BasePacket } from './BasePacket';{{/ifEquals}}{{#ifNotEquals variant "info"}}
 import { BaseSendablePacket } from './BaseSendablePacket';{{/ifNotEquals}}
-import { PacketType } from './enums';
+import { PacketType } from './enums';{{#ifNotEquals variant "info"}}
 import type {
   PacketData,
   PacketDataWithOptionalReqI,
   PacketDataWithRequiredReqI,
-} from './types';
+} from './types';{{/ifNotEquals}}
 
 /**
 * TODO description
@@ -21,6 +21,6 @@ export class IS_{{ name }} extends {{#ifNotEquals variant "info"}}BaseSendablePa
     super();
     this.initialize(data);
   }{{/ifNotEquals}}
-}
+}{{#ifNotEquals variant "info"}}
 
-export type IS_{{ name }}_Data = PacketDataWithOptionalReqI<IS_{{ name }}>;
+export type IS_{{ name }}_Data = PacketDataWithOptionalReqI<IS_{{ name }}>;{{/ifNotEquals}}
