@@ -4,7 +4,7 @@ import type { InSim } from '../../../../src/protocols';
 import type { DrawButtonConfig } from './button';
 import { drawButton } from './button';
 
-type Button = Partial<Omit<IS_BTN_Data, ComputedButtonProps>> &
+export type Button = Partial<Omit<IS_BTN_Data, ComputedButtonProps>> &
   CustomButtonProps;
 
 type ComputedButtonProps = 'ClickID' | 'L' | 'T' | 'W' | 'H';

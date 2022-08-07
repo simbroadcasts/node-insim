@@ -46,6 +46,21 @@ export function drawButton(
   return {
     clickId: button.ClickID,
     update: (newData) => {
+      if (newData.onClick) {
+        inSim.on(PacketType.ISP_BTC, (packet, inSim) => {
+          if (button.ClickID === packet.ClickID) {
+            newData.onClick?.(packet, inSim);
+          }
+        });
+      }
+
+      if (newData.onType) {
+        inSim.on(PacketType.ISP_BTT, (packet, inSim) => {
+          if (button.ClickID === packet.ClickID) {
+            newData.onType?.(packet, inSim);
+          }
+        });
+      }
       const newButton = new IS_BTN({
         ...newData,
         ClickID: button.ClickID,

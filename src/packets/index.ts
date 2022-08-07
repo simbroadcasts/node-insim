@@ -25,6 +25,8 @@ export { IS_NPL, PLAYER_FUEL_HIDDEN } from './IS_NPL';
 export { IS_PLL } from './IS_PLL';
 export { IS_PLP } from './IS_PLP';
 export { IS_SCH, IS_SCH_Data } from './IS_SCH';
+export type { IS_SFP_Data, SendableStateFlags } from './IS_SFP';
+export { IS_SFP } from './IS_SFP';
 export { IS_SMALL, SENDABLE_SMALL_TYPES } from './IS_SMALL';
 export { IS_SMALL_Data, SendableSmallType } from './IS_SMALL';
 export { IS_STA } from './IS_STA';
