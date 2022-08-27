@@ -30,6 +30,11 @@ export function drawSendablePacketButtons(inSim: InSim) {
 function drawSingleCharacterPacketButtons(inSim: InSim) {
   let buttonFlags: CharacterModifiers = 0;
 
+  const isShiftEnabled = (flags: CharacterModifiers) =>
+    Boolean(flags & CharacterModifiers.SHIFT);
+  const isCtrlEnabled = (flags: CharacterModifiers) =>
+    Boolean(flags & CharacterModifiers.CTRL);
+
   drawButton(inSim, {
     Text: buttonTextWithCaption('Enter a character to send', 'IS_SCH'),
     ReqI: 1,
@@ -49,38 +54,26 @@ function drawSingleCharacterPacketButtons(inSim: InSim) {
     },
   });
 
-  drawShiftButton(inSim);
-  drawCtrlButton(inSim);
-
-  function drawShiftButton(inSim: InSim) {
-    const { update } = drawButton(inSim, {
-      ...getShiftButtonData(Boolean(buttonFlags & CharacterModifiers.SHIFT)),
-      onClick: () => {
-        buttonFlags =
-          buttonFlags & CharacterModifiers.SHIFT
-            ? buttonFlags & ~CharacterModifiers.SHIFT
-            : buttonFlags | CharacterModifiers.SHIFT;
-        update(
-          getShiftButtonData(Boolean(buttonFlags & CharacterModifiers.SHIFT)),
-        );
-      },
-    });
-  }
-
-  function drawCtrlButton(inSim: InSim) {
-    const { update } = drawButton(inSim, {
-      ...getCtrlButtonData(Boolean(buttonFlags & CharacterModifiers.CTRL)),
-      onClick: () => {
-        buttonFlags =
-          buttonFlags & CharacterModifiers.CTRL
-            ? buttonFlags & ~CharacterModifiers.CTRL
-            : buttonFlags | CharacterModifiers.CTRL;
-        update(
-          getCtrlButtonData(Boolean(buttonFlags & CharacterModifiers.CTRL)),
-        );
-      },
-    });
-  }
+  drawButton(inSim, {
+    ...getShiftButtonData(isShiftEnabled(buttonFlags)),
+    onClick: (_packet, _inSim, { update }) => {
+      buttonFlags =
+        buttonFlags & CharacterModifiers.SHIFT
+          ? buttonFlags & ~CharacterModifiers.SHIFT
+          : buttonFlags | CharacterModifiers.SHIFT;
+      update(getShiftButtonData(isShiftEnabled(buttonFlags)));
+    },
+  });
+  drawButton(inSim, {
+    ...getCtrlButtonData(isCtrlEnabled(buttonFlags)),
+    onClick: (_packet, _inSim, { update }) => {
+      buttonFlags =
+        buttonFlags & CharacterModifiers.CTRL
+          ? buttonFlags & ~CharacterModifiers.CTRL
+          : buttonFlags | CharacterModifiers.CTRL;
+      update(getCtrlButtonData(isCtrlEnabled(buttonFlags)));
+    },
+  });
 
   function getShiftButtonData(isEnabled: boolean): ButtonData {
     return {
@@ -153,7 +146,7 @@ function drawSimplifiedCameraPacketButtons(inSim: InSim) {
     BStyle: ButtonStyle.ISB_C2 | ButtonStyle.ISB_LEFT,
   });
 
-  const { update: updatePLIDButton } = drawButton(inSim, {
+  drawButton(inSim, {
     Text: buttonTextWithCaption('Enter a PLID to view', viewPLID.toString(10)),
     ReqI: 1,
     L: 124,
@@ -165,7 +158,7 @@ function drawSimplifiedCameraPacketButtons(inSim: InSim) {
       ButtonStyle.ISB_LIGHT |
       ButtonStyle.ISB_CLICK |
       ButtonTextColour.TextString,
-    onType: (packet) => {
+    onType: (packet, _inSim, { update }) => {
       const parsedNumber = parseInt(packet.Text, 10);
 
       if (isNaN(parsedNumber)) {
@@ -173,7 +166,7 @@ function drawSimplifiedCameraPacketButtons(inSim: InSim) {
       }
 
       viewPLID = parsedNumber;
-      updatePLIDButton({
+      update({
         ReqI: 1,
         Text: buttonTextWithCaption(
           'Enter a PLID to view',
@@ -193,7 +186,7 @@ function drawSimplifiedCameraPacketButtons(inSim: InSim) {
     BStyle: ButtonStyle.ISB_C2 | ButtonStyle.ISB_LEFT,
   });
 
-  const { update: updateInGameCamButton } = drawButton(inSim, {
+  drawButton(inSim, {
     Text: `[${VIEW_IDENTIFIERS[inGameCam]}]`,
     ReqI: 1,
     L: 124,
@@ -201,7 +194,7 @@ function drawSimplifiedCameraPacketButtons(inSim: InSim) {
     W: 10,
     H: BUTTON_HEIGHT,
     BStyle: ButtonStyle.ISB_LIGHT | ButtonStyle.ISB_CLICK | ButtonStyle.ISB_C2,
-    onClick: () => {
+    onClick: (_packet, _inSim, { update }) => {
       const viewIdentifierIds = Object.keys(VIEW_IDENTIFIERS);
       const identifierId = viewIdentifierIds.findIndex(
         (identifier) => identifier === inGameCam.toString(10),
@@ -213,7 +206,7 @@ function drawSimplifiedCameraPacketButtons(inSim: InSim) {
           : viewIdentifierIds[identifierId + 1];
       inGameCam = parseInt(nextId, 10);
 
-      updateInGameCamButton({
+      update({
         ReqI: 1,
         Text: `[${VIEW_IDENTIFIERS[inGameCam]}]`,
       });

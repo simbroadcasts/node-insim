@@ -12,8 +12,8 @@ export type DrawButtonConfig = {
 };
 
 type CustomButtonProps = {
-  onClick?: (packet: IS_BTC, inSim: InSim) => void;
-  onType?: (packet: IS_BTT, inSim: InSim) => void;
+  onClick?: (packet: IS_BTC, inSim: InSim, config: DrawButtonConfig) => void;
+  onType?: (packet: IS_BTT, inSim: InSim, config: DrawButtonConfig) => void;
 };
 
 export function drawButton(
@@ -25,10 +25,43 @@ export function drawButton(
     ClickID: getNextClickId(),
   });
 
+  const update = (newData: ButtonData) => {
+    if (newData.onClick) {
+      inSim.on(PacketType.ISP_BTC, (packet, inSim) => {
+        if (button.ClickID === packet.ClickID) {
+          newData.onClick?.(packet, inSim, {
+            clickId: button.ClickID,
+            update,
+          });
+        }
+      });
+    }
+
+    if (newData.onType) {
+      inSim.on(PacketType.ISP_BTT, (packet, inSim) => {
+        if (button.ClickID === packet.ClickID) {
+          newData.onType?.(packet, inSim, {
+            clickId: button.ClickID,
+            update,
+          });
+        }
+      });
+    }
+    const newButton = new IS_BTN({
+      ...newData,
+      ClickID: button.ClickID,
+    });
+
+    inSim.send(newButton);
+  };
+
   if (buttonData.onClick) {
     inSim.on(PacketType.ISP_BTC, (packet, inSim) => {
       if (button.ClickID === packet.ClickID) {
-        buttonData.onClick?.(packet, inSim);
+        buttonData.onClick?.(packet, inSim, {
+          clickId: button.ClickID,
+          update,
+        });
       }
     });
   }
@@ -36,7 +69,10 @@ export function drawButton(
   if (buttonData.onType) {
     inSim.on(PacketType.ISP_BTT, (packet, inSim) => {
       if (button.ClickID === packet.ClickID) {
-        buttonData.onType?.(packet, inSim);
+        buttonData.onType?.(packet, inSim, {
+          clickId: button.ClickID,
+          update,
+        });
       }
     });
   }
@@ -45,29 +81,7 @@ export function drawButton(
 
   return {
     clickId: button.ClickID,
-    update: (newData) => {
-      if (newData.onClick) {
-        inSim.on(PacketType.ISP_BTC, (packet, inSim) => {
-          if (button.ClickID === packet.ClickID) {
-            newData.onClick?.(packet, inSim);
-          }
-        });
-      }
-
-      if (newData.onType) {
-        inSim.on(PacketType.ISP_BTT, (packet, inSim) => {
-          if (button.ClickID === packet.ClickID) {
-            newData.onType?.(packet, inSim);
-          }
-        });
-      }
-      const newButton = new IS_BTN({
-        ...newData,
-        ClickID: button.ClickID,
-      });
-
-      inSim.send(newButton);
-    },
+    update,
   };
 }
 
