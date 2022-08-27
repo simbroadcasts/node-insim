@@ -97,7 +97,6 @@ const views: Record<ViewIdentifier, string> = {
   [ViewIdentifier.VIEW_CAM]: 'external',
   [ViewIdentifier.VIEW_DRIVER]: 'in car',
   [ViewIdentifier.VIEW_CUSTOM]: 'custom',
-  [ViewIdentifier.VIEW_MAX]: 'max',
 };
 
 const raceStates: Record<RaceState, string> = {
