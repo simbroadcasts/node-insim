@@ -107,14 +107,6 @@ export class IS_BTN extends BaseSendablePacket {
       log.error('ReqI must be greater than 0');
     }
 
-    if (this.W === 0) {
-      log.error('Invalid dimensions - W must be greater than 0');
-    }
-
-    if (this.H === 0) {
-      log.error('Invalid dimensions - H must be greater than 0');
-    }
-
     if (this.ClickID > MAX_CLICK_ID) {
       log.error(
         `Invalid ClickID: ${this.ClickID} - must be less than or equal to ${MAX_CLICK_ID}`,
