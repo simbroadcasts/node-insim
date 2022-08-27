@@ -13,6 +13,4 @@ export enum ViewIdentifier {
 
   /** Custom */
   VIEW_CUSTOM,
-
-  VIEW_MAX,
 }
