@@ -3,19 +3,13 @@ import {
   ButtonTextColour,
   IS_SCC,
   IS_Y_MIN,
+  TypeIn,
   ViewIdentifier,
 } from '../../../../../../src/packets';
 import type { InSim } from '../../../../../../src/protocols';
+import { VIEW_IDENTIFIERS } from '../../../constants';
 import { buttonTextWithCaption, drawButton } from '../../../ui';
 import { BUTTON_HEIGHT } from '../constants';
-
-const VIEW_IDENTIFIERS: Record<ViewIdentifier, string> = {
-  [ViewIdentifier.VIEW_FOLLOW]: 'follow',
-  [ViewIdentifier.VIEW_HELI]: 'heli',
-  [ViewIdentifier.VIEW_CAM]: 'external',
-  [ViewIdentifier.VIEW_DRIVER]: 'in car',
-  [ViewIdentifier.VIEW_CUSTOM]: 'custom',
-};
 
 export function drawSimplifiedCameraPacketButtons(inSim: InSim) {
   let viewPLID = 1;
@@ -56,7 +50,7 @@ export function drawSimplifiedCameraPacketButtons(inSim: InSim) {
     T: IS_Y_MIN + BUTTON_HEIGHT * 2,
     W: 4,
     H: BUTTON_HEIGHT,
-    TypeIn: 3 + 128,
+    TypeIn: 3 + TypeIn.INIT_VALUE_BUTTON_TEXT,
     BStyle:
       ButtonStyle.ISB_LIGHT |
       ButtonStyle.ISB_CLICK |

@@ -2,6 +2,7 @@ import { ButtonTextColour, IS_Y_MIN } from '../../../../../../src/packets';
 import type { InSim } from '../../../../../../src/protocols';
 import { drawButton } from '../../../ui';
 import { BUTTON_HEIGHT } from '../constants';
+import { drawCameraPositionPacketButtons } from './cameraPositionPacketButtons';
 import { drawSimplifiedCameraPacketButtons } from './simplifiedCameraPacketButtons';
 import { drawSingleCharacterPacketButtons } from './singleCharacterPacketButtons';
 
@@ -17,4 +18,5 @@ export function drawSendablePacketButtons(inSim: InSim) {
   });
   drawSingleCharacterPacketButtons(inSim);
   drawSimplifiedCameraPacketButtons(inSim);
+  drawCameraPositionPacketButtons(inSim);
 }

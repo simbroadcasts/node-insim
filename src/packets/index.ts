@@ -12,9 +12,12 @@ export {
   IS_Y_MAX,
   IS_Y_MIN,
   MAX_CLICK_ID,
+  TypeIn,
 } from './IS_BTN';
 export { IS_BTT } from './IS_BTT';
 export { IS_CNL } from './IS_CNL';
+export type { AllowedStateFlags, IS_CPP_Data } from './IS_CPP';
+export { IS_CPP } from './IS_CPP';
 export { IS_CPR } from './IS_CPR';
 export { IS_CRS } from './IS_CRS';
 export type { IS_ISI_Data } from './IS_ISI';

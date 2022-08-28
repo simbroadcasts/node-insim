@@ -2,6 +2,7 @@ import { PacketType } from '../../../../../src/packets';
 import type { InSim } from '../../../../../src/protocols';
 import { onButtonClick } from './onButtonClick';
 import { onButtonType } from './onButtonType';
+import { onCamPosPack } from './onCamPosPack';
 import { onCarReset } from './onCarReset';
 import { onConnectionLeave } from './onConnectionLeave';
 import { onConnectionPlayerRename } from './onConnectionPlayerRename';
@@ -19,6 +20,7 @@ export function logPackets(inSim: InSim) {
   inSim.on(PacketType.ISP_VER, onVersion);
   inSim.on(PacketType.ISP_TINY, onTiny);
   inSim.on(PacketType.ISP_SMALL, onSmall);
+  inSim.on(PacketType.ISP_CPP, onCamPosPack);
   inSim.on(PacketType.ISP_STA, onState);
   inSim.on(PacketType.ISP_NCN, onNewConnection);
   inSim.on(PacketType.ISP_CNL, onConnectionLeave);

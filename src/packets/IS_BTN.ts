@@ -141,3 +141,8 @@ export const IS_Y_MIN = 30;
 export const IS_Y_MAX = 170;
 
 export const MAX_CLICK_ID = 239;
+
+export enum TypeIn {
+  /** The highest bit (128) can be set to initialise dialog with the button's text */
+  INIT_VALUE_BUTTON_TEXT = 128,
+}
