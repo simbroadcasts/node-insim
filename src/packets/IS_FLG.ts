@@ -1,5 +1,6 @@
 import { byte } from '../utils';
 import { AbstractPacket } from './AbstractPacket';
+import type { FlagType } from './enums';
 import { PacketType } from './enums';
 
 /**
@@ -17,7 +18,7 @@ export class IS_FLG extends AbstractPacket {
   @byte() OffOn: 0 | 1 = 0;
 
   /** 1 = given blue / 2 = causing yellow */
-  @byte() Flag = 0;
+  @byte() Flag: FlagType = 0;
 
   /** Unique id of obstructed player */
   @byte() CarBehind = 0;
