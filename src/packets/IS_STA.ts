@@ -73,7 +73,5 @@ export class IS_STA extends AbstractPacket {
   @string(6) Track = '';
 
   @byte() Weather = 0;
-
-  /** 0 = off / 1 = weak / 2 = strong */
   @byte() Wind: Wind = 0;
 }

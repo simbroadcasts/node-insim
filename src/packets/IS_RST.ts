@@ -1,6 +1,6 @@
 import { byte, string, word } from '../utils';
 import { AbstractPacket } from './base';
-import type { RaceFlags } from './enums';
+import type { RaceFlags, Wind } from './enums';
 import { PacketType } from './enums';
 
 /**
@@ -31,7 +31,7 @@ export class IS_RST extends AbstractPacket {
    *
    * - 0x40: standard lap timing is being used
    * - 0x80: custom timing - user checkpoints have been placed
-   * - 0xc0: no lap tim ding - e.g. open config with no user checkpoints
+   * - 0xc0: no lap timing - e.g. open config with no user checkpoints
    *
    * Bits 0 and 1 (Timing & 0x03): number of checkpoints if lap timing is enabled
    */
@@ -41,7 +41,7 @@ export class IS_RST extends AbstractPacket {
   @string(6) Track = '';
 
   @byte() Weather = 0;
-  @byte() Wind = 0;
+  @byte() Wind: Wind = 0;
 
   /** Race flags (must pit, can reset, etc.) */
   @word() Flags: RaceFlags = 0;
