@@ -16,7 +16,7 @@ type InSimConnectionOptions = {
   Port: number;
 };
 
-type InSimOptions = IS_ISI_Data & InSimConnectionOptions;
+export type InSimOptions = IS_ISI_Data & InSimConnectionOptions;
 
 export class InSim extends TypedEmitter<InSimEvents> {
   static INSIM_VERSION = 9;
