@@ -25,5 +25,5 @@ export class IS_BTC extends AbstractPacket {
   /** Button click flags */
   @byte() CFlags: ButtonClickFlags = 0;
 
-  @byte() readonly Sp3: 0 = 0;
+  @byte() readonly Sp3 = 0;
 }

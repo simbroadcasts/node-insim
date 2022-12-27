@@ -12,8 +12,8 @@ export class IS_III extends AbstractPacket {
 
   @byte() readonly Size = IS_III.FIXED_DATA_SIZE;
   @byte() readonly Type = PacketType.ISP_III;
-  @byte() readonly ReqI: 0 = 0;
-  @byte() readonly Zero: 0 = 0;
+  @byte() readonly ReqI = 0;
+  @byte() readonly Zero = 0;
 
   /** Connection's unique id (0 = host) */
   @byte() UCID = 0;
@@ -21,8 +21,8 @@ export class IS_III extends AbstractPacket {
   /** Player's unique id (if zero, use UCID) */
   @byte() PLID = 0;
 
-  @byte() readonly Sp2: 0 = 0;
-  @byte() readonly Sp3: 0 = 0;
+  @byte() readonly Sp2 = 0;
+  @byte() readonly Sp3 = 0;
 
   /** 4, 8, 12... 64 characters - last byte is zero */
   @char(64) Msg = '';

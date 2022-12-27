@@ -9,7 +9,7 @@ import { PacketType } from './enums';
 export class IS_PLA extends AbstractPacket {
   @byte() readonly Size = 8;
   @byte() readonly Type = PacketType.ISP_PLA;
-  @byte() readonly ReqI: 0 = 0;
+  @byte() readonly ReqI = 0;
 
   /** Player's unique id */
   @byte() PLID = 0;
@@ -17,7 +17,7 @@ export class IS_PLA extends AbstractPacket {
   /** Pit lane fact */
   @byte() Fact: PitLaneFact = 0;
 
-  @byte() readonly Sp1: 0 = 0;
-  @byte() readonly Sp2: 0 = 0;
-  @byte() readonly Sp3: 0 = 0;
+  @byte() readonly Sp1 = 0;
+  @byte() readonly Sp2 = 0;
+  @byte() readonly Sp3 = 0;
 }

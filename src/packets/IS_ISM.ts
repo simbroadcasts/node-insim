@@ -26,14 +26,14 @@ export class IS_ISM extends AbstractPacket {
   /** Usually 0 / or if a reply: ReqI as received in the {@link TINY_ISM} */
   @byte() ReqI = 0;
 
-  @byte() readonly Zero: 0 = 0;
+  @byte() readonly Zero = 0;
 
   /** 0 = guest / 1 = host */
   @byte() Host: MultiplayerHostMode = 0;
 
-  @byte() readonly Sp1: 0 = 0;
-  @byte() readonly Sp2: 0 = 0;
-  @byte() readonly Sp3: 0 = 0;
+  @byte() readonly Sp1 = 0;
+  @byte() readonly Sp2 = 0;
+  @byte() readonly Sp3 = 0;
 
   /** The name of the host joined or started */
   @char(32) HName = '';

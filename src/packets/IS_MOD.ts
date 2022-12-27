@@ -9,8 +9,8 @@ import type { PacketData } from './types';
 export class IS_MOD extends AbstractSendablePacket {
   @byte() readonly Size = 20;
   @byte() readonly Type = PacketType.ISP_MOD;
-  @byte() readonly ReqI: 0 = 0;
-  @byte() readonly Zero: 0 = 0;
+  @byte() readonly ReqI = 0;
+  @byte() readonly Zero = 0;
 
   /** Set to choose 16-bit */
   @int() Bits16 = 0;

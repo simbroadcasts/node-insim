@@ -9,7 +9,7 @@ import { PacketType } from './enums';
 export class IS_FIN extends AbstractPacket {
   @byte() readonly Size = 20;
   @byte() readonly Type = PacketType.ISP_FIN;
-  @byte() readonly ReqI: 0 = 0;
+  @byte() readonly ReqI = 0;
 
   /** Player's unique id (0 = player left before result was sent) */
   @byte() PLID = 0;
@@ -20,7 +20,7 @@ export class IS_FIN extends AbstractPacket {
   /** Best lap (ms) */
   @unsigned() BTime = 0;
 
-  @byte() readonly SpA: 0 = 0;
+  @byte() readonly SpA = 0;
 
   /** Number of pit stops */
   @byte() NumStops = 0;
@@ -28,7 +28,7 @@ export class IS_FIN extends AbstractPacket {
   /** Confirmation flags: disqualified etc. */
   @byte() Confirm: ConfirmationFlags = 0;
 
-  @byte() readonly SpB: 0 = 0;
+  @byte() readonly SpB = 0;
 
   /** Laps completed */
   @word() LapsDone = 0;

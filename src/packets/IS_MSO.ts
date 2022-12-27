@@ -13,8 +13,8 @@ export class IS_MSO extends AbstractPacket {
 
   @byte() readonly Size = IS_MSO.FIXED_DATA_SIZE;
   @byte() readonly Type = PacketType.ISP_MSO;
-  @byte() readonly ReqI: 0 = 0;
-  @byte() readonly Zero: 0 = 0;
+  @byte() readonly ReqI = 0;
+  @byte() readonly Zero = 0;
 
   /** Connection's unique id (0 = host) */
   @byte() UCID = 0;

@@ -13,7 +13,7 @@ export class IS_RST extends AbstractPacket {
   /** 0 unless this is a reply to an {@link TINY_RST} request */
   @byte() ReqI = 0;
 
-  @byte() readonly Zero: 0 = 0;
+  @byte() readonly Zero = 0;
 
   /** 0 if qualifying */
   @byte() RaceLaps = 0;

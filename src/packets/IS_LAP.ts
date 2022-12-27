@@ -9,7 +9,7 @@ import { PacketType } from './enums';
 export class IS_LAP extends AbstractPacket {
   @byte() readonly Size = 20;
   @byte() readonly Type = PacketType.ISP_LAP;
-  @byte() readonly ReqI: 0 = 0;
+  @byte() readonly ReqI = 0;
 
   /** Player's unique id */
   @byte() PLID = 0;
@@ -26,7 +26,7 @@ export class IS_LAP extends AbstractPacket {
   /** Player flags */
   @word() Flags: PlayerFlags = 0;
 
-  @byte() readonly Sp0: 0 = 0;
+  @byte() readonly Sp0 = 0;
 
   /** Current penalty value */
   @byte() Penalty: PenaltyValue = 0;

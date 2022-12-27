@@ -14,7 +14,7 @@ export class IS_ISI extends AbstractSendablePacket {
   /** If non-zero LFS will send an {@link IS_VER} packet */
   @byte() ReqI = 0;
 
-  @byte() readonly Zero: 0 = 0;
+  @byte() readonly Zero = 0;
 
   /** Port for UDP replies from LFS (0 to 65535) */
   @word() UDPPort = 0;

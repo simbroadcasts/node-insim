@@ -14,7 +14,7 @@ import { PacketType } from './enums';
 export class IS_PIT extends AbstractPacket {
   @byte() readonly Size = 24;
   @byte() readonly Type = PacketType.ISP_PIT;
-  @byte() readonly ReqI: 0 = 0;
+  @byte() readonly ReqI = 0;
 
   /** Player's unique id */
   @byte() PLID = 0;
@@ -34,7 +34,7 @@ export class IS_PIT extends AbstractPacket {
   /** Number of pit stops */
   @byte() NumStops = 0;
 
-  @byte() readonly Sp3: 0 = 0;
+  @byte() readonly Sp3 = 0;
 
   /** Rear left tyre compound */
   @byte() TyreRL: TyreCompound = 0;
@@ -51,5 +51,5 @@ export class IS_PIT extends AbstractPacket {
   /** Pit work */
   @unsigned() Work: PitWorkFlags = 0;
 
-  @unsigned() readonly Spare: 0 = 0;
+  @unsigned() readonly Spare = 0;
 }

@@ -68,9 +68,9 @@ export class IS_NPL extends AbstractPacket {
   /** Low 4 bits: tyre width reduction (front) */
   @byte() FWAdj = 0;
 
-  @byte() readonly Sp2: 0 = 0;
+  @byte() readonly Sp2 = 0;
 
-  @byte() readonly Sp3: 0 = 0;
+  @byte() readonly Sp3 = 0;
 
   /** Setup flags */
   @byte() SetF: SetupFlags = 0;

@@ -8,7 +8,7 @@ import { PacketType } from './enums';
 export class IS_PLL extends AbstractPacket {
   @byte() readonly Size = 4;
   @byte() readonly Type = PacketType.ISP_PLL;
-  @byte() readonly ReqI: 0 = 0;
+  @byte() readonly ReqI = 0;
 
   /** Player's unique id */
   @byte() PLID = 0;

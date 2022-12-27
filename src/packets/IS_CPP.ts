@@ -17,7 +17,7 @@ export class IS_CPP extends AbstractSendablePacket {
   /** Instruction: 0 / or reply: ReqI as received in the {@link TINY_SCP} */
   @byte() ReqI = 0;
 
-  @byte() readonly Zero: 0 = 0;
+  @byte() readonly Zero = 0;
 
   /** Position vector X coordinate - 65536 means 1 metre */
   @int() X = 0;

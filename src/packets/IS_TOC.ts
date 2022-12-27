@@ -8,7 +8,7 @@ import { PacketType } from './enums';
 export class IS_TOC extends AbstractPacket {
   @byte() readonly Size = 8;
   @byte() readonly Type = PacketType.ISP_TOC;
-  @byte() readonly ReqI: 0 = 0;
+  @byte() readonly ReqI = 0;
 
   /** Player's unique id */
   @byte() PLID = 0;
@@ -19,6 +19,6 @@ export class IS_TOC extends AbstractPacket {
   /** New connection's unique id */
   @byte() NewUCID = 0;
 
-  @byte() readonly Sp2: 0 = 0;
-  @byte() readonly Sp3: 0 = 0;
+  @byte() readonly Sp2 = 0;
+  @byte() readonly Sp3 = 0;
 }

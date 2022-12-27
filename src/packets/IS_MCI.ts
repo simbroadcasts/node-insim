@@ -67,7 +67,7 @@ export class CompCar extends AbstractStruct {
   /** Flags and other info */
   @byte() Info: CompCarFlags = 0;
 
-  @byte() Sp3: 0 = 0;
+  @byte() readonly Sp3 = 0;
 
   /** X map (65536 = 1 metre) */
   @int() X = 0;

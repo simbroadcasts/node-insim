@@ -9,8 +9,8 @@ import type { PacketData } from './types';
 export class IS_MST extends AbstractSendablePacket {
   @byte() readonly Size = 68;
   @byte() readonly Type = PacketType.ISP_MST;
-  @byte() readonly ReqI: 0 = 0;
-  @byte() readonly Zero: 0 = 0;
+  @byte() readonly ReqI = 0;
+  @byte() readonly Zero = 0;
 
   /** Last byte must be zero */
   @char(64) Msg = '';

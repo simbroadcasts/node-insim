@@ -9,7 +9,7 @@ import { PacketType } from './enums';
 export class IS_SPX extends AbstractPacket {
   @byte() readonly Size = 16;
   @byte() readonly Type = PacketType.ISP_SPX;
-  @byte() readonly ReqI: 0 = 0;
+  @byte() readonly ReqI = 0;
 
   /** Player's unique id */
   @byte() PLID = 0;

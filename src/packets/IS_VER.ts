@@ -16,7 +16,7 @@ export class IS_VER extends AbstractPacket {
   /** ReqI as received in the request packet */
   @byte() ReqI = 0;
 
-  @byte() readonly Zero: 0 = 0;
+  @byte() readonly Zero = 0;
 
   /** LFS version, e.g. 0.3G */
   @char(8) Version = '';
@@ -27,5 +27,5 @@ export class IS_VER extends AbstractPacket {
   /** InSim version */
   @byte() InSimVer = 0;
 
-  @byte() readonly Spare: 0 = 0;
+  @byte() readonly Spare = 0;
 }

@@ -9,7 +9,7 @@ import { PacketType } from './enums';
 export class IS_PEN extends AbstractPacket {
   @byte() readonly Size = 8;
   @byte() readonly Type = PacketType.ISP_PEN;
-  @byte() readonly ReqI: 0 = 0;
+  @byte() readonly ReqI = 0;
 
   /** Player's unique id */
   @byte() PLID = 0;
@@ -23,5 +23,5 @@ export class IS_PEN extends AbstractPacket {
   /** Penalty reason */
   @byte() Reason: PenaltyReason = 0;
 
-  @byte() readonly Sp3: 0 = 0;
+  @byte() readonly Sp3 = 0;
 }

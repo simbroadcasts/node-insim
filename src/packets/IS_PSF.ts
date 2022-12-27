@@ -8,7 +8,7 @@ import { PacketType } from './enums';
 export class IS_PSF extends AbstractPacket {
   @byte() readonly Size = 12;
   @byte() readonly Type = PacketType.ISP_PSF;
-  @byte() readonly ReqI: 0 = 0;
+  @byte() readonly ReqI = 0;
 
   /** Player's unique id */
   @byte() PLID = 0;
@@ -16,5 +16,5 @@ export class IS_PSF extends AbstractPacket {
   /** Stop time (ms) */
   @unsigned() STime = 0;
 
-  @unsigned() readonly Spare: 0 = 0;
+  @unsigned() readonly Spare = 0;
 }
