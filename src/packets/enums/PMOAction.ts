@@ -25,6 +25,4 @@ export enum PMOAction {
 
   /** Request Z values / reply with Z values */
   PMO_GET_Z,
-
-  PMO_NUM,
 }

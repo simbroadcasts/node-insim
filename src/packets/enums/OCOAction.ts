@@ -1,17 +1,13 @@
 export enum OCOAction {
+  /** Reserved */
   OCO_ZERO,
-  OCO_1,
-  OCO_2,
-  OCO_3,
 
   /** Give up control of all lights */
-  OCO_LIGHTS_RESET,
+  OCO_LIGHTS_RESET = 4,
 
   /** Use Data byte to set the bulbs */
-  OCO_LIGHTS_SET,
+  OCO_LIGHTS_SET = 5,
 
   /** Give up control of the specified lights */
-  OCO_LIGHTS_UNSET,
-
-  OCO_NUM,
+  OCO_LIGHTS_UNSET = 6,
 }

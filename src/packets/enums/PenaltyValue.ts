@@ -19,6 +19,4 @@ export enum PenaltyValue {
 
   /** 45 seconds penalty */
   PENALTY_45,
-
-  PENALTY_NUM,
 }

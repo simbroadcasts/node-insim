@@ -10,6 +10,4 @@ export enum VoteAction {
 
   /** Qualify */
   VOTE_QUALIFY,
-
-  VOTE_NUM,
 }

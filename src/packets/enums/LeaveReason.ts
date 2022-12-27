@@ -28,6 +28,4 @@ export enum LeaveReason {
 
   /** Invalid packet */
   LEAVR_HACK,
-
-  LEAVR_NUM,
 }

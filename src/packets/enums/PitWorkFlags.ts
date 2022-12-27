@@ -52,6 +52,4 @@ export enum PitWorkFlags {
 
   /** Refuel */
   PSE_REFUEL = 131072,
-
-  PSE_NUM = 262144,
 }

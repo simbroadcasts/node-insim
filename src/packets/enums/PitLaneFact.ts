@@ -13,6 +13,4 @@ export enum PitLaneFact {
 
   /** Entered for stop-go */
   PITLANE_SG,
-
-  PITLANE_NUM,
 }

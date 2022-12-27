@@ -36,5 +36,4 @@ export enum Language {
   LFS_UKRAINIAN,
   LFS_INDONESIAN,
   LFS_ROMANIAN,
-  LFS_NUM_LANG,
 }

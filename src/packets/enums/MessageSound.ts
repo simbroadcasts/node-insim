@@ -13,6 +13,4 @@ export enum MessageSound {
 
   /** Error sound */
   SND_ERROR,
-
-  SND_NUM,
 }

@@ -10,6 +10,4 @@ export enum UserType {
 
   /** Hidden message typed on local pc with /o command */
   MSO_O,
-
-  MSO_NUM,
 }

@@ -19,6 +19,4 @@ export enum PenaltyReason {
 
   /** Compulsory stop is too late */
   PENR_STOP_LATE,
-
-  PENR_NUM,
 }
