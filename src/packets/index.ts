@@ -1,5 +1,7 @@
 export * from './enums';
 export type { IPacket } from './IPacket';
+export type { IS_BFN_Data } from './IS_BFN';
+export { IS_BFN } from './IS_BFN';
 export { IS_BTC } from './IS_BTC';
 export {
   INST_ALWAYS_ON,

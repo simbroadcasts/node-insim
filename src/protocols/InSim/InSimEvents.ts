@@ -1,4 +1,5 @@
 import type {
+  IS_BFN,
   IS_BTC,
   IS_BTT,
   IS_CCH,
@@ -70,6 +71,7 @@ export type InSimPacketEvents = {
   [PacketType.ISP_NLP]: (packet: IS_NLP, inSim: InSim) => void;
   [PacketType.ISP_MCI]: (packet: IS_MCI, inSim: InSim) => void;
   [PacketType.ISP_CRS]: (packet: IS_CRS, inSim: InSim) => void;
+  [PacketType.ISP_BFN]: (packet: IS_BFN, inSim: InSim) => void;
   [PacketType.ISP_BTC]: (packet: IS_BTC, inSim: InSim) => void;
   [PacketType.ISP_BTT]: (packet: IS_BTT, inSim: InSim) => void;
 };

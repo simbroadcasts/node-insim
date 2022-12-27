@@ -1,4 +1,5 @@
 export { ButtonClickFlags } from './ButtonClickFlags';
+export { ButtonFunction } from './ButtonFunction';
 export { ButtonStyle } from './ButtonStyle';
 export { ButtonTextColour } from './ButtonTextColour';
 export { CarConfiguration } from './CarConfiguration';
