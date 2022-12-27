@@ -39,6 +39,7 @@ export { IS_MTC } from './IS_MTC';
 export { IS_NCN } from './IS_NCN';
 export { IS_NPL, PLAYER_FUEL_HIDDEN } from './IS_NPL';
 export { IS_PEN } from './IS_PEN';
+export { IS_PFL } from './IS_PFL';
 export { IS_PIT } from './IS_PIT';
 export { IS_PLA } from './IS_PLA';
 export { IS_PLL } from './IS_PLL';
