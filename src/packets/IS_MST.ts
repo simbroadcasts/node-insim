@@ -19,6 +19,16 @@ export class IS_MST extends AbstractSendablePacket {
     super();
     this.initialize(data);
   }
+
+  pack(): Buffer {
+    if (this.Msg.length >= 64) {
+      throw new RangeError(
+        'IS_MST - The "Msg" property must not be longer than 63 characters',
+      );
+    }
+
+    return super.pack();
+  }
 }
 
 export type IS_MST_Data = Required<PacketData<IS_MST>>;

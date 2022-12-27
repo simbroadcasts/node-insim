@@ -7,17 +7,7 @@ export { IS_AXO } from './IS_AXO';
 export type { IS_BFN_Data } from './IS_BFN';
 export { IS_BFN } from './IS_BFN';
 export { IS_BTC } from './IS_BTC';
-export {
-  INST_ALWAYS_ON,
-  IS_BTN,
-  IS_BTN_Data,
-  IS_X_MAX,
-  IS_X_MIN,
-  IS_Y_MAX,
-  IS_Y_MIN,
-  MAX_CLICK_ID,
-  TypeIn,
-} from './IS_BTN';
+export { IS_BTN, IS_BTN_Data } from './IS_BTN';
 export { IS_BTT } from './IS_BTT';
 export { IS_CCH } from './IS_CCH';
 export { IS_CNL } from './IS_CNL';
@@ -87,3 +77,5 @@ export { IS_TOC } from './IS_TOC';
 export { IS_VER } from './IS_VER';
 export { IS_VTN } from './IS_VTN';
 export type { ISendable } from './ISendable';
+export { NodeLap } from './NodeLap';
+export { ObjectInfo } from './ObjectInfo';

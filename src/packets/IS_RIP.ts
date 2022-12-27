@@ -1,10 +1,8 @@
-import { byte, log as baseLog, string, unsigned } from '../utils';
+import { byte, string, unsigned } from '../utils';
 import { AbstractSendablePacket } from './AbstractSendablePacket';
 import type { ReplayError, ReplayMode, ReplayOptions } from './enums';
 import { PacketType } from './enums';
 import type { PacketDataWithRequiredReqI } from './types';
-
-const logError = baseLog.extend('IS_RIP:error');
 
 /**
  * Replay Information Packet
@@ -57,7 +55,7 @@ export class IS_RIP extends AbstractSendablePacket {
 
   pack(): Buffer {
     if (this.ReqI === 0) {
-      logError('ReqI must be greater than 0');
+      throw new RangeError('IS_RIP - ReqI must be greater than 0');
     }
 
     return super.pack();

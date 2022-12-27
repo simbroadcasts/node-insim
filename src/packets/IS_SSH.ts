@@ -1,10 +1,8 @@
-import { byte, log as baseLog, string } from '../utils';
+import { byte, string } from '../utils';
 import { AbstractSendablePacket } from './AbstractSendablePacket';
 import type { ScreenshotError } from './enums';
 import { PacketType } from './enums';
 import type { PacketDataWithRequiredReqI } from './types';
-
-const logError = baseLog.extend('IS_SSH:error');
 
 /**
  * ScreenSHot
@@ -41,7 +39,7 @@ export class IS_SSH extends AbstractSendablePacket {
 
   pack(): Buffer {
     if (this.ReqI === 0) {
-      logError('ReqI must be greater than 0');
+      throw new RangeError('IS_SSH - ReqI must be greater than 0');
     }
 
     return super.pack();

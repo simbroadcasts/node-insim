@@ -38,6 +38,13 @@ export class IS_MTC extends AbstractSendablePacket {
   pack(): Buffer {
     const multiple = 4;
     const length = this.Text.length;
+
+    if (length >= 128) {
+      throw new RangeError(
+        'IS_MTC - The "Text" property must not be longer than 127 characters',
+      );
+    }
+
     const textSize = Math.min(
       length + (multiple - (length % multiple)),
       IS_MTC.TEXT_MAX_LENGTH,

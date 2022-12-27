@@ -7,7 +7,9 @@ import type { PacketData } from './types';
 /**
  * PLayer Cars
  *
- * You can send a packet to limit the cars that can be used by a given connection. The resulting set of selectable cars is a subset of the cars set to be available on the host (by the /cars command or {@link SMALL_ALC}).
+ * You can send a packet to limit the cars that can be used by a given connection.
+ * The resulting set of selectable cars is a subset of the cars set to be available
+ * on the host (by the /cars command or {@link SMALL_ALC}).
  */
 export class IS_PLC extends AbstractSendablePacket {
   @byte() readonly Size = 12;

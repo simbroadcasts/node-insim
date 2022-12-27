@@ -2,6 +2,7 @@ import { byte } from '../utils';
 import { AbstractSendablePacket } from './AbstractSendablePacket';
 import type { ButtonFunction } from './enums';
 import { PacketType } from './enums';
+import { IS_BTN } from './IS_BTN';
 import type { PacketData } from './types';
 
 /**
@@ -35,6 +36,22 @@ export class IS_BFN extends AbstractSendablePacket {
   constructor(data?: IS_BFN_Data) {
     super();
     this.initialize(data);
+  }
+
+  pack(): Buffer {
+    if (this.ClickID > IS_BTN.MAX_CLICK_ID) {
+      throw new RangeError(
+        `IS_BFN - Invalid ClickID: ${this.ClickID} - must be less than or equal to ${IS_BTN.MAX_CLICK_ID}`,
+      );
+    }
+
+    if (this.ClickMax > IS_BTN.MAX_CLICK_ID) {
+      throw new RangeError(
+        `IS_BFN - Invalid ClickMax: ${this.ClickMax} - must be less than or equal to ${IS_BTN.MAX_CLICK_ID}`,
+      );
+    }
+
+    return super.pack();
   }
 }
 

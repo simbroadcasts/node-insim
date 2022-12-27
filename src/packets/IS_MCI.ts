@@ -27,7 +27,7 @@ export class IS_MCI extends AbstractPacket {
     const compCarDataLength = determineLength(new CompCar().getFormat());
 
     for (let i = 0; i < this.NumC; i++) {
-      const start = determineLength(this.getFormat()) + compCarDataLength * i;
+      const start = 4 + compCarDataLength * i;
       const compCarBuffer = buffer.slice(start, start + compCarDataLength);
       this.Info.push(new CompCar().unpack(compCarBuffer));
     }

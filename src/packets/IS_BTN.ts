@@ -1,10 +1,8 @@
-import { byte, log as baseLog, string } from '../utils';
+import { byte, string } from '../utils';
 import { AbstractSendablePacket } from './AbstractSendablePacket';
 import type { ButtonStyle, ButtonTextColour } from './enums';
 import { PacketType } from './enums';
 import type { PacketDataWithRequiredReqI } from './types';
-
-const logError = baseLog.extend('IS_BTN:error');
 
 /**
  * BuTtoN - button header - followed by 0 to 240 characters
@@ -32,6 +30,13 @@ const logError = baseLog.extend('IS_BTN:error');
  * in all screens by setting the {@link Inst} property to {@link INST_ALWAYS_ON}.
  */
 export class IS_BTN extends AbstractSendablePacket {
+  public static readonly INST_ALWAYS_ON = 128;
+  public static readonly IS_X_MIN = 0;
+  public static readonly IS_X_MAX = 110;
+  public static readonly IS_Y_MIN = 30;
+  public static readonly IS_Y_MAX = 170;
+  public static readonly MAX_CLICK_ID = 239;
+
   private static readonly FIXED_DATA_SIZE = 12;
 
   /** 12 + text size (a multiple of 4) */
@@ -101,15 +106,13 @@ export class IS_BTN extends AbstractSendablePacket {
   }
 
   pack(): Buffer {
-    // TODO: Convert to LFS encoding
-
     if (this.ReqI === 0) {
-      logError('ReqI must be greater than 0');
+      throw new RangeError('IS_BTN - ReqI must be greater than 0');
     }
 
-    if (this.ClickID > MAX_CLICK_ID) {
-      logError(
-        `Invalid ClickID: ${this.ClickID} - must be less than or equal to ${MAX_CLICK_ID}`,
+    if (this.ClickID > IS_BTN.MAX_CLICK_ID) {
+      throw new RangeError(
+        `IS_BTN - Invalid ClickID: ${this.ClickID} - must be less than or equal to ${IS_BTN.MAX_CLICK_ID}`,
       );
     }
 
@@ -125,18 +128,3 @@ export class IS_BTN extends AbstractSendablePacket {
 }
 
 export type IS_BTN_Data = PacketDataWithRequiredReqI<IS_BTN>;
-
-export const INST_ALWAYS_ON = 128;
-
-export const IS_X_MIN = 0;
-export const IS_X_MAX = 110;
-export const IS_Y_MIN = 30;
-
-export const IS_Y_MAX = 170;
-
-export const MAX_CLICK_ID = 239;
-
-export enum TypeIn {
-  /** The highest bit (128) can be set to initialise dialog with the button's text */
-  INIT_VALUE_BUTTON_TEXT = 128,
-}

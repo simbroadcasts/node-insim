@@ -35,6 +35,7 @@ export { SetupFlags } from './SetupFlags';
 export { SmallType } from './SmallType';
 export { StateFlags } from './StateFlags';
 export { TinyType } from './TinyType';
+export { TypeIn } from './TypeIn';
 export { TyreCompound } from './TyreCompound';
 export { UserType } from './UserType';
 export { ViewIdentifier } from './ViewIdentifier';

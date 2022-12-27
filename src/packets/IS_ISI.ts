@@ -41,6 +41,17 @@ export class IS_ISI extends AbstractSendablePacket {
     super();
     this.initialize(data);
   }
+
+  pack(): Buffer {
+    if (this.IName.length > 15) {
+      throw new RangeError(
+        'IS_ISI - InSim option "IName" must not be greater than 15' +
+          ' characters',
+      );
+    }
+
+    return super.pack();
+  }
 }
 
 export type IS_ISI_Data = PacketDataWithOptionalReqI<IS_ISI>;

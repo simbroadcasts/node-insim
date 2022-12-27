@@ -24,6 +24,8 @@ import type { PacketData } from './types';
  * - SubT: {@link TINY_REO}    (request an IS_REO)
  */
 export class IS_REO extends AbstractSendablePacket {
+  private MAX_DRIVERS = 40;
+
   @byte() readonly Size = 44;
   @byte() readonly Type = PacketType.ISP_REO;
 
@@ -39,6 +41,16 @@ export class IS_REO extends AbstractSendablePacket {
   constructor(data?: IS_REO_Data) {
     super();
     this.initialize(data);
+  }
+
+  pack(): Buffer {
+    if (this.PLID.length > this.MAX_DRIVERS) {
+      throw new RangeError(
+        `IS_REO - Too many players (max is ${this.MAX_DRIVERS}`,
+      );
+    }
+
+    return super.pack();
   }
 }
 

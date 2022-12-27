@@ -19,6 +19,16 @@ export class IS_MSX extends AbstractSendablePacket {
     super();
     this.initialize(data);
   }
+
+  pack(): Buffer {
+    if (this.Msg.length >= 96) {
+      throw new RangeError(
+        'IS_MSX - The "Msg" property must not be longer than 95 characters',
+      );
+    }
+
+    return super.pack();
+  }
 }
 
 export type IS_MSX_Data = Required<PacketData<IS_MSX>>;

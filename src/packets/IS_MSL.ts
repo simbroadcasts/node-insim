@@ -22,6 +22,16 @@ export class IS_MSL extends AbstractSendablePacket {
     super();
     this.initialize(data);
   }
+
+  pack(): Buffer {
+    if (this.Msg.length >= 128) {
+      throw new RangeError(
+        'IS_MSL - The "Msg" property must not be longer than 127 characters',
+      );
+    }
+
+    return super.pack();
+  }
 }
 
 export type IS_MSL_Data = PacketData<IS_MSL>;

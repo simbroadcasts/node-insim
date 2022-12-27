@@ -37,13 +37,6 @@ export class InSim extends TypedEmitter<InSimEvents> {
     log('Connecting...');
     log('Options:', this._options);
 
-    if (options.IName && options.IName.length > 15) {
-      this.handleError(
-        'InSim option "IName" must not be greater than 15 characters',
-      );
-      return;
-    }
-
     this.connection = new TCP(this._options.Host, this._options.Port);
     this.connection.connect();
 
