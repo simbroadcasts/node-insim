@@ -1,20 +1,15 @@
 import { pack } from '../utils';
 import { AbstractPacket } from './AbstractPacket';
-import type { ISendable } from './ISendable';
+import type { ISendablePacket } from './ISendablePacket';
 
 type Data = Record<string, unknown>;
 
 export abstract class AbstractSendablePacket
   extends AbstractPacket
-  implements ISendable
+  implements ISendablePacket
 {
-  protected initialize(data?: Partial<Data> | Buffer) {
+  protected initialize(data?: Partial<Data>) {
     if (!data) {
-      return;
-    }
-
-    if (data instanceof Buffer) {
-      this.unpack(data);
       return;
     }
 

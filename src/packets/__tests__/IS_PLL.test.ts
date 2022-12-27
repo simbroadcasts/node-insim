@@ -1,19 +1,28 @@
+import type { PacketTestData } from '../../utils';
+import { testInfoPacket } from '../../utils';
 import { IS_PLL, PacketType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
 
-describe('IS_PLL', () => {
-  it('should unpack data from a buffer', () => {
-    const buffer = Buffer.from([
-      4 / AbstractPacket.SIZE_MULTIPLIER, // Size
-      23, // Type
-      1, // ReqI
-      2, // PLID
-    ]);
-    const packet = new IS_PLL().unpack(buffer);
+const size = 4;
 
-    expect(packet.Size).toEqual(4);
-    expect(packet.Type).toEqual(PacketType.ISP_PLL);
-    expect(packet.ReqI).toEqual(1);
-    expect(packet.PLID).toEqual(2);
+const data: PacketTestData<IS_PLL> = {
+  ReqI: 0,
+  PLID: 2,
+};
+
+const buffer = Buffer.from([
+  size / AbstractPacket.SIZE_MULTIPLIER, // Size
+  23, // Type
+  0, // ReqI
+  2, // PLID
+]);
+
+describe('IS_PLL', () => {
+  testInfoPacket({
+    packetClass: IS_PLL,
+    size,
+    type: PacketType.ISP_PLL,
+    data,
+    buffer,
   });
 });

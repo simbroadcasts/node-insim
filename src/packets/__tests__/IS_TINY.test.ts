@@ -1,4 +1,4 @@
-import { testSendablePacket } from '../../utils';
+import { testBothWaysPacket, testInstructionPacket } from '../../utils';
 import type { IS_TINY_Data } from '..';
 import { IS_TINY, PacketType, TinyType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
@@ -16,15 +16,12 @@ const buffer = Buffer.from([
 ]);
 
 describe('IS_TINY', () => {
-  testSendablePacket(IS_TINY, 4, PacketType.ISP_TINY, data, buffer);
-
-  it('should unpack data from a buffer', () => {
-    const packet = new IS_TINY().unpack(buffer);
-
-    expect(packet.Size).toEqual(4);
-    expect(packet.Type).toEqual(PacketType.ISP_TINY);
-    expect(packet.ReqI).toEqual(1);
-    expect(packet.SubT).toEqual(TinyType.TINY_CLOSE);
+  testBothWaysPacket({
+    packetClass: IS_TINY,
+    size: 4,
+    type: PacketType.ISP_TINY,
+    data,
+    buffer,
   });
 
   it('should throw a range error if sending a request type and ReqI is 0', () => {

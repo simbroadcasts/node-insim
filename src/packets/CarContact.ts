@@ -42,4 +42,9 @@ export class CarContact extends AbstractStruct {
 
   /** Position (1 metre = 16) */
   @short() Y = 0;
+
+  constructor(data?: Partial<CarContact>) {
+    super();
+    this.initialize(data);
+  }
 }

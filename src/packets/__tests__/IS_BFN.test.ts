@@ -1,4 +1,4 @@
-import { testSendablePacket } from '../../utils';
+import { testBothWaysPacket } from '../../utils';
 import type { IS_BFN_Data } from '..';
 import { ButtonFunction, IS_BFN, PacketType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
@@ -11,7 +11,7 @@ const data: IS_BFN_Data = {
   Inst: 5,
 };
 
-const expectedBuffer = Buffer.from([
+const buffer = Buffer.from([
   8 / AbstractPacket.SIZE_MULTIPLIER, // Size
   42, // Type
   0, // ReqI
@@ -23,34 +23,23 @@ const expectedBuffer = Buffer.from([
 ]);
 
 describe('IS_BFN', () => {
-  testSendablePacket(IS_BFN, 8, PacketType.ISP_BFN, data, expectedBuffer);
-
-  it('should unpack data from a buffer', () => {
-    const packet = new IS_BFN().unpack(expectedBuffer);
-
-    expect(packet.Size).toEqual(8);
-    expect(packet.Type).toEqual(PacketType.ISP_BFN);
-    expect(packet.ReqI).toEqual(0);
-    expect(packet.SubT).toEqual(ButtonFunction.BFN_REQUEST);
-    expect(packet.UCID).toEqual(4);
-    expect(packet.ClickID).toEqual(45);
-    expect(packet.ClickMax).toEqual(48);
-    expect(packet.Inst).toEqual(5);
+  testBothWaysPacket({
+    packetClass: IS_BFN,
+    size: 8,
+    type: PacketType.ISP_BFN,
+    data,
+    buffer,
   });
 
   it('should throw a range error if ClickID is greater than 239', () => {
     expect(() => {
-      new IS_BFN({
-        ClickID: 240,
-      }).pack();
+      new IS_BFN({ ClickID: 240 }).pack();
     }).toThrow(RangeError);
   });
 
   it('should throw a range error if ClickMax is greater than 239', () => {
     expect(() => {
-      new IS_BFN({
-        ClickMax: 240,
-      }).pack();
+      new IS_BFN({ ClickMax: 240 }).pack();
     }).toThrow(RangeError);
   });
 });

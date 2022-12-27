@@ -1,27 +1,36 @@
+import type { PacketTestData } from '../../utils';
+import { testInfoPacket } from '../../utils';
 import { IS_TOC, PacketType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
 
-describe('IS_TOC', () => {
-  it('should unpack data from a buffer', () => {
-    const buffer = Buffer.from([
-      8 / AbstractPacket.SIZE_MULTIPLIER, // Size
-      31, // Type
-      0, // ReqI
-      3, // PLID
-      1, // OldUCID
-      2, // NewUCID
-      0, // Sp2
-      0, // Sp3
-    ]);
-    const packet = new IS_TOC().unpack(buffer);
+const size = 8;
 
-    expect(packet.Size).toEqual(8);
-    expect(packet.Type).toEqual(PacketType.ISP_TOC);
-    expect(packet.ReqI).toEqual(0);
-    expect(packet.PLID).toEqual(3);
-    expect(packet.OldUCID).toEqual(1);
-    expect(packet.NewUCID).toEqual(2);
-    expect(packet.Sp2).toEqual(0);
-    expect(packet.Sp3).toEqual(0);
+const data: PacketTestData<IS_TOC> = {
+  ReqI: 0,
+  PLID: 3,
+  OldUCID: 1,
+  NewUCID: 2,
+  Sp2: 0,
+  Sp3: 0,
+};
+
+const buffer = Buffer.from([
+  size / AbstractPacket.SIZE_MULTIPLIER, // Size
+  31, // Type
+  0, // ReqI
+  3, // PLID
+  1, // OldUCID
+  2, // NewUCID
+  0, // Sp2
+  0, // Sp3
+]);
+
+describe('IS_TOC', () => {
+  testInfoPacket({
+    packetClass: IS_TOC,
+    size,
+    type: PacketType.ISP_TOC,
+    data,
+    buffer,
   });
 });

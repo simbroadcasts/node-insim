@@ -1,5 +1,3 @@
-import type { IPacket } from './IPacket';
-
-export type ISendable = IPacket & {
+export type ISendable = {
   pack: () => Buffer;
 };

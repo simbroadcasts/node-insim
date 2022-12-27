@@ -1,8 +1,28 @@
-import { HlvcViolation, IS_HLV, PacketType } from '..';
+import type { PacketTestData } from '../../utils';
+import { testInfoPacket } from '../../utils';
+import { CarContOBJ, HlvcViolation, IS_HLV, PacketType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
 
-const expectedBuffer = Buffer.from([
-  16 / AbstractPacket.SIZE_MULTIPLIER, // Size
+const size = 16;
+
+const data: PacketTestData<IS_HLV> = {
+  ReqI: 0,
+  PLID: 3,
+  HLVC: HlvcViolation.WALL,
+  Sp1: 0,
+  Time: 1994,
+  C: new CarContOBJ({
+    Direction: 2,
+    Heading: 231,
+    Speed: 4,
+    Zbyte: 14,
+    X: 4313,
+    Y: 1433,
+  }),
+};
+
+const buffer = Buffer.from([
+  size / AbstractPacket.SIZE_MULTIPLIER, // Size
   52, // Type
   0, // ReqI
   3, // PLID
@@ -21,21 +41,11 @@ const expectedBuffer = Buffer.from([
 ]);
 
 describe('IS_HLV', () => {
-  it('should unpack data from a buffer', () => {
-    const packet = new IS_HLV().unpack(expectedBuffer);
-
-    expect(packet.Size).toEqual(16);
-    expect(packet.Type).toEqual(PacketType.ISP_HLV);
-    expect(packet.ReqI).toEqual(0);
-    expect(packet.PLID).toEqual(3);
-    expect(packet.HLVC).toEqual(HlvcViolation.WALL);
-    expect(packet.Sp1).toEqual(0);
-    expect(packet.Time).toEqual(1994);
-    expect(packet.C.Direction).toEqual(2);
-    expect(packet.C.Heading).toEqual(231);
-    expect(packet.C.Speed).toEqual(4);
-    expect(packet.C.Zbyte).toEqual(14);
-    expect(packet.C.X).toEqual(4313);
-    expect(packet.C.Y).toEqual(1433);
+  testInfoPacket({
+    packetClass: IS_HLV,
+    size,
+    type: PacketType.ISP_HLV,
+    data,
+    buffer,
   });
 });

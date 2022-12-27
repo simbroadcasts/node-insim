@@ -1,5 +1,7 @@
-import { stringToBytes } from '../../utils';
+import type { PacketTestData } from '../../utils';
+import { stringToBytes, testInfoPacket } from '../../utils';
 import {
+  CarConfiguration,
   IS_NPL,
   PacketType,
   PassengerFlags,
@@ -10,61 +12,72 @@ import {
 } from '..';
 import { AbstractPacket } from '../AbstractPacket';
 
-describe('IS_NPL', () => {
-  it('should unpack data from a buffer', () => {
-    const buffer = Buffer.from([
-      76 / AbstractPacket.SIZE_MULTIPLIER, // Size
-      21, // Type
-      0, // ReqI
-      3, // PLID
-      5, // UCID
-      2, // PType
-      8, // Flags (0)
-      0, // PlayerFlags (1)
-      ...stringToBytes("Player's name max length"), // PName[24]
-      ...stringToBytes('MAX_CAR_TEX_NAME'), // SName[16]
-      0, // TyreRL
-      1, // TyreRR
-      2, // TyreFL
-      3, // TyreFR
-      10, // H_Mass
-      15, // H_TRes
-      1, // Model
-      2, // Pass
-      4, // RWAdj
-      5, // FWAdj
-      0, // Sp2
-      0, // Sp3
-      4, // SetF
-      20, // NumP
-      1, // Config
-      34, // Fuel
-    ]);
-    const packet = new IS_NPL().unpack(buffer);
+const size = 76;
 
-    expect(packet.Size).toEqual(76);
-    expect(packet.Type).toEqual(PacketType.ISP_NPL);
-    expect(packet.ReqI).toEqual(0);
-    expect(packet.PLID).toEqual(3);
-    expect(packet.UCID).toEqual(5);
-    expect(packet.PType).toEqual(PlayerType.AI);
-    expect(packet.Flags).toEqual(PlayerFlags.PIF_AUTOGEARS);
-    expect(packet.PName).toEqual("Player's name max length");
-    expect(packet.SName).toEqual('MAX_CAR_TEX_NAME');
-    expect(packet.TyreRL).toEqual(TyreCompound.TYRE_R1);
-    expect(packet.TyreRR).toEqual(TyreCompound.TYRE_R2);
-    expect(packet.TyreFL).toEqual(TyreCompound.TYRE_R3);
-    expect(packet.H_Mass).toEqual(10);
-    expect(packet.H_TRes).toEqual(15);
-    expect(packet.Model).toEqual(1);
-    expect(packet.Pass).toEqual(PassengerFlags.FRONT_FEMALE);
-    expect(packet.RWAdj).toEqual(4);
-    expect(packet.FWAdj).toEqual(5);
-    expect(packet.Sp2).toEqual(0);
-    expect(packet.Sp3).toEqual(0);
-    expect(packet.SetF).toEqual(SetupFlags.SETF_ABS_ENABLE);
-    expect(packet.NumP).toEqual(20);
-    expect(packet.Config).toEqual(1);
-    expect(packet.Fuel).toEqual(34);
+const pName = "Player's name max length";
+const sName = 'MAX_CAR_TEX_NAME';
+
+const data: PacketTestData<IS_NPL> = {
+  ReqI: 0,
+  PLID: 3,
+  UCID: 5,
+  PType: PlayerType.AI,
+  Flags: PlayerFlags.PIF_AUTOGEARS,
+  PName: pName,
+  SName: sName,
+  TyreRL: TyreCompound.TYRE_R1,
+  TyreRR: TyreCompound.TYRE_R2,
+  TyreFL: TyreCompound.TYRE_R3,
+  TyreFR: TyreCompound.TYRE_R4,
+  H_Mass: 10,
+  H_TRes: 15,
+  Model: 1,
+  Pass: PassengerFlags.FRONT_FEMALE,
+  RWAdj: 4,
+  FWAdj: 5,
+  Sp2: 0,
+  Sp3: 0,
+  SetF: SetupFlags.SETF_ABS_ENABLE,
+  NumP: 20,
+  Config: CarConfiguration.OPEN_ROOF_OR_ALTERNATE,
+  Fuel: 34,
+};
+
+const buffer = Buffer.from([
+  size / AbstractPacket.SIZE_MULTIPLIER, // Size
+  21, // Type
+  0, // ReqI
+  3, // PLID
+  5, // UCID
+  2, // PType
+  8, // Flags (0)
+  0, // PlayerFlags (1)
+  ...stringToBytes(pName), // PName[24]
+  ...stringToBytes(sName), // SName[16]
+  0, // TyreRL
+  1, // TyreRR
+  2, // TyreFL
+  3, // TyreFR
+  10, // H_Mass
+  15, // H_TRes
+  1, // Model
+  2, // Pass
+  4, // RWAdj
+  5, // FWAdj
+  0, // Sp2
+  0, // Sp3
+  4, // SetF
+  20, // NumP
+  1, // Config
+  34, // Fuel
+]);
+
+describe('IS_NPL', () => {
+  testInfoPacket({
+    packetClass: IS_NPL,
+    size,
+    type: PacketType.ISP_NPL,
+    data,
+    buffer,
   });
 });

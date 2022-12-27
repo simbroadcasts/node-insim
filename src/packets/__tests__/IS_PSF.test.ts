@@ -1,29 +1,38 @@
+import type { PacketTestData } from '../../utils';
+import { testInfoPacket } from '../../utils';
 import { IS_PSF, PacketType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
 
-describe('IS_PSF', () => {
-  it('should unpack data from a buffer', () => {
-    const buffer = Buffer.from([
-      12 / AbstractPacket.SIZE_MULTIPLIER, // Size
-      27, // Type
-      0, // ReqI
-      2, // PLID
-      345, // STime (1)
-      2, // STime (2)
-      3, // STime (3)
-      1, // STime (4)
-      0, // Spare (1)
-      0, // Spare (2)
-      0, // Spare (3)
-      0, // Spare (4)
-    ]);
-    const packet = new IS_PSF().unpack(buffer);
+const size = 12;
 
-    expect(packet.Size).toEqual(12);
-    expect(packet.Type).toEqual(PacketType.ISP_PSF);
-    expect(packet.ReqI).toEqual(0);
-    expect(packet.PLID).toEqual(2);
-    expect(packet.STime).toEqual(16974425);
-    expect(packet.Spare).toEqual(0);
+const data: PacketTestData<IS_PSF> = {
+  ReqI: 0,
+  PLID: 2,
+  STime: 16974425,
+  Spare: 0,
+};
+
+const buffer = Buffer.from([
+  size / AbstractPacket.SIZE_MULTIPLIER, // Size
+  27, // Type
+  0, // ReqI
+  2, // PLID
+  345, // STime (1)
+  2, // STime (2)
+  3, // STime (3)
+  1, // STime (4)
+  0, // Spare (1)
+  0, // Spare (2)
+  0, // Spare (3)
+  0, // Spare (4)
+]);
+
+describe('IS_PSF', () => {
+  testInfoPacket({
+    packetClass: IS_PSF,
+    size,
+    type: PacketType.ISP_PSF,
+    data,
+    buffer,
   });
 });

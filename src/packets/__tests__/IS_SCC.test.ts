@@ -1,4 +1,4 @@
-import { testSendablePacket } from '../../utils';
+import { testInstructionPacket } from '../../utils';
 import type { IS_SCC_Data } from '..';
 import { IS_SCC, PacketType, ViewIdentifier } from '..';
 import { AbstractPacket } from '../AbstractPacket';
@@ -8,7 +8,7 @@ const data: IS_SCC_Data = {
   InGameCam: ViewIdentifier.VIEW_DRIVER,
 };
 
-const expectedBuffer = Buffer.from([
+const buffer = Buffer.from([
   8 / AbstractPacket.SIZE_MULTIPLIER, // Size
   8, // Type
   0, // ReqI
@@ -20,5 +20,11 @@ const expectedBuffer = Buffer.from([
 ]);
 
 describe('IS_SCC', () => {
-  testSendablePacket(IS_SCC, 8, PacketType.ISP_SCC, data, expectedBuffer);
+  testInstructionPacket({
+    packetClass: IS_SCC,
+    size: 8,
+    type: PacketType.ISP_SCC,
+    data,
+    buffer,
+  });
 });

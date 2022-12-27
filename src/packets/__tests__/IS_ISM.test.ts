@@ -1,30 +1,40 @@
-import { stringToBytes } from '../../utils';
+import type { PacketTestData } from '../../utils';
+import { stringToBytes, testInfoPacket } from '../../utils';
 import { IS_ISM, MultiplayerHostMode, PacketType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
 
-describe('IS_ISM', () => {
-  it('should unpack data from a buffer', () => {
-    const buffer = Buffer.from([
-      40 / AbstractPacket.SIZE_MULTIPLIER, // Size
-      10, // Type
-      1, // ReqI
-      0, // Zero
-      1, // Host
-      0, // Sp1
-      0, // Sp2
-      0, // Sp3
-      ...stringToBytes('Very Long Server Name Is Longest'), // HName[32]
-    ]);
-    const packet = new IS_ISM().unpack(buffer);
+const size = 40;
 
-    expect(packet.Size).toEqual(40);
-    expect(packet.Type).toEqual(PacketType.ISP_ISM);
-    expect(packet.ReqI).toEqual(1);
-    expect(packet.Zero).toEqual(0);
-    expect(packet.Sp1).toEqual(0);
-    expect(packet.Sp2).toEqual(0);
-    expect(packet.Sp3).toEqual(0);
-    expect(packet.Host).toEqual(MultiplayerHostMode.HOST);
-    expect(packet.HName).toEqual('Very Long Server Name Is Longest');
+const hostName = 'Very Long Server Name Is Longest';
+
+const data: PacketTestData<IS_ISM> = {
+  ReqI: 1,
+  Zero: 0,
+  Sp1: 0,
+  Sp2: 0,
+  Sp3: 0,
+  Host: MultiplayerHostMode.HOST,
+  HName: hostName,
+};
+
+const buffer = Buffer.from([
+  size / AbstractPacket.SIZE_MULTIPLIER, // Size
+  10, // Type
+  1, // ReqI
+  0, // Zero
+  1, // Host
+  0, // Sp1
+  0, // Sp2
+  0, // Sp3
+  ...stringToBytes(hostName), // HName[32]
+]);
+
+describe('IS_ISM', () => {
+  testInfoPacket({
+    packetClass: IS_ISM,
+    size,
+    type: PacketType.ISP_ISM,
+    data,
+    buffer,
   });
 });

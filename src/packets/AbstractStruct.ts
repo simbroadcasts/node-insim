@@ -1,12 +1,23 @@
 import parseLFSMessage from 'parse-lfs-message';
 
 import { getFormat, log as baseLog, unpack } from '../utils';
+import type { IReceivable } from './IReceivable';
 
 const log = baseLog.extend('abstract-struct');
 const logError = baseLog.extend('abstract-struct:error');
 
-export abstract class AbstractStruct {
+type Data = Record<string, unknown>;
+
+export abstract class AbstractStruct implements IReceivable {
   static readonly SIZE_MULTIPLIER = 4;
+
+  protected initialize(data?: Partial<Data>) {
+    if (!data) {
+      return;
+    }
+
+    Object.assign(this, data);
+  }
 
   protected getValidPropertyNames(): (keyof this)[] {
     const prototype = Object.getPrototypeOf(this);

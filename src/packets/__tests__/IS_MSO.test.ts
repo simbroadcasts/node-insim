@@ -1,31 +1,41 @@
-import { stringToBytes } from '../../utils';
+import type { PacketTestData } from '../../utils';
+import { stringToBytes, testInfoPacket } from '../../utils';
 import { IS_MSO, PacketType, UserType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
 
-describe('IS_MSO', () => {
-  it('should unpack data from a buffer', () => {
-    const buffer = Buffer.from([
-      24 / AbstractPacket.SIZE_MULTIPLIER, // Size
-      11, // Type
-      1, // ReqI
-      0, // Zero
-      2, // UCID
-      4, // PLID
-      1, // UserType
-      14, // TextStart
-      ...stringToBytes('Player : Hello!'), // Msg[128]
-      0,
-    ]);
-    const packet = new IS_MSO().unpack(buffer);
+const size = 24;
 
-    expect(packet.Size).toEqual(24);
-    expect(packet.Type).toEqual(PacketType.ISP_MSO);
-    expect(packet.ReqI).toEqual(1);
-    expect(packet.Zero).toEqual(0);
-    expect(packet.UCID).toEqual(2);
-    expect(packet.PLID).toEqual(4);
-    expect(packet.UserType).toEqual(UserType.MSO_USER);
-    expect(packet.TextStart).toEqual(14);
-    expect(packet.Msg).toEqual('Player : Hello!');
+const msg = 'Player : Hello!';
+
+const data: PacketTestData<IS_MSO> = {
+  ReqI: 0,
+  Zero: 0,
+  UCID: 2,
+  PLID: 4,
+  UserType: UserType.MSO_USER,
+  TextStart: 14,
+  Msg: msg,
+};
+
+const buffer = Buffer.from([
+  size / AbstractPacket.SIZE_MULTIPLIER, // Size
+  11, // Type
+  0, // ReqI
+  0, // Zero
+  2, // UCID
+  4, // PLID
+  1, // UserType
+  14, // TextStart
+  ...stringToBytes(msg), // Msg[128]
+  0,
+]);
+
+describe('IS_MSO', () => {
+  testInfoPacket({
+    packetClass: IS_MSO,
+    size,
+    type: PacketType.ISP_MSO,
+    data,
+    buffer,
   });
 });

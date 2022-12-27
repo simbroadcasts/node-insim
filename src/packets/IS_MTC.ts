@@ -28,7 +28,7 @@ export class IS_MTC extends AbstractSendablePacket {
   @byte() readonly Sp3 = 0;
 
   /** Up to 128 characters of text - last byte must be zero */
-  @string(0) Text = '';
+  @string(128) Text = '';
 
   constructor(data?: IS_MTC_Data) {
     super();

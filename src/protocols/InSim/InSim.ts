@@ -1,7 +1,7 @@
 import defaults from 'lodash/defaults';
 import { TypedEmitter } from 'tiny-typed-emitter';
 
-import type { IS_ISI_Data, ISendable } from '../../packets';
+import type { IS_ISI_Data, ISendablePacket } from '../../packets';
 import { IS_ISI, IS_TINY, PacketType, TinyType } from '../../packets';
 import { log as baseLog, unpack } from '../../utils';
 import { TCP } from '../TCP';
@@ -73,7 +73,7 @@ export class InSim extends TypedEmitter<InSimEvents> {
     this.connection.disconnect();
   }
 
-  send(packet: ISendable) {
+  send(packet: ISendablePacket) {
     if (this.connection === null) {
       log('Cannot send a packet - not connected');
       return;

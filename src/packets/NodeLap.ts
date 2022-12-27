@@ -13,4 +13,9 @@ export class NodeLap extends AbstractStruct {
 
   /** Current race position: 0 = unknown, 1 = leader, etc... */
   @byte() Position = 0;
+
+  constructor(data?: Partial<NodeLap>) {
+    super();
+    this.initialize(data);
+  }
 }

@@ -50,6 +50,8 @@ describe('AbstractSendablePacket', () => {
       expect(packet.Size).toEqual(8);
       expect(packet.Type).toEqual(PacketType.ISP_NCN);
       expect(packet.ReqI).toEqual(2);
+      expect(packet.StringProperty).toEqual('test');
+      expect(packet.NumberProperty).toEqual(25);
     });
   });
 });

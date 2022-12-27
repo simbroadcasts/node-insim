@@ -1,4 +1,4 @@
-import { testSendablePacket } from '../../utils';
+import { testBothWaysPacket } from '../../utils';
 import type { IS_REO_Data } from '..';
 import { IS_REO, PacketType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
@@ -61,16 +61,12 @@ const buffer = Buffer.from([
 ]);
 
 describe('IS_REO', () => {
-  testSendablePacket(IS_REO, 44, PacketType.ISP_REO, data, buffer);
-
-  it('should unpack data from a buffer', () => {
-    const packet = new IS_REO().unpack(buffer);
-
-    expect(packet.Size).toEqual(44);
-    expect(packet.Type).toEqual(PacketType.ISP_REO);
-    expect(packet.ReqI).toEqual(0);
-    expect(packet.NumP).toEqual(10);
-    expect(packet.PLID).toEqual(plid);
+  testBothWaysPacket({
+    packetClass: IS_REO,
+    size: 44,
+    type: PacketType.ISP_REO,
+    data,
+    buffer,
   });
 
   it('should throw a range error if PLID length is greater than 40', () => {

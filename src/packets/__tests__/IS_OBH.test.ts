@@ -1,8 +1,36 @@
-import { IS_OBH, ObjectHitFlags, PacketType } from '..';
+import type { PacketTestData } from '../../utils';
+import { testInfoPacket } from '../../utils';
+import { CarContOBJ, IS_OBH, ObjectHitFlags, PacketType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
 
-const expectedBuffer = Buffer.from([
-  24 / AbstractPacket.SIZE_MULTIPLIER, // Size
+const size = 24;
+
+const data: PacketTestData<IS_OBH> = {
+  ReqI: 0,
+  PLID: 3,
+  SpClose: 23,
+  Time: 497,
+  C: new CarContOBJ({
+    Direction: 2,
+    Heading: 254,
+    Speed: 3,
+    Zbyte: 9,
+    X: -11004,
+    Y: -31100,
+  }),
+  X: -10990,
+  Y: -31058,
+  Zbyte: 1,
+  Sp1: 0,
+  Index: 168,
+  OBHFlags:
+    ObjectHitFlags.OBH_LAYOUT |
+    ObjectHitFlags.OBH_CAN_MOVE |
+    ObjectHitFlags.OBH_ON_SPOT,
+};
+
+const buffer = Buffer.from([
+  size / AbstractPacket.SIZE_MULTIPLIER, // Size
   51, // Type
   0, // ReqI
   3, // PLID
@@ -29,30 +57,11 @@ const expectedBuffer = Buffer.from([
 ]);
 
 describe('IS_OBH', () => {
-  it('should unpack data from a buffer', () => {
-    const packet = new IS_OBH().unpack(expectedBuffer);
-
-    expect(packet.Size).toEqual(24);
-    expect(packet.Type).toEqual(PacketType.ISP_OBH);
-    expect(packet.ReqI).toEqual(0);
-    expect(packet.PLID).toEqual(3);
-    expect(packet.SpClose).toEqual(23);
-    expect(packet.Time).toEqual(497);
-    expect(packet.C.Direction).toEqual(2);
-    expect(packet.C.Heading).toEqual(254);
-    expect(packet.C.Speed).toEqual(3);
-    expect(packet.C.Zbyte).toEqual(9);
-    expect(packet.C.X).toEqual(-11004);
-    expect(packet.C.Y).toEqual(-31100);
-    expect(packet.X).toEqual(-10990);
-    expect(packet.Y).toEqual(-31058);
-    expect(packet.Zbyte).toEqual(1);
-    expect(packet.Sp1).toEqual(0);
-    expect(packet.Index).toEqual(168);
-    expect(packet.OBHFlags).toEqual(
-      ObjectHitFlags.OBH_LAYOUT |
-        ObjectHitFlags.OBH_CAN_MOVE |
-        ObjectHitFlags.OBH_ON_SPOT,
-    );
+  testInfoPacket({
+    packetClass: IS_OBH,
+    size,
+    type: PacketType.ISP_OBH,
+    data,
+    buffer,
   });
 });

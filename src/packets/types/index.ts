@@ -12,13 +12,13 @@ type ReadonlyPropNames =
   | 'Sp2'
   | 'Sp3';
 
-type ReadonlySendableProps = keyof AbstractSendablePacket | ReadonlyPropNames;
+type ReadonlyProps = keyof AbstractSendablePacket | ReadonlyPropNames;
 
 type ReadonlySendablePropsExceptReqI =
   | keyof Omit<AbstractSendablePacket, 'ReqI'>
   | ReadonlyPropNames;
 
-type OmitReadonlyProps<T> = Omit<T, ReadonlySendableProps>;
+type OmitReadonlyProps<T> = Omit<T, ReadonlyProps>;
 
 type OmitReadonlyPropsExceptReqI<T> = Omit<T, ReadonlySendablePropsExceptReqI>;
 

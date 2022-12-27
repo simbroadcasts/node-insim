@@ -1,4 +1,4 @@
-import { testSendablePacket } from '../../utils';
+import { testInstructionPacket } from '../../utils';
 import type { IS_SMALL_Data } from '..';
 import { IS_SMALL, PacketType, SmallType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
@@ -9,7 +9,7 @@ const data: IS_SMALL_Data = {
   UVal: 257,
 };
 
-const expectedBuffer = Buffer.from([
+const buffer = Buffer.from([
   8 / AbstractPacket.SIZE_MULTIPLIER, // Size
   4, // Type
   1, // ReqI
@@ -21,14 +21,11 @@ const expectedBuffer = Buffer.from([
 ]);
 
 describe('IS_SMALL', () => {
-  testSendablePacket(IS_SMALL, 8, PacketType.ISP_SMALL, data, expectedBuffer);
-
-  it('should unpack data from a buffer', () => {
-    const packet = new IS_SMALL().unpack(expectedBuffer);
-    expect(packet.Size).toEqual(8);
-    expect(packet.Type).toEqual(PacketType.ISP_SMALL);
-    expect(packet.ReqI).toEqual(1);
-    expect(packet.SubT).toEqual(SmallType.SMALL_NLI);
-    expect(packet.UVal).toEqual(257);
+  testInstructionPacket({
+    packetClass: IS_SMALL,
+    size: 8,
+    type: PacketType.ISP_SMALL,
+    data,
+    buffer,
   });
 });

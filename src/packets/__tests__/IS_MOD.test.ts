@@ -1,4 +1,4 @@
-import { testSendablePacket } from '../../utils';
+import { testInstructionPacket } from '../../utils';
 import type { IS_MOD_Data } from '..';
 import { IS_MOD, PacketType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
@@ -10,7 +10,7 @@ const data: IS_MOD_Data = {
   Height: 1080,
 };
 
-const expectedBuffer = Buffer.from([
+const buffer = Buffer.from([
   20 / AbstractPacket.SIZE_MULTIPLIER, // Size
   15, // Type
   0, // ReqI
@@ -34,5 +34,11 @@ const expectedBuffer = Buffer.from([
 ]);
 
 describe('IS_MOD', () => {
-  testSendablePacket(IS_MOD, 20, PacketType.ISP_MOD, data, expectedBuffer);
+  testInstructionPacket({
+    packetClass: IS_MOD,
+    size: 20,
+    type: PacketType.ISP_MOD,
+    data,
+    buffer,
+  });
 });

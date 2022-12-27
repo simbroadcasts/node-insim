@@ -1,4 +1,4 @@
-import { testSendablePacket } from '../../utils';
+import { testBothWaysPacket } from '../../utils';
 import type { IS_CPP_Data } from '..';
 import { IS_CPP, PacketType, StateFlags, ViewIdentifier } from '..';
 import { AbstractPacket } from '../AbstractPacket';
@@ -53,25 +53,11 @@ const buffer = Buffer.from([
 ]);
 
 describe('IS_CPP', () => {
-  testSendablePacket(IS_CPP, 32, PacketType.ISP_CPP, data, buffer);
-
-  it('should unpack data from a buffer', () => {
-    const packet = new IS_CPP().unpack(buffer);
-
-    expect(packet.Size).toEqual(32);
-    expect(packet.Type).toEqual(PacketType.ISP_CPP);
-    expect(packet.ReqI).toEqual(0);
-    expect(packet.Zero).toEqual(0);
-    expect(packet.X).toEqual(1);
-    expect(packet.Y).toEqual(2147483647);
-    expect(packet.Z).toEqual(-2147483648);
-    expect(packet.H).toEqual(65535);
-    expect(packet.P).toEqual(456);
-    expect(packet.R).toEqual(39);
-    expect(packet.ViewPLID).toEqual(32);
-    expect(packet.InGameCam).toEqual(ViewIdentifier.VIEW_CUSTOM);
-    expect(packet.FOV).toEqual(40);
-    expect(packet.Time).toEqual(200);
-    expect(packet.Flags).toEqual(StateFlags.ISS_VIEW_OVERRIDE);
+  testBothWaysPacket({
+    packetClass: IS_CPP,
+    size: 32,
+    type: PacketType.ISP_CPP,
+    data: data,
+    buffer: buffer,
   });
 });

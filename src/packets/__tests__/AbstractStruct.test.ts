@@ -1,4 +1,4 @@
-import { byte, string } from '../../utils';
+import { byte, string, stringToBytes } from '../../utils';
 import { PacketType } from '../';
 import { AbstractStruct } from '../AbstractStruct';
 
@@ -87,5 +87,23 @@ describe('AbstractStruct', () => {
 
       expect(packet.getFormat()).toEqual('<BBB6sC');
     });
+  });
+
+  it('should unpack binary data', () => {
+    class CustomStruct extends AbstractStruct {
+      @string(6) StringProperty = 'string';
+      @byte() NumberProperty = 0;
+    }
+
+    const buffer = Buffer.from([
+      ...stringToBytes('test'), // StringProperty[6]
+      0,
+      0,
+      25, // NumberProperty
+    ]);
+    const packet = new CustomStruct().unpack(buffer);
+
+    expect(packet.StringProperty).toEqual('test');
+    expect(packet.NumberProperty).toEqual(25);
   });
 });

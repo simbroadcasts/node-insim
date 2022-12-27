@@ -1,4 +1,4 @@
-import { testSendablePacket } from '../../utils';
+import { testInstructionPacket } from '../../utils';
 import type { IS_PLC_Data } from '..';
 import { CarFlags, IS_PLC, PacketType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
@@ -8,7 +8,7 @@ const data: IS_PLC_Data = {
   Cars: CarFlags.FOX | CarFlags.LX6 | CarFlags.XRT,
 };
 
-const expectedBuffer = Buffer.from([
+const buffer = Buffer.from([
   12 / AbstractPacket.SIZE_MULTIPLIER, // Size
   53, // Type
   0, // ReqI
@@ -24,5 +24,11 @@ const expectedBuffer = Buffer.from([
 ]);
 
 describe('IS_PLC', () => {
-  testSendablePacket(IS_PLC, 12, PacketType.ISP_PLC, data, expectedBuffer);
+  testInstructionPacket({
+    packetClass: IS_PLC,
+    size: 12,
+    type: PacketType.ISP_PLC,
+    data,
+    buffer,
+  });
 });

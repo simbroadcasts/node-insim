@@ -1,4 +1,4 @@
-import { stringToBytes, testSendablePacket } from '../../utils';
+import { stringToBytes, testInstructionPacket } from '../../utils';
 import type { IS_MSL_Data } from '..';
 import { IS_MSL, MessageSound, PacketType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
@@ -11,7 +11,7 @@ const data: IS_MSL_Data = {
   Sound: MessageSound.SND_ERROR,
 };
 
-const expectedBuffer = Buffer.from([
+const buffer = Buffer.from([
   132 / AbstractPacket.SIZE_MULTIPLIER, // Size
   40, // Type
   0, // ReqI
@@ -21,7 +21,13 @@ const expectedBuffer = Buffer.from([
 ]);
 
 describe('IS_MSL', () => {
-  testSendablePacket(IS_MSL, 132, PacketType.ISP_MSL, data, expectedBuffer);
+  testInstructionPacket({
+    packetClass: IS_MSL,
+    size: 132,
+    type: PacketType.ISP_MSL,
+    data,
+    buffer,
+  });
 
   it('should throw a range error if Msg length is greater than 127', () => {
     expect(() => {

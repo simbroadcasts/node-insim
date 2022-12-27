@@ -1,32 +1,43 @@
-import { stringToBytes } from '../../utils';
+import type { PacketTestData } from '../../utils';
+import { stringToBytes, testInfoPacket } from '../../utils';
 import { ConnectionFlags, IS_NCN, PacketType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
 
-describe('IS_NCN', () => {
-  it('should unpack data from a buffer', () => {
-    const buffer = Buffer.from([
-      56 / AbstractPacket.SIZE_MULTIPLIER, // Size
-      18, // Type
-      2, // ReqI
-      3, // UCID
-      ...stringToBytes('123456789 123456789 user'), // UName[24]
-      ...stringToBytes('123456789 123456789 play'), // PName[24]
-      1, // Admin
-      14, // Total
-      4, // Flags
-      0, // Sp3
-    ]);
-    const packet = new IS_NCN().unpack(buffer);
+const size = 56;
 
-    expect(packet.Size).toEqual(56);
-    expect(packet.Type).toEqual(PacketType.ISP_NCN);
-    expect(packet.ReqI).toEqual(2);
-    expect(packet.UCID).toEqual(3);
-    expect(packet.UName).toEqual('123456789 123456789 user');
-    expect(packet.PName).toEqual('123456789 123456789 play');
-    expect(packet.Admin).toEqual(1);
-    expect(packet.Total).toEqual(14);
-    expect(packet.Flags).toEqual(ConnectionFlags.REMOTE);
-    expect(packet.Sp3).toEqual(0);
+const uName = '123456789 123456789 user';
+const pName = '123456789 123456789 play';
+
+const data: PacketTestData<IS_NCN> = {
+  ReqI: 2,
+  UCID: 3,
+  UName: uName,
+  PName: pName,
+  Admin: 1,
+  Total: 14,
+  Flags: ConnectionFlags.REMOTE,
+  Sp3: 0,
+};
+
+const buffer = Buffer.from([
+  size / AbstractPacket.SIZE_MULTIPLIER, // Size
+  18, // Type
+  2, // ReqI
+  3, // UCID
+  ...stringToBytes(uName), // UName[24]
+  ...stringToBytes(pName), // PName[24]
+  1, // Admin
+  14, // Total
+  4, // Flags
+  0, // Sp3
+]);
+
+describe('IS_NCN', () => {
+  testInfoPacket({
+    packetClass: IS_NCN,
+    size,
+    type: PacketType.ISP_NCN,
+    data,
+    buffer,
   });
 });

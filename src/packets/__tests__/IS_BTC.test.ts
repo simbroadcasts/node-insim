@@ -1,27 +1,34 @@
+import type { PacketTestData } from '../../utils';
+import { testInfoPacket } from '../../utils';
 import { ButtonClickFlags, IS_BTC, IS_BTN, PacketType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
 
-describe('IS_BTC', () => {
-  it('should unpack data from a buffer', () => {
-    const buffer = Buffer.from([
-      8 / AbstractPacket.SIZE_MULTIPLIER, // Size
-      46, // Type
-      1, // ReqI
-      2, // UCID
-      3, // ClickID
-      128, // Inst
-      2, // CFlags
-      0, // Sp3
-    ]);
-    const packet = new IS_BTC().unpack(buffer);
+const data: PacketTestData<IS_BTC> = {
+  ReqI: 1,
+  UCID: 2,
+  ClickID: 3,
+  Inst: IS_BTN.INST_ALWAYS_ON,
+  CFlags: ButtonClickFlags.ISB_RMB,
+  Sp3: 0,
+};
 
-    expect(packet.Size).toEqual(8);
-    expect(packet.Type).toEqual(PacketType.ISP_BTC);
-    expect(packet.ReqI).toEqual(1);
-    expect(packet.UCID).toEqual(2);
-    expect(packet.ClickID).toEqual(3);
-    expect(packet.Inst).toEqual(IS_BTN.INST_ALWAYS_ON);
-    expect(packet.CFlags).toEqual(ButtonClickFlags.ISB_RMB);
-    expect(packet.Sp3).toEqual(0);
+const buffer = Buffer.from([
+  8 / AbstractPacket.SIZE_MULTIPLIER, // Size
+  46, // Type
+  1, // ReqI
+  2, // UCID
+  3, // ClickID
+  128, // Inst
+  2, // CFlags
+  0, // Sp3
+]);
+
+describe('IS_BTC', () => {
+  testInfoPacket({
+    packetClass: IS_BTC,
+    type: PacketType.ISP_BTC,
+    size: 8,
+    data,
+    buffer,
   });
 });

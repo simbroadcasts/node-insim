@@ -18,4 +18,9 @@ export class CarContOBJ extends AbstractStruct {
 
   /** Position (1 metre = 16) */
   @short() Y = 0;
+
+  constructor(data?: Partial<CarContOBJ>) {
+    super();
+    this.initialize(data);
+  }
 }

@@ -1,19 +1,28 @@
+import type { PacketTestData } from '../../utils';
+import { testInfoPacket } from '../../utils';
 import { IS_CRS, PacketType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
 
-describe('IS_CRS', () => {
-  it('should unpack data from a buffer', () => {
-    const buffer = Buffer.from([
-      4 / AbstractPacket.SIZE_MULTIPLIER, // Size
-      41, // Type
-      1, // ReqI
-      2, // PLID
-    ]);
-    const packet = new IS_CRS().unpack(buffer);
+const size = 4;
 
-    expect(packet.Size).toEqual(4);
-    expect(packet.Type).toEqual(PacketType.ISP_CRS);
-    expect(packet.ReqI).toEqual(1);
-    expect(packet.PLID).toEqual(2);
+const data: PacketTestData<IS_CRS> = {
+  ReqI: 0,
+  PLID: 2,
+};
+
+const buffer = Buffer.from([
+  size / AbstractPacket.SIZE_MULTIPLIER, // Size
+  41, // Type
+  0, // ReqI
+  2, // PLID
+]);
+
+describe('IS_CRS', () => {
+  testInfoPacket({
+    packetClass: IS_CRS,
+    size,
+    type: PacketType.ISP_CRS,
+    data,
+    buffer,
   });
 });

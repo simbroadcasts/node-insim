@@ -1,4 +1,4 @@
-import { testSendablePacket } from '../../utils';
+import { testInstructionPacket } from '../../utils';
 import type { IS_SFP_Data } from '..';
 import { IS_SFP, PacketType, StateFlags } from '..';
 import { AbstractPacket } from '../AbstractPacket';
@@ -8,7 +8,7 @@ const data: IS_SFP_Data = {
   OffOn: 1,
 };
 
-const expectedBuffer = Buffer.from([
+const buffer = Buffer.from([
   8 / AbstractPacket.SIZE_MULTIPLIER, // Size
   7, // Type
   0, // ReqI
@@ -20,5 +20,11 @@ const expectedBuffer = Buffer.from([
 ]);
 
 describe('IS_SFP', () => {
-  testSendablePacket(IS_SFP, 8, PacketType.ISP_SFP, data, expectedBuffer);
+  testInstructionPacket({
+    packetClass: IS_SFP,
+    size: 8,
+    type: PacketType.ISP_SFP,
+    data,
+    buffer,
+  });
 });

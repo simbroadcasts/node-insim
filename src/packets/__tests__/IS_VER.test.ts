@@ -1,36 +1,44 @@
-import { stringToBytes } from '../../utils';
+import type { PacketTestData } from '../../utils';
+import { stringToBytes, testInfoPacket } from '../../utils';
 import { IS_VER, PacketType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
 
-describe('IS_VER', () => {
-  it('should unpack data from a buffer', () => {
-    const buffer = Buffer.from([
-      20 / AbstractPacket.SIZE_MULTIPLIER, // Size
-      2, // Type
-      1, // ReqI
-      0, // Zero
-      ...stringToBytes('0.7A'), // Version[8]
-      0,
-      0,
-      0,
-      0,
-      ...stringToBytes('S3'), // Product[6]
-      0,
-      0,
-      0,
-      0,
-      9, // InSimVer
-      0, // Spare
-    ]);
-    const packet = new IS_VER().unpack(buffer);
+const size = 20;
 
-    expect(packet.Size).toEqual(20);
-    expect(packet.Type).toEqual(PacketType.ISP_VER);
-    expect(packet.ReqI).toEqual(1);
-    expect(packet.Zero).toEqual(0);
-    expect(packet.Version).toEqual('0.7A');
-    expect(packet.Product).toEqual('S3');
-    expect(packet.InSimVer).toEqual(9);
-    expect(packet.Spare).toEqual(0);
+const data: PacketTestData<IS_VER> = {
+  ReqI: 1,
+  Zero: 0,
+  Version: '0.7A',
+  Product: 'S3',
+  InSimVer: 9,
+  Spare: 0,
+};
+
+const buffer = Buffer.from([
+  size / AbstractPacket.SIZE_MULTIPLIER, // Size
+  2, // Type
+  1, // ReqI
+  0, // Zero
+  ...stringToBytes('0.7A'), // Version[8]
+  0,
+  0,
+  0,
+  0,
+  ...stringToBytes('S3'), // Product[6]
+  0,
+  0,
+  0,
+  0,
+  9, // InSimVer
+  0, // Spare
+]);
+
+describe('IS_VER', () => {
+  testInfoPacket({
+    packetClass: IS_VER,
+    size,
+    type: PacketType.ISP_VER,
+    data,
+    buffer,
   });
 });

@@ -1,8 +1,8 @@
 import { byte, short } from '../utils';
-import { AbstractStruct } from './AbstractStruct';
+import { AbstractSendableStruct } from './AbstractSendableStruct';
 import type { ObjectIndex } from './enums';
 
-export class ObjectInfo extends AbstractStruct {
+export class ObjectInfo extends AbstractSendableStruct {
   /** Position (1 metre = 16) */
   @short() X = 0;
 
@@ -51,4 +51,9 @@ export class ObjectInfo extends AbstractStruct {
    * - 64  : heading of -90 degrees
    */
   @byte() Heading = 0;
+
+  constructor(data?: Partial<ObjectInfo>) {
+    super();
+    this.initialize(data);
+  }
 }

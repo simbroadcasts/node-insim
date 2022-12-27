@@ -1,31 +1,41 @@
-import { stringToBytes } from '../../utils';
+import type { PacketTestData } from '../../utils';
+import { stringToBytes, testInfoPacket } from '../../utils';
 import { IS_III, PacketType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
 
-describe('IS_III', () => {
-  it('should unpack data from a buffer', () => {
-    const msg =
-      'This string is a very long text sixty four characters long yes.';
-    const buffer = Buffer.from([
-      72 / AbstractPacket.SIZE_MULTIPLIER, // Size
-      12, // Type
-      1, // ReqI
-      0, // Zero
-      2, // UCID
-      4, // PLID
-      0, // Sp2
-      0, // Sp3
-      ...stringToBytes(msg), // Msg[64]
-      0,
-    ]);
-    const packet = new IS_III().unpack(buffer);
+const size = 72;
 
-    expect(packet.Size).toEqual(72);
-    expect(packet.Type).toEqual(PacketType.ISP_III);
-    expect(packet.ReqI).toEqual(1);
-    expect(packet.Zero).toEqual(0);
-    expect(packet.UCID).toEqual(2);
-    expect(packet.PLID).toEqual(4);
-    expect(packet.Msg).toEqual(msg);
+const msg = 'This string is a very long text sixty four characters long yes.';
+
+const data: PacketTestData<IS_III> = {
+  ReqI: 0,
+  Zero: 0,
+  UCID: 2,
+  PLID: 4,
+  Sp2: 0,
+  Sp3: 0,
+  Msg: msg,
+};
+
+const buffer = Buffer.from([
+  size / AbstractPacket.SIZE_MULTIPLIER, // Size
+  12, // Type
+  0, // ReqI
+  0, // Zero
+  2, // UCID
+  4, // PLID
+  0, // Sp2
+  0, // Sp3
+  ...stringToBytes(msg), // Msg[64]
+  0,
+]);
+
+describe('IS_III', () => {
+  testInfoPacket({
+    packetClass: IS_III,
+    size,
+    type: PacketType.ISP_III,
+    data,
+    buffer,
   });
 });

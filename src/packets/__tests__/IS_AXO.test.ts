@@ -1,7 +1,13 @@
+import type { PacketTestData } from '../../utils';
+import { testInfoPacket } from '../../utils';
 import { IS_AXO, PacketType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
 
-const expectedBuffer = Buffer.from([
+const data: PacketTestData<IS_AXO> = {
+  PLID: 3,
+};
+
+const buffer = Buffer.from([
   4 / AbstractPacket.SIZE_MULTIPLIER, // Size
   44, // Type
   0, // ReqI
@@ -9,12 +15,11 @@ const expectedBuffer = Buffer.from([
 ]);
 
 describe('IS_AXO', () => {
-  it('should unpack data from a buffer', () => {
-    const packet = new IS_AXO().unpack(expectedBuffer);
-
-    expect(packet.Size).toEqual(4);
-    expect(packet.Type).toEqual(PacketType.ISP_AXO);
-    expect(packet.ReqI).toEqual(0);
-    expect(packet.PLID).toEqual(3);
+  testInfoPacket({
+    packetClass: IS_AXO,
+    type: PacketType.ISP_AXO,
+    size: 4,
+    data,
+    buffer,
   });
 });

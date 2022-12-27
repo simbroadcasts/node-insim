@@ -1,4 +1,4 @@
-import { stringToBytes, testSendablePacket } from '../../utils';
+import { stringToBytes, testInstructionPacket } from '../../utils';
 import type { IS_MTC_Data } from '..';
 import { IS_MTC, PacketType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
@@ -14,7 +14,7 @@ const data: IS_MTC_Data = {
   Text: text,
 };
 
-const expectedBuffer = Buffer.from([
+const buffer = Buffer.from([
   136 / AbstractPacket.SIZE_MULTIPLIER, // Size
   14, // Type
   0, // ReqI
@@ -23,11 +23,18 @@ const expectedBuffer = Buffer.from([
   2, // PLID
   0, // Sp2
   0, // Sp3
-  ...stringToBytes(text), // Text
+  ...stringToBytes(text), // Text[128]
   0,
 ]);
+
 describe('IS_MTC', () => {
-  testSendablePacket(IS_MTC, 8, PacketType.ISP_MTC, data, expectedBuffer);
+  testInstructionPacket({
+    packetClass: IS_MTC,
+    size: 8,
+    type: PacketType.ISP_MTC,
+    data,
+    buffer,
+  });
 
   it('should allocate 4 bytes for en empty text value', () => {
     const data: IS_MTC_Data = {
@@ -45,7 +52,7 @@ describe('IS_MTC', () => {
       2, // PLID
       0, // Sp2
       0, // Sp3
-      ''.charCodeAt(0), // Text (4)
+      ''.charCodeAt(0), // Text[4]
       0,
       0,
       0,

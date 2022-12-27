@@ -40,4 +40,9 @@ export class CompCar extends AbstractStruct {
 
   /** Signed, rate of change of heading: (8192 = 180 deg/s anticlockwise) */
   @short() AngVel = 0;
+
+  constructor(data?: Partial<CompCar>) {
+    super();
+    this.initialize(data);
+  }
 }

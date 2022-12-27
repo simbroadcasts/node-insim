@@ -1,8 +1,51 @@
-import { CarContactFlags, IS_CON, PacketType } from '..';
+import type { PacketTestData } from '../../utils';
+import { testInfoPacket } from '../../utils';
+import { CarContact, CarContactFlags, IS_CON, PacketType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
 
-const expectedBuffer = Buffer.from([
-  40 / AbstractPacket.SIZE_MULTIPLIER, // Size
+const size = 40;
+
+const data: PacketTestData<IS_CON> = {
+  ReqI: 0,
+  Zero: 0,
+  SpClose: 155,
+  Time: 1471,
+  A: new CarContact({
+    PLID: 1,
+    Info: CarContactFlags.CCI_BLUE | CarContactFlags.CCI_LAG,
+    Sp2: 0,
+    Steer: 3,
+    ThrBrk: 4,
+    CluHan: 2,
+    GearSp: 32,
+    Speed: 26,
+    Direction: 202,
+    Heading: 196,
+    AccelF: -1,
+    AccelR: 11,
+    X: 5109,
+    Y: 1724,
+  }),
+  B: new CarContact({
+    PLID: 2,
+    Info: CarContactFlags.CCI_YELLOW | CarContactFlags.CCI_LAG,
+    Sp2: 0,
+    Steer: 5,
+    ThrBrk: 112,
+    CluHan: 9,
+    GearSp: 32,
+    Speed: 20,
+    Direction: 172,
+    Heading: 171,
+    AccelF: 4,
+    AccelR: 12,
+    X: 5177,
+    Y: 1736,
+  }),
+};
+
+const buffer = Buffer.from([
+  size / AbstractPacket.SIZE_MULTIPLIER, // Size
   50, // Type
   0, // ReqI
   0, // Zero
@@ -45,46 +88,11 @@ const expectedBuffer = Buffer.from([
 ]);
 
 describe('IS_CON', () => {
-  it('should unpack data from a buffer', () => {
-    const packet = new IS_CON().unpack(expectedBuffer);
-
-    expect(packet.Size).toEqual(40);
-    expect(packet.Type).toEqual(PacketType.ISP_CON);
-    expect(packet.ReqI).toEqual(0);
-    expect(packet.Zero).toEqual(0);
-    expect(packet.SpClose).toEqual(155);
-    expect(packet.Time).toEqual(1471);
-    expect(packet.A.PLID).toEqual(1);
-    expect(packet.A.Info).toEqual(
-      CarContactFlags.CCI_BLUE | CarContactFlags.CCI_LAG,
-    );
-    expect(packet.A.Sp2).toEqual(0);
-    expect(packet.A.Steer).toEqual(3);
-    expect(packet.A.ThrBrk).toEqual(4);
-    expect(packet.A.CluHan).toEqual(2);
-    expect(packet.A.GearSp).toEqual(32);
-    expect(packet.A.Speed).toEqual(26);
-    expect(packet.A.Direction).toEqual(202);
-    expect(packet.A.Heading).toEqual(196);
-    expect(packet.A.AccelF).toEqual(-1);
-    expect(packet.A.AccelR).toEqual(11);
-    expect(packet.A.X).toEqual(5109);
-    expect(packet.A.Y).toEqual(1724);
-    expect(packet.B.PLID).toEqual(2);
-    expect(packet.B.Info).toEqual(
-      CarContactFlags.CCI_YELLOW | CarContactFlags.CCI_LAG,
-    );
-    expect(packet.B.Sp2).toEqual(0);
-    expect(packet.B.Steer).toEqual(5);
-    expect(packet.B.ThrBrk).toEqual(112);
-    expect(packet.B.CluHan).toEqual(9);
-    expect(packet.B.GearSp).toEqual(32);
-    expect(packet.B.Speed).toEqual(20);
-    expect(packet.B.Direction).toEqual(172);
-    expect(packet.B.Heading).toEqual(171);
-    expect(packet.B.AccelF).toEqual(4);
-    expect(packet.B.AccelR).toEqual(12);
-    expect(packet.B.X).toEqual(5177);
-    expect(packet.B.Y).toEqual(1736);
+  testInfoPacket({
+    packetClass: IS_CON,
+    size,
+    type: PacketType.ISP_CON,
+    data,
+    buffer,
   });
 });

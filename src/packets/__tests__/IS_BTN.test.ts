@@ -1,4 +1,4 @@
-import { stringToBytes, testSendablePacket } from '../../utils';
+import { stringToBytes, testInstructionPacket } from '../../utils';
 import type { IS_BTN_Data } from '..';
 import { ButtonStyle, IS_BTN, PacketType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
@@ -37,7 +37,13 @@ const expectedBuffer = Buffer.from([
 ]);
 
 describe('IS_BTN', () => {
-  testSendablePacket(IS_BTN, 12, PacketType.ISP_BTN, data, expectedBuffer);
+  testInstructionPacket({
+    packetClass: IS_BTN,
+    size: 12,
+    type: PacketType.ISP_BTN,
+    data: data,
+    buffer: expectedBuffer,
+  });
 
   it('should allocate 4 bytes for en empty text value', () => {
     const data: IS_BTN_Data = {
@@ -78,18 +84,13 @@ describe('IS_BTN', () => {
 
   it('should throw a range error if ReqI is 0', () => {
     expect(() => {
-      new IS_BTN({
-        ReqI: 0,
-      }).pack();
+      new IS_BTN({ ReqI: 0 }).pack();
     }).toThrow(RangeError);
   });
 
   it('should throw a range error if ClickID is greater than 239', () => {
     expect(() => {
-      new IS_BTN({
-        ReqI: 1,
-        ClickID: 240,
-      }).pack();
+      new IS_BTN({ ReqI: 1, ClickID: 240 }).pack();
     }).toThrow(RangeError);
   });
 });

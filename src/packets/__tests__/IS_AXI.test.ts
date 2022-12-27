@@ -1,8 +1,17 @@
-import { stringToBytes } from '../../utils';
+import type { PacketTestData } from '../../utils';
+import { stringToBytes, testInfoPacket } from '../../utils';
 import { IS_AXI, PacketType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
 
-const expectedBuffer = Buffer.from([
+const data: PacketTestData<IS_AXI> = {
+  Zero: 0,
+  AXStart: 2,
+  NumCP: 3,
+  NumO: 4375,
+  LName: 'Lorem ipsum dolor sit amet, cons',
+};
+
+const buffer = Buffer.from([
   40 / AbstractPacket.SIZE_MULTIPLIER, // Size
   43, // Type
   0, // ReqI
@@ -15,16 +24,11 @@ const expectedBuffer = Buffer.from([
 ]);
 
 describe('IS_AXI', () => {
-  it('should unpack data from a buffer', () => {
-    const packet = new IS_AXI().unpack(expectedBuffer);
-
-    expect(packet.Size).toEqual(40);
-    expect(packet.Type).toEqual(PacketType.ISP_AXI);
-    expect(packet.ReqI).toEqual(0);
-    expect(packet.Zero).toEqual(0);
-    expect(packet.AXStart).toEqual(2);
-    expect(packet.NumCP).toEqual(3);
-    expect(packet.NumO).toEqual(4375);
-    expect(packet.LName).toEqual('Lorem ipsum dolor sit amet, cons');
+  testInfoPacket({
+    packetClass: IS_AXI,
+    type: PacketType.ISP_AXI,
+    size: 40,
+    buffer,
+    data,
   });
 });
