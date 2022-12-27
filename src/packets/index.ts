@@ -3,6 +3,7 @@ export { CarContOBJ } from './CarContOBJ';
 export * from './enums';
 export type { IPacket } from './IPacket';
 export type { IReceivable } from './IReceivable';
+export { IS_ACR } from './IS_ACR';
 export { IS_AXI } from './IS_AXI';
 export type { IS_AXM_Data } from './IS_AXM';
 export { IS_AXM } from './IS_AXM';

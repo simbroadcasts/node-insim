@@ -1,3 +1,4 @@
+export { AdminCommandResult } from './AdminCommandResult';
 export { ButtonClickFlags } from './ButtonClickFlags';
 export { ButtonFunction } from './ButtonFunction';
 export { ButtonStyle } from './ButtonStyle';
