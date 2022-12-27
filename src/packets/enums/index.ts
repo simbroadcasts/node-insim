@@ -42,6 +42,7 @@ export { ServerStatus } from './ServerStatus';
 export { SetupFlags } from './SetupFlags';
 export { SmallType } from './SmallType';
 export { StateFlags } from './StateFlags';
+export { TargetToConnectionType } from './TargetToConnectionType';
 export { TinyType } from './TinyType';
 export { TypeIn } from './TypeIn';
 export { TyreCompound } from './TyreCompound';

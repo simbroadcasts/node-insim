@@ -85,6 +85,8 @@ export {
   SENDABLE_TINY_TYPES,
 } from './IS_TINY';
 export { IS_TOC } from './IS_TOC';
+export type { IS_TTC_Data } from './IS_TTC';
+export { IS_TTC } from './IS_TTC';
 export { IS_UCO } from './IS_UCO';
 export { IS_VER } from './IS_VER';
 export { IS_VTN } from './IS_VTN';
