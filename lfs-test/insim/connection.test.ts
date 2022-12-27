@@ -12,7 +12,9 @@ describe('InSim connection', () => {
 
     inSim.on('connect', () => {
       inSim.disconnect();
-      done();
+      inSim.once('disconnect', () => {
+        done();
+      });
     });
   });
 });

@@ -24,7 +24,9 @@ describe('InSim ping', () => {
       expect(packet.SubT === TinyType.TINY_REPLY);
       expect(packet.ReqI === 1);
       inSim.disconnect();
-      done();
+      inSim.once('disconnect', () => {
+        done();
+      });
     });
   });
 });

@@ -16,7 +16,9 @@ describe('InSim version', () => {
     inSim.on(PacketType.ISP_VER, function onVersion(packet: IS_VER) {
       expect(packet.ReqI === 1);
       inSim.disconnect();
-      done();
+      inSim.once('disconnect', () => {
+        done();
+      });
     });
   });
 });
