@@ -12,6 +12,8 @@ export { FlagType } from './FlagType';
 export { InSimFlags } from './InSimFlags';
 export { LeaveReason } from './LeaveReason';
 export { MessageSound } from './MessageSound';
+export { ObjectHitFlags } from './ObjectHitFlags';
+export { ObjectIndex } from './ObjectIndex';
 export { PacketType } from './PacketType';
 export { PassengerFlags } from './PassengerFlags';
 export { PenaltyReason } from './PenaltyReason';

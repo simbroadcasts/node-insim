@@ -19,7 +19,7 @@ export {
 export { IS_BTT } from './IS_BTT';
 export { IS_CCH } from './IS_CCH';
 export { IS_CNL } from './IS_CNL';
-export { IS_CON } from './IS_CON';
+export { CarContact, IS_CON } from './IS_CON';
 export type { AllowedStateFlags, IS_CPP_Data } from './IS_CPP';
 export { IS_CPP } from './IS_CPP';
 export { IS_CPR } from './IS_CPR';
@@ -46,6 +46,7 @@ export { IS_MTC } from './IS_MTC';
 export { IS_NCN } from './IS_NCN';
 export { IS_NLP } from './IS_NLP';
 export { IS_NPL } from './IS_NPL';
+export { CarContOBJ, IS_OBH } from './IS_OBH';
 export { IS_PEN } from './IS_PEN';
 export { IS_PFL } from './IS_PFL';
 export { IS_PIT } from './IS_PIT';

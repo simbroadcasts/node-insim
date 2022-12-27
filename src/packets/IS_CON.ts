@@ -23,7 +23,10 @@ export class IS_CON extends AbstractPacket {
   /** Looping time stamp (hundredths - time since reset - like {@link TINY_GTH}) */
   @word() Time = 0;
 
+  /** Contact object - car A */
   A: CarContact = new CarContact();
+
+  /** Contact object - car B */
   B: CarContact = new CarContact();
 
   unpack(buffer: Buffer): this {
@@ -48,7 +51,7 @@ export class IS_CON extends AbstractPacket {
   }
 }
 
-class CarContact extends AbstractStruct {
+export class CarContact extends AbstractStruct {
   @byte() PLID = 0;
 
   /** Like Info byte in {@link CompCar} (CCI_BLUE / CCI_YELLOW / CCI_LAG) */
