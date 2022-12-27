@@ -27,7 +27,7 @@ export abstract class AbstractSendablePacket
         );
       }
 
-      return this[propertyName as unknown as Extract<keyof this, string>];
+      return this[propertyName];
     });
 
     return pack(this.getFormat(propertyFormatOverrides), values);

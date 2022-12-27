@@ -13,6 +13,7 @@ export { ConnectionFlags } from './ConnectionFlags';
 export { FlagType } from './FlagType';
 export { HlvcViolation } from './HlvcViolation';
 export { InSimFlags } from './InSimFlags';
+export { Language } from './Language';
 export { LeaveReason } from './LeaveReason';
 export { MessageSound } from './MessageSound';
 export { ObjectHitFlags } from './ObjectHitFlags';

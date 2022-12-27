@@ -43,6 +43,7 @@ export type { IS_MSX_Data } from './IS_MSX';
 export { IS_MSX } from './IS_MSX';
 export type { IS_MTC_Data } from './IS_MTC';
 export { IS_MTC } from './IS_MTC';
+export { IS_NCI } from './IS_NCI';
 export { IS_NCN } from './IS_NCN';
 export { IS_NLP } from './IS_NLP';
 export { IS_NPL } from './IS_NPL';
