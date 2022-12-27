@@ -30,7 +30,7 @@ export type CustomButtonProps = {
 
 export function drawButton(
   inSim: InSim,
-  buttonData: ButtonData,
+  { onClick, onType, ...buttonData }: ButtonData,
 ): DrawButtonConfig {
   const button = new IS_BTN({
     ...buttonData,
@@ -75,10 +75,10 @@ export function drawButton(
     inSim.send(newButton);
   };
 
-  if (buttonData.onClick) {
+  if (onClick) {
     inSim.on(PacketType.ISP_BTC, (packet, inSim) => {
       if (button.ClickID === packet.ClickID) {
-        buttonData.onClick?.({
+        onClick({
           packet,
           inSim,
           button: {
@@ -90,10 +90,10 @@ export function drawButton(
     });
   }
 
-  if (buttonData.onType) {
+  if (onType) {
     inSim.on(PacketType.ISP_BTT, (packet, inSim) => {
       if (button.ClickID === packet.ClickID) {
-        buttonData.onType?.({
+        onType({
           packet,
           inSim,
           button: {
