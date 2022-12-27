@@ -987,19 +987,76 @@ const buffer = Buffer.from([
 ]);
 
 describe('IS_AXM', () => {
-  testInstructionPacket({
-    packetClass: IS_AXM,
-    size: 8, // This is the default size in IS_AXM excluding the dynamic size
-    type: PacketType.ISP_AXM,
-    data,
-    buffer,
+  describe('60 objects', () => {
+    testInstructionPacket({
+      packetClass: IS_AXM,
+      size: 8, // This is the default size in IS_AXM excluding the dynamic size
+      type: PacketType.ISP_AXM,
+      data,
+      buffer,
+    });
+    testInfoPacket({
+      packetClass: IS_AXM,
+      size,
+      type: PacketType.ISP_AXM,
+      data,
+      buffer,
+    });
   });
-  testInfoPacket({
-    packetClass: IS_AXM,
-    size,
-    type: PacketType.ISP_AXM,
-    data,
-    buffer,
+
+  describe('1 object', () => {
+    const size = 16;
+
+    const data: IS_AXM_Data = {
+      NumO: 1,
+      UCID: 3,
+      PMOAction: PMOAction.PMO_ADD_OBJECTS,
+      PMOFlags: PMOFlags.PMO_SELECTION_REAL,
+      Info: [
+        new ObjectInfo({
+          Flags: 0,
+          Heading: 128,
+          Index: 51,
+          X: -9556,
+          Y: -30695,
+          Zbyte: 8,
+        }),
+      ],
+    };
+
+    const buffer = Buffer.from([
+      size / AbstractPacket.SIZE_MULTIPLIER, // Size
+      54, // Type
+      0, // ReqI
+      1, // NumO
+      3, // UCID
+      1, // PMOAction
+      4, // PMOFlags
+      0, // Sp3
+      172, // Info[1] - X (1)
+      218, // Info[1] - X (2)
+      25, // Info[1] - Y (1)
+      136, // Info[1] - Y (2)
+      8, // Info[1] - Zbyte
+      0, // Info[1] - Flags
+      51, // Info[1] - ObjectIndex
+      128, // Info[1] - Heading
+    ]);
+
+    testInstructionPacket({
+      packetClass: IS_AXM,
+      size: 8, // This is the default size in IS_AXM excluding the dynamic size
+      type: PacketType.ISP_AXM,
+      data,
+      buffer,
+    });
+    testInfoPacket({
+      packetClass: IS_AXM,
+      size,
+      type: PacketType.ISP_AXM,
+      data,
+      buffer,
+    });
   });
 
   it('should throw a range error if Info length is greater than 60', () => {

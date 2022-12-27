@@ -34,6 +34,8 @@ export { IS_ISM, MultiplayerHostMode } from './IS_ISM';
 export type { IS_JRR_Data } from './IS_JRR';
 export { IS_JRR } from './IS_JRR';
 export { IS_LAP } from './IS_LAP';
+export type { IS_MAL_Data } from './IS_MAL';
+export { IS_MAL } from './IS_MAL';
 export { IS_MCI } from './IS_MCI';
 export type { IS_MOD_Data } from './IS_MOD';
 export { IS_MOD } from './IS_MOD';

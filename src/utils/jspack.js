@@ -70,14 +70,10 @@ var magic = {
   C: {
     length: 4,
     pack: function (dv, value, offset, c, littleendian) {
-      var val = new String(value[0]);
+      if (!Array.isArray(value)) value = [value];
 
       for (var i = 0; i < c; i++) {
-        var code = 0;
-
-        if (i < val.length) code = val.charCodeAt(i);
-
-        dv.writeUInt8(code, offset + i);
+        dv.writeUInt32LE(Number.parseInt(value[i], 16), offset + i);
       }
     },
     unpack: function (dv, offset, c, littleendian) {
