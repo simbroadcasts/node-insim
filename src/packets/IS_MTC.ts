@@ -1,7 +1,7 @@
 import { byte, char } from '../utils';
 import { BaseSendablePacket } from './BaseSendablePacket';
+import type { MessageSound } from './enums';
 import { PacketType } from './enums';
-import type { MessageSound } from './enums/MessageSound';
 import type { PacketData } from './types';
 
 /**

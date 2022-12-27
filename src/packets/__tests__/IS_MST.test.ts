@@ -1,4 +1,4 @@
-import { checkPacketDataSize, stringToBytes } from '../../utils';
+import { stringToBytes, testSendablePacket } from '../../utils';
 import type { IS_MST_Data } from '..';
 import { IS_MST, PacketType } from '..';
 import { BasePacket } from '../BasePacket';
@@ -17,20 +17,5 @@ const expectedBuffer = Buffer.from([
 ]);
 
 describe('IS_MST', () => {
-  checkPacketDataSize(new IS_MST());
-
-  it('should fill data from the constructor', () => {
-    const packet = new IS_MST(data);
-
-    expect(packet.Type).toEqual(PacketType.ISP_MST);
-    expect(packet.ReqI).toEqual(0);
-    expect(packet.Zero).toEqual(0);
-    expect(packet.Msg).toEqual(data.Msg);
-  });
-
-  it('should pack data into a buffer', () => {
-    const actualBuffer = new IS_MST(data).pack();
-
-    expect(actualBuffer).toEqual(expectedBuffer);
-  });
+  testSendablePacket(IS_MST, 68, PacketType.ISP_MST, data, expectedBuffer);
 });

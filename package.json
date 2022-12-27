@@ -17,7 +17,7 @@
     "test": "run-s test:compile \"test:run {@}\" --",
     "test:compile": "tsc -p tsconfig.test.json",
     "test:run": "jest",
-    "test:watch": "run-s test:compile \"test:run --watch\"",
+    "test:watch": "run-s test:compile \"test:run --watch {@}\" --",
     "format": "prettier --write \"./**/*.{js,ts,md,json,yml,yaml}\"",
     "lint": "eslint \"./src/**/*\" --ext .js,.ts",
     "lint:fix": "eslint \"./src/**/*\" --ext .js,.ts --fix",

@@ -1,4 +1,4 @@
-import { checkPacketDataSize, stringToBytes } from '../../utils';
+import { stringToBytes, testSendablePacket } from '../../utils';
 import type { IS_BTN_Data } from '..';
 import { ButtonStyle, INST_ALWAYS_ON, IS_BTN, PacketType } from '..';
 import { BasePacket } from '../BasePacket';
@@ -20,45 +20,24 @@ const data: IS_BTN_Data = {
   Text: text,
 };
 
+const expectedBuffer = Buffer.from([
+  252 / BasePacket.SIZE_MULTIPLIER, // Size
+  PacketType.ISP_BTN, // Type
+  1, // ReqI
+  2, // UCID
+  3, // ClickID
+  128, // Inst
+  9, // BStyle
+  3, // TypeIn
+  20, // L
+  30, // T
+  40, // W
+  50, // H
+  ...stringToBytes(text), // Text[240]
+]);
+
 describe('IS_BTN', () => {
-  checkPacketDataSize(new IS_BTN());
-
-  it('should fill data from the constructor', () => {
-    const packet = new IS_BTN(data);
-
-    expect(packet.ReqI).toEqual(data.ReqI);
-    expect(packet.UCID).toEqual(data.UCID);
-    expect(packet.ClickID).toEqual(data.ClickID);
-    expect(packet.Inst).toEqual(data.Inst);
-    expect(packet.BStyle).toEqual(data.BStyle);
-    expect(packet.TypeIn).toEqual(data.TypeIn);
-    expect(packet.L).toEqual(data.L);
-    expect(packet.T).toEqual(data.T);
-    expect(packet.W).toEqual(data.W);
-    expect(packet.H).toEqual(data.H);
-    expect(packet.Text).toEqual(data.Text);
-  });
-
-  it('should pack data into a buffer', () => {
-    const expectedBuffer = Buffer.from([
-      252 / BasePacket.SIZE_MULTIPLIER, // Size
-      PacketType.ISP_BTN, // Type
-      1, // ReqI
-      2, // UCID
-      3, // ClickID
-      128, // Inst
-      9, // BStyle
-      3, // TypeIn
-      20, // L
-      30, // T
-      40, // W
-      50, // H
-      ...stringToBytes(text), // Text[240]
-    ]);
-    const actualBuffer = new IS_BTN(data).pack();
-
-    expect(actualBuffer).toEqual(expectedBuffer);
-  });
+  testSendablePacket(IS_BTN, 12, PacketType.ISP_BTN, data, expectedBuffer);
 
   it('should allocate 4 bytes for en empty text value', () => {
     const data: IS_BTN_Data = {

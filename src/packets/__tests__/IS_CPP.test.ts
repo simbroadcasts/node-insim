@@ -1,4 +1,4 @@
-import { checkPacketDataSize } from '../../utils';
+import { testSendablePacket } from '../../utils';
 import type { IS_CPP_Data } from '..';
 import { IS_CPP, PacketType, StateFlags, ViewIdentifier } from '..';
 import { BasePacket } from '../BasePacket';
@@ -53,29 +53,7 @@ const buffer = Buffer.from([
 ]);
 
 describe('IS_CPP', () => {
-  checkPacketDataSize(new IS_CPP());
-
-  it('should fill data from the constructor', () => {
-    const packet = new IS_CPP(data);
-
-    expect(packet.X).toEqual(data.X);
-    expect(packet.Y).toEqual(data.Y);
-    expect(packet.Z).toEqual(data.Z);
-    expect(packet.H).toEqual(data.H);
-    expect(packet.P).toEqual(data.P);
-    expect(packet.R).toEqual(data.R);
-    expect(packet.ViewPLID).toEqual(data.ViewPLID);
-    expect(packet.InGameCam).toEqual(data.InGameCam);
-    expect(packet.FOV).toEqual(data.FOV);
-    expect(packet.Time).toEqual(data.Time);
-    expect(packet.Flags).toEqual(data.Flags);
-  });
-
-  it('should pack data into a buffer', () => {
-    const actualBuffer = new IS_CPP(data).pack();
-
-    expect(actualBuffer).toEqual(buffer);
-  });
+  testSendablePacket(IS_CPP, 32, PacketType.ISP_CPP, data, buffer);
 
   it('should unpack data from a buffer', () => {
     const packet = new IS_CPP().unpack(buffer);

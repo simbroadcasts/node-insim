@@ -1,4 +1,4 @@
-import { checkPacketDataSize } from '../../utils';
+import { testSendablePacket } from '../../utils';
 import type { IS_MOD_Data } from '..';
 import { IS_MOD, PacketType } from '..';
 import { BasePacket } from '../BasePacket';
@@ -34,24 +34,5 @@ const expectedBuffer = Buffer.from([
 ]);
 
 describe('IS_MOD', () => {
-  checkPacketDataSize(new IS_MOD());
-
-  it('should fill data from the constructor', () => {
-    const packet = new IS_MOD(data);
-
-    expect(packet.Size).toEqual(20);
-    expect(packet.Type).toEqual(PacketType.ISP_MOD);
-    expect(packet.ReqI).toEqual(0);
-    expect(packet.Zero).toEqual(0);
-    expect(packet.Bits16).toEqual(data.Bits16);
-    expect(packet.RR).toEqual(data.RR);
-    expect(packet.Width).toEqual(data.Width);
-    expect(packet.Height).toEqual(data.Height);
-  });
-
-  it('should pack data into a buffer', () => {
-    const actualBuffer = new IS_MOD(data).pack();
-
-    expect(actualBuffer).toEqual(expectedBuffer);
-  });
+  testSendablePacket(IS_MOD, 20, PacketType.ISP_MOD, data, expectedBuffer);
 });
