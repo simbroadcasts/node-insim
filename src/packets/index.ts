@@ -54,6 +54,8 @@ export { IS_PEN } from './IS_PEN';
 export { IS_PFL } from './IS_PFL';
 export { IS_PIT } from './IS_PIT';
 export { IS_PLA } from './IS_PLA';
+export type { IS_PLC_Data } from './IS_PLC';
+export { IS_PLC } from './IS_PLC';
 export { IS_PLL } from './IS_PLL';
 export { IS_PLP } from './IS_PLP';
 export { IS_PSF } from './IS_PSF';

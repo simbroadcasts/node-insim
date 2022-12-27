@@ -4,6 +4,7 @@ export { ButtonStyle } from './ButtonStyle';
 export { ButtonTextColour } from './ButtonTextColour';
 export { CarConfiguration } from './CarConfiguration';
 export { CarContactFlags } from './CarContactFlags';
+export { CarFlags } from './CarFlags';
 export { CharacterModifiers } from './CharacterModifiers';
 export { CompCarFlags } from './CompCarFlags';
 export { ConfirmationFlags } from './ConfirmationFlags';
