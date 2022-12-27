@@ -1,4 +1,4 @@
-export enum CompCarFlags {
+export enum CarContactFlags {
   /** This car is in the way of a driver who is a lap ahead */
   CCI_BLUE = 1,
 
@@ -7,10 +7,4 @@ export enum CompCarFlags {
 
   /** This car is lagging (missing or delayed position packets) */
   CCI_LAG = 32,
-
-  /** This is the first compcar in this set of MCI packets */
-  CCI_FIRST = 64,
-
-  /** This is the last compcar in this set of MCI packets */
-  CCI_LAST = 128,
 }

@@ -1,4 +1,4 @@
-import { byte, char } from '../utils';
+import { byte, string } from '../utils';
 import { AbstractSendablePacket } from './AbstractSendablePacket';
 import type { MessageSound } from './enums';
 import { PacketType } from './enums';
@@ -28,7 +28,7 @@ export class IS_MTC extends AbstractSendablePacket {
   @byte() readonly Sp3 = 0;
 
   /** Up to 128 characters of text - last byte must be zero */
-  @char(0) Text = '';
+  @string(0) Text = '';
 
   constructor(data?: IS_MTC_Data) {
     super();

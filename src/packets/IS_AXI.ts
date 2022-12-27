@@ -1,4 +1,4 @@
-import { byte, char, word } from '../utils';
+import { byte, string, word } from '../utils';
 import { AbstractPacket } from './AbstractPacket';
 import { PacketType } from './enums';
 
@@ -31,5 +31,5 @@ export class IS_AXI extends AbstractPacket {
   @word() NumO = 0;
 
   /** The name of the layout last loaded (if loaded locally) */
-  @char(32) LName = '';
+  @string(32) LName = '';
 }

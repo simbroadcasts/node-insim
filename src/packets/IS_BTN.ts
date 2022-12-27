@@ -1,4 +1,4 @@
-import { byte, char, log as baseLog } from '../utils';
+import { byte, log as baseLog, string } from '../utils';
 import { AbstractSendablePacket } from './AbstractSendablePacket';
 import type { ButtonStyle, ButtonTextColour } from './enums';
 import { PacketType } from './enums';
@@ -93,7 +93,7 @@ export class IS_BTN extends AbstractSendablePacket {
   @byte() H = 0;
 
   /** 0 to 240 characters of text */
-  @char(0) Text = '';
+  @string(0) Text = '';
 
   constructor(data?: IS_BTN_Data) {
     super();

@@ -1,4 +1,4 @@
-import { byte, char, word } from '../utils';
+import { byte, string, word } from '../utils';
 import { AbstractPacket } from './AbstractPacket';
 import type { RaceFlags } from './enums';
 import { PacketType } from './enums';
@@ -38,7 +38,7 @@ export class IS_RST extends AbstractPacket {
   @byte() Timing = 0;
 
   /** Short track name */
-  @char(6) Track = '';
+  @string(6) Track = '';
 
   @byte() Weather = 0;
   @byte() Wind = 0;

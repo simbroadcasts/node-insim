@@ -1,4 +1,4 @@
-import { byte, char, unsigned, word } from '../utils';
+import { byte, string, unsigned, word } from '../utils';
 import { AbstractPacket } from './AbstractPacket';
 import type { ConfirmationFlags, PlayerFlags } from './enums';
 import { PacketType } from './enums';
@@ -17,16 +17,16 @@ export class IS_RES extends AbstractPacket {
   @byte() PLID = 0;
 
   /** Username */
-  @char(24) UName = '';
+  @string(24) UName = '';
 
   /** Nickname */
-  @char(24) PName = '';
+  @string(24) PName = '';
 
   /** Number plate - NO ZERO AT END! */
-  @char(8) Plate = '';
+  @string(8) Plate = '';
 
   /** Skin prefix */
-  @char(4) CName = '';
+  @string(4) CName = '';
 
   /** Race or autocross: total time / qualify: session time (ms) */
   @unsigned() TTime = 0;

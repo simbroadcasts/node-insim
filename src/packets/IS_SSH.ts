@@ -1,4 +1,4 @@
-import { byte, char, log as baseLog } from '../utils';
+import { byte, log as baseLog, string } from '../utils';
 import { AbstractSendablePacket } from './AbstractSendablePacket';
 import type { ScreenshotError } from './enums';
 import { PacketType } from './enums';
@@ -32,7 +32,7 @@ export class IS_SSH extends AbstractSendablePacket {
   @byte() readonly Sp3 = 0;
 
   /** Name of screenshot file - last byte must be zero */
-  @char(32) Name = '';
+  @string(32) Name = '';
 
   constructor(data?: IS_SSH_Data) {
     super();

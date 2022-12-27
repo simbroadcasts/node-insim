@@ -1,4 +1,4 @@
-import { byte, char } from '../utils';
+import { byte, string } from '../utils';
 import { AbstractSendablePacket } from './AbstractSendablePacket';
 import type { MessageSound } from './enums';
 import { PacketType } from './enums';
@@ -16,7 +16,7 @@ export class IS_MSL extends AbstractSendablePacket {
   @byte() Sound: MessageSound = 0;
 
   /** Last byte must be zero */
-  @char(128) Msg = '';
+  @string(128) Msg = '';
 
   constructor(data?: IS_MSL_Data) {
     super();

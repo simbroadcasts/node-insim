@@ -1,4 +1,4 @@
-import { byte, char, getFormat, log as baseLog, unpack } from '../utils';
+import { byte, getFormat, log as baseLog, string, unpack } from '../utils';
 import { AbstractPacket } from './AbstractPacket';
 import type { UserType } from './enums';
 import { PacketType } from './enums';
@@ -29,7 +29,7 @@ export class IS_MSO extends AbstractPacket {
   @byte() TextStart = 0;
 
   /** 4, 8, 12... 128 characters - last byte is zero */
-  @char(128) Msg = '';
+  @string(128) Msg = '';
 
   unpack(buffer: Buffer): this {
     const data = unpack(`<${getFormat(this, 'Size')}`, buffer);

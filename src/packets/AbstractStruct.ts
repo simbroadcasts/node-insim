@@ -20,7 +20,7 @@ export abstract class AbstractStruct {
     );
   }
 
-  protected getFormat(propertyFormats?: Record<string, string>): string {
+  public getFormat(propertyFormats?: Record<string, string>): string {
     const propertyNames = this.getValidPropertyNames();
     const format = propertyNames
       .map(

@@ -1,4 +1,4 @@
-import { byte, char } from '../../utils';
+import { byte, string } from '../../utils';
 import { PacketType } from '../';
 import { AbstractStruct } from '../AbstractStruct';
 
@@ -26,7 +26,7 @@ describe('AbstractStruct', () => {
         @byte() Size = 2;
         @byte() Type = PacketType.ISP_ISI;
         @byte() ReqI = 1;
-        @char(6) StringProperty = 'string';
+        @string(6) StringProperty = 'string';
         @byte() NumberProperty = 0;
         InvalidProperty = 'invalid';
 
@@ -53,7 +53,7 @@ describe('AbstractStruct', () => {
         @byte() Size = 2;
         @byte() Type = PacketType.ISP_ISI;
         @byte() ReqI = 1;
-        @char(6) StringProperty = 'string';
+        @string(6) StringProperty = 'string';
         @byte() NumberProperty = 0;
         InvalidProperty = 'invalid';
 
@@ -72,7 +72,7 @@ describe('AbstractStruct', () => {
         @byte() Size = 2;
         @byte() Type = PacketType.ISP_ISI;
         @byte() ReqI = 1;
-        @char(6) StringProperty = 'string';
+        @string(6) StringProperty = 'string';
         @byte() NumberProperty = 0;
         InvalidProperty = 'invalid';
 

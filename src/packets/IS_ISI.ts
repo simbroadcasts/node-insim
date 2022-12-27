@@ -1,4 +1,4 @@
-import { byte, char, word } from '../utils';
+import { byte, string, word } from '../utils';
 import { AbstractSendablePacket } from './AbstractSendablePacket';
 import type { InSimFlags } from './enums';
 import { PacketType } from './enums';
@@ -26,16 +26,16 @@ export class IS_ISI extends AbstractSendablePacket {
   @byte() InSimVer = 0;
 
   /** Special host message prefix character */
-  @char(1) Prefix = '';
+  @string(1) Prefix = '';
 
   /** Time in ms between {@link IS_NLP} or {@link IS_MCI} (0 = none) */
   @word() Interval = 0;
 
   /** Admin password (if set in LFS) */
-  @char(16) Admin = '';
+  @string(16) Admin = '';
 
   /** A short name for your program */
-  @char(16) IName = '';
+  @string(16) IName = '';
 
   constructor(data?: IS_ISI_Data) {
     super();

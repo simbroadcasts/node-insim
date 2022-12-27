@@ -19,6 +19,7 @@ export {
 export { IS_BTT } from './IS_BTT';
 export { IS_CCH } from './IS_CCH';
 export { IS_CNL } from './IS_CNL';
+export { IS_CON } from './IS_CON';
 export type { AllowedStateFlags, IS_CPP_Data } from './IS_CPP';
 export { IS_CPP } from './IS_CPP';
 export { IS_CPR } from './IS_CPR';

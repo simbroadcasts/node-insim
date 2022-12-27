@@ -1,4 +1,4 @@
-import { byte, char } from '../utils';
+import { byte, string } from '../utils';
 import { AbstractPacket } from './AbstractPacket';
 import { PacketType } from './enums';
 
@@ -36,7 +36,7 @@ export class IS_ISM extends AbstractPacket {
   @byte() readonly Sp3 = 0;
 
   /** The name of the host joined or started */
-  @char(32) HName = '';
+  @string(32) HName = '';
 }
 
 export enum MultiplayerHostMode {

@@ -1,11 +1,11 @@
 import {
   byte,
   byteArray,
-  char,
   float,
   getFormat,
   int,
   short,
+  string,
   unsigned,
   word,
 } from '../../utils';
@@ -18,8 +18,8 @@ describe('Packet property decorators', () => {
       ReqI = 0;
       Size = 0;
       Type = PacketType.ISP_ISI;
-      @char(1) Char = 'a';
-      @char(3) String = 'abc';
+      @string(1) Char = 'a';
+      @string(3) String = 'abc';
       @byte() Byte = 255;
       @byteArray(5) ByteArray = [34, 67, 255, 0, 5];
       @word() Word = 65535;

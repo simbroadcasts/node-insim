@@ -1,10 +1,8 @@
-import { byte, int, log as baseLog, short, unpack, word } from '../utils';
+import { byte, determineLength, int, short, word } from '../utils';
 import { AbstractPacket } from './AbstractPacket';
 import { AbstractStruct } from './AbstractStruct';
 import type { CompCarFlags } from './enums';
 import { PacketType } from './enums';
-
-const logError = baseLog.extend('IS_MCI:error');
 
 /**
  * Multi Car Info - if more than {@link MCI_MAX_CARS} in race then more than one is sent
@@ -27,24 +25,12 @@ export class IS_MCI extends AbstractPacket {
   unpack(buffer: Buffer): this {
     super.unpack(buffer);
 
-    const data = unpack(this.getFormat(), buffer);
-
-    if (!data) {
-      logError(
-        `${
-          PacketType[this.Type]
-        } - Unpacked no data using ${this.getFormat()} from buffer`,
-        buffer.join(),
-      );
-      return this;
-    }
-
-    const nodeLapDataLength = 28;
+    const compCarDataLength = determineLength(new CompCar().getFormat());
 
     for (let i = 0; i < this.NumC; i++) {
-      const start = data.length + nodeLapDataLength * i;
-      const nodeLapBuffer = buffer.slice(start, start + nodeLapDataLength);
-      this.Info.push(new CompCar().unpack(nodeLapBuffer));
+      const start = determineLength(this.getFormat()) + compCarDataLength * i;
+      const compCarBuffer = buffer.slice(start, start + compCarDataLength);
+      this.Info.push(new CompCar().unpack(compCarBuffer));
     }
 
     return this;

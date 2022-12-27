@@ -2,9 +2,14 @@ import 'reflect-metadata';
 
 const formatMetadataKey = Symbol('format');
 
-/** 1-byte character */
-export function char(count: number) {
+/** String of 1-byte characters */
+export function string(count: number) {
   return Reflect.metadata(formatMetadataKey, count === 1 ? 'c' : `${count}s`);
+}
+
+/** 1-byte signed integer */
+export function char() {
+  return Reflect.metadata(formatMetadataKey, 'b');
 }
 
 /** 1-byte unsigned integer */

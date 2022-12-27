@@ -1,4 +1,4 @@
-import { byte, char, getFormat, log as baseLog, unpack } from '../utils';
+import { byte, getFormat, log as baseLog, string, unpack } from '../utils';
 import { AbstractPacket } from './AbstractPacket';
 import { PacketType } from './enums';
 
@@ -25,7 +25,7 @@ export class IS_III extends AbstractPacket {
   @byte() readonly Sp3 = 0;
 
   /** 4, 8, 12... 64 characters - last byte is zero */
-  @char(64) Msg = '';
+  @string(64) Msg = '';
 
   unpack(buffer: Buffer): this {
     const data = unpack(`<${getFormat(this, 'Size')}`, buffer);

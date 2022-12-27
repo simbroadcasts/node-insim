@@ -1,4 +1,4 @@
-import { byte, char, word } from '../utils';
+import { byte, string, word } from '../utils';
 import { AbstractPacket } from './AbstractPacket';
 import type {
   CarConfiguration,
@@ -33,10 +33,10 @@ export class IS_NPL extends AbstractPacket {
   @word() Flags: PlayerFlags = 0;
 
   /** Nickname */
-  @char(24) PName = '';
+  @string(24) PName = '';
 
   /** Skin name - MAX_CAR_TEX_NAME */
-  @char(16) SName = '';
+  @string(16) SName = '';
 
   /** Rear left tyre compound */
   @byte() TyreRL: TyreCompound = 0;

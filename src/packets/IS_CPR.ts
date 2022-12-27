@@ -1,4 +1,4 @@
-import { byte, char } from '../utils';
+import { byte, string } from '../utils';
 import { AbstractPacket } from './AbstractPacket';
 import { PacketType } from './enums';
 
@@ -14,8 +14,8 @@ export class IS_CPR extends AbstractPacket {
   @byte() UCID = 0;
 
   /** New name */
-  @char(24) PName = '';
+  @string(24) PName = '';
 
   /** Number plate - NO ZERO AT END! */
-  @char(8) Plate = '';
+  @string(8) Plate = '';
 }

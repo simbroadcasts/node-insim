@@ -1,4 +1,4 @@
-import { byte, char } from '../utils';
+import { byte, string } from '../utils';
 import { AbstractSendablePacket } from './AbstractSendablePacket';
 import { PacketType } from './enums';
 import type { PacketData } from './types';
@@ -13,7 +13,7 @@ export class IS_MST extends AbstractSendablePacket {
   @byte() readonly Zero = 0;
 
   /** Last byte must be zero */
-  @char(64) Msg = '';
+  @string(64) Msg = '';
 
   constructor(data?: IS_MST_Data) {
     super();

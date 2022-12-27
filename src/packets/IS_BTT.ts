@@ -1,4 +1,4 @@
-import { byte, char } from '../utils';
+import { byte, string } from '../utils';
 import { AbstractPacket } from './AbstractPacket';
 import { PacketType } from './enums';
 
@@ -30,5 +30,5 @@ export class IS_BTT extends AbstractPacket {
   @byte() readonly Sp3 = 0;
 
   /** Typed text, zero to {@link IS_BTN.TypeIn} specified in {@link IS_BTN} */
-  @char(96) Text = '';
+  @string(96) Text = '';
 }

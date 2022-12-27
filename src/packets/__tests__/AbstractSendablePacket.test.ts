@@ -1,4 +1,4 @@
-import { byte, char, stringToBytes } from '../../utils';
+import { byte, string, stringToBytes } from '../../utils';
 import { PacketType } from '..';
 import { AbstractSendablePacket } from '../AbstractSendablePacket';
 
@@ -32,7 +32,7 @@ describe('AbstractSendablePacket', () => {
         @byte() Size = 0;
         @byte() Type = PacketType.ISP_ISI;
         @byte() ReqI = 1;
-        @char(6) StringProperty = 'string';
+        @string(6) StringProperty = 'string';
         @byte() NumberProperty = 0;
       }
 

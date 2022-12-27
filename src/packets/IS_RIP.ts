@@ -1,4 +1,4 @@
-import { byte, char, log as baseLog, unsigned } from '../utils';
+import { byte, log as baseLog, string, unsigned } from '../utils';
 import { AbstractSendablePacket } from './AbstractSendablePacket';
 import type { ReplayError, ReplayMode, ReplayOptions } from './enums';
 import { PacketType } from './enums';
@@ -48,7 +48,7 @@ export class IS_RIP extends AbstractSendablePacket {
   @unsigned() TTime = 0;
 
   /** Zero or replay name - last byte must be zero */
-  @char(64) RName = '';
+  @string(64) RName = '';
 
   constructor(data?: IS_RIP_Data) {
     super();

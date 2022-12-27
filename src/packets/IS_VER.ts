@@ -1,4 +1,4 @@
-import { byte, char } from '../utils';
+import { byte, string } from '../utils';
 import { AbstractPacket } from './AbstractPacket';
 import { PacketType } from './enums';
 
@@ -19,10 +19,10 @@ export class IS_VER extends AbstractPacket {
   @byte() readonly Zero = 0;
 
   /** LFS version, e.g. 0.3G */
-  @char(8) Version = '';
+  @string(8) Version = '';
 
   /** Product: DEMO / S1 / S2 / S3 */
-  @char(6) Product = '';
+  @string(6) Product = '';
 
   /** InSim version */
   @byte() InSimVer = 0;

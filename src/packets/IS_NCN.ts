@@ -1,4 +1,4 @@
-import { byte, char } from '../utils';
+import { byte, string } from '../utils';
 import { AbstractPacket } from './AbstractPacket';
 import type { ConnectionFlags } from './enums';
 import { PacketType } from './enums';
@@ -17,10 +17,10 @@ export class IS_NCN extends AbstractPacket {
   @byte() UCID = 0;
 
   /** Username */
-  @char(24) UName = '';
+  @string(24) UName = '';
 
   /** Nickname */
-  @char(24) PName = '';
+  @string(24) PName = '';
 
   /** 1 if admin */
   @byte() Admin = 0;

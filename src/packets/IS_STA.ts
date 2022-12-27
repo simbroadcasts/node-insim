@@ -1,4 +1,4 @@
-import { byte, char, float, word } from '../utils';
+import { byte, float, string, word } from '../utils';
 import { AbstractPacket } from './AbstractPacket';
 import type {
   RaceState,
@@ -70,7 +70,7 @@ export class IS_STA extends AbstractPacket {
   @byte() ServerStatus: ServerStatus | number = 0;
 
   /** Short name for track e.g. FE2R */
-  @char(6) Track = '';
+  @string(6) Track = '';
 
   @byte() Weather = 0;
 
