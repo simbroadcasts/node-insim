@@ -8,7 +8,7 @@ describe('IS_III', () => {
       'This string is a very long text sixty four characters long yes.';
     const buffer = Buffer.from([
       72 / BasePacket.SIZE_MULTIPLIER, // Size
-      PacketType.ISP_III, // Type
+      12, // Type
       1, // ReqI
       0, // Zero
       2, // UCID

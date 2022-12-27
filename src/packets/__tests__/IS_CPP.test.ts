@@ -19,7 +19,7 @@ const data: IS_CPP_Data = {
 
 const buffer = Buffer.from([
   32 / BasePacket.SIZE_MULTIPLIER, // Size
-  PacketType.ISP_CPP, // Type
+  9, // Type
   0, // ReqI
   0, // Zero
   1, // X (1)

@@ -6,12 +6,12 @@ describe('IS_MSO', () => {
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
       24 / BasePacket.SIZE_MULTIPLIER, // Size
-      PacketType.ISP_MSO, // Type
+      11, // Type
       1, // ReqI
       0, // Zero
       2, // UCID
       4, // PLID
-      UserType.MSO_USER, // UserType
+      1, // UserType
       14, // TextStart
       ...stringToBytes('Player : Hello!'), // Msg[128]
       0,

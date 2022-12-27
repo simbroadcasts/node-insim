@@ -5,7 +5,7 @@ describe('IS_CRS', () => {
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
       4 / BasePacket.SIZE_MULTIPLIER, // Size
-      PacketType.ISP_CRS, // Type
+      41, // Type
       1, // ReqI
       2, // PLID
     ]);

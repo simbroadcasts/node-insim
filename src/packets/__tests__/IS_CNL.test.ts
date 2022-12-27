@@ -5,10 +5,10 @@ describe('IS_CNL', () => {
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
       8 / BasePacket.SIZE_MULTIPLIER, // Size
-      PacketType.ISP_CNL, // Type
+      19, // Type
       0, // ReqI
-      3, // UCID
-      LeaveReason.LEAVR_KICKED, // Reason
+      4, // UCID
+      3, // Reason
       14, // Total
       0, // Sp2
       0, // Sp3
@@ -18,7 +18,7 @@ describe('IS_CNL', () => {
     expect(packet.Size).toEqual(8);
     expect(packet.Type).toEqual(PacketType.ISP_CNL);
     expect(packet.ReqI).toEqual(0);
-    expect(packet.UCID).toEqual(3);
+    expect(packet.UCID).toEqual(4);
     expect(packet.Reason).toEqual(LeaveReason.LEAVR_KICKED);
     expect(packet.Total).toEqual(14);
     expect(packet.Sp2).toEqual(0);

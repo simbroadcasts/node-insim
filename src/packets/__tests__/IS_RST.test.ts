@@ -7,7 +7,7 @@ describe('IS_RST', () => {
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
       28 / BasePacket.SIZE_MULTIPLIER, // Size
-      PacketType.ISP_RST, // Type
+      17, // Type
       1, // ReqI
       0, // Zero
       10, // RaceLaps

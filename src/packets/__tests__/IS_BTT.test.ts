@@ -7,11 +7,11 @@ describe('IS_BTT', () => {
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
       104 / BasePacket.SIZE_MULTIPLIER, // Size
-      PacketType.ISP_BTT, // Type
+      47, // Type
       1, // ReqI
       2, // UCID
       3, // ClickID
-      INST_ALWAYS_ON, // Inst
+      128, // Inst
       7, // TypeIn
       0, // Sp3
       ...stringToBytes(
@@ -31,7 +31,7 @@ describe('IS_BTT', () => {
     expect(packet.ReqI).toEqual(1);
     expect(packet.UCID).toEqual(2);
     expect(packet.ClickID).toEqual(3);
-    expect(packet.Inst).toEqual(128);
+    expect(packet.Inst).toEqual(INST_ALWAYS_ON);
     expect(packet.TypeIn).toEqual(7);
     expect(packet.Sp3).toEqual(0);
     expect(packet.Text).toEqual(

@@ -10,11 +10,11 @@ const data: IS_SCC_Data = {
 
 const expectedBuffer = Buffer.from([
   8 / BasePacket.SIZE_MULTIPLIER, // Size
-  PacketType.ISP_SCC, // Type
+  8, // Type
   0, // ReqI
   0, // Zero
   1, // ViewPLID
-  ViewIdentifier.VIEW_DRIVER, // InGameCam
+  3, // InGameCam
   0, // Sp2
   0, // Sp3
 ]);

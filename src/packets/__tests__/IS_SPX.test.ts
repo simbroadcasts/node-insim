@@ -5,7 +5,7 @@ describe('IS_SPX', () => {
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
       20 / BasePacket.SIZE_MULTIPLIER, // Size
-      PacketType.ISP_SPX, // Type
+      25, // Type
       0, // ReqI
       2, // PLID
       4, // STime (1)
@@ -17,7 +17,7 @@ describe('IS_SPX', () => {
       1, // ETime (3)
       0, // ETime (4)
       3, // Split
-      PenaltyValue.PENALTY_45, // Penalty
+      6, // Penalty
       3, // NumStops
       40, // Fuel200
     ]);

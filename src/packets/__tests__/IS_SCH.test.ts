@@ -10,7 +10,7 @@ const data: IS_SCH_Data = {
 
 const expectedBuffer = Buffer.from([
   8 / BasePacket.SIZE_MULTIPLIER, // Size
-  PacketType.ISP_SCH, // Type
+  6, // Type
   0, // ReqI
   0, // Zero
   23, // CharB

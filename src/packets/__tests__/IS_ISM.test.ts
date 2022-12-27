@@ -6,10 +6,10 @@ describe('IS_ISM', () => {
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
       40 / BasePacket.SIZE_MULTIPLIER, // Size
-      PacketType.ISP_ISM, // Type
+      10, // Type
       1, // ReqI
       0, // Zero
-      MultiplayerHostMode.HOST, // Host
+      1, // Host
       0, // Sp1
       0, // Sp2
       0, // Sp3

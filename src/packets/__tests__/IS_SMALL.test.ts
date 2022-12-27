@@ -11,9 +11,9 @@ const data: IS_SMALL_Data = {
 
 const expectedBuffer = Buffer.from([
   8 / BasePacket.SIZE_MULTIPLIER, // Size
-  PacketType.ISP_SMALL, // Type
+  4, // Type
   1, // ReqI
-  SmallType.SMALL_NLI, // SubT
+  7, // SubT
   1, // UVal (1)
   1, // UVal (2)
   0, // UVal (3)

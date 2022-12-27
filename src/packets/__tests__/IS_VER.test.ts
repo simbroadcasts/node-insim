@@ -6,7 +6,7 @@ describe('IS_VER', () => {
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
       20 / BasePacket.SIZE_MULTIPLIER, // Size
-      PacketType.ISP_VER, // Type
+      2, // Type
       1, // ReqI
       0, // Zero
       ...stringToBytes('0.7A'), // Version[8]

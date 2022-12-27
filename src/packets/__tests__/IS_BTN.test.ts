@@ -22,7 +22,7 @@ const data: IS_BTN_Data = {
 
 const expectedBuffer = Buffer.from([
   252 / BasePacket.SIZE_MULTIPLIER, // Size
-  PacketType.ISP_BTN, // Type
+  45, // Type
   1, // ReqI
   2, // UCID
   3, // ClickID
@@ -55,7 +55,7 @@ describe('IS_BTN', () => {
     };
     const expectedBuffer = Buffer.from([
       16 / BasePacket.SIZE_MULTIPLIER, // Size
-      PacketType.ISP_BTN, // Type
+      45, // Type
       1, // ReqI
       2, // UCID
       3, // ClickID

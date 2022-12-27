@@ -6,7 +6,7 @@ describe('IS_LAP', () => {
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
       20 / BasePacket.SIZE_MULTIPLIER, // Size
-      PacketType.ISP_LAP, // Type
+      24, // Type
       0, // ReqI
       2, // PLID
       4, // LTime (1)
@@ -22,7 +22,7 @@ describe('IS_LAP', () => {
       64, // Flags (1)
       2, // Flags (2)
       0, // Sp0
-      PenaltyValue.PENALTY_45, // Penalty
+      6, // Penalty
       3, // NumStops
       40, // Fuel200
     ]);

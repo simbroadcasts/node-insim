@@ -6,7 +6,7 @@ describe('IS_CPR', () => {
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
       36 / BasePacket.SIZE_MULTIPLIER, // Size
-      PacketType.ISP_CPR, // Type
+      20, // Type
       0, // ReqI
       3, // UCID
       ...stringToBytes('123456789 123456789 user'), // UName[24]

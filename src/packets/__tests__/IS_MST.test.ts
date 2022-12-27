@@ -9,7 +9,7 @@ const data: IS_MST_Data = {
 
 const expectedBuffer = Buffer.from([
   68 / BasePacket.SIZE_MULTIPLIER, // Size
-  PacketType.ISP_MST, // Type
+  13, // Type
   0, // ReqI
   0, // Zero
   ...stringToBytes(data.Msg),

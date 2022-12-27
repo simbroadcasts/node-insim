@@ -10,7 +10,7 @@ const data: IS_SFP_Data = {
 
 const expectedBuffer = Buffer.from([
   8 / BasePacket.SIZE_MULTIPLIER, // Size
-  PacketType.ISP_SFP, // Type
+  7, // Type
   0, // ReqI
   0, // Zero
   128, // Flag (1)

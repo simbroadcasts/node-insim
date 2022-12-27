@@ -12,7 +12,7 @@ const data: IS_MOD_Data = {
 
 const expectedBuffer = Buffer.from([
   20 / BasePacket.SIZE_MULTIPLIER, // Size
-  PacketType.ISP_MOD, // Type
+  15, // Type
   0, // ReqI
   0, // Zero
   2, // Bits16 (1)

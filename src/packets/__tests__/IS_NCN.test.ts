@@ -6,14 +6,14 @@ describe('IS_NCN', () => {
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
       56 / BasePacket.SIZE_MULTIPLIER, // Size
-      PacketType.ISP_NCN, // Type
+      18, // Type
       2, // ReqI
       3, // UCID
       ...stringToBytes('123456789 123456789 user'), // UName[24]
       ...stringToBytes('123456789 123456789 play'), // PName[24]
       1, // Admin
       14, // Total
-      ConnectionFlags.REMOTE, // Flags
+      4, // Flags
       0, // Sp3
     ]);
     const packet = new IS_NCN().unpack(buffer);

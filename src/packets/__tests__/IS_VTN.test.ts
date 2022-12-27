@@ -5,11 +5,11 @@ describe('IS_VTN', () => {
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
       8 / BasePacket.SIZE_MULTIPLIER, // Size
-      PacketType.ISP_VTN, // Type
+      16, // Type
       0, // ReqI
       0, // Zero
       3, // UCID
-      VoteAction.VOTE_QUALIFY, // Action
+      3, // Action
       0, // Spare2
       0, // Spare3
     ]);

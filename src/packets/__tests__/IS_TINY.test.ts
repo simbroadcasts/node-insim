@@ -10,9 +10,9 @@ const data: IS_TINY_Data = {
 
 const buffer = Buffer.from([
   4 / BasePacket.SIZE_MULTIPLIER, // Size
-  PacketType.ISP_TINY, // Type
+  3, // Type
   1, // ReqI
-  TinyType.TINY_CLOSE, // SubT
+  2, // SubT
 ]);
 
 describe('IS_TINY', () => {

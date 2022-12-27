@@ -14,28 +14,28 @@ describe('IS_NPL', () => {
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
       76 / BasePacket.SIZE_MULTIPLIER, // Size
-      PacketType.ISP_NPL, // Type
+      21, // Type
       0, // ReqI
       3, // PLID
       5, // UCID
-      PlayerType.AI, // PType
-      PlayerFlags.PIF_AUTOGEARS, // Flags (0)
+      2, // PType
+      8, // Flags (0)
       0, // PlayerFlags (1)
       ...stringToBytes("Player's name max length"), // PName[24]
       ...stringToBytes('MAX_CAR_TEX_NAME'), // SName[16]
-      TyreCompound.TYRE_R1, // TyreRL
-      TyreCompound.TYRE_R2, // TyreRR
-      TyreCompound.TYRE_R3, // TyreFL
-      TyreCompound.TYRE_R4, // TyreFR
+      0, // TyreRL
+      1, // TyreRR
+      2, // TyreFL
+      3, // TyreFR
       10, // H_Mass
       15, // H_TRes
       1, // Model
-      PassengerFlags.FRONT_FEMALE, // Pass
+      2, // Pass
       4, // RWAdj
       5, // FWAdj
       0, // Sp2
       0, // Sp3
-      SetupFlags.SETF_ABS_ENABLE, // SetF
+      4, // SetF
       20, // NumP
       1, // Config
       34, // Fuel

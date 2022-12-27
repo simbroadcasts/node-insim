@@ -17,14 +17,14 @@ const data: IS_ISI_Data = {
 
 const expectedBuffer = Buffer.from([
   44 / BasePacket.SIZE_MULTIPLIER, // Size
-  PacketType.ISP_ISI, // Type
+  1, // Type
   1, // ReqI
   0, // Zero
   1, // UDPPort (1)
   1, // UDPPort (2)
   2, // Flags (1)
   0, // flags (2)
-  InSim.INSIM_VERSION, // InSimVer
+  9, // InSimVer
   '!'.charCodeAt(0), // Prefix
   30, // Interval (1)
   0, // Interval (2)

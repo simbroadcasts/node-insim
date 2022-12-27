@@ -5,12 +5,12 @@ describe('IS_BTC', () => {
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
       8 / BasePacket.SIZE_MULTIPLIER, // Size
-      PacketType.ISP_BTC, // Type
+      46, // Type
       1, // ReqI
       2, // UCID
       3, // ClickID
-      INST_ALWAYS_ON, // Inst
-      ButtonClickFlags.ISB_RMB, // CFlags
+      128, // Inst
+      2, // CFlags
       0, // Sp3
     ]);
     const packet = new IS_BTC().unpack(buffer);

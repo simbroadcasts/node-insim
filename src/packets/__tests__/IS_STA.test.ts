@@ -14,30 +14,30 @@ describe('IS_STA', () => {
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
       28 / BasePacket.SIZE_MULTIPLIER, // Size
-      PacketType.ISP_STA, // Type
+      5, // Type
       1, // ReqI
       0, // Zero
       0, // ReplaySpeed (1)
       0, // ReplaySpeed (2)
       128, // ReplaySpeed (3)
       62, // ReplaySpeed (4)
-      StateFlags.ISS_SHIFTU, // Flags (1)
+      8, // Flags (1)
       0, // Flags (2)
-      ViewIdentifier.VIEW_DRIVER, // InGameCam
+      3, // InGameCam
       4, // ViewPLID
       32, // NumP
       47, // NumConns
       20, // NumFinished
-      RaceState.Qualifying, // RaceInProg
+      2, // RaceInProg
       60, // QualMins
       12, // RaceLaps
       0, // Sp2
-      ServerStatus.Success, // ServerStatus
+      1, // ServerStatus
       ...stringToBytes('BL2R'), // Track[6]
       0,
       0,
       1, // Weather
-      Wind.Strong, // Wind
+      2, // Wind
     ]);
     const packet = new IS_STA().unpack(buffer);
 

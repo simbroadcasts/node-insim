@@ -16,7 +16,7 @@ const data: IS_MTC_Data = {
 
 const expectedBuffer = Buffer.from([
   136 / BasePacket.SIZE_MULTIPLIER, // Size
-  PacketType.ISP_MTC, // Type
+  14, // Type
   0, // ReqI
   3, // Sound
   1, // UCID

@@ -5,7 +5,7 @@ describe('IS_PLL', () => {
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
       4 / BasePacket.SIZE_MULTIPLIER, // Size
-      PacketType.ISP_PLL, // Type
+      23, // Type
       1, // ReqI
       2, // PLID
     ]);
