@@ -11,8 +11,8 @@ describe('TCP', () => {
 
   it('should connect to a TCP socket', (done) => {
     const tcp = new TCP('127.0.0.1', 12345);
-
     mitm.on('connection', () => {
+      tcp.disconnect();
       done();
     });
 
@@ -29,6 +29,7 @@ describe('TCP', () => {
     tcp.connect();
     tcp.on('packet', (buffer: Buffer) => {
       expect(buffer.equals(Buffer.from([1, 3, 0, 0]))).toEqual(true);
+      tcp.disconnect();
       done();
     });
   });
@@ -57,6 +58,7 @@ describe('TCP', () => {
       packetsReceived++;
 
       if (packetsReceived === packets.length) {
+        tcp.disconnect();
         done();
       }
     });
