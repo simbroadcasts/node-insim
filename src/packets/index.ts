@@ -46,6 +46,8 @@ export { IS_PLA } from './IS_PLA';
 export { IS_PLL } from './IS_PLL';
 export { IS_PLP } from './IS_PLP';
 export { IS_PSF } from './IS_PSF';
+export type { IS_REO_Data } from './IS_REO';
+export { IS_REO } from './IS_REO';
 export { IS_RES } from './IS_RES';
 export { IS_RST } from './IS_RST';
 export type { IS_SCC_Data } from './IS_SCC';
