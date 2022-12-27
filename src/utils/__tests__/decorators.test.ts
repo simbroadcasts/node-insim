@@ -8,16 +8,11 @@ import {
   string,
   unsigned,
   word,
-} from '../../utils';
-import { PacketType } from '..';
-import { AbstractPacket } from '../base';
+} from '../index';
 
-describe('Packet property decorators', () => {
+describe('Class property decorators', () => {
   it('should return the correct jspack char for each binary data type', () => {
-    class TestPacket extends AbstractPacket {
-      ReqI = 0;
-      Size = 0;
-      Type = PacketType.ISP_ISI;
+    class TestClass {
       @string(1) Char = 'a';
       @string(3) String = 'abc';
       @byte() Byte = 255;
@@ -29,7 +24,7 @@ describe('Packet property decorators', () => {
       @float() Float = 1.2e-38;
     }
 
-    const packet = new TestPacket();
+    const packet = new TestClass();
 
     expect(getFormat(packet, 'Char')).toEqual('c');
     expect(getFormat(packet, 'String')).toEqual('3s');

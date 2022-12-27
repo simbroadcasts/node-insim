@@ -1,7 +1,7 @@
-import { byte, string } from '../../utils';
-import { stringToBytes } from '../../utils/tests';
-import { PacketType } from '..';
-import { AbstractSendablePacket } from '../base';
+import { byte, string } from '../../../utils';
+import { stringToBytes } from '../../../utils/tests';
+import { PacketType } from '../../';
+import { AbstractSendablePacket } from '../../base';
 
 describe('AbstractSendablePacket', () => {
   describe('initialize', () => {
