@@ -42,6 +42,7 @@ export { StateFlags } from './StateFlags';
 export { TinyType } from './TinyType';
 export { TypeIn } from './TypeIn';
 export { TyreCompound } from './TyreCompound';
+export { UCOAction } from './UCOAction';
 export { UserType } from './UserType';
 export { ViewIdentifier } from './ViewIdentifier';
 export { VoteAction } from './VoteAction';

@@ -43,6 +43,7 @@ import type {
   IS_STA,
   IS_TINY,
   IS_TOC,
+  IS_UCO,
   IS_VER,
   IS_VTN,
   PacketType,
@@ -96,6 +97,7 @@ export type InSimPacketEvents = {
   [PacketType.ISP_ACR]: (packet: IS_ACR, inSim: InSim) => void;
   [PacketType.ISP_NCI]: (packet: IS_NCI, inSim: InSim) => void;
   [PacketType.ISP_JRR]: (packet: IS_JRR, inSim: InSim) => void;
+  [PacketType.ISP_UCO]: (packet: IS_UCO, inSim: InSim) => void;
 };
 
 export type InSimEvents = InSimPacketEvents & {

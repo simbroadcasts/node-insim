@@ -83,6 +83,7 @@ export {
   SENDABLE_TINY_TYPES,
 } from './IS_TINY';
 export { IS_TOC } from './IS_TOC';
+export { IS_UCO } from './IS_UCO';
 export { IS_VER } from './IS_VER';
 export { IS_VTN } from './IS_VTN';
 export { NodeLap } from './NodeLap';
