@@ -1,23 +1,23 @@
 export enum PenaltyReason {
-  /** unknown or cleared penalty */
+  /** Unknown or cleared penalty */
   PENR_UNKNOWN,
 
-  /** penalty given by admin */
+  /** Penalty given by admin */
   PENR_ADMIN,
 
-  /** wrong way driving */
+  /** Wrong way driving */
   PENR_WRONG_WAY,
 
-  /** starting before green light */
+  /** Starting before green light */
   PENR_FALSE_START,
 
-  /** speeding in pit lane */
+  /** Speeding in pit lane */
   PENR_SPEEDING,
 
-  /** stop-go pit stop too short */
+  /** Stop-go pit stop too short */
   PENR_STOP_SHORT,
 
-  /** compulsory stop is too late */
+  /** Compulsory stop is too late */
   PENR_STOP_LATE,
 
   PENR_NUM,
