@@ -15,6 +15,7 @@ export {
   TypeIn,
 } from './IS_BTN';
 export { IS_BTT } from './IS_BTT';
+export { IS_CCH } from './IS_CCH';
 export { IS_CNL } from './IS_CNL';
 export type { AllowedStateFlags, IS_CPP_Data } from './IS_CPP';
 export { IS_CPP } from './IS_CPP';
