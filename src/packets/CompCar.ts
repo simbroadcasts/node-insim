@@ -1,9 +1,9 @@
 import { byte, int, short, word } from '../utils';
-import { AbstractStruct } from './base';
+import { Struct } from './base';
 import type { CompCarFlags } from './enums';
 import type { StructData } from './types';
 
-export class CompCar extends AbstractStruct {
+export class CompCar extends Struct {
   /** Current path node */
   @word() Node = 0;
 

@@ -1,12 +1,12 @@
 import { byte, string, word } from '../utils';
-import { AbstractPacket } from './base';
+import { Packet } from './base';
 import type { RaceFlags, Wind } from './enums';
 import { PacketType } from './enums';
 
 /**
  * Race STart
  */
-export class IS_RST extends AbstractPacket {
+export class IS_RST extends Packet {
   @byte() readonly Size = 28;
   @byte() readonly Type = PacketType.ISP_RST;
 

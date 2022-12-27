@@ -1,11 +1,11 @@
 import { byte, unsigned } from '../utils';
-import { AbstractPacket } from './base';
+import { Packet } from './base';
 import { PacketType } from './enums';
 
 /**
  * Pit Stop Finished
  */
-export class IS_PSF extends AbstractPacket {
+export class IS_PSF extends Packet {
   @byte() readonly Size = 12;
   @byte() readonly Type = PacketType.ISP_PSF;
   @byte() readonly ReqI = 0;

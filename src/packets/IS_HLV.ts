@@ -1,5 +1,5 @@
 import { byte, determineLength, word } from '../utils';
-import { AbstractPacket } from './base';
+import { Packet } from './base';
 import { CarContOBJ } from './CarContOBJ';
 import type { HLVCViolation } from './enums';
 import { PacketType } from './enums';
@@ -9,7 +9,7 @@ import { PacketType } from './enums';
  *
  * Set the {@link ISF_HLV} flag in the {@link IS_ISI} to receive reports of incidents that would violate HLVC.
  */
-export class IS_HLV extends AbstractPacket {
+export class IS_HLV extends Packet {
   @byte() readonly Size = 16;
   @byte() readonly Type = PacketType.ISP_HLV;
   @byte() readonly ReqI = 0;

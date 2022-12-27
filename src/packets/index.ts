@@ -1,4 +1,4 @@
-export type { Packet, Receivable, Sendable } from './base';
+export type { Packet, SendablePacket } from './base';
 export { CarContact } from './CarContact';
 export { CarContOBJ } from './CarContOBJ';
 export { CarHCP } from './CarHCP';
@@ -97,3 +97,4 @@ export { IS_VER } from './IS_VER';
 export { IS_VTN } from './IS_VTN';
 export { NodeLap } from './NodeLap';
 export { ObjectInfo } from './ObjectInfo';
+export type { Receivable, Sendable } from './types';

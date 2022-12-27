@@ -1,12 +1,12 @@
 import { byte, int } from '../utils';
-import { AbstractSendablePacket } from './base';
+import { SendablePacket } from './base';
 import { PacketType } from './enums';
 import type { PacketData } from './types';
 
 /**
  * MODe: send to LFS to change screen mode
  */
-export class IS_MOD extends AbstractSendablePacket {
+export class IS_MOD extends SendablePacket {
   @byte() readonly Size = 20;
   @byte() readonly Type = PacketType.ISP_MOD;
   @byte() readonly ReqI = 0;

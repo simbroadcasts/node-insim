@@ -1,5 +1,5 @@
 import { byte } from '../utils';
-import { AbstractSendablePacket } from './base';
+import { SendablePacket } from './base';
 import type { ButtonFunction } from './enums';
 import { PacketType } from './enums';
 import { IS_BTN } from './IS_BTN';
@@ -13,7 +13,7 @@ import type { PacketData } from './types';
  * - SHIFT+I clears all host buttons if any - or sends a {@link BFN_REQUEST} to host instances
  * - SHIFT+B is the same but for local buttons and local instances
  */
-export class IS_BFN extends AbstractSendablePacket {
+export class IS_BFN extends SendablePacket {
   @byte() readonly Size = 8;
   @byte() readonly Type = PacketType.ISP_BFN;
   @byte() readonly ReqI = 0;

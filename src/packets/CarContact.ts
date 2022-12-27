@@ -1,9 +1,9 @@
 import { byte, char, short } from '../utils';
-import { AbstractStruct } from './base';
+import { Struct } from './base';
 import type { CarContactFlags } from './enums';
 import type { StructData } from './types';
 
-export class CarContact extends AbstractStruct {
+export class CarContact extends Struct {
   @byte() PLID = 0;
 
   /** Like Info byte in {@link CompCar} (CCI_BLUE / CCI_YELLOW / CCI_LAG) */

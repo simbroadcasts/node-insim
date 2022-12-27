@@ -1,5 +1,5 @@
 import { byte } from '../utils';
-import { AbstractSendablePacket } from './base';
+import { SendablePacket } from './base';
 import type { ViewIdentifier } from './enums';
 import { PacketType } from './enums';
 import type { PacketData } from './types';
@@ -7,7 +7,7 @@ import type { PacketData } from './types';
 /**
  * Set Car Camera - Simplified camera packet (not SHIFT+U mode)
  */
-export class IS_SCC extends AbstractSendablePacket {
+export class IS_SCC extends SendablePacket {
   @byte() readonly Size = 8;
   @byte() readonly Type = PacketType.ISP_SCC;
   @byte() readonly ReqI = 0;

@@ -1,11 +1,11 @@
 import { byte } from '../utils';
-import { AbstractSendablePacket } from './base';
+import { SendablePacket } from './base';
 import { PacketType, TinyType } from './enums';
 
 /**
  * General purpose 4 byte packet
  */
-export class IS_TINY extends AbstractSendablePacket {
+export class IS_TINY extends SendablePacket {
   @byte() readonly Size = 4;
   @byte() readonly Type = PacketType.ISP_TINY;
 

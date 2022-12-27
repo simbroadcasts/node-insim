@@ -1,12 +1,12 @@
 import { byte, string } from '../utils';
-import { AbstractPacket } from './base';
+import { Packet } from './base';
 import type { ConnectionFlags } from './enums';
 import { PacketType } from './enums';
 
 /**
  * New ConN
  */
-export class IS_NCN extends AbstractPacket {
+export class IS_NCN extends Packet {
   @byte() readonly Size = 56;
   @byte() readonly Type = PacketType.ISP_NCN;
 

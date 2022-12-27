@@ -1,8 +1,8 @@
 import { byte, word } from '../utils';
-import { AbstractStruct } from './base';
+import { Struct } from './base';
 import type { StructData } from './types';
 
-export class NodeLap extends AbstractStruct {
+export class NodeLap extends Struct {
   /** Current path node */
   @word() Node = 0;
 

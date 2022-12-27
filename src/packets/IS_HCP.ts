@@ -1,5 +1,5 @@
 import { byte } from '../utils';
-import { AbstractSendablePacket } from './base';
+import { SendablePacket } from './base';
 import type { CarHCP } from './CarHCP';
 import { PacketType } from './enums';
 import type { PacketData } from './types';
@@ -11,7 +11,7 @@ import type { PacketData } from './types';
  * The same restriction applies to all drivers using a particular car model.
  * This can be useful for creating multi class hosts.
  */
-export class IS_HCP extends AbstractSendablePacket {
+export class IS_HCP extends SendablePacket {
   private static MAX_CARS = 32;
 
   @byte() readonly Size = 68;

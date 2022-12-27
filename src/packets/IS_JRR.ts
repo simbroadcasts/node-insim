@@ -1,5 +1,5 @@
 import { byte, struct } from '../utils';
-import { AbstractSendablePacket } from './base';
+import { SendablePacket } from './base';
 import type { JRRAction } from './enums';
 import { PacketType } from './enums';
 import { ObjectInfo } from './ObjectInfo';
@@ -23,7 +23,7 @@ import type { PacketData } from './types';
  * higher and StartPos must be set.
 
  */
-export class IS_JRR extends AbstractSendablePacket {
+export class IS_JRR extends SendablePacket {
   @byte() readonly Size = 16;
   @byte() readonly Type = PacketType.ISP_JRR;
   @byte() readonly ReqI = 0;

@@ -1,13 +1,13 @@
 import { InSimError } from '../protocols/InSim/InSimEvents';
 import { byte, getFormat, string, unpack } from '../utils';
-import { AbstractPacket } from './base';
+import { Packet } from './base';
 import type { AdminCommandResult } from './enums';
 import { PacketType } from './enums';
 
 /**
  * Admin Command Report - a user typed an admin command - variable size
  */
-export class IS_ACR extends AbstractPacket {
+export class IS_ACR extends Packet {
   private static readonly FIXED_DATA_SIZE = 8;
 
   /** 12, 16, 20... 72 depending on Text */
@@ -37,7 +37,7 @@ export class IS_ACR extends AbstractPacket {
       throw new InSimError('IS_ACR - Unpacked no data from buffer');
     }
 
-    const size = data[0] * AbstractPacket.SIZE_MULTIPLIER;
+    const size = data[0] * Packet.SIZE_MULTIPLIER;
     const textLength = size - IS_ACR.FIXED_DATA_SIZE;
 
     super.unpack(buffer, {

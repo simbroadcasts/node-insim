@@ -1,5 +1,5 @@
 import { byte } from '../utils';
-import { AbstractPacket } from './base';
+import { Packet } from './base';
 import type { VoteAction } from './enums';
 import { PacketType } from './enums';
 
@@ -8,7 +8,7 @@ import { PacketType } from './enums';
  *
  * LFS notifies the external program of any votes to restart or qualify.
  */
-export class IS_VTN extends AbstractPacket {
+export class IS_VTN extends Packet {
   @byte() readonly Size = 8;
   @byte() readonly Type = PacketType.ISP_VTN;
   @byte() readonly ReqI = 0;

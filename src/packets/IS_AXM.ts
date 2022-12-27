@@ -1,5 +1,5 @@
 import { byte, determineLength } from '../utils';
-import { AbstractSendablePacket } from './base';
+import { SendablePacket } from './base';
 import type { PMOAction, PMOFlags } from './enums';
 import { PacketType } from './enums';
 import { ObjectInfo } from './ObjectInfo';
@@ -14,7 +14,7 @@ import type { PacketData } from './types';
  * Set the {@link ISF_AXM_EDIT} flag in the {@link IS_ISI} for info about objects
  * edited by user or InSim.
  */
-export class IS_AXM extends AbstractSendablePacket {
+export class IS_AXM extends SendablePacket {
   public static readonly MAX_OBJECTS = 60;
 
   /** 8 + NumO * 8 */

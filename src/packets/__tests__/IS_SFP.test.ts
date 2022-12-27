@@ -1,7 +1,7 @@
 import { testInstructionPacket } from '../../utils/tests';
 import type { IS_SFP_Data } from '..';
 import { IS_SFP, PacketType, StateFlags } from '..';
-import { AbstractPacket } from '../base';
+import { Packet } from '../base';
 
 const size = 8;
 
@@ -11,7 +11,7 @@ const data: IS_SFP_Data = {
 };
 
 const buffer = Buffer.from([
-  size / AbstractPacket.SIZE_MULTIPLIER, // Size
+  size / Packet.SIZE_MULTIPLIER, // Size
   7, // Type
   0, // ReqI
   0, // Zero

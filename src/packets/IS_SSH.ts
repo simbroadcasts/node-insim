@@ -1,5 +1,5 @@
 import { byte, string } from '../utils';
-import { AbstractSendablePacket } from './base';
+import { SendablePacket } from './base';
 import type { ScreenshotError } from './enums';
 import { PacketType } from './enums';
 import type { PacketDataWithRequiredReqI } from './types';
@@ -14,7 +14,7 @@ import type { PacketDataWithRequiredReqI } from './types';
  *
  * LFS will reply with another IS_SSH when the request is completed.
  */
-export class IS_SSH extends AbstractSendablePacket {
+export class IS_SSH extends SendablePacket {
   @byte() readonly Size = 40;
   @byte() readonly Type = PacketType.ISP_SSH;
 

@@ -1,5 +1,5 @@
 import { byte, string } from '../utils';
-import { AbstractSendablePacket } from './base';
+import { SendablePacket } from './base';
 import type { MessageSound } from './enums';
 import { PacketType } from './enums';
 import type { PacketData } from './types';
@@ -7,7 +7,7 @@ import type { PacketData } from './types';
 /**
  * MSg Local - message to appear on local computer only
  */
-export class IS_MSL extends AbstractSendablePacket {
+export class IS_MSL extends SendablePacket {
   @byte() readonly Size = 132;
   @byte() readonly Type = PacketType.ISP_MSL;
   @byte() readonly ReqI = 0;

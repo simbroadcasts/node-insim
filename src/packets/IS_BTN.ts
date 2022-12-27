@@ -1,5 +1,5 @@
 import { byte, string } from '../utils';
-import { AbstractSendablePacket } from './base';
+import { SendablePacket } from './base';
 import type { ButtonStyle, ButtonTextColour } from './enums';
 import { PacketType } from './enums';
 import type { PacketDataWithRequiredReqI } from './types';
@@ -29,7 +29,7 @@ import type { PacketDataWithRequiredReqI } from './types';
  * that area will not have a space kept clear. You can also make buttons visible
  * in all screens by setting the {@link Inst} property to {@link INST_ALWAYS_ON}.
  */
-export class IS_BTN extends AbstractSendablePacket {
+export class IS_BTN extends SendablePacket {
   public static readonly INST_ALWAYS_ON = 128;
   public static readonly IS_X_MIN = 0;
   public static readonly IS_X_MAX = 110;

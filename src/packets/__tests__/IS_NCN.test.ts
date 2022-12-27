@@ -1,7 +1,7 @@
 import type { PacketTestData } from '../../utils/tests';
 import { stringToBytes, testInfoPacket } from '../../utils/tests';
 import { ConnectionFlags, IS_NCN, PacketType } from '..';
-import { AbstractPacket } from '../base';
+import { Packet } from '../base';
 
 const size = 56;
 
@@ -19,7 +19,7 @@ const data: PacketTestData<IS_NCN> = {
 };
 
 const buffer = Buffer.from([
-  size / AbstractPacket.SIZE_MULTIPLIER, // Size
+  size / Packet.SIZE_MULTIPLIER, // Size
   18, // Type
   2, // ReqI
   3, // UCID

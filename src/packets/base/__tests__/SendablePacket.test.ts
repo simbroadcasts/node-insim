@@ -1,18 +1,18 @@
 import { byte, byteArray, string, struct } from '../../../utils';
 import { stringToBytes } from '../../../utils/tests';
 import { PacketType } from '../../';
-import { AbstractSendablePacket, AbstractSendableStruct } from '../../base';
+import { SendablePacket, SendableStruct } from '../../base';
 
-class TestStruct extends AbstractSendableStruct {
+class TestStruct extends SendableStruct {
   @byte() First = 5;
   @byte() Second = 10;
   @string(3) Third = 'abc';
 }
 
-describe('AbstractSendablePacket', () => {
+describe('SendablePacket', () => {
   describe('initialize', () => {
     it('should populate instance properties using initialize()', () => {
-      class CustomPacket extends AbstractSendablePacket {
+      class CustomPacket extends SendablePacket {
         Size = 2;
         Type = PacketType.ISP_ISI;
         ReqI = 1;
@@ -35,7 +35,7 @@ describe('AbstractSendablePacket', () => {
     });
 
     it('should unpack binary data', () => {
-      class CustomPacket extends AbstractSendablePacket {
+      class CustomPacket extends SendablePacket {
         @byte() Size = 0;
         @byte() Type = PacketType.ISP_ISI;
         @byte() ReqI = 1;
@@ -45,7 +45,7 @@ describe('AbstractSendablePacket', () => {
       }
 
       const buffer = Buffer.from([
-        8 / AbstractSendablePacket.SIZE_MULTIPLIER, // Size
+        8 / SendablePacket.SIZE_MULTIPLIER, // Size
         PacketType.ISP_NCN, // Type
         2, // ReqI
         ...stringToBytes('test'), // StringProperty[6]
@@ -68,7 +68,7 @@ describe('AbstractSendablePacket', () => {
     });
 
     it('pack data into a buffer', () => {
-      class CustomPacket extends AbstractSendablePacket {
+      class CustomPacket extends SendablePacket {
         @byte() Size = 8;
         @byte() Type = PacketType.ISP_ISI;
         @byte() ReqI = 2;
@@ -79,7 +79,7 @@ describe('AbstractSendablePacket', () => {
       }
 
       const expectedBuffer = Buffer.from([
-        8 / AbstractSendablePacket.SIZE_MULTIPLIER, // Size
+        8 / SendablePacket.SIZE_MULTIPLIER, // Size
         PacketType.ISP_ISI, // Type
         2, // ReqI
         ...stringToBytes('test'), // StringProperty[6]

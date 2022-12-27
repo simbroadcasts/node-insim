@@ -7,7 +7,7 @@ import {
   ObjectIndex,
   PacketType,
 } from '..';
-import { AbstractPacket } from '../base';
+import { Packet } from '../base';
 
 const size = 24;
 
@@ -35,7 +35,7 @@ const data: PacketTestData<IS_OBH> = {
 };
 
 const buffer = Buffer.from([
-  size / AbstractPacket.SIZE_MULTIPLIER, // Size
+  size / Packet.SIZE_MULTIPLIER, // Size
   51, // Type
   0, // ReqI
   3, // PLID

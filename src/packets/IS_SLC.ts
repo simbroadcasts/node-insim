@@ -1,5 +1,5 @@
 import { byte, carName } from '../utils';
-import { AbstractPacket } from './base';
+import { Packet } from './base';
 import { PacketType } from './enums';
 
 /**
@@ -8,7 +8,7 @@ import { PacketType } from './enums';
  * NOTE: If a new guest joins and does have a car selected then an {@link IS_SLC} will
  * be sent.
  */
-export class IS_SLC extends AbstractPacket {
+export class IS_SLC extends Packet {
   @byte() readonly Size = 8;
   @byte() readonly Type = PacketType.ISP_SLC;
 

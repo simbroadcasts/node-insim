@@ -1,5 +1,5 @@
 import { byte } from '../utils';
-import { AbstractSendablePacket } from './base';
+import { SendablePacket } from './base';
 import type { TargetToConnectionType } from './enums';
 import { PacketType } from './enums';
 import type { PacketDataWithRequiredReqI } from './types';
@@ -14,7 +14,7 @@ import type { PacketDataWithRequiredReqI } from './types';
  * - SubT: {@link TTC_SEL}  (request an {@link IS_AXM} for the current selection)
  * - UCID: connection       (0 = local / non-zero = guest)
  */
-export class IS_TTC extends AbstractSendablePacket {
+export class IS_TTC extends SendablePacket {
   @byte() readonly Size = 8;
   @byte() readonly Type = PacketType.ISP_TTC;
 

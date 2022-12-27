@@ -1,5 +1,5 @@
 import { byte, string, word } from '../utils';
-import { AbstractSendablePacket } from './base';
+import { SendablePacket } from './base';
 import type { InSimFlags } from './enums';
 import { PacketType } from './enums';
 import type { PacketDataWithOptionalReqI } from './types';
@@ -7,7 +7,7 @@ import type { PacketDataWithOptionalReqI } from './types';
 /**
  * InSim Init - packet to initialise the InSim system
  */
-export class IS_ISI extends AbstractSendablePacket {
+export class IS_ISI extends SendablePacket {
   @byte() readonly Size = 44;
   @byte() readonly Type = PacketType.ISP_ISI;
 

@@ -1,7 +1,7 @@
 import type { PacketTestData } from '../../utils/tests';
 import { testInfoPacket } from '../../utils/tests';
 import { IS_SLC, PacketType } from '..';
-import { AbstractPacket } from '../base';
+import { Packet } from '../base';
 
 const size = 8;
 
@@ -14,7 +14,7 @@ describe('IS_SLC', () => {
     };
 
     const officialCarBuffer = Buffer.from([
-      size / AbstractPacket.SIZE_MULTIPLIER, // Size
+      size / Packet.SIZE_MULTIPLIER, // Size
       62, // Type
       3, // ReqI
       2, // UCID
@@ -41,7 +41,7 @@ describe('IS_SLC', () => {
     };
 
     const modBuffer = Buffer.from([
-      size / AbstractPacket.SIZE_MULTIPLIER, // Size
+      size / Packet.SIZE_MULTIPLIER, // Size
       62, // Type
       3, // ReqI
       2, // UCID

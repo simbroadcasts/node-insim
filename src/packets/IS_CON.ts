@@ -1,5 +1,5 @@
 import { byte, determineLength, word } from '../utils';
-import { AbstractPacket } from './base';
+import { Packet } from './base';
 import { CarContact } from './CarContact';
 import { PacketType } from './enums';
 
@@ -10,7 +10,7 @@ import { PacketType } from './enums';
  *
  * Set the {@link ISF_CON} flag in the {@link IS_ISI} to receive car contact reports.
  */
-export class IS_CON extends AbstractPacket {
+export class IS_CON extends Packet {
   @byte() readonly Size = 40;
   @byte() readonly Type = PacketType.ISP_CON;
   @byte() readonly ReqI = 0;

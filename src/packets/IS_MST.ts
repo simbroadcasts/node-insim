@@ -1,12 +1,12 @@
 import { byte, string } from '../utils';
-import { AbstractSendablePacket } from './base';
+import { SendablePacket } from './base';
 import { PacketType } from './enums';
 import type { PacketData } from './types';
 
 /**
  * MSg Type - send to LFS to type message or command
  */
-export class IS_MST extends AbstractSendablePacket {
+export class IS_MST extends SendablePacket {
   @byte() readonly Size = 68;
   @byte() readonly Type = PacketType.ISP_MST;
   @byte() readonly ReqI = 0;

@@ -1,9 +1,9 @@
 import { byte, short } from '../utils';
-import { AbstractSendableStruct } from './base';
+import { SendableStruct } from './base';
 import type { ObjectIndex } from './enums';
 import type { StructData } from './types';
 
-export class ObjectInfo extends AbstractSendableStruct {
+export class ObjectInfo extends SendableStruct {
   /** Position (1 metre = 16) */
   @short() X = 0;
 

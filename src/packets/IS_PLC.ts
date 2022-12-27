@@ -1,5 +1,5 @@
 import { byte, unsigned } from '../utils';
-import { AbstractSendablePacket } from './base';
+import { SendablePacket } from './base';
 import type { CarFlags } from './enums';
 import { PacketType } from './enums';
 import type { PacketData } from './types';
@@ -11,7 +11,7 @@ import type { PacketData } from './types';
  * The resulting set of selectable cars is a subset of the cars set to be available
  * on the host (by the /cars command or {@link SMALL_ALC}).
  */
-export class IS_PLC extends AbstractSendablePacket {
+export class IS_PLC extends SendablePacket {
   @byte() readonly Size = 12;
   @byte() readonly Type = PacketType.ISP_PLC;
   @byte() readonly ReqI = 0;

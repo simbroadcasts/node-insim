@@ -1,5 +1,5 @@
 import { byte, byteArray } from '../utils';
-import { AbstractSendablePacket } from './base';
+import { SendablePacket } from './base';
 import { PacketType } from './enums';
 import type { PacketData } from './types';
 
@@ -23,7 +23,7 @@ import type { PacketData } from './types';
  * - ReqI: non-zero            (returned in the reply)
  * - SubT: {@link TINY_REO}    (request an IS_REO)
  */
-export class IS_REO extends AbstractSendablePacket {
+export class IS_REO extends SendablePacket {
   private MAX_DRIVERS = 40;
 
   @byte() readonly Size = 44;

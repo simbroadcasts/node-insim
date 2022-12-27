@@ -1,18 +1,9 @@
 import { printDiffOrStringify } from 'jest-matcher-utils';
 
-import type { Packet } from '../packets';
 import type { PacketType } from '../packets';
-import type { AbstractSendablePacket } from '../packets/base';
-import type {
-  BothWaysPacket,
-  InfoPacket,
-  InstructionPacket,
-} from '../packets/types';
+import type { Packet, SendablePacket } from '../packets/base';
 
-type CommonPacketPropsWithoutReqI = Exclude<
-  keyof AbstractSendablePacket,
-  'ReqI'
->;
+type CommonPacketPropsWithoutReqI = Exclude<keyof SendablePacket, 'ReqI'>;
 
 export type PacketTestData<P extends Packet> = Partial<
   Omit<P, CommonPacketPropsWithoutReqI>
@@ -27,7 +18,7 @@ type TestPacketParams<Data extends PacketTestData<P>, P extends Packet> = {
 };
 
 export function testBothWaysPacket<
-  Packet extends BothWaysPacket,
+  Packet extends SendablePacket,
   Data extends PacketTestData<Packet>,
 >(params: TestPacketParams<Data, Packet>) {
   testInfoPacket(params);
@@ -35,14 +26,14 @@ export function testBothWaysPacket<
 }
 
 export function testInfoPacket<
-  Packet extends InfoPacket,
-  Data extends PacketTestData<Packet>,
->({ packetClass, size, type, data, buffer }: TestPacketParams<Data, Packet>) {
+  P extends Packet,
+  Data extends PacketTestData<P>,
+>({ packetClass, size, type, data, buffer }: TestPacketParams<Data, P>) {
   it('should unpack data from a buffer into a packet instance', () => {
     const packet = new packetClass().unpack(buffer);
 
     Object.entries(data).forEach(([key, expectedValue]) => {
-      const actualValue = packet[key as keyof Packet];
+      const actualValue = packet[key as keyof P];
       try {
         expect(actualValue).toEqual(expectedValue);
       } catch (e) {
@@ -63,7 +54,7 @@ export function testInfoPacket<
 }
 
 export function testInstructionPacket<
-  Packet extends InstructionPacket,
+  Packet extends SendablePacket,
   Data extends PacketTestData<Packet>,
 >({ packetClass, size, type, data, buffer }: TestPacketParams<Data, Packet>) {
   const packet = new packetClass(data);
@@ -72,7 +63,7 @@ export function testInstructionPacket<
 }
 
 export function testInstructionPacketConstructor<
-  Packet extends InstructionPacket,
+  Packet extends SendablePacket,
   Data extends PacketTestData<Packet>,
 >(packet: Packet, expectedSize: number, expectedType: PacketType, data: Data) {
   it('should fill data from the constructor', () => {
@@ -96,7 +87,7 @@ export function testInstructionPacketConstructor<
   });
 }
 
-export function testInstructionPacketToBuffer<Packet extends InstructionPacket>(
+export function testInstructionPacketToBuffer<Packet extends SendablePacket>(
   packet: Packet,
   expectedBuffer: Buffer,
 ) {

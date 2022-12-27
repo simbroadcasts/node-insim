@@ -1,7 +1,7 @@
 import type { PacketTestData } from '../../utils/tests';
 import { testInfoPacket } from '../../utils/tests';
 import { IS_NLP, NodeLap, PacketType } from '..';
-import { AbstractPacket } from '../base';
+import { Packet } from '../base';
 
 const size = 40;
 
@@ -25,7 +25,7 @@ const data: PacketTestData<IS_NLP> = {
 };
 
 const buffer = Buffer.from([
-  size / AbstractPacket.SIZE_MULTIPLIER, // Size
+  size / Packet.SIZE_MULTIPLIER, // Size
   37, // Type
   1, // ReqI
   2, // NumP

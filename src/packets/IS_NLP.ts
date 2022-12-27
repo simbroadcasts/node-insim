@@ -1,6 +1,6 @@
 import { InSimError } from '../protocols/InSim/InSimEvents';
 import { byte, determineLength, unpack } from '../utils';
-import { AbstractPacket } from './base';
+import { Packet } from './base';
 import { PacketType } from './enums';
 import { NodeLap } from './NodeLap';
 
@@ -14,7 +14,7 @@ import { NodeLap } from './NodeLap';
  *
  * If {@link ISF_NLP} flag is set, one {@link IS_NLP} packet is sent...
  */
-export class IS_NLP extends AbstractPacket {
+export class IS_NLP extends Packet {
   /** 4 + NumP * 6 (PLUS 2 if needed to make it a multiple of 4) */
   @byte() readonly Size = 4;
 

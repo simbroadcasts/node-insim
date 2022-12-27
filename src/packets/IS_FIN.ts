@@ -1,12 +1,12 @@
 import { byte, unsigned, word } from '../utils';
-import { AbstractPacket } from './base';
+import { Packet } from './base';
 import type { ConfirmationFlags, PlayerFlags } from './enums';
 import { PacketType } from './enums';
 
 /**
  * FINished race notification (not a final result - use {@link IS_RES})
  */
-export class IS_FIN extends AbstractPacket {
+export class IS_FIN extends Packet {
   @byte() readonly Size = 20;
   @byte() readonly Type = PacketType.ISP_FIN;
   @byte() readonly ReqI = 0;

@@ -9,7 +9,7 @@ import {
   ViewIdentifier,
   Wind,
 } from '..';
-import { AbstractPacket } from '../base';
+import { Packet } from '../base';
 
 const size = 28;
 
@@ -33,7 +33,7 @@ const data: PacketTestData<IS_STA> = {
 };
 
 const buffer = Buffer.from([
-  size / AbstractPacket.SIZE_MULTIPLIER, // Size
+  size / Packet.SIZE_MULTIPLIER, // Size
   5, // Type
   1, // ReqI
   0, // Zero

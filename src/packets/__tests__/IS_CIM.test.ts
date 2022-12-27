@@ -7,7 +7,7 @@ import {
   PacketType,
   ShiftUInterfaceSubmode,
 } from '..';
-import { AbstractPacket } from '../base';
+import { Packet } from '../base';
 
 const size = 8;
 
@@ -19,7 +19,7 @@ const data: PacketTestData<IS_CIM> = {
 };
 
 const buffer = Buffer.from([
-  size / AbstractPacket.SIZE_MULTIPLIER, // Size
+  size / Packet.SIZE_MULTIPLIER, // Size
   64, // Type
   0, // ReqI
   4, // UCID

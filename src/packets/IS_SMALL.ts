@@ -1,12 +1,12 @@
 import { byte, unsigned } from '../utils';
-import { AbstractSendablePacket } from './base';
+import { SendablePacket } from './base';
 import { PacketType, SmallType } from './enums';
 import type { PacketDataWithOptionalReqI } from './types';
 
 /**
  * General purpose 8 byte packet
  */
-export class IS_SMALL extends AbstractSendablePacket {
+export class IS_SMALL extends SendablePacket {
   @byte() readonly Size = 8;
   @byte() readonly Type = PacketType.ISP_SMALL;
 

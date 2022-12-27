@@ -1,5 +1,5 @@
 import { byte, byteArray, determineLength, short, word } from '../utils';
-import { AbstractPacket } from './base';
+import { Packet } from './base';
 import { CarContOBJ } from './CarContOBJ';
 import type { ObjectHitFlags, ObjectIndex } from './enums';
 import { PacketType } from './enums';
@@ -9,7 +9,7 @@ import { PacketType } from './enums';
  *
  * Set the {@link ISF_OBH} flag in the {@link IS_ISI} to receive object contact reports.
  */
-export class IS_OBH extends AbstractPacket {
+export class IS_OBH extends Packet {
   @byte() readonly Size = 24;
   @byte() readonly Type = PacketType.ISP_OBH;
   @byte() readonly ReqI = 0;

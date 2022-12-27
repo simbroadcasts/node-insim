@@ -1,5 +1,5 @@
 import { byte } from '../utils';
-import { AbstractPacket } from './base';
+import { Packet } from './base';
 import type { PenaltyReason, PenaltyValue } from './enums';
 import { PacketType } from './enums';
 
@@ -11,7 +11,7 @@ import { PacketType } from './enums';
  * - False start: OldPen = 0 / NewPen = {@link PENALTY_30} / Reason = {@link PENR_FALSE_START}
  * - Wrong route: OldPen = 0 / NewPen = {@link PENALTY_45} / Reason = {@link PENR_WRONG_WAY}
  */
-export class IS_PEN extends AbstractPacket {
+export class IS_PEN extends Packet {
   @byte() readonly Size = 8;
   @byte() readonly Type = PacketType.ISP_PEN;
   @byte() readonly ReqI = 0;

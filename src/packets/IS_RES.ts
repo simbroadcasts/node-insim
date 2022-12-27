@@ -1,12 +1,12 @@
 import { byte, string, unsigned, word } from '../utils';
-import { AbstractPacket } from './base';
+import { Packet } from './base';
 import type { ConfirmationFlags, PlayerFlags } from './enums';
 import { PacketType } from './enums';
 
 /**
  * RESult (qualify or confirmed finish)
  */
-export class IS_RES extends AbstractPacket {
+export class IS_RES extends Packet {
   @byte() readonly Size = 84;
   @byte() readonly Type = PacketType.ISP_RES;
 

@@ -2,7 +2,7 @@ import { testInfoPacket, testInstructionPacket } from '../../utils/tests';
 import type { IS_AXM_Data } from '..';
 import { ObjectInfo } from '..';
 import { IS_AXM, PacketType, PMOAction, PMOFlags } from '..';
-import { AbstractPacket } from '../base';
+import { Packet } from '../base';
 
 const size = 488;
 
@@ -496,7 +496,7 @@ const data: IS_AXM_Data = {
 };
 
 const buffer = Buffer.from([
-  size / AbstractPacket.SIZE_MULTIPLIER, // Size
+  size / Packet.SIZE_MULTIPLIER, // Size
   54, // Type
   0, // ReqI
   60, // NumO
@@ -1025,7 +1025,7 @@ describe('IS_AXM', () => {
     };
 
     const buffer = Buffer.from([
-      size / AbstractPacket.SIZE_MULTIPLIER, // Size
+      size / Packet.SIZE_MULTIPLIER, // Size
       54, // Type
       0, // ReqI
       1, // NumO

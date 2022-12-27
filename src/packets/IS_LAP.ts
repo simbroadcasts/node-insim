@@ -1,12 +1,12 @@
 import { byte, unsigned, word } from '../utils';
-import { AbstractPacket } from './base';
+import { Packet } from './base';
 import type { PenaltyValue, PlayerFlags } from './enums';
 import { PacketType } from './enums';
 
 /**
  * LAP time
  */
-export class IS_LAP extends AbstractPacket {
+export class IS_LAP extends Packet {
   @byte() readonly Size = 20;
   @byte() readonly Type = PacketType.ISP_LAP;
   @byte() readonly ReqI = 0;

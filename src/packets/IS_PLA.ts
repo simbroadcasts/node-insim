@@ -1,12 +1,12 @@
 import { byte } from '../utils';
-import { AbstractPacket } from './base';
+import { Packet } from './base';
 import type { PitLaneFact } from './enums';
 import { PacketType } from './enums';
 
 /**
  * Pit LAne
  */
-export class IS_PLA extends AbstractPacket {
+export class IS_PLA extends Packet {
   @byte() readonly Size = 8;
   @byte() readonly Type = PacketType.ISP_PLA;
   @byte() readonly ReqI = 0;

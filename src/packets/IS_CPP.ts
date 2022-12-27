@@ -1,5 +1,5 @@
 import { byte, float, int, word } from '../utils';
-import { AbstractSendablePacket } from './base';
+import { SendablePacket } from './base';
 import type { StateFlags, ViewIdentifier } from './enums';
 import { PacketType } from './enums';
 import type { PacketData } from './types';
@@ -10,7 +10,7 @@ import type { PacketData } from './types';
  * A Camera Position Packet can be used for LFS to report a camera position and state.
  * An InSim program can also send one to set LFS camera position in game or SHIFT+U mode.
  */
-export class IS_CPP extends AbstractSendablePacket {
+export class IS_CPP extends SendablePacket {
   @byte() readonly Size = 32;
   @byte() readonly Type = PacketType.ISP_CPP;
 

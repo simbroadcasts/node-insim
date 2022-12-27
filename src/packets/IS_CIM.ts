@@ -1,5 +1,5 @@
 import { byte } from '../utils';
-import { AbstractPacket } from './base';
+import { Packet } from './base';
 import type {
   GarageInterfaceSubmode,
   InterfaceMode,
@@ -12,7 +12,7 @@ import { PacketType } from './enums';
 /**
  * Conn Interface Mode
  */
-export class IS_CIM extends AbstractPacket {
+export class IS_CIM extends Packet {
   @byte() readonly Size = 8;
   @byte() readonly Type = PacketType.ISP_CIM;
   @byte() readonly ReqI = 0;

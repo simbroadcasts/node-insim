@@ -1,7 +1,7 @@
 import type { PacketTestData } from '../../utils/tests';
 import { testInfoPacket } from '../../utils/tests';
 import { CarContOBJ, CSCAction, IS_CSC, PacketType } from '..';
-import { AbstractPacket } from '../base';
+import { Packet } from '../base';
 
 const size = 20;
 
@@ -20,7 +20,7 @@ const data: PacketTestData<IS_CSC> = {
 };
 
 const buffer = Buffer.from([
-  size / AbstractPacket.SIZE_MULTIPLIER, // Size
+  size / Packet.SIZE_MULTIPLIER, // Size
   63, // Type
   0, // ReqI
   2, // PLID

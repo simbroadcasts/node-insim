@@ -1,7 +1,7 @@
 import type { PacketTestData } from '../../utils/tests';
 import { testInfoPacket } from '../../utils/tests';
 import { IS_TOC, PacketType } from '..';
-import { AbstractPacket } from '../base';
+import { Packet } from '../base';
 
 const size = 8;
 
@@ -13,7 +13,7 @@ const data: PacketTestData<IS_TOC> = {
 };
 
 const buffer = Buffer.from([
-  size / AbstractPacket.SIZE_MULTIPLIER, // Size
+  size / Packet.SIZE_MULTIPLIER, // Size
   31, // Type
   0, // ReqI
   3, // PLID

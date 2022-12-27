@@ -1,5 +1,5 @@
 import { byte, determineLength, struct, unsigned } from '../utils';
-import { AbstractPacket } from './base';
+import { Packet } from './base';
 import { CarContOBJ } from './CarContOBJ';
 import type { CSCAction } from './enums';
 import { PacketType } from './enums';
@@ -7,7 +7,7 @@ import { PacketType } from './enums';
 /**
  * Car State Changed - reports a change in a car's state (currently start or stop)
  */
-export class IS_CSC extends AbstractPacket {
+export class IS_CSC extends Packet {
   @byte() readonly Size = 20;
   @byte() readonly Type = PacketType.ISP_CSC;
   @byte() readonly ReqI = 0;

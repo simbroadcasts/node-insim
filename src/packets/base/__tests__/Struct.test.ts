@@ -1,12 +1,12 @@
 import { byte, string } from '../../../utils';
 import { stringToBytes } from '../../../utils/tests';
 import { PacketType } from '../../';
-import { AbstractStruct } from '../../base';
+import { Struct } from '../Struct';
 
-describe('AbstractStruct', () => {
+describe('Struct', () => {
   describe('getValidPropertyNames', () => {
     it('should return an empty array if no properties are annotated', () => {
-      class CustomPacket extends AbstractStruct {
+      class CustomPacket extends Struct {
         Size = 2;
         Type = PacketType.ISP_ISI;
         ReqI = 1;
@@ -23,7 +23,7 @@ describe('AbstractStruct', () => {
     });
 
     it('should return list of annotated properties', () => {
-      class CustomPacket extends AbstractStruct {
+      class CustomPacket extends Struct {
         @byte() Size = 2;
         @byte() Type = PacketType.ISP_ISI;
         @byte() ReqI = 1;
@@ -50,7 +50,7 @@ describe('AbstractStruct', () => {
 
   describe('getFormat', () => {
     it('should return the jspack format of all valid properties', () => {
-      class CustomPacket extends AbstractStruct {
+      class CustomPacket extends Struct {
         @byte() Size = 2;
         @byte() Type = PacketType.ISP_ISI;
         @byte() ReqI = 1;
@@ -69,7 +69,7 @@ describe('AbstractStruct', () => {
     });
 
     it('should override property format if provided', () => {
-      class CustomPacket extends AbstractStruct {
+      class CustomPacket extends Struct {
         @byte() Size = 2;
         @byte() Type = PacketType.ISP_ISI;
         @byte() ReqI = 1;
@@ -91,7 +91,7 @@ describe('AbstractStruct', () => {
   });
 
   it('should unpack binary data', () => {
-    class CustomStruct extends AbstractStruct {
+    class CustomStruct extends Struct {
       @string(6) StringProperty = 'string';
       @byte() NumberProperty = 0;
     }

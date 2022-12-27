@@ -1,13 +1,12 @@
 import { pack } from '../../utils';
 import type { PacketType } from '../enums';
-import { AbstractSendableStruct } from './AbstractSendableStruct';
-import type { Packet } from './Packet';
-import type { Receivable } from './Receivable';
-import type { Sendable } from './Sendable';
+import type { Receivable, Sendable } from '../types';
+import { Packet } from './Packet';
+import { SendableStruct } from './SendableStruct';
 
-export abstract class AbstractSendablePacket
-  extends AbstractSendableStruct
-  implements Packet, Receivable, Sendable
+export abstract class SendablePacket
+  extends Packet
+  implements Receivable, Sendable
 {
   abstract Size: number;
   abstract Type: PacketType;
@@ -23,15 +22,14 @@ export abstract class AbstractSendablePacket
 
       if (propertyName === 'Size') {
         values.push(
-          (propertyValue as unknown as number) /
-            AbstractSendablePacket.SIZE_MULTIPLIER,
+          (propertyValue as unknown as number) / SendablePacket.SIZE_MULTIPLIER,
         );
         return;
       }
 
       // Spread all values of structs in packet properties
-      if (propertyValue instanceof AbstractSendableStruct) {
-        const struct = propertyValue as AbstractSendableStruct;
+      if (propertyValue instanceof SendableStruct) {
+        const struct = propertyValue as SendableStruct;
 
         const map = struct
           .getValidPropertyNames()

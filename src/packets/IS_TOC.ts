@@ -1,11 +1,11 @@
 import { byte } from '../utils';
-import { AbstractPacket } from './base';
+import { Packet } from './base';
 import { PacketType } from './enums';
 
 /**
  * Take Over Car
  */
-export class IS_TOC extends AbstractPacket {
+export class IS_TOC extends Packet {
   @byte() readonly Size = 8;
   @byte() readonly Type = PacketType.ISP_TOC;
   @byte() readonly ReqI = 0;

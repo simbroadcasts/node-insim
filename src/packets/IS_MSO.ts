@@ -1,6 +1,6 @@
 import { InSimError } from '../protocols/InSim/InSimEvents';
 import { byte, getFormat, string, unpack } from '../utils';
-import { AbstractPacket } from './base';
+import { Packet } from './base';
 import type { UserType } from './enums';
 import { PacketType } from './enums';
 
@@ -9,7 +9,7 @@ import { PacketType } from './enums';
  *
  * NOTE: Typing "/o MESSAGE" into LFS will send an IS_MSO with {@link UserType} = {@link MSO_O}
  */
-export class IS_MSO extends AbstractPacket {
+export class IS_MSO extends Packet {
   private static readonly FIXED_DATA_SIZE = 8;
 
   @byte() readonly Size = IS_MSO.FIXED_DATA_SIZE;
@@ -39,7 +39,7 @@ export class IS_MSO extends AbstractPacket {
       throw new InSimError('IS_MSO - Unpacked no data from buffer');
     }
 
-    const size = data[0] * AbstractPacket.SIZE_MULTIPLIER;
+    const size = data[0] * Packet.SIZE_MULTIPLIER;
     const msgLength = size - IS_MSO.FIXED_DATA_SIZE;
 
     super.unpack(buffer, {

@@ -2,13 +2,13 @@ import parseLFSMessage from 'parse-lfs-message';
 
 import { InSimError } from '../../protocols/InSim/InSimEvents';
 import { getFormat, log as baseLog, unpack } from '../../utils';
-import type { Receivable } from './Receivable';
+import type { Receivable } from '../types';
 
-const log = baseLog.extend('abstract-struct');
+const log = baseLog.extend('struct');
 
 type Data = Record<string, unknown>;
 
-export abstract class AbstractStruct implements Receivable {
+export abstract class Struct implements Receivable {
   public static SIZE_MULTIPLIER = 4;
 
   protected initialize(data?: Partial<Data>) {
@@ -72,7 +72,7 @@ export abstract class AbstractStruct implements Receivable {
 
       if (propertyName === 'Size') {
         (this[propertyName as keyof this] as unknown as number) =
-          value * AbstractStruct.SIZE_MULTIPLIER;
+          value * Struct.SIZE_MULTIPLIER;
         return;
       }
 

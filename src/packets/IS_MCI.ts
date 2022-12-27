@@ -1,12 +1,12 @@
 import { byte, determineLength } from '../utils';
-import { AbstractPacket } from './base';
+import { Packet } from './base';
 import { CompCar } from './CompCar';
 import { PacketType } from './enums';
 
 /**
  * Multi Car Info - if more than {@link MCI_MAX_CARS} in race then more than one is sent
  */
-export class IS_MCI extends AbstractPacket {
+export class IS_MCI extends Packet {
   /** 4 + NumC * 28 */
   @byte() readonly Size = 4;
 

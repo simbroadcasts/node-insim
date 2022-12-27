@@ -1,12 +1,12 @@
 import { InSimError } from '../protocols/InSim/InSimEvents';
 import { byte, getFormat, string, unpack } from '../utils';
-import { AbstractPacket } from './base';
+import { Packet } from './base';
 import { PacketType } from './enums';
 
 /**
  * InsIm Info - /i message from user to host's InSim - variable size
  */
-export class IS_III extends AbstractPacket {
+export class IS_III extends Packet {
   private static readonly FIXED_DATA_SIZE = 8;
 
   @byte() readonly Size = IS_III.FIXED_DATA_SIZE;
@@ -33,7 +33,7 @@ export class IS_III extends AbstractPacket {
       throw new InSimError('IS_III - Unpacked no data from buffer');
     }
 
-    const size = data[0] * AbstractPacket.SIZE_MULTIPLIER;
+    const size = data[0] * Packet.SIZE_MULTIPLIER;
     const msgLength = size - IS_III.FIXED_DATA_SIZE;
 
     super.unpack(buffer, {

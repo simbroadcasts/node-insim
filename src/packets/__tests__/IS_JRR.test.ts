@@ -1,7 +1,7 @@
 import { testInstructionPacket } from '../../utils/tests';
 import type { IS_JRR_Data } from '..';
 import { IS_JRR, JRRAction, ObjectInfo, PacketType } from '..';
-import { AbstractPacket } from '../base';
+import { Packet } from '../base';
 
 const size = 16;
 
@@ -20,7 +20,7 @@ const data: IS_JRR_Data = {
 };
 
 const buffer = Buffer.from([
-  size / AbstractPacket.SIZE_MULTIPLIER, // Size
+  size / Packet.SIZE_MULTIPLIER, // Size
   58, // Type
   0, // ReqI
   3, // PLID

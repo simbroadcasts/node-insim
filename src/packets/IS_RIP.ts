@@ -1,5 +1,5 @@
 import { byte, string, unsigned } from '../utils';
-import { AbstractSendablePacket } from './base';
+import { SendablePacket } from './base';
 import type { ReplayError, ReplayMode, ReplayOptions } from './enums';
 import { PacketType } from './enums';
 import type { PacketDataWithRequiredReqI } from './types';
@@ -14,7 +14,7 @@ import type { PacketDataWithRequiredReqI } from './types';
  * - ReqI: non-zero          (returned in the reply)
  * - SubT: {@link TINY_RIP}  (Replay Information Packet)
  */
-export class IS_RIP extends AbstractSendablePacket {
+export class IS_RIP extends SendablePacket {
   @byte() readonly Size = 80;
   @byte() readonly Type = PacketType.ISP_RIP;
 

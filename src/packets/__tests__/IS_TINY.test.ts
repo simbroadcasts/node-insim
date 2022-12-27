@@ -1,7 +1,7 @@
 import { testBothWaysPacket } from '../../utils/tests';
 import type { IS_TINY_Data } from '..';
 import { IS_TINY, PacketType, TinyType } from '..';
-import { AbstractPacket } from '../base';
+import { Packet } from '../base';
 
 const size = 4;
 
@@ -11,7 +11,7 @@ const data: IS_TINY_Data = {
 };
 
 const buffer = Buffer.from([
-  size / AbstractPacket.SIZE_MULTIPLIER, // Size
+  size / Packet.SIZE_MULTIPLIER, // Size
   3, // Type
   1, // ReqI
   3, // SubT

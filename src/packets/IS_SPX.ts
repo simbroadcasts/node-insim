@@ -1,12 +1,12 @@
 import { byte, unsigned } from '../utils';
-import { AbstractPacket } from './base';
+import { Packet } from './base';
 import type { PenaltyValue } from './enums';
 import { PacketType } from './enums';
 
 /**
  * SPlit X time
  */
-export class IS_SPX extends AbstractPacket {
+export class IS_SPX extends Packet {
   @byte() readonly Size = 16;
   @byte() readonly Type = PacketType.ISP_SPX;
   @byte() readonly ReqI = 0;

@@ -3,7 +3,7 @@ import { TypedEmitter } from 'tiny-typed-emitter';
 
 import type { IS_ISI_Data } from '../../packets';
 import { IS_ISI, IS_TINY, PacketType, TinyType } from '../../packets';
-import type { InstructionPacket } from '../../packets/types';
+import type { SendablePacket } from '../../packets/base';
 import { log as baseLog, unpack } from '../../utils';
 import { TCP } from '../TCP';
 import type { InSimPacketEvents } from './InSimEvents';
@@ -78,7 +78,7 @@ export class InSim extends TypedEmitter<InSimEvents> {
     this.connection.disconnect();
   }
 
-  send(packet: InstructionPacket) {
+  send(packet: SendablePacket) {
     if (this.connection === null) {
       log('Cannot send a packet - not connected');
       return;

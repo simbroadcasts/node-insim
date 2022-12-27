@@ -1,12 +1,12 @@
 import { byte, unsigned } from '../utils';
-import { AbstractPacket } from './base';
+import { Packet } from './base';
 import type { Language } from './enums';
 import { PacketType } from './enums';
 
 /**
  * New Conn Info - sent on host only if an admin password has been set
  */
-export class IS_NCI extends AbstractPacket {
+export class IS_NCI extends Packet {
   @byte() readonly Size = 16;
   @byte() readonly Type = PacketType.ISP_NCI;
 

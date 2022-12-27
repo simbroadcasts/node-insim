@@ -1,12 +1,12 @@
 import { byte } from '../utils';
-import { AbstractPacket } from './base';
+import { Packet } from './base';
 import type { ButtonClickFlags } from './enums';
 import { PacketType } from './enums';
 
 /**
  * BuTton Click - sent back when user clicks a button
  */
-export class IS_BTC extends AbstractPacket {
+export class IS_BTC extends Packet {
   @byte() readonly Size = 8;
   @byte() readonly Type = PacketType.ISP_BTC;
 

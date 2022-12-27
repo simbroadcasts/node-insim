@@ -1,5 +1,5 @@
 import { byte, word } from '../utils';
-import { AbstractSendablePacket } from './base';
+import { SendablePacket } from './base';
 import type { StateFlags } from './enums';
 import { PacketType } from './enums';
 import type { PacketData } from './types';
@@ -7,7 +7,7 @@ import type { PacketData } from './types';
 /**
  * State Flags Pack
  */
-export class IS_SFP extends AbstractSendablePacket {
+export class IS_SFP extends SendablePacket {
   @byte() readonly Size = 8;
   @byte() readonly Type = PacketType.ISP_SFP;
   @byte() readonly ReqI = 0;

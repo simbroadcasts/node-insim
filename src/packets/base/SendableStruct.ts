@@ -1,10 +1,9 @@
 import { pack } from '../../utils';
-import { AbstractStruct } from './AbstractStruct';
-import type { Receivable } from './Receivable';
-import type { Sendable } from './Sendable';
+import type { Receivable, Sendable } from '../types';
+import { Struct } from './Struct';
 
-export abstract class AbstractSendableStruct
-  extends AbstractStruct
+export abstract class SendableStruct
+  extends Struct
   implements Receivable, Sendable
 {
   pack(propertyFormatOverrides?: Record<string, string>): Buffer {

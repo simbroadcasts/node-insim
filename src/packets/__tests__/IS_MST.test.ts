@@ -1,7 +1,7 @@
 import { stringToBytes, testInstructionPacket } from '../../utils/tests';
 import type { IS_MST_Data } from '..';
 import { IS_MST, PacketType } from '..';
-import { AbstractPacket } from '../base';
+import { Packet } from '../base';
 
 const size = 68;
 
@@ -10,7 +10,7 @@ const data: IS_MST_Data = {
 };
 
 const buffer = Buffer.from([
-  size / AbstractPacket.SIZE_MULTIPLIER, // Size
+  size / Packet.SIZE_MULTIPLIER, // Size
   13, // Type
   0, // ReqI
   0, // Zero

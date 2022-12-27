@@ -1,5 +1,5 @@
 import { byte, determineLength, struct, unsigned } from '../utils';
-import { AbstractPacket } from './base';
+import { Packet } from './base';
 import { CarContOBJ } from './CarContOBJ';
 import type { UCOAction } from './enums';
 import { PacketType } from './enums';
@@ -10,7 +10,7 @@ import { ObjectInfo } from './ObjectInfo';
  *
  * Reports crossing an InSim checkpoint / entering an InSim circle (from layout).
  */
-export class IS_UCO extends AbstractPacket {
+export class IS_UCO extends Packet {
   @byte() readonly Size = 28;
   @byte() readonly Type = PacketType.ISP_UCO;
   @byte() readonly ReqI = 0;

@@ -1,5 +1,5 @@
 import { byte, float, string, word } from '../utils';
-import { AbstractPacket } from './base';
+import { Packet } from './base';
 import type {
   RaceState,
   ServerStatus,
@@ -17,7 +17,7 @@ import { PacketType } from './enums';
  * To request an IS_STA at any time, send an {@link IS_TINY}
  * with {@link IS_TINY.SubT} of {@link TinyType.TINY_SST}.
  */
-export class IS_STA extends AbstractPacket {
+export class IS_STA extends Packet {
   @byte() readonly Size = 28;
   @byte() readonly Type = PacketType.ISP_STA;
 

@@ -1,7 +1,7 @@
 import type { PacketTestData } from '../../utils/tests';
 import { stringToBytes, testInfoPacket } from '../../utils/tests';
 import { IS_CPR, PacketType } from '..';
-import { AbstractPacket } from '../base';
+import { Packet } from '../base';
 
 const size = 36;
 
@@ -13,7 +13,7 @@ const data: PacketTestData<IS_CPR> = {
 };
 
 const buffer = Buffer.from([
-  size / AbstractPacket.SIZE_MULTIPLIER, // Size
+  size / Packet.SIZE_MULTIPLIER, // Size
   20, // Type
   0, // ReqI
   3, // UCID

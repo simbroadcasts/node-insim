@@ -1,5 +1,5 @@
 import { byte, string } from '../utils';
-import { AbstractSendablePacket } from './base';
+import { SendablePacket } from './base';
 import type { MessageSound } from './enums';
 import { PacketType } from './enums';
 import type { PacketData } from './types';
@@ -7,7 +7,7 @@ import type { PacketData } from './types';
 /**
  * Msg To Connection - hosts only - send to a connection / a player / all
  */
-export class IS_MTC extends AbstractSendablePacket {
+export class IS_MTC extends SendablePacket {
   private static readonly FIXED_DATA_SIZE = 8;
   private static readonly TEXT_MAX_LENGTH = 128;
 

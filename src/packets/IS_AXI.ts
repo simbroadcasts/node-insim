@@ -1,5 +1,5 @@
 import { byte, string, word } from '../utils';
-import { AbstractPacket } from './base';
+import { Packet } from './base';
 import { PacketType } from './enums';
 
 /**
@@ -12,7 +12,7 @@ import { PacketType } from './enums';
  *
  * The information will be sent back in this packet (also sent when a layout is loaded).
  */
-export class IS_AXI extends AbstractPacket {
+export class IS_AXI extends Packet {
   @byte() readonly Size = 40;
   @byte() readonly Type = PacketType.ISP_AXI;
 

@@ -1,12 +1,12 @@
 import { byte, pack, unpack } from '../utils';
-import { AbstractSendablePacket } from './base';
+import { SendablePacket } from './base';
 import { PacketType } from './enums';
 import type { PacketData } from './types';
 
 /**
  * Mods ALlowed - variable size
  */
-export class IS_MAL extends AbstractSendablePacket {
+export class IS_MAL extends SendablePacket {
   static readonly MAX_MODS = 120;
 
   /** 8 + NumM * 4 */

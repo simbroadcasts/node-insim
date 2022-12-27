@@ -1,5 +1,5 @@
 import { byte } from '../utils';
-import { AbstractSendablePacket } from './base';
+import { SendablePacket } from './base';
 import type {
   ObjectIndex,
   OCOAction,
@@ -12,7 +12,7 @@ import type { PacketData } from './types';
 /**
  * Object COntrol - currently used for switching start lights
  */
-export class IS_OCO extends AbstractSendablePacket {
+export class IS_OCO extends SendablePacket {
   @byte() readonly Size = 8;
   @byte() readonly Type = PacketType.ISP_OCO;
   @byte() readonly ReqI = 0;
