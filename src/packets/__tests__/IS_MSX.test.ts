@@ -18,4 +18,12 @@ const expectedBuffer = Buffer.from([
 
 describe('IS_MSX', () => {
   testSendablePacket(IS_MSX, 100, PacketType.ISP_MSX, data, expectedBuffer);
+
+  it('should throw a range error if Msg length is greater than 95', () => {
+    expect(() => {
+      new IS_MSX({
+        Msg: 'You know that this is a very long text message whose length can be up to ninety six characters!!',
+      }).pack();
+    }).toThrow(RangeError);
+  });
 });

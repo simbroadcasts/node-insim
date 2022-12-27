@@ -22,4 +22,12 @@ const expectedBuffer = Buffer.from([
 
 describe('IS_MSL', () => {
   testSendablePacket(IS_MSL, 132, PacketType.ISP_MSL, data, expectedBuffer);
+
+  it('should throw a range error if Msg length is greater than 127', () => {
+    expect(() => {
+      new IS_MSL({
+        Msg: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque pea',
+      }).pack();
+    }).toThrow(RangeError);
+  });
 });

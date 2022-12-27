@@ -54,4 +54,12 @@ describe('IS_MTC', () => {
 
     expect(actualBuffer).toEqual(expectedBuffer);
   });
+
+  it('should throw a range error if Text length is greater than 127', () => {
+    expect(() => {
+      new IS_MTC({
+        Text: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque peas',
+      }).pack();
+    }).toThrow(RangeError);
+  });
 });

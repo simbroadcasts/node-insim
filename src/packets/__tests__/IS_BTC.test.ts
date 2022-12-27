@@ -1,4 +1,4 @@
-import { ButtonClickFlags, INST_ALWAYS_ON, IS_BTC, PacketType } from '..';
+import { ButtonClickFlags, IS_BTC, IS_BTN, PacketType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
 
 describe('IS_BTC', () => {
@@ -20,7 +20,7 @@ describe('IS_BTC', () => {
     expect(packet.ReqI).toEqual(1);
     expect(packet.UCID).toEqual(2);
     expect(packet.ClickID).toEqual(3);
-    expect(packet.Inst).toEqual(INST_ALWAYS_ON);
+    expect(packet.Inst).toEqual(IS_BTN.INST_ALWAYS_ON);
     expect(packet.CFlags).toEqual(ButtonClickFlags.ISB_RMB);
     expect(packet.Sp3).toEqual(0);
   });

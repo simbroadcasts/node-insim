@@ -77,4 +77,12 @@ describe('IS_RIP', () => {
     expect(packet.TTime).toEqual(564768);
     expect(packet.RName).toEqual(replayName);
   });
+
+  it('should throw a range error if ReqI is 0', () => {
+    expect(() => {
+      new IS_RIP({
+        ReqI: 0,
+      }).pack();
+    }).toThrow(RangeError);
+  });
 });

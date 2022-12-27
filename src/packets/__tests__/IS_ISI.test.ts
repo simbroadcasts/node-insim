@@ -12,7 +12,7 @@ const data: IS_ISI_Data = {
   Prefix: '!',
   Interval: 30,
   Admin: 'admin adminadmin',
-  IName: 'app app app app ',
+  IName: 'app app app app',
 };
 
 const expectedBuffer = Buffer.from([
@@ -29,9 +29,18 @@ const expectedBuffer = Buffer.from([
   30, // Interval (1)
   0, // Interval (2)
   ...stringToBytes('admin adminadmin'), // Admin[16]
-  ...stringToBytes('app app app app '), // IName[16]
+  ...stringToBytes('app app app app'), // IName[16]
+  0,
 ]);
 
 describe('IS_ISI', () => {
   testSendablePacket(IS_ISI, 44, PacketType.ISP_ISI, data, expectedBuffer);
+
+  it('should throw a range error if IName length is greater than 15', () => {
+    expect(() => {
+      new IS_ISI({
+        IName: 'app app app app1',
+      }).pack();
+    }).toThrow(RangeError);
+  });
 });

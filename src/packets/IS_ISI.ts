@@ -45,8 +45,7 @@ export class IS_ISI extends AbstractSendablePacket {
   pack(): Buffer {
     if (this.IName.length > 15) {
       throw new RangeError(
-        'IS_ISI - InSim option "IName" must not be greater than 15' +
-          ' characters',
+        'IS_ISI - InSim option "IName" must not be greater than 15  characters',
       );
     }
 

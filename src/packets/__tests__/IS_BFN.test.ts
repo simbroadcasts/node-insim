@@ -37,4 +37,20 @@ describe('IS_BFN', () => {
     expect(packet.ClickMax).toEqual(48);
     expect(packet.Inst).toEqual(5);
   });
+
+  it('should throw a range error if ClickID is greater than 239', () => {
+    expect(() => {
+      new IS_BFN({
+        ClickID: 240,
+      }).pack();
+    }).toThrow(RangeError);
+  });
+
+  it('should throw a range error if ClickMax is greater than 239', () => {
+    expect(() => {
+      new IS_BFN({
+        ClickMax: 240,
+      }).pack();
+    }).toThrow(RangeError);
+  });
 });

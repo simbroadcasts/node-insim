@@ -1,6 +1,6 @@
 import { stringToBytes, testSendablePacket } from '../../utils';
 import type { IS_BTN_Data } from '..';
-import { ButtonStyle, INST_ALWAYS_ON, IS_BTN, PacketType } from '..';
+import { ButtonStyle, IS_BTN, PacketType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
 
 const text =
@@ -10,7 +10,7 @@ const data: IS_BTN_Data = {
   ReqI: 1,
   UCID: 2,
   ClickID: 3,
-  Inst: INST_ALWAYS_ON,
+  Inst: IS_BTN.INST_ALWAYS_ON,
   BStyle: ButtonStyle.ISB_C1 | ButtonStyle.ISB_CLICK,
   TypeIn: 3,
   L: 20,
@@ -44,7 +44,7 @@ describe('IS_BTN', () => {
       ReqI: 1,
       UCID: 2,
       ClickID: 3,
-      Inst: INST_ALWAYS_ON,
+      Inst: IS_BTN.INST_ALWAYS_ON,
       BStyle: ButtonStyle.ISB_C1 | ButtonStyle.ISB_CLICK,
       TypeIn: 3,
       L: 20,
@@ -74,5 +74,22 @@ describe('IS_BTN', () => {
     const actualBuffer = new IS_BTN(data).pack();
 
     expect(actualBuffer).toEqual(expectedBuffer);
+  });
+
+  it('should throw a range error if ReqI is 0', () => {
+    expect(() => {
+      new IS_BTN({
+        ReqI: 0,
+      }).pack();
+    }).toThrow(RangeError);
+  });
+
+  it('should throw a range error if ClickID is greater than 239', () => {
+    expect(() => {
+      new IS_BTN({
+        ReqI: 1,
+        ClickID: 240,
+      }).pack();
+    }).toThrow(RangeError);
   });
 });

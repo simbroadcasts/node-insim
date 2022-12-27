@@ -11,7 +11,7 @@ export function testSendablePacket<
   testData: Data,
   expectedBuffer: Buffer,
 ) {
-  testSendablePacketSize(new packetConstructor());
+  testSendablePacketSize(new packetConstructor(testData));
   testSendablePacketConstructor(
     packetConstructor,
     expectedSize,

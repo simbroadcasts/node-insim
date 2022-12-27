@@ -52,4 +52,12 @@ describe('IS_SSH', () => {
     expect(packet.Sp3).toEqual(0);
     expect(packet.Name).toEqual(name);
   });
+
+  it('should throw a range error if ReqI is 0', () => {
+    expect(() => {
+      new IS_SSH({
+        ReqI: 0,
+      }).pack();
+    }).toThrow(RangeError);
+  });
 });

@@ -26,4 +26,22 @@ describe('IS_TINY', () => {
     expect(packet.ReqI).toEqual(1);
     expect(packet.SubT).toEqual(TinyType.TINY_CLOSE);
   });
+
+  it('should throw a range error if sending a request type and ReqI is 0', () => {
+    expect(() => {
+      new IS_TINY({
+        ReqI: 0,
+        SubT: TinyType.TINY_VER,
+      }).pack();
+    }).toThrow(RangeError);
+  });
+
+  it('should not throw an error if sending a request type and ReqI is greater than 0', () => {
+    expect(() => {
+      new IS_TINY({
+        ReqI: 1,
+        SubT: TinyType.TINY_VER,
+      }).pack();
+    }).not.toThrow();
+  });
 });

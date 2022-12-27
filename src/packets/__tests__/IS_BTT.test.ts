@@ -1,5 +1,5 @@
 import { stringToBytes } from '../../utils';
-import { INST_ALWAYS_ON, PacketType } from '..';
+import { IS_BTN, PacketType } from '..';
 import { IS_BTT } from '..';
 import { AbstractPacket } from '../AbstractPacket';
 
@@ -31,7 +31,7 @@ describe('IS_BTT', () => {
     expect(packet.ReqI).toEqual(1);
     expect(packet.UCID).toEqual(2);
     expect(packet.ClickID).toEqual(3);
-    expect(packet.Inst).toEqual(INST_ALWAYS_ON);
+    expect(packet.Inst).toEqual(IS_BTN.INST_ALWAYS_ON);
     expect(packet.TypeIn).toEqual(7);
     expect(packet.Sp3).toEqual(0);
     expect(packet.Text).toEqual(

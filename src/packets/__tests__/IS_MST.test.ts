@@ -4,7 +4,7 @@ import { IS_MST, PacketType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
 
 const data: IS_MST_Data = {
-  Msg: 'This is a message whose length will be sixty four characters ye',
+  Msg: 'This is a message whose length will be sixty three characters!!',
 };
 
 const expectedBuffer = Buffer.from([
@@ -18,4 +18,12 @@ const expectedBuffer = Buffer.from([
 
 describe('IS_MST', () => {
   testSendablePacket(IS_MST, 68, PacketType.ISP_MST, data, expectedBuffer);
+
+  it('should throw a range error if Msg length is greater than 63', () => {
+    expect(() => {
+      new IS_MST({
+        Msg: 'This is a message whose length will be sixty four characters yes',
+      }).pack();
+    }).toThrow(RangeError);
+  });
 });
