@@ -8,6 +8,8 @@ import type { IS_RIP_Data } from '..';
 import { IS_RIP, PacketType, ReplayError, ReplayMode, ReplayOptions } from '..';
 import { AbstractPacket } from '../AbstractPacket';
 
+const size = 80;
+
 const replayName =
   'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenea';
 
@@ -21,7 +23,7 @@ const instructionData: IS_RIP_Data = {
 };
 
 const instructionBuffer = Buffer.from([
-  80 / AbstractPacket.SIZE_MULTIPLIER, // Size
+  size / AbstractPacket.SIZE_MULTIPLIER, // Size
   48, // Type
   2, // ReqI
   0, // Error
@@ -53,7 +55,7 @@ const infoData: Partial<Omit<PacketTestData<IS_RIP>, 'ReqI'>> &
 };
 
 const infoBuffer = Buffer.from([
-  80 / AbstractPacket.SIZE_MULTIPLIER, // Size
+  size / AbstractPacket.SIZE_MULTIPLIER, // Size
   48, // Type
   2, // ReqI
   8, // Error
@@ -76,7 +78,7 @@ const infoBuffer = Buffer.from([
 describe('IS_RIP', () => {
   testInstructionPacket({
     packetClass: IS_RIP,
-    size: 80,
+    size,
     type: PacketType.ISP_RIP,
     data: instructionData,
     buffer: instructionBuffer,
@@ -84,7 +86,7 @@ describe('IS_RIP', () => {
 
   testInfoPacket({
     packetClass: IS_RIP,
-    size: 80,
+    size,
     type: PacketType.ISP_RIP,
     data: infoData,
     buffer: infoBuffer,

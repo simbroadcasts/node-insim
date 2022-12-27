@@ -3,13 +3,15 @@ import type { IS_SFP_Data } from '..';
 import { IS_SFP, PacketType, StateFlags } from '..';
 import { AbstractPacket } from '../AbstractPacket';
 
+const size = 8;
+
 const data: IS_SFP_Data = {
   Flag: StateFlags.ISS_SHOW_2D | StateFlags.ISS_MPSPEEDUP,
   OffOn: 1,
 };
 
 const buffer = Buffer.from([
-  8 / AbstractPacket.SIZE_MULTIPLIER, // Size
+  size / AbstractPacket.SIZE_MULTIPLIER, // Size
   7, // Type
   0, // ReqI
   0, // Zero
@@ -22,7 +24,7 @@ const buffer = Buffer.from([
 describe('IS_SFP', () => {
   testInstructionPacket({
     packetClass: IS_SFP,
-    size: 8,
+    size,
     type: PacketType.ISP_SFP,
     data,
     buffer,

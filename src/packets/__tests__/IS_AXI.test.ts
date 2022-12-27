@@ -3,6 +3,8 @@ import { stringToBytes, testInfoPacket } from '../../utils';
 import { IS_AXI, PacketType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
 
+const size = 40;
+
 const data: PacketTestData<IS_AXI> = {
   Zero: 0,
   AXStart: 2,
@@ -12,7 +14,7 @@ const data: PacketTestData<IS_AXI> = {
 };
 
 const buffer = Buffer.from([
-  40 / AbstractPacket.SIZE_MULTIPLIER, // Size
+  size / AbstractPacket.SIZE_MULTIPLIER, // Size
   43, // Type
   0, // ReqI
   0, // Zero
@@ -27,7 +29,7 @@ describe('IS_AXI', () => {
   testInfoPacket({
     packetClass: IS_AXI,
     type: PacketType.ISP_AXI,
-    size: 40,
+    size,
     buffer,
     data,
   });

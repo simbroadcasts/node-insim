@@ -4,6 +4,8 @@ import { ObjectInfo } from '..';
 import { IS_AXM, PacketType, PMOAction, PMOFlags } from '..';
 import { AbstractPacket } from '../AbstractPacket';
 
+const size = 488;
+
 const data: IS_AXM_Data = {
   NumO: 60,
   UCID: 3,
@@ -494,7 +496,7 @@ const data: IS_AXM_Data = {
 };
 
 const buffer = Buffer.from([
-  488 / AbstractPacket.SIZE_MULTIPLIER, // Size
+  size / AbstractPacket.SIZE_MULTIPLIER, // Size
   54, // Type
   0, // ReqI
   60, // NumO
@@ -994,7 +996,7 @@ describe('IS_AXM', () => {
   });
   testInfoPacket({
     packetClass: IS_AXM,
-    size: 488,
+    size,
     type: PacketType.ISP_AXM,
     data,
     buffer,

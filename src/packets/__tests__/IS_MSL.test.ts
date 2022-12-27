@@ -6,13 +6,15 @@ import { AbstractPacket } from '../AbstractPacket';
 const msg =
   'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque pe';
 
+const size = 132;
+
 const data: IS_MSL_Data = {
   Msg: msg,
   Sound: MessageSound.SND_ERROR,
 };
 
 const buffer = Buffer.from([
-  132 / AbstractPacket.SIZE_MULTIPLIER, // Size
+  size / AbstractPacket.SIZE_MULTIPLIER, // Size
   40, // Type
   0, // ReqI
   4, // Sound
@@ -23,7 +25,7 @@ const buffer = Buffer.from([
 describe('IS_MSL', () => {
   testInstructionPacket({
     packetClass: IS_MSL,
-    size: 132,
+    size,
     type: PacketType.ISP_MSL,
     data,
     buffer,

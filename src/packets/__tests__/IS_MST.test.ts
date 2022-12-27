@@ -3,12 +3,14 @@ import type { IS_MST_Data } from '..';
 import { IS_MST, PacketType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
 
+const size = 68;
+
 const data: IS_MST_Data = {
   Msg: 'This is a message whose length will be sixty three characters!!',
 };
 
 const buffer = Buffer.from([
-  68 / AbstractPacket.SIZE_MULTIPLIER, // Size
+  size / AbstractPacket.SIZE_MULTIPLIER, // Size
   13, // Type
   0, // ReqI
   0, // Zero
@@ -19,7 +21,7 @@ const buffer = Buffer.from([
 describe('IS_MST', () => {
   testInstructionPacket({
     packetClass: IS_MST,
-    size: 68,
+    size,
     type: PacketType.ISP_MST,
     data,
     buffer,

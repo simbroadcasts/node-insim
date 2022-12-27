@@ -3,6 +3,8 @@ import type { IS_BFN_Data } from '..';
 import { ButtonFunction, IS_BFN, PacketType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
 
+const size = 8;
+
 const data: IS_BFN_Data = {
   SubT: ButtonFunction.BFN_REQUEST,
   UCID: 4,
@@ -12,7 +14,7 @@ const data: IS_BFN_Data = {
 };
 
 const buffer = Buffer.from([
-  8 / AbstractPacket.SIZE_MULTIPLIER, // Size
+  size / AbstractPacket.SIZE_MULTIPLIER, // Size
   42, // Type
   0, // ReqI
   3, // SubT
@@ -25,7 +27,7 @@ const buffer = Buffer.from([
 describe('IS_BFN', () => {
   testBothWaysPacket({
     packetClass: IS_BFN,
-    size: 8,
+    size,
     type: PacketType.ISP_BFN,
     data,
     buffer,

@@ -3,6 +3,8 @@ import { testInfoPacket } from '../../utils';
 import { ButtonClickFlags, IS_BTC, IS_BTN, PacketType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
 
+const size = 8;
+
 const data: PacketTestData<IS_BTC> = {
   ReqI: 1,
   UCID: 2,
@@ -13,7 +15,7 @@ const data: PacketTestData<IS_BTC> = {
 };
 
 const buffer = Buffer.from([
-  8 / AbstractPacket.SIZE_MULTIPLIER, // Size
+  size / AbstractPacket.SIZE_MULTIPLIER, // Size
   46, // Type
   1, // ReqI
   2, // UCID
@@ -27,7 +29,7 @@ describe('IS_BTC', () => {
   testInfoPacket({
     packetClass: IS_BTC,
     type: PacketType.ISP_BTC,
-    size: 8,
+    size,
     data,
     buffer,
   });

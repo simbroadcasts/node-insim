@@ -3,13 +3,15 @@ import type { IS_SCH_Data } from '..';
 import { CharacterModifiers, IS_SCH, PacketType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
 
+const size = 8;
+
 const data: IS_SCH_Data = {
   CharB: 23,
   Flags: CharacterModifiers.SHIFT,
 };
 
 const buffer = Buffer.from([
-  8 / AbstractPacket.SIZE_MULTIPLIER, // Size
+  size / AbstractPacket.SIZE_MULTIPLIER, // Size
   6, // Type
   0, // ReqI
   0, // Zero
@@ -22,7 +24,7 @@ const buffer = Buffer.from([
 describe('IS_SCH', () => {
   testInstructionPacket({
     packetClass: IS_SCH,
-    size: 8,
+    size,
     type: PacketType.ISP_SCH,
     data,
     buffer,

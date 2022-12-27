@@ -3,12 +3,14 @@ import type { IS_MSX_Data } from '..';
 import { IS_MSX, PacketType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
 
+const size = 100;
+
 const data: IS_MSX_Data = {
   Msg: 'You know that this is a very long text message whose length can be up to ninety five characters',
 };
 
 const buffer = Buffer.from([
-  100 / AbstractPacket.SIZE_MULTIPLIER, // Size
+  size / AbstractPacket.SIZE_MULTIPLIER, // Size
   39, // Type
   0, // ReqI
   0, // Zero
@@ -19,7 +21,7 @@ const buffer = Buffer.from([
 describe('IS_MSX', () => {
   testInstructionPacket({
     packetClass: IS_MSX,
-    size: 100,
+    size,
     type: PacketType.ISP_MSX,
     data,
     buffer,

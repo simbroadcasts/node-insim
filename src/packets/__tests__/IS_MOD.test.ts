@@ -3,6 +3,8 @@ import type { IS_MOD_Data } from '..';
 import { IS_MOD, PacketType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
 
+const size = 20;
+
 const data: IS_MOD_Data = {
   Bits16: 2,
   RR: 59,
@@ -11,7 +13,7 @@ const data: IS_MOD_Data = {
 };
 
 const buffer = Buffer.from([
-  20 / AbstractPacket.SIZE_MULTIPLIER, // Size
+  size / AbstractPacket.SIZE_MULTIPLIER, // Size
   15, // Type
   0, // ReqI
   0, // Zero
@@ -36,7 +38,7 @@ const buffer = Buffer.from([
 describe('IS_MOD', () => {
   testInstructionPacket({
     packetClass: IS_MOD,
-    size: 20,
+    size,
     type: PacketType.ISP_MOD,
     data,
     buffer,

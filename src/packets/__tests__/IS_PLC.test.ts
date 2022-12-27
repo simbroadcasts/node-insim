@@ -3,13 +3,15 @@ import type { IS_PLC_Data } from '..';
 import { CarFlags, IS_PLC, PacketType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
 
+const size = 12;
+
 const data: IS_PLC_Data = {
   UCID: 13,
   Cars: CarFlags.FOX | CarFlags.LX6 | CarFlags.XRT,
 };
 
 const buffer = Buffer.from([
-  12 / AbstractPacket.SIZE_MULTIPLIER, // Size
+  size / AbstractPacket.SIZE_MULTIPLIER, // Size
   53, // Type
   0, // ReqI
   0, // Zero
@@ -26,7 +28,7 @@ const buffer = Buffer.from([
 describe('IS_PLC', () => {
   testInstructionPacket({
     packetClass: IS_PLC,
-    size: 12,
+    size,
     type: PacketType.ISP_PLC,
     data,
     buffer,

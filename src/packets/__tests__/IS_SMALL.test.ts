@@ -3,6 +3,8 @@ import type { IS_SMALL_Data } from '..';
 import { IS_SMALL, PacketType, SmallType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
 
+const size = 8;
+
 const data: IS_SMALL_Data = {
   ReqI: 1,
   SubT: SmallType.SMALL_NLI,
@@ -10,7 +12,7 @@ const data: IS_SMALL_Data = {
 };
 
 const buffer = Buffer.from([
-  8 / AbstractPacket.SIZE_MULTIPLIER, // Size
+  size / AbstractPacket.SIZE_MULTIPLIER, // Size
   4, // Type
   1, // ReqI
   7, // SubT
@@ -23,7 +25,7 @@ const buffer = Buffer.from([
 describe('IS_SMALL', () => {
   testInstructionPacket({
     packetClass: IS_SMALL,
-    size: 8,
+    size,
     type: PacketType.ISP_SMALL,
     data,
     buffer,

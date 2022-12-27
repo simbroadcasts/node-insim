@@ -1,7 +1,9 @@
-import { testBothWaysPacket, testInstructionPacket } from '../../utils';
+import { testBothWaysPacket } from '../../utils';
 import type { IS_TINY_Data } from '..';
 import { IS_TINY, PacketType, TinyType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
+
+const size = 4;
 
 const data: IS_TINY_Data = {
   ReqI: 1,
@@ -9,7 +11,7 @@ const data: IS_TINY_Data = {
 };
 
 const buffer = Buffer.from([
-  4 / AbstractPacket.SIZE_MULTIPLIER, // Size
+  size / AbstractPacket.SIZE_MULTIPLIER, // Size
   3, // Type
   1, // ReqI
   2, // SubT
@@ -18,7 +20,7 @@ const buffer = Buffer.from([
 describe('IS_TINY', () => {
   testBothWaysPacket({
     packetClass: IS_TINY,
-    size: 4,
+    size,
     type: PacketType.ISP_TINY,
     data,
     buffer,

@@ -20,7 +20,7 @@ const data: IS_BTN_Data = {
   Text: text,
 };
 
-const expectedBuffer = Buffer.from([
+const buffer = Buffer.from([
   252 / AbstractPacket.SIZE_MULTIPLIER, // Size
   45, // Type
   1, // ReqI
@@ -39,10 +39,10 @@ const expectedBuffer = Buffer.from([
 describe('IS_BTN', () => {
   testInstructionPacket({
     packetClass: IS_BTN,
-    size: 12,
+    size: 12, // Default size without dynamic data
     type: PacketType.ISP_BTN,
-    data: data,
-    buffer: expectedBuffer,
+    data,
+    buffer,
   });
 
   it('should allocate 4 bytes for en empty text value', () => {

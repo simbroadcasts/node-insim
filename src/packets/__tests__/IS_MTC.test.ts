@@ -30,7 +30,7 @@ const buffer = Buffer.from([
 describe('IS_MTC', () => {
   testInstructionPacket({
     packetClass: IS_MTC,
-    size: 8,
+    size: 8, // Size without dynamic part
     type: PacketType.ISP_MTC,
     data,
     buffer,
