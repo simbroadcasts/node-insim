@@ -49,7 +49,7 @@ export class IS_OBH extends AbstractPacket {
 
     const carContactBuffer = buffer.slice(
       carContactOffset,
-      carContactOffset + determineLength(new CarContOBJ().getFormat()),
+      carContactOffset + determineLength(`<${new CarContOBJ().getFormat()}`),
     );
 
     this.C = new CarContOBJ().unpack(carContactBuffer);
