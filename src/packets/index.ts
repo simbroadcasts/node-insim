@@ -60,6 +60,7 @@ export {
   IS_TINY_Data,
   SENDABLE_TINY_TYPES,
 } from './IS_TINY';
+export { IS_TOC } from './IS_TOC';
 export { IS_VER } from './IS_VER';
 export { IS_VTN } from './IS_VTN';
 export type { ISendable } from './ISendable';
