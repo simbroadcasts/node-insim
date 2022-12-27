@@ -7,6 +7,7 @@ import { AbstractPacket } from '../AbstractPacket';
 const data: IS_{{ name }}_Data = {
   // TODO
 };
+{{/ifNotEquals}}
 
 const expectedBuffer = Buffer.from([
   {{ size }} / AbstractPacket.SIZE_MULTIPLIER, // Size
@@ -14,7 +15,6 @@ const expectedBuffer = Buffer.from([
   0, // ReqI
   // TODO
 ]);
-{{/ifNotEquals}}
 
 describe('IS_{{ name }}', () => {
 {{#ifNotEquals variant "info"}}
