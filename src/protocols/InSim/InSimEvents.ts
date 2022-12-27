@@ -13,6 +13,7 @@ import type {
   IS_NPL,
   IS_PLL,
   IS_PLP,
+  IS_RST,
   IS_SMALL,
   IS_STA,
   IS_TINY,
@@ -23,6 +24,7 @@ import type {
 import type { InSim } from './InSim';
 
 export type InSimPacketEvents = {
+  [PacketType.ISP_RST]: (packet: IS_RST, inSim: InSim) => void;
   [PacketType.ISP_VER]: (packet: IS_VER, inSim: InSim) => void;
   [PacketType.ISP_TINY]: (packet: IS_TINY, inSim: InSim) => void;
   [PacketType.ISP_SMALL]: (packet: IS_SMALL, inSim: InSim) => void;
