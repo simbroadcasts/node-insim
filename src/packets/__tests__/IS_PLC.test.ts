@@ -1,4 +1,4 @@
-import { testInstructionPacket } from '../../utils';
+import { testInstructionPacket } from '../../utils/tests';
 import type { IS_PLC_Data } from '..';
 import { CarFlags, IS_PLC, PacketType } from '..';
 import { AbstractPacket } from '../AbstractPacket';

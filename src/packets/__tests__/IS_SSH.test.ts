@@ -1,9 +1,9 @@
-import type { PacketTestData } from '../../utils';
+import type { PacketTestData } from '../../utils/tests';
 import {
   stringToBytes,
   testInfoPacket,
   testInstructionPacket,
-} from '../../utils';
+} from '../../utils/tests';
 import type { IS_SSH_Data } from '..';
 import { IS_SSH, PacketType, ScreenshotError } from '..';
 import { AbstractPacket } from '../AbstractPacket';

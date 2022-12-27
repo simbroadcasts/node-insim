@@ -1,5 +1,5 @@
-import type { PacketTestData } from '../../utils';
-import { testInfoPacket } from '../../utils';
+import type { PacketTestData } from '../../utils/tests';
+import { testInfoPacket } from '../../utils/tests';
 import { IS_PLL, PacketType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
 

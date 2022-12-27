@@ -1,4 +1,5 @@
-import { byte, string, stringToBytes } from '../../utils';
+import { byte, string } from '../../utils';
+import { stringToBytes } from '../../utils/tests';
 import { PacketType } from '..';
 import { AbstractSendablePacket } from '../AbstractSendablePacket';
 

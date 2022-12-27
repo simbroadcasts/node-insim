@@ -1,4 +1,4 @@
-import { testInstructionPacket } from '../../utils';
+import { testInstructionPacket } from '../../utils/tests';
 import type { IS_SCC_Data } from '..';
 import { IS_SCC, PacketType, ViewIdentifier } from '..';
 import { AbstractPacket } from '../AbstractPacket';

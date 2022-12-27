@@ -1,4 +1,4 @@
-import { testBothWaysPacket } from '../../utils';
+import { testBothWaysPacket } from '../../utils/tests';
 import type { IS_TINY_Data } from '..';
 import { IS_TINY, PacketType, TinyType } from '..';
 import { AbstractPacket } from '../AbstractPacket';

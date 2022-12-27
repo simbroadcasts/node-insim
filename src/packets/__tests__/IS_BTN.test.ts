@@ -1,4 +1,4 @@
-import { stringToBytes, testInstructionPacket } from '../../utils';
+import { stringToBytes, testInstructionPacket } from '../../utils/tests';
 import type { IS_BTN_Data } from '..';
 import { ButtonStyle, IS_BTN, PacketType } from '..';
 import { AbstractPacket } from '../AbstractPacket';

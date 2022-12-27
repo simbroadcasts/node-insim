@@ -1,4 +1,4 @@
-import { stringToBytes, testInstructionPacket } from '../../utils';
+import { stringToBytes, testInstructionPacket } from '../../utils/tests';
 import type { IS_MTC_Data } from '..';
 import { IS_MTC, PacketType } from '..';
 import { AbstractPacket } from '../AbstractPacket';

@@ -1,4 +1,4 @@
-import { stringToBytes, testInstructionPacket } from '../../utils';
+import { stringToBytes, testInstructionPacket } from '../../utils/tests';
 import type { IS_MSX_Data } from '..';
 import { IS_MSX, PacketType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
