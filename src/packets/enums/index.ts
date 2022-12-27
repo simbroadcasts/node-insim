@@ -4,6 +4,7 @@ export { ButtonTextColour } from './ButtonTextColour';
 export { CarConfiguration } from './CarConfiguration';
 export { CharacterModifiers } from './CharacterModifiers';
 export { ConnectionFlags } from './ConnectionFlags';
+export { FlagType } from './FlagType';
 export { InSimFlags } from './InSimFlags';
 export { LeaveReason } from './LeaveReason';
 export { MessageSound } from './MessageSound';

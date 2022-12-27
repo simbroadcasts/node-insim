@@ -21,6 +21,7 @@ export type { AllowedStateFlags, IS_CPP_Data } from './IS_CPP';
 export { IS_CPP } from './IS_CPP';
 export { IS_CPR } from './IS_CPR';
 export { IS_CRS } from './IS_CRS';
+export { IS_FLG } from './IS_FLG';
 export { IS_III } from './IS_III';
 export type { IS_ISI_Data } from './IS_ISI';
 export { IS_ISI, IS_ISI_ReqI } from './IS_ISI';

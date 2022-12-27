@@ -6,6 +6,7 @@ import type {
   IS_CPP,
   IS_CPR,
   IS_CRS,
+  IS_FLG,
   IS_III,
   IS_ISM,
   IS_LAP,
@@ -55,6 +56,7 @@ export type InSimPacketEvents = {
   [PacketType.ISP_CCH]: (packet: IS_CCH, inSim: InSim) => void;
   [PacketType.ISP_PEN]: (packet: IS_PEN, inSim: InSim) => void;
   [PacketType.ISP_TOC]: (packet: IS_TOC, inSim: InSim) => void;
+  [PacketType.ISP_FLG]: (packet: IS_FLG, inSim: InSim) => void;
   [PacketType.ISP_CRS]: (packet: IS_CRS, inSim: InSim) => void;
   [PacketType.ISP_BTC]: (packet: IS_BTC, inSim: InSim) => void;
   [PacketType.ISP_BTT]: (packet: IS_BTT, inSim: InSim) => void;
