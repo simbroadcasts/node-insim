@@ -1,15 +1,12 @@
-import {
-  ButtonStyle,
-  ButtonTextColour,
-  IS_MST,
-  IS_MSX,
-  IS_Y_MIN,
-} from '../../../../../../src/packets';
+import { ButtonTextColour, IS_Y_MIN } from '../../../../../../src/packets';
 import type { InSim } from '../../../../../../src/protocols';
-import { buttonTextWithCaption, drawButton } from '../../../ui';
+import { drawButton } from '../../../ui';
 import { BUTTON_HEIGHT } from '../constants';
 import { drawCameraPositionPacketButtons } from './cameraPositionPacketButtons';
+import { drawMessageExtendedPacketButton } from './messageExtendedPacketButton';
 import { drawMessageToConnectionPacketButtons } from './messageToConnectionPacketButtons';
+import { drawMessageTypePacketButton } from './messageTypePacketutton';
+import { drawScreenModePacketButtons } from './screenModePacketButtons';
 import { drawSimplifiedCameraPacketButtons } from './simplifiedCameraPacketButtons';
 import { drawSingleCharacterPacketButtons } from './singleCharacterPacketButtons';
 
@@ -27,42 +24,8 @@ export function drawSendablePacketButtons(inSim: InSim) {
   drawSingleCharacterPacketButtons(inSim);
   drawSimplifiedCameraPacketButtons(inSim);
   drawCameraPositionPacketButtons(inSim);
-
-  drawButton(inSim, {
-    Text: buttonTextWithCaption('Message', 'IS_MST'),
-    ReqI: 1,
-    L: 97,
-    T: IS_Y_MIN + BUTTON_HEIGHT * 5,
-    W: 15,
-    H: BUTTON_HEIGHT,
-    TypeIn: 63,
-    BStyle: ButtonStyle.ISB_DARK | ButtonStyle.ISB_CLICK,
-    onType: ({ inSim, packet }) => {
-      inSim.send(
-        new IS_MST({
-          Msg: packet.Text,
-        }),
-      );
-    },
-  });
-
-  drawButton(inSim, {
-    Text: buttonTextWithCaption('Message', 'IS_MSX'),
-    ReqI: 1,
-    L: 97,
-    T: IS_Y_MIN + BUTTON_HEIGHT * 6,
-    W: 15,
-    H: BUTTON_HEIGHT,
-    TypeIn: 95,
-    BStyle: ButtonStyle.ISB_DARK | ButtonStyle.ISB_CLICK,
-    onType: ({ inSim, packet }) => {
-      inSim.send(
-        new IS_MSX({
-          Msg: packet.Text,
-        }),
-      );
-    },
-  });
-
+  drawMessageTypePacketButton(inSim);
+  drawMessageExtendedPacketButton(inSim);
   drawMessageToConnectionPacketButtons(inSim);
+  drawScreenModePacketButtons(inSim);
 }
