@@ -1,9 +1,8 @@
-import { byte, log as baseLog, unpack } from '../utils';
+import { InSimError } from '../protocols/InSim/InSimEvents';
+import { byte, unpack } from '../utils';
 import { AbstractPacket } from './AbstractPacket';
 import { PacketType } from './enums';
 import { NodeLap } from './NodeLap';
-
-const logError = baseLog.extend('IS_NLP:error');
 
 /**
  * Node and Lap Packet - variable size
@@ -36,13 +35,7 @@ export class IS_NLP extends AbstractPacket {
     const data = unpack(this.getFormat(), buffer);
 
     if (!data) {
-      logError(
-        `${
-          PacketType[this.Type]
-        } - Unpacked no data using ${this.getFormat()} from buffer`,
-        buffer.join(),
-      );
-      return this;
+      throw new InSimError('IS_MSO - Unpacked no data from buffer');
     }
 
     const nodeLapDataLength = 6;

@@ -4,7 +4,6 @@ import net from 'net';
 import { log as baseLog } from '../utils';
 
 const log = baseLog.extend('tcp');
-const logError = baseLog.extend('tcp:error');
 
 export class TCP extends EventEmitter {
   private stream: net.Socket | null = null;
@@ -36,7 +35,7 @@ export class TCP extends EventEmitter {
     });
 
     this.stream.on('error', (error) => {
-      logError('Error', error.name, error.message);
+      this.emit('error', error);
     });
 
     this.stream.on('data', (data) => {

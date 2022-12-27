@@ -60,6 +60,10 @@ export class InSim extends TypedEmitter<InSimEvents> {
       this.emit('disconnect');
     });
 
+    this.connection.on('error', (error: Error) => {
+      throw new InSimError(`TCP connection error: ${error.message}`);
+    });
+
     this.connection.on('packet', (data) => this.handlePacket(data));
   }
 

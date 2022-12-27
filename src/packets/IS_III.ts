@@ -1,8 +1,7 @@
-import { byte, getFormat, log as baseLog, string, unpack } from '../utils';
+import { InSimError } from '../protocols/InSim/InSimEvents';
+import { byte, getFormat, string, unpack } from '../utils';
 import { AbstractPacket } from './AbstractPacket';
 import { PacketType } from './enums';
-
-const logError = baseLog.extend('IS_III:error');
 
 /**
  * InsIm Info - /i message from user to host's InSim - variable size
@@ -31,8 +30,7 @@ export class IS_III extends AbstractPacket {
     const data = unpack(`<${getFormat(this, 'Size')}`, buffer);
 
     if (!data || data.length === 0) {
-      logError('Failed to read packet size');
-      return this;
+      throw new InSimError('IS_III - Unpacked no data from buffer');
     }
 
     const size = data[0] * AbstractPacket.SIZE_MULTIPLIER;

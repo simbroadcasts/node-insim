@@ -1,12 +1,13 @@
-import { byte, getFormat, log as baseLog, string, unpack } from '../utils';
+import { InSimError } from '../protocols/InSim/InSimEvents';
+import { byte, getFormat, string, unpack } from '../utils';
 import { AbstractPacket } from './AbstractPacket';
 import type { UserType } from './enums';
 import { PacketType } from './enums';
 
-const logError = baseLog.extend('IS_MSO:error');
-
 /**
  * MSg Out - system messages and user messages - variable size
+ *
+ * NOTE: Typing "/o MESSAGE" into LFS will send an IS_MSO with {@link UserType} = {@link MSO_O}
  */
 export class IS_MSO extends AbstractPacket {
   private static readonly FIXED_DATA_SIZE = 8;
@@ -35,8 +36,7 @@ export class IS_MSO extends AbstractPacket {
     const data = unpack(`<${getFormat(this, 'Size')}`, buffer);
 
     if (!data || data.length === 0) {
-      logError('Failed to read packet size');
-      return this;
+      throw new InSimError('IS_MSO - Unpacked no data from buffer');
     }
 
     const size = data[0] * AbstractPacket.SIZE_MULTIPLIER;

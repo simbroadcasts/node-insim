@@ -1,10 +1,10 @@
 import parseLFSMessage from 'parse-lfs-message';
 
+import { InSimError } from '../protocols/InSim/InSimEvents';
 import { getFormat, log as baseLog, unpack } from '../utils';
 import type { IReceivable } from './IReceivable';
 
 const log = baseLog.extend('abstract-struct');
-const logError = baseLog.extend('abstract-struct:error');
 
 type Data = Record<string, unknown>;
 
@@ -54,8 +54,9 @@ export abstract class AbstractStruct implements IReceivable {
     log(`Unpack format: ${format}`);
 
     if (!data) {
-      logError(`Unpacked no data using ${format} from buffer`, buffer.join());
-      return this;
+      throw new InSimError(
+        `Unpacked no data using ${format} from buffer ${buffer.join()}`,
+      );
     }
 
     const propertyNames = this.getValidPropertyNames();
