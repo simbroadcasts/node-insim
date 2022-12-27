@@ -191,4 +191,7 @@ export enum ObjectIndex {
   AXO_189,
   AXO_190,
   AXO_191,
+
+  /** Special value to override the main start light system */
+  OCO_INDEX_MAIN = 240,
 }

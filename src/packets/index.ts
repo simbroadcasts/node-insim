@@ -49,6 +49,8 @@ export { IS_NCN } from './IS_NCN';
 export { IS_NLP } from './IS_NLP';
 export { IS_NPL } from './IS_NPL';
 export { IS_OBH } from './IS_OBH';
+export type { IS_OCO_Data } from './IS_OCO';
+export { IS_OCO } from './IS_OCO';
 export { IS_PEN } from './IS_PEN';
 export { IS_PFL } from './IS_PFL';
 export { IS_PIT } from './IS_PIT';
