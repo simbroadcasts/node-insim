@@ -71,12 +71,12 @@ export class InSim extends TypedEmitter<InSimEvents> {
   }
 
   disconnect() {
+    log('Disconnecting...');
     if (this.connection === null) {
       log('Cannot disconnect - not connected');
       return;
     }
 
-    this.send(new IS_TINY({ SubT: TinyType.TINY_CLOSE }));
     this.connection.disconnect();
   }
 
