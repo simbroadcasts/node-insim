@@ -1,7 +1,7 @@
 {{#ifNotEquals variant "info"}}import { testSendablePacket } from '../../utils';
 import type { IS_{{ name }}_Data } from '..';
 {{/ifNotEquals}}import { IS_{{ name }}, PacketType } from '..';
-import { BasePacket } from '../BasePacket';
+import { AbstractPacket } from '../AbstractPacket';
 
 {{#ifNotEquals variant "info"}}
 const data: IS_{{ name }}_Data = {
@@ -9,7 +9,7 @@ const data: IS_{{ name }}_Data = {
 };
 
 const expectedBuffer = Buffer.from([
-  {{ size }} / BasePacket.SIZE_MULTIPLIER, // Size
+  {{ size }} / AbstractPacket.SIZE_MULTIPLIER, // Size
   {{ type }}, // Type
   0, // ReqI
   // TODO

@@ -1,6 +1,6 @@
 import { byte } from '../utils';{{#ifEquals variant "info"}}
-import { BasePacket } from './BasePacket';{{/ifEquals}}{{#ifNotEquals variant "info"}}
-import { BaseSendablePacket } from './BaseSendablePacket';{{/ifNotEquals}}
+import { AbstractPacket } from './AbstractPacket';{{/ifEquals}}{{#ifNotEquals variant "info"}}
+import { AbstractSendablePacket } from './AbstractSendablePacket';{{/ifNotEquals}}
 import { PacketType } from './enums';{{#ifNotEquals variant "info"}}
 import type {
   PacketData,
@@ -11,7 +11,7 @@ import type {
 /**
 * TODO description
 */
-export class IS_{{ name }} extends {{#ifNotEquals variant "info"}}BaseSendablePacket{{/ifNotEquals}}{{#ifEquals variant "info"}}BasePacket{{/ifEquals}} {
+export class IS_{{ name }} extends {{#ifNotEquals variant "info"}}AbstractSendablePacket{{/ifNotEquals}}{{#ifEquals variant "info"}}AbstractPacket{{/ifEquals}} {
   @byte() readonly Size = {{ size }};
   @byte() readonly Type = PacketType.ISP_{{ name }};
   @byte() ReqI = 0;
