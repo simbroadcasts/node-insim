@@ -8,12 +8,12 @@ import {
   ViewIdentifier,
   Wind,
 } from '..';
-import { BasePacket } from '../BasePacket';
+import { AbstractPacket } from '../AbstractPacket';
 
 describe('IS_STA', () => {
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
-      28 / BasePacket.SIZE_MULTIPLIER, // Size
+      28 / AbstractPacket.SIZE_MULTIPLIER, // Size
       5, // Type
       1, // ReqI
       0, // Zero

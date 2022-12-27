@@ -1,7 +1,7 @@
 import { stringToBytes, testSendablePacket } from '../../utils';
 import type { IS_MTC_Data } from '..';
 import { IS_MTC, PacketType } from '..';
-import { BasePacket } from '../BasePacket';
+import { AbstractPacket } from '../AbstractPacket';
 import { MessageSound } from '../enums';
 
 const text =
@@ -15,7 +15,7 @@ const data: IS_MTC_Data = {
 };
 
 const expectedBuffer = Buffer.from([
-  136 / BasePacket.SIZE_MULTIPLIER, // Size
+  136 / AbstractPacket.SIZE_MULTIPLIER, // Size
   14, // Type
   0, // ReqI
   3, // Sound
@@ -37,7 +37,7 @@ describe('IS_MTC', () => {
       Text: '',
     };
     const expectedBuffer = Buffer.from([
-      12 / BasePacket.SIZE_MULTIPLIER, // Size
+      12 / AbstractPacket.SIZE_MULTIPLIER, // Size
       PacketType.ISP_MTC, // Type
       0, // ReqI
       3, // Sound

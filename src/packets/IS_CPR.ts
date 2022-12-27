@@ -1,11 +1,11 @@
 import { byte, char } from '../utils';
-import { BasePacket } from './BasePacket';
+import { AbstractPacket } from './AbstractPacket';
 import { PacketType } from './enums';
 
 /**
  * Conn Player Rename
  */
-export class IS_CPR extends BasePacket {
+export class IS_CPR extends AbstractPacket {
   @byte() readonly Size = 36;
   @byte() readonly Type = PacketType.ISP_CPR;
 

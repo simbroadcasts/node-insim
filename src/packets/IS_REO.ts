@@ -1,5 +1,5 @@
 import { byte, byteArray } from '../utils';
-import { BaseSendablePacket } from './BaseSendablePacket';
+import { AbstractSendablePacket } from './AbstractSendablePacket';
 import { PacketType } from './enums';
 import type { PacketData } from './types';
 
@@ -23,7 +23,7 @@ import type { PacketData } from './types';
  * - ReqI: non-zero            (returned in the reply)
  * - SubT: {@link TINY_REO}    (request an IS_REO)
  */
-export class IS_REO extends BaseSendablePacket {
+export class IS_REO extends AbstractSendablePacket {
   @byte() readonly Size = 44;
   @byte() readonly Type = PacketType.ISP_REO;
 

@@ -1,12 +1,12 @@
 import { stringToBytes } from '../../utils';
 import { IS_RST, PacketType } from '..';
-import { BasePacket } from '../BasePacket';
+import { AbstractPacket } from '../AbstractPacket';
 import { RaceFlags } from '../enums';
 
 describe('IS_RST', () => {
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
-      28 / BasePacket.SIZE_MULTIPLIER, // Size
+      28 / AbstractPacket.SIZE_MULTIPLIER, // Size
       17, // Type
       1, // ReqI
       0, // Zero

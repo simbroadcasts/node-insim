@@ -1,10 +1,10 @@
 import { IS_TOC, PacketType } from '..';
-import { BasePacket } from '../BasePacket';
+import { AbstractPacket } from '../AbstractPacket';
 
 describe('IS_TOC', () => {
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
-      8 / BasePacket.SIZE_MULTIPLIER, // Size
+      8 / AbstractPacket.SIZE_MULTIPLIER, // Size
       31, // Type
       0, // ReqI
       3, // PLID

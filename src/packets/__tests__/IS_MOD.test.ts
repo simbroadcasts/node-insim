@@ -1,7 +1,7 @@
 import { testSendablePacket } from '../../utils';
 import type { IS_MOD_Data } from '..';
 import { IS_MOD, PacketType } from '..';
-import { BasePacket } from '../BasePacket';
+import { AbstractPacket } from '../AbstractPacket';
 
 const data: IS_MOD_Data = {
   Bits16: 2,
@@ -11,7 +11,7 @@ const data: IS_MOD_Data = {
 };
 
 const expectedBuffer = Buffer.from([
-  20 / BasePacket.SIZE_MULTIPLIER, // Size
+  20 / AbstractPacket.SIZE_MULTIPLIER, // Size
   15, // Type
   0, // ReqI
   0, // Zero

@@ -2,7 +2,7 @@ import { InSim } from '../../protocols';
 import { stringToBytes, testSendablePacket } from '../../utils';
 import type { IS_ISI_Data } from '..';
 import { IS_ISI, PacketType } from '..';
-import { BasePacket } from '../BasePacket';
+import { AbstractPacket } from '../AbstractPacket';
 
 const data: IS_ISI_Data = {
   ReqI: 1,
@@ -16,7 +16,7 @@ const data: IS_ISI_Data = {
 };
 
 const expectedBuffer = Buffer.from([
-  44 / BasePacket.SIZE_MULTIPLIER, // Size
+  44 / AbstractPacket.SIZE_MULTIPLIER, // Size
   1, // Type
   1, // ReqI
   0, // Zero

@@ -1,13 +1,13 @@
 import { stringToBytes } from '../../utils';
 import { IS_III, PacketType } from '..';
-import { BasePacket } from '../BasePacket';
+import { AbstractPacket } from '../AbstractPacket';
 
 describe('IS_III', () => {
   it('should unpack data from a buffer', () => {
     const msg =
       'This string is a very long text sixty four characters long yes.';
     const buffer = Buffer.from([
-      72 / BasePacket.SIZE_MULTIPLIER, // Size
+      72 / AbstractPacket.SIZE_MULTIPLIER, // Size
       12, // Type
       1, // ReqI
       0, // Zero

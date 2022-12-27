@@ -1,5 +1,5 @@
 import { byte, char, getFormat, log as baseLog, unpack } from '../utils';
-import { BasePacket } from './BasePacket';
+import { AbstractPacket } from './AbstractPacket';
 import type { UserType } from './enums';
 import { PacketType } from './enums';
 
@@ -8,7 +8,7 @@ const logError = baseLog.extend('IS_MSO:error');
 /**
  * MSg Out - system messages and user messages - variable size
  */
-export class IS_MSO extends BasePacket {
+export class IS_MSO extends AbstractPacket {
   private static readonly FIXED_DATA_SIZE = 8;
 
   @byte() readonly Size = IS_MSO.FIXED_DATA_SIZE;
@@ -39,7 +39,7 @@ export class IS_MSO extends BasePacket {
       return this;
     }
 
-    const size = data[0] * BasePacket.SIZE_MULTIPLIER;
+    const size = data[0] * AbstractPacket.SIZE_MULTIPLIER;
     const msgLength = size - IS_MSO.FIXED_DATA_SIZE;
 
     super.unpack(buffer, {

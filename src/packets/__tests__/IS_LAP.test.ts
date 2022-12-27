@@ -1,11 +1,11 @@
 import { IS_LAP, PacketType, PlayerFlags } from '..';
-import { BasePacket } from '../BasePacket';
+import { AbstractPacket } from '../AbstractPacket';
 import { PenaltyValue } from '../enums';
 
 describe('IS_LAP', () => {
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
-      20 / BasePacket.SIZE_MULTIPLIER, // Size
+      20 / AbstractPacket.SIZE_MULTIPLIER, // Size
       24, // Type
       0, // ReqI
       2, // PLID

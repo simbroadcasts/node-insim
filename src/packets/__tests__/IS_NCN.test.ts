@@ -1,11 +1,11 @@
 import { stringToBytes } from '../../utils';
 import { ConnectionFlags, IS_NCN, PacketType } from '..';
-import { BasePacket } from '../BasePacket';
+import { AbstractPacket } from '../AbstractPacket';
 
 describe('IS_NCN', () => {
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
-      56 / BasePacket.SIZE_MULTIPLIER, // Size
+      56 / AbstractPacket.SIZE_MULTIPLIER, // Size
       18, // Type
       2, // ReqI
       3, // UCID

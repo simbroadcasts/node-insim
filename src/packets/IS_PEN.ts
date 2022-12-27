@@ -1,12 +1,12 @@
 import { byte } from '../utils';
-import { BasePacket } from './BasePacket';
+import { AbstractPacket } from './AbstractPacket';
 import type { PenaltyReason, PenaltyValue } from './enums';
 import { PacketType } from './enums';
 
 /**
  * PENalty (given or cleared)
  */
-export class IS_PEN extends BasePacket {
+export class IS_PEN extends AbstractPacket {
   @byte() readonly Size = 8;
   @byte() readonly Type = PacketType.ISP_PEN;
   @byte() readonly ReqI: 0 = 0;

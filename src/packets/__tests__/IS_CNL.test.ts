@@ -1,10 +1,10 @@
 import { IS_CNL, LeaveReason, PacketType } from '..';
-import { BasePacket } from '../BasePacket';
+import { AbstractPacket } from '../AbstractPacket';
 
 describe('IS_CNL', () => {
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
-      8 / BasePacket.SIZE_MULTIPLIER, // Size
+      8 / AbstractPacket.SIZE_MULTIPLIER, // Size
       19, // Type
       0, // ReqI
       4, // UCID

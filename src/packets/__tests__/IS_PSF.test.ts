@@ -1,10 +1,10 @@
 import { IS_PSF, PacketType } from '..';
-import { BasePacket } from '../BasePacket';
+import { AbstractPacket } from '../AbstractPacket';
 
 describe('IS_PSF', () => {
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
-      12 / BasePacket.SIZE_MULTIPLIER, // Size
+      12 / AbstractPacket.SIZE_MULTIPLIER, // Size
       27, // Type
       0, // ReqI
       2, // PLID

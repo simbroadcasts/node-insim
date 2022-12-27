@@ -1,5 +1,5 @@
 import { byte, char } from '../utils';
-import { BasePacket } from './BasePacket';
+import { AbstractPacket } from './AbstractPacket';
 import { PacketType } from './enums';
 
 /**
@@ -9,7 +9,7 @@ import { PacketType } from './enums';
  * avoid problems when connecting to a host with a later or earlier version. You will
  * be sent a version packet on connection if you set ReqI in the {@link IS_ISI} packet.
  */
-export class IS_VER extends BasePacket {
+export class IS_VER extends AbstractPacket {
   @byte() readonly Size = 20;
   @byte() readonly Type = PacketType.ISP_VER;
 

@@ -1,12 +1,12 @@
 import { byte } from '../utils';
-import { BasePacket } from './BasePacket';
+import { AbstractPacket } from './AbstractPacket';
 import type { LeaveReason } from './enums';
 import { PacketType } from './enums';
 
 /**
  * ConN Leave
  */
-export class IS_CNL extends BasePacket {
+export class IS_CNL extends AbstractPacket {
   @byte() readonly Size = 8;
   @byte() readonly Type = PacketType.ISP_CNL;
 

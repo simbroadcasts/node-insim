@@ -8,12 +8,12 @@ import {
   SetupFlags,
   TyreCompound,
 } from '..';
-import { BasePacket } from '../BasePacket';
+import { AbstractPacket } from '../AbstractPacket';
 
 describe('IS_NPL', () => {
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
-      76 / BasePacket.SIZE_MULTIPLIER, // Size
+      76 / AbstractPacket.SIZE_MULTIPLIER, // Size
       21, // Type
       0, // ReqI
       3, // PLID

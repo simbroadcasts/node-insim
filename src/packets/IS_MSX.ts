@@ -1,12 +1,12 @@
 import { byte, char } from '../utils';
-import { BaseSendablePacket } from './BaseSendablePacket';
+import { AbstractSendablePacket } from './AbstractSendablePacket';
 import { PacketType } from './enums';
 import type { PacketData } from './types';
 
 /**
  * MSg eXtended - like {@link IS_MST} but longer (not for commands)
  */
-export class IS_MSX extends BaseSendablePacket {
+export class IS_MSX extends AbstractSendablePacket {
   @byte() readonly Size = 100;
   @byte() readonly Type = PacketType.ISP_MSX;
   @byte() readonly ReqI: 0 = 0;

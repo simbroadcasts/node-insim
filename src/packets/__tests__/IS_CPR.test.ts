@@ -1,11 +1,11 @@
 import { stringToBytes } from '../../utils';
 import { IS_CPR, PacketType } from '..';
-import { BasePacket } from '../BasePacket';
+import { AbstractPacket } from '../AbstractPacket';
 
 describe('IS_CPR', () => {
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
-      36 / BasePacket.SIZE_MULTIPLIER, // Size
+      36 / AbstractPacket.SIZE_MULTIPLIER, // Size
       20, // Type
       0, // ReqI
       3, // UCID

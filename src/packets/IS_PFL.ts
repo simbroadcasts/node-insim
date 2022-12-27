@@ -1,12 +1,12 @@
 import { byte, word } from '../utils';
-import { BasePacket } from './BasePacket';
+import { AbstractPacket } from './AbstractPacket';
 import type { PlayerFlags } from './enums';
 import { PacketType } from './enums';
 
 /**
  * Player FLags (help flags changed)
  */
-export class IS_PFL extends BasePacket {
+export class IS_PFL extends AbstractPacket {
   @byte() readonly Size = 8;
   @byte() readonly Type = PacketType.ISP_PFL;
   @byte() readonly ReqI: 0 = 0;

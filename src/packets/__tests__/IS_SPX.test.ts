@@ -1,10 +1,10 @@
 import { IS_SPX, PacketType, PenaltyValue } from '..';
-import { BasePacket } from '../BasePacket';
+import { AbstractPacket } from '../AbstractPacket';
 
 describe('IS_SPX', () => {
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
-      20 / BasePacket.SIZE_MULTIPLIER, // Size
+      20 / AbstractPacket.SIZE_MULTIPLIER, // Size
       25, // Type
       0, // ReqI
       2, // PLID

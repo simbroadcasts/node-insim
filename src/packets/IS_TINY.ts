@@ -1,5 +1,5 @@
 import { byte, log as baseLog } from '../utils';
-import { BaseSendablePacket } from './BaseSendablePacket';
+import { AbstractSendablePacket } from './AbstractSendablePacket';
 import { PacketType, TinyType } from './enums';
 
 const logError = baseLog.extend('IS_TINY:error');
@@ -7,7 +7,7 @@ const logError = baseLog.extend('IS_TINY:error');
 /**
  * General purpose 4 byte packet
  */
-export class IS_TINY extends BaseSendablePacket {
+export class IS_TINY extends AbstractSendablePacket {
   @byte() readonly Size = 4;
   @byte() readonly Type = PacketType.ISP_TINY;
 

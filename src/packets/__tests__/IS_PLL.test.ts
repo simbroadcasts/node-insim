@@ -1,10 +1,10 @@
 import { IS_PLL, PacketType } from '..';
-import { BasePacket } from '../BasePacket';
+import { AbstractPacket } from '../AbstractPacket';
 
 describe('IS_PLL', () => {
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
-      4 / BasePacket.SIZE_MULTIPLIER, // Size
+      4 / AbstractPacket.SIZE_MULTIPLIER, // Size
       23, // Type
       1, // ReqI
       2, // PLID

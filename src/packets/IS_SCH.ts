@@ -1,5 +1,5 @@
 import { byte } from '../utils';
-import { BaseSendablePacket } from './BaseSendablePacket';
+import { AbstractSendablePacket } from './AbstractSendablePacket';
 import type { CharacterModifiers } from './enums';
 import { PacketType } from './enums';
 import type { PacketData } from './types';
@@ -13,7 +13,7 @@ import type { PacketData } from './types';
  * This does not work with some keys like F keys, arrows or CTRL keys.
  * You can also use {@link IS_MST} with the /press /shift /ctrl /alt commands.
  */
-export class IS_SCH extends BaseSendablePacket {
+export class IS_SCH extends AbstractSendablePacket {
   @byte() readonly Size = 8;
   @byte() readonly Type = PacketType.ISP_SCH;
 

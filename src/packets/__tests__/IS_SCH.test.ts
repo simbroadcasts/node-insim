@@ -1,7 +1,7 @@
 import { testSendablePacket } from '../../utils';
 import type { IS_SCH_Data } from '..';
 import { CharacterModifiers, IS_SCH, PacketType } from '..';
-import { BasePacket } from '../BasePacket';
+import { AbstractPacket } from '../AbstractPacket';
 
 const data: IS_SCH_Data = {
   CharB: 23,
@@ -9,7 +9,7 @@ const data: IS_SCH_Data = {
 };
 
 const expectedBuffer = Buffer.from([
-  8 / BasePacket.SIZE_MULTIPLIER, // Size
+  8 / AbstractPacket.SIZE_MULTIPLIER, // Size
   6, // Type
   0, // ReqI
   0, // Zero

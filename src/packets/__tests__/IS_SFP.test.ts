@@ -1,7 +1,7 @@
 import { testSendablePacket } from '../../utils';
 import type { IS_SFP_Data } from '..';
 import { IS_SFP, PacketType, StateFlags } from '..';
-import { BasePacket } from '../BasePacket';
+import { AbstractPacket } from '../AbstractPacket';
 
 const data: IS_SFP_Data = {
   Flag: StateFlags.ISS_SHOW_2D | StateFlags.ISS_MPSPEEDUP,
@@ -9,7 +9,7 @@ const data: IS_SFP_Data = {
 };
 
 const expectedBuffer = Buffer.from([
-  8 / BasePacket.SIZE_MULTIPLIER, // Size
+  8 / AbstractPacket.SIZE_MULTIPLIER, // Size
   7, // Type
   0, // ReqI
   0, // Zero

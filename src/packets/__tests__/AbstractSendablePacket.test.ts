@@ -1,10 +1,11 @@
 import { byte, char, stringToBytes } from '../../utils';
-import { BasePacket, BaseSendablePacket, PacketType } from '..';
+import { PacketType } from '..';
+import { AbstractSendablePacket } from '../AbstractSendablePacket';
 
-describe('BasePacket', () => {
+describe('AbstractSendablePacket', () => {
   describe('initialize', () => {
     it('should populate instance properties using initialize()', () => {
-      class CustomPacket extends BaseSendablePacket {
+      class CustomPacket extends AbstractSendablePacket {
         Size = 2;
         Type = PacketType.ISP_ISI;
         ReqI = 1;
@@ -27,7 +28,7 @@ describe('BasePacket', () => {
     });
 
     it('should unpack binary data', () => {
-      class CustomPacket extends BaseSendablePacket {
+      class CustomPacket extends AbstractSendablePacket {
         @byte() Size = 0;
         @byte() Type = PacketType.ISP_ISI;
         @byte() ReqI = 1;
@@ -36,7 +37,7 @@ describe('BasePacket', () => {
       }
 
       const buffer = Buffer.from([
-        8 / BasePacket.SIZE_MULTIPLIER, // Size
+        8 / AbstractSendablePacket.SIZE_MULTIPLIER, // Size
         PacketType.ISP_NCN, // Type
         2, // ReqI
         ...stringToBytes('test'), // StringProperty[6]

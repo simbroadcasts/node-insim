@@ -1,7 +1,7 @@
 import { testSendablePacket } from '../../utils';
 import type { IS_CPP_Data } from '..';
 import { IS_CPP, PacketType, StateFlags, ViewIdentifier } from '..';
-import { BasePacket } from '../BasePacket';
+import { AbstractPacket } from '../AbstractPacket';
 
 const data: IS_CPP_Data = {
   X: 1,
@@ -18,7 +18,7 @@ const data: IS_CPP_Data = {
 };
 
 const buffer = Buffer.from([
-  32 / BasePacket.SIZE_MULTIPLIER, // Size
+  32 / AbstractPacket.SIZE_MULTIPLIER, // Size
   9, // Type
   0, // ReqI
   0, // Zero

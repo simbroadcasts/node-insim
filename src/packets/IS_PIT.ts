@@ -1,5 +1,5 @@
 import { byte, unsigned, word } from '../utils';
-import { BasePacket } from './BasePacket';
+import { AbstractPacket } from './AbstractPacket';
 import type {
   PenaltyValue,
   PitWorkFlags,
@@ -11,7 +11,7 @@ import { PacketType } from './enums';
 /**
  * PIT stop (stop at pit garage)
  */
-export class IS_PIT extends BasePacket {
+export class IS_PIT extends AbstractPacket {
   @byte() readonly Size = 24;
   @byte() readonly Type = PacketType.ISP_PIT;
   @byte() readonly ReqI: 0 = 0;

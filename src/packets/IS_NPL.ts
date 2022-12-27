@@ -1,5 +1,5 @@
 import { byte, char, word } from '../utils';
-import { BasePacket } from './BasePacket';
+import { AbstractPacket } from './AbstractPacket';
 import type {
   CarConfiguration,
   PassengerFlags,
@@ -13,7 +13,7 @@ import { PacketType } from './enums';
 /**
  * New PLayer joining race (if PLID already exists, then leaving pits)
  */
-export class IS_NPL extends BasePacket {
+export class IS_NPL extends AbstractPacket {
   @byte() readonly Size = 76;
   @byte() readonly Type = PacketType.ISP_NPL;
 

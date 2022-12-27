@@ -1,11 +1,11 @@
 import { pack } from '../utils';
-import { BasePacket } from './BasePacket';
+import { AbstractPacket } from './AbstractPacket';
 import type { ISendable } from './ISendable';
 
 type Data = Record<string, unknown>;
 
-export abstract class BaseSendablePacket
-  extends BasePacket
+export abstract class AbstractSendablePacket
+  extends AbstractPacket
   implements ISendable
 {
   protected initialize(data?: Partial<Data> | Buffer) {
@@ -27,7 +27,8 @@ export abstract class BaseSendablePacket
     const values = propertyNames.map((propertyName) => {
       if (propertyName === 'Size') {
         return (
-          (this[propertyName] as unknown as number) / BasePacket.SIZE_MULTIPLIER
+          (this[propertyName] as unknown as number) /
+          AbstractPacket.SIZE_MULTIPLIER
         );
       }
 

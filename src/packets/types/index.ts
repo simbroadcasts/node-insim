@@ -1,4 +1,4 @@
-import type { BaseSendablePacket } from '../BaseSendablePacket';
+import type { AbstractSendablePacket } from '../AbstractSendablePacket';
 import type { IPacket } from '../IPacket';
 
 type ReadonlyPropNames =
@@ -11,10 +11,10 @@ type ReadonlyPropNames =
   | 'Sp2'
   | 'Sp3';
 
-type ReadonlySendableProps = keyof BaseSendablePacket | ReadonlyPropNames;
+type ReadonlySendableProps = keyof AbstractSendablePacket | ReadonlyPropNames;
 
 type ReadonlySendablePropsExceptReqI =
-  | keyof Omit<BaseSendablePacket, 'ReqI'>
+  | keyof Omit<AbstractSendablePacket, 'ReqI'>
   | ReadonlyPropNames;
 
 type OmitReadonlyProps<T> = Omit<T, ReadonlySendableProps>;

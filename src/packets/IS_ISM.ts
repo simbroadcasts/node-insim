@@ -1,5 +1,5 @@
 import { byte, char } from '../utils';
-import { BasePacket } from './BasePacket';
+import { AbstractPacket } from './AbstractPacket';
 import { PacketType } from './enums';
 
 /**
@@ -19,7 +19,7 @@ import { PacketType } from './enums';
  *
  * NOTE: If LFS is not in multiplayer mode, the host name in the ISM will be empty.
  */
-export class IS_ISM extends BasePacket {
+export class IS_ISM extends AbstractPacket {
   @byte() readonly Size = 40;
   @byte() readonly Type = PacketType.ISP_ISM;
 

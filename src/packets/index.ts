@@ -1,5 +1,3 @@
-export { BasePacket } from './BasePacket';
-export { BaseSendablePacket } from './BaseSendablePacket';
 export * from './enums';
 export type { IPacket } from './IPacket';
 export { IS_BTC } from './IS_BTC';

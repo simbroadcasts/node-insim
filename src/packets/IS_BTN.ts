@@ -1,5 +1,5 @@
 import { byte, char, log as baseLog } from '../utils';
-import { BaseSendablePacket } from './BaseSendablePacket';
+import { AbstractSendablePacket } from './AbstractSendablePacket';
 import type { ButtonStyle, ButtonTextColour } from './enums';
 import { PacketType } from './enums';
 import type { PacketDataWithRequiredReqI } from './types';
@@ -31,7 +31,7 @@ const logError = baseLog.extend('IS_BTN:error');
  * that area will not have a space kept clear. You can also make buttons visible
  * in all screens by setting the {@link Inst} property to {@link INST_ALWAYS_ON}.
  */
-export class IS_BTN extends BaseSendablePacket {
+export class IS_BTN extends AbstractSendablePacket {
   private static readonly FIXED_DATA_SIZE = 12;
 
   /** 12 + text size (a multiple of 4) */

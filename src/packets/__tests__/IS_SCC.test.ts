@@ -1,7 +1,7 @@
 import { testSendablePacket } from '../../utils';
 import type { IS_SCC_Data } from '..';
 import { IS_SCC, PacketType, ViewIdentifier } from '..';
-import { BasePacket } from '../BasePacket';
+import { AbstractPacket } from '../AbstractPacket';
 
 const data: IS_SCC_Data = {
   ViewPLID: 1,
@@ -9,7 +9,7 @@ const data: IS_SCC_Data = {
 };
 
 const expectedBuffer = Buffer.from([
-  8 / BasePacket.SIZE_MULTIPLIER, // Size
+  8 / AbstractPacket.SIZE_MULTIPLIER, // Size
   8, // Type
   0, // ReqI
   0, // Zero

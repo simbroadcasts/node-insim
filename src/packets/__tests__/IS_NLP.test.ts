@@ -1,10 +1,10 @@
 import { IS_NLP, PacketType } from '..';
-import { BasePacket } from '../BasePacket';
+import { AbstractPacket } from '../AbstractPacket';
 
 describe('IS_NLP', () => {
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
-      40 / BasePacket.SIZE_MULTIPLIER, // Size
+      40 / AbstractPacket.SIZE_MULTIPLIER, // Size
       37, // Type
       1, // ReqI
       2, // NumP
@@ -27,19 +27,14 @@ describe('IS_NLP', () => {
     expect(packet.Type).toEqual(PacketType.ISP_NLP);
     expect(packet.ReqI).toEqual(1);
     expect(packet.NumP).toEqual(2);
-    expect(packet.Info).toEqual([
-      {
-        Node: 282,
-        Lap: 14,
-        PLID: 5,
-        Position: 18,
-      },
-      {
-        Node: 1315,
-        Lap: 13,
-        PLID: 6,
-        Position: 19,
-      },
-    ]);
+    expect(packet.Info).toHaveLength(2);
+    expect(packet.Info[0].Node).toEqual(282);
+    expect(packet.Info[0].Lap).toEqual(14);
+    expect(packet.Info[0].PLID).toEqual(5);
+    expect(packet.Info[0].Position).toEqual(18);
+    expect(packet.Info[1].Node).toEqual(1315);
+    expect(packet.Info[1].Lap).toEqual(13);
+    expect(packet.Info[1].PLID).toEqual(6);
+    expect(packet.Info[1].Position).toEqual(19);
   });
 });

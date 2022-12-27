@@ -1,5 +1,5 @@
 import { byte, char } from '../utils';
-import { BasePacket } from './BasePacket';
+import { AbstractPacket } from './AbstractPacket';
 import { PacketType } from './enums';
 
 /**
@@ -8,7 +8,7 @@ import { PacketType } from './enums';
  * If the {@link IS_BTN.TypeIn} byte is set in {@link IS_BTN} the user can type text into the button
  * In that case no {@link IS_BTC} is sent - an {@link IS_BTT} is sent when the user presses ENTER
  */
-export class IS_BTT extends BasePacket {
+export class IS_BTT extends AbstractPacket {
   @byte() readonly Size = 104;
   @byte() readonly Type = PacketType.ISP_BTT;
 

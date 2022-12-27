@@ -1,7 +1,7 @@
 import { testSendablePacket } from '../../utils';
 import type { IS_REO_Data } from '..';
 import { IS_REO, PacketType } from '..';
-import { BasePacket } from '../BasePacket';
+import { AbstractPacket } from '../AbstractPacket';
 
 const data: IS_REO_Data = {
   NumP: 10,
@@ -12,7 +12,7 @@ const data: IS_REO_Data = {
 };
 
 const buffer = Buffer.from([
-  44 / BasePacket.SIZE_MULTIPLIER, // Size
+  44 / AbstractPacket.SIZE_MULTIPLIER, // Size
   36, // Type
   0, // ReqI
   10, // NumP

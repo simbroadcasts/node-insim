@@ -1,10 +1,10 @@
 import { IS_VTN, PacketType, VoteAction } from '..';
-import { BasePacket } from '../BasePacket';
+import { AbstractPacket } from '../AbstractPacket';
 
 describe('IS_VTN', () => {
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
-      8 / BasePacket.SIZE_MULTIPLIER, // Size
+      8 / AbstractPacket.SIZE_MULTIPLIER, // Size
       16, // Type
       0, // ReqI
       0, // Zero

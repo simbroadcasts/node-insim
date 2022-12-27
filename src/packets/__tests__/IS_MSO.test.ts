@@ -1,11 +1,11 @@
 import { stringToBytes } from '../../utils';
 import { IS_MSO, PacketType, UserType } from '..';
-import { BasePacket } from '../BasePacket';
+import { AbstractPacket } from '../AbstractPacket';
 
 describe('IS_MSO', () => {
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
-      24 / BasePacket.SIZE_MULTIPLIER, // Size
+      24 / AbstractPacket.SIZE_MULTIPLIER, // Size
       11, // Type
       1, // ReqI
       0, // Zero

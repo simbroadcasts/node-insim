@@ -1,10 +1,11 @@
 import { byte, char } from '../../utils';
-import { BasePacket, PacketType } from '..';
+import { PacketType } from '..';
+import { AbstractPacket } from '../AbstractPacket';
 
-describe('BasePacket', () => {
+describe('AbstractPacket', () => {
   describe('getValidPropertyNames', () => {
     it('should return an empty array if no properties are annotated', () => {
-      class CustomPacket extends BasePacket {
+      class CustomPacket extends AbstractPacket {
         Size = 2;
         Type = PacketType.ISP_ISI;
         ReqI = 1;
@@ -21,7 +22,7 @@ describe('BasePacket', () => {
     });
 
     it('should return list of annotated properties', () => {
-      class CustomPacket extends BasePacket {
+      class CustomPacket extends AbstractPacket {
         @byte() Size = 2;
         @byte() Type = PacketType.ISP_ISI;
         @byte() ReqI = 1;
@@ -48,7 +49,7 @@ describe('BasePacket', () => {
 
   describe('getFormat', () => {
     it('should return the jspack format of all valid properties', () => {
-      class CustomPacket extends BasePacket {
+      class CustomPacket extends AbstractPacket {
         @byte() Size = 2;
         @byte() Type = PacketType.ISP_ISI;
         @byte() ReqI = 1;
@@ -67,7 +68,7 @@ describe('BasePacket', () => {
     });
 
     it('should override property format if provided', () => {
-      class CustomPacket extends BasePacket {
+      class CustomPacket extends AbstractPacket {
         @byte() Size = 2;
         @byte() Type = PacketType.ISP_ISI;
         @byte() ReqI = 1;

@@ -1,12 +1,12 @@
 import { stringToBytes } from '../../utils';
 import { INST_ALWAYS_ON, PacketType } from '..';
 import { IS_BTT } from '..';
-import { BasePacket } from '../BasePacket';
+import { AbstractPacket } from '../AbstractPacket';
 
 describe('IS_BTT', () => {
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
-      104 / BasePacket.SIZE_MULTIPLIER, // Size
+      104 / AbstractPacket.SIZE_MULTIPLIER, // Size
       47, // Type
       1, // ReqI
       2, // UCID

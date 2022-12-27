@@ -1,7 +1,7 @@
 import { stringToBytes, testSendablePacket } from '../../utils';
 import type { IS_BTN_Data } from '..';
 import { ButtonStyle, INST_ALWAYS_ON, IS_BTN, PacketType } from '..';
-import { BasePacket } from '../BasePacket';
+import { AbstractPacket } from '../AbstractPacket';
 
 const text =
   '123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789$';
@@ -21,7 +21,7 @@ const data: IS_BTN_Data = {
 };
 
 const expectedBuffer = Buffer.from([
-  252 / BasePacket.SIZE_MULTIPLIER, // Size
+  252 / AbstractPacket.SIZE_MULTIPLIER, // Size
   45, // Type
   1, // ReqI
   2, // UCID
@@ -54,7 +54,7 @@ describe('IS_BTN', () => {
       Text: '',
     };
     const expectedBuffer = Buffer.from([
-      16 / BasePacket.SIZE_MULTIPLIER, // Size
+      16 / AbstractPacket.SIZE_MULTIPLIER, // Size
       45, // Type
       1, // ReqI
       2, // UCID

@@ -1,12 +1,12 @@
 import { byte } from '../utils';
-import { BasePacket } from './BasePacket';
+import { AbstractPacket } from './AbstractPacket';
 import type { ViewIdentifier } from './enums';
 import { PacketType } from './enums';
 
 /**
  * Camera CHange
  */
-export class IS_CCH extends BasePacket {
+export class IS_CCH extends AbstractPacket {
   @byte() readonly Size = 8;
   @byte() readonly Type = PacketType.ISP_CCH;
   @byte() readonly ReqI: 0 = 0;

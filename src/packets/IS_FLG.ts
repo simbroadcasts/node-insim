@@ -1,11 +1,11 @@
 import { byte } from '../utils';
-import { BasePacket } from './BasePacket';
+import { AbstractPacket } from './AbstractPacket';
 import { PacketType } from './enums';
 
 /**
  * FLaG (yellow or blue flag changed)
  */
-export class IS_FLG extends BasePacket {
+export class IS_FLG extends AbstractPacket {
   @byte() readonly Size = 8;
   @byte() readonly Type = PacketType.ISP_FLG;
   @byte() readonly ReqI: 0 = 0;

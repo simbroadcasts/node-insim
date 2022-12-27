@@ -1,11 +1,11 @@
 import { stringToBytes } from '../../utils';
 import { IS_VER, PacketType } from '..';
-import { BasePacket } from '../BasePacket';
+import { AbstractPacket } from '../AbstractPacket';
 
 describe('IS_VER', () => {
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
-      20 / BasePacket.SIZE_MULTIPLIER, // Size
+      20 / AbstractPacket.SIZE_MULTIPLIER, // Size
       2, // Type
       1, // ReqI
       0, // Zero

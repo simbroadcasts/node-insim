@@ -1,11 +1,11 @@
 import { stringToBytes } from '../../utils';
 import { IS_ISM, MultiplayerHostMode, PacketType } from '..';
-import { BasePacket } from '../BasePacket';
+import { AbstractPacket } from '../AbstractPacket';
 
 describe('IS_ISM', () => {
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
-      40 / BasePacket.SIZE_MULTIPLIER, // Size
+      40 / AbstractPacket.SIZE_MULTIPLIER, // Size
       10, // Type
       1, // ReqI
       0, // Zero

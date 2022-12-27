@@ -1,14 +1,14 @@
 import { stringToBytes, testSendablePacket } from '../../utils';
 import type { IS_MST_Data } from '..';
 import { IS_MST, PacketType } from '..';
-import { BasePacket } from '../BasePacket';
+import { AbstractPacket } from '../AbstractPacket';
 
 const data: IS_MST_Data = {
   Msg: 'This is a message whose length will be sixty four characters ye',
 };
 
 const expectedBuffer = Buffer.from([
-  68 / BasePacket.SIZE_MULTIPLIER, // Size
+  68 / AbstractPacket.SIZE_MULTIPLIER, // Size
   13, // Type
   0, // ReqI
   0, // Zero

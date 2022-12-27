@@ -1,6 +1,9 @@
-import { byte, unpack } from '../utils';
-import { BasePacket } from './BasePacket';
+import { byte, log as baseLog, unpack, word } from '../utils';
+import { AbstractPacket } from './AbstractPacket';
+import { AbstractStruct } from './AbstractStruct';
 import { PacketType } from './enums';
+
+const logError = baseLog.extend('IS_NLP:error');
 
 /**
  * Node and Lap Packet - variable size
@@ -12,7 +15,7 @@ import { PacketType } from './enums';
  *
  * If {@link ISF_NLP} flag is set, one {@link IS_NLP} packet is sent...
  */
-export class IS_NLP extends BasePacket {
+export class IS_NLP extends AbstractPacket {
   /** 4 + NumP * 6 (PLUS 2 if needed to make it a multiple of 4) */
   @byte() readonly Size = 4;
 
@@ -33,55 +36,39 @@ export class IS_NLP extends BasePacket {
     const data = unpack(this.getFormat(), buffer);
 
     if (!data) {
+      logError(
+        `${
+          PacketType[this.Type]
+        } - Unpacked no data using ${this.getFormat()} from buffer`,
+        buffer.join(),
+      );
       return this;
     }
 
-    const nodeLapDataOffset = data.length;
-    const nodeLapDataFormat = 'HHBB';
-    const nodeLapDataBlockLength = 4; // after unpacking
-
-    const nodeLapData = unpack(
-      `${`<${nodeLapDataFormat}`.repeat(this.NumP)}`,
-      buffer.slice(nodeLapDataOffset),
-    );
-
-    if (
-      !nodeLapData ||
-      nodeLapData.length !== this.NumP * nodeLapDataBlockLength
-    ) {
-      return this;
-    }
+    const nodeLapDataLength = 6;
 
     for (let i = 0; i < this.NumP; i++) {
-      const start = nodeLapDataOffset * i;
-      const [Node, Lap, PLID, Position] = nodeLapData.slice(
-        start,
-        start + nodeLapDataBlockLength,
-      );
-      this.Info.push({
-        Node,
-        Lap,
-        PLID,
-        Position,
-      });
+      const start = data.length + nodeLapDataLength * i;
+      const nodeLapBuffer = buffer.slice(start, start + nodeLapDataLength);
+      this.Info.push(new NodeLap().unpack(nodeLapBuffer));
     }
 
     return this;
   }
 }
 
-export type NodeLap = {
+export class NodeLap extends AbstractStruct {
   /** Current path node */
-  Node: number;
+  @word() Node = 0;
 
   /** Current lap */
-  Lap: number;
+  @word() Lap = 0;
 
   /** Player's unique id */
-  PLID: number;
+  @byte() PLID = 0;
 
   /** Current race position: 0 = unknown, 1 = leader, etc... */
-  Position: number;
-};
+  @byte() Position = 0;
+}
 
 export const NLP_MAX_CARS = 40;

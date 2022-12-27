@@ -1,5 +1,5 @@
 import { byte, char, getFormat, log as baseLog, unpack } from '../utils';
-import { BasePacket } from './BasePacket';
+import { AbstractPacket } from './AbstractPacket';
 import { PacketType } from './enums';
 
 const logError = baseLog.extend('IS_III:error');
@@ -7,7 +7,7 @@ const logError = baseLog.extend('IS_III:error');
 /**
  * InsIm Info - /i message from user to host's InSim - variable size
  */
-export class IS_III extends BasePacket {
+export class IS_III extends AbstractPacket {
   private static readonly FIXED_DATA_SIZE = 8;
 
   @byte() readonly Size = IS_III.FIXED_DATA_SIZE;
@@ -35,7 +35,7 @@ export class IS_III extends BasePacket {
       return this;
     }
 
-    const size = data[0] * BasePacket.SIZE_MULTIPLIER;
+    const size = data[0] * AbstractPacket.SIZE_MULTIPLIER;
     const msgLength = size - IS_III.FIXED_DATA_SIZE;
 
     super.unpack(buffer, {

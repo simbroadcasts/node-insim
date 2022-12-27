@@ -1,7 +1,7 @@
 import { testSendablePacket } from '../../utils';
 import type { IS_SMALL_Data } from '..';
 import { IS_SMALL, PacketType, SmallType } from '..';
-import { BasePacket } from '../BasePacket';
+import { AbstractPacket } from '../AbstractPacket';
 
 const data: IS_SMALL_Data = {
   ReqI: 1,
@@ -10,7 +10,7 @@ const data: IS_SMALL_Data = {
 };
 
 const expectedBuffer = Buffer.from([
-  8 / BasePacket.SIZE_MULTIPLIER, // Size
+  8 / AbstractPacket.SIZE_MULTIPLIER, // Size
   4, // Type
   1, // ReqI
   7, // SubT

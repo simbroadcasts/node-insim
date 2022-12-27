@@ -9,11 +9,12 @@ import {
   unsigned,
   word,
 } from '../../utils';
-import { BasePacket, PacketType } from '..';
+import { PacketType } from '..';
+import { AbstractPacket } from '../AbstractPacket';
 
 describe('Packet property decorators', () => {
   it('should return the correct jspack char for each binary data type', () => {
-    class TestPacket extends BasePacket {
+    class TestPacket extends AbstractPacket {
       ReqI = 0;
       Size = 0;
       Type = PacketType.ISP_ISI;

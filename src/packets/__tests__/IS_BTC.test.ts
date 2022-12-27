@@ -1,10 +1,10 @@
 import { ButtonClickFlags, INST_ALWAYS_ON, IS_BTC, PacketType } from '..';
-import { BasePacket } from '../BasePacket';
+import { AbstractPacket } from '../AbstractPacket';
 
 describe('IS_BTC', () => {
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
-      8 / BasePacket.SIZE_MULTIPLIER, // Size
+      8 / AbstractPacket.SIZE_MULTIPLIER, // Size
       46, // Type
       1, // ReqI
       2, // UCID
