@@ -46,6 +46,7 @@ export type { IS_SFP_Data, SendableStateFlags } from './IS_SFP';
 export { IS_SFP } from './IS_SFP';
 export { IS_SMALL, SENDABLE_SMALL_TYPES } from './IS_SMALL';
 export { IS_SMALL_Data, SendableSmallType } from './IS_SMALL';
+export { IS_SPX } from './IS_SPX';
 export { IS_STA } from './IS_STA';
 export type { InfoRequestTinyType, SendableTinyType } from './IS_TINY';
 export {

@@ -15,6 +15,7 @@ import type {
   IS_PLP,
   IS_RST,
   IS_SMALL,
+  IS_SPX,
   IS_STA,
   IS_TINY,
   IS_VER,
@@ -41,6 +42,7 @@ export type InSimPacketEvents = {
   [PacketType.ISP_PLP]: (packet: IS_PLP, inSim: InSim) => void;
   [PacketType.ISP_PLL]: (packet: IS_PLL, inSim: InSim) => void;
   [PacketType.ISP_LAP]: (packet: IS_LAP, inSim: InSim) => void;
+  [PacketType.ISP_SPX]: (packet: IS_SPX, inSim: InSim) => void;
   [PacketType.ISP_CRS]: (packet: IS_CRS, inSim: InSim) => void;
   [PacketType.ISP_BTC]: (packet: IS_BTC, inSim: InSim) => void;
   [PacketType.ISP_BTT]: (packet: IS_BTT, inSim: InSim) => void;
