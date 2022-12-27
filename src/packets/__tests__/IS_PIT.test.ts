@@ -1,9 +1,9 @@
-import { IS_PIT, PacketType, PlayerFlags } from '..';
+import { BasePacket, IS_PIT, PacketType, PlayerFlags } from '..';
 
 describe('IS_PIT', () => {
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
-      6, // Size
+      24 / BasePacket.SIZE_MULTIPLIER, // Size
       26, // Type
       0, // ReqI
       1, // PLID
