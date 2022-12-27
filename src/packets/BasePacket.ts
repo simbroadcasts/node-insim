@@ -77,7 +77,6 @@ export abstract class BasePacket implements IPacket {
       this[propertyName as unknown as Extract<keyof this, string>] = value;
     });
 
-    // log(`Packet data unpacked: ${packetType}`);
     log('Packet data unpacked:', this);
 
     return this;
