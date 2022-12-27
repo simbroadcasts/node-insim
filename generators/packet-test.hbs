@@ -25,9 +25,9 @@ describe('IS_{{ name }}', () => {
   it('should unpack data from a buffer', () => {
     const buffer = Buffer.from([
       {{ size }} / BasePacket.SIZE_MULTIPLIER, // Size
-      PacketType.ISP_{{ name }}, // Type
-      1, // ReqI
-      0, // Zero
+      {{ type }}, // Type
+      0, // ReqI
+      // TODO
     ]);
     const packet = new IS_{{ name }}().unpack(buffer);
 
