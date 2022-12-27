@@ -21,7 +21,6 @@ export class TCP extends EventEmitter {
 
     this.on('connect', () => log(`Connected to ${this.host}:${this.port}`));
     this.on('disconnect', () => log('Disconnected'));
-    this.on('packet', (data: Buffer) => log('Packet received:', data.join()));
   }
 
   connect = () => {
@@ -40,30 +39,27 @@ export class TCP extends EventEmitter {
       logError('Error', error.name, error.message);
     });
 
-    this.stream.on('data', (data: string) => {
-      log('Data received:', data);
+    this.stream.on('data', (data) => {
+      log('Data received:', data instanceof Buffer ? data.join() : data);
 
       // Set or append to temp buffer
       if (this.tempBuf === null) {
-        this.tempBuf = Buffer.from(data, 'binary');
+        this.tempBuf = data;
       } else {
-        this.tempBuf = Buffer.concat([
-          this.tempBuf,
-          Buffer.from(data, 'binary'),
-        ]);
+        this.tempBuf = Buffer.concat([this.tempBuf, data]);
       }
 
       this.processBuf();
     });
   };
 
-  send = (data: Uint8Array | string) => {
+  send = (data: Buffer) => {
     if (this.stream === null) {
       log('Cannot send data - not connected');
       return;
     }
 
-    log('Send data', data);
+    log('Send data', data.join());
     this.stream.write(data);
   };
 
