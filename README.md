@@ -119,22 +119,6 @@ function onVersion(packet: IS_VER, inSim: InSim) {
 yarn dev
 ```
 
-### Run example apps
-
-All example InSim apps connect to `127.0.0.1:29999`. To open that InSim port, type `/insim 29999` in LFS.
-
-```shell
-yarn dev:example examples/insim/minimal
-yarn dev:example examples/insim/full
-```
-
-If you don't want to see debug log messages, use the production variants:
-
-```shell
-yarn dev:example:production examples/insim/minimal
-yarn dev:example:production examples/insim/full
-```
-
 ### Code generators
 
 When adding new InSim packets to the library, you can use built-in code generators using `yarn generate`. It will create and update all the necessary files for you.
