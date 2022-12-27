@@ -1,5 +1,5 @@
 import { InSimError } from '../protocols/InSim/InSimEvents';
-import { byte, unpack } from '../utils';
+import { byte, determineLength, unpack } from '../utils';
 import { AbstractPacket } from './AbstractPacket';
 import { PacketType } from './enums';
 import { NodeLap } from './NodeLap';
@@ -38,11 +38,11 @@ export class IS_NLP extends AbstractPacket {
       throw new InSimError('IS_MSO - Unpacked no data from buffer');
     }
 
-    const nodeLapDataLength = 6;
+    const nodeLapLength = determineLength(new NodeLap().getFormat());
 
     for (let i = 0; i < this.NumP; i++) {
-      const start = data.length + nodeLapDataLength * i;
-      const nodeLapBuffer = buffer.slice(start, start + nodeLapDataLength);
+      const start = data.length + nodeLapLength * i;
+      const nodeLapBuffer = buffer.slice(start, start + nodeLapLength);
       this.Info.push(new NodeLap().unpack(nodeLapBuffer));
     }
 

@@ -31,19 +31,19 @@ export class IS_CON extends AbstractPacket {
   unpack(buffer: Buffer): this {
     super.unpack(buffer);
 
-    const carContactDataOffset = determineLength(this.getFormat());
-    const carContactDataLength = determineLength(new CarContact().getFormat());
+    const carContactOffset = determineLength(this.getFormat());
+    const carContactLength = determineLength(new CarContact().getFormat());
 
     const carContactBufferA = buffer.slice(
-      carContactDataOffset,
-      carContactDataOffset + carContactDataLength,
+      carContactOffset,
+      carContactOffset + carContactLength,
     );
-    this.A = new CarContact().unpack(carContactBufferA);
-
     const carContactBufferB = buffer.slice(
-      carContactDataOffset + carContactDataLength,
-      carContactDataOffset + carContactDataLength * 2,
+      carContactOffset + carContactLength,
+      carContactOffset + carContactLength * 2,
     );
+
+    this.A = new CarContact().unpack(carContactBufferA);
     this.B = new CarContact().unpack(carContactBufferB);
 
     return this;

@@ -1,4 +1,4 @@
-import { byte, determineLength, short, word } from '../utils';
+import { byte, byteArray, determineLength, short, word } from '../utils';
 import { AbstractPacket } from './AbstractPacket';
 import { CarContOBJ } from './CarContOBJ';
 import type { ObjectHitFlags } from './enums';
@@ -24,7 +24,7 @@ export class IS_OBH extends AbstractPacket {
   @word() Time = 0;
 
   /** Contact object */
-  C: CarContOBJ = new CarContOBJ();
+  @byteArray(8) C: CarContOBJ = new CarContOBJ();
 
   /** Position (1 metre = 16) */
   @short() X = 0;
@@ -43,23 +43,15 @@ export class IS_OBH extends AbstractPacket {
   @byte() OBHFlags: ObjectHitFlags = 0;
 
   unpack(buffer: Buffer): this {
-    const carContactDataOffset = 8;
-    const carContactDataLength = determineLength(new CarContOBJ().getFormat());
-    const carContactDataEnd = carContactDataOffset + carContactDataLength;
+    const carContactOffset = 8;
 
-    const bufferBeforeContactData = buffer.slice(0, carContactDataOffset);
-    const bufferAfterContactData = buffer.slice(carContactDataEnd);
-
-    const dataBuffer = Buffer.concat([
-      bufferBeforeContactData,
-      bufferAfterContactData,
-    ]);
-    super.unpack(dataBuffer);
+    super.unpack(buffer);
 
     const carContactBuffer = buffer.slice(
-      carContactDataOffset,
-      carContactDataEnd,
+      carContactOffset,
+      carContactOffset + determineLength(new CarContOBJ().getFormat()),
     );
+
     this.C = new CarContOBJ().unpack(carContactBuffer);
 
     return this;
