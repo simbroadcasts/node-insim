@@ -87,7 +87,5 @@ export class IS_NPL extends BasePacket {
   @byte() Config: CarConfiguration = 0;
 
   /** /showfuel yes: fuel percent / no: 255 */
-  @byte() Fuel: typeof PLAYER_FUEL_HIDDEN | number = 0;
+  @byte() Fuel = 0;
 }
-
-export const PLAYER_FUEL_HIDDEN = 255;
