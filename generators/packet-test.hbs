@@ -1,35 +1,24 @@
-{{#ifNotEquals variant "info"}}import { checkPacketDataSize } from '../../utils';
+{{#ifNotEquals variant "info"}}import { testSendablePacket } from '../../utils';
 import type { IS_{{ name }}_Data } from '..';
 {{/ifNotEquals}}import { IS_{{ name }}, PacketType } from '..';
 import { BasePacket } from '../BasePacket';
 
+{{#ifNotEquals variant "info"}}
+const data: IS_{{ name }}_Data = {
+  // TODO
+};
+
+const expectedBuffer = Buffer.from([
+  {{ size }} / BasePacket.SIZE_MULTIPLIER, // Size
+  {{ type }}, // Type
+  0, // ReqI
+  // TODO
+]);
+{{/ifNotEquals}}
+
 describe('IS_{{ name }}', () => {
 {{#ifNotEquals variant "info"}}
-  checkPacketDataSize(new IS_{{ name }}());
-
-  it('should fill data from the constructor', () => {
-    const data: IS_{{ name }}_Data = {
-      ReqI: 1,
-    };
-    const packet = new IS_{{ name }}(data);
-
-    expect(packet.ReqI).toEqual(data.ReqI);
-  });
-
-  it('should pack data into a buffer', () => {
-    const data: IS_{{ name }}_Data = {
-      ReqI: 1,
-    };
-    const expectedBuffer = Buffer.from([
-      {{ size }} / BasePacket.SIZE_MULTIPLIER, // Size
-      PacketType.ISP_{{ name }}, // Type
-      1, // ReqI
-      0, // Zero
-    ]);
-    const actualBuffer = new IS_{{ name }}(data).pack();
-
-    expect(actualBuffer).toEqual(expectedBuffer);
-  });
+  testSendablePacket(IS_{{ name }}, {{ size }}, PacketType.ISP_{{ name }}, data, expectedBuffer);
 {{/ifNotEquals}}
 {{#ifNotEquals variant "instruction"}}
 

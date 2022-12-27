@@ -15,6 +15,11 @@ module.exports = function (plop) {
       },
       {
         type: 'input',
+        name: 'type',
+        message: 'Packet type number',
+      },
+      {
+        type: 'input',
         name: 'size',
         message: 'Packet size in bytes',
       },
