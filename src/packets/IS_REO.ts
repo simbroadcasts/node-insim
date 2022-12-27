@@ -33,7 +33,7 @@ export class IS_REO extends AbstractSendablePacket {
   /** Number of players in race */
   @byte() NumP = 0;
 
-  /** Number of players in race */
+  /** All PLIDs in new order */
   @byteArray(40) PLID = Array<number>(40).fill(0);
 
   constructor(data?: IS_REO_Data) {
