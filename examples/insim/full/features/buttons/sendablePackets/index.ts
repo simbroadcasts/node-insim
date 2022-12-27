@@ -9,6 +9,7 @@ import type { InSim } from '../../../../../../src/protocols';
 import { buttonTextWithCaption, drawButton } from '../../../ui';
 import { BUTTON_HEIGHT } from '../constants';
 import { drawCameraPositionPacketButtons } from './cameraPositionPacketButtons';
+import { drawMessageToConnectionPacketButtons } from './messageToConnectionPacketButtons';
 import { drawSimplifiedCameraPacketButtons } from './simplifiedCameraPacketButtons';
 import { drawSingleCharacterPacketButtons } from './singleCharacterPacketButtons';
 
@@ -62,4 +63,6 @@ export function drawSendablePacketButtons(inSim: InSim) {
       );
     },
   });
+
+  drawMessageToConnectionPacketButtons(inSim);
 }

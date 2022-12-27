@@ -30,6 +30,8 @@ export type { IS_MST_Data } from './IS_MST';
 export { IS_MST } from './IS_MST';
 export type { IS_MSX_Data } from './IS_MSX';
 export { IS_MSX } from './IS_MSX';
+export type { IS_MTC_Data } from './IS_MTC';
+export { IS_MTC } from './IS_MTC';
 export { IS_NCN } from './IS_NCN';
 export { IS_NPL, PLAYER_FUEL_HIDDEN } from './IS_NPL';
 export { IS_PLL } from './IS_PLL';

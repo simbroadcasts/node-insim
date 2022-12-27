@@ -118,12 +118,6 @@ export class IS_BTN extends BaseSendablePacket {
     const textSize = Math.min(length + (multiple - (length % multiple)), 240);
     this.Size = IS_BTN.FIXED_DATA_SIZE + textSize;
 
-    if (length === 0) {
-      return super.pack({
-        Text: `${multiple}s`,
-      });
-    }
-
     return super.pack({
       Text: `${textSize}s`,
     });
