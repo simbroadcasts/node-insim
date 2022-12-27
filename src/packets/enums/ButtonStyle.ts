@@ -1,8 +1,4 @@
 export enum ButtonStyle {
-  ISB_C1 = 1,
-  ISB_C2 = 2,
-  ISB_C4 = 4,
-
   /** Click this button to send {@link IS_BTC} */
   ISB_CLICK = 8,
 
