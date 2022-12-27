@@ -28,6 +28,7 @@ import type {
   IS_PSF,
   IS_REO,
   IS_RES,
+  IS_RIP,
   IS_RST,
   IS_SMALL,
   IS_SPX,
@@ -78,6 +79,7 @@ export type InSimPacketEvents = {
   [PacketType.ISP_AXO]: (packet: IS_AXO, inSim: InSim) => void;
   [PacketType.ISP_BTC]: (packet: IS_BTC, inSim: InSim) => void;
   [PacketType.ISP_BTT]: (packet: IS_BTT, inSim: InSim) => void;
+  [PacketType.ISP_RIP]: (packet: IS_RIP, inSim: InSim) => void;
 };
 
 export type InSimEvents = InSimPacketEvents & {
