@@ -20,4 +20,5 @@ export { TinyType } from './TinyType';
 export { TyreCompound } from './TyreCompound';
 export { UserType } from './UserType';
 export { ViewIdentifier } from './ViewIdentifier';
+export { VoteAction } from './VoteAction';
 export { Wind } from './Wind';

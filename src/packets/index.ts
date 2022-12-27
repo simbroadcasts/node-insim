@@ -54,4 +54,5 @@ export {
   SENDABLE_TINY_TYPES,
 } from './IS_TINY';
 export { IS_VER } from './IS_VER';
+export { IS_VTN } from './IS_VTN';
 export type { ISendable } from './ISendable';
