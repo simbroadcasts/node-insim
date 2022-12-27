@@ -16,5 +16,5 @@ export class IS_PSF extends AbstractPacket {
   /** Stop time (ms) */
   @unsigned() STime = 0;
 
-  @unsigned() readonly Spare = 0;
+  @unsigned() private readonly Spare = 0;
 }

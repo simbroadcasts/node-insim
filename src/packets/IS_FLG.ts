@@ -23,5 +23,5 @@ export class IS_FLG extends AbstractPacket {
   /** Unique id of obstructed player */
   @byte() CarBehind = 0;
 
-  @byte() readonly Sp3 = 0;
+  @byte() private readonly Sp3 = 0;
 }

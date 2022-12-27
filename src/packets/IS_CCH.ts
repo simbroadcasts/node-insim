@@ -17,7 +17,7 @@ export class IS_CCH extends AbstractPacket {
   /** View identifier */
   @byte() Camera: ViewIdentifier = 0;
 
-  @byte() readonly Sp1 = 0;
-  @byte() readonly Sp2 = 0;
-  @byte() readonly Sp3 = 0;
+  @byte() private readonly Sp1 = 0;
+  @byte() private readonly Sp2 = 0;
+  @byte() private readonly Sp3 = 0;
 }

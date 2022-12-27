@@ -12,7 +12,6 @@ const data: PacketTestData<IS_LAP> = {
   ETime: 65600,
   LapsDone: 513,
   Flags: PlayerFlags.PIF_AUTOCLUTCH | PlayerFlags.PIF_HELP_B,
-  Sp0: 0,
   Penalty: PenaltyValue.PENALTY_45,
   NumStops: 3,
   Fuel200: 40,

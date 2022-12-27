@@ -31,9 +31,9 @@ export class IS_ISM extends AbstractPacket {
   /** 0 = guest / 1 = host */
   @byte() Host: MultiplayerHostMode = 0;
 
-  @byte() readonly Sp1 = 0;
-  @byte() readonly Sp2 = 0;
-  @byte() readonly Sp3 = 0;
+  @byte() private readonly Sp1 = 0;
+  @byte() private readonly Sp2 = 0;
+  @byte() private readonly Sp3 = 0;
 
   /** The name of the host joined or started */
   @string(32) HName = '';

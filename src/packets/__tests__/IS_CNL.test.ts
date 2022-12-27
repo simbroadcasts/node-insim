@@ -9,8 +9,6 @@ const data: PacketTestData<IS_CNL> = {
   UCID: 4,
   Reason: LeaveReason.LEAVR_KICKED,
   Total: 14,
-  Sp2: 0,
-  Sp3: 0,
 };
 
 const buffer = Buffer.from([

@@ -10,9 +10,6 @@ const hostName = 'Very Long Server Name Is Longest';
 const data: PacketTestData<IS_ISM> = {
   ReqI: 1,
   Zero: 0,
-  Sp1: 0,
-  Sp2: 0,
-  Sp3: 0,
   Host: MultiplayerHostMode.HOST,
   HName: hostName,
 };

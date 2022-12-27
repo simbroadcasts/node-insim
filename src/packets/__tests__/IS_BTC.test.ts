@@ -11,7 +11,6 @@ const data: PacketTestData<IS_BTC> = {
   ClickID: 3,
   Inst: IS_BTN.INST_ALWAYS_ON,
   CFlags: ButtonClickFlags.ISB_RMB,
-  Sp3: 0,
 };
 
 const buffer = Buffer.from([

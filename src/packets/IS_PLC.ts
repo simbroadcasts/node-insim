@@ -20,9 +20,9 @@ export class IS_PLC extends AbstractSendablePacket {
   /** Connection's unique id (0 = host / 255 = all) */
   @byte() UCID = 0;
 
-  @byte() readonly Sp1 = 0;
-  @byte() readonly Sp2 = 0;
-  @byte() readonly Sp3 = 0;
+  @byte() private readonly Sp1 = 0;
+  @byte() private readonly Sp2 = 0;
+  @byte() private readonly Sp3 = 0;
 
   /** Allowed cars */
   @unsigned() Cars: CarFlags = 0;

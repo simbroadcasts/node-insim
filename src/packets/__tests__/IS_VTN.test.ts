@@ -10,8 +10,6 @@ const data: PacketTestData<IS_VTN> = {
   Zero: 0,
   UCID: 3,
   Action: VoteAction.VOTE_QUALIFY,
-  Spare2: 0,
-  Spare3: 0,
 };
 
 const buffer = Buffer.from([

@@ -35,7 +35,7 @@ export class IS_OBH extends AbstractPacket {
   /** If {@link OBH_LAYOUT} is set: Zbyte as in {@link ObjectInfo} */
   @byte() Zbyte = 0;
 
-  @byte() readonly Sp1 = 0;
+  @byte() private readonly Sp1 = 0;
 
   /** AXO_x as in {@link ObjectInfo} or zero if it is an unknown object */
   @byte() Index = 0;

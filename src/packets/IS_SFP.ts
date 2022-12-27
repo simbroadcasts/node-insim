@@ -19,8 +19,7 @@ export class IS_SFP extends AbstractSendablePacket {
   /** 0 = off / 1 = on */
   @byte() OffOn: 0 | 1 = 0;
 
-  /** Spare */
-  @byte() readonly Sp3 = 0;
+  @byte() private readonly Sp3 = 0;
 
   constructor(data?: IS_SFP_Data) {
     super();

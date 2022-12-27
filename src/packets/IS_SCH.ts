@@ -24,8 +24,8 @@ export class IS_SCH extends AbstractSendablePacket {
   /** Bit 0: Shift / bit 1: Ctrl */
   @byte() Flags: CharacterModifiers = 0;
 
-  @byte() readonly Spare2 = 0;
-  @byte() readonly Spare3 = 0;
+  @byte() private readonly Spare2 = 0;
+  @byte() private readonly Spare3 = 0;
 
   constructor(data?: IS_SCH_Data) {
     super();

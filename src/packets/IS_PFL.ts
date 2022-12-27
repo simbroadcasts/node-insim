@@ -17,5 +17,5 @@ export class IS_PFL extends AbstractPacket {
   /** Player flags */
   @word() Flags: PlayerFlags = 0;
 
-  @word() readonly Spare = 0;
+  @word() private readonly Spare = 0;
 }

@@ -11,7 +11,6 @@ const data: PacketTestData<IS_ACR> = {
   UCID: 2,
   Admin: 1,
   Result: AdminCommandResult.PROCESSED,
-  Sp3: 0,
   Text: '/laps 2',
 };
 

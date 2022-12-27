@@ -26,7 +26,7 @@ export class IS_LAP extends AbstractPacket {
   /** Player flags */
   @word() Flags: PlayerFlags = 0;
 
-  @byte() readonly Sp0 = 0;
+  @byte() private readonly Sp0 = 0;
 
   /** Current penalty value */
   @byte() Penalty: PenaltyValue = 0;

@@ -11,7 +11,6 @@ const data: PacketTestData<IS_FLG> = {
   OffOn: 1,
   Flag: FlagType.YELLOW,
   CarBehind: 14,
-  Sp3: 0,
 };
 
 const buffer = Buffer.from([

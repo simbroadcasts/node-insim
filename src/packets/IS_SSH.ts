@@ -24,10 +24,10 @@ export class IS_SSH extends AbstractSendablePacket {
   /** 0 = OK / other values see {@link ScreenshotError} */
   @byte() Error: ScreenshotError = 0;
 
-  @byte() readonly Sp0 = 0;
-  @byte() readonly Sp1 = 0;
-  @byte() readonly Sp2 = 0;
-  @byte() readonly Sp3 = 0;
+  @byte() private readonly Sp0 = 0;
+  @byte() private readonly Sp1 = 0;
+  @byte() private readonly Sp2 = 0;
+  @byte() private readonly Sp3 = 0;
 
   /** Name of screenshot file - last byte must be zero */
   @string(32) Name = '';

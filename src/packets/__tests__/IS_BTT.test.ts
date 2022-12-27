@@ -13,7 +13,6 @@ const data: PacketTestData<IS_BTT> = {
   ClickID: 3,
   Inst: IS_BTN.INST_ALWAYS_ON,
   TypeIn: 7,
-  Sp3: 0,
   Text: text,
 };
 

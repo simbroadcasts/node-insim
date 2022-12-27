@@ -38,8 +38,6 @@ const data: PacketTestData<IS_NPL> = {
   Pass: PassengerFlags.FRONT_FEMALE,
   RWAdj: 4,
   FWAdj: 5,
-  Sp2: 0,
-  Sp3: 0,
   SetF: SetupFlags.SETF_ABS_ENABLE,
   NumP: 20,
   Config: CarConfiguration.OPEN_ROOF_OR_ALTERNATE,

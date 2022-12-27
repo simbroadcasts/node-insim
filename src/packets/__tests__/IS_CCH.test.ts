@@ -8,9 +8,6 @@ const size = 8;
 const data: PacketTestData<IS_CCH> = {
   PLID: 3,
   Camera: ViewIdentifier.VIEW_CUSTOM,
-  Sp1: 0,
-  Sp2: 0,
-  Sp3: 0,
 };
 
 const buffer = Buffer.from([

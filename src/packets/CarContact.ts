@@ -9,7 +9,7 @@ export class CarContact extends AbstractStruct {
   /** Like Info byte in {@link CompCar} (CCI_BLUE / CCI_YELLOW / CCI_LAG) */
   @byte() Info: CarContactFlags = 0;
 
-  @byte() readonly Sp2 = 0;
+  @byte() private readonly Sp2 = 0;
 
   /** Front wheel steer in degrees (right positive) */
   @char() Steer = 0;

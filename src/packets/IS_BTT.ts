@@ -27,7 +27,7 @@ export class IS_BTT extends AbstractPacket {
   /** From original button specification */
   @byte() TypeIn = 0;
 
-  @byte() readonly Sp3 = 0;
+  @byte() private readonly Sp3 = 0;
 
   /** Typed text, zero to {@link IS_BTN.TypeIn} specified in {@link IS_BTN} */
   @string(96) Text = '';

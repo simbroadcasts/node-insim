@@ -19,9 +19,9 @@ export class IS_NCI extends AbstractPacket {
   /** Languages */
   @byte() Language: Language = 0;
 
-  @byte() readonly Sp1 = 0;
-  @byte() readonly Sp2 = 0;
-  @byte() readonly Sp3 = 0;
+  @byte() private readonly Sp1 = 0;
+  @byte() private readonly Sp2 = 0;
+  @byte() private readonly Sp3 = 0;
 
   /** LFS UserID */
   @unsigned() UserID = 0;

@@ -64,7 +64,7 @@ export class IS_STA extends AbstractPacket {
    */
   @byte() RaceLaps = 0;
 
-  @byte() readonly Sp2 = 0;
+  @byte() private readonly Sp2 = 0;
 
   /** 0 = unknown / 1 = success / > 1 = fail */
   @byte() ServerStatus: ServerStatus | number = 0;

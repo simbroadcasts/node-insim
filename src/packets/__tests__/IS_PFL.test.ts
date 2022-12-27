@@ -9,7 +9,6 @@ const data: PacketTestData<IS_PFL> = {
   ReqI: 0,
   PLID: 3,
   Flags: PlayerFlags.PIF_AUTOGEARS | PlayerFlags.PIF_LEFTSIDE,
-  Spare: 0,
 };
 
 const buffer = Buffer.from([

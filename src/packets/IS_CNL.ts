@@ -22,6 +22,6 @@ export class IS_CNL extends AbstractPacket {
   /** Number of connections including host */
   @byte() Total = 0;
 
-  @byte() readonly Sp2 = 0;
-  @byte() readonly Sp3 = 0;
+  @byte() private readonly Sp2 = 0;
+  @byte() private readonly Sp3 = 0;
 }

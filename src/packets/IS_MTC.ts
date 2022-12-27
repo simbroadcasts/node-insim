@@ -24,8 +24,8 @@ export class IS_MTC extends AbstractSendablePacket {
   /** Player's unique id (if zero, use UCID) */
   @byte() PLID = 0;
 
-  @byte() readonly Sp2 = 0;
-  @byte() readonly Sp3 = 0;
+  @byte() private readonly Sp2 = 0;
+  @byte() private readonly Sp3 = 0;
 
   /** Up to 128 characters of text - last byte must be zero */
   @string(128) Text = '';

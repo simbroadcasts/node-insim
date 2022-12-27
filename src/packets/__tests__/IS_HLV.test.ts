@@ -9,7 +9,6 @@ const data: PacketTestData<IS_HLV> = {
   ReqI: 0,
   PLID: 3,
   HLVC: HlvcViolation.WALL,
-  Sp1: 0,
   Time: 1994,
   C: new CarContOBJ({
     Direction: 2,

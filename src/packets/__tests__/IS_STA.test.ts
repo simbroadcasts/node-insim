@@ -26,7 +26,6 @@ const data: PacketTestData<IS_STA> = {
   RaceInProg: RaceState.Qualifying,
   QualMins: 60,
   RaceLaps: 12,
-  Sp2: 0,
   ServerStatus: ServerStatus.Success,
   Track: 'BL2R',
   Weather: 1,

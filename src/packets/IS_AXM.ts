@@ -32,7 +32,7 @@ export class IS_AXM extends AbstractSendablePacket {
 
   @byte() PMOAction: PMOAction = 0;
   @byte() PMOFlags: PMOFlags = 0;
-  @byte() readonly Sp3 = 0;
+  @byte() private readonly Sp3 = 0;
 
   Info: ObjectInfo[] = [];
 

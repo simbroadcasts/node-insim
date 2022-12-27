@@ -27,5 +27,5 @@ export class IS_VER extends AbstractPacket {
   /** InSim version */
   @byte() InSimVer = 0;
 
-  @byte() readonly Spare = 0;
+  @byte() private readonly Spare = 0;
 }

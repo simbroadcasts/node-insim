@@ -9,9 +9,6 @@ const data: PacketTestData<IS_PLA> = {
   ReqI: 0,
   PLID: 3,
   Fact: PitLaneFact.PITLANE_SG,
-  Sp1: 0,
-  Sp2: 0,
-  Sp3: 0,
 };
 
 const buffer = Buffer.from([

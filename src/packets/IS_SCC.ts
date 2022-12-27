@@ -19,8 +19,8 @@ export class IS_SCC extends AbstractSendablePacket {
   /** InGameCam (as reported in StatePack) */
   @byte() InGameCam: ViewIdentifier = 0;
 
-  @byte() readonly Sp2 = 0;
-  @byte() readonly Sp3 = 0;
+  @byte() private readonly Sp2 = 0;
+  @byte() private readonly Sp3 = 0;
 
   constructor(data?: IS_SCC_Data) {
     super();

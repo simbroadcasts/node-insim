@@ -31,5 +31,5 @@ export class IS_NCN extends AbstractPacket {
   /** Bit 2: remote */
   @byte() Flags: ConnectionFlags = 0;
 
-  @byte() readonly Sp3 = 0;
+  @byte() private readonly Sp3 = 0;
 }

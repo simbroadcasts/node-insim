@@ -10,8 +10,6 @@ const data: PacketTestData<IS_TOC> = {
   PLID: 3,
   OldUCID: 1,
   NewUCID: 2,
-  Sp2: 0,
-  Sp3: 0,
 };
 
 const buffer = Buffer.from([

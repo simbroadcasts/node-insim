@@ -28,5 +28,5 @@ export class IS_PEN extends AbstractPacket {
   /** Penalty reason */
   @byte() Reason: PenaltyReason = 0;
 
-  @byte() readonly Sp3 = 0;
+  @byte() private readonly Sp3 = 0;
 }

@@ -11,7 +11,6 @@ const data: PacketTestData<IS_VER> = {
   Version: '0.7A',
   Product: 'S3',
   InSimVer: 9,
-  Spare: 0,
 };
 
 const buffer = Buffer.from([

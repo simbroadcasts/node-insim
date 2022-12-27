@@ -9,9 +9,6 @@ const data: PacketTestData<IS_NCI> = {
   ReqI: 1,
   UCID: 3,
   Language: Language.LFS_CZECH,
-  Sp1: 0,
-  Sp2: 0,
-  Sp3: 0,
   UserID: 17115651,
   IPAddress: '12.34.56.78',
 };

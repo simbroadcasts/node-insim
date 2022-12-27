@@ -12,8 +12,6 @@ const data: PacketTestData<IS_III> = {
   Zero: 0,
   UCID: 2,
   PLID: 4,
-  Sp2: 0,
-  Sp3: 0,
   Msg: msg,
 };
 

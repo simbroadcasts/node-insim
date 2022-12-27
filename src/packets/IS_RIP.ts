@@ -37,7 +37,7 @@ export class IS_RIP extends AbstractSendablePacket {
    * */
   @byte() Options: ReplayOptions = 0;
 
-  @byte() readonly Sp3 = 0;
+  @byte() private readonly Sp3 = 0;
 
   /** (hundredths) request: destination / reply: position */
   @unsigned() CTime = 0;

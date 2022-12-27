@@ -20,8 +20,8 @@ export class IS_III extends AbstractPacket {
   /** Player's unique id (if zero, use UCID) */
   @byte() PLID = 0;
 
-  @byte() readonly Sp2 = 0;
-  @byte() readonly Sp3 = 0;
+  @byte() private readonly Sp2 = 0;
+  @byte() private readonly Sp3 = 0;
 
   /** 4, 8, 12... 64 characters - last byte is zero */
   @string(64) Msg = '';

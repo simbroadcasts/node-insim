@@ -9,7 +9,6 @@ const data: PacketTestData<IS_PSF> = {
   ReqI: 0,
   PLID: 2,
   STime: 16974425,
-  Spare: 0,
 };
 
 const buffer = Buffer.from([

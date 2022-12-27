@@ -20,7 +20,7 @@ export class IS_HLV extends AbstractPacket {
   /** 0: ground / 1: wall / 4: speeding / 5: out of bounds */
   @byte() HLVC: HlvcViolation = 0;
 
-  @byte() readonly Sp1 = 0;
+  @byte() private readonly Sp1 = 0;
 
   /** Looping time stamp (hundredths - time since reset - like {@link TINY_GTH}) */
   @word() Time = 0;

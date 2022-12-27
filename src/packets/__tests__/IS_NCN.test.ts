@@ -16,7 +16,6 @@ const data: PacketTestData<IS_NCN> = {
   Admin: 1,
   Total: 14,
   Flags: ConnectionFlags.REMOTE,
-  Sp3: 0,
 };
 
 const buffer = Buffer.from([

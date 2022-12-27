@@ -21,7 +21,6 @@ const data: PacketTestData<IS_OBH> = {
   X: -10990,
   Y: -31058,
   Zbyte: 1,
-  Sp1: 0,
   Index: 168,
   OBHFlags:
     ObjectHitFlags.OBH_LAYOUT |

@@ -34,10 +34,6 @@ const infoData: Partial<Omit<PacketTestData<IS_SSH>, 'ReqI'>> &
   Pick<IS_SSH, 'ReqI'> = {
   ReqI: 2,
   Error: ScreenshotError.SSH_NO_SAVE,
-  Sp0: 0,
-  Sp1: 0,
-  Sp2: 0,
-  Sp3: 0,
   Name: name,
 };
 

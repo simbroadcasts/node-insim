@@ -11,7 +11,6 @@ const data: PacketTestData<IS_PEN> = {
   OldPen: PenaltyValue.PENALTY_DT,
   NewPen: PenaltyValue.PENALTY_DT_VALID,
   Reason: PenaltyReason.PENR_SPEEDING,
-  Sp3: 0,
 };
 
 const buffer = Buffer.from([
