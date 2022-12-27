@@ -12,6 +12,7 @@ import type {
   IS_NCN,
   IS_NPL,
   IS_PIT,
+  IS_PLA,
   IS_PLL,
   IS_PLP,
   IS_PSF,
@@ -47,6 +48,7 @@ export type InSimPacketEvents = {
   [PacketType.ISP_SPX]: (packet: IS_SPX, inSim: InSim) => void;
   [PacketType.ISP_PIT]: (packet: IS_PIT, inSim: InSim) => void;
   [PacketType.ISP_PSF]: (packet: IS_PSF, inSim: InSim) => void;
+  [PacketType.ISP_PLA]: (packet: IS_PLA, inSim: InSim) => void;
   [PacketType.ISP_CRS]: (packet: IS_CRS, inSim: InSim) => void;
   [PacketType.ISP_BTC]: (packet: IS_BTC, inSim: InSim) => void;
   [PacketType.ISP_BTT]: (packet: IS_BTT, inSim: InSim) => void;
