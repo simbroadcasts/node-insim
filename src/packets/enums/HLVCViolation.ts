@@ -1,4 +1,4 @@
-export enum HlvcViolation {
+export enum HLVCViolation {
   GROUND = 0,
   WALL = 1,
   SPEEDING = 4,

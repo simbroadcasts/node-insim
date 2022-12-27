@@ -1,6 +1,6 @@
 import type { PacketTestData } from '../../utils/tests';
 import { testInfoPacket } from '../../utils/tests';
-import { CarContOBJ, HlvcViolation, IS_HLV, PacketType } from '..';
+import { CarContOBJ, HLVCViolation, IS_HLV, PacketType } from '..';
 import { AbstractPacket } from '../base';
 
 const size = 16;
@@ -8,7 +8,7 @@ const size = 16;
 const data: PacketTestData<IS_HLV> = {
   ReqI: 0,
   PLID: 3,
-  HLVC: HlvcViolation.WALL,
+  HLVC: HLVCViolation.WALL,
   Time: 1994,
   C: new CarContOBJ({
     Direction: 2,

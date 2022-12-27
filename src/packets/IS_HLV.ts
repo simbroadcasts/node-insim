@@ -1,7 +1,7 @@
 import { byte, determineLength, word } from '../utils';
 import { AbstractPacket } from './base';
 import { CarContOBJ } from './CarContOBJ';
-import type { HlvcViolation } from './enums';
+import type { HLVCViolation } from './enums';
 import { PacketType } from './enums';
 
 /**
@@ -18,7 +18,7 @@ export class IS_HLV extends AbstractPacket {
   @byte() PLID = 0;
 
   /** 0: ground / 1: wall / 4: speeding / 5: out of bounds */
-  @byte() HLVC: HlvcViolation = 0;
+  @byte() HLVC: HLVCViolation = 0;
 
   @byte() private readonly Sp1 = 0;
 

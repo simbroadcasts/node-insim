@@ -11,7 +11,7 @@ export { CompCarFlags } from './CompCarFlags';
 export { ConfirmationFlags } from './ConfirmationFlags';
 export { ConnectionFlags } from './ConnectionFlags';
 export { FlagType } from './FlagType';
-export { HlvcViolation } from './HlvcViolation';
+export { HLVCViolation } from './HLVCViolation';
 export { InSimFlags } from './InSimFlags';
 export { JRRAction } from './JRRAction';
 export { Language } from './Language';
