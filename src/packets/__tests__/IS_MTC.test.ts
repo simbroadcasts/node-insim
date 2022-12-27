@@ -2,7 +2,7 @@ import { checkPacketDataSize, stringToBytes } from '../../utils';
 import type { IS_MTC_Data } from '..';
 import { IS_MTC, PacketType } from '..';
 import { BasePacket } from '../BasePacket';
-import { MessageSounds } from '../enums/MessageSounds';
+import { MessageSound } from '../enums/MessageSound';
 
 const text =
   'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque pe';
@@ -12,7 +12,7 @@ describe('IS_MTC', () => {
 
   it('should fill data from the constructor', () => {
     const data: IS_MTC_Data = {
-      Sound: MessageSounds.SND_INVALIDKEY,
+      Sound: MessageSound.SND_INVALIDKEY,
       UCID: 1,
       PLID: 2,
       Text: text,
@@ -21,7 +21,7 @@ describe('IS_MTC', () => {
 
     expect(packet.Type).toEqual(PacketType.ISP_MTC);
     expect(packet.ReqI).toEqual(0);
-    expect(packet.Sound).toEqual(MessageSounds.SND_INVALIDKEY);
+    expect(packet.Sound).toEqual(MessageSound.SND_INVALIDKEY);
     expect(packet.UCID).toEqual(1);
     expect(packet.PLID).toEqual(2);
     expect(packet.Sp2).toEqual(0);
@@ -31,7 +31,7 @@ describe('IS_MTC', () => {
 
   it('should pack data into a buffer', () => {
     const data: IS_MTC_Data = {
-      Sound: MessageSounds.SND_INVALIDKEY,
+      Sound: MessageSound.SND_INVALIDKEY,
       UCID: 1,
       PLID: 2,
       Text: text,
@@ -55,7 +55,7 @@ describe('IS_MTC', () => {
 
   it('should allocate 4 bytes for en empty text value', () => {
     const data: IS_MTC_Data = {
-      Sound: MessageSounds.SND_INVALIDKEY,
+      Sound: MessageSound.SND_INVALIDKEY,
       UCID: 1,
       PLID: 2,
       Text: '',

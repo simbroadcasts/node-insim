@@ -1,7 +1,7 @@
 import { byte, char } from '../utils';
 import { BaseSendablePacket } from './BaseSendablePacket';
 import { PacketType } from './enums';
-import type { MessageSounds } from './enums/MessageSounds';
+import type { MessageSound } from './enums/MessageSound';
 import type { PacketData } from './types';
 
 /**
@@ -16,7 +16,7 @@ export class IS_MTC extends BaseSendablePacket {
   @byte() ReqI = 0;
 
   /** Sound effect */
-  @byte() Sound: MessageSounds = 0;
+  @byte() Sound: MessageSound = 0;
 
   /** Connection's unique id (0 = host / 255 = all) */
   @byte() UCID = 0;

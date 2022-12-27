@@ -1,6 +1,6 @@
 import { byte, char, createLog, getFormat, unpack } from '../utils';
 import { BasePacket } from './BasePacket';
-import type { UserValues } from './enums';
+import type { UserType } from './enums';
 import { PacketType } from './enums';
 
 const log = createLog('IS_MSO');
@@ -22,8 +22,8 @@ export class IS_MSO extends BasePacket {
   /** Player's unique id (if zero, use UCID) */
   @byte() PLID = 0;
 
-  /** Set if typed by a user (see {@link UserValues})  */
-  @byte() UserType: UserValues = 0;
+  /** Set if typed by a user (see {@link UserType})  */
+  @byte() UserType: UserType = 0;
 
   /** First character of the actual text (after player name) */
   @byte() TextStart = 0;

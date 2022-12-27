@@ -1,4 +1,4 @@
-export enum UserValues {
+export enum UserType {
   /** System message */
   MSO_SYSTEM,
 

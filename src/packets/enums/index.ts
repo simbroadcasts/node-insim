@@ -18,6 +18,6 @@ export { SmallType } from './SmallType';
 export { StateFlags } from './StateFlags';
 export { TinyType } from './TinyType';
 export { TyreCompound } from './TyreCompound';
-export { UserValues } from './UserValues';
+export { UserType } from './UserType';
 export { ViewIdentifier } from './ViewIdentifier';
 export { Wind } from './Wind';

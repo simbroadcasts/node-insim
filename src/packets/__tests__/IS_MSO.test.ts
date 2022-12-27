@@ -1,5 +1,5 @@
 import { stringToBytes } from '../../utils';
-import { IS_MSO, PacketType, UserValues } from '..';
+import { IS_MSO, PacketType, UserType } from '..';
 import { BasePacket } from '../BasePacket';
 
 describe('IS_MSO', () => {
@@ -11,7 +11,7 @@ describe('IS_MSO', () => {
       0, // Zero
       2, // UCID
       4, // PLID
-      UserValues.MSO_USER, // UserType
+      UserType.MSO_USER, // UserType
       14, // TextStart
       ...stringToBytes('Player : Hello!'), // Msg[128]
       0,
@@ -24,7 +24,7 @@ describe('IS_MSO', () => {
     expect(packet.Zero).toEqual(0);
     expect(packet.UCID).toEqual(2);
     expect(packet.PLID).toEqual(4);
-    expect(packet.UserType).toEqual(UserValues.MSO_USER);
+    expect(packet.UserType).toEqual(UserType.MSO_USER);
     expect(packet.TextStart).toEqual(14);
     expect(packet.Msg).toEqual('Player : Hello!');
   });
