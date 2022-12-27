@@ -23,13 +23,13 @@ const data: PacketTestData<IS_STA> = {
   NumP: 32,
   NumConns: 47,
   NumFinished: 20,
-  RaceInProg: RaceState.Qualifying,
+  RaceInProg: RaceState.QUALIFYING,
   QualMins: 60,
   RaceLaps: 12,
-  ServerStatus: ServerStatus.Success,
+  ServerStatus: ServerStatus.SUCCESS,
   Track: 'BL2R',
   Weather: 1,
-  Wind: Wind.Strong,
+  Wind: Wind.STRONG,
 };
 
 const buffer = Buffer.from([

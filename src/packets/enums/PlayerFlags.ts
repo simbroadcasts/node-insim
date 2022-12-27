@@ -2,20 +2,11 @@ export enum PlayerFlags {
   /** Driver is on the left side */
   PIF_LEFTSIDE = 1,
 
-  /** Reserved */
-  PIF_RESERVED_2 = 2,
-
-  /** Reserved */
-  PIF_RESERVED_4 = 4,
-
   /** Automatic gear shift */
   PIF_AUTOGEARS = 8,
 
   /** Shifter */
   PIF_SHIFTER = 16,
-
-  /** Reserved */
-  PIF_RESERVED_32 = 32,
 
   /** Brake help */
   PIF_HELP_B = 64,

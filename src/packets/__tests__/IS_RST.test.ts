@@ -15,7 +15,7 @@ const data: PacketTestData<IS_RST> = {
   Timing: 66,
   Track: 'BL1R',
   Weather: 2,
-  Wind: Wind.Strong,
+  Wind: Wind.STRONG,
   Flags: RaceFlags.HOSTF_CAN_SELECT | RaceFlags.HOSTF_FCV,
   NumNodes: 402,
   Finish: 365,

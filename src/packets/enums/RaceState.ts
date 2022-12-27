@@ -1,5 +1,5 @@
 export enum RaceState {
-  NoRace,
-  Race,
-  Qualifying,
+  NO_RACE,
+  RACE,
+  QUALIFYING,
 }

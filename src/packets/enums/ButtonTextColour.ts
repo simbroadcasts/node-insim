@@ -1,25 +1,25 @@
 export enum ButtonTextColour {
   /** Not user editable */
-  LightGrey,
+  LIGHT_GREY,
 
   /** Default: yellow */
-  TitleColour,
+  TITLE_COLOUR,
 
   /** Default: black */
-  UnselectedText,
+  UNSELECTED_TEXT,
 
   /** Default: white */
-  SelectedText,
+  SELECTED_TEXT,
 
   /** Default: green */
-  Ok,
+  OK,
 
   /** Default: red */
-  Cancel,
+  CANCEL,
 
   /** Default: pale blue */
-  TextString,
+  TEXT_STRING,
 
   /** Default: grey */
-  Unavailable,
+  UNAVAILABLE,
 }

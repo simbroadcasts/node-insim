@@ -1,4 +1,4 @@
 export enum ServerStatus {
-  Unknown,
-  Success,
+  UNKNOWN,
+  SUCCESS,
 }

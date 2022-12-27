@@ -5,9 +5,9 @@ export enum UCOAction {
   /** Left a circle */
   UCO_CIRCLE_LEAVE,
 
-  /** Crossed cp in forward direction */
+  /** Crossed a checkpoint in forward direction */
   UCO_CP_FWD,
 
-  /**  Crossed cp in reverse direction */
+  /** Crossed a checkpoint in reverse direction */
   UCO_CP_REV,
 }

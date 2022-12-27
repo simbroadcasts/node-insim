@@ -1,18 +1,13 @@
 export enum JRRAction {
   /** Reject new player */
-  JRR_REJECT,
+  JRR_REJECT = 0,
 
   /** Allow new player */
-  JRR_SPAWN,
-  JRR_2,
-  JRR_3,
+  JRR_SPAWN = 1,
 
   /** Reset player's car */
-  JRR_RESET,
+  JRR_RESET = 4,
 
   /** Reset player's car without repairing damage */
-  JRR_RESET_NO_REPAIR,
-
-  JRR_6,
-  JRR_7,
+  JRR_RESET_NO_REPAIR = 5,
 }

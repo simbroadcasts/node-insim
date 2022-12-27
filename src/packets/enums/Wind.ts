@@ -1,5 +1,10 @@
 export enum Wind {
-  Off,
-  Weak,
-  Strong,
+  /** No wind */
+  OFF,
+
+  /** Low wind */
+  WEAK,
+
+  /** High wind */
+  STRONG,
 }
