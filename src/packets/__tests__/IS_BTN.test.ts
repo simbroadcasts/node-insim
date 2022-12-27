@@ -1,6 +1,6 @@
 import { stringToBytes, testInstructionPacket } from '../../utils/tests';
 import type { IS_BTN_Data } from '..';
-import { ButtonStyle, IS_BTN, PacketType } from '..';
+import { ButtonStyle, ButtonTextColour, IS_BTN, PacketType } from '..';
 import { AbstractPacket } from '../base';
 
 const text =
@@ -11,7 +11,7 @@ const data: IS_BTN_Data = {
   UCID: 2,
   ClickID: 3,
   Inst: IS_BTN.INST_ALWAYS_ON,
-  BStyle: ButtonStyle.ISB_C1 | ButtonStyle.ISB_CLICK,
+  BStyle: ButtonTextColour.TitleColour | ButtonStyle.ISB_CLICK,
   TypeIn: 3,
   L: 20,
   T: 30,
@@ -51,7 +51,7 @@ describe('IS_BTN', () => {
       UCID: 2,
       ClickID: 3,
       Inst: IS_BTN.INST_ALWAYS_ON,
-      BStyle: ButtonStyle.ISB_C1 | ButtonStyle.ISB_CLICK,
+      BStyle: ButtonTextColour.TitleColour | ButtonStyle.ISB_CLICK,
       TypeIn: 3,
       L: 20,
       T: 30,
