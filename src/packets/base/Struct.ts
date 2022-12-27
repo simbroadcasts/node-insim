@@ -1,6 +1,4 @@
-import parseLFSMessage from 'parse-lfs-message';
-
-import { InSimError } from '../../protocols/InSim/InSimEvents';
+import { InSimError } from '../../protocols/InSim';
 import { getFormat, log as baseLog, unpack } from '../../utils';
 import type { Receivable } from '../types';
 
@@ -60,14 +58,10 @@ export abstract class Struct implements Receivable {
 
     const propertyNames = this.getValidPropertyNames();
     propertyNames.forEach((propertyName, i) => {
-      let value = data[i];
+      const value = data[i];
 
       if (value === undefined) {
         return;
-      }
-
-      if (typeof value === 'string' && value.length > 0) {
-        value = parseLFSMessage(value);
       }
 
       if (propertyName === 'Size') {
