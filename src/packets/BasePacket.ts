@@ -37,15 +37,25 @@ export abstract class BasePacket implements IPacket {
     return `<${format}`;
   }
 
-  public unpack(buffer: Buffer): this {
-    const propertyNames = this.getValidPropertyNames();
-    const data = unpack(this.getFormat(), buffer);
+  public unpack(
+    buffer: Buffer,
+    propertyFormatOverrides?: Record<string, string>,
+  ): this {
+    const packetType = PacketType[this.Type];
+    const format = this.getFormat(propertyFormatOverrides);
+    const data = unpack(format, buffer);
+
+    log.debug(`Unpack format: ${format}`);
 
     if (!data) {
-      log.warn('Unpacked no data from buffer', buffer);
+      log.warn(
+        `${packetType} - Unpacked no data using ${format} from buffer`,
+        buffer,
+      );
       return this;
     }
 
+    const propertyNames = this.getValidPropertyNames();
     propertyNames.forEach((propertyName, i) => {
       let value = data[i];
 
@@ -59,11 +69,15 @@ export abstract class BasePacket implements IPacket {
         return;
       }
 
+      if (value === undefined) {
+        return;
+      }
+
       this[propertyName as unknown as Extract<keyof this, string>] = value;
     });
 
-    log.info('Packet received:', PacketType[this.Type]);
-    log.debug('Packet received:', this);
+    log.info(`Packet data unpacked: ${packetType}`);
+    log.debug('Packet data unpacked:', this);
 
     return this;
   }

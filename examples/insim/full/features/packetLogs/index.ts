@@ -7,6 +7,7 @@ import { onCarReset } from './onCarReset';
 import { onConnectionLeave } from './onConnectionLeave';
 import { onConnectionPlayerRename } from './onConnectionPlayerRename';
 import { onLapTime } from './onLapTime';
+import { onMessageOut } from './onMessageOut';
 import { onMultiplayer } from './onMultiplayer';
 import { onNewConnection } from './onNewConnection';
 import { onNewPlayer } from './onNewPlayer';
@@ -23,6 +24,7 @@ export function logPackets(inSim: InSim) {
   inSim.on(PacketType.ISP_SMALL, onSmall);
   inSim.on(PacketType.ISP_CPP, onCamPosPack);
   inSim.on(PacketType.ISP_ISM, onMultiplayer);
+  inSim.on(PacketType.ISP_MSO, onMessageOut);
   inSim.on(PacketType.ISP_STA, onState);
   inSim.on(PacketType.ISP_NCN, onNewConnection);
   inSim.on(PacketType.ISP_CNL, onConnectionLeave);
