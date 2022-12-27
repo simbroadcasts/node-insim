@@ -13,4 +13,7 @@ export enum ViewIdentifier {
 
   /** Custom */
   VIEW_CUSTOM,
+
+  /** Viewing another car */
+  VIEW_ANOTHER = 255,
 }
