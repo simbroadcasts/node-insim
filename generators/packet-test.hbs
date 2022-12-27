@@ -1,33 +1,104 @@
-{{#ifNotEquals variant "info"}}import { testSendablePacket } from '../../utils';
+{{#ifEquals variant "instruction"}}
+import { testInstructionPacket } from '../../utils';
 import type { IS_{{ name }}_Data } from '..';
-{{/ifNotEquals}}import { IS_{{ name }}, PacketType } from '..';
+{{/ifEquals}}
+{{#ifEquals variant "info"}}
+  import type { PacketTestData } from '../../utils';
+  import { testInfoPacket } from '../../utils';
+{{/ifEquals}}
+{{#ifEquals variant "both ways"}}
+  import type { PacketTestData } from '../../utils';
+  import { testInfoPacket, testInstructionPacket } from '../../utils';
+  import type { IS_{{ name }}_Data } from '..';
+{{/ifEquals}}
+import { IS_{{ name }}, PacketType } from '..';
 import { AbstractPacket } from '../AbstractPacket';
 
-{{#ifNotEquals variant "info"}}
+const size = {{ size }};
+
+{{#ifEquals variant "instruction"}}
 const data: IS_{{ name }}_Data = {
   // TODO
 };
-{{/ifNotEquals}}
 
-const expectedBuffer = Buffer.from([
-  {{ size }} / AbstractPacket.SIZE_MULTIPLIER, // Size
+const buffer = Buffer.from([
+  size / AbstractPacket.SIZE_MULTIPLIER, // Size
+  {{ type }}, // Type
+  0, // ReqI
+  // TODO
+]);
+{{/ifEquals}}
+{{#ifEquals variant "info"}}
+const data: PacketTestData<IS_{{ name }}> = {
+  // TODO
+};
+
+const buffer = Buffer.from([
+  size / AbstractPacket.SIZE_MULTIPLIER, // Size
+  {{ type }}, // Type
+  0, // ReqI
+  // TODO
+]);
+{{/ifEquals}}
+{{#ifEquals variant "both ways"}}
+const instructionData: IS_{{ name }}_Data = {
+  // TODO
+};
+
+const instructionBuffer = Buffer.from([
+  size / AbstractPacket.SIZE_MULTIPLIER, // Size
   {{ type }}, // Type
   0, // ReqI
   // TODO
 ]);
 
+const infoData: PacketTestData<IS_{{ name }}> = {
+  ReqI: 1,
+  // TODO
+};
+
+const infoBuffer = Buffer.from([
+  size / AbstractPacket.SIZE_MULTIPLIER, // Size
+  {{ type }}, // Type
+  1, // ReqI
+  // TODO
+]);
+{{/ifEquals}}
+
+
 describe('IS_{{ name }}', () => {
-{{#ifNotEquals variant "info"}}
-  testSendablePacket(IS_{{ name }}, {{ size }}, PacketType.ISP_{{ name }}, data, expectedBuffer);
-{{/ifNotEquals}}
-{{#ifNotEquals variant "instruction"}}
-
-  it('should unpack data from a buffer', () => {
-    const packet = new IS_{{ name }}().unpack(expectedBuffer);
-
-    expect(packet.Size).toEqual({{ size }});
-    expect(packet.Type).toEqual(PacketType.ISP_{{ name }});
-    expect(packet.ReqI).toEqual(0);
+{{#ifEquals variant "instruction"}}
+  testInstructionPacket({
+    packetClass: IS_{{ name }},
+    type: PacketType.ISP_{{ name }},
+    size,
+    data,
+    buffer,
   });
-{{/ifNotEquals}}
+{{/ifEquals}}
+{{#ifEquals variant "info"}}
+  testInfoPacket({
+    packetClass: IS_{{ name }},
+    type: PacketType.ISP_{{ name }},
+    size,
+    data,
+    buffer,
+  });
+{{/ifEquals}}
+{{#ifEquals variant "both ways"}}
+  testInstructionPacket({
+    packetClass: IS_{{ name }},
+    type: PacketType.ISP_{{ name }},
+    size,
+    data: instructionData,
+    buffer: instructionBuffer,
+  });
+  testInfoPacket({
+    packetClass: IS_{{ name }},
+    type: PacketType.ISP_{{ name }},
+    size,
+    data: infoData,
+    buffer: infoBuffer,
+  });
+{{/ifEquals}}
 });
