@@ -7,7 +7,6 @@ import type { PacketData } from './types';
 /**
  * Single CHaracter
  *
- *
  * You can send individual key presses to LFS with the IS_SCH packet.
  * For standard keys (e.g. V and H) you should send a capital letter.
  * This does not work with some keys like F keys, arrows or CTRL keys.
