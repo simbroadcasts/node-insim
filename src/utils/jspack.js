@@ -89,18 +89,18 @@ var magic = {
         isAlphaNumeric(r[2]) &&
         r[3] === '\x00'
       ) {
-        return [r.join('')];
-      } else {
-        return [
-          [
-            dv.toString('hex', offset + 2, offset + 3),
-            dv.toString('hex', offset + 1, offset + 2),
-            dv.toString('hex', offset, offset + 1),
-          ]
-            .join('')
-            .toUpperCase(),
-        ];
+        return [r.slice(0, -1).join('')];
       }
+
+      return [
+        [
+          dv.toString('hex', offset + 2, offset + 3),
+          dv.toString('hex', offset + 1, offset + 2),
+          dv.toString('hex', offset, offset + 1),
+        ]
+          .join('')
+          .toUpperCase(),
+      ];
     },
   },
   // signed char
