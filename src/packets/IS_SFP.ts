@@ -10,8 +10,8 @@ import type { PacketData } from './types';
 export class IS_SFP extends BaseSendablePacket {
   @byte() readonly Size = 8;
   @byte() readonly Type = PacketType.ISP_SFP;
-  @byte() ReqI: 0 = 0;
-  @byte() Zero: 0 = 0;
+  @byte() readonly ReqI: 0 = 0;
+  @byte() readonly Zero: 0 = 0;
 
   /** The state to set */
   @word() Flag: SendableStateFlags = 0;
@@ -20,7 +20,7 @@ export class IS_SFP extends BaseSendablePacket {
   @byte() OffOn: 0 | 1 = 0;
 
   /** Spare */
-  @byte() Sp3: 0 = 0;
+  @byte() readonly Sp3: 0 = 0;
 
   constructor(data?: IS_SFP_Data) {
     super();

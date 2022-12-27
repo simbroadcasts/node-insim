@@ -11,7 +11,7 @@ export class IS_SCC extends BaseSendablePacket {
   @byte() readonly Size = 8;
   @byte() readonly Type = PacketType.ISP_SCC;
   @byte() ReqI = 0;
-  @byte() Zero: 0 = 0;
+  @byte() readonly Zero: 0 = 0;
 
   /** Unique ID of player to view */
   @byte() ViewPLID = 0;
@@ -19,8 +19,8 @@ export class IS_SCC extends BaseSendablePacket {
   /** InGameCam (as reported in StatePack) */
   @byte() InGameCam: ViewIdentifier = 0;
 
-  @byte() Sp2: 0 = 0;
-  @byte() Sp3: 0 = 0;
+  @byte() readonly Sp2: 0 = 0;
+  @byte() readonly Sp3: 0 = 0;
 
   constructor(data?: IS_SCC_Data) {
     super();

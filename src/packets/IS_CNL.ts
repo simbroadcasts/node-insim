@@ -11,7 +11,7 @@ export class IS_CNL extends BasePacket {
   @byte() readonly Type = PacketType.ISP_CNL;
 
   /** 0 */
-  @byte() ReqI: 0 = 0;
+  @byte() readonly ReqI: 0 = 0;
 
   /** Unique id of the connection which left */
   @byte() UCID = 0;
@@ -23,6 +23,5 @@ export class IS_CNL extends BasePacket {
   @byte() Total = 0;
 
   @byte() readonly Sp2: 0 = 0;
-
   @byte() readonly Sp3: 0 = 0;
 }
