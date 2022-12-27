@@ -56,5 +56,4 @@ export class IS_JRR extends SendablePacket {
   }
 }
 
-export type IS_JRR_Data = Omit<PacketData<IS_JRR>, 'UCID'> &
-  Pick<IS_JRR, 'UCID'>;
+export type IS_JRR_Data = PacketData<IS_JRR>;
