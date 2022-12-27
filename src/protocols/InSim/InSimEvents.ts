@@ -1,4 +1,5 @@
 import type {
+  IS_AXI,
   IS_BFN,
   IS_BTC,
   IS_BTT,
@@ -39,7 +40,6 @@ import type {
 import type { InSim } from './InSim';
 
 export type InSimPacketEvents = {
-  [PacketType.ISP_RST]: (packet: IS_RST, inSim: InSim) => void;
   [PacketType.ISP_VER]: (packet: IS_VER, inSim: InSim) => void;
   [PacketType.ISP_TINY]: (packet: IS_TINY, inSim: InSim) => void;
   [PacketType.ISP_SMALL]: (packet: IS_SMALL, inSim: InSim) => void;
@@ -49,6 +49,7 @@ export type InSimPacketEvents = {
   [PacketType.ISP_MSO]: (packet: IS_MSO, inSim: InSim) => void;
   [PacketType.ISP_III]: (packet: IS_III, inSim: InSim) => void;
   [PacketType.ISP_VTN]: (packet: IS_VTN, inSim: InSim) => void;
+  [PacketType.ISP_RST]: (packet: IS_RST, inSim: InSim) => void;
   [PacketType.ISP_NCN]: (packet: IS_NCN, inSim: InSim) => void;
   [PacketType.ISP_CNL]: (packet: IS_CNL, inSim: InSim) => void;
   [PacketType.ISP_CPR]: (packet: IS_CPR, inSim: InSim) => void;
@@ -72,6 +73,7 @@ export type InSimPacketEvents = {
   [PacketType.ISP_MCI]: (packet: IS_MCI, inSim: InSim) => void;
   [PacketType.ISP_CRS]: (packet: IS_CRS, inSim: InSim) => void;
   [PacketType.ISP_BFN]: (packet: IS_BFN, inSim: InSim) => void;
+  [PacketType.ISP_AXI]: (packet: IS_AXI, inSim: InSim) => void;
   [PacketType.ISP_BTC]: (packet: IS_BTC, inSim: InSim) => void;
   [PacketType.ISP_BTT]: (packet: IS_BTT, inSim: InSim) => void;
 };

@@ -1,5 +1,6 @@
 export * from './enums';
 export type { IPacket } from './IPacket';
+export { IS_AXI } from './IS_AXI';
 export type { IS_BFN_Data } from './IS_BFN';
 export { IS_BFN } from './IS_BFN';
 export { IS_BTC } from './IS_BTC';
