@@ -24,6 +24,8 @@ export { PitLaneFact } from './PitLaneFact';
 export { PitWorkFlags } from './PitWorkFlags';
 export { PlayerFlags } from './PlayerFlags';
 export { PlayerType } from './PlayerType';
+export { PMOAction } from './PMOAction';
+export { PMOFlags } from './PMOFlags';
 export { RaceFlags } from './RaceFlags';
 export { RaceState } from './RaceState';
 export { ReplayError } from './ReplayError';

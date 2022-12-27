@@ -2,7 +2,10 @@ export { CarContact } from './CarContact';
 export { CarContOBJ } from './CarContOBJ';
 export * from './enums';
 export type { IPacket } from './IPacket';
+export type { IReceivable } from './IReceivable';
 export { IS_AXI } from './IS_AXI';
+export type { IS_AXM_Data } from './IS_AXM';
+export { IS_AXM } from './IS_AXM';
 export { IS_AXO } from './IS_AXO';
 export type { IS_BFN_Data } from './IS_BFN';
 export { IS_BFN } from './IS_BFN';
@@ -76,6 +79,6 @@ export {
 export { IS_TOC } from './IS_TOC';
 export { IS_VER } from './IS_VER';
 export { IS_VTN } from './IS_VTN';
-export type { ISendable } from './ISendable';
+export type { ISendablePacket } from './ISendablePacket';
 export { NodeLap } from './NodeLap';
 export { ObjectInfo } from './ObjectInfo';

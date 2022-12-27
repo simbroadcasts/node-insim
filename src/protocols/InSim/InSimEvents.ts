@@ -1,5 +1,6 @@
 import type {
   IS_AXI,
+  IS_AXM,
   IS_AXO,
   IS_BFN,
   IS_BTC,
@@ -90,6 +91,7 @@ export type InSimPacketEvents = {
   [PacketType.ISP_OBH]: (packet: IS_OBH, inSim: InSim) => void;
   [PacketType.ISP_HLV]: (packet: IS_HLV, inSim: InSim) => void;
   [PacketType.ISP_PLC]: (packet: IS_PLC, inSim: InSim) => void;
+  [PacketType.ISP_AXM]: (packet: IS_AXM, inSim: InSim) => void;
 };
 
 export type InSimEvents = InSimPacketEvents & {
