@@ -8,8 +8,6 @@ import { PacketType } from './enums';
 export class IS_CPR extends AbstractPacket {
   @byte() readonly Size = 36;
   @byte() readonly Type = PacketType.ISP_CPR;
-
-  /** 0 */
   @byte() readonly ReqI: 0 = 0;
 
   /** Unique id of the connection */

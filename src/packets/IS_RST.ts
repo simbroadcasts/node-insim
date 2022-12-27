@@ -1,7 +1,7 @@
 import { byte, char, word } from '../utils';
 import { AbstractPacket } from './AbstractPacket';
+import type { RaceFlags } from './enums';
 import { PacketType } from './enums';
-import type { RaceFlags } from './enums/RaceFlags';
 
 /**
  * Race STart
@@ -9,7 +9,10 @@ import type { RaceFlags } from './enums/RaceFlags';
 export class IS_RST extends AbstractPacket {
   @byte() readonly Size = 28;
   @byte() readonly Type = PacketType.ISP_RST;
+
+  /** 0 unless this is a reply to an {@link TINY_RST} request */
   @byte() ReqI = 0;
+
   @byte() readonly Zero: 0 = 0;
 
   /** 0 if qualifying */

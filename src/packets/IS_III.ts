@@ -12,7 +12,7 @@ export class IS_III extends AbstractPacket {
 
   @byte() readonly Size = IS_III.FIXED_DATA_SIZE;
   @byte() readonly Type = PacketType.ISP_III;
-  @byte() ReqI = 0;
+  @byte() readonly ReqI: 0 = 0;
   @byte() readonly Zero: 0 = 0;
 
   /** Connection's unique id (0 = host) */

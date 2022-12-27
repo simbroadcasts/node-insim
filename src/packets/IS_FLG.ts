@@ -19,7 +19,7 @@ export class IS_FLG extends AbstractPacket {
   /** 1 = given blue / 2 = causing yellow */
   @byte() Flag = 0;
 
-  /** unique id of obstructed player */
+  /** Unique id of obstructed player */
   @byte() CarBehind = 0;
 
   @byte() readonly Sp3: 0 = 0;

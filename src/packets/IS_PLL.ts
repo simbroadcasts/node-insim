@@ -1,7 +1,6 @@
 import { byte } from '../utils';
 import { AbstractPacket } from './AbstractPacket';
 import { PacketType } from './enums';
-import type { PacketData } from './types';
 
 /**
  * PLayer Leave race (spectate - removed from player list)
@@ -14,5 +13,3 @@ export class IS_PLL extends AbstractPacket {
   /** Player's unique id */
   @byte() PLID = 0;
 }
-
-export type IS_PLL_Data = PacketData<IS_PLL>;

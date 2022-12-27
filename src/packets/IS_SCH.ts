@@ -16,15 +16,13 @@ import type { PacketData } from './types';
 export class IS_SCH extends AbstractSendablePacket {
   @byte() readonly Size = 8;
   @byte() readonly Type = PacketType.ISP_SCH;
-
   @byte() readonly ReqI: 0 = 0;
-
   @byte() readonly Zero: 0 = 0;
 
   /** Key to press */
   @byte() CharB = 0;
 
-  /** bit 0: Shift / bit 1: Ctrl */
+  /** Bit 0: Shift / bit 1: Ctrl */
   @byte() Flags: CharacterModifiers = 0;
 
   @byte() readonly Spare2: 0 = 0;

@@ -9,6 +9,8 @@ import { PacketType } from './enums';
 export class IS_RES extends AbstractPacket {
   @byte() readonly Size = 84;
   @byte() readonly Type = PacketType.ISP_RES;
+
+  /** 0 unless this is a reply to a {@link TINY_RES} request */
   @byte() ReqI = 0;
 
   /** Player's unique id (0 = player left before result was sent) */
@@ -54,6 +56,6 @@ export class IS_RES extends AbstractPacket {
   /** Total number of results (qualify doesn't always add a new one) */
   @byte() NumRes = 0;
 
-  /** penalty time in seconds (already included in race time) */
+  /** Penalty time in seconds (already included in race time) */
   @word() PSeconds = 0;
 }

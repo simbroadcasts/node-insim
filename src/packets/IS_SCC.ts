@@ -10,7 +10,7 @@ import type { PacketData } from './types';
 export class IS_SCC extends AbstractSendablePacket {
   @byte() readonly Size = 8;
   @byte() readonly Type = PacketType.ISP_SCC;
-  @byte() ReqI = 0;
+  @byte() readonly ReqI: 0 = 0;
   @byte() readonly Zero: 0 = 0;
 
   /** Unique ID of player to view */

@@ -20,6 +20,6 @@ export class IS_VTN extends AbstractPacket {
   /** Vote action */
   @byte() Action: VoteAction = 0;
 
-  @byte() Spare2: 0 = 0;
-  @byte() Spare3: 0 = 0;
+  @byte() readonly Spare2: 0 = 0;
+  @byte() readonly Spare3: 0 = 0;
 }

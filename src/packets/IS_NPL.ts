@@ -53,7 +53,7 @@ export class IS_NPL extends AbstractPacket {
   /** Added mass (kg) */
   @byte() H_Mass = 0;
 
-  /** intake restriction */
+  /** Intake restriction */
   @byte() H_TRes = 0;
 
   /** Driver model */

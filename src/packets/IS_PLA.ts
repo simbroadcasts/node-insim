@@ -17,7 +17,7 @@ export class IS_PLA extends AbstractPacket {
   /** Pit lane fact */
   @byte() Fact: PitLaneFact = 0;
 
-  @byte() Sp1: 0 = 0;
-  @byte() Sp2: 0 = 0;
-  @byte() Sp3: 0 = 0;
+  @byte() readonly Sp1: 0 = 0;
+  @byte() readonly Sp2: 0 = 0;
+  @byte() readonly Sp3: 0 = 0;
 }

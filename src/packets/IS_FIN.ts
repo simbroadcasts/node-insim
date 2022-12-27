@@ -25,7 +25,7 @@ export class IS_FIN extends AbstractPacket {
   /** Number of pit stops */
   @byte() NumStops = 0;
 
-  /** confirmation flags: disqualified etc. */
+  /** Confirmation flags: disqualified etc. */
   @byte() Confirm: ConfirmationFlags = 0;
 
   @byte() readonly SpB: 0 = 0;
