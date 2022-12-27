@@ -13,7 +13,7 @@ const data: IS_JRR_Data = {
     X: -9556,
     Y: -30695,
     Zbyte: 12,
-    Flags: 0x80,
+    Flags: 128,
     Index: 0,
     Heading: 67,
   }),
