@@ -14,6 +14,7 @@ export { IS_BTC } from './IS_BTC';
 export { IS_BTN, IS_BTN_Data } from './IS_BTN';
 export { IS_BTT } from './IS_BTT';
 export { IS_CCH } from './IS_CCH';
+export { IS_CIM } from './IS_CIM';
 export { IS_CNL } from './IS_CNL';
 export { IS_CON } from './IS_CON';
 export type { AllowedStateFlags, IS_CPP_Data } from './IS_CPP';

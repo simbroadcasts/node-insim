@@ -194,4 +194,16 @@ export enum ObjectIndex {
 
   /** Special value to override the main start light system */
   OCO_INDEX_MAIN = 240,
+
+  /** InSim checkpoint */
+  MARSH_IS_CP = 252,
+
+  /** InSim circle */
+  MARSH_IS_AREA = 253,
+
+  /** Restricted area */
+  MARSH_MARSHAL = 254,
+
+  /** Route checker */
+  MARSH_ROUTE = 255,
 }
