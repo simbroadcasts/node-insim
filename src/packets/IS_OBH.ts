@@ -1,7 +1,7 @@
 import { byte, byteArray, determineLength, short, word } from '../utils';
 import { AbstractPacket } from './base';
 import { CarContOBJ } from './CarContOBJ';
-import type { ObjectHitFlags } from './enums';
+import type { ObjectHitFlags, ObjectIndex } from './enums';
 import { PacketType } from './enums';
 
 /**
@@ -38,7 +38,7 @@ export class IS_OBH extends AbstractPacket {
   @byte() private readonly Sp1 = 0;
 
   /** AXO_x as in {@link ObjectInfo} or zero if it is an unknown object */
-  @byte() Index = 0;
+  @byte() Index: ObjectIndex = 0;
 
   @byte() OBHFlags: ObjectHitFlags = 0;
 

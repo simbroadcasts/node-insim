@@ -1,6 +1,12 @@
 import type { PacketTestData } from '../../utils/tests';
 import { testInfoPacket } from '../../utils/tests';
-import { CarContOBJ, IS_OBH, ObjectHitFlags, PacketType } from '..';
+import {
+  CarContOBJ,
+  IS_OBH,
+  ObjectHitFlags,
+  ObjectIndex,
+  PacketType,
+} from '..';
 import { AbstractPacket } from '../base';
 
 const size = 24;
@@ -21,7 +27,7 @@ const data: PacketTestData<IS_OBH> = {
   X: -10990,
   Y: -31058,
   Zbyte: 1,
-  Index: 168,
+  Index: ObjectIndex.AXO_BANNER2,
   OBHFlags:
     ObjectHitFlags.OBH_LAYOUT |
     ObjectHitFlags.OBH_CAN_MOVE |
@@ -51,7 +57,7 @@ const buffer = Buffer.from([
   134, // Y (2)
   1, // Zbyte
   0, // Sp1
-  168, // Index
+  113, // Index
   11, // OBHFlags
 ]);
 
