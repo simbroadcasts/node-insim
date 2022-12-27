@@ -9,6 +9,7 @@ export { LeaveReason } from './LeaveReason';
 export { MessageSound } from './MessageSound';
 export { PacketType } from './PacketType';
 export { PassengerFlags } from './PassengerFlags';
+export { PenaltyReason } from './PenaltyReason';
 export { PenaltyValue } from './PenaltyValue';
 export { PitLaneFact } from './PitLaneFact';
 export { PitWorkFlags } from './PitWorkFlags';
