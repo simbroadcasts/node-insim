@@ -1,13 +1,11 @@
 import defaults from 'lodash/defaults';
 import { TypedEmitter } from 'tiny-typed-emitter';
 
-import type { IS_ISI_Data } from '../../packets';
+import type { IS_ISI_Data, SendablePacket } from '../../packets';
 import { IS_ISI, IS_TINY, PacketType, TinyType } from '../../packets';
-import type { SendablePacket } from '../../packets/base';
 import { log as baseLog, unpack } from '../../utils';
 import { TCP } from '../TCP';
-import type { InSimPacketEvents } from './InSimEvents';
-import type { InSimEvents } from './InSimEvents';
+import type { InSimEvents, InSimPacketEvents } from './InSimEvents';
 import { InSimError } from './InSimEvents';
 
 const log = baseLog.extend('insim');
