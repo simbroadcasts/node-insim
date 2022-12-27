@@ -7,14 +7,14 @@ export function char(count: number) {
   return Reflect.metadata(formatMetadataKey, count === 1 ? 'c' : `${count}s`);
 }
 
-/** Array of bytes */
-export function byteArray(count: number) {
-  return Reflect.metadata(formatMetadataKey, `${count}A`);
-}
-
 /** 1-byte unsigned integer */
 export function byte() {
   return Reflect.metadata(formatMetadataKey, 'B');
+}
+
+/** Array of bytes */
+export function byteArray(count: number) {
+  return Reflect.metadata(formatMetadataKey, `${count}A`);
 }
 
 /** 2-byte unsigned integer */

@@ -60,6 +60,10 @@ export abstract class BasePacket implements IPacket {
     propertyNames.forEach((propertyName, i) => {
       let value = data[i];
 
+      if (value === undefined) {
+        return;
+      }
+
       if (typeof value === 'string' && value.length > 0) {
         value = parseLFSMessage(value);
       }
@@ -67,10 +71,6 @@ export abstract class BasePacket implements IPacket {
       if (propertyName === 'Size') {
         (this[propertyName] as unknown as number) =
           value * BasePacket.SIZE_MULTIPLIER;
-        return;
-      }
-
-      if (value === undefined) {
         return;
       }
 
