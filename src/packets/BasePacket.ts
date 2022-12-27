@@ -1,10 +1,11 @@
 import parseLFSMessage from 'parse-lfs-message';
 
-import { createLog, getFormat, unpack } from '../utils';
+import { getFormat, log as baseLog, unpack } from '../utils';
 import { PacketType } from './enums';
 import type { IPacket } from './IPacket';
 
-const log = createLog('BasePacket');
+const log = baseLog.extend('base-packet');
+const logError = baseLog.extend('base-packet:error');
 
 export abstract class BasePacket implements IPacket {
   static readonly SIZE_MULTIPLIER = 4;
@@ -45,10 +46,10 @@ export abstract class BasePacket implements IPacket {
     const format = this.getFormat(propertyFormatOverrides);
     const data = unpack(format, buffer);
 
-    log.debug(`Unpack format: ${format}`);
+    log(`Unpack format: ${format}`);
 
     if (!data) {
-      log.warn(
+      logError(
         `${packetType} - Unpacked no data using ${format} from buffer`,
         buffer,
       );
@@ -76,8 +77,8 @@ export abstract class BasePacket implements IPacket {
       this[propertyName as unknown as Extract<keyof this, string>] = value;
     });
 
-    log.info(`Packet data unpacked: ${packetType}`);
-    log.debug('Packet data unpacked:', this);
+    // log(`Packet data unpacked: ${packetType}`);
+    log('Packet data unpacked:', this);
 
     return this;
   }

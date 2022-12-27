@@ -1,9 +1,10 @@
 import EventEmitter from 'events';
 import net from 'net';
 
-import { createLog } from '../utils';
+import { log as baseLog } from '../utils';
 
-const log = createLog('TCP');
+const log = baseLog.extend('tcp');
+const logError = baseLog.extend('tcp:error');
 
 export class TCP extends EventEmitter {
   private stream: net.Socket | null = null;
@@ -18,15 +19,13 @@ export class TCP extends EventEmitter {
     this.host = host;
     this.port = port;
 
-    this.on('connect', () =>
-      log.info(`Connected to ${this.host}:${this.port}`),
-    );
-    this.on('disconnect', () => log.info('Disconnected'));
-    this.on('packet', (data) => log.debug('Packet received:', data));
+    this.on('connect', () => log(`Connected to ${this.host}:${this.port}`));
+    this.on('disconnect', () => log('Disconnected'));
+    this.on('packet', (data: Buffer) => log('Packet received:', data.join()));
   }
 
   connect = () => {
-    log.info('Connecting...');
+    log('Connecting...');
     this.stream = net.connect(this.port, this.host);
 
     this.stream.on('connect', () => {
@@ -38,11 +37,11 @@ export class TCP extends EventEmitter {
     });
 
     this.stream.on('error', (error) => {
-      log.error('Error', error.name, error.message);
+      logError('Error', error.name, error.message);
     });
 
     this.stream.on('data', (data: string) => {
-      log.debug('Data received:', data);
+      log('Data received:', data);
 
       // Set or append to temp buffer
       if (this.tempBuf === null) {
@@ -60,17 +59,17 @@ export class TCP extends EventEmitter {
 
   send = (data: Uint8Array | string) => {
     if (this.stream === null) {
-      log.debug('Cannot send data - not connected');
+      log('Cannot send data - not connected');
       return;
     }
 
-    log.debug('Send data', data);
+    log('Send data', data);
     this.stream.write(data);
   };
 
   disconnect = () => {
     if (this.stream === null) {
-      log.debug('Cannot disconnect - not connected');
+      log('Cannot disconnect - not connected');
       return;
     }
 
@@ -79,13 +78,13 @@ export class TCP extends EventEmitter {
 
   processBuf() {
     if (this.tempBuf === null) {
-      log.warn('No buffer to process');
+      log('No buffer to process');
       return;
     }
 
     // Haven't got a full 32 bit header
     if (this.tempBuf.length < 4) {
-      log.warn('Got packet with <4 bytes');
+      log('Got packet with <4 bytes');
       return;
     }
 
@@ -103,7 +102,7 @@ export class TCP extends EventEmitter {
       // Recurse on remaining buffer
       this.processBuf();
     } else {
-      log.warn('Got incomplete packet');
+      log('Got incomplete packet');
     }
   }
 }

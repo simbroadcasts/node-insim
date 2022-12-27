@@ -12,7 +12,8 @@
     "build": "run-s build:*",
     "build:ts": "tsc -p tsconfig.app.json",
     "build:copypackage": "cp -rf package.json dist",
-    "dev": "cross-env NODE_ENV=development ts-node-dev --respawn ./src/index.ts",
+    "dev": "cross-env DEBUG=* ts-node-dev --respawn ./src/index.ts",
+    "dev:nodebug": "ts-node-dev --respawn ./src/index.ts",
     "test": "run-s test:compile \"test:run {@}\" --",
     "test:compile": "tsc -p tsconfig.test.json",
     "test:run": "jest",
@@ -25,9 +26,11 @@
     "dist": "cd dist && npm publish"
   },
   "dependencies": {
+    "debug": "^4.3.4",
     "lodash": "^4.17.21",
     "parse-lfs-message": "^1.0.0",
     "reflect-metadata": "^0.1.13",
+    "supports-color": "^9.2.3",
     "tiny-typed-emitter": "^2.1.0",
     "tslog": "^3.3.3"
   },
@@ -37,6 +40,7 @@
     "@babel/plugin-proposal-decorators": "^7.17.9",
     "@babel/preset-env": "^7.17.10",
     "@babel/preset-typescript": "^7.16.7",
+    "@types/debug": "^4.1.7",
     "@types/jest": "^27.5.0",
     "@types/lodash": "^4.14.182",
     "@types/mitm": "^1.3.4",

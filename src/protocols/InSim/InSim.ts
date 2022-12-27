@@ -3,13 +3,13 @@ import { TypedEmitter } from 'tiny-typed-emitter';
 
 import type { IS_ISI_Data, ISendable } from '../../packets';
 import { IS_ISI, IS_TINY, PacketType, TinyType } from '../../packets';
-import { createLog, unpack } from '../../utils';
+import { log as baseLog, unpack } from '../../utils';
 import { TCP } from '../TCP';
 import type { InSimPacketEvents } from './InSimEvents';
 import type { InSimEvents } from './InSimEvents';
 import { InSimError } from './InSimEvents';
 
-const log = createLog('InSim');
+const log = baseLog.extend('insim');
 
 type InSimConnectionOptions = {
   Host: string;
@@ -26,16 +26,16 @@ export class InSim extends TypedEmitter<InSimEvents> {
   constructor() {
     super();
 
-    this.on('connect', () => log.info('Connected'));
-    this.on('disconnect', () => log.info('Disconnected'));
+    this.on('connect', () => log('Connected'));
+    this.on('disconnect', () => log('Disconnected'));
     this.on(PacketType.ISP_TINY, (packet) => this.handleKeepAlive(packet));
   }
 
   connect(options: Partial<IS_ISI_Data> & InSimConnectionOptions) {
     this._options = defaults(options, defaultInSimOptions);
 
-    log.info('Connecting...');
-    log.debug('Options:', this._options);
+    log('Connecting...');
+    log('Options:', this._options);
 
     if (options.IName && options.IName.length > 15) {
       this.handleError(
@@ -72,7 +72,7 @@ export class InSim extends TypedEmitter<InSimEvents> {
 
   disconnect() {
     if (this.connection === null) {
-      log.debug('Cannot disconnect - not connected');
+      log('Cannot disconnect - not connected');
       return;
     }
 
@@ -82,12 +82,11 @@ export class InSim extends TypedEmitter<InSimEvents> {
 
   send(packet: ISendable) {
     if (this.connection === null) {
-      log.debug('Cannot send a packet - not connected');
+      log('Cannot send a packet - not connected');
       return;
     }
 
-    log.info('Send packet:', PacketType[packet.Type]);
-    log.debug('Send packet:', packet);
+    log('Send packet:', PacketType[packet.Type], packet);
 
     const data = packet.pack();
 
@@ -147,7 +146,6 @@ export class InSim extends TypedEmitter<InSimEvents> {
   }
 
   private handleError(message: string) {
-    log.error('Error', message);
     this.emit('error', new InSimError(message));
   }
 }

@@ -1,8 +1,8 @@
-import { byte, createLog } from '../utils';
+import { byte, log as baseLog } from '../utils';
 import { BaseSendablePacket } from './BaseSendablePacket';
 import { PacketType, TinyType } from './enums';
 
-const log = createLog('IS_TINY');
+const logError = baseLog.extend('IS_TINY:error');
 
 /**
  * General purpose 4 byte packet
@@ -27,7 +27,7 @@ export class IS_TINY extends BaseSendablePacket {
       this.ReqI === 0 &&
       INFO_REQUEST_TINY_TYPES.includes(this.SubT as InfoRequestTinyType)
     ) {
-      log.error(`${TinyType[this.SubT]} - ReqI must be greater than 0`);
+      logError(`${TinyType[this.SubT]} - ReqI must be greater than 0`);
     }
 
     return super.pack();

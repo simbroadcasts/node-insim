@@ -1,9 +1,9 @@
-import { byte, char, createLog, getFormat, unpack } from '../utils';
+import { byte, char, getFormat, log as baseLog, unpack } from '../utils';
 import { BasePacket } from './BasePacket';
 import type { UserType } from './enums';
 import { PacketType } from './enums';
 
-const log = createLog('IS_MSO');
+const logError = baseLog.extend('IS_MSO:error');
 
 /**
  * MSg Out - system messages and user messages - variable size
@@ -35,7 +35,7 @@ export class IS_MSO extends BasePacket {
     const data = unpack(`<${getFormat(this, 'Size')}`, buffer);
 
     if (!data || data.length === 0) {
-      log.error('Failed to read packet size');
+      logError('Failed to read packet size');
       return this;
     }
 

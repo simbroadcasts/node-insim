@@ -1,10 +1,10 @@
-import { byte, char, createLog } from '../utils';
+import { byte, char, log as baseLog } from '../utils';
 import { BaseSendablePacket } from './BaseSendablePacket';
 import type { ButtonStyle, ButtonTextColour } from './enums';
 import { PacketType } from './enums';
 import type { PacketDataWithRequiredReqI } from './types';
 
-const log = createLog('IS_BTN');
+const logError = baseLog.extend('IS_BTN:error');
 
 /**
  * BuTtoN - button header - followed by 0 to 240 characters
@@ -104,11 +104,11 @@ export class IS_BTN extends BaseSendablePacket {
     // TODO: Convert to LFS encoding
 
     if (this.ReqI === 0) {
-      log.error('ReqI must be greater than 0');
+      logError('ReqI must be greater than 0');
     }
 
     if (this.ClickID > MAX_CLICK_ID) {
-      log.error(
+      logError(
         `Invalid ClickID: ${this.ClickID} - must be less than or equal to ${MAX_CLICK_ID}`,
       );
     }
