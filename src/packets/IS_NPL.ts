@@ -35,6 +35,12 @@ export class IS_NPL extends AbstractPacket {
   /** Nickname */
   @string(24) PName = '';
 
+  /** Number plate - NO ZERO AT END! */
+  @string(8) Plate = '';
+
+  /** Car name */
+  @string(4) CName = '';
+
   /** Skin name - MAX_CAR_TEX_NAME */
   @string(16) SName = '';
 

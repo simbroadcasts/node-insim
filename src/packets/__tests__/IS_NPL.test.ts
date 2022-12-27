@@ -15,6 +15,7 @@ import { AbstractPacket } from '../base';
 const size = 76;
 
 const pName = "Player's name max length";
+const plate = 'Numplate';
 const sName = 'MAX_CAR_TEX_NAME';
 
 const data: PacketTestData<IS_NPL> = {
@@ -24,6 +25,8 @@ const data: PacketTestData<IS_NPL> = {
   PType: PlayerType.AI,
   Flags: PlayerFlags.PIF_AUTOGEARS,
   PName: pName,
+  Plate: plate,
+  CName: 'XRT',
   SName: sName,
   TyreRL: TyreCompound.TYRE_R1,
   TyreRR: TyreCompound.TYRE_R2,
@@ -51,8 +54,11 @@ const buffer = Buffer.from([
   5, // UCID
   2, // PType
   8, // Flags (0)
-  0, // PlayerFlags (1)
+  0, // Flags (1)
   ...stringToBytes(pName), // PName[24]
+  ...stringToBytes(plate), // Plate[8]
+  ...stringToBytes('XRT'), // CName[4]
+  0,
   ...stringToBytes(sName), // SName[16]
   0, // TyreRL
   1, // TyreRR
