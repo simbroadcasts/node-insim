@@ -37,11 +37,11 @@ export function drawButton(
     ClickID: getNextClickId(),
   });
 
-  const update = (newData: ButtonData) => {
-    if (newData.onClick) {
+  const update = ({ onClick, onType, ...newData }: ButtonData) => {
+    if (onClick) {
       inSim.on(PacketType.ISP_BTC, (packet, inSim) => {
         if (button.ClickID === packet.ClickID) {
-          newData.onClick?.({
+          onClick({
             packet,
             inSim,
             button: {
@@ -53,10 +53,10 @@ export function drawButton(
       });
     }
 
-    if (newData.onType) {
+    if (onType) {
       inSim.on(PacketType.ISP_BTT, (packet, inSim) => {
         if (button.ClickID === packet.ClickID) {
-          newData.onType?.({
+          onType({
             packet,
             inSim,
             button: {
