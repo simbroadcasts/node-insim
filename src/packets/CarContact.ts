@@ -1,5 +1,5 @@
 import { byte, char, short } from '../utils';
-import { AbstractStruct } from './AbstractStruct';
+import { AbstractStruct } from './base';
 import type { CarContactFlags } from './enums';
 
 export class CarContact extends AbstractStruct {

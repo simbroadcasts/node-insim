@@ -1,5 +1,5 @@
 import { byte, short } from '../utils';
-import { AbstractSendableStruct } from './AbstractSendableStruct';
+import { AbstractSendableStruct } from './base';
 import type { ObjectIndex } from './enums';
 
 export class ObjectInfo extends AbstractSendableStruct {

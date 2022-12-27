@@ -1,5 +1,5 @@
 import { byte, unsigned } from '../utils';
-import { AbstractSendablePacket } from './AbstractSendablePacket';
+import { AbstractSendablePacket } from './base';
 import { PacketType, SmallType } from './enums';
 import type { PacketDataWithOptionalReqI } from './types';
 

@@ -10,7 +10,7 @@ import {
   SetupFlags,
   TyreCompound,
 } from '..';
-import { AbstractPacket } from '../AbstractPacket';
+import { AbstractPacket } from '../base';
 
 const size = 76;
 

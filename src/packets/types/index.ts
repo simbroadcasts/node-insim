@@ -1,5 +1,11 @@
-import type { AbstractSendablePacket } from '../AbstractSendablePacket';
-import type { IPacket } from '../IPacket';
+import type { AbstractSendablePacket, Packet } from '../base';
+import type { Receivable, Sendable } from '../base';
+
+export type InfoPacket = Packet & Receivable;
+
+export type InstructionPacket = Packet & Sendable;
+
+export type BothWaysPacket = Packet & Sendable & Receivable;
 
 type ReadonlyPropNames =
   | 'Zero'
@@ -22,15 +28,15 @@ type OmitReadonlyProps<T> = Omit<T, ReadonlyProps>;
 
 type OmitReadonlyPropsExceptReqI<T> = Omit<T, ReadonlySendablePropsExceptReqI>;
 
-type PacketDataWithReqI<T extends IPacket> = OmitReadonlyPropsExceptReqI<T>;
+type PacketDataWithReqI<T extends Packet> = OmitReadonlyPropsExceptReqI<T>;
 
-export type PacketData<T extends IPacket> = Partial<OmitReadonlyProps<T>>;
+export type PacketData<T extends Packet> = Partial<OmitReadonlyProps<T>>;
 
-export type PacketDataWithRequiredReqI<T extends IPacket> = Partial<
+export type PacketDataWithRequiredReqI<T extends Packet> = Partial<
   Omit<PacketDataWithReqI<T>, 'ReqI'>
 > &
   Pick<T, 'ReqI'>;
 
-export type PacketDataWithOptionalReqI<T extends IPacket> = Partial<
+export type PacketDataWithOptionalReqI<T extends Packet> = Partial<
   PacketDataWithReqI<T>
 >;

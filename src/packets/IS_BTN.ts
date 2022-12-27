@@ -1,5 +1,5 @@
 import { byte, string } from '../utils';
-import { AbstractSendablePacket } from './AbstractSendablePacket';
+import { AbstractSendablePacket } from './base';
 import type { ButtonStyle, ButtonTextColour } from './enums';
 import { PacketType } from './enums';
 import type { PacketDataWithRequiredReqI } from './types';

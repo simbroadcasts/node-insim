@@ -1,5 +1,5 @@
 import { byte, float, string, word } from '../utils';
-import { AbstractPacket } from './AbstractPacket';
+import { AbstractPacket } from './base';
 import type {
   RaceState,
   ServerStatus,

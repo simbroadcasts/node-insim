@@ -1,7 +1,7 @@
 import { testInstructionPacket } from '../../utils/tests';
 import type { IS_PLC_Data } from '..';
 import { CarFlags, IS_PLC, PacketType } from '..';
-import { AbstractPacket } from '../AbstractPacket';
+import { AbstractPacket } from '../base';
 
 const size = 12;
 

@@ -2,7 +2,7 @@ import { testInfoPacket, testInstructionPacket } from '../../utils/tests';
 import type { IS_AXM_Data } from '..';
 import { ObjectInfo } from '..';
 import { IS_AXM, PacketType, PMOAction, PMOFlags } from '..';
-import { AbstractPacket } from '../AbstractPacket';
+import { AbstractPacket } from '../base';
 
 const size = 488;
 

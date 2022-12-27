@@ -1,5 +1,5 @@
 import { byte, determineLength, word } from '../utils';
-import { AbstractPacket } from './AbstractPacket';
+import { AbstractPacket } from './base';
 import { CarContOBJ } from './CarContOBJ';
 import type { HlvcViolation } from './enums';
 import { PacketType } from './enums';

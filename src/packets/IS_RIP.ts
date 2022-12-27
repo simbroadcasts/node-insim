@@ -1,5 +1,5 @@
 import { byte, string, unsigned } from '../utils';
-import { AbstractSendablePacket } from './AbstractSendablePacket';
+import { AbstractSendablePacket } from './base';
 import type { ReplayError, ReplayMode, ReplayOptions } from './enums';
 import { PacketType } from './enums';
 import type { PacketDataWithRequiredReqI } from './types';

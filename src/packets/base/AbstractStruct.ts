@@ -1,15 +1,16 @@
 import parseLFSMessage from 'parse-lfs-message';
 
-import { InSimError } from '../protocols/InSim/InSimEvents';
-import { getFormat, log as baseLog, unpack } from '../utils';
-import type { IReceivable } from './IReceivable';
+import { InSimError } from '../../protocols/InSim/InSimEvents';
+import { getFormat } from '../../utils';
+import { log as baseLog, unpack } from '../../utils';
+import type { Receivable } from './Receivable';
 
 const log = baseLog.extend('abstract-struct');
 
 type Data = Record<string, unknown>;
 
-export abstract class AbstractStruct implements IReceivable {
-  static readonly SIZE_MULTIPLIER = 4;
+export abstract class AbstractStruct implements Receivable {
+  public static SIZE_MULTIPLIER = 4;
 
   protected initialize(data?: Partial<Data>) {
     if (!data) {
@@ -77,7 +78,7 @@ export abstract class AbstractStruct implements IReceivable {
         return;
       }
 
-      this[propertyName as unknown as Extract<keyof this, string>] = value;
+      this[propertyName] = value;
     });
 
     log('Data unpacked:', this);

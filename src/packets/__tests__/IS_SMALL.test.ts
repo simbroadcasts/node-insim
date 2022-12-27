@@ -1,7 +1,7 @@
 import { testInstructionPacket } from '../../utils/tests';
 import type { IS_SMALL_Data } from '..';
 import { IS_SMALL, PacketType, SmallType } from '..';
-import { AbstractPacket } from '../AbstractPacket';
+import { AbstractPacket } from '../base';
 
 const size = 8;
 

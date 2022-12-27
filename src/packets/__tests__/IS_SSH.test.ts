@@ -6,7 +6,7 @@ import {
 } from '../../utils/tests';
 import type { IS_SSH_Data } from '..';
 import { IS_SSH, PacketType, ScreenshotError } from '..';
-import { AbstractPacket } from '../AbstractPacket';
+import { AbstractPacket } from '../base';
 
 const size = 40;
 

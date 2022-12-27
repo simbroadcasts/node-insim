@@ -1,5 +1,5 @@
 import { byte, string, word } from '../utils';
-import { AbstractSendablePacket } from './AbstractSendablePacket';
+import { AbstractSendablePacket } from './base';
 import type { InSimFlags } from './enums';
 import { PacketType } from './enums';
 import type { PacketDataWithOptionalReqI } from './types';

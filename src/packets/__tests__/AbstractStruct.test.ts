@@ -1,7 +1,7 @@
 import { byte, string } from '../../utils';
 import { stringToBytes } from '../../utils/tests';
 import { PacketType } from '../';
-import { AbstractStruct } from '../AbstractStruct';
+import { AbstractStruct } from '../base';
 
 describe('AbstractStruct', () => {
   describe('getValidPropertyNames', () => {

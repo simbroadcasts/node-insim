@@ -1,5 +1,5 @@
 import { byte } from '../utils';
-import { AbstractSendablePacket } from './AbstractSendablePacket';
+import { AbstractSendablePacket } from './base';
 import type { ButtonFunction } from './enums';
 import { PacketType } from './enums';
 import { IS_BTN } from './IS_BTN';

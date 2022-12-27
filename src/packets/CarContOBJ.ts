@@ -1,5 +1,5 @@
 import { byte, short } from '../utils';
-import { AbstractStruct } from './AbstractStruct';
+import { AbstractStruct } from './base';
 
 export class CarContOBJ extends AbstractStruct {
   /** Car's motion if Speed > 0: 0 = world y direction, 128 = 180 deg */

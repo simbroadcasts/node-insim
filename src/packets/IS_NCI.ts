@@ -1,5 +1,5 @@
 import { byte, unsigned } from '../utils';
-import { AbstractPacket } from './AbstractPacket';
+import { AbstractPacket } from './base';
 import type { Language } from './enums';
 import { PacketType } from './enums';
 

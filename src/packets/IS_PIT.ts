@@ -1,5 +1,5 @@
 import { byte, unsigned, word } from '../utils';
-import { AbstractPacket } from './AbstractPacket';
+import { AbstractPacket } from './base';
 import type {
   PenaltyValue,
   PitWorkFlags,

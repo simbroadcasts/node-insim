@@ -1,5 +1,5 @@
 import { byte, determineLength } from '../utils';
-import { AbstractSendablePacket } from './AbstractSendablePacket';
+import { AbstractSendablePacket } from './base';
 import type { PMOAction, PMOFlags } from './enums';
 import { PacketType } from './enums';
 import { ObjectInfo } from './ObjectInfo';

@@ -1,5 +1,5 @@
 import { byte } from '../utils';
-import { AbstractSendablePacket } from './AbstractSendablePacket';
+import { AbstractSendablePacket } from './base';
 import type { ViewIdentifier } from './enums';
 import { PacketType } from './enums';
 import type { PacketData } from './types';

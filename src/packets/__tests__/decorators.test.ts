@@ -10,7 +10,7 @@ import {
   word,
 } from '../../utils';
 import { PacketType } from '..';
-import { AbstractPacket } from '../AbstractPacket';
+import { AbstractPacket } from '../base';
 
 describe('Packet property decorators', () => {
   it('should return the correct jspack char for each binary data type', () => {

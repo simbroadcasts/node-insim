@@ -1,5 +1,5 @@
 import { byte, string } from '../utils';
-import { AbstractPacket } from './AbstractPacket';
+import { AbstractPacket } from './base';
 import type { ConnectionFlags } from './enums';
 import { PacketType } from './enums';
 

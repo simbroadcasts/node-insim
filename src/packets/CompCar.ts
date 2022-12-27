@@ -1,5 +1,5 @@
 import { byte, int, short, word } from '../utils';
-import { AbstractStruct } from './AbstractStruct';
+import { AbstractStruct } from './base';
 import type { CompCarFlags } from './enums';
 
 export class CompCar extends AbstractStruct {

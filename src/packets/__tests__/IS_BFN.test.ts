@@ -1,7 +1,7 @@
 import { testBothWaysPacket } from '../../utils/tests';
 import type { IS_BFN_Data } from '..';
 import { ButtonFunction, IS_BFN, PacketType } from '..';
-import { AbstractPacket } from '../AbstractPacket';
+import { AbstractPacket } from '../base';
 
 const size = 8;
 

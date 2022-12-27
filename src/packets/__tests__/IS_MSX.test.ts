@@ -1,7 +1,7 @@
 import { stringToBytes, testInstructionPacket } from '../../utils/tests';
 import type { IS_MSX_Data } from '..';
 import { IS_MSX, PacketType } from '..';
-import { AbstractPacket } from '../AbstractPacket';
+import { AbstractPacket } from '../base';
 
 const size = 100;
 

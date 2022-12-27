@@ -1,5 +1,5 @@
 import { byte, word } from '../utils';
-import { AbstractStruct } from './AbstractStruct';
+import { AbstractStruct } from './base';
 
 export class NodeLap extends AbstractStruct {
   /** Current path node */

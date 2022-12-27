@@ -1,5 +1,5 @@
 import { byte, string, word } from '../utils';
-import { AbstractPacket } from './AbstractPacket';
+import { AbstractPacket } from './base';
 import type { RaceFlags } from './enums';
 import { PacketType } from './enums';
 

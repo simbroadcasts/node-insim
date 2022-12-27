@@ -1,5 +1,5 @@
 import { byte, byteArray, determineLength, short, word } from '../utils';
-import { AbstractPacket } from './AbstractPacket';
+import { AbstractPacket } from './base';
 import { CarContOBJ } from './CarContOBJ';
 import type { ObjectHitFlags } from './enums';
 import { PacketType } from './enums';

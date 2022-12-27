@@ -1,6 +1,6 @@
 import { InSimError } from '../protocols/InSim/InSimEvents';
 import { byte, determineLength, unpack } from '../utils';
-import { AbstractPacket } from './AbstractPacket';
+import { AbstractPacket } from './base';
 import { PacketType } from './enums';
 import { NodeLap } from './NodeLap';
 

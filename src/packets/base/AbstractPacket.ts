@@ -1,11 +1,11 @@
+import type { PacketType } from '../enums';
 import { AbstractStruct } from './AbstractStruct';
-import type { PacketType } from './enums';
-import type { IPacket } from './IPacket';
-import type { IReceivable } from './IReceivable';
+import type { Packet } from './Packet';
+import type { Receivable } from './Receivable';
 
 export abstract class AbstractPacket
   extends AbstractStruct
-  implements IPacket, IReceivable
+  implements Packet, Receivable
 {
   abstract Size: number;
   abstract Type: PacketType;

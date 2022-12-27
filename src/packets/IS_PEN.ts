@@ -1,5 +1,5 @@
 import { byte } from '../utils';
-import { AbstractPacket } from './AbstractPacket';
+import { AbstractPacket } from './base';
 import type { PenaltyReason, PenaltyValue } from './enums';
 import { PacketType } from './enums';
 

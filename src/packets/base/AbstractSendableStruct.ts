@@ -1,10 +1,11 @@
-import { pack } from '../utils';
+import { pack } from '../../utils';
 import { AbstractStruct } from './AbstractStruct';
-import type { ISendable } from './ISendable';
+import type { Receivable } from './Receivable';
+import type { Sendable } from './Sendable';
 
 export abstract class AbstractSendableStruct
   extends AbstractStruct
-  implements ISendable
+  implements Receivable, Sendable
 {
   pack(propertyFormatOverrides?: Record<string, string>): Buffer {
     const propertyNames = this.getValidPropertyNames();

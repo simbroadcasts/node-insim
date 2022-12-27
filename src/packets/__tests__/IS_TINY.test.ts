@@ -1,7 +1,7 @@
 import { testBothWaysPacket } from '../../utils/tests';
 import type { IS_TINY_Data } from '..';
 import { IS_TINY, PacketType, TinyType } from '..';
-import { AbstractPacket } from '../AbstractPacket';
+import { AbstractPacket } from '../base';
 
 const size = 4;
 

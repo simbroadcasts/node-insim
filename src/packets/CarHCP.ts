@@ -1,5 +1,5 @@
 import { byte } from '../utils';
-import { AbstractSendableStruct } from './AbstractSendableStruct';
+import { AbstractSendableStruct } from './base';
 
 export class CarHCP extends AbstractSendableStruct {
   /** 0 to 200 - added mass (kg) */

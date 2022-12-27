@@ -9,7 +9,7 @@ import {
   ViewIdentifier,
   Wind,
 } from '..';
-import { AbstractPacket } from '../AbstractPacket';
+import { AbstractPacket } from '../base';
 
 const size = 28;
 

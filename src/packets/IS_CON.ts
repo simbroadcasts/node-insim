@@ -1,5 +1,5 @@
 import { byte, determineLength, word } from '../utils';
-import { AbstractPacket } from './AbstractPacket';
+import { AbstractPacket } from './base';
 import { CarContact } from './CarContact';
 import { PacketType } from './enums';
 

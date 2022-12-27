@@ -6,7 +6,7 @@ import {
 } from '../../utils/tests';
 import type { IS_RIP_Data } from '..';
 import { IS_RIP, PacketType, ReplayError, ReplayMode, ReplayOptions } from '..';
-import { AbstractPacket } from '../AbstractPacket';
+import { AbstractPacket } from '../base';
 
 const size = 80;
 
