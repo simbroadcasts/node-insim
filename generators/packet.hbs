@@ -15,7 +15,7 @@ export class IS_{{ name }} extends {{#ifNotEquals variant "info"}}BaseSendablePa
   @byte() readonly Size = {{ size }};
   @byte() readonly Type = PacketType.ISP_{{ name }};
   @byte() ReqI = 0;
-  @byte() Zero: 0 = 0;{{#ifNotEquals variant "info"}}
+  @byte() readonly Zero: 0 = 0;{{#ifNotEquals variant "info"}}
 
   constructor(data?: IS_{{ name }}_Data) {
     super();

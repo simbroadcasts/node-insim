@@ -5,6 +5,7 @@ import type {
   IS_CPP,
   IS_CPR,
   IS_CRS,
+  IS_ISM,
   IS_LAP,
   IS_NCN,
   IS_NPL,
@@ -24,6 +25,7 @@ export type InSimPacketEvents = {
   [PacketType.ISP_SMALL]: (packet: IS_SMALL, inSim: InSim) => void;
   [PacketType.ISP_STA]: (packet: IS_STA, inSim: InSim) => void;
   [PacketType.ISP_CPP]: (packet: IS_CPP, inSim: InSim) => void;
+  [PacketType.ISP_ISM]: (packet: IS_ISM, inSim: InSim) => void;
   [PacketType.ISP_NCN]: (packet: IS_NCN, inSim: InSim) => void;
   [PacketType.ISP_CNL]: (packet: IS_CNL, inSim: InSim) => void;
   [PacketType.ISP_CPR]: (packet: IS_CPR, inSim: InSim) => void;
