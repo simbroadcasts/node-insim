@@ -33,7 +33,7 @@ describe('IS_{{ name }}', () => {
 
     expect(packet.Size).toEqual({{ size }});
     expect(packet.Type).toEqual(PacketType.ISP_{{ name }});
-    expect(packet.ReqI).toEqual(1);
+    expect(packet.ReqI).toEqual(0);
   });
 {{/ifNotEquals}}
 });
