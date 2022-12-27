@@ -12,6 +12,7 @@ import type {
   IS_CPP,
   IS_CPR,
   IS_CRS,
+  IS_CSC,
   IS_FIN,
   IS_FLG,
   IS_HLV,
@@ -100,6 +101,7 @@ export type InSimPacketEvents = {
   [PacketType.ISP_JRR]: (packet: IS_JRR, inSim: InSim) => void;
   [PacketType.ISP_UCO]: (packet: IS_UCO, inSim: InSim) => void;
   [PacketType.ISP_SLC]: (packet: IS_SLC, inSim: InSim) => void;
+  [PacketType.ISP_CSC]: (packet: IS_CSC, inSim: InSim) => void;
 };
 
 export type InSimEvents = InSimPacketEvents & {

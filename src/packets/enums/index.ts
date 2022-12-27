@@ -10,6 +10,7 @@ export { CharacterModifiers } from './CharacterModifiers';
 export { CompCarFlags } from './CompCarFlags';
 export { ConfirmationFlags } from './ConfirmationFlags';
 export { ConnectionFlags } from './ConnectionFlags';
+export { CSCAction } from './CSCAction';
 export { FlagType } from './FlagType';
 export { HLVCViolation } from './HLVCViolation';
 export { InSimFlags } from './InSimFlags';

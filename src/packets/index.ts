@@ -20,6 +20,7 @@ export type { AllowedStateFlags, IS_CPP_Data } from './IS_CPP';
 export { IS_CPP } from './IS_CPP';
 export { IS_CPR } from './IS_CPR';
 export { IS_CRS } from './IS_CRS';
+export { IS_CSC } from './IS_CSC';
 export { IS_FIN } from './IS_FIN';
 export { IS_FLG } from './IS_FLG';
 export type { IS_HCP_Data } from './IS_HCP';
