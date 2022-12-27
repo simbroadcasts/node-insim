@@ -1,5 +1,6 @@
 import type {
   IS_AXI,
+  IS_AXO,
   IS_BFN,
   IS_BTC,
   IS_BTT,
@@ -74,6 +75,7 @@ export type InSimPacketEvents = {
   [PacketType.ISP_CRS]: (packet: IS_CRS, inSim: InSim) => void;
   [PacketType.ISP_BFN]: (packet: IS_BFN, inSim: InSim) => void;
   [PacketType.ISP_AXI]: (packet: IS_AXI, inSim: InSim) => void;
+  [PacketType.ISP_AXO]: (packet: IS_AXO, inSim: InSim) => void;
   [PacketType.ISP_BTC]: (packet: IS_BTC, inSim: InSim) => void;
   [PacketType.ISP_BTT]: (packet: IS_BTT, inSim: InSim) => void;
 };
