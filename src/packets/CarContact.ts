@@ -1,6 +1,7 @@
 import { byte, char, short } from '../utils';
 import { AbstractStruct } from './base';
 import type { CarContactFlags } from './enums';
+import type { StructData } from './types';
 
 export class CarContact extends AbstractStruct {
   @byte() PLID = 0;
@@ -43,7 +44,7 @@ export class CarContact extends AbstractStruct {
   /** Position (1 metre = 16) */
   @short() Y = 0;
 
-  constructor(data?: Partial<CarContact>) {
+  constructor(data?: StructData<CarContact>) {
     super();
     this.initialize(data);
   }

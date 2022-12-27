@@ -31,8 +31,10 @@ export class IS_HLV extends AbstractPacket {
   unpack(buffer: Buffer): this {
     super.unpack(buffer);
 
-    const carContactLength = determineLength(new CarContOBJ().getFormat());
-    const start = determineLength(this.getFormat());
+    const carContactLength = determineLength(
+      `<${new CarContOBJ().getFormat()}`,
+    );
+    const start = determineLength(`<${this.getFormat()}`);
     const carContactBuffer = buffer.slice(start, start + carContactLength);
 
     this.C = new CarContOBJ().unpack(carContactBuffer);

@@ -1,8 +1,7 @@
 import parseLFSMessage from 'parse-lfs-message';
 
 import { InSimError } from '../../protocols/InSim/InSimEvents';
-import { getFormat } from '../../utils';
-import { log as baseLog, unpack } from '../../utils';
+import { getFormat, log as baseLog, unpack } from '../../utils';
 import type { Receivable } from './Receivable';
 
 const log = baseLog.extend('abstract-struct');
@@ -20,12 +19,12 @@ export abstract class AbstractStruct implements Receivable {
     Object.assign(this, data);
   }
 
-  protected getValidPropertyNames(): (keyof this)[] {
+  public getValidPropertyNames(): string[] {
     const prototype = Object.getPrototypeOf(this);
-    const ownPropertyNames = Object.getOwnPropertyNames(this) as (keyof this)[];
+    const ownPropertyNames = Object.getOwnPropertyNames(this) as string[];
     const prototypePropertyNames = Object.keys(
       Object.getOwnPropertyDescriptors(prototype),
-    ) as (keyof this)[];
+    ) as string[];
 
     return [...ownPropertyNames, ...prototypePropertyNames].filter(
       (propertyName) => getFormat(this, propertyName) !== undefined,
@@ -34,15 +33,14 @@ export abstract class AbstractStruct implements Receivable {
 
   public getFormat(propertyFormats?: Record<string, string>): string {
     const propertyNames = this.getValidPropertyNames();
-    const format = propertyNames
+
+    return propertyNames
       .map(
         (propertyName) =>
           propertyFormats?.[propertyName as string] ??
           getFormat(this, propertyName),
       )
       .join('');
-
-    return `<${format}`;
   }
 
   public unpack(
@@ -50,7 +48,7 @@ export abstract class AbstractStruct implements Receivable {
     propertyFormatOverrides?: Record<string, string>,
   ): this {
     const format = this.getFormat(propertyFormatOverrides);
-    const data = unpack(format, buffer);
+    const data = unpack(`<${format}`, buffer);
 
     log(`Unpack format: ${format}`);
 
@@ -73,12 +71,12 @@ export abstract class AbstractStruct implements Receivable {
       }
 
       if (propertyName === 'Size') {
-        (this[propertyName] as unknown as number) =
+        (this[propertyName as keyof this] as unknown as number) =
           value * AbstractStruct.SIZE_MULTIPLIER;
         return;
       }
 
-      this[propertyName] = value;
+      this[propertyName as keyof this] = value;
     });
 
     log('Data unpacked:', this);

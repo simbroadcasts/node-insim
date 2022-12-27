@@ -507,7 +507,7 @@ const buffer = Buffer.from([
   172, // Info[1] - X (1)
   218, // Info[1] - X (2)
   25, // Info[1] - Y (1)
-  136, // Info[1] - X (2)
+  136, // Info[1] - Y (2)
   8, // Info[1] - Zbyte
   0, // Info[1] - Flags
   51, // Info[1] - ObjectIndex

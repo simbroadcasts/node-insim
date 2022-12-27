@@ -1,5 +1,14 @@
 import type { AbstractSendablePacket, Packet } from '../base';
 import type { Receivable, Sendable } from '../base';
+import type { AbstractSendableStruct, AbstractStruct } from '../base';
+
+type ReadonlyStructProps = keyof AbstractSendableStruct | ReadonlyPropNames;
+
+type OmitReadonlyStructProps<T> = Omit<T, ReadonlyStructProps>;
+
+export type StructData<T extends AbstractStruct> = Partial<
+  OmitReadonlyStructProps<T>
+>;
 
 export type InfoPacket = Packet & Receivable;
 

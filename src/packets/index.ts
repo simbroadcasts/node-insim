@@ -29,6 +29,8 @@ export { IS_III } from './IS_III';
 export type { IS_ISI_Data } from './IS_ISI';
 export { IS_ISI, IS_ISI_ReqI } from './IS_ISI';
 export { IS_ISM, MultiplayerHostMode } from './IS_ISM';
+export type { IS_JRR_Data } from './IS_JRR';
+export { IS_JRR } from './IS_JRR';
 export { IS_LAP } from './IS_LAP';
 export { IS_MCI } from './IS_MCI';
 export type { IS_MOD_Data } from './IS_MOD';

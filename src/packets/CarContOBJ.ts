@@ -1,5 +1,6 @@
 import { byte, short } from '../utils';
 import { AbstractStruct } from './base';
+import type { StructData } from './types';
 
 export class CarContOBJ extends AbstractStruct {
   /** Car's motion if Speed > 0: 0 = world y direction, 128 = 180 deg */
@@ -19,7 +20,7 @@ export class CarContOBJ extends AbstractStruct {
   /** Position (1 metre = 16) */
   @short() Y = 0;
 
-  constructor(data?: Partial<CarContOBJ>) {
+  constructor(data?: StructData<CarContOBJ>) {
     super();
     this.initialize(data);
   }

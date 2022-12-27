@@ -65,7 +65,7 @@ describe('AbstractStruct', () => {
 
       const packet = new CustomPacket();
 
-      expect(packet.getFormat()).toEqual('<BBB6sB');
+      expect(packet.getFormat()).toEqual('BBB6sB');
     });
 
     it('should override property format if provided', () => {
@@ -86,7 +86,7 @@ describe('AbstractStruct', () => {
 
       const packet = new CustomPacket();
 
-      expect(packet.getFormat()).toEqual('<BBB6sC');
+      expect(packet.getFormat()).toEqual('BBB6sC');
     });
   });
 

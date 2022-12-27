@@ -13,7 +13,6 @@ const data: PacketTestData<IS_CON> = {
   A: new CarContact({
     PLID: 1,
     Info: CarContactFlags.CCI_BLUE | CarContactFlags.CCI_LAG,
-    Sp2: 0,
     Steer: 3,
     ThrBrk: 4,
     CluHan: 2,
@@ -29,7 +28,6 @@ const data: PacketTestData<IS_CON> = {
   B: new CarContact({
     PLID: 2,
     Info: CarContactFlags.CCI_YELLOW | CarContactFlags.CCI_LAG,
-    Sp2: 0,
     Steer: 5,
     ThrBrk: 112,
     CluHan: 9,

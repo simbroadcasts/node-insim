@@ -36,6 +36,8 @@ export class IS_AXM extends AbstractSendablePacket {
 
   Info: ObjectInfo[] = [];
 
+  private readonly objectInfoOffset = 8;
+
   constructor(data?: IS_AXM_Data) {
     super();
     this.initialize(data);
@@ -44,10 +46,12 @@ export class IS_AXM extends AbstractSendablePacket {
   unpack(buffer: Buffer): this {
     super.unpack(buffer);
 
-    const objectInfoLength = determineLength(new ObjectInfo().getFormat());
+    const objectInfoLength = determineLength(
+      `<${new ObjectInfo().getFormat()}`,
+    );
 
     for (let i = 0; i < this.NumO; i++) {
-      const start = 8 + objectInfoLength * i;
+      const start = this.objectInfoOffset + objectInfoLength * i;
       const objectInfoBuffer = buffer.slice(start, start + objectInfoLength);
       this.Info.push(new ObjectInfo().unpack(objectInfoBuffer));
     }
@@ -62,8 +66,10 @@ export class IS_AXM extends AbstractSendablePacket {
       );
     }
 
-    const objectInfoLength = determineLength(new ObjectInfo().getFormat());
-    this.Size = 8 + this.Info.length * objectInfoLength;
+    const objectInfoLength = determineLength(
+      `<${new ObjectInfo().getFormat()}`,
+    );
+    this.Size = this.objectInfoOffset + this.Info.length * objectInfoLength;
 
     const dataBuffer = super.pack();
     const objectInfoBuffer = this.Info.map((objectInfo) => objectInfo.pack());

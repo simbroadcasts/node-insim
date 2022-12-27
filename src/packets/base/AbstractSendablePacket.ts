@@ -15,18 +15,37 @@ export abstract class AbstractSendablePacket
 
   pack(propertyFormatOverrides?: Record<string, string>): Buffer {
     const propertyNames = this.getValidPropertyNames();
+    const format = `<${this.getFormat(propertyFormatOverrides)}`;
+    const values: unknown[] = [];
 
-    const values = propertyNames.map((propertyName) => {
+    propertyNames.forEach((propertyName) => {
+      const propertyValue = this[propertyName as keyof this];
+
       if (propertyName === 'Size') {
-        return (
-          (this[propertyName] as unknown as number) /
-          AbstractSendablePacket.SIZE_MULTIPLIER
+        values.push(
+          (propertyValue as unknown as number) /
+            AbstractSendablePacket.SIZE_MULTIPLIER,
         );
+        return;
       }
 
-      return this[propertyName];
+      // Spread all values of structs in packet properties
+      if (propertyValue instanceof AbstractSendableStruct) {
+        const struct = propertyValue as AbstractSendableStruct;
+
+        const map = struct
+          .getValidPropertyNames()
+          .map(
+            (structPropName) => struct[structPropName as keyof typeof struct],
+          );
+
+        values.push(...map);
+        return;
+      }
+
+      return values.push(propertyValue);
     });
 
-    return pack(this.getFormat(propertyFormatOverrides), values);
+    return pack(format, values);
   }
 }

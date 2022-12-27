@@ -1,6 +1,7 @@
 import { byte, short } from '../utils';
 import { AbstractSendableStruct } from './base';
 import type { ObjectIndex } from './enums';
+import type { StructData } from './types';
 
 export class ObjectInfo extends AbstractSendableStruct {
   /** Position (1 metre = 16) */
@@ -52,7 +53,7 @@ export class ObjectInfo extends AbstractSendableStruct {
    */
   @byte() Heading = 0;
 
-  constructor(data?: Partial<ObjectInfo>) {
+  constructor(data?: StructData<ObjectInfo>) {
     super();
     this.initialize(data);
   }

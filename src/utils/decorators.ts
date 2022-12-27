@@ -22,6 +22,13 @@ export function byteArray(count: number) {
   return Reflect.metadata(formatMetadataKey, `${count}A`);
 }
 
+/** Struct */
+export function struct<S extends { new (): { getFormat: () => string } }>(
+  str: S,
+) {
+  return Reflect.metadata(formatMetadataKey, new str().getFormat());
+}
+
 /** 2-byte unsigned integer */
 export function word() {
   return Reflect.metadata(formatMetadataKey, 'H');
@@ -47,6 +54,6 @@ export function float() {
   return Reflect.metadata(formatMetadataKey, 'f');
 }
 
-export function getFormat<T>(target: T, propertyKey: keyof T) {
-  return Reflect.getMetadata(formatMetadataKey, target, propertyKey as string);
+export function getFormat<T>(target: T, propertyKey: string) {
+  return Reflect.getMetadata(formatMetadataKey, target, propertyKey);
 }

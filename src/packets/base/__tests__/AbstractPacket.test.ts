@@ -1,4 +1,4 @@
-import { byte, string } from '../../../utils';
+import { byte, byteArray, string } from '../../../utils';
 import { PacketType } from '../..';
 import { AbstractPacket } from '../../base';
 
@@ -28,6 +28,7 @@ describe('AbstractPacket', () => {
         @byte() ReqI = 1;
         @string(6) StringProperty = 'string';
         @byte() NumberProperty = 0;
+        @byteArray(4) NumberArray = [1, 2, 4, 6];
         InvalidProperty = 'invalid';
 
         public getValidPropertyNames() {
@@ -43,6 +44,7 @@ describe('AbstractPacket', () => {
         'ReqI',
         'StringProperty',
         'NumberProperty',
+        'NumberArray',
       ]);
     });
   });
@@ -55,6 +57,7 @@ describe('AbstractPacket', () => {
         @byte() ReqI = 1;
         @string(6) StringProperty = 'string';
         @byte() NumberProperty = 0;
+        @byteArray(4) NumberArray = [1, 2, 4, 6];
         InvalidProperty = 'invalid';
 
         public getFormat() {
@@ -64,7 +67,7 @@ describe('AbstractPacket', () => {
 
       const packet = new CustomPacket();
 
-      expect(packet.getFormat()).toEqual('<BBB6sB');
+      expect(packet.getFormat()).toEqual('BBB6sB4A');
     });
 
     it('should override property format if provided', () => {
@@ -85,7 +88,7 @@ describe('AbstractPacket', () => {
 
       const packet = new CustomPacket();
 
-      expect(packet.getFormat()).toEqual('<BBB6sC');
+      expect(packet.getFormat()).toEqual('BBB6sC');
     });
   });
 });

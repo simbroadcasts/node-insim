@@ -1,6 +1,7 @@
 import { byte, int, short, word } from '../utils';
 import { AbstractStruct } from './base';
 import type { CompCarFlags } from './enums';
+import type { StructData } from './types';
 
 export class CompCar extends AbstractStruct {
   /** Current path node */
@@ -41,7 +42,7 @@ export class CompCar extends AbstractStruct {
   /** Signed, rate of change of heading: (8192 = 180 deg/s anticlockwise) */
   @short() AngVel = 0;
 
-  constructor(data?: Partial<CompCar>) {
+  constructor(data?: StructData<CompCar>) {
     super();
     this.initialize(data);
   }

@@ -1,7 +1,13 @@
-import { byte, string } from '../../../utils';
+import { byte, byteArray, string, struct } from '../../../utils';
 import { stringToBytes } from '../../../utils/tests';
 import { PacketType } from '../../';
-import { AbstractSendablePacket } from '../../base';
+import { AbstractSendablePacket, AbstractSendableStruct } from '../../base';
+
+class TestStruct extends AbstractSendableStruct {
+  @byte() First = 5;
+  @byte() Second = 10;
+  @string(3) Third = 'abc';
+}
 
 describe('AbstractSendablePacket', () => {
   describe('initialize', () => {
@@ -35,6 +41,7 @@ describe('AbstractSendablePacket', () => {
         @byte() ReqI = 1;
         @string(6) StringProperty = 'string';
         @byte() NumberProperty = 0;
+        @byteArray(4) NumberArray = [];
       }
 
       const buffer = Buffer.from([
@@ -45,6 +52,10 @@ describe('AbstractSendablePacket', () => {
         0,
         0,
         25, // NumberProperty
+        1, // NumberArray[0]
+        3, // NumberArray[1]
+        6, // NumberArray[2]
+        7, // NumberArray[3]
       ]);
       const packet = new CustomPacket().unpack(buffer);
 
@@ -53,6 +64,39 @@ describe('AbstractSendablePacket', () => {
       expect(packet.ReqI).toEqual(2);
       expect(packet.StringProperty).toEqual('test');
       expect(packet.NumberProperty).toEqual(25);
+      expect(packet.NumberArray).toEqual([1, 3, 6, 7]);
+    });
+
+    it('pack data into a buffer', () => {
+      class CustomPacket extends AbstractSendablePacket {
+        @byte() Size = 8;
+        @byte() Type = PacketType.ISP_ISI;
+        @byte() ReqI = 2;
+        @string(6) StringProperty = 'test';
+        @byte() NumberProperty = 25;
+        @byteArray(4) NumberArray = [1, 3, 6, 7];
+        @struct(TestStruct) Struct = new TestStruct();
+      }
+
+      const expectedBuffer = Buffer.from([
+        8 / AbstractSendablePacket.SIZE_MULTIPLIER, // Size
+        PacketType.ISP_ISI, // Type
+        2, // ReqI
+        ...stringToBytes('test'), // StringProperty[6]
+        0,
+        0,
+        25, // NumberProperty
+        1, // NumberArray[0]
+        3, // NumberArray[1]
+        6, // NumberArray[2]
+        7, // NumberArray[3]
+        5,
+        10,
+        ...stringToBytes('abc'),
+      ]);
+      const buffer = new CustomPacket().pack();
+
+      expect(buffer).toEqual(expectedBuffer);
     });
   });
 });

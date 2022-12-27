@@ -15,6 +15,8 @@ export abstract class AbstractSendableStruct
         this[propertyName as unknown as Extract<keyof this, string>],
     );
 
-    return pack(this.getFormat(propertyFormatOverrides), values);
+    const format = `<${this.getFormat(propertyFormatOverrides)}`;
+
+    return pack(format, values);
   }
 }
