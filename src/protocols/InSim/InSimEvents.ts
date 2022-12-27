@@ -17,6 +17,7 @@ import type {
   IS_HLV,
   IS_III,
   IS_ISM,
+  IS_JRR,
   IS_LAP,
   IS_MCI,
   IS_MSO,
@@ -94,6 +95,7 @@ export type InSimPacketEvents = {
   [PacketType.ISP_AXM]: (packet: IS_AXM, inSim: InSim) => void;
   [PacketType.ISP_ACR]: (packet: IS_ACR, inSim: InSim) => void;
   [PacketType.ISP_NCI]: (packet: IS_NCI, inSim: InSim) => void;
+  [PacketType.ISP_JRR]: (packet: IS_JRR, inSim: InSim) => void;
 };
 
 export type InSimEvents = InSimPacketEvents & {
