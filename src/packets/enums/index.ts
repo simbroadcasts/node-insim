@@ -3,6 +3,7 @@ export { ButtonStyle } from './ButtonStyle';
 export { ButtonTextColour } from './ButtonTextColour';
 export { CarConfiguration } from './CarConfiguration';
 export { CharacterModifiers } from './CharacterModifiers';
+export { CompCarFlags } from './CompCarFlags';
 export { ConfirmationFlags } from './ConfirmationFlags';
 export { ConnectionFlags } from './ConnectionFlags';
 export { FlagType } from './FlagType';
