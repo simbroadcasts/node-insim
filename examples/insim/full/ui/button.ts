@@ -11,9 +11,21 @@ export type DrawButtonConfig = {
   update: (buttonData: ButtonData) => void;
 };
 
-type CustomButtonProps = {
-  onClick?: (packet: IS_BTC, inSim: InSim, config: DrawButtonConfig) => void;
-  onType?: (packet: IS_BTT, inSim: InSim, config: DrawButtonConfig) => void;
+export type OnClickProps = {
+  packet: IS_BTC;
+  inSim: InSim;
+  button: DrawButtonConfig;
+};
+
+export type OnTypeProps = {
+  packet: IS_BTT;
+  inSim: InSim;
+  button: DrawButtonConfig;
+};
+
+export type CustomButtonProps = {
+  onClick?: (props: OnClickProps) => void;
+  onType?: (props: OnTypeProps) => void;
 };
 
 export function drawButton(
@@ -29,9 +41,13 @@ export function drawButton(
     if (newData.onClick) {
       inSim.on(PacketType.ISP_BTC, (packet, inSim) => {
         if (button.ClickID === packet.ClickID) {
-          newData.onClick?.(packet, inSim, {
-            clickId: button.ClickID,
-            update,
+          newData.onClick?.({
+            packet,
+            inSim,
+            button: {
+              clickId: button.ClickID,
+              update,
+            },
           });
         }
       });
@@ -40,9 +56,13 @@ export function drawButton(
     if (newData.onType) {
       inSim.on(PacketType.ISP_BTT, (packet, inSim) => {
         if (button.ClickID === packet.ClickID) {
-          newData.onType?.(packet, inSim, {
-            clickId: button.ClickID,
-            update,
+          newData.onType?.({
+            packet,
+            inSim,
+            button: {
+              clickId: button.ClickID,
+              update,
+            },
           });
         }
       });
@@ -58,9 +78,13 @@ export function drawButton(
   if (buttonData.onClick) {
     inSim.on(PacketType.ISP_BTC, (packet, inSim) => {
       if (button.ClickID === packet.ClickID) {
-        buttonData.onClick?.(packet, inSim, {
-          clickId: button.ClickID,
-          update,
+        buttonData.onClick?.({
+          packet,
+          inSim,
+          button: {
+            clickId: button.ClickID,
+            update,
+          },
         });
       }
     });
@@ -69,9 +93,13 @@ export function drawButton(
   if (buttonData.onType) {
     inSim.on(PacketType.ISP_BTT, (packet, inSim) => {
       if (button.ClickID === packet.ClickID) {
-        buttonData.onType?.(packet, inSim, {
-          clickId: button.ClickID,
-          update,
+        buttonData.onType?.({
+          packet,
+          inSim,
+          button: {
+            clickId: button.ClickID,
+            update,
+          },
         });
       }
     });

@@ -1,18 +1,13 @@
-import type { IS_BTC, IS_BTN_Data, IS_BTT } from '../../../../src/packets';
+import type { IS_BTN_Data } from '../../../../src/packets';
 import { ButtonTextColour } from '../../../../src/packets';
 import type { InSim } from '../../../../src/protocols';
-import type { DrawButtonConfig } from './button';
+import type { CustomButtonProps, DrawButtonConfig } from './button';
 import { drawButton } from './button';
 
 export type Button = Partial<Omit<IS_BTN_Data, ComputedButtonProps>> &
   CustomButtonProps;
 
 type ComputedButtonProps = 'ClickID' | 'L' | 'T' | 'W' | 'H';
-
-type CustomButtonProps = {
-  onClick?: (packet: IS_BTC, inSim: InSim) => void;
-  onType?: (packet: IS_BTT, inSim: InSim) => void;
-};
 
 export type ButtonListProps = {
   title?: string;
@@ -26,8 +21,6 @@ export type ButtonListProps = {
 export type ButtonListConfig = {
   update: (buttons: Button[]) => void;
 };
-
-type CreatedButtonConfig = DrawButtonConfig & CustomButtonProps;
 
 export function drawButtonList(
   inSim: InSim,
@@ -49,7 +42,7 @@ export function drawButtonList(
     });
   }
 
-  const createdButtons: CreatedButtonConfig[] = buttons.map((button) =>
+  const createdButtons: DrawButtonConfig[] = buttons.map((button) =>
     drawNextButton(inSim, button),
   );
 

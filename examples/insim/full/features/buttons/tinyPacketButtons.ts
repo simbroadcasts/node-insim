@@ -1,4 +1,3 @@
-import type { IS_BTC } from '../../../../../src/packets';
 import {
   ButtonStyle,
   IS_TINY,
@@ -9,6 +8,7 @@ import {
 import type { InSim } from '../../../../../src/protocols';
 import { log } from '../../log';
 import { drawButtonList } from '../../ui';
+import type { OnClickProps } from '../../ui/button';
 import { BUTTON_HEIGHT, TINY_BUTTON_ID_OFFSET } from './constants';
 
 export function drawTinyPacketButtons(inSim: InSim) {
@@ -26,7 +26,7 @@ export function drawTinyPacketButtons(inSim: InSim) {
     })),
   });
 
-  function handleButtonClick(packet: IS_BTC, inSim: InSim) {
+  function handleButtonClick({ packet }: OnClickProps) {
     const tinyType = packet.ReqI - TINY_BUTTON_ID_OFFSET;
 
     if (SENDABLE_TINY_TYPES.includes(tinyType)) {

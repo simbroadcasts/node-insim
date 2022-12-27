@@ -1,4 +1,3 @@
-import type { IS_BTT } from '../../../../../../src/packets';
 import {
   ButtonStyle,
   ButtonTextColour,
@@ -28,7 +27,7 @@ export function drawSingleCharacterPacketButtons(inSim: InSim) {
     H: BUTTON_HEIGHT,
     TypeIn: 1,
     BStyle: ButtonStyle.ISB_DARK | ButtonStyle.ISB_CLICK,
-    onType: (packet: IS_BTT, inSim: InSim) => {
+    onType: ({ packet, inSim }) => {
       inSim.send(
         new IS_SCH({
           CharB: packet.Text.charCodeAt(0),
@@ -40,22 +39,22 @@ export function drawSingleCharacterPacketButtons(inSim: InSim) {
 
   drawButton(inSim, {
     ...getShiftButtonData(isShiftEnabled(buttonFlags)),
-    onClick: (_packet, _inSim, { update }) => {
+    onClick: ({ button }) => {
       buttonFlags =
         buttonFlags & CharacterModifiers.SHIFT
           ? buttonFlags & ~CharacterModifiers.SHIFT
           : buttonFlags | CharacterModifiers.SHIFT;
-      update(getShiftButtonData(isShiftEnabled(buttonFlags)));
+      button.update(getShiftButtonData(isShiftEnabled(buttonFlags)));
     },
   });
   drawButton(inSim, {
     ...getCtrlButtonData(isCtrlEnabled(buttonFlags)),
-    onClick: (_packet, _inSim, { update }) => {
+    onClick: ({ button }) => {
       buttonFlags =
         buttonFlags & CharacterModifiers.CTRL
           ? buttonFlags & ~CharacterModifiers.CTRL
           : buttonFlags | CharacterModifiers.CTRL;
-      update(getCtrlButtonData(isCtrlEnabled(buttonFlags)));
+      button.update(getCtrlButtonData(isCtrlEnabled(buttonFlags)));
     },
   });
 

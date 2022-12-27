@@ -1,4 +1,4 @@
-import type { AllowedStateFlags, IS_BTC } from '../../../../../../src/packets';
+import type { AllowedStateFlags } from '../../../../../../src/packets';
 import {
   ButtonStyle,
   ButtonTextColour,
@@ -37,7 +37,7 @@ export function drawCameraPositionPacketButtons(inSim: InSim) {
     W: 15,
     H: BUTTON_HEIGHT,
     BStyle: ButtonStyle.ISB_DARK | ButtonStyle.ISB_CLICK,
-    onClick: (packet: IS_BTC, inSim: InSim) => {
+    onClick: ({ inSim }) => {
       inSim.send(
         new IS_CPP({
           X: x,
@@ -82,11 +82,11 @@ export function drawCameraPositionPacketButtons(inSim: InSim) {
   drawButton(inSim, {
     ...inputButtonProps(4, 11),
     Text: buttonNumberTextWithCaption('X coordinate (1 m = 65536)', x),
-    onType: (packet, _inSim, { update }) => {
+    onType: ({ packet, button }) => {
       const parsedValue = parseInt(packet.Text, 10);
       !isNaN(parsedValue) && (x = parsedValue);
 
-      update({
+      button.update({
         ReqI: 1,
         Text: buttonNumberTextWithCaption('X coordinate (1 m = 65536)', x),
       });
@@ -96,11 +96,11 @@ export function drawCameraPositionPacketButtons(inSim: InSim) {
   drawButton(inSim, {
     ...inputButtonProps(5, 11),
     Text: buttonNumberTextWithCaption('Y coordinate (1 m = 65536)', y),
-    onType: (packet, _inSim, { update }) => {
+    onType: ({ packet, button }) => {
       const parsedValue = parseInt(packet.Text, 10);
       !isNaN(parsedValue) && (y = parsedValue);
 
-      update({
+      button.update({
         ReqI: 1,
         Text: buttonNumberTextWithCaption('Y coordinate (1 m = 65536)', y),
       });
@@ -110,11 +110,11 @@ export function drawCameraPositionPacketButtons(inSim: InSim) {
   drawButton(inSim, {
     ...inputButtonProps(6, 11),
     Text: buttonNumberTextWithCaption('Z coordinate (1 m = 65536)', z),
-    onType: (packet, _inSim, { update }) => {
+    onType: ({ packet, button }) => {
       const parsedValue = parseInt(packet.Text, 10);
       !isNaN(parsedValue) && (z = parsedValue);
 
-      update({
+      button.update({
         ReqI: 1,
         Text: buttonNumberTextWithCaption('Z coordinate (1 m = 65536)', z),
       });
@@ -124,11 +124,11 @@ export function drawCameraPositionPacketButtons(inSim: InSim) {
   drawButton(inSim, {
     ...inputButtonProps(7, 5),
     Text: buttonNumberTextWithCaption('Heading', heading),
-    onType: (packet, _inSim, { update }) => {
+    onType: ({ packet, button }) => {
       const parsedValue = parseInt(packet.Text, 10);
       !isNaN(parsedValue) && (heading = parsedValue);
 
-      update({
+      button.update({
         ReqI: 1,
         Text: buttonNumberTextWithCaption('Heading', heading),
       });
@@ -138,11 +138,11 @@ export function drawCameraPositionPacketButtons(inSim: InSim) {
   drawButton(inSim, {
     ...inputButtonProps(8, 5),
     Text: buttonNumberTextWithCaption('Pitch', pitch),
-    onType: (packet, _inSim, { update }) => {
+    onType: ({ packet, button }) => {
       const parsedValue = parseInt(packet.Text, 10);
       !isNaN(parsedValue) && (pitch = parsedValue);
 
-      update({
+      button.update({
         ReqI: 1,
         Text: buttonNumberTextWithCaption('Pitch', pitch),
       });
@@ -152,11 +152,11 @@ export function drawCameraPositionPacketButtons(inSim: InSim) {
   drawButton(inSim, {
     ...inputButtonProps(9, 5),
     Text: buttonNumberTextWithCaption('Roll', roll),
-    onType: (packet, _inSim, { update }) => {
+    onType: ({ packet, button }) => {
       const parsedValue = parseInt(packet.Text, 10);
       !isNaN(parsedValue) && (roll = parsedValue);
 
-      update({
+      button.update({
         ReqI: 1,
         Text: buttonNumberTextWithCaption('Roll', roll),
       });
@@ -166,11 +166,11 @@ export function drawCameraPositionPacketButtons(inSim: InSim) {
   drawButton(inSim, {
     ...inputButtonProps(10, 4),
     Text: buttonNumberTextWithCaption('FOV (degrees)', fov),
-    onType: (packet, _inSim, { update }) => {
+    onType: ({ packet, button }) => {
       const parsedValue = parseInt(packet.Text, 10);
       !isNaN(parsedValue) && (fov = parsedValue);
 
-      update({
+      button.update({
         ReqI: 1,
         Text: buttonNumberTextWithCaption('FOV (degrees)', fov),
       });
@@ -180,11 +180,11 @@ export function drawCameraPositionPacketButtons(inSim: InSim) {
   drawButton(inSim, {
     ...inputButtonProps(11, 5),
     Text: buttonNumberTextWithCaption('Time (ms)', time),
-    onType: (packet, _inSim, { update }) => {
+    onType: ({ packet, button }) => {
       const parsedValue = parseInt(packet.Text, 10);
       !isNaN(parsedValue) && (time = parsedValue);
 
-      update({
+      button.update({
         ReqI: 1,
         Text: buttonNumberTextWithCaption('Time (ms)', time),
       });
@@ -194,11 +194,11 @@ export function drawCameraPositionPacketButtons(inSim: InSim) {
   drawButton(inSim, {
     ...inputButtonProps(12, 3),
     Text: buttonNumberTextWithCaption('ViewPLID', viewPLID),
-    onType: (packet, _inSim, { update }) => {
+    onType: ({ packet, button }) => {
       const parsedValue = parseInt(packet.Text, 10);
       !isNaN(parsedValue) && (viewPLID = parsedValue);
 
-      update({
+      button.update({
         ReqI: 1,
         Text: buttonNumberTextWithCaption('ViewPLID', viewPLID),
       });
@@ -208,7 +208,7 @@ export function drawCameraPositionPacketButtons(inSim: InSim) {
   drawButton(inSim, {
     ...buttonProps(13),
     Text: `[${VIEW_IDENTIFIERS[inGameCam]}]`,
-    onClick: (_packet, _inSim, { update }) => {
+    onClick: ({ button }) => {
       const viewIdentifierIds = Object.keys(VIEW_IDENTIFIERS);
       const identifierId = viewIdentifierIds.findIndex(
         (identifier) => identifier === inGameCam.toString(10),
@@ -220,7 +220,7 @@ export function drawCameraPositionPacketButtons(inSim: InSim) {
           : viewIdentifierIds[identifierId + 1];
       inGameCam = parseInt(nextId, 10);
 
-      update({
+      button.update({
         ReqI: 1,
         Text: `[${VIEW_IDENTIFIERS[inGameCam]}]`,
       });

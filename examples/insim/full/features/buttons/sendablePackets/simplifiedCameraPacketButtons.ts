@@ -55,7 +55,7 @@ export function drawSimplifiedCameraPacketButtons(inSim: InSim) {
       ButtonStyle.ISB_LIGHT |
       ButtonStyle.ISB_CLICK |
       ButtonTextColour.TextString,
-    onType: (packet, _inSim, { update }) => {
+    onType: ({ packet, button }) => {
       const parsedNumber = parseInt(packet.Text, 10);
 
       if (isNaN(parsedNumber)) {
@@ -63,7 +63,7 @@ export function drawSimplifiedCameraPacketButtons(inSim: InSim) {
       }
 
       viewPLID = parsedNumber;
-      update({
+      button.update({
         ReqI: 1,
         Text: buttonTextWithCaption(
           'Enter a PLID to view',
@@ -91,7 +91,7 @@ export function drawSimplifiedCameraPacketButtons(inSim: InSim) {
     W: 10,
     H: BUTTON_HEIGHT,
     BStyle: ButtonStyle.ISB_LIGHT | ButtonStyle.ISB_CLICK | ButtonStyle.ISB_C2,
-    onClick: (_packet, _inSim, { update }) => {
+    onClick: ({ button }) => {
       const viewIdentifierIds = Object.keys(VIEW_IDENTIFIERS);
       const identifierId = viewIdentifierIds.findIndex(
         (identifier) => identifier === inGameCam.toString(10),
@@ -103,7 +103,7 @@ export function drawSimplifiedCameraPacketButtons(inSim: InSim) {
           : viewIdentifierIds[identifierId + 1];
       inGameCam = parseInt(nextId, 10);
 
-      update({
+      button.update({
         ReqI: 1,
         Text: `[${VIEW_IDENTIFIERS[inGameCam]}]`,
       });
