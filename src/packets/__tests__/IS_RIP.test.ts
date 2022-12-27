@@ -32,7 +32,7 @@ const expectedBuffer = Buffer.from([
   0, // TTime (2)
   0, // TTime (3)
   0, // TTime (4)
-  ...stringToBytes(replayName),
+  ...stringToBytes(replayName), // RName[64]
   0,
 ]);
 
@@ -57,7 +57,7 @@ describe('IS_RIP', () => {
       158, // TTime (2)
       8, // TTime (3)
       0, // TTime (4)
-      ...stringToBytes(replayName),
+      ...stringToBytes(replayName), // RName[64]
       0,
     ]);
 

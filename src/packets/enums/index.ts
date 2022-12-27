@@ -24,6 +24,7 @@ export { RaceState } from './RaceState';
 export { ReplayError } from './ReplayError';
 export { ReplayMode } from './ReplayMode';
 export { ReplayOptions } from './ReplayOptions';
+export { ScreenshotError } from './ScreenshotError';
 export { ServerStatus } from './ServerStatus';
 export { SetupFlags } from './SetupFlags';
 export { SmallType } from './SmallType';

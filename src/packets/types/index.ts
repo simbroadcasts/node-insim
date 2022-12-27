@@ -7,6 +7,7 @@ type ReadonlyPropNames =
   | 'Spare1'
   | 'Spare2'
   | 'Spare3'
+  | 'Sp0'
   | 'Sp1'
   | 'Sp2'
   | 'Sp3';

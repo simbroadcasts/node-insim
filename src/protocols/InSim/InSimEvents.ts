@@ -32,6 +32,7 @@ import type {
   IS_RST,
   IS_SMALL,
   IS_SPX,
+  IS_SSH,
   IS_STA,
   IS_TINY,
   IS_TOC,
@@ -80,6 +81,7 @@ export type InSimPacketEvents = {
   [PacketType.ISP_BTC]: (packet: IS_BTC, inSim: InSim) => void;
   [PacketType.ISP_BTT]: (packet: IS_BTT, inSim: InSim) => void;
   [PacketType.ISP_RIP]: (packet: IS_RIP, inSim: InSim) => void;
+  [PacketType.ISP_SSH]: (packet: IS_SSH, inSim: InSim) => void;
 };
 
 export type InSimEvents = InSimPacketEvents & {
