@@ -123,11 +123,21 @@ yarn dev
 
 When adding new InSim packets to the library, you can use built-in code generators using `yarn generate`. It will create and update all the necessary files for you.
 
-### Run tests
+### Run unit tests
 
 ```shell
 yarn test
 yarn test:watch
+```
+
+### Run tests against a real LFS application
+
+To run these tests, LFS must be running with an InSim port open.
+
+By default, the tests connect to `127.0.0.1:29999`. The InSim host and port can be configured by going to the `lfs-test` folder and copying `.env` to `.env.local`.
+
+```shell
+yarn test:lfs
 ```
 
 ### Lint code
