@@ -1,4 +1,4 @@
-import { InSimError } from '../protocols/InSim/InSimEvents';
+import { InSimError } from '../protocols/InSim';
 import { byte, determineLength, unpack } from '../utils';
 import { Packet } from './base';
 import { PacketType } from './enums';

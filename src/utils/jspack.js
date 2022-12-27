@@ -1,4 +1,6 @@
 // utility pack and unpack functions to simplify magic
+import parseLFSMessage from 'parse-lfs-message';
+
 var common = {
   pack: function (method, dv, value, offset, c) {
     if (!Array.isArray(value)) value = [value];
@@ -262,10 +264,9 @@ var magic = {
     },
     unpack: function (dv, offset, c, littleendian) {
       var r = [];
-      for (var i = 0; i < c; i++)
-        r.push(String.fromCharCode(dv.readUInt8(offset + i)));
+      for (var i = 0; i < c; i++) r.push(dv.readUInt8(offset + i));
 
-      return [r.join('')];
+      return [parseLFSMessage(Buffer.from(r))];
     },
   },
   // float

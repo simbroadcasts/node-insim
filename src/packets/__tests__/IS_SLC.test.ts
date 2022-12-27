@@ -7,13 +7,13 @@ const size = 8;
 
 describe('IS_SLC', () => {
   describe('official car', () => {
-    const officialCarData: PacketTestData<IS_SLC> = {
+    const data: PacketTestData<IS_SLC> = {
       ReqI: 3,
       UCID: 2,
       CName: 'XRT',
     };
 
-    const officialCarBuffer = Buffer.from([
+    const buffer = Buffer.from([
       size / Packet.SIZE_MULTIPLIER, // Size
       62, // Type
       3, // ReqI
@@ -28,19 +28,19 @@ describe('IS_SLC', () => {
       packetClass: IS_SLC,
       type: PacketType.ISP_SLC,
       size,
-      data: officialCarData,
-      buffer: officialCarBuffer,
+      data,
+      buffer,
     });
   });
 
   describe('car mod', () => {
-    const modData: PacketTestData<IS_SLC> = {
+    const data: PacketTestData<IS_SLC> = {
       ReqI: 3,
       UCID: 2,
       CName: '5882E6',
     };
 
-    const modBuffer = Buffer.from([
+    const buffer = Buffer.from([
       size / Packet.SIZE_MULTIPLIER, // Size
       62, // Type
       3, // ReqI
@@ -55,8 +55,8 @@ describe('IS_SLC', () => {
       packetClass: IS_SLC,
       type: PacketType.ISP_SLC,
       size,
-      data: modData,
-      buffer: modBuffer,
+      data,
+      buffer,
     });
   });
 });
