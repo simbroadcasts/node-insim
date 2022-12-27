@@ -3,7 +3,7 @@ import { AbstractPacket } from './AbstractPacket';{{/ifEquals}}{{#ifNotEquals va
 import { AbstractSendablePacket } from './AbstractSendablePacket';{{/ifNotEquals}}
 import { PacketType } from './enums';{{#ifNotEquals variant "info"}}
 import type {
-  PacketData,
+  PacketData, // TODO keep only one of these
   PacketDataWithOptionalReqI,
   PacketDataWithRequiredReqI,
 } from './types';{{/ifNotEquals}}

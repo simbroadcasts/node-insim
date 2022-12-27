@@ -23,13 +23,7 @@ describe('IS_{{ name }}', () => {
 {{#ifNotEquals variant "instruction"}}
 
   it('should unpack data from a buffer', () => {
-    const buffer = Buffer.from([
-      {{ size }} / BasePacket.SIZE_MULTIPLIER, // Size
-      {{ type }}, // Type
-      0, // ReqI
-      // TODO
-    ]);
-    const packet = new IS_{{ name }}().unpack(buffer);
+    const packet = new IS_{{ name }}().unpack(expectedBuffer);
 
     expect(packet.Size).toEqual({{ size }});
     expect(packet.Type).toEqual(PacketType.ISP_{{ name }});
