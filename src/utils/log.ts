@@ -8,7 +8,7 @@ const debugMinLevel = process.env.DEBUG_MIN_LEVEL as TLogLevelName;
 
 const minLevelByEnv: Record<NodeEnvironment, TLogLevelName> = {
   development: 'debug',
-  test: 'fatal',
+  test: 'warn',
   production: 'error',
 };
 
