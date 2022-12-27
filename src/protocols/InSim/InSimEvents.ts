@@ -37,6 +37,7 @@ import type {
   IS_RES,
   IS_RIP,
   IS_RST,
+  IS_SLC,
   IS_SMALL,
   IS_SPX,
   IS_SSH,
@@ -98,6 +99,7 @@ export type InSimPacketEvents = {
   [PacketType.ISP_NCI]: (packet: IS_NCI, inSim: InSim) => void;
   [PacketType.ISP_JRR]: (packet: IS_JRR, inSim: InSim) => void;
   [PacketType.ISP_UCO]: (packet: IS_UCO, inSim: InSim) => void;
+  [PacketType.ISP_SLC]: (packet: IS_SLC, inSim: InSim) => void;
 };
 
 export type InSimEvents = InSimPacketEvents & {

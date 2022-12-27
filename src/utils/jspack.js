@@ -13,6 +13,13 @@ var common = {
   },
 };
 
+function isAlphaNumeric(b) {
+  if (b >= '0' && b <= '9') return true;
+  if (b >= 'A' && b <= 'Z') return true;
+  if (b >= 'a' && b <= 'z') return true;
+  return false;
+}
+
 // pack and unpacking for different types
 var magic = {
   // byte array
@@ -57,6 +64,45 @@ var magic = {
         r.push(String.fromCharCode(dv.readUInt8(offset + i)));
 
       return r;
+    },
+  },
+  // LFS car name string
+  C: {
+    length: 4,
+    pack: function (dv, value, offset, c, littleendian) {
+      var val = new String(value[0]);
+
+      for (var i = 0; i < c; i++) {
+        var code = 0;
+
+        if (i < val.length) code = val.charCodeAt(i);
+
+        dv.writeUInt8(code, offset + i);
+      }
+    },
+    unpack: function (dv, offset, c, littleendian) {
+      var r = [];
+      for (var i = 0; i < 4; i++)
+        r.push(String.fromCharCode(dv.readUInt8(offset + i)));
+
+      if (
+        isAlphaNumeric(r[0]) &&
+        isAlphaNumeric(r[1]) &&
+        isAlphaNumeric(r[2]) &&
+        r[3] === '\x00'
+      ) {
+        return [r.join('')];
+      } else {
+        return [
+          [
+            dv.toString('hex', offset + 2, offset + 3),
+            dv.toString('hex', offset + 1, offset + 2),
+            dv.toString('hex', offset, offset + 1),
+          ]
+            .join('')
+            .toUpperCase(),
+        ];
+      }
     },
   },
   // signed char
@@ -271,7 +317,7 @@ var magic = {
 };
 
 // pattern of stuff we're looking for
-var pattern = '(\\d+)?([AxcbBhHsfdiIlL])';
+var pattern = '(\\d+)?([AxcCbBhHsfdiIlL])';
 
 // determine the size of arraybuffer we'd need
 var determineLength = function (fmt) {

@@ -54,6 +54,18 @@ export function float() {
   return Reflect.metadata(formatMetadataKey, 'f');
 }
 
+/**
+ * LFS car name
+ *
+ * The value can be one of these:
+ * - a 3-character abbreviation of an official LFS car (e.g. XRT)
+ * - a hexadecimal string representation of a car mod's SkinID (e.g. 5882E6)
+ *
+ **/
+export function carName() {
+  return Reflect.metadata(formatMetadataKey, 'C');
+}
+
 export function getFormat<T>(target: T, propertyKey: string) {
   return Reflect.getMetadata(formatMetadataKey, target, propertyKey);
 }

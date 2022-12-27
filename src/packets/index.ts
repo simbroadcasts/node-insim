@@ -71,6 +71,7 @@ export { IS_SCC } from './IS_SCC';
 export { IS_SCH, IS_SCH_Data } from './IS_SCH';
 export type { IS_SFP_Data, SendableStateFlags } from './IS_SFP';
 export { IS_SFP } from './IS_SFP';
+export { IS_SLC } from './IS_SLC';
 export { IS_SMALL, SENDABLE_SMALL_TYPES } from './IS_SMALL';
 export { IS_SMALL_Data, SendableSmallType } from './IS_SMALL';
 export { IS_SPX } from './IS_SPX';
