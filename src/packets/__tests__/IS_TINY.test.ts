@@ -7,14 +7,14 @@ const size = 4;
 
 const data: IS_TINY_Data = {
   ReqI: 1,
-  SubT: TinyType.TINY_CLOSE,
+  SubT: TinyType.TINY_PING,
 };
 
 const buffer = Buffer.from([
   size / AbstractPacket.SIZE_MULTIPLIER, // Size
   3, // Type
   1, // ReqI
-  2, // SubT
+  3, // SubT
 ]);
 
 describe('IS_TINY', () => {
@@ -24,23 +24,5 @@ describe('IS_TINY', () => {
     type: PacketType.ISP_TINY,
     data,
     buffer,
-  });
-
-  it('should throw a range error if sending a request type and ReqI is 0', () => {
-    expect(() => {
-      new IS_TINY({
-        ReqI: 0,
-        SubT: TinyType.TINY_VER,
-      }).pack();
-    }).toThrow(RangeError);
-  });
-
-  it('should not throw an error if sending a request type and ReqI is greater than 0', () => {
-    expect(() => {
-      new IS_TINY({
-        ReqI: 1,
-        SubT: TinyType.TINY_VER,
-      }).pack();
-    }).not.toThrow();
   });
 });

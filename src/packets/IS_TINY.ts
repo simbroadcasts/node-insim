@@ -19,19 +19,6 @@ export class IS_TINY extends AbstractSendablePacket {
     super();
     this.initialize(data);
   }
-
-  pack(): Buffer {
-    if (
-      this.ReqI === 0 &&
-      INFO_REQUEST_TINY_TYPES.includes(this.SubT as InfoRequestTinyType)
-    ) {
-      throw new RangeError(
-        `IS_TINY (${TinyType[this.SubT]}) - ReqI must be greater than 0`,
-      );
-    }
-
-    return super.pack();
-  }
 }
 
 export type IS_TINY_Data =
@@ -44,7 +31,7 @@ export type IS_TINY_Data =
     }
   | {
       /** 0 unless it is an info request or a reply to an info request */
-      ReqI?: number;
+      ReqI?: never;
 
       /** Subtype */
       SubT: Exclude<SendableTinyType, InfoRequestTinyType>;
