@@ -1,5 +1,6 @@
 export { CarContact } from './CarContact';
 export { CarContOBJ } from './CarContOBJ';
+export { CarHCP } from './CarHCP';
 export * from './enums';
 export type { IPacket } from './IPacket';
 export type { IReceivable } from './IReceivable';
@@ -22,6 +23,8 @@ export { IS_CPR } from './IS_CPR';
 export { IS_CRS } from './IS_CRS';
 export { IS_FIN } from './IS_FIN';
 export { IS_FLG } from './IS_FLG';
+export type { IS_HCP_Data } from './IS_HCP';
+export { IS_HCP } from './IS_HCP';
 export { IS_HLV } from './IS_HLV';
 export { IS_III } from './IS_III';
 export type { IS_ISI_Data } from './IS_ISI';
