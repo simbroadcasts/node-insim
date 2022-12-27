@@ -46,7 +46,7 @@ export function drawSimplifiedCameraPacketButtons(inSim: InSim) {
   drawButton(inSim, {
     Text: buttonTextWithCaption('Enter a PLID to view', viewPLID.toString(10)),
     ReqI: 1,
-    L: 124,
+    L: 121,
     T: IS_Y_MIN + BUTTON_HEIGHT * 2,
     W: 4,
     H: BUTTON_HEIGHT,
@@ -76,8 +76,8 @@ export function drawSimplifiedCameraPacketButtons(inSim: InSim) {
   drawButton(inSim, {
     Text: 'InGameCam:',
     ReqI: 1,
-    L: 112,
-    T: IS_Y_MIN + BUTTON_HEIGHT * 3,
+    L: 126,
+    T: IS_Y_MIN + BUTTON_HEIGHT * 2,
     W: 12,
     H: BUTTON_HEIGHT,
     BStyle: ButtonStyle.ISB_C2 | ButtonStyle.ISB_LEFT,
@@ -86,8 +86,8 @@ export function drawSimplifiedCameraPacketButtons(inSim: InSim) {
   drawButton(inSim, {
     Text: `[${VIEW_IDENTIFIERS[inGameCam]}]`,
     ReqI: 1,
-    L: 124,
-    T: IS_Y_MIN + BUTTON_HEIGHT * 3,
+    L: 137,
+    T: IS_Y_MIN + BUTTON_HEIGHT * 2,
     W: 10,
     H: BUTTON_HEIGHT,
     BStyle: ButtonStyle.ISB_LIGHT | ButtonStyle.ISB_CLICK | ButtonStyle.ISB_C2,
