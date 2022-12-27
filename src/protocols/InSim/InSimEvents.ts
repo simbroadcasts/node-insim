@@ -12,6 +12,7 @@ import type {
   IS_CRS,
   IS_FIN,
   IS_FLG,
+  IS_HLV,
   IS_III,
   IS_ISM,
   IS_LAP,
@@ -86,6 +87,7 @@ export type InSimPacketEvents = {
   [PacketType.ISP_SSH]: (packet: IS_SSH, inSim: InSim) => void;
   [PacketType.ISP_CON]: (packet: IS_CON, inSim: InSim) => void;
   [PacketType.ISP_OBH]: (packet: IS_OBH, inSim: InSim) => void;
+  [PacketType.ISP_HLV]: (packet: IS_HLV, inSim: InSim) => void;
 };
 
 export type InSimEvents = InSimPacketEvents & {

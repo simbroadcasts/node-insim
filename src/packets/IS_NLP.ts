@@ -1,7 +1,7 @@
-import { byte, log as baseLog, unpack, word } from '../utils';
+import { byte, log as baseLog, unpack } from '../utils';
 import { AbstractPacket } from './AbstractPacket';
-import { AbstractStruct } from './AbstractStruct';
 import { PacketType } from './enums';
+import { NodeLap } from './NodeLap';
 
 const logError = baseLog.extend('IS_NLP:error');
 
@@ -55,20 +55,6 @@ export class IS_NLP extends AbstractPacket {
 
     return this;
   }
-}
-
-export class NodeLap extends AbstractStruct {
-  /** Current path node */
-  @word() Node = 0;
-
-  /** Current lap */
-  @word() Lap = 0;
-
-  /** Player's unique id */
-  @byte() PLID = 0;
-
-  /** Current race position: 0 = unknown, 1 = leader, etc... */
-  @byte() Position = 0;
 }
 
 export const NLP_MAX_CARS = 40;

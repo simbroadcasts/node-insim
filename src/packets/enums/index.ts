@@ -9,6 +9,7 @@ export { CompCarFlags } from './CompCarFlags';
 export { ConfirmationFlags } from './ConfirmationFlags';
 export { ConnectionFlags } from './ConnectionFlags';
 export { FlagType } from './FlagType';
+export { HlvcViolation } from './HlvcViolation';
 export { InSimFlags } from './InSimFlags';
 export { LeaveReason } from './LeaveReason';
 export { MessageSound } from './MessageSound';
