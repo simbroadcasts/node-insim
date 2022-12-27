@@ -19,10 +19,14 @@ var magic = {
   A: {
     length: 1,
     pack: function (dv, value, offset, c, littleendian) {
-      common.pack('writeInt8', dv, value, offset, c);
+      if (Array.isArray(value)) {
+        common.pack('writeInt8', dv, ...value, offset, c);
+      } else {
+        common.pack('writeInt8', dv, value, offset, c);
+      }
     },
     unpack: function (dv, offset, c, littleendian) {
-      return common.unpack('readInt8', dv, offset, c);
+      return [common.unpack('readInt8', dv, offset, c)];
     },
   },
   // padding byte

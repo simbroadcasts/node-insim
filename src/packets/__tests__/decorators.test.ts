@@ -1,5 +1,6 @@
 import {
   byte,
+  byteArray,
   char,
   float,
   getFormat,
@@ -19,6 +20,7 @@ describe('Packet property decorators', () => {
       @char(1) Char = 'a';
       @char(3) String = 'abc';
       @byte() Byte = 255;
+      @byteArray(5) ByteArray = [34, 67, 255, 0, 5];
       @word() Word = 65535;
       @short() Short = -32767;
       @unsigned() Unsigned = 4294967295;
@@ -31,6 +33,7 @@ describe('Packet property decorators', () => {
     expect(getFormat(packet, 'Char')).toEqual('c');
     expect(getFormat(packet, 'String')).toEqual('3s');
     expect(getFormat(packet, 'Byte')).toEqual('B');
+    expect(getFormat(packet, 'ByteArray')).toEqual('5A');
     expect(getFormat(packet, 'Word')).toEqual('H');
     expect(getFormat(packet, 'Short')).toEqual('h');
     expect(getFormat(packet, 'Unsigned')).toEqual('L');
