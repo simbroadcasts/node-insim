@@ -51,7 +51,7 @@ export abstract class BasePacket implements IPacket {
     if (!data) {
       logError(
         `${packetType} - Unpacked no data using ${format} from buffer`,
-        buffer,
+        buffer.join(),
       );
       return this;
     }
