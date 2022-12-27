@@ -11,6 +11,7 @@ import type {
   IS_MSO,
   IS_NCN,
   IS_NPL,
+  IS_PIT,
   IS_PLL,
   IS_PLP,
   IS_RST,
@@ -43,6 +44,7 @@ export type InSimPacketEvents = {
   [PacketType.ISP_PLL]: (packet: IS_PLL, inSim: InSim) => void;
   [PacketType.ISP_LAP]: (packet: IS_LAP, inSim: InSim) => void;
   [PacketType.ISP_SPX]: (packet: IS_SPX, inSim: InSim) => void;
+  [PacketType.ISP_PIT]: (packet: IS_PIT, inSim: InSim) => void;
   [PacketType.ISP_CRS]: (packet: IS_CRS, inSim: InSim) => void;
   [PacketType.ISP_BTC]: (packet: IS_BTC, inSim: InSim) => void;
   [PacketType.ISP_BTT]: (packet: IS_BTT, inSim: InSim) => void;

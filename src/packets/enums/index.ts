@@ -10,6 +10,7 @@ export { MessageSound } from './MessageSound';
 export { PacketType } from './PacketType';
 export { PassengerFlags } from './PassengerFlags';
 export { PenaltyValue } from './PenaltyValue';
+export { PitWorkFlags } from './PitWorkFlags';
 export { PlayerFlags } from './PlayerFlags';
 export { PlayerType } from './PlayerType';
 export { RaceFlags } from './RaceFlags';

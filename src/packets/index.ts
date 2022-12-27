@@ -36,6 +36,7 @@ export type { IS_MTC_Data } from './IS_MTC';
 export { IS_MTC } from './IS_MTC';
 export { IS_NCN } from './IS_NCN';
 export { IS_NPL, PLAYER_FUEL_HIDDEN } from './IS_NPL';
+export { IS_PIT } from './IS_PIT';
 export { IS_PLL } from './IS_PLL';
 export { IS_PLP } from './IS_PLP';
 export { IS_RST } from './IS_RST';
