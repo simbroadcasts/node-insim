@@ -31,13 +31,13 @@ export abstract class SendablePacket
       if (propertyValue instanceof SendableStruct) {
         const struct = propertyValue as SendableStruct;
 
-        const map = struct
+        const structValues = struct
           .getValidPropertyNames()
           .map(
             (structPropName) => struct[structPropName as keyof typeof struct],
           );
 
-        values.push(...map);
+        values.push(...structValues);
         return;
       }
 
