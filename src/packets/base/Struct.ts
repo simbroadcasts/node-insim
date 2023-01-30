@@ -48,8 +48,6 @@ export abstract class Struct implements Receivable {
     const format = this.getFormat(propertyFormatOverrides);
     const data = unpack(`<${format}`, buffer);
 
-    log(`Unpack format: ${format}`);
-
     if (!data) {
       throw new InSimError(
         `Unpacked no data using ${format} from buffer ${buffer.join()}`,

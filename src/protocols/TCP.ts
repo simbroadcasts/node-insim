@@ -58,7 +58,7 @@ export class TCP extends EventEmitter {
       return;
     }
 
-    log('Send data', data.join());
+    log('Send data:', data.join());
     this.stream.write(data);
   };
 
