@@ -97,7 +97,7 @@ export class InSim extends TypedEmitter<InSimEvents> {
     const header = unpack('<BB', data);
 
     if (header === undefined) {
-      this.handleError(`Incomplete packet header received: ${data.toJSON()}`);
+      log(`Incomplete packet header received: ${data.toJSON()}`);
       return;
     }
 
@@ -106,7 +106,7 @@ export class InSim extends TypedEmitter<InSimEvents> {
     const packetTypeString = PacketType[packetType];
 
     if (packetTypeString === undefined) {
-      this.handleError(`Unknown packet received: ${data.toJSON()}`);
+      log(`Unknown packet received: ${data.toJSON()}`);
       return;
     }
 
@@ -118,7 +118,7 @@ export class InSim extends TypedEmitter<InSimEvents> {
       const packetModule = require(`../../packets/${packetClassName}`);
       PacketClass = packetModule[packetClassName];
     } catch (e) {
-      this.handleError(
+      log(
         `Packet handler not found for ${packetTypeString} (class ${packetClassName})`,
       );
       return;
@@ -139,10 +139,6 @@ export class InSim extends TypedEmitter<InSimEvents> {
         }),
       );
     }
-  }
-
-  private handleError(message: string) {
-    this.emit('error', new InSimError(message));
   }
 }
 
