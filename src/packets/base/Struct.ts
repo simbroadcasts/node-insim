@@ -64,11 +64,11 @@ export abstract class Struct implements Receivable {
 
       if (propertyName === 'Size') {
         (this[propertyName as keyof this] as unknown as number) =
-          value * Struct.SIZE_MULTIPLIER;
+          (value as number) * Struct.SIZE_MULTIPLIER;
         return;
       }
 
-      this[propertyName as keyof this] = value;
+      this[propertyName as keyof this] = value as this[keyof this];
     });
 
     log('Data unpacked:', this);

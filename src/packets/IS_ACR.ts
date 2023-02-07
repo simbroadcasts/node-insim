@@ -37,7 +37,7 @@ export class IS_ACR extends Packet {
       throw new InSimError('IS_ACR - Unpacked no data from buffer');
     }
 
-    const size = data[0] * Packet.SIZE_MULTIPLIER;
+    const size = (data[0] as number) * Packet.SIZE_MULTIPLIER;
     const textLength = size - IS_ACR.FIXED_DATA_SIZE;
 
     super.unpack(buffer, {

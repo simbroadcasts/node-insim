@@ -1,3 +1,4 @@
+import { InSimError } from '../protocols/InSim';
 import { byte, pack, unpack } from '../utils';
 import { SendablePacket } from './base';
 import { PacketType } from './enums';
@@ -49,7 +50,7 @@ export class IS_MAL extends SendablePacket {
       const skinIdBuffer = buffer.slice(start, start + this.skinIdSize);
       const data = unpack('C', skinIdBuffer);
       if (data) {
-        this.SkinID.push(data[0]);
+        this.SkinID.push(data[0] as string);
       }
     }
 
@@ -70,7 +71,11 @@ export class IS_MAL extends SendablePacket {
 
     const objectInfoBuffer = this.SkinID.map((skinId) => pack('C', [skinId]));
 
-    return Buffer.concat([dataBuffer, ...objectInfoBuffer]);
+    if (objectInfoBuffer.some((buffer) => buffer === null)) {
+      throw new InSimError('IS_MAL - Could not pack all SkinIDs');
+    }
+
+    return Buffer.concat([dataBuffer, ...(objectInfoBuffer as Buffer[])]);
   }
 }
 

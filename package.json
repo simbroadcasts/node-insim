@@ -32,8 +32,7 @@
     "parse-lfs-message": "^1.0.0",
     "reflect-metadata": "^0.1.13",
     "supports-color": "^9.2.3",
-    "tiny-typed-emitter": "^2.1.0",
-    "tslog": "^3.3.3"
+    "tiny-typed-emitter": "^2.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.17.10",

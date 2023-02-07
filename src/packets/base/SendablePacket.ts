@@ -1,3 +1,4 @@
+import { InSimError } from '../../protocols/InSim';
 import { pack } from '../../utils';
 import type { PacketType } from '../enums';
 import type { Receivable, Sendable } from '../types';
@@ -44,6 +45,12 @@ export abstract class SendablePacket
       return values.push(propertyValue);
     });
 
-    return pack(format, values);
+    const packedData = pack(format, values);
+
+    if (!packedData) {
+      throw new InSimError('Could not pack values into a packet');
+    }
+
+    return packedData;
   }
 }
