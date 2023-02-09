@@ -1,4 +1,4 @@
-import { InSimError } from '../../protocols/InSim';
+import { InSimError } from '../../errors';
 import { pack } from '../../utils';
 import type { Receivable, Sendable } from '../types';
 import { Struct } from './Struct';

@@ -1,1 +1,1 @@
-export type { PartialExcept } from './common';
+export * from './common';

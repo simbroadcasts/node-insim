@@ -1,4 +1,4 @@
-import { InSimError } from '../../protocols/InSim';
+import { InSimError } from '../../errors';
 import {
   determineLength,
   getFormat,

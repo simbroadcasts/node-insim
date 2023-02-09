@@ -5,3 +5,5 @@ const NodeInSim = {
 };
 
 export default NodeInSim;
+
+export type { InSimError } from './errors';

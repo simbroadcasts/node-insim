@@ -111,12 +111,4 @@ export type InSimPacketEvents = {
 export type InSimEvents = InSimPacketEvents & {
   connect: () => void;
   disconnect: () => void;
-  error: (error: InSimError) => void;
 };
-
-export class InSimError extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = 'InSimError';
-  }
-}
