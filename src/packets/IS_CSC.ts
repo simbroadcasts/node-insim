@@ -1,4 +1,4 @@
-import { byte, determineLength, struct, unsigned } from '../utils';
+import { byte, struct, unsigned } from '../utils';
 import { Packet } from './base';
 import { CarContOBJ } from './CarContOBJ';
 import type { CSCAction } from './enums';
@@ -32,13 +32,10 @@ export class IS_CSC extends Packet {
     super.unpack(buffer);
 
     const carContactOffset = 12;
-    const carContactLength = determineLength(
-      `<${new CarContOBJ().getFormat()}`,
-    );
 
     const carContactBuffer = buffer.slice(
       carContactOffset,
-      carContactOffset + carContactLength,
+      carContactOffset + new CarContOBJ().getFormatSize(),
     );
 
     this.C = new CarContOBJ().unpack(carContactBuffer);

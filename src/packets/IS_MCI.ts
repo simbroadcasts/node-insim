@@ -1,4 +1,4 @@
-import { byte, determineLength } from '../utils';
+import { byte } from '../utils';
 import { Packet } from './base';
 import { CompCar } from './CompCar';
 import { PacketType } from './enums';
@@ -24,11 +24,11 @@ export class IS_MCI extends Packet {
   unpack(buffer: Buffer): this {
     super.unpack(buffer);
 
-    const compCarLength = determineLength(`<${new CompCar().getFormat()}`);
+    const compCarSize = new CompCar().getFormatSize();
 
     for (let i = 0; i < this.NumC; i++) {
-      const start = 4 + compCarLength * i;
-      const compCarBuffer = buffer.slice(start, start + compCarLength);
+      const start = 4 + compCarSize * i;
+      const compCarBuffer = buffer.slice(start, start + compCarSize);
       this.Info.push(new CompCar().unpack(compCarBuffer));
     }
 

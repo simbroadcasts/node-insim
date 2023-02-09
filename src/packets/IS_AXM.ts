@@ -1,4 +1,4 @@
-import { byte, determineLength } from '../utils';
+import { byte } from '../utils';
 import { SendablePacket } from './base';
 import type { PMOAction, PMOFlags } from './enums';
 import { PacketType } from './enums';
@@ -46,9 +46,7 @@ export class IS_AXM extends SendablePacket {
   unpack(buffer: Buffer): this {
     super.unpack(buffer);
 
-    const objectInfoLength = determineLength(
-      `<${new ObjectInfo().getFormat()}`,
-    );
+    const objectInfoLength = new ObjectInfo().getFormatSize();
 
     for (let i = 0; i < this.NumO; i++) {
       const start = this.objectInfoOffset + objectInfoLength * i;
@@ -66,9 +64,7 @@ export class IS_AXM extends SendablePacket {
       );
     }
 
-    const objectInfoLength = determineLength(
-      `<${new ObjectInfo().getFormat()}`,
-    );
+    const objectInfoLength = new ObjectInfo().getFormatSize();
     this.Size = this.objectInfoOffset + this.Info.length * objectInfoLength;
 
     const dataBuffer = super.pack();

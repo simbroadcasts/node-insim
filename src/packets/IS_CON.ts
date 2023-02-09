@@ -1,4 +1,4 @@
-import { byte, determineLength, word } from '../utils';
+import { byte, word } from '../utils';
 import { Packet } from './base';
 import { CarContact } from './CarContact';
 import { PacketType } from './enums';
@@ -31,8 +31,8 @@ export class IS_CON extends Packet {
   unpack(buffer: Buffer): this {
     super.unpack(buffer);
 
-    const carContactOffset = determineLength(this.getFormat());
-    const carContactLength = determineLength(new CarContact().getFormat());
+    const carContactOffset = this.getFormatSize();
+    const carContactLength = new CarContact().getFormatSize();
 
     const carContactBufferA = buffer.slice(
       carContactOffset,

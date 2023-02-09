@@ -1,5 +1,10 @@
 import { InSimError } from '../../protocols/InSim';
-import { getFormat, log as baseLog, unpack } from '../../utils';
+import {
+  determineLength,
+  getFormat,
+  log as baseLog,
+  unpack,
+} from '../../utils';
 import type { Receivable } from '../types';
 
 const log = baseLog.extend('struct');
@@ -39,6 +44,10 @@ export abstract class Struct implements Receivable {
           getFormat(this, propertyName),
       )
       .join('');
+  }
+
+  public getFormatSize(): number {
+    return determineLength(`<${this.getFormat()}`);
   }
 
   public unpack(

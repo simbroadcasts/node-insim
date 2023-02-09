@@ -1,4 +1,4 @@
-import { byte, determineLength, struct, unsigned } from '../utils';
+import { byte, struct, unsigned } from '../utils';
 import { Packet } from './base';
 import { CarContOBJ } from './CarContOBJ';
 import type { UCOAction } from './enums';
@@ -58,9 +58,7 @@ export class IS_UCO extends Packet {
     super.unpack(buffer);
 
     const carContactOffset = 12;
-    const carContactLength = determineLength(
-      `<${new CarContOBJ().getFormat()}`,
-    );
+    const carContactLength = new CarContOBJ().getFormatSize();
 
     const carContactBuffer = buffer.slice(
       carContactOffset,
@@ -70,9 +68,7 @@ export class IS_UCO extends Packet {
     this.C = new CarContOBJ().unpack(carContactBuffer);
 
     const objectInfoOffset = carContactOffset + carContactLength;
-    const objectInfoLength = determineLength(
-      `<${new ObjectInfo().getFormat()}`,
-    );
+    const objectInfoLength = new ObjectInfo().getFormatSize();
 
     const infoBuffer = buffer.slice(
       objectInfoOffset,

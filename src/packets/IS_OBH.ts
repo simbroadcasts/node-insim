@@ -1,4 +1,4 @@
-import { byte, byteArray, determineLength, short, word } from '../utils';
+import { byte, byteArray, short, word } from '../utils';
 import { Packet } from './base';
 import { CarContOBJ } from './CarContOBJ';
 import type { ObjectHitFlags, ObjectIndex } from './enums';
@@ -49,7 +49,7 @@ export class IS_OBH extends Packet {
 
     const carContactBuffer = buffer.slice(
       carContactOffset,
-      carContactOffset + determineLength(`<${new CarContOBJ().getFormat()}`),
+      carContactOffset + new CarContOBJ().getFormatSize(),
     );
 
     this.C = new CarContOBJ().unpack(carContactBuffer);

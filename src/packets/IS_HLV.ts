@@ -1,4 +1,4 @@
-import { byte, determineLength, word } from '../utils';
+import { byte, word } from '../utils';
 import { Packet } from './base';
 import { CarContOBJ } from './CarContOBJ';
 import type { HLVCViolation } from './enums';
@@ -31,11 +31,11 @@ export class IS_HLV extends Packet {
   unpack(buffer: Buffer): this {
     super.unpack(buffer);
 
-    const carContactLength = determineLength(
-      `<${new CarContOBJ().getFormat()}`,
+    const start = this.getFormatSize();
+    const carContactBuffer = buffer.slice(
+      start,
+      start + new CarContOBJ().getFormatSize(),
     );
-    const start = determineLength(`<${this.getFormat()}`);
-    const carContactBuffer = buffer.slice(start, start + carContactLength);
 
     this.C = new CarContOBJ().unpack(carContactBuffer);
 
