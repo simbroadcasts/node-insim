@@ -25,21 +25,25 @@ export class InSim extends TypedEmitter<InSimEvents> {
   constructor() {
     super();
 
-    this.on('connect', () => log('Connected'));
-    this.on('disconnect', () => log('Disconnected'));
+    this.on('connect', () =>
+      log(`Connected to ${this._options.Host}:${this._options.Port}`),
+    );
+    this.on('disconnect', () =>
+      log(`Disconnected from ${this._options.Host}:${this._options.Port}`),
+    );
     this.on(PacketType.ISP_TINY, (packet) => this.handleKeepAlive(packet));
   }
 
   connect(options: Partial<IS_ISI_Data> & InSimConnectionOptions) {
     this._options = defaults(options, defaultInSimOptions);
 
-    log('Connecting...');
-    log('Options:', this._options);
+    log(`Connecting to ${this._options.Host}:${this._options.Port}...`);
 
     this.connection = new TCP(this._options.Host, this._options.Port);
     this.connection.connect();
 
     this.connection.on('connect', () => {
+      this.emit('connect');
       this.send(
         new IS_ISI({
           Flags: this._options.Flags,
@@ -52,7 +56,6 @@ export class InSim extends TypedEmitter<InSimEvents> {
           InSimVer: this._options.InSimVer,
         }),
       );
-      this.emit('connect');
     });
 
     this.connection.on('disconnect', () => {
