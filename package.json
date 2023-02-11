@@ -2,16 +2,18 @@
   "name": "node-insim",
   "version": "0.0.1",
   "description": "An InSim library for NodeJS",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./packets": "./dist/packets/index.js"
+  },
   "repository": "git@github.com:simbroadcasts/node-insim.git",
   "author": "Peter Butcher <pete@pbutcher.uk> (https://pbutcher.uk)",
   "license": "MIT",
   "private": false,
   "scripts": {
     "prebuild": "rimraf ./dist",
-    "build": "run-s build:*",
-    "build:ts": "tsc -p tsconfig.app.json",
-    "build:copypackage": "cp -rf package.json dist",
+    "build": "tsc -p tsconfig.app.json",
     "dev": "cross-env DEBUG=* ts-node-dev --respawn ./src/index.ts",
     "dev:nodebug": "ts-node-dev --respawn ./src/index.ts",
     "test": "run-s test:compile \"test:run {@}\" --",
@@ -64,7 +66,6 @@
     "typescript": "^4.6.4"
   },
   "files": [
-    "**/*.js",
-    "**/*.d.ts"
+    "dist/"
   ]
 }
