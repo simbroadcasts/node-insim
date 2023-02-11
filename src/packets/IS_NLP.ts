@@ -2,7 +2,7 @@ import { InSimError } from '../errors';
 import { byte, unpack } from '../utils';
 import { Packet } from './base';
 import { PacketType } from './enums';
-import { NodeLap } from './NodeLap';
+import { NodeLap } from './structs';
 
 /**
  * Node and Lap Packet - variable size

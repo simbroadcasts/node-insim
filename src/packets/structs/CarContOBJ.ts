@@ -1,6 +1,6 @@
-import { byte, short } from '../utils';
-import { Struct } from './base';
-import type { StructData } from './types';
+import { byte, short } from '../../utils';
+import { Struct } from '../base';
+import type { StructData } from '../types';
 
 export class CarContOBJ extends Struct {
   /** Car's motion if Speed > 0: 0 = world y direction, 128 = 180 deg */

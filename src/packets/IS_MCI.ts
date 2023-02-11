@@ -1,7 +1,7 @@
 import { byte } from '../utils';
 import { Packet } from './base';
-import { CompCar } from './CompCar';
 import { PacketType } from './enums';
+import { CompCar } from './structs';
 
 /**
  * Multi Car Info - if more than {@link MCI_MAX_CARS} in race then more than one is sent

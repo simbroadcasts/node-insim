@@ -1,7 +1,7 @@
-import { byte, int, short, word } from '../utils';
-import { Struct } from './base';
-import type { CompCarFlags } from './enums';
-import type { StructData } from './types';
+import { byte, int, short, word } from '../../utils';
+import { Struct } from '../base';
+import type { CompCarFlags } from '../enums';
+import type { StructData } from '../types';
 
 export class CompCar extends Struct {
   /** Current path node */

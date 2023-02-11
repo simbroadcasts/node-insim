@@ -2,7 +2,7 @@ import { byte, struct } from '../utils';
 import { SendablePacket } from './base';
 import type { JRRAction } from './enums';
 import { PacketType } from './enums';
-import { ObjectInfo } from './ObjectInfo';
+import { ObjectInfo } from './structs';
 import type { PacketData } from './types';
 
 /**

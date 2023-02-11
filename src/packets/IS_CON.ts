@@ -1,7 +1,7 @@
 import { byte, word } from '../utils';
 import { Packet } from './base';
-import { CarContact } from './CarContact';
 import { PacketType } from './enums';
+import { CarContact } from './structs';
 
 /**
  * CONtact - between two cars (A and B are sorted by PLID)

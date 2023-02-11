@@ -1,6 +1,6 @@
-import { byte, word } from '../utils';
-import { Struct } from './base';
-import type { StructData } from './types';
+import { byte, word } from '../../utils';
+import { Struct } from '../base';
+import type { StructData } from '../types';
 
 export class NodeLap extends Struct {
   /** Current path node */

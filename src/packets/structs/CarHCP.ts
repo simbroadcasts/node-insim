@@ -1,6 +1,6 @@
-import { byte } from '../utils';
-import { SendableStruct } from './base';
-import type { StructData } from './types';
+import { byte } from '../../utils';
+import { SendableStruct } from '../base';
+import type { StructData } from '../types';
 
 export class CarHCP extends SendableStruct {
   /** 0 to 200 - added mass (kg) */

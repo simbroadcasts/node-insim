@@ -1,8 +1,8 @@
 import { byte, word } from '../utils';
 import { Packet } from './base';
-import { CarContOBJ } from './CarContOBJ';
 import type { HLVCViolation } from './enums';
 import { PacketType } from './enums';
+import { CarContOBJ } from './structs';
 
 /**
  * Hot Lap Validity - off track / hit wall / speeding in pits / out of bounds

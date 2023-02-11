@@ -1,8 +1,8 @@
 import { byte, struct, unsigned } from '../utils';
 import { Packet } from './base';
-import { CarContOBJ } from './CarContOBJ';
 import type { CSCAction } from './enums';
 import { PacketType } from './enums';
+import { CarContOBJ } from './structs';
 
 /**
  * Car State Changed - reports a change in a car's state (currently start or stop)

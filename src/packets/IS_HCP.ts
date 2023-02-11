@@ -1,7 +1,7 @@
 import { byte } from '../utils';
 import { SendablePacket } from './base';
-import type { CarHCP } from './CarHCP';
 import { PacketType } from './enums';
+import type { CarHCP } from './structs';
 import type { PacketData } from './types';
 
 /**

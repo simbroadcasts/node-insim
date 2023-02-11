@@ -1,8 +1,8 @@
 import { byte, byteArray, short, word } from '../utils';
 import { Packet } from './base';
-import { CarContOBJ } from './CarContOBJ';
 import type { ObjectHitFlags, ObjectIndex } from './enums';
 import { PacketType } from './enums';
+import { CarContOBJ } from './structs';
 
 /**
  * OBject Hit - car hit an autocross object or an unknown object

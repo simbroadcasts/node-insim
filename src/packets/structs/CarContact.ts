@@ -1,7 +1,7 @@
-import { byte, char, short } from '../utils';
-import { Struct } from './base';
-import type { CarContactFlags } from './enums';
-import type { StructData } from './types';
+import { byte, char, short } from '../../utils';
+import { Struct } from '../base';
+import type { CarContactFlags } from '../enums';
+import type { StructData } from '../types';
 
 export class CarContact extends Struct {
   @byte() PLID = 0;

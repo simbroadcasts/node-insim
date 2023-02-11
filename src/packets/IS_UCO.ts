@@ -1,9 +1,8 @@
 import { byte, struct, unsigned } from '../utils';
 import { Packet } from './base';
-import { CarContOBJ } from './CarContOBJ';
 import type { UCOAction } from './enums';
 import { PacketType } from './enums';
-import { ObjectInfo } from './ObjectInfo';
+import { CarContOBJ, ObjectInfo } from './structs';
 
 /**
  * User Control Object
