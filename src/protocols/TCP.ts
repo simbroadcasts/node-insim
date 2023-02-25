@@ -17,15 +17,9 @@ export class TCP extends EventEmitter {
     super();
     this.host = host;
     this.port = port;
-
-    this.on('connect', () => log(`Connected to ${this.host}:${this.port}`));
-    this.on('disconnect', () =>
-      log(`Disconnected from ${this.host}:${this.port}`),
-    );
   }
 
   connect = () => {
-    log(`Connecting to ${this.host}:${this.port}...`);
     this.stream = net.connect(this.port, this.host);
 
     this.stream.on('connect', () => {
