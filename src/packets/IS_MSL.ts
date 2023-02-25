@@ -4,6 +4,8 @@ import type { MessageSound } from './enums';
 import { PacketType } from './enums';
 import type { PacketData } from './types';
 
+const MSG_MAX_LENGTH = 128;
+
 /**
  * MSg Local - message to appear on local computer only
  */
@@ -16,7 +18,7 @@ export class IS_MSL extends SendablePacket {
   @byte() Sound: MessageSound = 0;
 
   /** Last byte must be zero */
-  @string(128) Msg = '';
+  @string(MSG_MAX_LENGTH) Msg = '';
 
   constructor(data?: IS_MSL_Data) {
     super();
@@ -24,10 +26,8 @@ export class IS_MSL extends SendablePacket {
   }
 
   pack(): Buffer {
-    if (this.Msg.length >= 128) {
-      throw new RangeError(
-        'IS_MSL - The "Msg" property must not be longer than 127 characters',
-      );
+    if (this.Msg.length >= MSG_MAX_LENGTH - 1) {
+      this.Msg = this.Msg.substring(0, MSG_MAX_LENGTH - 1);
     }
 
     return super.pack();

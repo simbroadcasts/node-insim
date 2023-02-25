@@ -3,6 +3,8 @@ import { SendablePacket } from './base';
 import { PacketType } from './enums';
 import type { PacketData } from './types';
 
+const MSG_MAX_LENGTH = 96;
+
 /**
  * MSg eXtended - like {@link IS_MST} but longer (not for commands)
  */
@@ -13,7 +15,7 @@ export class IS_MSX extends SendablePacket {
   @byte() readonly Zero = 0;
 
   /** Last byte must be zero */
-  @string(96) Msg = '';
+  @string(MSG_MAX_LENGTH) Msg = '';
 
   constructor(data?: IS_MSX_Data) {
     super();
@@ -21,10 +23,8 @@ export class IS_MSX extends SendablePacket {
   }
 
   pack(): Buffer {
-    if (this.Msg.length >= 96) {
-      throw new RangeError(
-        'IS_MSX - The "Msg" property must not be longer than 95 characters',
-      );
+    if (this.Msg.length >= MSG_MAX_LENGTH - 1) {
+      this.Msg = this.Msg.substring(0, MSG_MAX_LENGTH - 1);
     }
 
     return super.pack();

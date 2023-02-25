@@ -4,12 +4,13 @@ import type { MessageSound } from './enums';
 import { PacketType } from './enums';
 import type { PacketData } from './types';
 
+const TEXT_MAX_LENGTH = 128;
+
 /**
  * Msg To Connection - hosts only - send to a connection / a player / all
  */
 export class IS_MTC extends SendablePacket {
   private static readonly FIXED_DATA_SIZE = 8;
-  private static readonly TEXT_MAX_LENGTH = 128;
 
   @byte() Size = IS_MTC.FIXED_DATA_SIZE;
   @byte() readonly Type = PacketType.ISP_MTC;
@@ -28,7 +29,7 @@ export class IS_MTC extends SendablePacket {
   @byte() private readonly Sp3 = 0;
 
   /** Up to 128 characters of text - last byte must be zero */
-  @string(128) Text = '';
+  @string(TEXT_MAX_LENGTH) Text = '';
 
   constructor(data?: IS_MTC_Data) {
     super();
@@ -39,15 +40,13 @@ export class IS_MTC extends SendablePacket {
     const multiple = 4;
     const length = this.Text.length;
 
-    if (length >= 128) {
-      throw new RangeError(
-        'IS_MTC - The "Text" property must not be longer than 127 characters',
-      );
+    if (length >= TEXT_MAX_LENGTH - 1) {
+      this.Text = this.Text.substring(0, TEXT_MAX_LENGTH - 1);
     }
 
     const textSize = Math.min(
       length + (multiple - (length % multiple)),
-      IS_MTC.TEXT_MAX_LENGTH,
+      TEXT_MAX_LENGTH,
     );
     this.Size = IS_MTC.FIXED_DATA_SIZE + textSize;
 

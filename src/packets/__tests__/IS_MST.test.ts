@@ -27,11 +27,22 @@ describe('IS_MST', () => {
     buffer,
   });
 
-  it('should throw a range error if Msg length is greater than 63', () => {
-    expect(() => {
+  it('should truncate Msg if it is longer than 63 characters', () => {
+    expect(
       new IS_MST({
         Msg: 'This is a message whose length will be sixty four characters yes',
-      }).pack();
-    }).toThrow(RangeError);
+      }).pack(),
+    ).toEqual(
+      Buffer.from([
+        size / Packet.SIZE_MULTIPLIER, // Size
+        13, // Type
+        0, // ReqI
+        0, // Zero
+        ...stringToBytes(
+          'This is a message whose length will be sixty four characters ye',
+        ), // Msg[64]
+        0,
+      ]),
+    );
   });
 });

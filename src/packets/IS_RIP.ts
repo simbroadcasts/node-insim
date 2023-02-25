@@ -4,6 +4,8 @@ import type { ReplayError, ReplayMode, ReplayOptions } from './enums';
 import { PacketType } from './enums';
 import type { PacketDataWithRequiredReqI } from './types';
 
+const RNAME_MAX_LENGTH = 64;
+
 /**
  * Replay Information Packet
  *
@@ -46,7 +48,7 @@ export class IS_RIP extends SendablePacket {
   @unsigned() TTime = 0;
 
   /** Zero or replay name - last byte must be zero */
-  @string(64) RName = '';
+  @string(RNAME_MAX_LENGTH) RName = '';
 
   constructor(data?: IS_RIP_Data) {
     super();
@@ -56,6 +58,10 @@ export class IS_RIP extends SendablePacket {
   pack(): Buffer {
     if (this.ReqI === 0) {
       throw new RangeError('IS_RIP - ReqI must be greater than 0');
+    }
+
+    if (this.RName.length >= RNAME_MAX_LENGTH - 1) {
+      this.RName = this.RName.substring(0, RNAME_MAX_LENGTH - 1);
     }
 
     return super.pack();

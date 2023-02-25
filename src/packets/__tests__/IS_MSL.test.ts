@@ -31,11 +31,22 @@ describe('IS_MSL', () => {
     buffer,
   });
 
-  it('should throw a range error if Msg length is greater than 127', () => {
-    expect(() => {
+  it('should truncate Msg if it is longer than 127 characters', () => {
+    expect(
       new IS_MSL({
         Msg: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque pea',
-      }).pack();
-    }).toThrow(RangeError);
+      }).pack(),
+    ).toEqual(
+      Buffer.from([
+        size / Packet.SIZE_MULTIPLIER, // Size
+        40, // Type
+        0, // ReqI
+        0, // Sound
+        ...stringToBytes(
+          'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque pe',
+        ), // Msg[128]
+        0,
+      ]),
+    );
   });
 });

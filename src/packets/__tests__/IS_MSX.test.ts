@@ -27,11 +27,22 @@ describe('IS_MSX', () => {
     buffer,
   });
 
-  it('should throw a range error if Msg length is greater than 95', () => {
-    expect(() => {
+  it('should truncate Msg if it is longer than 95 characters', () => {
+    expect(
       new IS_MSX({
         Msg: 'You know that this is a very long text message whose length can be up to ninety six characters!!',
-      }).pack();
-    }).toThrow(RangeError);
+      }).pack(),
+    ).toEqual(
+      Buffer.from([
+        size / Packet.SIZE_MULTIPLIER, // Size
+        39, // Type
+        0, // ReqI
+        0, // Zero
+        ...stringToBytes(
+          'You know that this is a very long text message whose length can be up to ninety six characters!',
+        ), // Msg[96]
+        0,
+      ]),
+    );
   });
 });

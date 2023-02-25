@@ -4,6 +4,9 @@ import type { InSimFlags } from './enums';
 import { PacketType } from './enums';
 import type { PacketDataWithOptionalReqI } from './types';
 
+const ADMIN_MAX_LENGTH = 16;
+const INAME_MAX_LENGTH = 16;
+
 /**
  * InSim Init - packet to initialise the InSim system
  */
@@ -32,10 +35,10 @@ export class IS_ISI extends SendablePacket {
   @word() Interval = 0;
 
   /** Admin password (if set in LFS) */
-  @string(16) Admin = '';
+  @string(ADMIN_MAX_LENGTH) Admin = '';
 
   /** A short name for your program */
-  @string(16) IName = '';
+  @string(INAME_MAX_LENGTH) IName = '';
 
   constructor(data?: IS_ISI_Data) {
     super();
@@ -43,10 +46,12 @@ export class IS_ISI extends SendablePacket {
   }
 
   pack(): Buffer {
-    if (this.IName.length > 15) {
-      throw new RangeError(
-        'IS_ISI - InSim option "IName" must not be greater than 15  characters',
-      );
+    if (this.IName.length > INAME_MAX_LENGTH) {
+      this.IName = this.IName.substring(0, INAME_MAX_LENGTH);
+    }
+
+    if (this.Admin.length > ADMIN_MAX_LENGTH) {
+      this.Admin = this.Admin.substring(0, ADMIN_MAX_LENGTH);
     }
 
     return super.pack();
