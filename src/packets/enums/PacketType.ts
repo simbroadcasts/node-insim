@@ -196,4 +196,22 @@ export enum PacketType {
 
   /** Both ways: set mods allowed */
   ISP_MAL,
+
+  /** Instruction: request if we are host admin (after connecting to a host) */
+  IRP_ARQ = 250,
+
+  /** Info: replies if you are admin (after connecting to a host) */
+  IRP_ARP = 251,
+
+  /** Instruction: Request a host list */
+  IRP_HLR = 252,
+
+  /** Info: Host list info */
+  IRP_HOS = 253,
+
+  /** Instruction: Select a host */
+  IRP_SEL = 254,
+
+  /** Info: An error number */
+  IRP_ERR = 255,
 }

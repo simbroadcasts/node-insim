@@ -23,7 +23,7 @@ export abstract class SendablePacket
 
       if (propertyName === 'Size') {
         values.push(
-          (propertyValue as unknown as number) / SendablePacket.SIZE_MULTIPLIER,
+          (propertyValue as unknown as number) / this.SIZE_MULTIPLIER,
         );
         return;
       }

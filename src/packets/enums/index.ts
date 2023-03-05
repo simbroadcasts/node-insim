@@ -14,6 +14,7 @@ export { CSCAction } from './CSCAction';
 export { FlagType } from './FlagType';
 export { GarageInterfaceSubmode } from './GarageInterfaceSubmode';
 export { HLVCViolation } from './HLVCViolation';
+export { HostInfoFlags } from './HostInfoFlags';
 export { InSimFlags } from './InSimFlags';
 export { InterfaceMode } from './InterfaceMode';
 export { JRRAction } from './JRRAction';

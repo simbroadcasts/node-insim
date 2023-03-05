@@ -1,5 +1,10 @@
 export * from './base';
 export * from './enums';
+export type { IR_HLR_Data } from './IR_HLR';
+export { IR_HLR } from './IR_HLR';
+export { IR_HOS } from './IR_HOS';
+export type { IR_SEL_Data } from './IR_SEL';
+export { IR_SEL, IR_SEL_ReqI } from './IR_SEL';
 export { IS_ACR } from './IS_ACR';
 export { IS_AXI } from './IS_AXI';
 export type { IS_AXM_Data } from './IS_AXM';

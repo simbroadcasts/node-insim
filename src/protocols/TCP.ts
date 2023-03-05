@@ -10,13 +10,15 @@ export class TCP extends EventEmitter {
 
   private readonly host: string;
   private readonly port: number;
+  private readonly sizeMultiplier: number;
 
   tempBuf: Buffer | null = null;
 
-  constructor(host: string, port: number) {
+  constructor(host: string, port: number, sizeMultiplier = 1) {
     super();
     this.host = host;
     this.port = port;
+    this.sizeMultiplier = sizeMultiplier;
   }
 
   connect = () => {
@@ -79,7 +81,7 @@ export class TCP extends EventEmitter {
       return;
     }
 
-    const size = this.tempBuf[0] * 4;
+    const size = this.tempBuf[0] * this.sizeMultiplier;
 
     if (this.tempBuf.length === size) {
       // We have at least one full packet

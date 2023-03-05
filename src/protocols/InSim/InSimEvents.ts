@@ -1,4 +1,5 @@
 import type {
+  IR_HOS,
   IS_ACR,
   IS_AXI,
   IS_AXM,
@@ -106,6 +107,7 @@ export type InSimPacketEvents = {
   [PacketType.ISP_CSC]: (packet: IS_CSC, inSim: InSim) => void;
   [PacketType.ISP_CIM]: (packet: IS_CIM, inSim: InSim) => void;
   [PacketType.ISP_MAL]: (packet: IS_MAL, inSim: InSim) => void;
+  [PacketType.IRP_HOS]: (packet: IR_HOS, inSim: InSim) => void;
 };
 
 export type InSimEvents = InSimPacketEvents & {

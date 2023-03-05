@@ -11,8 +11,8 @@ const log = baseLog.extend('struct');
 
 type Data = Record<string, unknown>;
 
-export abstract class Struct implements Receivable {
-  public static SIZE_MULTIPLIER = 4;
+export class Struct implements Receivable {
+  public SIZE_MULTIPLIER = 4;
 
   protected initialize(data?: Partial<Data>) {
     if (!data) {
@@ -73,7 +73,7 @@ export abstract class Struct implements Receivable {
 
       if (propertyName === 'Size') {
         (this[propertyName as keyof this] as unknown as number) =
-          (value as number) * Struct.SIZE_MULTIPLIER;
+          (value as number) * this.SIZE_MULTIPLIER;
         return;
       }
 

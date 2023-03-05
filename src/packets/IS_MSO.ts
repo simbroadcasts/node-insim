@@ -39,7 +39,7 @@ export class IS_MSO extends Packet {
       throw new InSimError('IS_MSO - Unpacked no data from buffer');
     }
 
-    const size = (data[0] as number) * Packet.SIZE_MULTIPLIER;
+    const size = (data[0] as number) * this.SIZE_MULTIPLIER;
     const msgLength = size - IS_MSO.FIXED_DATA_SIZE;
 
     super.unpack(buffer, {
