@@ -108,11 +108,24 @@ const magic: Record<
   // LFS car name string
   C: {
     length: 4,
-    pack(dv, value: string | string[], offset, c) {
+    pack(dv, value: string | string[], offset) {
       if (!Array.isArray(value)) value = [value];
 
-      for (let i = 0; i < c; i++) {
-        dv.writeUInt32LE(Number.parseInt(value[i], 16), offset + i);
+      const carName = value[0];
+
+      if (
+        isAlphaNumeric(carName[0]) &&
+        isAlphaNumeric(carName[1]) &&
+        isAlphaNumeric(carName[2]) &&
+        carName.length === 3
+      ) {
+        for (let i = 0; i < 3; i++) {
+          dv.writeUint8(carName[i].charCodeAt(0), offset + i);
+        }
+      } else {
+        dv.writeUint8(parseInt(`${carName[0]}${carName[1]}`, 16), offset + 2);
+        dv.writeUint8(parseInt(`${carName[2]}${carName[3]}`, 16), offset + 1);
+        dv.writeUint8(parseInt(`${carName[4]}${carName[5]}`, 16), offset);
       }
     },
     unpack(dv, offset) {
@@ -241,8 +254,8 @@ const magic: Record<
     pack(dv, value: number, offset, c, littleendian) {
       common.pack(
         ('writeUInt32' + (littleendian ? 'LE' : 'BE')) as
-          | 'writeInt16LE'
-          | 'writeInt16BE',
+          | 'writeUInt32LE'
+          | 'writeUInt32BE',
         dv,
         value,
         offset,
