@@ -2,7 +2,6 @@ import type { PacketTestData } from '../../utils/tests';
 import { testInfoPacket, testInstructionPacket } from '../../utils/tests';
 import type { IS_MAL_Data } from '..';
 import { IS_MAL, PacketType } from '..';
-import { Packet } from '../base';
 
 describe('IS_MAL', () => {
   describe('zero mods', () => {
@@ -13,7 +12,7 @@ describe('IS_MAL', () => {
     };
 
     const instructionBuffer = Buffer.from([
-      size / Packet.SIZE_MULTIPLIER, // Size
+      size / new IS_MAL().SIZE_MULTIPLIER, // Size
       65, // Type
       0, // ReqI
       0, // NumM
@@ -31,7 +30,7 @@ describe('IS_MAL', () => {
     };
 
     const infoBuffer = Buffer.from([
-      size / Packet.SIZE_MULTIPLIER, // Size
+      size / new IS_MAL().SIZE_MULTIPLIER, // Size
       65, // Type
       1, // ReqI
       0, // NumM
@@ -65,7 +64,7 @@ describe('IS_MAL', () => {
     };
 
     const instructionBuffer = Buffer.from([
-      size / Packet.SIZE_MULTIPLIER, // Size
+      size / new IS_MAL().SIZE_MULTIPLIER, // Size
       65, // Type
       0, // ReqI
       2, // NumM
@@ -91,7 +90,7 @@ describe('IS_MAL', () => {
     };
 
     const infoBuffer = Buffer.from([
-      size / Packet.SIZE_MULTIPLIER, // Size
+      size / new IS_MAL().SIZE_MULTIPLIER, // Size
       65, // Type
       1, // ReqI
       2, // NumM

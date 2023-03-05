@@ -45,7 +45,7 @@ describe('SendablePacket', () => {
       }
 
       const buffer = Buffer.from([
-        8 / SendablePacket.SIZE_MULTIPLIER, // Size
+        8 / new CustomPacket().SIZE_MULTIPLIER, // Size
         PacketType.ISP_NCN, // Type
         2, // ReqI
         ...stringToBytes('test'), // StringProperty[6]
@@ -79,7 +79,7 @@ describe('SendablePacket', () => {
       }
 
       const expectedBuffer = Buffer.from([
-        8 / SendablePacket.SIZE_MULTIPLIER, // Size
+        8 / new CustomPacket().SIZE_MULTIPLIER, // Size
         PacketType.ISP_ISI, // Type
         2, // ReqI
         ...stringToBytes('test'), // StringProperty[6]

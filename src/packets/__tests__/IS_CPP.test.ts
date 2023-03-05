@@ -2,7 +2,6 @@ import type { PacketTestData } from '../../utils/tests';
 import { testInfoPacket, testInstructionPacket } from '../../utils/tests';
 import type { IS_CPP_Data } from '..';
 import { IS_CPP, PacketType, StateFlags, ViewIdentifier } from '..';
-import { Packet } from '../base';
 
 const size = 32;
 
@@ -21,7 +20,7 @@ const instructionData: IS_CPP_Data = {
 };
 
 const instructionBuffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_CPP().SIZE_MULTIPLIER, // Size
   9, // Type
   0, // ReqI
   0, // Zero
@@ -62,7 +61,7 @@ const infoData: PacketTestData<IS_CPP> = {
 };
 
 const infoBuffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_CPP().SIZE_MULTIPLIER, // Size
   9, // Type
   2, // ReqI
   0, // Zero

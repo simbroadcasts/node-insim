@@ -1,7 +1,6 @@
 import { stringToBytes, testInstructionPacket } from '../../utils/tests';
 import type { IS_MSL_Data } from '..';
 import { IS_MSL, MessageSound, PacketType } from '..';
-import { Packet } from '../base';
 
 const msg =
   'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque pe';
@@ -14,7 +13,7 @@ const data: IS_MSL_Data = {
 };
 
 const buffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_MSL().SIZE_MULTIPLIER, // Size
   40, // Type
   0, // ReqI
   4, // Sound
@@ -38,7 +37,7 @@ describe('IS_MSL', () => {
       }).pack(),
     ).toEqual(
       Buffer.from([
-        size / Packet.SIZE_MULTIPLIER, // Size
+        size / new IS_MSL().SIZE_MULTIPLIER, // Size
         40, // Type
         0, // ReqI
         0, // Sound

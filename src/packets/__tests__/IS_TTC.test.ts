@@ -1,7 +1,6 @@
 import { testInstructionPacket } from '../../utils/tests';
 import type { IS_TTC_Data } from '..';
 import { IS_TTC, PacketType, TargetToConnectionType } from '..';
-import { Packet } from '../base';
 
 const size = 8;
 
@@ -15,7 +14,7 @@ const data: IS_TTC_Data = {
 };
 
 const buffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_TTC().SIZE_MULTIPLIER, // Size
   61, // Type
   7, // ReqI
   2, // SubT

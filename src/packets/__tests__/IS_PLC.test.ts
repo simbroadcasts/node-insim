@@ -1,7 +1,6 @@
 import { testInstructionPacket } from '../../utils/tests';
 import type { IS_PLC_Data } from '..';
 import { CarFlags, IS_PLC, PacketType } from '..';
-import { Packet } from '../base';
 
 const size = 12;
 
@@ -11,7 +10,7 @@ const data: IS_PLC_Data = {
 };
 
 const buffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_PLC().SIZE_MULTIPLIER, // Size
   53, // Type
   0, // ReqI
   0, // Zero

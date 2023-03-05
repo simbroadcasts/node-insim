@@ -1,7 +1,6 @@
 import type { PacketTestData } from '../../utils/tests';
 import { testInfoPacket } from '../../utils/tests';
 import { IS_LAP, PacketType, PenaltyValue, PlayerFlags } from '..';
-import { Packet } from '../base';
 
 const size = 20;
 
@@ -18,7 +17,7 @@ const data: PacketTestData<IS_LAP> = {
 };
 
 const buffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_LAP().SIZE_MULTIPLIER, // Size
   24, // Type
   0, // ReqI
   2, // PLID

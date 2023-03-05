@@ -1,7 +1,6 @@
 import type { PacketTestData } from '../../utils/tests';
 import { stringToBytes, testInfoPacket } from '../../utils/tests';
 import { IS_BTN, IS_BTT, PacketType } from '..';
-import { Packet } from '../base';
 
 const size = 104;
 const text =
@@ -17,7 +16,7 @@ const data: PacketTestData<IS_BTT> = {
 };
 
 const buffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_BTT().SIZE_MULTIPLIER, // Size
   47, // Type
   1, // ReqI
   2, // UCID

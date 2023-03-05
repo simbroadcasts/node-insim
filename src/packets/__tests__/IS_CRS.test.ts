@@ -1,7 +1,6 @@
 import type { PacketTestData } from '../../utils/tests';
 import { testInfoPacket } from '../../utils/tests';
 import { IS_CRS, PacketType } from '..';
-import { Packet } from '../base';
 
 const size = 4;
 
@@ -11,7 +10,7 @@ const data: PacketTestData<IS_CRS> = {
 };
 
 const buffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_CRS().SIZE_MULTIPLIER, // Size
   41, // Type
   0, // ReqI
   2, // PLID

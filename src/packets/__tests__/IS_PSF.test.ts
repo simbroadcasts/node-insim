@@ -1,7 +1,6 @@
 import type { PacketTestData } from '../../utils/tests';
 import { testInfoPacket } from '../../utils/tests';
 import { IS_PSF, PacketType } from '..';
-import { Packet } from '../base';
 
 const size = 12;
 
@@ -12,7 +11,7 @@ const data: PacketTestData<IS_PSF> = {
 };
 
 const buffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_PSF().SIZE_MULTIPLIER, // Size
   27, // Type
   0, // ReqI
   2, // PLID

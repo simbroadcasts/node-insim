@@ -2,7 +2,6 @@ import type { PacketTestData } from '../../utils/tests';
 import { testInfoPacket, testInstructionPacket } from '../../utils/tests';
 import type { IS_REO_Data } from '..';
 import { IS_REO, PacketType } from '..';
-import { Packet } from '../base';
 
 const size = 44;
 
@@ -17,7 +16,7 @@ const instructionData: IS_REO_Data = {
 };
 
 const instructionBuffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_REO().SIZE_MULTIPLIER, // Size
   36, // Type
   0, // ReqI
   10, // NumP
@@ -70,7 +69,7 @@ const infoData: Omit<PacketTestData<IS_REO>, 'ReqI'> & { ReqI: number } = {
 };
 
 const infoBuffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_REO().SIZE_MULTIPLIER, // Size
   36, // Type
   2, // ReqI
   10, // NumP

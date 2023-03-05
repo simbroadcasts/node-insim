@@ -1,7 +1,6 @@
 import type { PacketTestData } from '../../utils/tests';
 import { testInfoPacket } from '../../utils/tests';
 import { IS_PEN, PacketType, PenaltyReason, PenaltyValue } from '..';
-import { Packet } from '../base';
 
 const size = 8;
 
@@ -14,7 +13,7 @@ const data: PacketTestData<IS_PEN> = {
 };
 
 const buffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_PEN().SIZE_MULTIPLIER, // Size
   30, // Type
   0, // ReqI
   3, // PLID

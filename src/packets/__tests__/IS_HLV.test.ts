@@ -1,7 +1,6 @@
 import type { PacketTestData } from '../../utils/tests';
 import { testInfoPacket } from '../../utils/tests';
 import { CarContOBJ, HLVCViolation, IS_HLV, PacketType } from '..';
-import { Packet } from '../base';
 
 const size = 16;
 
@@ -21,7 +20,7 @@ const data: PacketTestData<IS_HLV> = {
 };
 
 const buffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_HLV().SIZE_MULTIPLIER, // Size
   52, // Type
   0, // ReqI
   3, // PLID

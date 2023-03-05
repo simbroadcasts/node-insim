@@ -1,7 +1,6 @@
 import { testInstructionPacket } from '../../utils/tests';
 import type { IS_SMALL_Data } from '..';
 import { IS_SMALL, PacketType, SmallType } from '..';
-import { Packet } from '../base';
 
 const size = 8;
 
@@ -12,7 +11,7 @@ const data: IS_SMALL_Data = {
 };
 
 const buffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_SMALL().SIZE_MULTIPLIER, // Size
   4, // Type
   1, // ReqI
   7, // SubT

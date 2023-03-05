@@ -2,7 +2,6 @@ import { InSim } from '../../protocols';
 import { stringToBytes, testInstructionPacket } from '../../utils/tests';
 import type { IS_ISI_Data } from '..';
 import { IS_ISI, PacketType } from '..';
-import { Packet } from '../base';
 
 const size = 44;
 
@@ -18,7 +17,7 @@ const data: IS_ISI_Data = {
 };
 
 const buffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_ISI().SIZE_MULTIPLIER, // Size
   1, // Type
   1, // ReqI
   0, // Zero
@@ -46,7 +45,7 @@ describe('IS_ISI', () => {
   it('should truncate IName if it is longer than 16 characters', () => {
     expect(new IS_ISI({ IName: 'app app app app12' }).pack()).toEqual(
       Buffer.from([
-        size / Packet.SIZE_MULTIPLIER, // Size
+        size / new IS_ISI().SIZE_MULTIPLIER, // Size
         1, // Type
         0, // ReqI
         0, // Zero
@@ -82,7 +81,7 @@ describe('IS_ISI', () => {
   it('should truncate Admin if it is longer than 16 characters', () => {
     expect(new IS_ISI({ Admin: 'admin admin admin' }).pack()).toEqual(
       Buffer.from([
-        size / Packet.SIZE_MULTIPLIER, // Size
+        size / new IS_ISI().SIZE_MULTIPLIER, // Size
         1, // Type
         0, // ReqI
         0, // Zero

@@ -1,7 +1,6 @@
 import type { PacketTestData } from '../../utils/tests';
 import { testInfoPacket } from '../../utils/tests';
 import { IS_CCH, PacketType, ViewIdentifier } from '..';
-import { Packet } from '../base';
 
 const size = 8;
 
@@ -11,7 +10,7 @@ const data: PacketTestData<IS_CCH> = {
 };
 
 const buffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_CCH().SIZE_MULTIPLIER, // Size
   29, // Type
   0, // ReqI
   3, // PLID

@@ -1,7 +1,6 @@
 import type { PacketTestData } from '../../utils/tests';
 import { stringToBytes, testInfoPacket } from '../../utils/tests';
 import { ConfirmationFlags, IS_RES, PacketType, PlayerFlags } from '..';
-import { Packet } from '../base';
 
 const size = 84;
 
@@ -30,7 +29,7 @@ const data: PacketTestData<IS_RES> = {
 };
 
 const buffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_RES().SIZE_MULTIPLIER, // Size
   35, // Type
   0, // ReqI
   3, // PLID

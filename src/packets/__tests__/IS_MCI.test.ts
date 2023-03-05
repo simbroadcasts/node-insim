@@ -1,8 +1,7 @@
 import type { PacketTestData } from '../../utils/tests';
 import { testInfoPacket } from '../../utils/tests';
 import { CompCarFlags, IS_MCI, PacketType } from '..';
-import { Packet } from '../base';
-import { CompCar } from '../structs/CompCar';
+import { CompCar } from '../structs';
 
 const size = 4 + 2 * 28;
 
@@ -42,7 +41,7 @@ const data: PacketTestData<IS_MCI> = {
 };
 
 const buffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_MCI().SIZE_MULTIPLIER, // Size
   38, // Type
   0, // ReqI
   2, // NumC

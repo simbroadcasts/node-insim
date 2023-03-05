@@ -1,7 +1,6 @@
 import type { PacketTestData } from '../../utils/tests';
 import { testInfoPacket } from '../../utils/tests';
 import { CarContOBJ, IS_UCO, ObjectInfo, PacketType, UCOAction } from '..';
-import { Packet } from '../base';
 
 const size = 28;
 
@@ -28,7 +27,7 @@ const data: PacketTestData<IS_UCO> = {
 };
 
 const buffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_UCO().SIZE_MULTIPLIER, // Size
   59, // Type
   0, // ReqI
   2, // PLID

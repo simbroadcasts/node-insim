@@ -6,7 +6,6 @@ import {
 } from '../../utils/tests';
 import type { IS_RIP_Data } from '..';
 import { IS_RIP, PacketType, ReplayError, ReplayMode, ReplayOptions } from '..';
-import { Packet } from '../base';
 
 const size = 80;
 
@@ -23,7 +22,7 @@ const instructionData: IS_RIP_Data = {
 };
 
 const instructionBuffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_RIP().SIZE_MULTIPLIER, // Size
   48, // Type
   2, // ReqI
   0, // Error
@@ -55,7 +54,7 @@ const infoData: Partial<Omit<PacketTestData<IS_RIP>, 'ReqI'>> &
 };
 
 const infoBuffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_RIP().SIZE_MULTIPLIER, // Size
   48, // Type
   2, // ReqI
   8, // Error

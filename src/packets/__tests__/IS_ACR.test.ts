@@ -1,7 +1,6 @@
 import type { PacketTestData } from '../../utils/tests';
 import { testInfoPacket } from '../../utils/tests';
 import { AdminCommandResult, IS_ACR, PacketType } from '..';
-import { Packet } from '../base';
 
 const size = 16;
 
@@ -15,7 +14,7 @@ const data: PacketTestData<IS_ACR> = {
 };
 
 const buffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_ACR().SIZE_MULTIPLIER, // Size
   55, // Type
   0, // ReqI
   0, // Zero

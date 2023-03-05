@@ -12,7 +12,6 @@ import type { IS_{{ name }}_Data } from '..';
   import type { IS_{{ name }}_Data } from '..';
 {{/ifEquals}}
 import { IS_{{ name }}, PacketType } from '..';
-import { Packet } from '../base';
 
 const size = {{ size }};
 
@@ -34,7 +33,7 @@ const data: PacketTestData<IS_{{ name }}> = {
 };
 
 const buffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_{{ name }}().SIZE_MULTIPLIER, // Size
   {{ type }}, // Type
   0, // ReqI
   // TODO
@@ -46,7 +45,7 @@ const instructionData: IS_{{ name }}_Data = {
 };
 
 const instructionBuffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_{{ name }}().SIZE_MULTIPLIER, // Size
   {{ type }}, // Type
   0, // ReqI
   // TODO
@@ -58,7 +57,7 @@ const infoData: PacketTestData<IS_{{ name }}> = {
 };
 
 const infoBuffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_{{ name }}().SIZE_MULTIPLIER, // Size
   {{ type }}, // Type
   1, // ReqI
   // TODO

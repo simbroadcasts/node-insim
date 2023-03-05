@@ -6,7 +6,6 @@ import {
 } from '../../utils/tests';
 import type { IS_SSH_Data } from '..';
 import { IS_SSH, PacketType, ScreenshotError } from '..';
-import { Packet } from '../base';
 
 const size = 40;
 
@@ -18,7 +17,7 @@ const instructionData: IS_SSH_Data = {
 };
 
 const instructionBuffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_SSH().SIZE_MULTIPLIER, // Size
   49, // Type
   2, // ReqI
   0, // Error
@@ -38,7 +37,7 @@ const infoData: Partial<Omit<PacketTestData<IS_SSH>, 'ReqI'>> &
 };
 
 const infoBuffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_SSH().SIZE_MULTIPLIER, // Size
   49, // Type
   2, // ReqI
   3, // Error

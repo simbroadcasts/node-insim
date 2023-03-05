@@ -1,7 +1,6 @@
 import type { PacketTestData } from '../../utils/tests';
 import { testInfoPacket } from '../../utils/tests';
 import { ButtonClickFlags, IS_BTC, IS_BTN, PacketType } from '..';
-import { Packet } from '../base';
 
 const size = 8;
 
@@ -14,7 +13,7 @@ const data: PacketTestData<IS_BTC> = {
 };
 
 const buffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_BTC().SIZE_MULTIPLIER, // Size
   46, // Type
   1, // ReqI
   2, // UCID

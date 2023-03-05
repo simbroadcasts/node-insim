@@ -7,7 +7,6 @@ import {
   OCOAutocrossStartLights,
   PacketType,
 } from '..';
-import { Packet } from '../base';
 
 const size = 8;
 
@@ -19,7 +18,7 @@ const data: IS_OCO_Data = {
 };
 
 const buffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_OCO().SIZE_MULTIPLIER, // Size
   60, // Type
   0, // ReqI
   0, // Zero

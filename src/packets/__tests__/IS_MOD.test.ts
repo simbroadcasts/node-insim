@@ -1,7 +1,6 @@
 import { testInstructionPacket } from '../../utils/tests';
 import type { IS_MOD_Data } from '..';
 import { IS_MOD, PacketType } from '..';
-import { Packet } from '../base';
 
 const size = 20;
 
@@ -13,7 +12,7 @@ const data: IS_MOD_Data = {
 };
 
 const buffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_MOD().SIZE_MULTIPLIER, // Size
   15, // Type
   0, // ReqI
   0, // Zero

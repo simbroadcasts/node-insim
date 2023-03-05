@@ -1,7 +1,6 @@
 import type { PacketTestData } from '../../utils/tests';
 import { testInfoPacket } from '../../utils/tests';
 import { IS_CNL, LeaveReason, PacketType } from '..';
-import { Packet } from '../base';
 
 const size = 8;
 
@@ -12,7 +11,7 @@ const data: PacketTestData<IS_CNL> = {
 };
 
 const buffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_CNL().SIZE_MULTIPLIER, // Size
   19, // Type
   0, // ReqI
   4, // UCID

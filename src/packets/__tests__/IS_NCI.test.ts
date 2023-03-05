@@ -1,7 +1,6 @@
 import type { PacketTestData } from '../../utils/tests';
 import { testInfoPacket } from '../../utils/tests';
 import { IS_NCI, Language, PacketType } from '..';
-import { Packet } from '../base';
 
 const size = 16;
 
@@ -14,7 +13,7 @@ const data: PacketTestData<IS_NCI> = {
 };
 
 const buffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_NCI().SIZE_MULTIPLIER, // Size
   57, // Type
   1, // ReqI
   3, // UCID

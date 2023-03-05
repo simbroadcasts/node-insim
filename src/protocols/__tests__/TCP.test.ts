@@ -20,7 +20,7 @@ describe('TCP', () => {
   });
 
   it('should send a valid packet', (done) => {
-    const tcp = new TCP('127.0.0.1', 12345);
+    const tcp = new TCP('127.0.0.1', 12345, 4);
 
     mitm.on('connection', (socket) => {
       socket.write(new Uint8Array([1, 3, 0, 0]));
@@ -43,7 +43,7 @@ describe('TCP', () => {
     const packetByteArray = [...packets[0], ...packets[1], ...packets[2]];
     let packetsReceived = 0;
 
-    const tcp = new TCP('127.0.0.1', 12345);
+    const tcp = new TCP('127.0.0.1', 12345, 4);
 
     mitm.on('connection', (socket) => {
       socket.write(new Uint8Array(packetByteArray));

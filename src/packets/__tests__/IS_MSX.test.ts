@@ -1,7 +1,6 @@
 import { stringToBytes, testInstructionPacket } from '../../utils/tests';
 import type { IS_MSX_Data } from '..';
 import { IS_MSX, PacketType } from '..';
-import { Packet } from '../base';
 
 const size = 100;
 
@@ -10,7 +9,7 @@ const data: IS_MSX_Data = {
 };
 
 const buffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_MSX().SIZE_MULTIPLIER, // Size
   39, // Type
   0, // ReqI
   0, // Zero
@@ -34,7 +33,7 @@ describe('IS_MSX', () => {
       }).pack(),
     ).toEqual(
       Buffer.from([
-        size / Packet.SIZE_MULTIPLIER, // Size
+        size / new IS_MSX().SIZE_MULTIPLIER, // Size
         39, // Type
         0, // ReqI
         0, // Zero

@@ -1,7 +1,6 @@
 import type { PacketTestData } from '../../utils/tests';
 import { stringToBytes, testInfoPacket } from '../../utils/tests';
 import { IS_RST, PacketType, Wind } from '..';
-import { Packet } from '../base';
 import { RaceFlags } from '../enums';
 
 const size = 28;
@@ -25,7 +24,7 @@ const data: PacketTestData<IS_RST> = {
 };
 
 const buffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_RST().SIZE_MULTIPLIER, // Size
   17, // Type
   1, // ReqI
   0, // Zero

@@ -1,7 +1,6 @@
 import type { PacketTestData } from '../../utils/tests';
 import { stringToBytes, testInfoPacket } from '../../utils/tests';
 import { IS_MSO, PacketType, UserType } from '..';
-import { Packet } from '../base';
 
 describe('IS_MSO', () => {
   describe('ASCII characters in message', () => {
@@ -19,7 +18,7 @@ describe('IS_MSO', () => {
     };
 
     const buffer = Buffer.from([
-      size / Packet.SIZE_MULTIPLIER, // Size
+      size / new IS_MSO().SIZE_MULTIPLIER, // Size
       11, // Type
       0, // ReqI
       0, // Zero
@@ -54,7 +53,7 @@ describe('IS_MSO', () => {
     };
 
     const buffer = Buffer.from([
-      size / Packet.SIZE_MULTIPLIER, // Size
+      size / new IS_MSO().SIZE_MULTIPLIER, // Size
       11, // Type
       0, // ReqI
       0, // Zero

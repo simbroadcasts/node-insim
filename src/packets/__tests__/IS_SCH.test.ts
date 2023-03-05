@@ -1,7 +1,6 @@
 import { testInstructionPacket } from '../../utils/tests';
 import type { IS_SCH_Data } from '..';
 import { CharacterModifiers, IS_SCH, PacketType } from '..';
-import { Packet } from '../base';
 
 const size = 8;
 
@@ -11,7 +10,7 @@ const data: IS_SCH_Data = {
 };
 
 const buffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_SCH().SIZE_MULTIPLIER, // Size
   6, // Type
   0, // ReqI
   0, // Zero

@@ -1,7 +1,6 @@
 import type { PacketTestData } from '../../utils/tests';
 import { testInfoPacket } from '../../utils/tests';
 import { IS_SPX, PacketType, PenaltyValue } from '..';
-import { Packet } from '../base';
 
 const size = 20;
 
@@ -17,7 +16,7 @@ const data: PacketTestData<IS_SPX> = {
 };
 
 const buffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_SPX().SIZE_MULTIPLIER, // Size
   25, // Type
   0, // ReqI
   2, // PLID

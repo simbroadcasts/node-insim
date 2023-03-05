@@ -1,7 +1,6 @@
 import type { PacketTestData } from '../../utils/tests';
 import { testInfoPacket } from '../../utils/tests';
 import { CarContact, CarContactFlags, IS_CON, PacketType } from '..';
-import { Packet } from '../base';
 
 const size = 40;
 
@@ -43,7 +42,7 @@ const data: PacketTestData<IS_CON> = {
 };
 
 const buffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_CON().SIZE_MULTIPLIER, // Size
   50, // Type
   0, // ReqI
   0, // Zero

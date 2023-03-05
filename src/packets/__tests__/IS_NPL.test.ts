@@ -10,7 +10,6 @@ import {
   SetupFlags,
   TyreCompound,
 } from '..';
-import { Packet } from '../base';
 
 const size = 76;
 
@@ -45,7 +44,7 @@ const data: PacketTestData<IS_NPL> = {
 };
 
 const buffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_NPL().SIZE_MULTIPLIER, // Size
   21, // Type
   0, // ReqI
   3, // PLID

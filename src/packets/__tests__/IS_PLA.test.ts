@@ -1,7 +1,6 @@
 import type { PacketTestData } from '../../utils/tests';
 import { testInfoPacket } from '../../utils/tests';
 import { IS_PLA, PacketType, PitLaneFact } from '..';
-import { Packet } from '../base';
 
 const size = 8;
 
@@ -12,7 +11,7 @@ const data: PacketTestData<IS_PLA> = {
 };
 
 const buffer = Buffer.from([
-  size / Packet.SIZE_MULTIPLIER, // Size
+  size / new IS_PLA().SIZE_MULTIPLIER, // Size
   28, // Type
   0, // ReqI
   3, // PLID
