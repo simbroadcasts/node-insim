@@ -16,7 +16,7 @@ const data: IS_ISI_Data = {
   IName: 'app app app app1',
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_ISI().SIZE_MULTIPLIER, // Size
   1, // Type
   1, // ReqI
@@ -44,7 +44,7 @@ describe('IS_ISI', () => {
 
   it('should truncate IName if it is longer than 16 characters', () => {
     expect(new IS_ISI({ IName: 'app app app app12' }).pack()).toEqual(
-      Buffer.from([
+      new Uint8Array([
         size / new IS_ISI().SIZE_MULTIPLIER, // Size
         1, // Type
         0, // ReqI
@@ -80,7 +80,7 @@ describe('IS_ISI', () => {
 
   it('should truncate Admin if it is longer than 16 characters', () => {
     expect(new IS_ISI({ Admin: 'admin admin admin' }).pack()).toEqual(
-      Buffer.from([
+      new Uint8Array([
         size / new IS_ISI().SIZE_MULTIPLIER, // Size
         1, // Type
         0, // ReqI

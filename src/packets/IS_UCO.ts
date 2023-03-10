@@ -53,7 +53,7 @@ export class IS_UCO extends Packet {
    **/
   @struct(ObjectInfo) Info: ObjectInfo = new ObjectInfo();
 
-  unpack(buffer: Buffer): this {
+  unpack(buffer: Uint8Array): this {
     super.unpack(buffer);
 
     const carContactOffset = 12;

@@ -13,7 +13,7 @@ export abstract class SendablePacket
   abstract Type: PacketType;
   abstract ReqI: number;
 
-  pack(propertyFormatOverrides?: Record<string, string>): Buffer {
+  pack(propertyFormatOverrides?: Record<string, string>) {
     const propertyNames = this.getValidPropertyNames();
     const format = `<${this.getFormat(propertyFormatOverrides)}`;
     const values: unknown[] = [];

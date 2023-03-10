@@ -28,7 +28,7 @@ export class IS_CON extends Packet {
   /** Contact object - car B */
   B: CarContact = new CarContact();
 
-  unpack(buffer: Buffer): this {
+  unpack(buffer: Uint8Array): this {
     super.unpack(buffer);
 
     const carContactOffset = this.getFormatSize();

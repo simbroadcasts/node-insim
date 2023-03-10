@@ -1,49 +1,11 @@
 import parseLFSMessage from 'parse-lfs-message';
 
-import type { KeyOfType } from './index';
-
-type ReadFunc = (offset?: number) => number;
-type WriteFunc = (value: number, offset?: number) => number;
-
-const common = {
-  pack: (
-    method: KeyOfType<Buffer, WriteFunc>,
-    dv: Buffer,
-    value: number | number[],
-    offset: number,
-    c: number,
-  ) => {
-    if (!Array.isArray(value)) value = [value];
-
-    for (let i = 0; i < c; i++) dv[method](value[i], offset + i);
-  },
-  unpack: (
-    method: KeyOfType<Buffer, ReadFunc>,
-    dv: Buffer,
-    offset: number,
-    c: number,
-  ) => {
-    const r = [];
-    for (let i = 0; i < c; i++) r.push(dv[method](offset + i));
-
-    return r;
-  },
-};
-
-function isAlphaNumeric(b: string): boolean {
-  if (b >= '0' && b <= '9') return true;
-  if (b >= 'A' && b <= 'Z') return true;
-  if (b >= 'a' && b <= 'z') return true;
-  return false;
-}
-
-// pack and unpacking for different types
 const magic: Record<
   string,
   {
     length: number;
     pack: (
-      dv: Buffer,
+      dv: DataView,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       value: any | any[],
       offset: number,
@@ -51,7 +13,7 @@ const magic: Record<
       littleendian?: boolean,
     ) => void;
     unpack: (
-      dv: Buffer,
+      dv: DataView,
       offset: number,
       c: number,
       littleendian?: boolean,
@@ -61,29 +23,41 @@ const magic: Record<
   // byte array
   A: {
     length: 1,
-    pack(dv, value: number | number[], offset, c) {
+    pack(dv, value: number | [number[]], offset, c) {
       if (Array.isArray(value)) {
-        // TODO
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        common.pack('writeInt8', dv, ...value, offset, c);
+        for (let i = 0; i < c; i++) {
+          dv.setInt8(offset + i, value[0][i]);
+        }
       } else {
-        common.pack('writeInt8', dv, value, offset, c);
+        for (let i = 0; i < c; i++) {
+          dv.setInt8(offset + i, [value][i]);
+        }
       }
     },
     unpack(dv, offset, c) {
-      return [common.unpack('readInt8', dv, offset, c)];
+      const r: number[] = [];
+
+      for (let i = 0; i < c; i++) {
+        r.push(dv.getInt8(offset + i));
+      }
+
+      return [r];
     },
   },
   // padding byte
   x: {
     length: 1,
     pack(dv, value: number, offset, c) {
-      for (let i = 0; i < c; i++) dv.writeUInt8(0, offset + i);
+      for (let i = 0; i < c; i++) {
+        dv.setUint8(0, offset + i);
+      }
     },
     unpack(dv, offset, c) {
       const r = [];
-      for (let i = 0; i < c; i++) r.push(0);
+
+      for (let i = 0; i < c; i++) {
+        r.push(0);
+      }
 
       return r;
     },
@@ -94,13 +68,16 @@ const magic: Record<
     pack(dv, value: string | string[], offset, c) {
       if (!Array.isArray(value)) value = [value];
 
-      for (let i = 0; i < c; i++)
-        dv.writeUInt8(value[i].charCodeAt(0), offset + i);
+      for (let i = 0; i < c; i++) {
+        dv.setUint8(offset + i, value[i].charCodeAt(0));
+      }
     },
     unpack(dv, offset, c) {
       const r = [];
-      for (let i = 0; i < c; i++)
-        r.push(String.fromCharCode(dv.readUInt8(offset + i)));
+
+      for (let i = 0; i < c; i++) {
+        r.push(String.fromCharCode(dv.getUint8(offset + i)));
+      }
 
       return r;
     },
@@ -120,18 +97,18 @@ const magic: Record<
         carName.length === 3
       ) {
         for (let i = 0; i < 3; i++) {
-          dv.writeUint8(carName[i].charCodeAt(0), offset + i);
+          dv.setUint8(offset + i, carName[i].charCodeAt(0));
         }
       } else {
-        dv.writeUint8(parseInt(`${carName[0]}${carName[1]}`, 16), offset + 2);
-        dv.writeUint8(parseInt(`${carName[2]}${carName[3]}`, 16), offset + 1);
-        dv.writeUint8(parseInt(`${carName[4]}${carName[5]}`, 16), offset);
+        dv.setUint8(offset + 2, parseInt(`${carName[0]}${carName[1]}`, 16));
+        dv.setUint8(offset + 1, parseInt(`${carName[2]}${carName[3]}`, 16));
+        dv.setUint8(offset, parseInt(`${carName[4]}${carName[5]}`, 16));
       }
     },
     unpack(dv, offset) {
       const r: string[] = [];
       for (let i = 0; i < 4; i++)
-        r.push(String.fromCharCode(dv.readUInt8(offset + i)));
+        r.push(String.fromCharCode(dv.getUint8(offset + i)));
 
       if (
         isAlphaNumeric(r[0]) &&
@@ -143,183 +120,170 @@ const magic: Record<
       }
 
       return [
-        [
-          dv.toString('hex', offset + 2, offset + 3),
-          dv.toString('hex', offset + 1, offset + 2),
-          dv.toString('hex', offset, offset + 1),
-        ]
-          .join('')
-          .toUpperCase(),
+        [...new Uint8Array(dv.buffer.slice(offset, offset + 3))]
+          .reverse()
+          .map((x) => x.toString(16).toUpperCase().padStart(2, '0'))
+          .join(''),
       ];
     },
   },
   // signed char
   b: {
     length: 1,
-    pack(dv, value: number, offset, c) {
-      common.pack('writeInt8', dv, value, offset, c);
+    pack(dv, value: number | number[], offset, c) {
+      if (!Array.isArray(value)) value = [value];
+
+      for (let i = 0; i < c; i++) {
+        dv.setInt8(offset + i, value[i]);
+      }
     },
     unpack(dv, offset, c) {
-      return common.unpack('readInt8', dv, offset, c);
+      const r = [];
+
+      for (let i = 0; i < c; i++) {
+        r.push(dv.getInt8(offset + i));
+      }
+
+      return r;
     },
   },
   // unsigned char
   B: {
     length: 1,
-    pack(dv, value: number, offset, c) {
-      common.pack('writeUInt8', dv, value, offset, c);
+    pack(dv, value: number | number[], offset, c) {
+      if (!Array.isArray(value)) value = [value];
+
+      for (let i = 0; i < c; i++) {
+        dv.setUint8(offset + i, value[i]);
+      }
     },
     unpack(dv, offset, c) {
-      return common.unpack('readUInt8', dv, offset, c);
+      const r = [];
+
+      for (let i = 0; i < c; i++) {
+        r.push(dv.getUint8(offset + i));
+      }
+
+      return r;
     },
   },
   // signed short
   h: {
     length: 2,
-    pack(dv, value: number, offset, c, littleendian) {
-      common.pack(
-        ('writeInt16' + (littleendian ? 'LE' : 'BE')) as
-          | 'writeInt16LE'
-          | 'writeInt16BE',
-        dv,
-        value,
-        offset,
-        c,
-      );
+    pack(dv, value: number | number[], offset, c, littleendian) {
+      if (!Array.isArray(value)) value = [value];
+
+      for (let i = 0; i < c; i++) {
+        dv.setInt16(offset + i, value[i], littleendian);
+      }
     },
     unpack(dv, offset, c, littleendian) {
-      return common.unpack(
-        ('readInt16' + (littleendian ? 'LE' : 'BE')) as
-          | 'readInt16LE'
-          | 'readInt16BE',
-        dv,
-        offset,
-        c,
-      );
+      const r = [];
+
+      for (let i = 0; i < c; i++) {
+        r.push(dv.getInt16(offset + i, littleendian));
+      }
+
+      return r;
     },
   },
   // unsigned short
   H: {
     length: 2,
-    pack(dv, value: number, offset, c, littleendian) {
-      common.pack(
-        ('writeUInt16' + (littleendian ? 'LE' : 'BE')) as
-          | 'writeUInt16LE'
-          | 'writeUInt16BE',
-        dv,
-        value,
-        offset,
-        c,
-      );
+    pack(dv, value: number | number[], offset, c, littleendian) {
+      if (!Array.isArray(value)) value = [value];
+
+      for (let i = 0; i < c; i++) {
+        dv.setUint16(offset + i, value[i], littleendian);
+      }
     },
     unpack(dv, offset, c, littleendian) {
-      return common.unpack(
-        ('readUInt16' + (littleendian ? 'LE' : 'BE')) as
-          | 'readUInt16LE'
-          | 'readUInt16BE',
-        dv,
-        offset,
-        c,
-      );
+      const r = [];
+
+      for (let i = 0; i < c; i++) {
+        r.push(dv.getUint16(offset + i, littleendian));
+      }
+
+      return r;
     },
   },
   // signed long
   i: {
     length: 4,
-    pack(dv, value: number, offset, c, littleendian) {
-      common.pack(
-        ('writeInt32' + (littleendian ? 'LE' : 'BE')) as
-          | 'writeInt32LE'
-          | 'writeInt32BE',
-        dv,
-        value,
-        offset,
-        c,
-      );
+    pack(dv, value: number | number[], offset, c, littleendian) {
+      if (!Array.isArray(value)) value = [value];
+
+      for (let i = 0; i < c; i++) {
+        dv.setInt32(offset + i, value[i], littleendian);
+      }
     },
     unpack(dv, offset, c, littleendian) {
-      return common.unpack(
-        ('readInt32' + (littleendian ? 'LE' : 'BE')) as
-          | 'readInt32LE'
-          | 'readInt32BE',
-        dv,
-        offset,
-        c,
-      );
+      const r = [];
+
+      for (let i = 0; i < c; i++) {
+        r.push(dv.getInt32(offset + i, littleendian));
+      }
+
+      return r;
     },
   },
   // unsigned long
   I: {
     length: 4,
-    pack(dv, value: number, offset, c, littleendian) {
-      common.pack(
-        ('writeUInt32' + (littleendian ? 'LE' : 'BE')) as
-          | 'writeUInt32LE'
-          | 'writeUInt32BE',
-        dv,
-        value,
-        offset,
-        c,
-      );
+    pack(dv, value: number | number[], offset, c, littleendian) {
+      if (!Array.isArray(value)) value = [value];
+
+      for (let i = 0; i < c; i++) {
+        dv.setUint32(offset + i, value[i], littleendian);
+      }
     },
     unpack(dv, offset, c, littleendian) {
-      return common.unpack(
-        ('readUInt32' + (littleendian ? 'LE' : 'BE')) as
-          | 'readUInt32LE'
-          | 'readUInt32BE',
-        dv,
-        offset,
-        c,
-      );
+      const r = [];
+
+      for (let i = 0; i < c; i++) {
+        r.push(dv.getUint32(offset + i, littleendian));
+      }
+
+      return r;
     },
   },
   l: {
     length: 4,
-    pack(dv, value: number, offset, c, littleendian) {
-      common.pack(
-        ('writeInt32' + (littleendian ? 'LE' : 'BE')) as
-          | 'writeInt32LE'
-          | 'writeInt32BE',
-        dv,
-        value,
-        offset,
-        c,
-      );
+    pack(dv, value: number | number[], offset, c, littleendian) {
+      if (!Array.isArray(value)) value = [value];
+
+      for (let i = 0; i < c; i++) {
+        dv.setInt32(offset + i, value[i], littleendian);
+      }
     },
     unpack(dv, offset, c, littleendian) {
-      return common.unpack(
-        ('readInt32' + (littleendian ? 'LE' : 'BE')) as
-          | 'readInt32LE'
-          | 'readInt32BE',
-        dv,
-        offset,
-        c,
-      );
+      const r = [];
+
+      for (let i = 0; i < c; i++) {
+        r.push(dv.getInt32(offset + i, littleendian));
+      }
+
+      return r;
     },
   },
   // unsigned long
   L: {
     length: 4,
-    pack(dv, value: number, offset, c, littleendian) {
-      common.pack(
-        ('writeUInt32' + (littleendian ? 'LE' : 'BE')) as
-          | 'writeUInt32LE'
-          | 'writeUInt32BE',
-        dv,
-        value,
-        offset,
-        c,
-      );
+    pack(dv, value: number | number[], offset, c, littleendian) {
+      if (!Array.isArray(value)) value = [value];
+
+      for (let i = 0; i < c; i++) {
+        dv.setUint32(offset + i, value[i], littleendian);
+      }
     },
     unpack(dv, offset, c, littleendian) {
-      return common.unpack(
-        ('readUInt32' + (littleendian ? 'LE' : 'BE')) as
-          | 'readUInt32LE'
-          | 'readUInt32BE',
-        dv,
-        offset,
-        c,
-      );
+      const r = [];
+
+      for (let i = 0; i < c; i++) {
+        r.push(dv.getUint32(offset + i, littleendian));
+      }
+
+      return r;
     },
   },
   // char[]
@@ -333,64 +297,54 @@ const magic: Record<
 
         if (i < val.length) code = val.charCodeAt(i);
 
-        dv.writeUInt8(code, offset + i);
+        dv.setUint8(offset + i, code);
       }
     },
     unpack(dv, offset, c) {
       const r = [];
-      for (let i = 0; i < c; i++) r.push(dv.readUInt8(offset + i));
+      for (let i = 0; i < c; i++) r.push(dv.getUint8(offset + i));
 
-      return [parseLFSMessage(Buffer.from(r))];
+      return [parseLFSMessage(new Uint8Array(r))];
     },
   },
   // float
   f: {
     length: 4,
-    pack(dv, value: number, offset, c, littleendian) {
-      common.pack(
-        ('writeFloat' + (littleendian ? 'LE' : 'BE')) as
-          | 'writeFloatLE'
-          | 'writeFloatBE',
-        dv,
-        value,
-        offset,
-        c,
-      );
+    pack(dv, value: number | number[], offset, c, littleendian) {
+      if (!Array.isArray(value)) value = [value];
+
+      for (let i = 0; i < c; i++) {
+        dv.setFloat32(offset + i, value[i], littleendian);
+      }
     },
     unpack(dv, offset, c, littleendian) {
-      return common.unpack(
-        ('readFloat' + (littleendian ? 'LE' : 'BE')) as
-          | 'readFloatLE'
-          | 'readFloatBE',
-        dv,
-        offset,
-        c,
-      );
+      const r = [];
+
+      for (let i = 0; i < c; i++) {
+        r.push(dv.getFloat32(offset + i, littleendian));
+      }
+
+      return r;
     },
   },
   // double
   d: {
     length: 8,
-    pack(dv, value: number, offset, c, littleendian) {
-      common.pack(
-        ('writeDouble' + (littleendian ? 'LE' : 'BE')) as
-          | 'writeDoubleLE'
-          | 'writeDoubleBE',
-        dv,
-        value,
-        offset,
-        c,
-      );
+    pack(dv, value: number | number[], offset, c, littleendian) {
+      if (!Array.isArray(value)) value = [value];
+
+      for (let i = 0; i < c; i++) {
+        dv.setFloat64(offset + i, value[i], littleendian);
+      }
     },
     unpack(dv, offset, c, littleendian) {
-      return common.unpack(
-        ('readDouble' + (littleendian ? 'LE' : 'BE')) as
-          | 'readDoubleLE'
-          | 'readDoubleBE',
-        dv,
-        offset,
-        c,
-      );
+      const r = [];
+
+      for (let i = 0; i < c; i++) {
+        r.push(dv.getFloat64(offset + i, littleendian));
+      }
+
+      return r;
     },
   },
 };
@@ -398,7 +352,7 @@ const magic: Record<
 // pattern of stuff we're looking for
 const pattern = '(\\d+)?([AxcCbBhHsfdiIlL])';
 
-// determine the size of arraybuffer we'd need
+/** Determine the size of arraybuffer we'd need */
 const determineLength = function (fmt: string): number {
   const re = new RegExp(pattern, 'g');
   let m: string[] | null,
@@ -412,16 +366,17 @@ const determineLength = function (fmt: string): number {
   return sum;
 };
 
-// pack a set of values, starting at offset, based on format
+/** Pack a set of values, starting at offset, based on format */
 const pack = function (
   fmt: string,
   values: unknown[],
   offset = 0,
-): Buffer | null {
+): Uint8Array | null {
   const littleendian = fmt.charAt(0) == '<';
   offset = offset ? offset : 0;
 
-  const ab = Buffer.alloc(determineLength(fmt)),
+  const ab = new ArrayBuffer(determineLength(fmt)),
+    dv = new DataView(ab),
     re = new RegExp(pattern, 'g');
   let m,
     c,
@@ -434,22 +389,21 @@ const pack = function (
     c = m[1] == undefined || m[1] == '' ? 1 : parseInt(m[1]);
     l = magic[m[2]].length;
 
-    if (offset + c * l > ab.length) return null;
+    if (offset + c * l > ab.byteLength) return null;
 
     const value = values.slice(i, i + 1);
 
-    magic[m[2]].pack(ab, value, offset, c, littleendian);
+    magic[m[2]].pack(dv, value, offset, c, littleendian);
 
     offset += c * l;
     i += 1;
   }
 
-  return ab;
+  return new Uint8Array(dv.buffer);
 };
 
-// unpack an arraybuffer, starting at offset, based on format
-// returns an array
-const unpack = (fmt: string, ab: Buffer, offset = 0): unknown[] | null => {
+/** Unpack an arraybuffer, starting at offset, based on format */
+const unpack = (fmt: string, ab: ArrayBuffer, offset = 0): unknown[] | null => {
   const littleendian = fmt.charAt(0) == '<';
   const re = new RegExp(pattern, 'g');
   let results: unknown[] = [],
@@ -463,14 +417,23 @@ const unpack = (fmt: string, ab: Buffer, offset = 0): unknown[] | null => {
     c = m[1] == undefined || m[1] == '' ? 1 : parseInt(m[1]);
     l = magic[m[2]].length;
 
-    if (offset + c * l > ab.length) return null;
+    if (offset + c * l > ab.byteLength) return null;
 
-    results = results.concat(magic[m[2]].unpack(ab, offset, c, littleendian));
+    results = results.concat(
+      magic[m[2]].unpack(new DataView(ab), offset, c, littleendian),
+    );
 
     offset += c * l;
   }
 
   return results;
 };
+
+function isAlphaNumeric(b: string): boolean {
+  if (b >= '0' && b <= '9') return true;
+  if (b >= 'A' && b <= 'Z') return true;
+  if (b >= 'a' && b <= 'z') return true;
+  return false;
+}
 
 export { determineLength, pack, unpack };

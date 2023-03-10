@@ -19,7 +19,7 @@ const instructionData: IS_CPP_Data = {
   Flags: StateFlags.ISS_VIEW_OVERRIDE,
 };
 
-const instructionBuffer = Buffer.from([
+const instructionBuffer = new Uint8Array([
   size / new IS_CPP().SIZE_MULTIPLIER, // Size
   9, // Type
   0, // ReqI
@@ -60,7 +60,7 @@ const infoData: PacketTestData<IS_CPP> = {
   Zero: 0,
 };
 
-const infoBuffer = Buffer.from([
+const infoBuffer = new Uint8Array([
   size / new IS_CPP().SIZE_MULTIPLIER, // Size
   9, // Type
   2, // ReqI

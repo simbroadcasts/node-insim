@@ -10,7 +10,7 @@ const data: PacketTestData<IS_PSF> = {
   STime: 16974425,
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_PSF().SIZE_MULTIPLIER, // Size
   27, // Type
   0, // ReqI

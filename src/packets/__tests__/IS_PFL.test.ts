@@ -10,7 +10,7 @@ const data: PacketTestData<IS_PFL> = {
   Flags: PlayerFlags.PIF_AUTOGEARS | PlayerFlags.PIF_LEFTSIDE,
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_PFL().SIZE_MULTIPLIER, // Size
   33, // Type
   0, // ReqI

@@ -55,7 +55,7 @@ export class IS_RIP extends SendablePacket {
     this.initialize(data);
   }
 
-  pack(): Buffer {
+  pack() {
     if (this.ReqI === 0) {
       throw new RangeError('IS_RIP - ReqI must be greater than 0');
     }

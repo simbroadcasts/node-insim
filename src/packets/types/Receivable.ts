@@ -1,6 +1,6 @@
 export interface Receivable {
   unpack: (
-    buffer: Buffer,
+    buffer: Uint8Array,
     propertyFormatOverrides?: Record<string, string>,
   ) => this;
 }

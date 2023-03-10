@@ -36,7 +36,7 @@ export class IS_MTC extends SendablePacket {
     this.initialize(data);
   }
 
-  pack(): Buffer {
+  pack() {
     const multiple = 4;
     const length = this.Text.length;
 

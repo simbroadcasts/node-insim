@@ -33,7 +33,7 @@ const data: PacketTestData<IS_OBH> = {
     ObjectHitFlags.OBH_ON_SPOT,
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_OBH().SIZE_MULTIPLIER, // Size
   51, // Type
   0, // ReqI

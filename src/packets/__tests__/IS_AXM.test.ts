@@ -494,7 +494,7 @@ const data: IS_AXM_Data = {
   ],
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_AXM().SIZE_MULTIPLIER, // Size
   54, // Type
   0, // ReqI
@@ -1023,7 +1023,7 @@ describe('IS_AXM', () => {
       ],
     };
 
-    const buffer = Buffer.from([
+    const buffer = new Uint8Array([
       size / new IS_AXM().SIZE_MULTIPLIER, // Size
       54, // Type
       0, // ReqI

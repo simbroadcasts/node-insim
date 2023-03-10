@@ -13,7 +13,7 @@ const data: PacketTestData<IS_ISM> = {
   HName: hostName,
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_ISM().SIZE_MULTIPLIER, // Size
   10, // Type
   1, // ReqI

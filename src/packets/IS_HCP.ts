@@ -27,7 +27,7 @@ export class IS_HCP extends SendablePacket {
     this.initialize(data);
   }
 
-  pack(): Buffer {
+  pack() {
     if (this.Info.length !== IS_HCP.MAX_CARS) {
       throw new RangeError(
         `IS_HCP - Info property must have exactly ${IS_HCP.MAX_CARS} items`,
@@ -35,9 +35,12 @@ export class IS_HCP extends SendablePacket {
     }
 
     const dataBuffer = super.pack();
-    const infoBuffer = this.Info.map((info) => info.pack());
+    const infoBuffer = this.Info.reduce(
+      (acc, info) => new Uint8Array([...acc, ...info.pack()]),
+      new Uint8Array(),
+    );
 
-    return Buffer.concat([dataBuffer, ...infoBuffer]);
+    return new Uint8Array([...dataBuffer, ...infoBuffer]);
   }
 }
 

@@ -12,7 +12,7 @@ const data: IS_BFN_Data = {
   Inst: 5,
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_BFN().SIZE_MULTIPLIER, // Size
   42, // Type
   0, // ReqI

@@ -10,7 +10,7 @@ const data: PacketTestData<IS_CNL> = {
   Total: 14,
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_CNL().SIZE_MULTIPLIER, // Size
   19, // Type
   0, // ReqI

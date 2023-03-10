@@ -13,7 +13,7 @@ const data: PacketTestData<IS_ACR> = {
   Text: '/laps 2',
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_ACR().SIZE_MULTIPLIER, // Size
   55, // Type
   0, // ReqI

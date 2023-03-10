@@ -8,7 +8,7 @@ const data: IS_MST_Data = {
   Msg: 'This is a message whose length will be sixty three characters!!',
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_MST().SIZE_MULTIPLIER, // Size
   13, // Type
   0, // ReqI
@@ -32,7 +32,7 @@ describe('IS_MST', () => {
         Msg: 'This is a message whose length will be sixty four characters yes',
       }).pack(),
     ).toEqual(
-      Buffer.from([
+      new Uint8Array([
         size / new IS_MST().SIZE_MULTIPLIER, // Size
         13, // Type
         0, // ReqI

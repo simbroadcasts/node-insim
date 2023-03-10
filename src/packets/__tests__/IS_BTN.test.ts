@@ -19,7 +19,7 @@ const data: IS_BTN_Data = {
   Text: text,
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   252 / new IS_BTN().SIZE_MULTIPLIER, // Size
   45, // Type
   1, // ReqI
@@ -58,7 +58,7 @@ describe('IS_BTN', () => {
       H: 50,
       Text: '',
     };
-    const expectedBuffer = Buffer.from([
+    const expectedBuffer = new Uint8Array([
       16 / new IS_BTN().SIZE_MULTIPLIER, // Size
       45, // Type
       1, // ReqI

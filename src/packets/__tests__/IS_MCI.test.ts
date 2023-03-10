@@ -40,7 +40,7 @@ const data: PacketTestData<IS_MCI> = {
   ],
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_MCI().SIZE_MULTIPLIER, // Size
   38, // Type
   0, // ReqI

@@ -91,10 +91,10 @@ const map = new Map<[string, unknown[]], number[]>([
 describe('lfspack', () => {
   map.forEach((buffer, [format, values]) => {
     it(`'${format}' should pack [${values}] into [${buffer}]`, () => {
-      expect(pack(format, values)).toEqual(Buffer.from(buffer));
+      expect(pack(format, values)).toEqual(new Uint8Array(buffer));
     });
     it(`'${format}' should unpack [${buffer}] into [${values}]`, () => {
-      expect(unpack(format, Buffer.from(buffer))).toEqual(values);
+      expect(unpack(format, new Uint8Array(buffer).buffer)).toEqual(values);
     });
   });
 });

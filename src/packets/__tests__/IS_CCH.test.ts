@@ -9,7 +9,7 @@ const data: PacketTestData<IS_CCH> = {
   Camera: ViewIdentifier.VIEW_CUSTOM,
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_CCH().SIZE_MULTIPLIER, // Size
   29, // Type
   0, // ReqI

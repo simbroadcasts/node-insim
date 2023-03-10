@@ -43,7 +43,7 @@ export class IS_AXM extends SendablePacket {
     this.initialize(data);
   }
 
-  unpack(buffer: Buffer): this {
+  unpack(buffer: Uint8Array): this {
     super.unpack(buffer);
 
     const objectInfoLength = new ObjectInfo().getFormatSize();
@@ -57,7 +57,7 @@ export class IS_AXM extends SendablePacket {
     return this;
   }
 
-  pack(): Buffer {
+  pack() {
     if (this.Info.length > IS_AXM.MAX_OBJECTS) {
       throw new RangeError(
         `IS_AXM - Too many objects set (max is ${IS_AXM.MAX_OBJECTS}`,
@@ -68,9 +68,12 @@ export class IS_AXM extends SendablePacket {
     this.Size = this.objectInfoOffset + this.Info.length * objectInfoLength;
 
     const dataBuffer = super.pack();
-    const objectInfoBuffer = this.Info.map((objectInfo) => objectInfo.pack());
+    const objectInfoBuffer = this.Info.reduce(
+      (acc, objectInfo) => new Uint8Array([...acc, ...objectInfo.pack()]),
+      new Uint8Array(),
+    );
 
-    return Buffer.concat([dataBuffer, ...objectInfoBuffer]);
+    return new Uint8Array([...dataBuffer, ...objectInfoBuffer]);
   }
 }
 

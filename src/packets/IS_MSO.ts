@@ -32,8 +32,8 @@ export class IS_MSO extends Packet {
   /** 4, 8, 12... 128 characters - last byte is zero */
   @string(128) Msg = '';
 
-  unpack(buffer: Buffer): this {
-    const data = unpack(`<${getFormat(this, 'Size')}`, buffer);
+  unpack(buffer: Uint8Array): this {
+    const data = unpack(`<${getFormat(this, 'Size')}`, buffer.buffer);
 
     if (!data || data.length === 0) {
       throw new InSimError('IS_MSO - Unpacked no data from buffer');

@@ -10,7 +10,7 @@ const data: PacketTestData<IS_PLA> = {
   Fact: PitLaneFact.PITLANE_SG,
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_PLA().SIZE_MULTIPLIER, // Size
   28, // Type
   0, // ReqI

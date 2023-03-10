@@ -41,14 +41,14 @@ export class IS_MAL extends SendablePacket {
     this.initialize(data);
   }
 
-  unpack(buffer: Buffer): this {
+  unpack(buffer: Uint8Array): this {
     super.unpack(buffer);
 
     this.SkinID = [];
     for (let i = 0; i < this.NumM; i++) {
       const start = this.skinIdOffset + this.skinIdSize * i;
       const skinIdBuffer = buffer.slice(start, start + this.skinIdSize);
-      const data = unpack('C', skinIdBuffer);
+      const data = unpack('C', skinIdBuffer.buffer);
       if (data) {
         this.SkinID.push(data[0] as string);
       }
@@ -57,7 +57,7 @@ export class IS_MAL extends SendablePacket {
     return this;
   }
 
-  pack(): Buffer {
+  pack() {
     if (this.SkinID.length > IS_MAL.MAX_MODS) {
       throw new RangeError(
         `IS_MAL - Too many SkinIDs set (max is ${IS_MAL.MAX_MODS}`,
@@ -69,13 +69,20 @@ export class IS_MAL extends SendablePacket {
 
     const dataBuffer = super.pack();
 
-    const objectInfoBuffer = this.SkinID.map((skinId) => pack('C', [skinId]));
+    const objectInfoBufferOrNull = this.SkinID.map((skinId) =>
+      pack('C', [skinId]),
+    );
 
-    if (objectInfoBuffer.some((buffer) => buffer === null)) {
+    if (objectInfoBufferOrNull.some((buffer) => buffer === null)) {
       throw new InSimError('IS_MAL - Could not pack all SkinIDs');
     }
 
-    return Buffer.concat([dataBuffer, ...(objectInfoBuffer as Buffer[])]);
+    const objectInfoBuffer = (objectInfoBufferOrNull as Uint8Array[]).reduce(
+      (acc, objectInfo) => new Uint8Array([...acc, ...objectInfo]),
+      new Uint8Array(),
+    );
+
+    return new Uint8Array([...dataBuffer, ...objectInfoBuffer]);
   }
 }
 

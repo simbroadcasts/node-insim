@@ -17,7 +17,7 @@ const data: IS_OCO_Data = {
   Data: OCOAutocrossStartLights.RED | OCOAutocrossStartLights.AMBER,
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_OCO().SIZE_MULTIPLIER, // Size
   60, // Type
   0, // ReqI

@@ -15,7 +15,7 @@ const data: PacketTestData<IS_BTT> = {
   Text: text,
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_BTT().SIZE_MULTIPLIER, // Size
   47, // Type
   1, // ReqI

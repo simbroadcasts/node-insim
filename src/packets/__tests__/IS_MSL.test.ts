@@ -12,7 +12,7 @@ const data: IS_MSL_Data = {
   Sound: MessageSound.SND_ERROR,
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_MSL().SIZE_MULTIPLIER, // Size
   40, // Type
   0, // ReqI
@@ -36,7 +36,7 @@ describe('IS_MSL', () => {
         Msg: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque pea',
       }).pack(),
     ).toEqual(
-      Buffer.from([
+      new Uint8Array([
         size / new IS_MSL().SIZE_MULTIPLIER, // Size
         40, // Type
         0, // ReqI

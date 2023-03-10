@@ -17,7 +17,7 @@ describe('IS_MSO', () => {
       Msg: msg,
     };
 
-    const buffer = Buffer.from([
+    const buffer = new Uint8Array([
       size / new IS_MSO().SIZE_MULTIPLIER, // Size
       11, // Type
       0, // ReqI
@@ -52,7 +52,7 @@ describe('IS_MSO', () => {
       Msg: '^7Player ^7: ^8cršč',
     };
 
-    const buffer = Buffer.from([
+    const buffer = new Uint8Array([
       size / new IS_MSO().SIZE_MULTIPLIER, // Size
       11, // Type
       0, // ReqI

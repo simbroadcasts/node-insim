@@ -12,7 +12,7 @@ const data: PacketTestData<IS_VER> = {
   InSimVer: 9,
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_VER().SIZE_MULTIPLIER, // Size
   2, // Type
   1, // ReqI

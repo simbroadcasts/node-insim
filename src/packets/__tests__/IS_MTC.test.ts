@@ -13,7 +13,7 @@ const data: IS_MTC_Data = {
   Text: text,
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   136 / new IS_MTC().SIZE_MULTIPLIER, // Size
   14, // Type
   0, // ReqI
@@ -42,7 +42,7 @@ describe('IS_MTC', () => {
       PLID: 2,
       Text: '',
     };
-    const expectedBuffer = Buffer.from([
+    const expectedBuffer = new Uint8Array([
       12 / new IS_MTC().SIZE_MULTIPLIER, // Size
       PacketType.ISP_MTC, // Type
       0, // ReqI
@@ -67,7 +67,7 @@ describe('IS_MTC', () => {
         Text: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque pea',
       }).pack(),
     ).toEqual(
-      Buffer.from([
+      new Uint8Array([
         136 / new IS_MTC().SIZE_MULTIPLIER, // Size
         14, // Type
         0, // ReqI

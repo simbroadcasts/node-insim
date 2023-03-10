@@ -12,7 +12,7 @@ const data: PacketTestData<IS_NCI> = {
   IPAddress: '12.34.56.78',
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_NCI().SIZE_MULTIPLIER, // Size
   57, // Type
   1, // ReqI

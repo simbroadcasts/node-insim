@@ -7,7 +7,7 @@ export abstract class SendableStruct
   extends Struct
   implements Receivable, Sendable
 {
-  pack(propertyFormatOverrides?: Record<string, string>): Buffer {
+  pack(propertyFormatOverrides?: Record<string, string>) {
     const propertyNames = this.getValidPropertyNames();
 
     const values = propertyNames.map(

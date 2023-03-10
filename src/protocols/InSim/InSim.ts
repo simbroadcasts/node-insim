@@ -173,11 +173,11 @@ export class InSim extends TypedEmitter<InSimEvents> {
     return this._options;
   }
 
-  private handlePacket(data: Buffer) {
-    const header = unpack('<BB', data);
+  private handlePacket(data: Uint8Array) {
+    const header = unpack('<BB', data.buffer);
 
     if (!header) {
-      log(`Incomplete packet header received: ${data.toJSON()}`);
+      log(`Incomplete packet header received: ${data.join()}`);
       return;
     }
 

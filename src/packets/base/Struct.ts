@@ -51,11 +51,11 @@ export class Struct implements Receivable {
   }
 
   public unpack(
-    buffer: Buffer,
+    buffer: Uint8Array,
     propertyFormatOverrides?: Record<string, string>,
   ): this {
     const format = this.getFormat(propertyFormatOverrides);
-    const data = unpack(`<${format}`, buffer);
+    const data = unpack(`<${format}`, buffer.buffer);
 
     if (!data) {
       throw new InSimError(

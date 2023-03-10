@@ -12,7 +12,7 @@ const data: PacketTestData<IS_FLG> = {
   CarBehind: 14,
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_FLG().SIZE_MULTIPLIER, // Size
   32, // Type
   0, // ReqI

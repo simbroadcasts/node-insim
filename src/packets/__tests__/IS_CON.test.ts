@@ -41,7 +41,7 @@ const data: PacketTestData<IS_CON> = {
   }),
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_CON().SIZE_MULTIPLIER, // Size
   50, // Type
   0, // ReqI

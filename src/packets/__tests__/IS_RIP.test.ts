@@ -21,7 +21,7 @@ const instructionData: IS_RIP_Data = {
   RName: replayName,
 };
 
-const instructionBuffer = Buffer.from([
+const instructionBuffer = new Uint8Array([
   size / new IS_RIP().SIZE_MULTIPLIER, // Size
   48, // Type
   2, // ReqI
@@ -53,7 +53,7 @@ const infoData: Partial<Omit<PacketTestData<IS_RIP>, 'ReqI'>> &
   RName: replayName,
 };
 
-const infoBuffer = Buffer.from([
+const infoBuffer = new Uint8Array([
   size / new IS_RIP().SIZE_MULTIPLIER, // Size
   48, // Type
   2, // ReqI

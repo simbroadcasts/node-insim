@@ -29,10 +29,10 @@ export class IS_NLP extends Packet {
   /** Node and lap of each player, 1 to {@link NLP_MAX_CARS} (NumP) */
   Info: NodeLap[] = [];
 
-  unpack(buffer: Buffer): this {
+  unpack(buffer: Uint8Array): this {
     super.unpack(buffer);
 
-    const data = unpack(this.getFormat(), buffer);
+    const data = unpack(this.getFormat(), buffer.buffer);
 
     if (!data) {
       throw new InSimError('IS_MSO - Unpacked no data from buffer');

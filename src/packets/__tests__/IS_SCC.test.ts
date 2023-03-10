@@ -9,7 +9,7 @@ const data: IS_SCC_Data = {
   InGameCam: ViewIdentifier.VIEW_DRIVER,
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_SCC().SIZE_MULTIPLIER, // Size
   8, // Type
   0, // ReqI

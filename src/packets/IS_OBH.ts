@@ -42,7 +42,7 @@ export class IS_OBH extends Packet {
 
   @byte() OBHFlags: ObjectHitFlags = 0;
 
-  unpack(buffer: Buffer): this {
+  unpack(buffer: Uint8Array): this {
     const carContactOffset = 8;
 
     super.unpack(buffer);

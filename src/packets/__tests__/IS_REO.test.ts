@@ -15,7 +15,7 @@ const instructionData: IS_REO_Data = {
   PLID: plIds,
 };
 
-const instructionBuffer = Buffer.from([
+const instructionBuffer = new Uint8Array([
   size / new IS_REO().SIZE_MULTIPLIER, // Size
   36, // Type
   0, // ReqI
@@ -68,7 +68,7 @@ const infoData: Omit<PacketTestData<IS_REO>, 'ReqI'> & { ReqI: number } = {
   PLID: plIds,
 };
 
-const infoBuffer = Buffer.from([
+const infoBuffer = new Uint8Array([
   size / new IS_REO().SIZE_MULTIPLIER, // Size
   36, // Type
   2, // ReqI

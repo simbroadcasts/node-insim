@@ -38,7 +38,7 @@ export class IS_BFN extends SendablePacket {
     this.initialize(data);
   }
 
-  pack(): Buffer {
+  pack() {
     if (this.ClickID > IS_BTN.MAX_CLICK_ID) {
       throw new RangeError(
         `IS_BFN - Invalid ClickID: ${this.ClickID} - must be less than or equal to ${IS_BTN.MAX_CLICK_ID}`,

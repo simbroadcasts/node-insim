@@ -9,7 +9,7 @@ const data: IS_TINY_Data = {
   SubT: TinyType.TINY_PING,
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_TINY().SIZE_MULTIPLIER, // Size
   3, // Type
   1, // ReqI

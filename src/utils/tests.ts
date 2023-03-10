@@ -13,7 +13,7 @@ type TestPacketParams<Data extends PacketTestData<P>, P extends Packet> = {
   size: number;
   type: PacketType;
   data: Data;
-  buffer: Buffer;
+  buffer: Uint8Array;
 };
 
 export function testBothWaysPacket<
@@ -88,7 +88,7 @@ export function testInstructionPacketConstructor<
 
 export function testInstructionPacketToBuffer<Packet extends SendablePacket>(
   packet: Packet,
-  expectedBuffer: Buffer,
+  expectedBuffer: Uint8Array,
 ) {
   it('should pack data into a buffer', () => {
     const actualBuffer = packet.pack();

@@ -11,7 +11,7 @@ const data: PacketTestData<IS_TOC> = {
   NewUCID: 2,
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_TOC().SIZE_MULTIPLIER, // Size
   31, // Type
   0, // ReqI

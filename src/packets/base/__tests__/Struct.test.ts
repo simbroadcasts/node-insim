@@ -96,7 +96,7 @@ describe('Struct', () => {
       @byte() NumberProperty = 0;
     }
 
-    const buffer = Buffer.from([
+    const buffer = new Uint8Array([
       ...stringToBytes('test'), // StringProperty[6]
       0,
       0,

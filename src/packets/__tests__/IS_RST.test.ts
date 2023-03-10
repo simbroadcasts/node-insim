@@ -23,7 +23,7 @@ const data: PacketTestData<IS_RST> = {
   Split3: 65535,
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_RST().SIZE_MULTIPLIER, // Size
   17, // Type
   1, // ReqI

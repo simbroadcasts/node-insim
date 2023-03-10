@@ -17,7 +17,7 @@ const data: PacketTestData<IS_CIM> = {
   SelType: ObjectIndex.AXO_CHALK_LINE2,
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_CIM().SIZE_MULTIPLIER, // Size
   64, // Type
   0, // ReqI

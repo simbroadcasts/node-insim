@@ -9,7 +9,7 @@ const data: IS_SFP_Data = {
   OffOn: 1,
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_SFP().SIZE_MULTIPLIER, // Size
   7, // Type
   0, // ReqI

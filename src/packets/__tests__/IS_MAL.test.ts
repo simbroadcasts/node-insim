@@ -11,7 +11,7 @@ describe('IS_MAL', () => {
       SkinID: [],
     };
 
-    const instructionBuffer = Buffer.from([
+    const instructionBuffer = new Uint8Array([
       size / new IS_MAL().SIZE_MULTIPLIER, // Size
       65, // Type
       0, // ReqI
@@ -29,7 +29,7 @@ describe('IS_MAL', () => {
       SkinID: [],
     };
 
-    const infoBuffer = Buffer.from([
+    const infoBuffer = new Uint8Array([
       size / new IS_MAL().SIZE_MULTIPLIER, // Size
       65, // Type
       1, // ReqI
@@ -63,7 +63,7 @@ describe('IS_MAL', () => {
       SkinID: ['5882E6', '238F06'],
     };
 
-    const instructionBuffer = Buffer.from([
+    const instructionBuffer = new Uint8Array([
       size / new IS_MAL().SIZE_MULTIPLIER, // Size
       65, // Type
       0, // ReqI
@@ -89,7 +89,7 @@ describe('IS_MAL', () => {
       SkinID: ['5882E6', '238F06'],
     };
 
-    const infoBuffer = Buffer.from([
+    const infoBuffer = new Uint8Array([
       size / new IS_MAL().SIZE_MULTIPLIER, // Size
       65, // Type
       1, // ReqI

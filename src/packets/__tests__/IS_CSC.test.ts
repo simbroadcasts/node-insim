@@ -18,7 +18,7 @@ const data: PacketTestData<IS_CSC> = {
   }),
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_CSC().SIZE_MULTIPLIER, // Size
   63, // Type
   0, // ReqI

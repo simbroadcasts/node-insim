@@ -14,7 +14,7 @@ const data: PacketTestData<IS_III> = {
   Msg: msg,
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_III().SIZE_MULTIPLIER, // Size
   12, // Type
   0, // ReqI

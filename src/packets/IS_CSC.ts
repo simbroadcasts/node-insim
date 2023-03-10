@@ -28,7 +28,7 @@ export class IS_CSC extends Packet {
   /** Car contact object */
   @struct(CarContOBJ) C: CarContOBJ = new CarContOBJ();
 
-  unpack(buffer: Buffer): this {
+  unpack(buffer: Uint8Array): this {
     super.unpack(buffer);
 
     const carContactOffset = 12;

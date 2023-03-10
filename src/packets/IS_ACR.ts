@@ -30,8 +30,8 @@ export class IS_ACR extends Packet {
   /** 4, 8, 12... 64 characters - last byte is zero */
   @string(64) Text = '';
 
-  unpack(buffer: Buffer): this {
-    const data = unpack(`<${getFormat(this, 'Size')}`, buffer);
+  unpack(buffer: Uint8Array): this {
+    const data = unpack(`<${getFormat(this, 'Size')}`, buffer.buffer);
 
     if (!data || data.length === 0) {
       throw new InSimError('IS_ACR - Unpacked no data from buffer');

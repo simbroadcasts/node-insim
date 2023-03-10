@@ -18,7 +18,7 @@ const data: IS_JRR_Data = {
   }),
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_JRR().SIZE_MULTIPLIER, // Size
   58, // Type
   0, // ReqI

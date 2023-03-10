@@ -9,7 +9,7 @@ const data: IS_SCH_Data = {
   Flags: CharacterModifiers.SHIFT,
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_SCH().SIZE_MULTIPLIER, // Size
   6, // Type
   0, // ReqI

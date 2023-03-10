@@ -15,7 +15,7 @@ const data: PacketTestData<IS_SPX> = {
   Fuel200: 40,
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_SPX().SIZE_MULTIPLIER, // Size
   25, // Type
   0, // ReqI

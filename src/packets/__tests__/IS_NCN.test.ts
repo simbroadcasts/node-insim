@@ -17,7 +17,7 @@ const data: PacketTestData<IS_NCN> = {
   Flags: ConnectionFlags.REMOTE,
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_NCN().SIZE_MULTIPLIER, // Size
   18, // Type
   2, // ReqI

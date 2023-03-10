@@ -31,7 +31,7 @@ const data: PacketTestData<IS_STA> = {
   Wind: Wind.STRONG,
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_STA().SIZE_MULTIPLIER, // Size
   5, // Type
   1, // ReqI

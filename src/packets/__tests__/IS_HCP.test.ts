@@ -137,7 +137,7 @@ const data: IS_HCP_Data = {
   ],
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_HCP().SIZE_MULTIPLIER, // Size
   56, // Type
   0, // ReqI

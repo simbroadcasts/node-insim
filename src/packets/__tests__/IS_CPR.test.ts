@@ -11,7 +11,7 @@ const data: PacketTestData<IS_CPR> = {
   Plate: '12345678',
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_CPR().SIZE_MULTIPLIER, // Size
   20, // Type
   0, // ReqI

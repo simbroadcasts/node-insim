@@ -45,7 +45,7 @@ export class IS_ISI extends SendablePacket {
     this.initialize(data);
   }
 
-  pack(): Buffer {
+  pack() {
     if (this.IName.length > INAME_MAX_LENGTH) {
       this.IName = this.IName.substring(0, INAME_MAX_LENGTH);
     }

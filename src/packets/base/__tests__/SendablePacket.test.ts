@@ -44,7 +44,7 @@ describe('SendablePacket', () => {
         @byteArray(4) NumberArray = [];
       }
 
-      const buffer = Buffer.from([
+      const buffer = new Uint8Array([
         8 / new CustomPacket().SIZE_MULTIPLIER, // Size
         PacketType.ISP_NCN, // Type
         2, // ReqI
@@ -78,7 +78,7 @@ describe('SendablePacket', () => {
         @struct(TestStruct) Struct = new TestStruct();
       }
 
-      const expectedBuffer = Buffer.from([
+      const expectedBuffer = new Uint8Array([
         8 / new CustomPacket().SIZE_MULTIPLIER, // Size
         PacketType.ISP_ISI, // Type
         2, // ReqI

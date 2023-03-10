@@ -10,7 +10,7 @@ const data: IS_SMALL_Data = {
   UVal: 257,
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_SMALL().SIZE_MULTIPLIER, // Size
   4, // Type
   1, // ReqI

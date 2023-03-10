@@ -22,7 +22,7 @@ export class IS_MSX extends SendablePacket {
     this.initialize(data);
   }
 
-  pack(): Buffer {
+  pack() {
     if (this.Msg.length >= MSG_MAX_LENGTH - 1) {
       this.Msg = this.Msg.substring(0, MSG_MAX_LENGTH - 1);
     }

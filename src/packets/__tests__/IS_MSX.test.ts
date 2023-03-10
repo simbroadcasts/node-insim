@@ -8,7 +8,7 @@ const data: IS_MSX_Data = {
   Msg: 'You know that this is a very long text message whose length can be up to ninety five characters',
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_MSX().SIZE_MULTIPLIER, // Size
   39, // Type
   0, // ReqI
@@ -32,7 +32,7 @@ describe('IS_MSX', () => {
         Msg: 'You know that this is a very long text message whose length can be up to ninety six characters!!',
       }).pack(),
     ).toEqual(
-      Buffer.from([
+      new Uint8Array([
         size / new IS_MSX().SIZE_MULTIPLIER, // Size
         39, // Type
         0, // ReqI

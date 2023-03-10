@@ -16,7 +16,7 @@ const data: PacketTestData<IS_LAP> = {
   Fuel200: 40,
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_LAP().SIZE_MULTIPLIER, // Size
   24, // Type
   0, // ReqI

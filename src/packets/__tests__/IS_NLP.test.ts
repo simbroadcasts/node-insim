@@ -23,7 +23,7 @@ const data: PacketTestData<IS_NLP> = {
   ],
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_NLP().SIZE_MULTIPLIER, // Size
   37, // Type
   1, // ReqI

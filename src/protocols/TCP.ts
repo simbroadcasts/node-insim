@@ -50,7 +50,7 @@ export class TCP extends EventEmitter {
     });
   };
 
-  send = (data: Buffer) => {
+  send = (data: Uint8Array) => {
     if (this.stream === null) {
       log('Cannot send data - not connected');
       return;

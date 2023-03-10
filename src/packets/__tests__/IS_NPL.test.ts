@@ -43,7 +43,7 @@ const data: PacketTestData<IS_NPL> = {
   Fuel: 34,
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_NPL().SIZE_MULTIPLIER, // Size
   21, // Type
   0, // ReqI

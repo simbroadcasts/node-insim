@@ -11,7 +11,7 @@ const data: IS_MOD_Data = {
   Height: 1080,
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_MOD().SIZE_MULTIPLIER, // Size
   15, // Type
   0, // ReqI

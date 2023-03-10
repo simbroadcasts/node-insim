@@ -105,7 +105,7 @@ export class IS_BTN extends SendablePacket {
     this.initialize(data);
   }
 
-  pack(): Buffer {
+  pack() {
     if (this.ReqI === 0) {
       throw new RangeError('IS_BTN - ReqI must be greater than 0');
     }

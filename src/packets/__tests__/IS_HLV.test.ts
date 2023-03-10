@@ -19,7 +19,7 @@ const data: PacketTestData<IS_HLV> = {
   }),
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_HLV().SIZE_MULTIPLIER, // Size
   52, // Type
   0, // ReqI

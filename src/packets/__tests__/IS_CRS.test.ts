@@ -9,7 +9,7 @@ const data: PacketTestData<IS_CRS> = {
   PLID: 2,
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_CRS().SIZE_MULTIPLIER, // Size
   41, // Type
   0, // ReqI

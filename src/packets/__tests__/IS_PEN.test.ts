@@ -12,7 +12,7 @@ const data: PacketTestData<IS_PEN> = {
   Reason: PenaltyReason.PENR_SPEEDING,
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_PEN().SIZE_MULTIPLIER, // Size
   30, // Type
   0, // ReqI

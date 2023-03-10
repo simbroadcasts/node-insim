@@ -16,7 +16,7 @@ const data: PacketTestData<IS_PIT> = {
     PlayerFlags.PIF_MOUSE,
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_PIT().SIZE_MULTIPLIER, // Size
   26, // Type
   0, // ReqI

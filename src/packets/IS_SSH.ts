@@ -37,7 +37,7 @@ export class IS_SSH extends SendablePacket {
     this.initialize(data);
   }
 
-  pack(): Buffer {
+  pack() {
     if (this.ReqI === 0) {
       throw new RangeError('IS_SSH - ReqI must be greater than 0');
     }

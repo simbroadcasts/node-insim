@@ -43,7 +43,7 @@ export class IS_REO extends SendablePacket {
     this.initialize(data);
   }
 
-  pack(): Buffer {
+  pack() {
     if (this.PLID.length > this.MAX_DRIVERS) {
       throw new RangeError(
         `IS_REO - Too many players (max is ${this.MAX_DRIVERS}`,

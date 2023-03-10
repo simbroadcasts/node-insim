@@ -12,7 +12,7 @@ describe('IS_SLC', () => {
       CName: 'XRT',
     };
 
-    const buffer = Buffer.from([
+    const buffer = new Uint8Array([
       size / new IS_SLC().SIZE_MULTIPLIER, // Size
       62, // Type
       3, // ReqI
@@ -39,7 +39,7 @@ describe('IS_SLC', () => {
       CName: '5882E6',
     };
 
-    const buffer = Buffer.from([
+    const buffer = new Uint8Array([
       size / new IS_SLC().SIZE_MULTIPLIER, // Size
       62, // Type
       3, // ReqI

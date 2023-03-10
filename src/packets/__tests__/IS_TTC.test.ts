@@ -13,7 +13,7 @@ const data: IS_TTC_Data = {
   B3: 3,
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_TTC().SIZE_MULTIPLIER, // Size
   61, // Type
   7, // ReqI

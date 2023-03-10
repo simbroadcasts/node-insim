@@ -8,7 +8,7 @@ const data: PacketTestData<IS_AXO> = {
   PLID: 3,
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_AXO().SIZE_MULTIPLIER, // Size
   44, // Type
   0, // ReqI

@@ -16,7 +16,7 @@ const instructionData: IS_SSH_Data = {
   Name: name,
 };
 
-const instructionBuffer = Buffer.from([
+const instructionBuffer = new Uint8Array([
   size / new IS_SSH().SIZE_MULTIPLIER, // Size
   49, // Type
   2, // ReqI
@@ -36,7 +36,7 @@ const infoData: Partial<Omit<PacketTestData<IS_SSH>, 'ReqI'>> &
   Name: name,
 };
 
-const infoBuffer = Buffer.from([
+const infoBuffer = new Uint8Array([
   size / new IS_SSH().SIZE_MULTIPLIER, // Size
   49, // Type
   2, // ReqI

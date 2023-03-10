@@ -9,7 +9,7 @@ const data: IS_PLC_Data = {
   Cars: CarFlags.FOX | CarFlags.LX6 | CarFlags.XRT,
 };
 
-const buffer = Buffer.from([
+const buffer = new Uint8Array([
   size / new IS_PLC().SIZE_MULTIPLIER, // Size
   53, // Type
   0, // ReqI
