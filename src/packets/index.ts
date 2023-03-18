@@ -13,7 +13,8 @@ export { IS_AXO } from './IS_AXO';
 export type { IS_BFN_Data } from './IS_BFN';
 export { IS_BFN } from './IS_BFN';
 export { IS_BTC } from './IS_BTC';
-export { IS_BTN, IS_BTN_Data } from './IS_BTN';
+export type { IS_BTN_Data } from './IS_BTN';
+export { IS_BTN } from './IS_BTN';
 export { IS_BTT } from './IS_BTT';
 export { IS_CCH } from './IS_CCH';
 export { IS_CIM } from './IS_CIM';
@@ -74,21 +75,26 @@ export { IS_RIP } from './IS_RIP';
 export { IS_RST } from './IS_RST';
 export type { IS_SCC_Data } from './IS_SCC';
 export { IS_SCC } from './IS_SCC';
-export { IS_SCH, IS_SCH_Data } from './IS_SCH';
+export type { IS_SCH_Data } from './IS_SCH';
+export { IS_SCH } from './IS_SCH';
 export type { IS_SFP_Data, SendableStateFlags } from './IS_SFP';
 export { IS_SFP } from './IS_SFP';
 export { IS_SLC } from './IS_SLC';
+export type { IS_SMALL_Data } from './IS_SMALL';
+export type { SendableSmallType } from './IS_SMALL';
 export { IS_SMALL, SENDABLE_SMALL_TYPES } from './IS_SMALL';
-export { IS_SMALL_Data, SendableSmallType } from './IS_SMALL';
 export { IS_SPX } from './IS_SPX';
 export type { IS_SSH_Data } from './IS_SSH';
 export { IS_SSH } from './IS_SSH';
 export { IS_STA } from './IS_STA';
-export type { InfoRequestTinyType, SendableTinyType } from './IS_TINY';
+export type {
+  InfoRequestTinyType,
+  IS_TINY_Data,
+  SendableTinyType,
+} from './IS_TINY';
 export {
   INFO_REQUEST_TINY_TYPES,
   IS_TINY,
-  IS_TINY_Data,
   SENDABLE_TINY_TYPES,
 } from './IS_TINY';
 export { IS_TOC } from './IS_TOC';
