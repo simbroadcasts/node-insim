@@ -71,6 +71,6 @@ export function carName() {
   return Reflect.metadata(formatMetadataKey, 'C');
 }
 
-export function getFormat<T>(target: T, propertyKey: string) {
+export function getFormat<T extends object>(target: T, propertyKey: string) {
   return Reflect.getMetadata(formatMetadataKey, target, propertyKey);
 }
