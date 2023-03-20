@@ -106,6 +106,17 @@ function onVersion(packet: IS_VER, inSim: InSim) {
 }
 ```
 
+### Debugging
+
+Node InSim uses the [`debug` NPM package](https://github.com/debug-js/debug) for debug logs. By default, Node InSim does not output any logs to the standard output.
+
+To enable logging, use the `DEBUG` environment variable when running your InSim application. All logs are prefixed with `node-insim`. You can use wildcards to filter out the logs that you need.
+
+```sh
+DEBUG=* node insim.js # debug all messages
+DEBUG=node-insim:tcp node insim.js # debug only TCP protocol messages
+```
+
 ## Development
 
 ### Requirements
