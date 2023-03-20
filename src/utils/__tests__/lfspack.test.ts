@@ -1,4 +1,4 @@
-import { pack, unpack } from './lfspack';
+import { pack, unpack } from '../lfspack';
 
 const map = new Map<[string, unknown[]], number[]>([
   // char
