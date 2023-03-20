@@ -27,7 +27,8 @@
     "lint:fix": "eslint \"./src/**/*\" --ext .js,.ts --fix",
     "generate": "run-s \"generate:plop {@}\" lint:fix format --",
     "generate:plop": "plop",
-    "dist": "cd dist && npm publish"
+    "dist": "cd dist && npm publish",
+    "prepare": "run-s build"
   },
   "dependencies": {
     "debug": "^4.3.4",
