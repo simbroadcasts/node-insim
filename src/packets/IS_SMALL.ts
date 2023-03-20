@@ -37,4 +37,4 @@ export const SENDABLE_SMALL_TYPES = [
   SmallType.SMALL_LCS,
 ] as const;
 
-export type SendableSmallType = typeof SENDABLE_SMALL_TYPES[number];
+export type SendableSmallType = (typeof SENDABLE_SMALL_TYPES)[number];

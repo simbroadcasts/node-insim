@@ -2,8 +2,14 @@ import defaults from 'lodash/defaults';
 import { TypedEmitter } from 'tiny-typed-emitter';
 
 import { InSimError } from '../../errors';
-import type { IS_ISI_Data, Packet, SendablePacket } from '../../packets';
-import { IS_ISI, IS_TINY, PacketType, TinyType } from '../../packets';
+import type { IS_ISI_Data, SendablePacket } from '../../packets';
+import {
+  IS_ISI,
+  IS_TINY,
+  PacketType,
+  packetTypeToClass,
+  TinyType,
+} from '../../packets';
 import { log as baseLog, unpack } from '../../utils';
 import { TCP } from '../TCP';
 import type { InSimEvents, InSimPacketEvents } from './InSimEvents';
@@ -173,7 +179,7 @@ export class InSim extends TypedEmitter<InSimEvents> {
     return this._options;
   }
 
-  private handlePacket(data: Uint8Array) {
+  private async handlePacket(data: Uint8Array) {
     const header = unpack('<BB', data.buffer);
 
     if (!header) {
@@ -181,28 +187,19 @@ export class InSim extends TypedEmitter<InSimEvents> {
       return;
     }
 
-    const packetType: PacketType = header[1] as PacketType;
+    const packetType = header[1];
 
-    const packetTypeString = PacketType[packetType];
+    const packetTypeString = PacketType[packetType as PacketType];
 
     if (packetTypeString === undefined) {
       log(`Unknown packet type received: ${packetType}`);
       return;
     }
 
-    const packetClassName = packetTypeString
-      .replace(/^ISP_/, 'IS_')
-      .replace(/^IRP_/, 'IR_');
-    let PacketClass: new () => Packet;
+    const PacketClass = packetTypeToClass[packetType as PacketType];
 
-    try {
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      const packetModule = require(`../../packets/${packetClassName}`);
-      PacketClass = packetModule[packetClassName];
-    } catch (e) {
-      log(
-        `Packet handler not found for ${packetTypeString} (class ${packetClassName})`,
-      );
+    if (PacketClass === undefined) {
+      log(`Packet handler not found for ${packetTypeString}`);
       return;
     }
 

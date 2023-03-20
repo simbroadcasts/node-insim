@@ -86,6 +86,6 @@ export const INFO_REQUEST_TINY_TYPES = [
   TinyType.TINY_MAL,
 ] as const;
 
-export type SendableTinyType = typeof SENDABLE_TINY_TYPES[number];
+export type SendableTinyType = (typeof SENDABLE_TINY_TYPES)[number];
 
-export type InfoRequestTinyType = typeof INFO_REQUEST_TINY_TYPES[number];
+export type InfoRequestTinyType = (typeof INFO_REQUEST_TINY_TYPES)[number];
