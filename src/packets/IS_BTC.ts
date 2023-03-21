@@ -23,7 +23,7 @@ export class IS_BTC extends Packet {
   @byte() Inst = 0;
 
   /** Button click flags */
-  @byte() CFlags: ButtonClickFlags = 0;
+  @byte() CFlags: ButtonClickFlags | 0 = 0;
 
   @byte() private readonly Sp3 = 0;
 }

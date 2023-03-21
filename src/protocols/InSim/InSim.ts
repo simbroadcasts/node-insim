@@ -4,6 +4,7 @@ import { TypedEmitter } from 'tiny-typed-emitter';
 import { InSimError } from '../../errors';
 import type { IS_ISI_Data, SendablePacket } from '../../packets';
 import {
+  InSimFlags,
   IS_ISI,
   IS_TINY,
   PacketType,
@@ -231,7 +232,7 @@ const defaultInSimOptions: InSimOptions = {
   Port: 29999,
   ReqI: 0,
   UDPPort: 0,
-  Flags: 0,
+  Flags: InSimFlags.ISF_RES_0,
   InSimVer: InSim.INSIM_VERSION,
   Prefix: '',
   Interval: 0,

@@ -22,7 +22,7 @@ export class IS_SCH extends SendablePacket {
   @byte() CharB = 0;
 
   /** Bit 0: Shift / bit 1: Ctrl */
-  @byte() Flags: CharacterModifiers = 0;
+  @byte() Flags: CharacterModifiers | 0 = 0;
 
   @byte() private readonly Spare2 = 0;
   @byte() private readonly Spare3 = 0;

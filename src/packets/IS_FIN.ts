@@ -26,7 +26,7 @@ export class IS_FIN extends Packet {
   @byte() NumStops = 0;
 
   /** Confirmation flags: disqualified etc. */
-  @byte() Confirm: ConfirmationFlags = 0;
+  @byte() Confirm: ConfirmationFlags | 0 = 0;
 
   @byte() readonly SpB = 0;
 
@@ -34,5 +34,5 @@ export class IS_FIN extends Packet {
   @word() LapsDone = 0;
 
   /** Player flags: help settings etc. */
-  @word() Flags: PlayerFlags = 0;
+  @word() Flags: PlayerFlags | 0 = 0;
 }

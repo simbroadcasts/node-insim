@@ -44,7 +44,7 @@ export class IS_RST extends Packet {
   @byte() Wind: Wind = 0;
 
   /** Race flags (must pit, can reset, etc.) */
-  @word() Flags: RaceFlags = 0;
+  @word() Flags: RaceFlags | 0 = 0;
 
   /** Total number of nodes in the path */
   @word() NumNodes = 0;

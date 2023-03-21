@@ -17,7 +17,7 @@ export class CompCar extends Struct {
   @byte() Position = 0;
 
   /** Flags and other info */
-  @byte() Info: CompCarFlags = 0;
+  @byte() Info: CompCarFlags | 0 = 0;
 
   @byte() private readonly Sp3 = 0;
 

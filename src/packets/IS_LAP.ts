@@ -24,7 +24,7 @@ export class IS_LAP extends Packet {
   @word() LapsDone = 0;
 
   /** Player flags */
-  @word() Flags: PlayerFlags = 0;
+  @word() Flags: PlayerFlags | 0 = 0;
 
   @byte() private readonly Sp0 = 0;
 

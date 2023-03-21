@@ -11,7 +11,7 @@ export class HInfo extends Struct {
   @string(6) Track = '';
 
   /** Info flags about the host */
-  @byte() Flags: HostInfoFlags = 0;
+  @byte() Flags: HostInfoFlags | 0 = 0;
 
   /** Number of people on the host */
   @byte() NumConns = 0;

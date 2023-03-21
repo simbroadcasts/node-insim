@@ -1,13 +1,7 @@
 import { byte, float, string, word } from '../utils';
 import { Packet } from './base';
-import type {
-  RaceState,
-  ServerStatus,
-  StateFlags,
-  ViewIdentifier,
-  Wind,
-} from './enums';
-import { PacketType } from './enums';
+import type { RaceState, ServerStatus, StateFlags, Wind } from './enums';
+import { PacketType, ViewIdentifier } from './enums';
 
 /**
  * STAte
@@ -30,11 +24,11 @@ export class IS_STA extends Packet {
   @float() ReplaySpeed = 0;
 
   /** ISS state flags */
-  @word() Flags: StateFlags = 0;
+  @word() Flags: StateFlags | 0 = 0;
 
   /** Which type of camera is selected (which is still selected
    * even if LFS is actually in SHIFT+U mode) */
-  @byte() InGameCam: ViewIdentifier = 0;
+  @byte() InGameCam: ViewIdentifier = ViewIdentifier.VIEW_FOLLOW;
 
   /** Unique ID of viewed player (0 = none) */
   @byte() ViewPLID = 0;

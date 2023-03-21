@@ -40,7 +40,7 @@ export class IS_OBH extends Packet {
   /** AXO_x as in {@link ObjectInfo} or zero if it is an unknown object */
   @byte() Index: ObjectIndex = 0;
 
-  @byte() OBHFlags: ObjectHitFlags = 0;
+  @byte() OBHFlags: ObjectHitFlags | 0 = 0;
 
   unpack(buffer: Uint8Array): this {
     const carContactOffset = 8;

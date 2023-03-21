@@ -48,7 +48,7 @@ export class IS_RES extends Packet {
   @word() LapsDone = 0;
 
   /** Player flags: help settings etc. */
-  @word() Flags: PlayerFlags = 0;
+  @word() Flags: PlayerFlags | 0 = 0;
 
   /** Finish or qualify pos (0 = win / 255 = not added to table) */
   @byte() ResultNum = 0;

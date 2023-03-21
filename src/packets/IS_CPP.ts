@@ -58,7 +58,7 @@ export class IS_CPP extends SendablePacket {
   @word() Time = 0;
 
   /** ISS state flags */
-  @word() Flags: AllowedStateFlags = 0;
+  @word() Flags: AllowedStateFlags | 0 = 0;
 
   constructor(data?: IS_CPP_Data) {
     super();

@@ -1,7 +1,6 @@
 import { byte } from '../utils';
 import { Packet } from './base';
-import type { FlagType } from './enums';
-import { PacketType } from './enums';
+import { FlagType, PacketType } from './enums';
 
 /**
  * FLaG (yellow or blue flag changed)
@@ -18,7 +17,7 @@ export class IS_FLG extends Packet {
   @byte() OffOn: 0 | 1 = 0;
 
   /** 1 = given blue / 2 = causing yellow */
-  @byte() Flag: FlagType = 0;
+  @byte() Flag: FlagType = FlagType.YELLOW;
 
   /** Unique id of obstructed player */
   @byte() CarBehind = 0;

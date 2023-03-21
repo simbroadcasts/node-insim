@@ -14,7 +14,7 @@ export class IS_SFP extends SendablePacket {
   @byte() readonly Zero = 0;
 
   /** The state to set */
-  @word() Flag: SendableStateFlags = 0;
+  @word() Flag: SendableStateFlags | 0 = 0;
 
   /** 0 = off / 1 = on */
   @byte() OffOn: 0 | 1 = 0;

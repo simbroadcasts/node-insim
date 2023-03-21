@@ -1,14 +1,13 @@
 import { byte, string, word } from '../utils';
 import { Packet } from './base';
 import type {
-  CarConfiguration,
   PassengerFlags,
   PlayerFlags,
   PlayerType,
   SetupFlags,
   TyreCompound,
 } from './enums';
-import { PacketType } from './enums';
+import { CarConfiguration, PacketType } from './enums';
 
 /**
  * New PLayer joining race (if PLID already exists, then leaving pits)
@@ -27,10 +26,10 @@ export class IS_NPL extends Packet {
   @byte() UCID = 0;
 
   /** Bit 0: female / bit 1: AI / bit 2: remote */
-  @byte() PType: PlayerType = 0;
+  @byte() PType: PlayerType | 0 = 0;
 
   /** Player flags */
-  @word() Flags: PlayerFlags = 0;
+  @word() Flags: PlayerFlags | 0 = 0;
 
   /** Nickname */
   @string(24) PName = '';
@@ -66,7 +65,7 @@ export class IS_NPL extends Packet {
   @byte() Model = 0;
 
   /** Passengers byte */
-  @byte() Pass: PassengerFlags = 0;
+  @byte() Pass: PassengerFlags | 0 = 0;
 
   /** Low 4 bits: tyre width reduction (rear) */
   @byte() RWAdj = 0;
@@ -78,7 +77,7 @@ export class IS_NPL extends Packet {
   @byte() private readonly Sp3 = 0;
 
   /** Setup flags */
-  @byte() SetF: SetupFlags = 0;
+  @byte() SetF: SetupFlags | 0 = 0;
 
   /** Number in race - ZERO if this is a join request */
   @byte() NumP = 0;
@@ -89,7 +88,7 @@ export class IS_NPL extends Packet {
    * - UF1 / LX4 / LX6: 0 = DEFAULT / 1 = OPEN ROOF
    * - GTR racing cars: 0 = DEFAULT / 1 = ALTERNATE
    * */
-  @byte() Config: CarConfiguration = 0;
+  @byte() Config: CarConfiguration = CarConfiguration.DEFAULT;
 
   /** /showfuel yes: fuel percent / no: 255 */
   @byte() Fuel = 0;

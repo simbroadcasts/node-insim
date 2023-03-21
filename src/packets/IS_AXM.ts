@@ -1,7 +1,7 @@
 import { byte } from '../utils';
 import { SendablePacket } from './base';
-import type { PMOAction, PMOFlags } from './enums';
-import { PacketType } from './enums';
+import type { PMOFlags } from './enums';
+import { PacketType, PMOAction } from './enums';
 import { ObjectInfo } from './structs';
 import type { PacketData } from './types';
 
@@ -30,8 +30,8 @@ export class IS_AXM extends SendablePacket {
   /** Unique id of the connection that sent the packet */
   @byte() UCID = 0;
 
-  @byte() PMOAction: PMOAction = 0;
-  @byte() PMOFlags: PMOFlags = 0;
+  @byte() PMOAction: PMOAction = PMOAction.PMO_LOADING_FILE;
+  @byte() PMOFlags: PMOFlags | 0 = 0;
   @byte() private readonly Sp3 = 0;
 
   Info: ObjectInfo[] = [];

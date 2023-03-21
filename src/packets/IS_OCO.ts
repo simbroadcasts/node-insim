@@ -1,12 +1,7 @@
 import { byte } from '../utils';
 import { SendablePacket } from './base';
-import type {
-  ObjectIndex,
-  OCOAction,
-  OCOAutocrossStartLights,
-  OCOMainLights,
-} from './enums';
-import { PacketType } from './enums';
+import type { OCOAutocrossStartLights, OCOMainLights } from './enums';
+import { ObjectIndex, OCOAction, PacketType } from './enums';
 import type { PacketData } from './types';
 
 /**
@@ -18,10 +13,10 @@ export class IS_OCO extends SendablePacket {
   @byte() readonly ReqI = 0;
   @byte() private readonly Zero = 0;
 
-  @byte() OCOAction: OCOAction = 0;
+  @byte() OCOAction: OCOAction = OCOAction.OCO_ZERO;
 
   /** Specifies which lights you want to override **/
-  @byte() Index: ObjectIndex = 0;
+  @byte() Index: ObjectIndex = ObjectIndex.AXO_NULL;
 
   /**
    * Identify particular start lights objects (0 to 63 or 255 = all)
@@ -49,7 +44,7 @@ export class IS_OCO extends SendablePacket {
    * - bit 1 (2): amber
    * - bit 3 (8): green
    * */
-  @byte() Data: OCOMainLights | OCOAutocrossStartLights = 0;
+  @byte() Data: OCOMainLights | OCOAutocrossStartLights | 0 = 0;
 
   constructor(data?: IS_OCO_Data) {
     super();

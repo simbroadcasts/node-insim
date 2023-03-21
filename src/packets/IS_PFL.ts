@@ -15,7 +15,7 @@ export class IS_PFL extends Packet {
   @byte() PLID = 0;
 
   /** Player flags */
-  @word() Flags: PlayerFlags = 0;
+  @word() Flags: PlayerFlags | 0 = 0;
 
   @word() private readonly Spare = 0;
 }

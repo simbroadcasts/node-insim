@@ -7,7 +7,7 @@ export class CarContact extends Struct {
   @byte() PLID = 0;
 
   /** Like Info byte in {@link CompCar} (CCI_BLUE / CCI_YELLOW / CCI_LAG) */
-  @byte() Info: CarContactFlags = 0;
+  @byte() Info: CarContactFlags | 0 = 0;
 
   @byte() private readonly Sp2 = 0;
 

@@ -37,7 +37,7 @@ export class IS_RIP extends SendablePacket {
    *
    * NOTE: {@link RIPOPT_FULL_PHYS} makes MPR searching much slower so should not normally be used. This flag was added to allow high accuracy {@link IS_MCI} packets to be output when fast forwarding.
    * */
-  @byte() Options: ReplayOptions = 0;
+  @byte() Options: ReplayOptions | 0 = 0;
 
   @byte() private readonly Sp3 = 0;
 
