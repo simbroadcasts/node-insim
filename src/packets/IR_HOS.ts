@@ -1,7 +1,7 @@
 import { byte } from '../utils';
 import { Packet } from './base';
 import { PacketType } from './enums';
-import { HInfo } from './structs/HInfo';
+import { HInfo } from './structs';
 
 /**
  * Hostlist (hosts connected to the Relay)
