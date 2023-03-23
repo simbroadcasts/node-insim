@@ -1,6 +1,6 @@
 export enum InSimRelayError {
   /** Invalid packet sent by client (wrong structure / length) */
-  IR_ERR_PACKET,
+  IR_ERR_PACKET = 1,
 
   /** Invalid packet sent by client (packet was not allowed to be forwarded to host) */
   IR_ERR_PACKET2,
