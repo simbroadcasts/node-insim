@@ -171,8 +171,12 @@ Compiled files will be created in `dist/`.
 yarn build
 ```
 
-### Publish NPM package
+### Bump package version
 
 ```shell
-yarn dist
+yarn bump # patch by default
+yarn bump patch
+yarn bump minor
+yarn bump major
+yarn bump 1.2.3
 ```
