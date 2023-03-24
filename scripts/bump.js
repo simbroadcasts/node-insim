@@ -74,8 +74,9 @@ rl.question(
 ${chalk.yellow(`❗️> Caution this script will create a commit and a tag, then it pushes the current branch and the newly created tag.
 Be sure you have the latest version of your branch.`)}
 
-  Directory:      ➡️ ${projectDirectory}
-  Current branch: ➡️ ${currentBranch} ${currentBranchReleaseWarning()}
+  Directory:      ${projectDirectory}
+  Current branch: ${currentBranch} ${currentBranchReleaseWarning()}
+  Tag:            ${tag}
 
   Is this diff ok for you? Should I commit and push? [y/N] `,
   (answer) => {
