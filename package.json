@@ -33,10 +33,8 @@
   "private": false,
   "scripts": {
     "prebuild": "rimraf ./dist",
-    "build": "run-s build:cjs build:esm build:ts",
-    "build:base": "esbuild src/index.ts src/packets/index.ts src/protocols/index.ts --bundle --platform=node --target=node18 --packages=external --outdir=dist --tsconfig=tsconfig.app.json",
-    "build:cjs": "run-s \"build:base --out-extension:.js=.cjs --format=cjs\"",
-    "build:esm": "run-s \"build:base --out-extension:.js=.esm.js --format=esm\"",
+    "build": "run-s build:js build:ts",
+    "build:js": "node ./scripts/build.js",
     "build:ts": "tsc -p tsconfig.app.json",
     "dev": "cross-env DEBUG=* tsx watch ./src/index.ts",
     "dev:nodebug": "tsx watch ./src/index.ts",
