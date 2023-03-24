@@ -150,9 +150,70 @@ export const packetTypeToClass: Record<PacketType, new () => Packet> = {
   [PacketType.IRP_SEL]: IR_SEL,
   [PacketType.IRP_ERR]: IR_ERR,
 };
-export { PacketType };
-export * from './base';
-export * from './enums';
+
+export { Packet, SendablePacket, SendableStruct, Struct } from './base';
+export {
+  AdminCommandResult,
+  ButtonClickFlags,
+  ButtonFunction,
+  ButtonStyle,
+  ButtonTextColour,
+  CarConfiguration,
+  CarContactFlags,
+  CarFlags,
+  CharacterModifiers,
+  CompCarFlags,
+  ConfirmationFlags,
+  ConnectionFlags,
+  CSCAction,
+  FlagType,
+  GarageInterfaceSubmode,
+  HLVCViolation,
+  HostInfoFlags,
+  InSimFlags,
+  InSimRelayError,
+  InterfaceMode,
+  JRRAction,
+  Language,
+  LeaveReason,
+  MessageSound,
+  NormalInterfaceSubmode,
+  ObjectHitFlags,
+  ObjectIndex,
+  OCOAction,
+  OCOAutocrossStartLights,
+  OCOMainLights,
+  PacketType,
+  PassengerFlags,
+  PenaltyReason,
+  PenaltyValue,
+  PitLaneFact,
+  PitWorkFlags,
+  PlayerFlags,
+  PlayerType,
+  PMOAction,
+  PMOFlags,
+  RaceFlags,
+  RaceState,
+  ReplayError,
+  ReplayMode,
+  ReplayOptions,
+  ScreenshotError,
+  ServerStatus,
+  SetupFlags,
+  ShiftUInterfaceSubmode,
+  SmallType,
+  StateFlags,
+  TargetToConnectionType,
+  TinyType,
+  TypeIn,
+  TyreCompound,
+  UCOAction,
+  UserType,
+  ViewIdentifier,
+  VoteAction,
+  Wind,
+} from './enums';
 export { IR_ARP } from './IR_ARP';
 export type { IR_ARQ_Data } from './IR_ARQ';
 export { IR_ARQ } from './IR_ARQ';
@@ -260,5 +321,21 @@ export { IS_TTC } from './IS_TTC';
 export { IS_UCO } from './IS_UCO';
 export { IS_VER } from './IS_VER';
 export { IS_VTN } from './IS_VTN';
-export * from './structs';
-export * from './types';
+export {
+  CarContact,
+  CarContOBJ,
+  CarHCP,
+  CompCar,
+  HInfo,
+  NodeLap,
+  ObjectInfo,
+} from './structs';
+export {
+  PacketData,
+  PacketDataWithOptionalReqI,
+  PacketDataWithRequiredReqI,
+  ReadonlyPropNames,
+  Receivable,
+  Sendable,
+  StructData,
+} from './types';
