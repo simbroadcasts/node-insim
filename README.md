@@ -107,6 +107,17 @@ function onVersion(packet: IS_VER, inSim: InSim) {
 }
 ```
 
+### Example Applications
+
+In the [`examples/`](./examples) 
+folder, there are example Node.js applications using Node InSim. To run an example, the 
+instructions 
+in each example's `README.md` file.
+
+Examples:
+
+- [InSim](./examples/insim-minimal)
+
 ### Debugging
 
 Node InSim uses the [`debug` NPM package](https://github.com/debug-js/debug) for debug logs. By default, Node InSim does not output any logs to the standard output.

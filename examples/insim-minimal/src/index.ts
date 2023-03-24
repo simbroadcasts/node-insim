@@ -1,0 +1,29 @@
+import debug from 'debug';
+import NodeInSim from 'node-insim';
+import type { IS_VER } from 'node-insim/packets';
+import { IS_ISI_ReqI, PacketType } from 'node-insim/packets';
+
+const log = debug('lfs-race-insim');
+
+const inSim = new NodeInSim.InSim();
+
+inSim.connect({
+  IName: 'LFS Race InSim',
+  Host: '127.0.0.1',
+  Port: 29999,
+  ReqI: IS_ISI_ReqI.SEND_VERSION,
+});
+
+inSim.on('connect', () => log('Connected'));
+
+inSim.on('disconnect', () => log('Disconnected'));
+
+inSim.on(PacketType.ISP_VER, onVersion);
+
+function onVersion(packet: IS_VER) {
+  log(`Connected to LFS ${packet.Product} ${packet.Version}`);
+}
+
+process.on('uncaughtException', (error) => {
+  log(error);
+});
