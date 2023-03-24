@@ -1,6 +1,6 @@
 {
   "name": "node-insim",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "An InSim library for NodeJS",
   "main": "dist/index.cjs",
   "type": "module",
