@@ -90,7 +90,8 @@ The `on()` event listener takes an optional second argument - the `InSim` instan
 ```ts
 import NodeInSim from 'node-insim';
 import { PacketType } from 'node-insim/packets';
-import type { InSim, IS_VER } from 'node-insim/protocols';
+import type { IS_VER } from 'node-insim/packets';
+import type { InSim } from 'node-insim/protocols';
 
 const inSim = new NodeInSim.InSim();
 
