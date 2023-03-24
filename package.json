@@ -49,7 +49,7 @@
     "lint:fix": "eslint \"./src/**/*\" --ext .js,.ts --fix",
     "generate": "run-s \"generate:plop {@}\" lint:fix format --",
     "generate:plop": "plop",
-    "dist": "cd dist && npm publish",
+    "bump": "node ./scripts/bump.js",
     "prepublishOnly": "run-s build"
   },
   "dependencies": {
@@ -74,6 +74,7 @@
     "@typescript-eslint/eslint-plugin": "^5.56.0",
     "@typescript-eslint/parser": "^5.56.0",
     "babel-jest": "^29.5.0",
+    "chalk": "^5.2.0",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
     "esbuild": "^0.17.12",
@@ -87,6 +88,7 @@
     "plop": "^3.1.1",
     "prettier": "^2.8.5",
     "rimraf": "^4.4.0",
+    "semver": "^7.3.8",
     "tsx": "^3.12.6",
     "typescript": "^4.9.5"
   },
