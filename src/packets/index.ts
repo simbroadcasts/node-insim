@@ -331,6 +331,7 @@ export {
   ObjectInfo,
 } from './structs';
 export type {
+  InSimPacket,
   PacketData,
   PacketDataWithOptionalReqI,
   PacketDataWithRequiredReqI,
