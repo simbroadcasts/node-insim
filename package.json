@@ -25,7 +25,8 @@
     }
   },
   "repository": "git@github.com:simbroadcasts/node-insim.git",
-  "author": "Peter Butcher <pete@pbutcher.uk> (https://pbutcher.uk)",
+  "author": "Martin Kapal <flamecze@gmail.com>",
+  "contributors": ["Peter Butcher <pete@pbutcher.uk> (https://pbutcher.uk)"],
   "license": "MIT",
   "private": false,
   "scripts": {
