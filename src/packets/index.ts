@@ -330,7 +330,7 @@ export {
   NodeLap,
   ObjectInfo,
 } from './structs';
-export {
+export type {
   PacketData,
   PacketDataWithOptionalReqI,
   PacketDataWithRequiredReqI,
