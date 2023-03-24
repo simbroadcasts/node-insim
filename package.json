@@ -2,8 +2,15 @@
   "name": "node-insim",
   "version": "0.0.2",
   "description": "An InSim library for NodeJS",
-  "main": "dist/index.cjs",
+  "repository": "git@github.com:simbroadcasts/node-insim.git",
+  "author": "Martin Kapal <flamecze@gmail.com>",
+  "contributors": [
+    "Peter Butcher <pete@pbutcher.uk> (https://pbutcher.uk)"
+  ],
+  "license": "MIT",
+  "private": false,
   "type": "module",
+  "main": "dist/index.cjs",
   "exports": {
     ".": {
       "import": "./dist/index.esm.js",
@@ -24,13 +31,6 @@
       "default": "./dist/protocols/index.cjs"
     }
   },
-  "repository": "git@github.com:simbroadcasts/node-insim.git",
-  "author": "Martin Kapal <flamecze@gmail.com>",
-  "contributors": [
-    "Peter Butcher <pete@pbutcher.uk> (https://pbutcher.uk)"
-  ],
-  "license": "MIT",
-  "private": false,
   "scripts": {
     "prebuild": "rimraf ./dist",
     "build": "run-s build:js build:ts",
