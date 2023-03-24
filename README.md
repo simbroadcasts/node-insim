@@ -1,5 +1,7 @@
 # Node InSim
 
+[![NPM Version](https://img.shields.io/npm/v/node-insim?style=flat-square)](https://www.npmjs.com/package/node-insim)
+
 An [InSim](https://en.lfsmanual.net/wiki/InSim.txt) library for Node.js
 
 ## Installation
