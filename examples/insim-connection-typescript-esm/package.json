@@ -1,7 +1,7 @@
 {
-  "name": "node-insim-example-insim-minimal",
+  "name": "node-insim-example-insim-connection-typescript-esm",
   "version": "0.0.0",
-  "description": "Node InSim - Minimal InSim Example",
+  "description": "Node InSim - InSim connection (TypeScript + ES Modules)",
   "main": "dist/index.cjs",
   "type": "module",
   "repository": "git@github.com:mkapal/lfs-race-insim.git",

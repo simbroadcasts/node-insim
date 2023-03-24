@@ -114,9 +114,12 @@ folder, there are example Node.js applications using Node InSim. To run an examp
 instructions 
 in each example's `README.md` file.
 
-Examples:
+#### Examples:
 
-- [InSim](./examples/insim-minimal)
+- JavaScript + CommonJS
+    - [InSim connection](./examples/insim-connection-javascript-cjs)
+- TypeScript + ES Modules
+  - [InSim connection](./examples/insim-connection-typescript-esm)
 
 ### Debugging
 

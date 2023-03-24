@@ -3,6 +3,7 @@
   "env": {
     "node": true
   },
+  "ignorePatterns": ["examples/*"],
   "parser": "@typescript-eslint/parser",
   "plugins": [
     "@typescript-eslint",

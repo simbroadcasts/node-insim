@@ -1,4 +1,4 @@
-# Node InSim - Minimal InSim Example
+# Node InSim - InSim connection (JavaScript + CommonJS)
 
 ## Requirements
 
