@@ -1,5 +1,5 @@
-import type { PacketTestData } from '../../utils/tests';
-import { testInfoPacket } from '../../utils/tests';
+import type { PacketTestData } from '../../tests';
+import { testInfoPacket } from '../../tests';
 import { CompCarFlags, IS_MCI, PacketType } from '..';
 import { CompCar } from '../structs';
 

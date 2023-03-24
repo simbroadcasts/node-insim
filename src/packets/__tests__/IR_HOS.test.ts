@@ -1,5 +1,5 @@
-import type { PacketTestData } from '../../utils/tests';
-import { stringToBytes, testInfoPacket } from '../../utils/tests';
+import type { PacketTestData } from '../../tests';
+import { stringToBytes, testInfoPacket } from '../../tests';
 import { HInfo, HostInfoFlags, IR_HOS, PacketType } from '..';
 
 const size = 4 + 3 * 40;

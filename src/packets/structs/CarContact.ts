@@ -1,4 +1,4 @@
-import { byte, char, short } from '../../utils';
+import { byte, char, short } from '../../decorators';
 import { Struct } from '../base';
 import type { CarContactFlags } from '../enums';
 import type { StructData } from '../types';

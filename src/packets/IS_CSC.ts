@@ -1,4 +1,4 @@
-import { byte, struct, unsigned } from '../utils';
+import { byte, struct, unsigned } from '../decorators';
 import { Packet } from './base';
 import type { CSCAction } from './enums';
 import { PacketType } from './enums';

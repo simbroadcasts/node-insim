@@ -1,4 +1,4 @@
-import { byte, string, unsigned } from '../utils';
+import { byte, string, unsigned } from '../decorators';
 import { SendablePacket } from './base';
 import type { ReplayError, ReplayMode, ReplayOptions } from './enums';
 import { PacketType } from './enums';

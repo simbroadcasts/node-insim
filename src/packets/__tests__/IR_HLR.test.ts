@@ -1,5 +1,5 @@
-import type { PacketTestData } from '../../utils/tests';
-import { testInstructionPacket } from '../../utils/tests';
+import type { PacketTestData } from '../../tests';
+import { testInstructionPacket } from '../../tests';
 import { IR_HLR, PacketType } from '..';
 
 const size = 4;

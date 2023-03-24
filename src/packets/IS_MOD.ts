@@ -1,4 +1,4 @@
-import { byte, int } from '../utils';
+import { byte, int } from '../decorators';
 import { SendablePacket } from './base';
 import { PacketType } from './enums';
 import type { PacketData } from './types';

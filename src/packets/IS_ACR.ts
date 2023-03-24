@@ -1,5 +1,6 @@
+import { byte, getFormat, string } from '../decorators';
 import { InSimError } from '../errors';
-import { byte, getFormat, string, unpack } from '../utils';
+import { unpack } from '../lfspack';
 import { Packet } from './base';
 import type { AdminCommandResult } from './enums';
 import { PacketType } from './enums';

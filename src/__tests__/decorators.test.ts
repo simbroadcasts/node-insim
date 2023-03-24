@@ -8,7 +8,7 @@ import {
   string,
   unsigned,
   word,
-} from '../index';
+} from '../decorators';
 
 describe('Class property decorators', () => {
   it('should return the correct jspack char for each binary data type', () => {

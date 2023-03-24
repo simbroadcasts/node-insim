@@ -1,4 +1,4 @@
-import { byte, byteArray, short, word } from '../utils';
+import { byte, byteArray, short, word } from '../decorators';
 import { Packet } from './base';
 import type { ObjectHitFlags, ObjectIndex } from './enums';
 import { PacketType } from './enums';

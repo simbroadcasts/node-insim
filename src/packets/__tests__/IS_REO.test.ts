@@ -1,5 +1,5 @@
-import type { PacketTestData } from '../../utils/tests';
-import { testInfoPacket, testInstructionPacket } from '../../utils/tests';
+import type { PacketTestData } from '../../tests';
+import { testInfoPacket, testInstructionPacket } from '../../tests';
 import type { IS_REO_Data } from '..';
 import { IS_REO, PacketType } from '..';
 

@@ -2,6 +2,8 @@ import defaults from 'lodash/defaults';
 import { TypedEmitter } from 'tiny-typed-emitter';
 
 import { InSimError } from '../../errors';
+import { unpack } from '../../lfspack';
+import { log as baseLog } from '../../log';
 import type { IS_ISI_Data, SendablePacket } from '../../packets';
 import {
   InSimFlags,
@@ -11,7 +13,6 @@ import {
   packetTypeToClass,
   TinyType,
 } from '../../packets';
-import { log as baseLog, unpack } from '../../utils';
 import { TCP } from '../TCP';
 import type { InSimEvents, InSimPacketEvents } from './InSimEvents';
 

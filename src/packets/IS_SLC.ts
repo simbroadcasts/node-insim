@@ -1,4 +1,4 @@
-import { byte, carName } from '../utils';
+import { byte, carName } from '../decorators';
 import { Packet } from './base';
 import { PacketType } from './enums';
 

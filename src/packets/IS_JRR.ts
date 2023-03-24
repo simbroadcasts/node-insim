@@ -1,4 +1,4 @@
-import { byte, struct } from '../utils';
+import { byte, struct } from '../decorators';
 import { SendablePacket } from './base';
 import type { JRRAction } from './enums';
 import { PacketType } from './enums';

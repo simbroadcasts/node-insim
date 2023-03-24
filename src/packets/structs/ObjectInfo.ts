@@ -1,4 +1,4 @@
-import { byte, short } from '../../utils';
+import { byte, short } from '../../decorators';
 import { SendableStruct } from '../base';
 import type { ObjectIndex } from '../enums';
 import type { StructData } from '../types';

@@ -1,5 +1,5 @@
-import type { PacketTestData } from '../../utils/tests';
-import { testInfoPacket } from '../../utils/tests';
+import type { PacketTestData } from '../../tests';
+import { testInfoPacket } from '../../tests';
 import { AdminCommandResult, IS_ACR, PacketType } from '..';
 
 const size = 16;

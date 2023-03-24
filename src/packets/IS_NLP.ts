@@ -1,5 +1,6 @@
+import { byte } from '../decorators';
 import { InSimError } from '../errors';
-import { byte, unpack } from '../utils';
+import { unpack } from '../lfspack';
 import { Packet } from './base';
 import { PacketType } from './enums';
 import { NodeLap } from './structs';

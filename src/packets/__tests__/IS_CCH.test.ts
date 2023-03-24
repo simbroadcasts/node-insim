@@ -1,5 +1,5 @@
-import type { PacketTestData } from '../../utils/tests';
-import { testInfoPacket } from '../../utils/tests';
+import type { PacketTestData } from '../../tests';
+import { testInfoPacket } from '../../tests';
 import { IS_CCH, PacketType, ViewIdentifier } from '..';
 
 const size = 8;

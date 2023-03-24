@@ -1,4 +1,4 @@
-import { byte } from '../utils';
+import { byte } from '../decorators';
 import { Packet } from './base';
 import type { LeaveReason } from './enums';
 import { PacketType } from './enums';

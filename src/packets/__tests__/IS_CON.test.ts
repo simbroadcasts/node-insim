@@ -1,5 +1,5 @@
-import type { PacketTestData } from '../../utils/tests';
-import { testInfoPacket } from '../../utils/tests';
+import type { PacketTestData } from '../../tests';
+import { testInfoPacket } from '../../tests';
 import { CarContact, CarContactFlags, IS_CON, PacketType } from '..';
 
 const size = 40;

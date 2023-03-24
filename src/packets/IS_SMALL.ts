@@ -1,4 +1,4 @@
-import { byte, unsigned } from '../utils';
+import { byte, unsigned } from '../decorators';
 import { SendablePacket } from './base';
 import { PacketType, SmallType } from './enums';
 import type { PacketDataWithOptionalReqI } from './types';

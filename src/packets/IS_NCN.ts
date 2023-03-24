@@ -1,4 +1,4 @@
-import { byte, string } from '../utils';
+import { byte, string } from '../decorators';
 import { Packet } from './base';
 import type { ConnectionFlags } from './enums';
 import { PacketType } from './enums';

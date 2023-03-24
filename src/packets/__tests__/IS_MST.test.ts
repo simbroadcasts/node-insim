@@ -1,4 +1,4 @@
-import { stringToBytes, testInstructionPacket } from '../../utils/tests';
+import { stringToBytes, testInstructionPacket } from '../../tests';
 import type { IS_MST_Data } from '..';
 import { IS_MST, PacketType } from '..';
 

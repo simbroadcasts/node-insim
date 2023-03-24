@@ -1,4 +1,4 @@
-import { testBothWaysPacket } from '../../utils/tests';
+import { testBothWaysPacket } from '../../tests';
 import type { IS_BFN_Data } from '..';
 import { ButtonFunction, IS_BFN, PacketType } from '..';
 

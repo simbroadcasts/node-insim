@@ -1,4 +1,4 @@
-import { byte } from '../utils';
+import { byte } from '../decorators';
 import { SendablePacket } from './base';
 import type { PMOFlags } from './enums';
 import { PacketType, PMOAction } from './enums';

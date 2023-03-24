@@ -1,4 +1,4 @@
-import { byte, string } from '../utils';
+import { byte, string } from '../decorators';
 import { SendablePacket } from './base';
 import type { ScreenshotError } from './enums';
 import { PacketType } from './enums';

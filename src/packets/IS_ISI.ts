@@ -1,4 +1,4 @@
-import { byte, string, word } from '../utils';
+import { byte, string, word } from '../decorators';
 import { SendablePacket } from './base';
 import type { InSimFlags } from './enums';
 import { PacketType } from './enums';

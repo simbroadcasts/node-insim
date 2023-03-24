@@ -1,4 +1,4 @@
-import { byte } from '../../utils';
+import { byte } from '../../decorators';
 import { SendableStruct } from '../base';
 import type { StructData } from '../types';
 

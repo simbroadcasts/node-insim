@@ -1,5 +1,5 @@
-import type { PacketTestData } from '../../utils/tests';
-import { testInfoPacket } from '../../utils/tests';
+import type { PacketTestData } from '../../tests';
+import { testInfoPacket } from '../../tests';
 import { ConfirmationFlags, IS_FIN, PacketType, PlayerFlags } from '..';
 
 const size = 20;

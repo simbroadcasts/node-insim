@@ -1,5 +1,5 @@
-import type { PacketTestData } from '../../utils/tests';
-import { stringToBytes, testInstructionPacket } from '../../utils/tests';
+import type { PacketTestData } from '../../tests';
+import { stringToBytes, testInstructionPacket } from '../../tests';
 import { IR_SEL, IR_SEL_ReqI, PacketType } from '..';
 
 const size = 68;

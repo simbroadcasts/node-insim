@@ -1,4 +1,4 @@
-import { byte, string, unsigned, word } from '../utils';
+import { byte, string, unsigned, word } from '../decorators';
 import { Packet } from './base';
 import type { ConfirmationFlags, PlayerFlags } from './enums';
 import { PacketType } from './enums';

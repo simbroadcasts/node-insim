@@ -1,4 +1,4 @@
-import { byte } from '../utils';
+import { byte } from '../decorators';
 import { SendablePacket } from './base';
 import type { ButtonFunction } from './enums';
 import { PacketType } from './enums';

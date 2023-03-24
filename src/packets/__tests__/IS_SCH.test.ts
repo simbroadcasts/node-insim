@@ -1,4 +1,4 @@
-import { testInstructionPacket } from '../../utils/tests';
+import { testInstructionPacket } from '../../tests';
 import type { IS_SCH_Data } from '..';
 import { CharacterModifiers, IS_SCH, PacketType } from '..';
 

@@ -1,4 +1,4 @@
-import { byte, int, short, word } from '../../utils';
+import { byte, int, short, word } from '../../decorators';
 import { Struct } from '../base';
 import type { CompCarFlags } from '../enums';
 import type { StructData } from '../types';

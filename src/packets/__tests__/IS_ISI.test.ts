@@ -1,5 +1,5 @@
 import { InSim } from '../../protocols';
-import { stringToBytes, testInstructionPacket } from '../../utils/tests';
+import { stringToBytes, testInstructionPacket } from '../../tests';
 import type { IS_ISI_Data } from '..';
 import { IS_ISI, PacketType } from '..';
 

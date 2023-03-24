@@ -1,4 +1,4 @@
-import { byte, unsigned } from '../utils';
+import { byte, unsigned } from '../decorators';
 import { SendablePacket } from './base';
 import type { CarFlags } from './enums';
 import { PacketType } from './enums';

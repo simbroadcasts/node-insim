@@ -1,4 +1,4 @@
-import { byte } from '../utils';
+import { byte } from '../decorators';
 import { SendablePacket } from './base';
 import { PacketType } from './enums';
 import type { CarHCP } from './structs';

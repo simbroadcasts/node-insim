@@ -1,4 +1,4 @@
-import { testInstructionPacket } from '../../utils/tests';
+import { testInstructionPacket } from '../../tests';
 import type { IS_HCP_Data } from '..';
 import { CarHCP, IS_HCP, PacketType } from '..';
 

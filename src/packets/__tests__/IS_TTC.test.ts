@@ -1,4 +1,4 @@
-import { testInstructionPacket } from '../../utils/tests';
+import { testInstructionPacket } from '../../tests';
 import type { IS_TTC_Data } from '..';
 import { IS_TTC, PacketType, TargetToConnectionType } from '..';
 

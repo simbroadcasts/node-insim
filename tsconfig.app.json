@@ -6,5 +6,5 @@
     "emitDeclarationOnly": true
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "src/**/__tests__", "src/utils/tests.ts"]
+  "exclude": ["node_modules", "src/**/__tests__", "src/tests.ts"]
 }

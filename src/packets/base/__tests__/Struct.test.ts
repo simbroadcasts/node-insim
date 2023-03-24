@@ -1,5 +1,5 @@
-import { byte, string } from '../../../utils';
-import { stringToBytes } from '../../../utils/tests';
+import { byte, string } from '../../../decorators';
+import { stringToBytes } from '../../../tests';
 import { PacketType } from '../../';
 import { Struct } from '../Struct';
 

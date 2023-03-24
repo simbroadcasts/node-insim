@@ -1,4 +1,4 @@
-import { byte, byteArray, string } from '../../../utils';
+import { byte, byteArray, string } from '../../../decorators';
 import { PacketType } from '../..';
 import { Packet } from '../Packet';
 

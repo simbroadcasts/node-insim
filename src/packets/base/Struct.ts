@@ -1,10 +1,7 @@
+import { getFormat } from '../../decorators';
 import { InSimError } from '../../errors';
-import {
-  determineLength,
-  getFormat,
-  log as baseLog,
-  unpack,
-} from '../../utils';
+import { determineLength, unpack } from '../../lfspack';
+import { log as baseLog } from '../../log';
 import type { Receivable } from '../types';
 
 const log = baseLog.extend('struct');

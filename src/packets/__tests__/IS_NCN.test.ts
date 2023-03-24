@@ -1,5 +1,5 @@
-import type { PacketTestData } from '../../utils/tests';
-import { stringToBytes, testInfoPacket } from '../../utils/tests';
+import type { PacketTestData } from '../../tests';
+import { stringToBytes, testInfoPacket } from '../../tests';
 import { ConnectionFlags, IS_NCN, PacketType } from '..';
 
 const size = 56;

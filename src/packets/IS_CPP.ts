@@ -1,4 +1,4 @@
-import { byte, float, int, word } from '../utils';
+import { byte, float, int, word } from '../decorators';
 import { SendablePacket } from './base';
 import type { StateFlags, ViewIdentifier } from './enums';
 import { PacketType } from './enums';

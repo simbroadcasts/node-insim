@@ -1,4 +1,4 @@
-import { testInstructionPacket } from '../../utils/tests';
+import { testInstructionPacket } from '../../tests';
 import type { IS_JRR_Data } from '..';
 import { IS_JRR, JRRAction, ObjectInfo, PacketType } from '..';
 

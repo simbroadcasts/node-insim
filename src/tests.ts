@@ -1,6 +1,6 @@
 import { printDiffOrStringify } from 'jest-matcher-utils';
 
-import type { Packet, PacketType, SendablePacket } from '../packets';
+import type { Packet, PacketType, SendablePacket } from './packets';
 
 type CommonPacketPropsWithoutReqI = Exclude<keyof SendablePacket, 'ReqI'>;
 

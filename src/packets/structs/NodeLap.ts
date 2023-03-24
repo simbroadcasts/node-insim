@@ -1,4 +1,4 @@
-import { byte, word } from '../../utils';
+import { byte, word } from '../../decorators';
 import { Struct } from '../base';
 import type { StructData } from '../types';
 

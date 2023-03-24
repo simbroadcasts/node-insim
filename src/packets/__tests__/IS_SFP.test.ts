@@ -1,4 +1,4 @@
-import { testInstructionPacket } from '../../utils/tests';
+import { testInstructionPacket } from '../../tests';
 import type { IS_SFP_Data } from '..';
 import { IS_SFP, PacketType, StateFlags } from '..';
 

@@ -1,9 +1,9 @@
-import type { PacketTestData } from '../../utils/tests';
+import type { PacketTestData } from '../../tests';
 import {
   stringToBytes,
   testInfoPacket,
   testInstructionPacket,
-} from '../../utils/tests';
+} from '../../tests';
 import type { IS_RIP_Data } from '..';
 import { IS_RIP, PacketType, ReplayError, ReplayMode, ReplayOptions } from '..';
 

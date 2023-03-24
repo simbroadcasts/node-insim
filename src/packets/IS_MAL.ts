@@ -1,5 +1,6 @@
+import { byte } from '../decorators';
 import { InSimError } from '../errors';
-import { byte, pack, unpack } from '../utils';
+import { pack, unpack } from '../lfspack';
 import { SendablePacket } from './base';
 import { PacketType } from './enums';
 import type { PacketData } from './types';

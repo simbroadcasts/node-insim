@@ -1,4 +1,4 @@
-import { byte, string } from '../../utils';
+import { byte, string } from '../../decorators';
 import { Struct } from '../base';
 import type { HostInfoFlags } from '../enums';
 import type { StructData } from '../types';

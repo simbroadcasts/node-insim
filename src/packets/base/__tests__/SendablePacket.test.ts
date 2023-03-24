@@ -1,5 +1,5 @@
-import { byte, byteArray, string, struct } from '../../../utils';
-import { stringToBytes } from '../../../utils/tests';
+import { byte, byteArray, string, struct } from '../../../decorators';
+import { stringToBytes } from '../../../tests';
 import { PacketType } from '../../';
 import { SendablePacket, SendableStruct } from '../../base';
 

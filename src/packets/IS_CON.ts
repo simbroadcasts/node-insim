@@ -1,4 +1,4 @@
-import { byte, word } from '../utils';
+import { byte, word } from '../decorators';
 import { Packet } from './base';
 import { PacketType } from './enums';
 import { CarContact } from './structs';

@@ -1,4 +1,4 @@
-import { byte, unsigned } from '../utils';
+import { byte, unsigned } from '../decorators';
 import { Packet } from './base';
 import { PacketType } from './enums';
 

@@ -1,4 +1,4 @@
-import { byte } from '../utils';
+import { byte } from '../decorators';
 import { SendablePacket } from './base';
 import type { OCOAutocrossStartLights, OCOMainLights } from './enums';
 import { ObjectIndex, OCOAction, PacketType } from './enums';

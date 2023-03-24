@@ -1,4 +1,4 @@
-import { byte } from '../utils';
+import { byte } from '../decorators';
 import { SendablePacket } from './base';
 import type { ViewIdentifier } from './enums';
 import { PacketType } from './enums';

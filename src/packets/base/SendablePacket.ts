@@ -1,5 +1,5 @@
 import { InSimError } from '../../errors';
-import { pack } from '../../utils';
+import { pack } from '../../lfspack';
 import type { PacketType } from '../enums';
 import type { Receivable, Sendable } from '../types';
 import { Packet } from './Packet';
