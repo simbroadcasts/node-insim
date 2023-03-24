@@ -1,3 +1,5 @@
+require('./env');
+
 const debug = require('debug');
 const NodeInSim = require('node-insim').default;
 const { IS_ISI_ReqI, PacketType } = require('node-insim/packets');

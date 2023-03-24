@@ -8,12 +8,11 @@
   "author": "Martin Kapal <flamecze@gmail.com>",
   "private": true,
   "scripts": {
-    "dev": "cross-env DEBUG=* node --watch ./src/index.js",
+    "dev": "tsx watch ./src/index.js",
     "serve:production": "cross-env DEBUG=* node ./dist/index.js",
     "build": "esbuild src/index.js --bundle --platform=node --target=node18 --outdir=dist --external:iconv --external:net"
   },
   "dependencies": {
-    "cross-env": "^7.0.3",
     "debug": "^4.3.4",
     "node-insim": "^0.0.2",
     "supports-color": "^9.2.3"
@@ -21,6 +20,7 @@
   "devDependencies": {
     "@types/debug": "^4.1.7",
     "@types/node": "^18.11.9",
+    "cross-env": "^7.0.3",
     "esbuild": "^0.17.12"
   },
   "files": [
