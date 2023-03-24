@@ -1,6 +1,7 @@
 import { byte, string } from '../../utils';
 import { Struct } from '../base';
 import type { HostInfoFlags } from '../enums';
+import type { StructData } from '../types';
 
 /** Sub packet for {@link IR_HOS}. Contains host information */
 export class HInfo extends Struct {
@@ -15,4 +16,9 @@ export class HInfo extends Struct {
 
   /** Number of people on the host */
   @byte() NumConns = 0;
+
+  constructor(data?: StructData<HInfo>) {
+    super();
+    this.initialize(data);
+  }
 }
