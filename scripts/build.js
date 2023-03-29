@@ -12,6 +12,7 @@ const commonConfig = {
   packages: 'external',
   outdir: 'dist',
   tsconfig: 'tsconfig.app.json',
+  logLevel: 'info',
 };
 
 await esbuild.build({
