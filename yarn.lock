@@ -3095,11 +3095,6 @@ iconv-lite@^0.4.24:
   dependencies:
     safer-buffer ">= 2.1.2 < 3"
 
-iconv@^3.0.0:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/iconv/-/iconv-3.0.1.tgz#31d319d71b59415cf348362c382961b1eb6f0e81"
-  integrity sha512-lJnFLxVc0d82R7GfU7a9RujKVUQ3Eee19tPKWZWBJtAEGRHVEyFzCtbNl3GPKuDnHBBRT4/nDS4Ru9AIDT72qA==
-
 ieee754@^1.1.13, ieee754@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/ieee754/-/ieee754-1.2.1.tgz#8eb7a10a63fff25d15a57b001586d177d1b0d352"
@@ -4379,12 +4374,10 @@ parse-json@^5.2.0:
     json-parse-even-better-errors "^2.3.0"
     lines-and-columns "^1.1.6"
 
-parse-lfs-message@^1.0.0:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/parse-lfs-message/-/parse-lfs-message-1.1.1.tgz#72bfe94126afc5e38887f7a337bee505c3faea06"
-  integrity sha512-9oFcD0rLhNitiCGNgtQb15Ry41MXkRZQBf9JMJzbRFJ4odYjXB9G7YFcCFiNbKaM6oT8BryKXweoYGr/0NqYDA==
-  dependencies:
-    iconv "^3.0.0"
+parse-lfs-message@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/parse-lfs-message/-/parse-lfs-message-1.2.0.tgz#aa691ebf9977439ffe6de961cef90b8c1f760fe5"
+  integrity sha512-Jys+G+uX6K6gJR838JyXssZ0xklQ2U7KEUUsNM2vF/zLXjhUkyPhuYA0iBelPlodWQGkxlDRugDKB7F20uiwyA==
 
 parse-passwd@^1.0.0:
   version "1.0.0"
