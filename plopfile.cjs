@@ -56,13 +56,13 @@ module.exports = function (plop) {
       },
       {
         type: 'append',
-        path: 'src/protocols/InSim/InSimEvents.ts',
+        path: 'src/InSimEvents.ts',
         pattern: 'export type InSimPacketEvents = {',
         template: `  [PacketType.ISP_{{ name }}]: (packet: IS_{{ name }}, inSim: InSim) => void;`,
       },
       {
         type: 'modify',
-        path: 'src/protocols/InSim/InSimEvents.ts',
+        path: 'src/InSimEvents.ts',
         pattern: "} from '../../packets';",
         template: `  IS_{{ name }},
 } from '../../packets';`,

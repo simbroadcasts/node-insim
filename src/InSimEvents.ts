@@ -1,3 +1,4 @@
+import type { InSim } from './InSim';
 import type {
   IR_ARP,
   IR_ARQ,
@@ -55,8 +56,7 @@ import type {
   IS_VER,
   IS_VTN,
   PacketType,
-} from '../../packets';
-import type { InSim } from './InSim';
+} from './packets';
 
 export type InSimPacketEvents = {
   [PacketType.ISP_VER]: (packet: IS_VER, inSim: InSim) => void;

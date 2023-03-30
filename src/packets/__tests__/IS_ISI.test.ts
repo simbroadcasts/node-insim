@@ -1,4 +1,3 @@
-import { InSim } from '../../protocols';
 import { stringToBytes, testInstructionPacket } from '../../tests';
 import type { IS_ISI_Data } from '..';
 import { IS_ISI, PacketType } from '..';
@@ -9,7 +8,7 @@ const data: IS_ISI_Data = {
   ReqI: 1,
   UDPPort: 257,
   Flags: 2,
-  InSimVer: InSim.INSIM_VERSION,
+  InSimVer: 9,
   Prefix: '!',
   Interval: 30,
   Admin: 'admin adminadmin',

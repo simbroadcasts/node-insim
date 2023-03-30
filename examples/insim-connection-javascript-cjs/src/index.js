@@ -1,18 +1,19 @@
 require('./env');
 
 const debug = require('debug');
-const NodeInSim = require('node-insim').default;
+const { InSim } = require('node-insim');
 const { IS_ISI_ReqI, PacketType } = require('node-insim/packets');
 
 const log = debug('node-insim-js');
 
-const inSim = new NodeInSim.InSim();
+const inSim = new InSim();
 
 inSim.connect({
   IName: 'Node InSim App',
-  Host: '127.0.0.1',
-  Port: 29999,
+  Host: process.env.HOST ?? '127.0.0.1',
+  Port: process.env.PORT ? parseInt(process.env.PORT, 10) : 29999,
   ReqI: IS_ISI_ReqI.SEND_VERSION,
+  Admin: process.env.ADMIN ?? '',
 });
 
 inSim.on('connect', () => log('Connected'));

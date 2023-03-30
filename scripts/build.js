@@ -1,17 +1,13 @@
 import * as esbuild from 'esbuild';
 
 const commonConfig = {
-  entryPoints: [
-    'src/index.ts',
-    'src/packets/index.ts',
-    'src/protocols/index.ts',
-  ],
+  entryPoints: ['src/index.ts', 'src/packets/index.ts'],
   bundle: true,
   platform: 'node',
   target: 'node18',
   packages: 'external',
   outdir: 'dist',
-  tsconfig: 'tsconfig.app.json',
+  tsconfig: 'tsconfig.lib.json',
   logLevel: 'info',
 };
 

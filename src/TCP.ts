@@ -1,7 +1,7 @@
 import EventEmitter from 'events';
 import net from 'net';
 
-import { log as baseLog } from '../log';
+import { log as baseLog } from './log';
 
 const log = baseLog.extend('tcp');
 

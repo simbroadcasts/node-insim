@@ -23,19 +23,13 @@
       "require": "./dist/packets/index.cjs",
       "types": "./dist/packets/index.d.ts",
       "default": "./dist/packets/index.cjs"
-    },
-    "./protocols": {
-      "import": "./dist/protocols/index.esm.js",
-      "require": "./dist/protocols/index.cjs",
-      "types": "./dist/protocols/index.d.ts",
-      "default": "./dist/protocols/index.cjs"
     }
   },
   "scripts": {
     "prebuild": "rimraf ./dist",
     "build": "run-s build:js build:ts",
     "build:js": "node ./scripts/build.js",
-    "build:ts": "tsc -p tsconfig.app.json",
+    "build:ts": "tsc -p tsconfig.lib.json",
     "dev": "cross-env DEBUG=* tsx watch ./src/index.ts",
     "dev:nodebug": "tsx watch ./src/index.ts",
     "test": "run-s test:compile \"test:run {@}\" --",

@@ -1,13 +1,13 @@
 import './env.ts';
 
 import debug from 'debug';
-import NodeInSim from 'node-insim';
+import { InSim } from 'node-insim';
 import type { IS_VER } from 'node-insim/packets';
-import { IS_BTN, IS_ISI_ReqI, PacketType } from 'node-insim/packets';
+import { IS_ISI_ReqI, PacketType } from 'node-insim/packets';
 
 const log = debug('lfs-race-insim');
 
-const inSim = new NodeInSim.InSim();
+const inSim = new InSim();
 
 inSim.connect({
   IName: 'Node InSim App',

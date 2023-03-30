@@ -23,9 +23,9 @@ npm install --save node-insim
 ### Connecting
 
 ```ts
-import NodeInSim from 'node-insim';
+import { InSim } from 'node-insim';
 
-const inSim = new NodeInSim.InSim();
+const inSim = new InSim();
 
 inSim.connect({
   Host: '127.0.0.1',
@@ -36,15 +36,21 @@ inSim.connect({
 
 ### Sending packets
 
-InSim packets can be sent using the `send()` method, which takes a single argument - the packet class instance.
+InSim packets can be sent using the `send()` method on the `InSim` class instance, which takes a single argument - the packet class instance.
 
 A fast way to set packet properties is to populate them in the class constructor:
 
 ```ts
-import NodeInSim from 'node-insim';
+import { InSim } from 'node-insim';
 import { IS_TINY, TinyType } from 'node-insim/packets';
 
-const inSim = new NodeInSim.InSim();
+const inSim = new InSim();
+
+inSim.connect({
+  Host: '127.0.0.1',
+  Port: 29999,
+  IName: 'Node InSim App',
+});
 
 inSim.send(
   new IS_TINY({
@@ -57,10 +63,16 @@ inSim.send(
 Another way is to assign each property after creating the instance:
 
 ```ts
-import NodeInSim from 'node-insim';
+import { InSim } from 'node-insim';
 import { IS_TINY, TinyType } from 'node-insim/packets';
 
-const inSim = new NodeInSim.InSim();
+const inSim = new InSim();
+
+inSim.connect({
+  Host: '127.0.0.1',
+  Port: 29999,
+  IName: 'Node InSim App',
+});
 
 const pingPacket = new IS_TINY();
 pingPacket.ReqI = 1;
@@ -74,11 +86,11 @@ inSim.send(pingPacket);
 The `InSim` class is an [EventEmitter](https://nodejs.org/api/events.html#class-eventemitter), which means you can attach event listeners to various events, including incoming packets.
 
 ```ts
-import NodeInSim from 'node-insim';
+import { InSim } from 'node-insim';
 import type { IS_VER } from 'node-insim/packets';
 import { PacketType } from 'node-insim/packets';
 
-const inSim = new NodeInSim.InSim();
+const inSim = new InSim();
 
 inSim.on(PacketType.ISP_VER, onVersion);
 
@@ -90,12 +102,11 @@ function onVersion(packet: IS_VER) {
 The `on()` event listener takes an optional second argument - the `InSim` instance which received that packet. You can use that instance to send additional packets in response.
 
 ```ts
-import NodeInSim from 'node-insim';
+import { InSim } from 'node-insim';
 import { PacketType } from 'node-insim/packets';
 import type { IS_VER } from 'node-insim/packets';
-import type { InSim } from 'node-insim/protocols';
 
-const inSim = new NodeInSim.InSim();
+const inSim = new InSim();
 
 inSim.on(PacketType.ISP_VER, onVersion);
 

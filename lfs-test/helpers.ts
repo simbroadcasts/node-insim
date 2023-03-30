@@ -1,4 +1,4 @@
-import type { InSimOptions } from '../src/protocols/InSim/InSim';
+import type { InSimOptions } from '../src/InSim';
 
 export function getInSimConnectionOptions(): InSimOptions {
   return {
