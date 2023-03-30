@@ -1,14 +1,14 @@
 {{#ifEquals variant "instruction"}}
-import { testInstructionPacket } from '../../utils/tests';
+import { testInstructionPacket } from '../../tests';
 import type { IS_{{ name }}_Data } from '..';
 {{/ifEquals}}
 {{#ifEquals variant "info"}}
-  import type { PacketTestData } from '../../utils/tests';
-  import { testInfoPacket } from '../../utils/tests';
+  import type { PacketTestData } from '../../tests';
+  import { testInfoPacket } from '../../tests';
 {{/ifEquals}}
 {{#ifEquals variant "both ways"}}
-  import type { PacketTestData } from '../../utils/tests';
-  import { testInfoPacket, testInstructionPacket } from '../../utils/tests';
+  import type { PacketTestData } from '../../tests';
+  import { testInfoPacket, testInstructionPacket } from '../../tests';
   import type { IS_{{ name }}_Data } from '..';
 {{/ifEquals}}
 import { IS_{{ name }}, PacketType } from '..';
