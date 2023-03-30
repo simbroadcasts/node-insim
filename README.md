@@ -122,15 +122,15 @@ function onVersion(packet: IS_VER, inSim: InSim) {
 
 ### Example Applications
 
-In the [`examples/`](./examples) 
-folder, there are example Node.js applications using Node InSim. To run an example, the 
-instructions 
+In the [`examples/`](./examples)
+folder, there are example Node.js applications using Node InSim. To run an example, the
+instructions
 in each example's `README.md` file.
 
 #### Examples:
 
 - JavaScript + CommonJS
-    - [InSim connection](./examples/insim-connection-javascript-cjs)
+  - [InSim connection](./examples/insim-connection-javascript-cjs)
 - TypeScript + ES Modules
   - [InSim connection](./examples/insim-connection-typescript-esm)
 
