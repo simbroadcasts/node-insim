@@ -4374,10 +4374,10 @@ parse-json@^5.2.0:
     json-parse-even-better-errors "^2.3.0"
     lines-and-columns "^1.1.6"
 
-parse-lfs-message@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/parse-lfs-message/-/parse-lfs-message-1.2.0.tgz#aa691ebf9977439ffe6de961cef90b8c1f760fe5"
-  integrity sha512-Jys+G+uX6K6gJR838JyXssZ0xklQ2U7KEUUsNM2vF/zLXjhUkyPhuYA0iBelPlodWQGkxlDRugDKB7F20uiwyA==
+parse-lfs-message@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/parse-lfs-message/-/parse-lfs-message-1.2.1.tgz#dc625be2561e5f45c237446d9eebff793f648d49"
+  integrity sha512-McaoVf5OQ3A1MLP7GmiezJoY2el8fdRYCL7nnT+1IQ6Jdc/CUF1/eA3/76xLKLAVTMFfPxNX9T+jBrej19fQow==
 
 parse-passwd@^1.0.0:
   version "1.0.0"

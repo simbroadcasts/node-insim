@@ -180,11 +180,6 @@ esbuild@^0.17.12:
     "@esbuild/win32-ia32" "0.17.12"
     "@esbuild/win32-x64" "0.17.12"
 
-iconv@^3.0.0:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/iconv/-/iconv-3.0.1.tgz#31d319d71b59415cf348362c382961b1eb6f0e81"
-  integrity sha512-lJnFLxVc0d82R7GfU7a9RujKVUQ3Eee19tPKWZWBJtAEGRHVEyFzCtbNl3GPKuDnHBBRT4/nDS4Ru9AIDT72qA==
-
 isexe@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
@@ -213,11 +208,9 @@ node-insim@^0.0.2:
     tiny-typed-emitter "^2.1.0"
 
 parse-lfs-message@^1.0.0:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/parse-lfs-message/-/parse-lfs-message-1.1.1.tgz#72bfe94126afc5e38887f7a337bee505c3faea06"
-  integrity sha512-9oFcD0rLhNitiCGNgtQb15Ry41MXkRZQBf9JMJzbRFJ4odYjXB9G7YFcCFiNbKaM6oT8BryKXweoYGr/0NqYDA==
-  dependencies:
-    iconv "^3.0.0"
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/parse-lfs-message/-/parse-lfs-message-1.2.1.tgz#dc625be2561e5f45c237446d9eebff793f648d49"
+  integrity sha512-McaoVf5OQ3A1MLP7GmiezJoY2el8fdRYCL7nnT+1IQ6Jdc/CUF1/eA3/76xLKLAVTMFfPxNX9T+jBrej19fQow==
 
 path-key@^3.1.0:
   version "3.1.1"

@@ -8,9 +8,9 @@
   "author": "Martin Kapal <flamecze@gmail.com>",
   "private": true,
   "scripts": {
-    "dev": "tsx watch ./src/index.js",
+    "dev": "node ./src/index.js",
     "serve:production": "cross-env DEBUG=* node ./dist/index.js",
-    "build": "esbuild src/index.js --bundle --platform=node --target=node18 --outdir=dist --external:iconv --external:net"
+    "build": "esbuild src/index.js --bundle --platform=node --target=node18 --outdir=dist --external:net"
   },
   "dependencies": {
     "debug": "^4.3.4",

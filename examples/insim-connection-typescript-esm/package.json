@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "tsx watch ./src/index.ts",
     "serve:production": "cross-env DEBUG=* node ./dist/index.cjs",
-    "build": "esbuild src/index.ts --bundle --platform=node --target=node18 --outdir=dist --external:iconv --external:net --out-extension:.js=.cjs"
+    "build": "esbuild src/index.ts --bundle --platform=node --target=node18 --outdir=dist --external:net --out-extension:.js=.cjs"
   },
   "dependencies": {
     "debug": "^4.3.4",
