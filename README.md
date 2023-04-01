@@ -1,6 +1,6 @@
-<img src="https://simbroadcasts.tv/assets/node-insim/node-insim-icon-256.png" width="100px" align="left" hspace="15">
-
 # Node InSim
+
+<img src="https://simbroadcasts.tv/assets/node-insim/node-insim-icon-256.png" width="100px" align="left" hspace="15">
 
 [![NPM Version](https://img.shields.io/npm/v/node-insim?style=flat-square)](https://www.npmjs.com/package/node-insim)
 
