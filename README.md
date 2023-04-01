@@ -1,19 +1,21 @@
+<img src="https://simbroadcasts.tv/assets/node-insim/node-insim-icon-256.png" width="100px" align="left" hspace="15">
+
 # Node InSim
 
 [![NPM Version](https://img.shields.io/npm/v/node-insim?style=flat-square)](https://www.npmjs.com/package/node-insim)
 
-An [InSim](https://en.lfsmanual.net/wiki/InSim.txt) library for Node.js with 
+An [InSim](https://en.lfsmanual.net/wiki/InSim.txt) library for Node.js with
 TypeScript support.
 
 ## Introduction
 
-Node InSim provides a JavaScript API to communicate with [Live for Speed](https://www.lfs.net/) 
-InSim protocol over a TCP connection. After connecting to an LFS server via a hostname 
-and a port, you are able to send InSim packets to the server and receive incoming 
+Node InSim provides a JavaScript API to communicate with [Live for Speed](https://www.lfs.net/)
+InSim protocol over a TCP connection. After connecting to an LFS server via a hostname
+and a port, you are able to send InSim packets to the server and receive incoming
 packets from the server.
 
 All packet structures in Node InSim are identical to the structs defined in the
-[InSim protocol](https://en.lfsmanual.net/wiki/InSim.txt). All packet classes with all 
+[InSim protocol](https://en.lfsmanual.net/wiki/InSim.txt). All packet classes with all
 their properties are documented according to the specification.
 
 ### InSim compatibility
@@ -38,11 +40,11 @@ yarn add node-insim
 
 ### Connecting
 
-To connect to an LFS server, you must enter its hostname, a port and a short name 
+To connect to an LFS server, you must enter its hostname, a port and a short name
 of your application.
 
-The InSim port must be configured in the LFS server settings. Also, make sure the 
-public IP address from which your application is connecting is allowed to connect to 
+The InSim port must be configured in the LFS server settings. Also, make sure the
+public IP address from which your application is connecting is allowed to connect to
 the server InSim port.
 
 ```ts
@@ -59,7 +61,7 @@ inSim.connect({
 
 ### Sending packets
 
-InSim packets can be sent using the `send()` method on the `InSim` class instance, 
+InSim packets can be sent using the `send()` method on the `InSim` class instance,
 which takes a single argument - the packet class instance.
 
 A fast way to set packet properties is to populate them in the class constructor:
@@ -107,7 +109,7 @@ inSim.send(pingPacket);
 
 ### Receiving packets
 
-The `InSim` class exposes an `on()` method, which is used to listen for incoming 
+The `InSim` class exposes an `on()` method, which is used to listen for incoming
 packets by their type.
 
 ```ts
@@ -124,8 +126,8 @@ function onVersion(packet: IS_VER) {
 }
 ```
 
-The event callback contains the received packet, and an optional second argument - the 
-`InSim` instance which received that packet. You can use that instance to send 
+The event callback contains the received packet, and an optional second argument - the
+`InSim` instance which received that packet. You can use that instance to send
 additional packets in response.
 
 ```ts
@@ -151,7 +153,7 @@ function onVersion(packet: IS_VER, inSim: InSim) {
 
 All strings in received packets are automatically converted from LFS encoding to UTF-8.
 
-If you need to access the raw string, use the `_raw` property in the packet 
+If you need to access the raw string, use the `_raw` property in the packet
 instance, which contains all unconverted string properties.
 
 ```ts
@@ -162,14 +164,14 @@ import type { IS_ISM } from 'node-insim/packets';
 const inSim = new InSim();
 
 inSim.on(PacketType.ISP_ISM, (packet: IS_ISM) => {
-  console.log(packet.HName);    // UTF-8 string - ^1Drifter Team ^7★ Server
+  console.log(packet.HName); // UTF-8 string - ^1Drifter Team ^7★ Server
   console.log(packet._raw.HName); // raw string - ^1Drifter Team ^7^J Server\u0000\u0000\u0000\u0000
 });
 ```
 
 ### Example Applications
 
-In the [`examples/`](./examples) folder, there are example Node.js applications using 
+In the [`examples/`](./examples) folder, there are example Node.js applications using
 Node InSim. To run an example, the instructions in each example's `README.md` file.
 
 #### Examples:
@@ -181,11 +183,11 @@ Node InSim. To run an example, the instructions in each example's `README.md` fi
 
 ### Debugging
 
-Node InSim uses the [`debug` NPM package](https://github.com/debug-js/debug) for debug 
+Node InSim uses the [`debug` NPM package](https://github.com/debug-js/debug) for debug
 logs. By default, Node InSim does not output any logs to the standard output.
 
-To enable logging, use the `DEBUG` environment variable when running your InSim 
-application. All logs are prefixed with `node-insim`. You can use wildcards to filter 
+To enable logging, use the `DEBUG` environment variable when running your InSim
+application. All logs are prefixed with `node-insim`. You can use wildcards to filter
 out the logs that you need.
 
 ```sh
@@ -208,7 +210,7 @@ yarn dev
 
 ### Code generators
 
-When adding new InSim packets to the library, you can use built-in code generators 
+When adding new InSim packets to the library, you can use built-in code generators
 using `yarn generate`. It will create and update all the necessary files for you.
 
 ### Run unit tests
@@ -222,7 +224,7 @@ yarn test:watch
 
 To run these tests, LFS must be running with an InSim port open.
 
-By default, the tests connect to `127.0.0.1:29999`. The InSim host and port can be 
+By default, the tests connect to `127.0.0.1:29999`. The InSim host and port can be
 configured by going to the `lfs-test` folder and copying `.env` to `.env.local`.
 
 ```shell
