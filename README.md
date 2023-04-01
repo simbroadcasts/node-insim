@@ -2,7 +2,7 @@
 
 <img src="https://simbroadcasts.tv/assets/node-insim/node-insim-icon-256.png" width="100px" align="right" hspace="15">
 
-[![NPM Version](https://img.shields.io/npm/v/node-insim?style=flat-square)](https://www.npmjs.com/package/node-insim)
+[![NPM Version](https://img.shields.io/npm/v/node-insim?style=flat-square)](https://www.npmjs.com/package/node-insim) ![Node.js CI](https://github.com/simbroadcasts/node-insim/actions/workflows/.github/workflows/node.js.yml/badge.svg)
 
 An [InSim](https://en.lfsmanual.net/wiki/InSim.txt) library for Node.js with
 TypeScript support.
