@@ -2,25 +2,48 @@
 
 [![NPM Version](https://img.shields.io/npm/v/node-insim?style=flat-square)](https://www.npmjs.com/package/node-insim)
 
-An [InSim](https://en.lfsmanual.net/wiki/InSim.txt) library for Node.js & TypeScript
+An [InSim](https://en.lfsmanual.net/wiki/InSim.txt) library for Node.js with 
+TypeScript support.
+
+## Introduction
+
+Node InSim provides a JavaScript API to communicate with [Live for Speed](https://www.lfs.net/) 
+InSim protocol over a TCP connection. After connecting to an LFS server via a hostname 
+and a port, you are able to send InSim packets to the server and receive incoming 
+packets from the server.
+
+All packet structures in Node InSim are identical to the structs defined in the
+[InSim protocol](https://en.lfsmanual.net/wiki/InSim.txt). All packet classes with all 
+their properties are documented according to the specification.
+
+### InSim compatibility
+
+Node InSim is compatible with InSim version 9.
 
 ## Installation
 
-Install the `node-insim` NPM package using Yarn:
-
-```shell
-yarn add node-insim
-```
-
-or if you use NPM:
+Install the `node-insim` NPM package in your Node.js application:
 
 ```shell
 npm install --save node-insim
 ```
 
+or if you use Yarn:
+
+```shell
+yarn add node-insim
+```
+
 ## Usage
 
 ### Connecting
+
+To connect to an LFS server, you must enter its hostname, a port and a short name 
+of your application.
+
+The InSim port must be configured in the LFS server settings. Also, make sure the 
+public IP address from which your application is connecting is allowed to connect to 
+the server InSim port.
 
 ```ts
 import { InSim } from 'node-insim';
@@ -84,8 +107,8 @@ inSim.send(pingPacket);
 
 ### Receiving packets
 
-The `InSim` class is an [EventEmitter](https://nodejs.org/api/events.html#class-eventemitter),
-which means you can attach event listeners to various events, including incoming packets.
+The `InSim` class exposes an `on()` method, which is used to listen for incoming 
+packets by their type.
 
 ```ts
 import { InSim } from 'node-insim';
@@ -101,9 +124,9 @@ function onVersion(packet: IS_VER) {
 }
 ```
 
-The `on()` event listener takes an optional second argument - the `InSim` instance 
-which received that packet. You can use that instance to send additional packets in 
-response.
+The event callback contains the received packet, and an optional second argument - the 
+`InSim` instance which received that packet. You can use that instance to send 
+additional packets in response.
 
 ```ts
 import { InSim } from 'node-insim';
@@ -122,6 +145,26 @@ function onVersion(packet: IS_VER, inSim: InSim) {
     }),
   );
 }
+```
+
+### String encoding
+
+All strings in received packets are automatically converted from LFS encoding to UTF-8.
+
+If you need to access the raw string, use the `_raw` property in the packet 
+instance, which contains all unconverted string properties.
+
+```ts
+import { InSim } from 'node-insim';
+import { PacketType } from 'node-insim/packets';
+import type { IS_ISM } from 'node-insim/packets';
+
+const inSim = new InSim();
+
+inSim.on(PacketType.ISP_ISM, (packet: IS_ISM) => {
+  console.log(packet.HName);    // UTF-8 string - ^1Drifter Team ^7★ Server
+  console.log(packet._raw.HName); // raw string - ^1Drifter Team ^7^J Server\u0000\u0000\u0000\u0000
+});
 ```
 
 ### Example Applications
@@ -154,7 +197,7 @@ DEBUG=node-insim:tcp node insim.js # debug only TCP protocol messages
 
 ### Requirements
 
-- Node.js 16
+- Node.js 18
 - Yarn
 
 ### Start a development server
