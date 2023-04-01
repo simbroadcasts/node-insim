@@ -259,3 +259,7 @@ yarn bump minor
 yarn bump major
 yarn bump 1.2.3
 ```
+
+---
+
+![Node Insim - An open source project by Sim Broadcasts](https://simbroadcasts.tv/assets/node-insim/node-insim-footer.png)
