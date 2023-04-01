@@ -5,7 +5,7 @@ import { InSim } from 'node-insim';
 import type { IS_VER } from 'node-insim/packets';
 import { IS_ISI_ReqI, PacketType } from 'node-insim/packets';
 
-const log = debug('lfs-race-insim');
+const log = debug('node-insim-ts');
 
 const inSim = new InSim();
 

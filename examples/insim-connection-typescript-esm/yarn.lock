@@ -234,19 +234,17 @@ ms@2.1.2:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
 
-node-insim@^0.0.2:
+"node-insim@file:../..":
   version "0.0.2"
-  resolved "https://registry.yarnpkg.com/node-insim/-/node-insim-0.0.2.tgz#3fadd96fe0a9cec12671083febbd44a7d89b43d1"
-  integrity sha512-IbA8MR0QMlokld8v7zwqDB8QXagIQk+Nqxuv9L4B+Qt3EnxzAtW3+Rl2gtkfVlWqvISfzy6pAySaVqZ4y0A35A==
   dependencies:
     debug "^4.3.4"
     lodash "^4.17.21"
-    parse-lfs-message "^1.0.0"
+    parse-lfs-message "^1.2.1"
     reflect-metadata "^0.1.13"
     supports-color "^9.2.3"
     tiny-typed-emitter "^2.1.0"
 
-parse-lfs-message@^1.0.0:
+parse-lfs-message@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/parse-lfs-message/-/parse-lfs-message-1.2.1.tgz#dc625be2561e5f45c237446d9eebff793f648d49"
   integrity sha512-McaoVf5OQ3A1MLP7GmiezJoY2el8fdRYCL7nnT+1IQ6Jdc/CUF1/eA3/76xLKLAVTMFfPxNX9T+jBrej19fQow==
