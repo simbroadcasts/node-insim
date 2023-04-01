@@ -17,7 +17,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'yarn'
@@ -26,15 +26,15 @@ jobs:
         with:
           cmd: format:check
       - name: Lint
-        uses: borales/actions-yarn@v2.3.0
+        uses: borales/actions-yarn@v4
         with:
           cmd: lint
       - name: Build
-        uses: borales/actions-yarn@v2.3.0
+        uses: borales/actions-yarn@v4
         with:
           cmd: build
       - name: Test
-        uses: borales/actions-yarn@v2.3.0
+        uses: borales/actions-yarn@v4
         with:
           cmd: test --ci --reporters=default --reporters=jest-junit
       - name: Upload Test Results
