@@ -1,6 +1,6 @@
 # Node InSim
 
-<img src="https://simbroadcasts.tv/assets/node-insim/node-insim-icon-256.png" width="100px" align="left" hspace="15">
+<img src="https://simbroadcasts.tv/assets/node-insim/node-insim-icon-256.png" width="100px" align="right" hspace="15">
 
 [![NPM Version](https://img.shields.io/npm/v/node-insim?style=flat-square)](https://www.npmjs.com/package/node-insim)
 
@@ -9,7 +9,7 @@ TypeScript support.
 
 ## Introduction
 
-Node InSim provides a JavaScript API to communicate with [Live for Speed](https://www.lfs.net/)
+Node InSim provides a JavaScript API to communicate with the [Live for Speed](https://www.lfs.net/)
 InSim protocol over a TCP connection. After connecting to an LFS server via a hostname
 and a port, you are able to send InSim packets to the server and receive incoming
 packets from the server.
