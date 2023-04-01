@@ -53,6 +53,8 @@ jobs:
     needs: build-and-test
     runs-on: ubuntu-latest
     permissions:
+      contents: read
+      issues: read
       checks: write
       pull-requests: write
     if: always()
