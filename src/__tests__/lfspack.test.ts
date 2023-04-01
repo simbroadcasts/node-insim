@@ -70,7 +70,7 @@ const map = new Map<[string, unknown[]], number[]>([
   ],
   // LFS-encoded string
   [
-    ['3s', ['abc']],
+    ['3s', [['abc', 'abc']]],
     [97, 98, 99],
   ],
   // 4-byte float

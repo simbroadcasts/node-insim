@@ -1,3 +1,5 @@
+import isArray from 'lodash/isArray';
+
 import { getFormat } from '../../decorators';
 import { InSimError } from '../../errors';
 import { determineLength, unpack } from '../../lfspack';
@@ -8,8 +10,14 @@ const log = baseLog.extend('struct');
 
 type Data = Record<string, unknown>;
 
+type RawProperties<TThis> = {
+  [P in keyof Omit<TThis, keyof Struct>]: TThis[P];
+};
+
 export class Struct implements Receivable {
   public SIZE_MULTIPLIER = 4;
+
+  public _raw: RawProperties<this> = {} as RawProperties<this>;
 
   protected initialize(data?: Partial<Data>) {
     if (!data) {
@@ -71,6 +79,12 @@ export class Struct implements Receivable {
       if (propertyName === 'Size') {
         (this[propertyName as keyof this] as unknown as number) =
           (value as number) * this.SIZE_MULTIPLIER;
+        return;
+      }
+
+      if (isArray(value) && value.length === 2) {
+        this[propertyName as keyof this] = value[1] as this[keyof this];
+        this._raw[propertyName as keyof RawProperties<this>] = value[0];
         return;
       }
 

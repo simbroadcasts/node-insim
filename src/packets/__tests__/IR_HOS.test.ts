@@ -4,29 +4,37 @@ import { HInfo, HostInfoFlags, IR_HOS, PacketType } from '..';
 
 const size = 4 + 3 * 40;
 
+const hInfo1 = new HInfo({
+  HName: 'SAVAGE SimSports',
+  Track: 'AS4X',
+  Flags: HostInfoFlags.HOS_S3 | HostInfoFlags.HOS_FIRST,
+  NumConns: 10,
+});
+hInfo1._raw.HName = 'SAVAGE SimSports\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0';
+hInfo1._raw.Track = 'AS4X\0\0';
+
+const hInfo2 = new HInfo({
+  HName: 'New Dimension Racing',
+  Track: 'KY3R',
+  Flags: HostInfoFlags.HOS_S2,
+  NumConns: 32,
+});
+hInfo2._raw.HName = 'New Dimension Racing\0\0\0\0\0\0\0\0\0\0\0\0';
+hInfo2._raw.Track = 'KY3R\0\0';
+
+const hInfo3 = new HInfo({
+  HName: 'Demo Server Whose Name Is Best!!',
+  Track: 'BL2',
+  Flags: HostInfoFlags.HOS_LAST,
+  NumConns: 8,
+});
+hInfo3._raw.HName = 'Demo Server Whose Name Is Best!!';
+hInfo3._raw.Track = 'BL2\0\0\0';
+
 const data: PacketTestData<IR_HOS> = {
   ReqI: 2,
   NumHosts: 3,
-  Info: [
-    new HInfo({
-      HName: 'SAVAGE SimSports',
-      Track: 'AS4X',
-      Flags: HostInfoFlags.HOS_S3 | HostInfoFlags.HOS_FIRST,
-      NumConns: 10,
-    }),
-    new HInfo({
-      HName: 'New Dimension Racing',
-      Track: 'KY3R',
-      Flags: HostInfoFlags.HOS_S2,
-      NumConns: 32,
-    }),
-    new HInfo({
-      HName: 'Demo Server Whose Name Is Best!!',
-      Track: 'BL2',
-      Flags: HostInfoFlags.HOS_LAST,
-      NumConns: 8,
-    }),
-  ],
+  Info: [hInfo1, hInfo2, hInfo3],
 };
 
 const buffer = new Uint8Array([

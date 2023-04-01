@@ -301,10 +301,15 @@ const magic: Record<
       }
     },
     unpack(dv, offset, c) {
-      const r = [];
-      for (let i = 0; i < c; i++) r.push(dv.getUint8(offset + i));
+      const chars = [];
+      const bytes = [];
 
-      return [parseLFSMessage(new Uint8Array(r))];
+      for (let i = 0; i < c; i++) {
+        chars.push(String.fromCharCode(dv.getUint8(offset + i)));
+        bytes.push(dv.getUint8(offset + i));
+      }
+
+      return [[chars.join(''), parseLFSMessage(new Uint8Array(bytes))]];
     },
   },
   // float
