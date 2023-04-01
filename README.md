@@ -174,8 +174,8 @@ inSim.on(PacketType.ISP_ISM, (packet: IS_ISM) => {
 In the [`examples/`](./examples) folder, there are example Node.js applications using
 Node InSim.
 
-To run an example, first make sure the local Node InSim package is built by running 
-`yarn build` in the root folder. Then follow the instructions in each example's 
+To run an example, first make sure the local Node InSim package is built by running
+`yarn build` in the root folder. Then follow the instructions in each example's
 `README.md` file.
 
 #### Examples:
