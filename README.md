@@ -172,7 +172,7 @@ inSim.on(PacketType.ISP_ISM, (packet: IS_ISM) => {
 ### Example Applications
 
 In the [`examples/`](./examples) folder, there are example Node.js applications using
-Node InSim. To run an example, the instructions in each example's `README.md` file.
+Node InSim. To run an example, follow the instructions in each example's `README.md` file.
 
 #### Examples:
 
@@ -224,8 +224,7 @@ yarn test:watch
 
 To run these tests, LFS must be running with an InSim port open.
 
-By default, the tests connect to `127.0.0.1:29999`. The InSim host and port can be
-configured by going to the `lfs-test` folder and copying `.env` to `.env.local`.
+By default, the tests connect to `127.0.0.1:29999`. The InSim host and port can be configured by copying `.env` to `.env.local` in the `lfs-test` directory.
 
 ```shell
 yarn test:lfs
