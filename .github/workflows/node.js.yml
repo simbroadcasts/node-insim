@@ -21,6 +21,10 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'yarn'
+      - name: Install
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install
       - name: Check Code Format
         uses: borales/actions-yarn@v4
         with:
