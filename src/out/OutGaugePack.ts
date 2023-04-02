@@ -20,11 +20,11 @@ import type { OutGaugeFlags } from './OutGaugeFlags';
  *
  * This can be controlled by 5 lines in the cfg.txt file:
  *
- * OutGauge Mode 0      : 0-off 1-driving 2-driving+replay
- * OutGauge Delay 1     : minimum delay between packets (100ths of a sec)
- * OutGauge IP 0.0.0.0  : IP address to send the UDP packet
- * OutGauge Port 0      : IP port
- * OutGauge ID 0        : if not zero, adds an identifier to the packet
+ * - OutGauge Mode 0      : 0-off 1-driving 2-driving+replay
+ * - OutGauge Delay 1     : minimum delay between packets (100ths of a sec)
+ * - OutGauge IP 0.0.0.0  : IP address to send the UDP packet
+ * - OutGauge Port 0      : IP port
+ * - OutGauge ID 0        : if not zero, adds an identifier to the packet
  *
  * Each update sends the following UDP packet.
  */
