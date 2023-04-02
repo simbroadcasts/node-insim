@@ -1,4 +1,5 @@
 import { byte } from '../decorators';
+import { copyBuffer } from '../lfspack';
 import { Packet } from './base';
 import { PacketType } from './enums';
 import { HInfo } from './structs';
@@ -31,7 +32,9 @@ export class IR_HOS extends Packet {
 
     for (let i = 0; i < this.NumHosts; i++) {
       const start = hostInfoOffset + hostInfoLength * i;
-      const hostInfoBuffer = buffer.slice(start, start + hostInfoLength);
+      const hostInfoBuffer = copyBuffer(
+        buffer.slice(start, start + hostInfoLength),
+      );
       this.Info.push(new HInfo().unpack(hostInfoBuffer));
     }
 

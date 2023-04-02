@@ -1,4 +1,5 @@
 import { byte } from '../decorators';
+import { copyBuffer } from '../lfspack';
 import { SendablePacket } from './base';
 import type { PMOFlags } from './enums';
 import { PacketType, PMOAction } from './enums';
@@ -50,7 +51,9 @@ export class IS_AXM extends SendablePacket {
 
     for (let i = 0; i < this.NumO; i++) {
       const start = this.objectInfoOffset + objectInfoLength * i;
-      const objectInfoBuffer = buffer.slice(start, start + objectInfoLength);
+      const objectInfoBuffer = copyBuffer(
+        buffer.slice(start, start + objectInfoLength),
+      );
       this.Info.push(new ObjectInfo().unpack(objectInfoBuffer));
     }
 

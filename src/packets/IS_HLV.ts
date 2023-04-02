@@ -1,4 +1,5 @@
 import { byte, word } from '../decorators';
+import { copyBuffer } from '../lfspack';
 import { Packet } from './base';
 import type { HLVCViolation } from './enums';
 import { PacketType } from './enums';
@@ -32,9 +33,8 @@ export class IS_HLV extends Packet {
     super.unpack(buffer);
 
     const start = this.getFormatSize();
-    const carContactBuffer = buffer.slice(
-      start,
-      start + new CarContOBJ().getFormatSize(),
+    const carContactBuffer = copyBuffer(
+      buffer.slice(start, start + new CarContOBJ().getFormatSize()),
     );
 
     this.C = new CarContOBJ().unpack(carContactBuffer);

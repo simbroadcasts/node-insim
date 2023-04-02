@@ -1,4 +1,5 @@
 import { byte, word } from '../decorators';
+import { copyBuffer } from '../lfspack';
 import { Packet } from './base';
 import { PacketType } from './enums';
 import { CarContact } from './structs';
@@ -34,13 +35,14 @@ export class IS_CON extends Packet {
     const carContactOffset = this.getFormatSize();
     const carContactLength = new CarContact().getFormatSize();
 
-    const carContactBufferA = buffer.slice(
-      carContactOffset,
-      carContactOffset + carContactLength,
+    const carContactBufferA = copyBuffer(
+      buffer.slice(carContactOffset, carContactOffset + carContactLength),
     );
-    const carContactBufferB = buffer.slice(
-      carContactOffset + carContactLength,
-      carContactOffset + carContactLength * 2,
+    const carContactBufferB = copyBuffer(
+      buffer.slice(
+        carContactOffset + carContactLength,
+        carContactOffset + carContactLength * 2,
+      ),
     );
 
     this.A = new CarContact().unpack(carContactBufferA);

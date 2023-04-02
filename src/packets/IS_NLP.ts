@@ -1,6 +1,6 @@
 import { byte } from '../decorators';
 import { InSimError } from '../errors';
-import { unpack } from '../lfspack';
+import { copyBuffer, unpack } from '../lfspack';
 import { Packet } from './base';
 import { PacketType } from './enums';
 import { NodeLap } from './structs';
@@ -43,7 +43,9 @@ export class IS_NLP extends Packet {
 
     for (let i = 0; i < this.NumP; i++) {
       const start = data.length + nodeLapLength * i;
-      const nodeLapBuffer = buffer.slice(start, start + nodeLapLength);
+      const nodeLapBuffer = copyBuffer(
+        buffer.slice(start, start + nodeLapLength),
+      );
       this.Info.push(new NodeLap().unpack(nodeLapBuffer));
     }
 

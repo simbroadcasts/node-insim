@@ -441,4 +441,12 @@ function isAlphaNumeric(b: string): boolean {
   return false;
 }
 
-export { determineLength, pack, unpack };
+function copyBuffer(buffer: Uint8Array): Uint8Array {
+  const dest = new ArrayBuffer(buffer.byteLength);
+  const newBuffer = new Uint8Array(dest);
+  newBuffer.set(buffer);
+
+  return newBuffer;
+}
+
+export { copyBuffer, determineLength, pack, unpack };

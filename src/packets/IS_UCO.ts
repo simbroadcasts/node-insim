@@ -1,4 +1,5 @@
 import { byte, struct, unsigned } from '../decorators';
+import { copyBuffer } from '../lfspack';
 import { Packet } from './base';
 import type { UCOAction } from './enums';
 import { PacketType } from './enums';
@@ -59,9 +60,8 @@ export class IS_UCO extends Packet {
     const carContactOffset = 12;
     const carContactLength = new CarContOBJ().getFormatSize();
 
-    const carContactBuffer = buffer.slice(
-      carContactOffset,
-      carContactOffset + carContactLength,
+    const carContactBuffer = copyBuffer(
+      buffer.slice(carContactOffset, carContactOffset + carContactLength),
     );
 
     this.C = new CarContOBJ().unpack(carContactBuffer);
@@ -69,9 +69,8 @@ export class IS_UCO extends Packet {
     const objectInfoOffset = carContactOffset + carContactLength;
     const objectInfoLength = new ObjectInfo().getFormatSize();
 
-    const infoBuffer = buffer.slice(
-      objectInfoOffset,
-      objectInfoOffset + objectInfoLength,
+    const infoBuffer = copyBuffer(
+      buffer.slice(objectInfoOffset, objectInfoOffset + objectInfoLength),
     );
 
     this.Info = new ObjectInfo().unpack(infoBuffer);

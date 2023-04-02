@@ -1,6 +1,6 @@
 import { byte } from '../decorators';
 import { InSimError } from '../errors';
-import { pack, unpack } from '../lfspack';
+import { copyBuffer, pack, unpack } from '../lfspack';
 import { SendablePacket } from './base';
 import { PacketType } from './enums';
 import type { PacketData } from './types';
@@ -48,7 +48,9 @@ export class IS_MAL extends SendablePacket {
     this.SkinID = [];
     for (let i = 0; i < this.NumM; i++) {
       const start = this.skinIdOffset + this.skinIdSize * i;
-      const skinIdBuffer = buffer.slice(start, start + this.skinIdSize);
+      const skinIdBuffer = copyBuffer(
+        buffer.slice(start, start + this.skinIdSize),
+      );
       const data = unpack('C', skinIdBuffer.buffer);
       if (data) {
         this.SkinID.push(data[0] as string);

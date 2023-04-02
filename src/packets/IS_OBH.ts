@@ -1,4 +1,5 @@
 import { byte, byteArray, short, word } from '../decorators';
+import { copyBuffer } from '../lfspack';
 import { Packet } from './base';
 import type { ObjectHitFlags, ObjectIndex } from './enums';
 import { PacketType } from './enums';
@@ -47,9 +48,11 @@ export class IS_OBH extends Packet {
 
     super.unpack(buffer);
 
-    const carContactBuffer = buffer.slice(
-      carContactOffset,
-      carContactOffset + new CarContOBJ().getFormatSize(),
+    const carContactBuffer = copyBuffer(
+      buffer.slice(
+        carContactOffset,
+        carContactOffset + new CarContOBJ().getFormatSize(),
+      ),
     );
 
     this.C = new CarContOBJ().unpack(carContactBuffer);

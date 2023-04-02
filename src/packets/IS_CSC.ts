@@ -1,4 +1,5 @@
 import { byte, struct, unsigned } from '../decorators';
+import { copyBuffer } from '../lfspack';
 import { Packet } from './base';
 import type { CSCAction } from './enums';
 import { PacketType } from './enums';
@@ -33,9 +34,11 @@ export class IS_CSC extends Packet {
 
     const carContactOffset = 12;
 
-    const carContactBuffer = buffer.slice(
-      carContactOffset,
-      carContactOffset + new CarContOBJ().getFormatSize(),
+    const carContactBuffer = copyBuffer(
+      buffer.slice(
+        carContactOffset,
+        carContactOffset + new CarContOBJ().getFormatSize(),
+      ),
     );
 
     this.C = new CarContOBJ().unpack(carContactBuffer);

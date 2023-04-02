@@ -1,6 +1,7 @@
 import EventEmitter from 'events';
 import net from 'net';
 
+import { copyBuffer } from './lfspack';
 import { log as baseLog } from './log';
 
 const log = baseLog.extend('tcp');
@@ -85,12 +86,12 @@ export class TCP extends EventEmitter {
 
     if (this.tempBuf.length === size) {
       // We have at least one full packet
-      this.emit('packet', this.tempBuf);
+      this.emit('packet', copyBuffer(this.tempBuf));
 
       this.tempBuf = null;
     } else if (this.tempBuf.length > size) {
       // Process first packet...
-      this.emit('packet', this.tempBuf.slice(0, size));
+      this.emit('packet', copyBuffer(this.tempBuf.slice(0, size)));
       this.tempBuf = this.tempBuf.slice(size, this.tempBuf.length);
       // Recurse on remaining buffer
       this.processBuf();

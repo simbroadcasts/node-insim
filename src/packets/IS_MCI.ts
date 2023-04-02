@@ -1,4 +1,5 @@
 import { byte } from '../decorators';
+import { copyBuffer } from '../lfspack';
 import { Packet } from './base';
 import { PacketType } from './enums';
 import { CompCar } from './structs';
@@ -28,7 +29,9 @@ export class IS_MCI extends Packet {
 
     for (let i = 0; i < this.NumC; i++) {
       const start = 4 + compCarSize * i;
-      const compCarBuffer = buffer.slice(start, start + compCarSize);
+      const compCarBuffer = copyBuffer(
+        buffer.slice(start, start + compCarSize),
+      );
       this.Info.push(new CompCar().unpack(compCarBuffer));
     }
 
