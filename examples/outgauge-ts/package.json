@@ -1,0 +1,31 @@
+{
+  "name": "node-insim-example-outgauge-ts",
+  "version": "0.0.0",
+  "description": "Node InSim - OutGauge (TypeScript + ES Modules)",
+  "main": "dist/index.cjs",
+  "type": "module",
+  "repository": "git@github.com:mkapal/lfs-race-insim.git",
+  "author": "Martin Kapal <flamecze@gmail.com>",
+  "private": true,
+  "scripts": {
+    "dev": "tsx watch ./src/index.ts",
+    "serve:production": "node ./dist/index.cjs",
+    "build": "esbuild src/index.ts --bundle --platform=node --target=node18 --outdir=dist --external:net --out-extension:.js=.cjs"
+  },
+  "dependencies": {
+    "debug": "^4.3.4",
+    "node-insim": "file:../../dist-local",
+    "supports-color": "^9.2.3"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.7",
+    "@types/node": "^18.11.9",
+    "esbuild": "^0.17.12",
+    "tsx": "^3.12.6",
+    "typescript": "^5.0.2"
+  },
+  "files": [
+    "**/*.js",
+    "**/*.d.ts"
+  ]
+}

@@ -197,6 +197,24 @@ inSim.on(PacketType.IRP_HOS, (packet: IR_HOS) => {
 More information about the InSim Relay protocol can be found in the [InSim Relay client
 information](https://www.lfs.net/forum/thread/30740) thread on LFS forum.
 
+### OutGauge
+
+```ts
+import { OutGauge, OutGaugePack } from 'node-insim';
+
+const outGauge = new OutGauge();
+
+outGauge.connect({
+  Host: '127.0.0.1',
+  Port: 29999,
+});
+
+outGauge.on('packet', (data: OutGaugePack) => {
+  console.clear();
+  console.log(data.RPM);
+});
+```
+
 ### Example applications
 
 In the [`examples/`](./examples) folder, there are example Node.js applications using
@@ -205,9 +223,11 @@ Node InSim.
 - JavaScript + CommonJS
   - [InSim connection](./examples/insim-connection-js)
   - [InSim Relay](./examples/insim-relay-js)
+  - [OutGauge](./examples/outgauge-js)
 - TypeScript + ES Modules
   - [InSim connection](./examples/insim-connection-ts)
   - [InSim Relay](./examples/insim-relay-ts)
+  - [OutGauge](./examples/outgauge-ts)
 
 Before you run an example, first make sure the local Node InSim package is built by
 running `yarn build-local` in the root folder. Then follow the instructions in each
