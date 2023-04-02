@@ -46,7 +46,9 @@ export class InSim extends TypedEmitter<InSimEvents> {
   /**
    * Connect to a server via InSim
    */
-  connect(options: Partial<IS_ISI_Data> & InSimConnectionOptions) {
+  connect(
+    options: Omit<Partial<IS_ISI_Data>, 'InSimVer'> & InSimConnectionOptions,
+  ) {
     this._connect(options);
   }
 
