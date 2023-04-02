@@ -209,11 +209,11 @@ Node InSim.
   - [InSim connection](./examples/insim-connection-ts)
   - [InSim Relay](./examples/insim-relay-ts)
 
-Before you run an example, first make sure the local Node InSim package is built by 
-running `yarn build-local` in the root folder. Then follow the instructions in each 
+Before you run an example, first make sure the local Node InSim package is built by
+running `yarn build-local` in the root folder. Then follow the instructions in each
 example's `README.md` file.
 
-For instance, to run the "InSim connection - TypeScript" example, run the following 
+For instance, to run the "InSim connection - TypeScript" example, run the following
 commands:
 
 ```shell
