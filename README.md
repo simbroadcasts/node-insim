@@ -224,6 +224,11 @@ To enable logging, use the `DEBUG` environment variable when running your InSim
 application. All logs are prefixed with `node-insim`. You can use wildcards to filter
 out the logs that you need.
 
+```sh
+DEBUG=* node insim.js # debug all messages
+DEBUG=node-insim:tcp node insim.js # debug only TCP protocol messages
+```
+
 ## Example applications
 
 In the [`examples/`](./examples) folder, there are example Node.js applications using
@@ -250,11 +255,6 @@ yarn build-local
 cd examples/insim-connection-ts
 yarn
 yarn dev
-```
-
-```sh
-DEBUG=* node insim.js # debug all messages
-DEBUG=node-insim:tcp node insim.js # debug only TCP protocol messages
 ```
 
 ## Development
