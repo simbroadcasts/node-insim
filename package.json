@@ -1,6 +1,6 @@
 {
   "name": "node-insim",
-  "version": "0.0.2",
+  "version": "0.9.0",
   "description": "An InSim library for NodeJS",
   "repository": "git@github.com:simbroadcasts/node-insim.git",
   "author": "Martin Kapal <flamecze@gmail.com>",
