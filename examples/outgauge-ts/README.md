@@ -18,8 +18,6 @@ yarn
 yarn dev
 ```
 
-The app connects to `127.0.0.1:29999` by default.
-
 ## Production build
 
 ```shell

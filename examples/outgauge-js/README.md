@@ -1,4 +1,4 @@
-# Node InSim - InSim connection (JavaScript + CommonJS)
+# Node InSim - OutGauge (JavaScript + CommonJS)
 
 ## Requirements
 
@@ -17,8 +17,6 @@ yarn
 ```shell
 yarn dev
 ```
-
-The app connects to `127.0.0.1:29999` by default.
 
 ## Production build
 
