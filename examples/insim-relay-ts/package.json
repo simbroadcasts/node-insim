@@ -1,7 +1,7 @@
 {
-  "name": "node-insim-example-insim-connection-typescript-esm",
+  "name": "node-insim-example-insim-relay-ts",
   "version": "0.0.0",
-  "description": "Node InSim - InSim connection (TypeScript + ES Modules)",
+  "description": "Node InSim - InSim Relay (TypeScript + ES Modules)",
   "main": "dist/index.cjs",
   "type": "module",
   "repository": "git@github.com:mkapal/lfs-race-insim.git",
@@ -9,18 +9,17 @@
   "private": true,
   "scripts": {
     "dev": "tsx watch ./src/index.ts",
-    "serve:production": "cross-env DEBUG=* node ./dist/index.cjs",
+    "serve:production": "node ./dist/index.cjs",
     "build": "esbuild src/index.ts --bundle --platform=node --target=node18 --outdir=dist --external:net --out-extension:.js=.cjs"
   },
   "dependencies": {
     "debug": "^4.3.4",
-    "node-insim": "file:../../",
+    "node-insim": "file:../../dist-local",
     "supports-color": "^9.2.3"
   },
   "devDependencies": {
     "@types/debug": "^4.1.7",
     "@types/node": "^18.11.9",
-    "cross-env": "^7.0.3",
     "esbuild": "^0.17.12",
     "tsx": "^3.12.6",
     "typescript": "^5.0.2"

@@ -169,21 +169,59 @@ inSim.on(PacketType.ISP_ISM, (packet: IS_ISM) => {
 });
 ```
 
-### Example Applications
+### InSim Relay
+
+To connect to the InSim Relay service, use the `connectRelay()` method. Once connected,
+you can send and receive relay packets. The following example demonstrates how to show a
+list of hosts connected to the InSim Relay:
+
+```ts
+import { InSim } from 'node-insim';
+import { IR_HLR, IR_HOS, PacketType, HInfo } from 'node-insim/packets';
+
+inSim.connectRelay();
+
+inSim.on('connect', () => {
+  // Request a list of hosts
+  inSim.send(new IR_HLR());
+});
+
+inSim.on(PacketType.IRP_HOS, (packet: IR_HOS) => {
+  // Log the name of each received host
+  packet.Info.forEach((host: HInfo) => {
+    console.log(host.HName);
+  });
+});
+```
+
+More information about the InSim Relay protocol can be found in the [InSim Relay client
+information](https://www.lfs.net/forum/thread/30740) thread on LFS forum.
+
+### Example applications
 
 In the [`examples/`](./examples) folder, there are example Node.js applications using
 Node InSim.
 
-To run an example, first make sure the local Node InSim package is built by running
-`yarn build` in the root folder. Then follow the instructions in each example's
-`README.md` file.
-
-#### Examples:
-
 - JavaScript + CommonJS
-  - [InSim connection](./examples/insim-connection-javascript-cjs)
+  - [InSim connection](./examples/insim-connection-js)
+  - [InSim Relay](./examples/insim-relay-js)
 - TypeScript + ES Modules
-  - [InSim connection](./examples/insim-connection-typescript-esm)
+  - [InSim connection](./examples/insim-connection-ts)
+  - [InSim Relay](./examples/insim-relay-ts)
+
+Before you run an example, first make sure the local Node InSim package is built by 
+running `yarn build-local` in the root folder. Then follow the instructions in each 
+example's `README.md` file.
+
+For instance, to run the "InSim connection - TypeScript" example, run the following 
+commands:
+
+```shell
+yarn build-local
+cd examples/insim-connection-ts
+yarn
+yarn dev
+```
 
 ### Debugging
 

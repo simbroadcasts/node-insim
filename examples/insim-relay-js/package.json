@@ -1,7 +1,7 @@
 {
-  "name": "node-insim-example-insim-connection-javascript-cjs",
+  "name": "node-insim-example-insim-relay-js",
   "version": "0.0.0",
-  "description": "Node InSim - InSim connection (JavaScript + CommonJS)",
+  "description": "Node InSim - InSim Relay (JavaScript + CommonJS)",
   "main": "dist/index.js",
   "type": "commonjs",
   "repository": "git@github.com:mkapal/lfs-race-insim.git",
@@ -9,22 +9,20 @@
   "private": true,
   "scripts": {
     "dev": "node ./src/index.js",
-    "serve:production": "cross-env DEBUG=* node ./dist/index.js",
+    "serve:production": "node ./dist/index.js",
     "build": "esbuild src/index.js --bundle --platform=node --target=node18 --outdir=dist --external:net"
   },
   "dependencies": {
     "debug": "^4.3.4",
-    "node-insim": "file:../../",
+    "node-insim": "file:../../dist-local",
     "supports-color": "^9.2.3"
   },
   "devDependencies": {
     "@types/debug": "^4.1.7",
     "@types/node": "^18.11.9",
-    "cross-env": "^7.0.3",
     "esbuild": "^0.17.12"
   },
   "files": [
-    "**/*.js",
-    "**/*.d.ts"
+    "**/*.js"
   ]
 }
