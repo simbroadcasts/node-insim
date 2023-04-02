@@ -11,6 +11,23 @@ import { Struct } from '../packets';
 import type { DashLights } from './DashLights';
 import type { OutGaugeFlags } from './OutGaugeFlags';
 
+/**
+ * OutGauge - EXTERNAL DASHBOARD SUPPORT
+ *
+ * The user's car in multiplayer or the viewed car in single player or
+ * single player replay can output information to a dashboard system
+ * while viewed from an internal view.
+ *
+ * This can be controlled by 5 lines in the cfg.txt file:
+ *
+ * OutGauge Mode 0      : 0-off 1-driving 2-driving+replay
+ * OutGauge Delay 1     : minimum delay between packets (100ths of a sec)
+ * OutGauge IP 0.0.0.0  : IP address to send the UDP packet
+ * OutGauge Port 0      : IP port
+ * OutGauge ID 0        : if not zero, adds an identifier to the packet
+ *
+ * Each update sends the following UDP packet.
+ */
 export class OutGaugePack extends Struct {
   static readonly MIN_SIZE = 92;
   static readonly MAX_SIZE = 96;
