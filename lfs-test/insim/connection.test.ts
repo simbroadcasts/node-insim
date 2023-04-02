@@ -1,9 +1,9 @@
-import NodeInSim from '../../src';
+import { InSim } from '../../src';
 import { getInSimConnectionOptions } from '../helpers';
 
 describe('InSim connection', () => {
   it('should connect to LFS', (done) => {
-    const inSim = new NodeInSim.InSim();
+    const inSim = new InSim();
 
     inSim.connect({
       ...getInSimConnectionOptions(),
@@ -11,10 +11,12 @@ describe('InSim connection', () => {
     });
 
     inSim.on('connect', () => {
-      inSim.disconnect();
-      inSim.once('disconnect', () => {
-        done();
-      });
+      setTimeout(() => {
+        inSim.disconnect();
+        inSim.once('disconnect', () => {
+          done();
+        });
+      }, 1000);
     });
   });
 });

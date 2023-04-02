@@ -1,11 +1,11 @@
-import NodeInSim from '../../src';
+import { InSim } from '../../src';
 import type { IS_VER } from '../../src/packets';
 import { IS_ISI_ReqI, PacketType } from '../../src/packets';
 import { getInSimConnectionOptions } from '../helpers';
 
 describe('InSim version', () => {
   it('should connect to LFS and receive the version', (done) => {
-    const inSim = new NodeInSim.InSim();
+    const inSim = new InSim();
 
     inSim.connect({
       ...getInSimConnectionOptions(),

@@ -126,7 +126,6 @@ export class InSim extends TypedEmitter<InSimEvents> {
     this.sizeMultiplier = sizeMultiplier;
 
     this.connection.on('connect', () => {
-      this.emit('connect');
       if (!isRelay) {
         this.send(
           new IS_ISI({
@@ -141,6 +140,7 @@ export class InSim extends TypedEmitter<InSimEvents> {
           }),
         );
       }
+      this.emit('connect');
     });
 
     this.connection.on('disconnect', () => {

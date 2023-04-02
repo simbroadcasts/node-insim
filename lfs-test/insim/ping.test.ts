@@ -1,10 +1,10 @@
-import NodeInSim from '../../src';
+import { InSim } from '../../src';
 import { IS_TINY, PacketType, TinyType } from '../../src/packets';
 import { getInSimConnectionOptions } from '../helpers';
 
 describe('InSim ping', () => {
   it('should connect to LFS and ping it', (done) => {
-    const inSim = new NodeInSim.InSim();
+    const inSim = new InSim();
 
     inSim.connect({
       ...getInSimConnectionOptions(),
@@ -12,12 +12,14 @@ describe('InSim ping', () => {
     });
 
     inSim.on('connect', () => {
-      inSim.send(
-        new IS_TINY({
-          ReqI: 1,
-          SubT: TinyType.TINY_PING,
-        }),
-      );
+      setTimeout(() => {
+        inSim.send(
+          new IS_TINY({
+            ReqI: 1,
+            SubT: TinyType.TINY_PING,
+          }),
+        );
+      }, 1000);
     });
 
     inSim.on(PacketType.ISP_TINY, function onVersion(packet: IS_TINY) {
