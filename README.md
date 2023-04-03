@@ -215,6 +215,25 @@ outGauge.on('packet', (data: OutGaugePack) => {
 });
 ```
 
+### OutSim
+
+```ts
+import { OutSim, OutSimPack } from 'node-insim';
+
+const outSim = new OutSim();
+
+outSim.connect({
+  Host: '127.0.0.1',
+  Port: 29999,
+});
+
+outSim.on('packet', (data: OutSimPack) => {
+  console.clear();
+  console.log(data.PosX);
+});
+```
+
+
 ### Debugging
 
 Node InSim uses the [`debug` NPM package](https://github.com/debug-js/debug) for debug

@@ -9,4 +9,11 @@ export default NodeInSim;
 export type { InSimError } from './errors';
 export type { InSimOptions } from './InSim';
 export { InSim } from './InSim';
-export { DashLights, OutGauge, OutGaugeFlags, OutGaugePack } from './out';
+export {
+  DashLights,
+  OutGauge,
+  OutGaugeFlags,
+  OutGaugePack,
+  OutSim,
+  OutSimPack,
+} from './out';
