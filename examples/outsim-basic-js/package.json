@@ -1,5 +1,5 @@
 {
-  "name": "node-insim-example-outsim-js",
+  "name": "node-insim-example-outsim-basic-js",
   "version": "0.0.0",
   "description": "Node InSim - OutSim (JavaScript + CommonJS)",
   "main": "dist/index.js",

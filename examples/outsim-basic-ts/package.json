@@ -1,5 +1,5 @@
 {
-  "name": "node-insim-example-outsim-ts",
+  "name": "node-insim-example-outsim-basic-ts",
   "version": "0.0.0",
   "description": "Node InSim - OutSim (TypeScript + ES Modules)",
   "main": "dist/index.cjs",

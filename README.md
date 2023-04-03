@@ -233,7 +233,6 @@ outSim.on('packet', (data: OutSimPack) => {
 });
 ```
 
-
 ### Debugging
 
 Node InSim uses the [`debug` NPM package](https://github.com/debug-js/debug) for debug
@@ -257,10 +256,12 @@ Node InSim.
   - [InSim connection](./examples/insim-connection-js)
   - [InSim Relay](./examples/insim-relay-js)
   - [OutGauge](./examples/outgauge-js)
+  - [OutSim](./examples/outsim-basic-js)
 - TypeScript + ES Modules
   - [InSim connection](./examples/insim-connection-ts)
   - [InSim Relay](./examples/insim-relay-ts)
   - [OutGauge](./examples/outgauge-ts)
+  - [OutSim](./examples/outsim-basic-ts)
 
 Before you run an example, first make sure the local Node InSim package is built by
 running `yarn build-local` in the root folder. Then follow the instructions in each

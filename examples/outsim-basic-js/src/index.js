@@ -3,24 +3,24 @@ require('./env');
 const debug = require('debug');
 const { OutSim } = require('node-insim');
 
-const log = debug('node-insim-outsim-js');
+const log = debug('node-insim-outsim-basic-js');
 
-const outGauge = new OutSim(5000);
+const outSim = new OutSim(5000);
 
 log('Connecting...');
 
-outGauge.connect({
+outSim.connect({
   Host: process.env.HOST ?? '127.0.0.1',
   Port: process.env.PORT ? parseInt(process.env.PORT) : 29998,
 });
 
-outGauge.on('connect', () => log('Connected'));
+outSim.on('connect', () => log('Connected'));
 
-outGauge.on('disconnect', () => log('Disconnected'));
+outSim.on('disconnect', () => log('Disconnected'));
 
-outGauge.on('timeout', () => log('Timed out'));
+outSim.on('timeout', () => log('Timed out'));
 
-outGauge.on('packet', (data) => {
+outSim.on('packet', (data) => {
   console.clear();
   console.log(`Acceleration: ${data.AccelX} ${data.AccelY} ${data.AccelZ}`);
   console.log(`Velocity: ${data.VelX} ${data.VelY} ${data.VelZ}`);
