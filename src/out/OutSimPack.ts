@@ -76,7 +76,7 @@ export class OutSimPack extends Struct {
   /** Position - Z axis (1 m = 65536) */
   @int() PosZ = 0;
 
-  /** Optional - only if OutGauge ID is specified */
+  /** Optional - only if OutSim ID is specified */
   @int() ID = 0;
 
   unpack(buffer: Uint8Array): this {

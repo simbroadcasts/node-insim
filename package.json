@@ -1,11 +1,12 @@
 {
   "name": "node-insim",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "description": "An InSim library for NodeJS",
   "repository": "git@github.com:simbroadcasts/node-insim.git",
   "author": "Martin Kapal <flamecze@gmail.com>",
   "contributors": [
-    "Peter Butcher <pete@pbutcher.uk> (https://pbutcher.uk)"
+    "Peter Butcher <pete@pbutcher.uk> (https://pbutcher.uk)",
+    "Gedas Valuntis <xspeedasx@gmail.com>"
   ],
   "license": "MIT",
   "private": false,
