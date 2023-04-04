@@ -7,5 +7,5 @@ export const enum OutSimOptions {
   OSO_DRIVE = 32,
   OSO_DISTANCE = 64,
   OSO_WHEELS = 128,
-  OSO_EXTRA_1 = 256
+  OSO_EXTRA_1 = 256,
 }

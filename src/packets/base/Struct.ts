@@ -98,7 +98,12 @@ export class Struct implements Receivable {
       }
 
       if (propertyType == 'object') {
-        i = this.ParseObject(this[propertyName as keyof this], data, i, propertyName);
+        i = this.ParseObject(
+          this[propertyName as keyof this],
+          data,
+          i,
+          propertyName,
+        );
         return;
       }
 
@@ -111,7 +116,12 @@ export class Struct implements Receivable {
     return this;
   }
 
-  public ParseArray(instance: any[], data: unknown[], i: number, instanceName: string): number {
+  public ParseArray(
+    instance: any[],
+    data: unknown[],
+    i: number,
+    instanceName: string,
+  ): number {
     for (let j = 0; j < instance.length; j++) {
       const item = instance[j];
       if (typeof item === 'object') {
@@ -124,17 +134,22 @@ export class Struct implements Receivable {
     return i;
   }
 
-  public ParseObject(instance: any, data: unknown[], i: number, instanceName: string): number {
+  public ParseObject(
+    instance: any,
+    data: unknown[],
+    i: number,
+    instanceName: string,
+  ): number {
     if (isArray(instance)) {
       return this.ParseArray(instance, data, i, instanceName);
     }
 
     if (instance instanceof Struct) {
       const propertyNames = instance.getValidPropertyNames();
-      propertyNames.forEach(propertyName => {
+      propertyNames.forEach((propertyName) => {
         const propInstance = instance[propertyName as keyof Struct];
         const sval = data[i];
-        const propType = (typeof propInstance);
+        const propType = typeof propInstance;
         const fullName = `${instanceName}.${propertyName}`;
         if (propType === 'object') {
           i = this.ParseObject(propInstance, data, i, fullName);
@@ -142,9 +157,9 @@ export class Struct implements Receivable {
         }
         instance[propertyName as keyof Struct] = sval as any;
         i++;
-      })
+      });
     } else {
-      // should be handled by other parts of unpack function 
+      // should be handled by other parts of unpack function
       // because instance here is a reference to the target property and setter can't be accessed
       i++;
     }

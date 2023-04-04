@@ -64,15 +64,16 @@ export function Vec() {
 
 /** Array */
 export function array<S extends { new (): { getFormat: () => string } }>(
-    str: S, cnt: number
+  str: S,
+  cnt: number,
 ) {
   const format = new str().getFormat();
   const res = [];
   for (let i = 0; i < cnt; i++) {
     res.push(format);
   }
-  return Reflect.metadata(formatMetadataKey, res.join(''))
-} 
+  return Reflect.metadata(formatMetadataKey, res.join(''));
+}
 
 /** Struct */
 export function struct<S extends { new (): { getFormat: () => string } }>(
