@@ -1,9 +1,17 @@
-import {Struct} from "../packets";
-import {array, byte, float, int, string, struct, unsigned} from "../decorators";
-import {OutSimOptions} from "./OutSimOptions";
-import {OutSimWheel} from "./OutSimWheel";
-import {OutSimInputs} from "./OutSimInputs";
-import {OutSimMain} from "./OutSimMain";
+import {
+  array,
+  byte,
+  float,
+  int,
+  string,
+  struct,
+  unsigned,
+} from '../decorators';
+import { Struct } from '../packets';
+import { OutSimInputs } from './OutSimInputs';
+import { OutSimMain } from './OutSimMain';
+import { OutSimOptions } from './OutSimOptions';
+import { OutSimWheel } from './OutSimWheel';
 
 export class OutSimPack2 extends Struct {
   // if (OSOpts & OSO_HEADER)
@@ -17,21 +25,23 @@ export class OutSimPack2 extends Struct {
   // if (OSOpts & OSO_INPUTS)
   @struct(OutSimInputs) OSInputs = new OutSimInputs();
   // if (OSOpts & OSO_DRIVE)
-  @byte() Gear = 0;             // 0=R, 1=N, 2=first gear
-  @byte() Sp1 = 0;              // spare
+  @byte() Gear = 0; // 0=R, 1=N, 2=first gear
+  @byte() Sp1 = 0; // spare
   @byte() Sp2 = 0;
   @byte() Sp3 = 0;
-  @float() EngineAngVel = 0;    // radians/s
-  @float() MaxTorqueAtVel = 0;  // Nm : output torque for throttle 1.0
+  @float() EngineAngVel = 0; // radians/s
+  @float() MaxTorqueAtVel = 0; // Nm : output torque for throttle 1.0
   // if (OSOpts & OSO_DISTANCE)
-  @float() CurrentLapDist = 0;  // m - travelled by car
+  @float() CurrentLapDist = 0; // m - travelled by car
   @float() IndexedDistance = 0; // m - track ruler measurement
   // if (OSOpts & OSO_WHEELS)
-  @array(OutSimWheel, 4) OSWheels = Array.from(new Array(4)).map(_ => new OutSimWheel());	// array of structs - see above
+  @array(OutSimWheel, 4) OSWheels = Array.from(new Array(4)).map(
+    () => new OutSimWheel(),
+  ); // array of structs - see above
   // if (OSOpts & OSO_EXTRA_1)
-  @float() SteerTorque = 0;     // Nm : steering torque on front wheels (proportional to force feedback)
-  @float() Spare = 0;           // spare
-    
+  @float() SteerTorque = 0; // Nm : steering torque on front wheels (proportional to force feedback)
+  @float() Spare = 0; // spare
+
   private readonly OSOpts: number;
 
   constructor(outSimOpts: number) {
@@ -41,7 +51,7 @@ export class OutSimPack2 extends Struct {
 
   public getValidPropertyNames(): string[] {
     // manually setting property names for dynamic LFS data based on OSOpts
-    let validPropertyNames = [];
+    const validPropertyNames = [];
 
     if (this.OSOpts & OutSimOptions.OSO_HEADER) {
       validPropertyNames.push('Header');

@@ -1,5 +1,5 @@
-import {Struct} from "../packets";
 import {float, Vec, Vector} from "../decorators";
+import {Struct} from "../packets";
 
 export class OutSimMain extends Struct {
   @Vector() AngVel = [0, 0, 0]; // 3 floats, angular velocity vector

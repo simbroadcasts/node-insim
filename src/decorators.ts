@@ -67,7 +67,7 @@ export function array<S extends { new (): { getFormat: () => string } }>(
     str: S, cnt: number
 ) {
   const format = new str().getFormat();
-  let res = [];
+  const res = [];
   for (let i = 0; i < cnt; i++) {
     res.push(format);
   }

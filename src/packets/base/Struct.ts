@@ -113,7 +113,7 @@ export class Struct implements Receivable {
 
   public ParseArray(instance: any[], data: unknown[], i: number, instanceName: string): number {
     for (let j = 0; j < instance.length; j++) {
-      let item = instance[j];
+      const item = instance[j];
       if (typeof item === 'object') {
         i = this.ParseObject(item, data, i, `${instanceName}[${j}]`);
       } else {
@@ -130,12 +130,12 @@ export class Struct implements Receivable {
     }
 
     if (instance instanceof Struct) {
-      let propertyNames = instance.getValidPropertyNames();
+      const propertyNames = instance.getValidPropertyNames();
       propertyNames.forEach(propertyName => {
         const propInstance = instance[propertyName as keyof Struct];
         const sval = data[i];
         const propType = (typeof propInstance);
-        let fullName = `${instanceName}.${propertyName}`;
+        const fullName = `${instanceName}.${propertyName}`;
         if (propType === 'object') {
           i = this.ParseObject(propInstance, data, i, fullName);
           return;
