@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import isArray from 'lodash/isArray';
 
 import { getFormat } from '../../decorators';
@@ -124,7 +123,7 @@ export class Struct implements Receivable {
   }
 
   public ParseArray(
-    instance: any[],
+    instance: unknown[],
     data: unknown[],
     i: number,
     instanceName: string,
@@ -142,7 +141,7 @@ export class Struct implements Receivable {
   }
 
   public ParseObject(
-    instance: any,
+    instance: unknown,
     data: unknown[],
     i: number,
     instanceName: string,
@@ -162,6 +161,7 @@ export class Struct implements Receivable {
           i = this.ParseObject(propInstance, data, i, fullName);
           return;
         }
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         instance[propertyName as keyof Struct] = sval as any;
         i++;
       });
