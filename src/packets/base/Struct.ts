@@ -90,6 +90,7 @@ export class Struct implements Receivable {
         return;
       }
 
+      // Tuple of [rawString, decodedString]
       if (isArray(value) && value.length === 2) {
         this[propertyName as keyof this] = value[1] as this[keyof this];
         this._raw[propertyName as keyof RawProperties<this>] = value[0];
