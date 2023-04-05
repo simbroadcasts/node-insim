@@ -54,7 +54,6 @@
   "dependencies": {
     "debug": "^4.3.4",
     "lodash": "^4.17.21",
-    "node-insim": "^0.9.1",
     "parse-lfs-message": "^1.2.1",
     "reflect-metadata": "^0.1.13",
     "supports-color": "^9.2.3",
