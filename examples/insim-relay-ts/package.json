@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "tsx watch ./src/index.ts",
     "serve:production": "node ./dist/index.cjs",
-    "build": "esbuild src/index.ts --bundle --platform=node --target=node18 --outdir=dist --external:net --out-extension:.js=.cjs"
+    "build": "tsup-node src/index.ts --dts"
   },
   "dependencies": {
     "debug": "^4.3.4",
@@ -17,7 +17,7 @@
   "devDependencies": {
     "@types/debug": "^4.1.7",
     "@types/node": "^18.11.9",
-    "esbuild": "^0.17.12",
+    "tsup": "^6.7.0",
     "tsx": "^3.12.6",
     "typescript": "^5.0.2"
   },

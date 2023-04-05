@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "node ./src/index.js",
     "serve:production": "node ./dist/index.js",
-    "build": "esbuild src/index.js --bundle --platform=node --target=node18 --outdir=dist --external:net"
+    "build": "tsup-node src/index.js"
   },
   "dependencies": {
     "debug": "^4.3.4",
@@ -17,7 +17,7 @@
   "devDependencies": {
     "@types/debug": "^4.1.7",
     "@types/node": "^18.11.9",
-    "esbuild": "^0.17.12"
+    "tsup": "^6.7.0"
   },
   "files": [
     "**/*.js"
