@@ -1,11 +1,8 @@
 {
   "name": "node-insim-example-outsim-advanced-js",
   "version": "0.0.0",
-  "description": "Node InSim - OutSim Advanced (JavaScript + CommonJS)",
   "main": "dist/index.js",
   "type": "commonjs",
-  "repository": "git@github.com:simbroadcasts/node-insim.git",
-  "author": "Martin Kapal <flamecze@gmail.com>",
   "private": true,
   "scripts": {
     "dev": "node ./src/index.js",

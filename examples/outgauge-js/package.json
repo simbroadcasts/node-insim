@@ -1,11 +1,8 @@
 {
   "name": "node-insim-example-outgauge-js",
   "version": "0.0.0",
-  "description": "Node InSim - OutGauge (JavaScript + CommonJS)",
   "main": "dist/index.js",
   "type": "commonjs",
-  "repository": "git@github.com:mkapal/lfs-race-insim.git",
-  "author": "Martin Kapal <flamecze@gmail.com>",
   "private": true,
   "scripts": {
     "dev": "node ./src/index.js",

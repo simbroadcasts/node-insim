@@ -1,11 +1,8 @@
 {
   "name": "node-insim-example-insim-relay-ts",
   "version": "0.0.0",
-  "description": "Node InSim - InSim Relay (TypeScript + ES Modules)",
   "main": "dist/index.cjs",
   "type": "module",
-  "repository": "git@github.com:mkapal/lfs-race-insim.git",
-  "author": "Martin Kapal <flamecze@gmail.com>",
   "private": true,
   "scripts": {
     "dev": "tsx watch ./src/index.ts",
