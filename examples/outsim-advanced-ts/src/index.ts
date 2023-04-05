@@ -21,7 +21,10 @@ outSim.on('connect', () => log('Connected'));
 
 outSim.on('disconnect', () => log('Disconnected'));
 
-outSim.on('timeout', () => log('Timed out'));
+outSim.on('timeout', () => {
+  log('Timed out');
+  process.exit(1);
+});
 
 outSim.on('packet', (data: OutSimPack2) => {
   console.clear();
