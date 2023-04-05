@@ -84,5 +84,5 @@ OutGauge.defaultMaxListeners = 255;
 
 const defaultOutGaugeOptions: OutGaugeConnectionOptions = {
   Host: '127.0.0.1',
-  Port: 29999,
+  Port: 29998,
 };

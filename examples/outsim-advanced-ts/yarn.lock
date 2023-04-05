@@ -213,12 +213,11 @@ ms@2.1.2:
   resolved "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
 
-node-insim@^0.9.1, "node-insim@file:../../dist-local":
+"node-insim@file:../../dist-local":
   version "0.9.1"
   dependencies:
     debug "^4.3.4"
     lodash "^4.17.21"
-    node-insim "^0.9.1"
     parse-lfs-message "^1.2.1"
     reflect-metadata "^0.1.13"
     supports-color "^9.2.3"
