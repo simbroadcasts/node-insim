@@ -213,20 +213,8 @@ ms@2.1.2:
   resolved "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
 
-node-insim@^0.9.1:
+node-insim@^0.9.1, "node-insim@file:../../dist-local":
   version "0.9.1"
-  resolved "https://registry.yarnpkg.com/node-insim/-/node-insim-0.9.1.tgz#4caee7a19fc5ac3e18746105a3dd7bdafe745a3b"
-  integrity sha512-5CVfYJD2qf/j771nTCVUd3gq8K24vWzX3+gwGw18+WSTw5pPPU7SoQ5uR2AAInqRl4ZDLhp/MEhharMS+b7o2A==
-  dependencies:
-    debug "^4.3.4"
-    lodash "^4.17.21"
-    parse-lfs-message "^1.2.1"
-    reflect-metadata "^0.1.13"
-    supports-color "^9.2.3"
-    tiny-typed-emitter "^2.1.0"
-
-"node-insim@file:../../dist-local":
-  version "0.9.2"
   dependencies:
     debug "^4.3.4"
     lodash "^4.17.21"

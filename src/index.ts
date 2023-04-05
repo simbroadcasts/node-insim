@@ -15,5 +15,10 @@ export {
   OutGaugeFlags,
   OutGaugePack,
   OutSim,
+  OutSimInputs,
+  OutSimMain,
+  OutSimOptions,
   OutSimPack,
+  OutSimPack2,
+  OutSimWheel,
 } from './out';

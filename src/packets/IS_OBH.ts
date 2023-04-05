@@ -1,5 +1,4 @@
-import { byte, byteArray, short, word } from '../decorators';
-import { copyBuffer } from '../lfspack';
+import { byte, short, struct, word } from '../decorators';
 import { Packet } from './base';
 import type { ObjectHitFlags, ObjectIndex } from './enums';
 import { PacketType } from './enums';
@@ -25,7 +24,8 @@ export class IS_OBH extends Packet {
   @word() Time = 0;
 
   /** Contact object */
-  @byteArray(8) C: CarContOBJ = new CarContOBJ();
+  //@byteArray(8) C: CarContOBJ = new CarContOBJ();
+  @struct(CarContOBJ) C = new CarContOBJ();
 
   /** Position (1 metre = 16) */
   @short() X = 0;
@@ -42,21 +42,4 @@ export class IS_OBH extends Packet {
   @byte() Index: ObjectIndex = 0;
 
   @byte() OBHFlags: ObjectHitFlags | 0 = 0;
-
-  unpack(buffer: Uint8Array): this {
-    const carContactOffset = 8;
-
-    super.unpack(buffer);
-
-    const carContactBuffer = copyBuffer(
-      buffer.slice(
-        carContactOffset,
-        carContactOffset + new CarContOBJ().getFormatSize(),
-      ),
-    );
-
-    this.C = new CarContOBJ().unpack(carContactBuffer);
-
-    return this;
-  }
 }

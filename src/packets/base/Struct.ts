@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import isArray from 'lodash/isArray';
 
 import { getFormat } from '../../decorators';
@@ -93,6 +94,12 @@ export class Struct implements Receivable {
       if (isArray(value) && value.length === 2) {
         this[propertyName as keyof this] = value[1] as this[keyof this];
         this._raw[propertyName as keyof RawProperties<this>] = value[0];
+        i++;
+        return;
+      }
+
+      if (isArray(value) && isArray(this[propertyName as keyof this])) {
+        this[propertyName as keyof this] = value as this[keyof this];
         i++;
         return;
       }

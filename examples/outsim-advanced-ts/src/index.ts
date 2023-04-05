@@ -1,9 +1,10 @@
 import './env.ts';
 
 import debug from 'debug';
-import { OutSim, OutSimPack2 } from 'node-insim';
+import { OutSim } from 'node-insim';
+import { OutSimPack2 } from 'node-insim';
 
-const log = debug('node-insim-outsim-basic-ts');
+const log = debug('node-insim-outsim-advanced-ts');
 
 const outSim = new OutSim(10000);
 
@@ -12,7 +13,8 @@ log('Connecting...');
 outSim.connect({
   Host: process.env.HOST ?? '127.0.0.1',
   Port: process.env.PORT ? parseInt(process.env.PORT) : 29997,
-  OutSimOpts: 0x1ff, // Don't forget to set "OutSim Opts 1ff" in cfg.txt!!! (or change this to match)
+  // Don't forget to set "OutSim Opts your_value" in cfg.txt!!! (or change .env file to match OUTSIMOPTS value from cfg.txt)
+  OutSimOpts: process.env.OUTSIMOPTS,
 });
 
 outSim.on('connect', () => log('Connected'));

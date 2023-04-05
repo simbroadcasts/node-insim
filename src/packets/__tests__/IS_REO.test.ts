@@ -11,7 +11,7 @@ const plIds = [
 ];
 
 const instructionData: IS_REO_Data = {
-  NumP: 10,
+  NumP: 40,
   PLID: plIds,
 };
 
@@ -19,7 +19,7 @@ const instructionBuffer = new Uint8Array([
   size / new IS_REO().SIZE_MULTIPLIER, // Size
   36, // Type
   0, // ReqI
-  10, // NumP
+  40, // NumP
   1, // PLID[40]
   2,
   3,
@@ -64,7 +64,7 @@ const instructionBuffer = new Uint8Array([
 
 const infoData: Omit<PacketTestData<IS_REO>, 'ReqI'> & { ReqI: number } = {
   ReqI: 2,
-  NumP: 10,
+  NumP: 40,
   PLID: plIds,
 };
 
@@ -72,7 +72,7 @@ const infoBuffer = new Uint8Array([
   size / new IS_REO().SIZE_MULTIPLIER, // Size
   36, // Type
   2, // ReqI
-  10, // NumP
+  40, // NumP
   1, // PLID[40]
   2,
   3,

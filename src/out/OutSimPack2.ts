@@ -15,32 +15,56 @@ import { OutSimWheel } from './OutSimWheel';
 
 export class OutSimPack2 extends Struct {
   // if (OSOpts & OSO_HEADER)
+  /** Header of packet. Should be 'LFST' if OSOpts contains OSO_HEADER flag */
   @string(4) Header = '';
+
   // if (OSOpts & OSO_ID)
+  /** OutSim ID from cfg.txt */
   @int() ID = 0;
+
   // if (OSOpts & OSO_TIME)
+  /** time in milliseconds (to check order) */
   @unsigned() Time = 0;
+
   // if (OSOpts & OSO_MAIN)
+  /** Vehicle position and velocity part */
   @struct(OutSimMain) OSMain = new OutSimMain();
+
   // if (OSOpts & OSO_INPUTS)
+  /** Vehicle inputs part */
   @struct(OutSimInputs) OSInputs = new OutSimInputs();
+
   // if (OSOpts & OSO_DRIVE)
-  @byte() Gear = 0; // 0=R, 1=N, 2=first gear
-  @byte() Sp1 = 0; // spare
+  /* 0=R, 1=N, 2=first gear */
+  @byte() Gear = 0;
+  /** spare */
+  @byte() Sp1 = 0;
+  /** spare */
   @byte() Sp2 = 0;
+  /** spare */
   @byte() Sp3 = 0;
-  @float() EngineAngVel = 0; // radians/s
-  @float() MaxTorqueAtVel = 0; // Nm : output torque for throttle 1.0
+  /** radians/s */
+  @float() EngineAngVel = 0;
+  /** Nm : output torque for throttle 1.0 */
+  @float() MaxTorqueAtVel = 0;
+
   // if (OSOpts & OSO_DISTANCE)
-  @float() CurrentLapDist = 0; // m - travelled by car
-  @float() IndexedDistance = 0; // m - track ruler measurement
+  /** m - travelled by car */
+  @float() CurrentLapDist = 0;
+  /** m - track ruler measurement */
+  @float() IndexedDistance = 0;
+
   // if (OSOpts & OSO_WHEELS)
+  /** Wheels data */
   @array(OutSimWheel, 4) OSWheels = Array.from(new Array(4)).map(
     () => new OutSimWheel(),
-  ); // array of structs - see above
+  );
+
   // if (OSOpts & OSO_EXTRA_1)
-  @float() SteerTorque = 0; // Nm : steering torque on front wheels (proportional to force feedback)
-  @float() Spare = 0; // spare
+  /** Nm : steering torque on front wheels (proportional to force feedback) */
+  @float() SteerTorque = 0;
+  /** spare */
+  @float() Spare = 0;
 
   private readonly OSOpts: number;
 
