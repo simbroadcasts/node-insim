@@ -330,4 +330,4 @@ export {
   NodeLap,
   ObjectInfo,
 } from './structs';
-export { InSimPacket } from './types';
+export type { InSimPacket } from './types';
