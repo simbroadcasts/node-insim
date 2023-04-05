@@ -44,7 +44,7 @@ export class OutSimPack2 extends Struct {
   @struct(OutSimInputs) OSInputs = new OutSimInputs();
 
   // if (OSOpts & OSO_DRIVE)
-  /* 0=R, 1=N, 2=first gear */
+  /** 0=R, 1=N, 2=first gear */
   @byte() Gear = 0;
   /** spare */
   @byte() readonly Sp1 = 0;
