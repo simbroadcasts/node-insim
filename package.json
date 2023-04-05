@@ -12,6 +12,8 @@
   "private": false,
   "type": "module",
   "main": "dist/index.cjs",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/index.esm.js",
@@ -24,6 +26,11 @@
       "require": "./dist/packets/index.cjs",
       "types": "./dist/packets/index.d.ts",
       "default": "./dist/packets/index.cjs"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "packets": ["dist/packets/index.d.ts"]
     }
   },
   "scripts": {
