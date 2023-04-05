@@ -43,7 +43,6 @@
     "format": "run-s \"format:no-write --write\"",
     "format:no-write": "prettier \"./**/*.{js,ts,md,json,yml,yaml}\"",
     "format:check": "run-s \"format:no-write --check\"",
-    "formatl": "run-s \"format:no-write --write --end-of-line crlf\"",
     "lint": "eslint \"./src/**/*\" --ext .js,.ts",
     "lint:fix": "eslint \"./src/**/*\" --ext .js,.ts --fix",
     "generate": "run-s \"generate:plop {@}\" lint:fix format --",

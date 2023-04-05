@@ -24,7 +24,6 @@ export class IS_OBH extends Packet {
   @word() Time = 0;
 
   /** Contact object */
-  //@byteArray(8) C: CarContOBJ = new CarContOBJ();
   @struct(CarContOBJ) C = new CarContOBJ();
 
   /** Position (1 metre = 16) */

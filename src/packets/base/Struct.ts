@@ -104,7 +104,7 @@ export class Struct implements Receivable {
       }
 
       if (propertyType == 'object') {
-        i = this.ParseObject(
+        i = this.parseObject(
           this[propertyName as keyof this],
           data,
           i,
@@ -122,7 +122,7 @@ export class Struct implements Receivable {
     return this;
   }
 
-  public ParseArray(
+  public parseArray(
     instance: unknown[],
     data: unknown[],
     i: number,
@@ -131,7 +131,7 @@ export class Struct implements Receivable {
     for (let j = 0; j < instance.length; j++) {
       const item = instance[j];
       if (typeof item === 'object') {
-        i = this.ParseObject(item, data, i, `${instanceName}[${j}]`);
+        i = this.parseObject(item, data, i, `${instanceName}[${j}]`);
       } else {
         instance[j] = data[i];
         i++;
@@ -140,14 +140,14 @@ export class Struct implements Receivable {
     return i;
   }
 
-  public ParseObject(
+  public parseObject(
     instance: unknown,
     data: unknown[],
     i: number,
     instanceName: string,
   ): number {
     if (isArray(instance)) {
-      return this.ParseArray(instance, data, i, instanceName);
+      return this.parseArray(instance, data, i, instanceName);
     }
 
     if (instance instanceof Struct) {
@@ -158,7 +158,7 @@ export class Struct implements Receivable {
         const propType = typeof propInstance;
         const fullName = `${instanceName}.${propertyName}`;
         if (propType === 'object') {
-          i = this.ParseObject(propInstance, data, i, fullName);
+          i = this.parseObject(propInstance, data, i, fullName);
           return;
         }
         // eslint-disable-next-line @typescript-eslint/no-explicit-any

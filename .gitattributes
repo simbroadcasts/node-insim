@@ -1,0 +1,4 @@
+*.html text=auto
+*.js text=auto
+*.ts text=auto
+*.tsx text=auto
