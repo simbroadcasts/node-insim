@@ -314,6 +314,15 @@ By default, the tests connect to `127.0.0.1:29999`. The InSim host and port can 
 yarn test:lfs
 ```
 
+### Run all example applications
+
+This command will build `node-insim` locally, then go through each application in the
+`examples/` folder, install its dependencies, build and run the application.
+
+```shell
+yarn test:examples
+```
+
 ### Lint code
 
 ```shell
@@ -332,6 +341,14 @@ Compiled files will be created in `dist/`.
 
 ```shell
 yarn build
+```
+
+### Run all checks at once
+
+You can run code format, lint + fix, build and test with the following command:
+
+```shell
+yarn check-all
 ```
 
 ### Bump package version
