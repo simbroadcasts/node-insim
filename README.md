@@ -257,11 +257,13 @@ Node InSim.
   - [InSim Relay](./examples/insim-relay-js)
   - [OutGauge](./examples/outgauge-js)
   - [OutSim](./examples/outsim-basic-js)
+  - [OutSim with Options](./examples/outsim-advanced-js)
 - TypeScript + ES Modules
   - [InSim connection](./examples/insim-connection-ts)
   - [InSim Relay](./examples/insim-relay-ts)
   - [OutGauge](./examples/outgauge-ts)
   - [OutSim](./examples/outsim-basic-ts)
+  - [OutSim with Options](./examples/outsim-advanced-ts)
 
 Before you run an example, first make sure the local Node InSim package is built by
 running `yarn build-local` in the root folder. Then follow the instructions in each

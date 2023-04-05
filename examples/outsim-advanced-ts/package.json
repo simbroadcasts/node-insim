@@ -1,7 +1,7 @@
 {
   "name": "node-insim-example-outsim-advanced-ts",
   "version": "0.0.0",
-  "description": "Node InSim - OutSim (TypeScript + ES Modules)",
+  "description": "Node InSim - OutSim Advanced (TypeScript + ES Modules)",
   "main": "dist/index.cjs",
   "type": "module",
   "repository": "git@github.com:simbroadcasts/node-insim.git",
