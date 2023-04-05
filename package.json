@@ -49,6 +49,7 @@
     "test:lfs": "run-s test:compile \"test:run -c jest.config.lfs.json --runInBand {@}\" --",
     "test:examples": "run-s build-local test:examples:build-all",
     "test:examples:build-all": "node examples/build-all.cjs",
+    "check-all": "run-s format lint:fix build test",
     "format": "run-s \"format:no-write --write\"",
     "format:no-write": "prettier \"./**/*.{cjs,js,ts,md,json,yml,yaml}\"",
     "format:check": "run-s \"format:no-write --check\"",
