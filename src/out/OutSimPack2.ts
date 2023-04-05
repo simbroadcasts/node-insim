@@ -13,6 +13,15 @@ import { OutSimMain } from './OutSimMain';
 import { OutSimOptions } from './OutSimOptions';
 import { OutSimWheel } from './OutSimWheel';
 
+/**
+ * An extended and modular version of the {@link OutSimPack} packet.
+ *
+ * To receive this packet, set "OutSim Opts" integer in cfg.txt to a value greater than 0.
+ *
+ * OutSim Opts is hexadecimal - for all fields set OutSim Opts to 1ff.
+ *
+ * The resulting UDP packet size is 280.
+ */
 export class OutSimPack2 extends Struct {
   // if (OSOpts & OSO_HEADER)
   /** Header of packet. Should be 'LFST' if OSOpts contains OSO_HEADER flag */
@@ -38,11 +47,11 @@ export class OutSimPack2 extends Struct {
   /* 0=R, 1=N, 2=first gear */
   @byte() Gear = 0;
   /** spare */
-  @byte() Sp1 = 0;
+  @byte() readonly Sp1 = 0;
   /** spare */
-  @byte() Sp2 = 0;
+  @byte() readonly Sp2 = 0;
   /** spare */
-  @byte() Sp3 = 0;
+  @byte() readonly Sp3 = 0;
   /** radians/s */
   @float() EngineAngVel = 0;
   /** Nm : output torque for throttle 1.0 */
@@ -64,7 +73,7 @@ export class OutSimPack2 extends Struct {
   /** Nm : steering torque on front wheels (proportional to force feedback) */
   @float() SteerTorque = 0;
   /** spare */
-  @float() Spare = 0;
+  @float() readonly Spare = 0;
 
   private readonly OSOpts: number;
 

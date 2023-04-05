@@ -23,7 +23,7 @@ export class OutSimWheel extends Struct {
   @byte() SlipFraction = 0;
   /** touching ground */
   @byte() Touching = 0;
-  @byte() Sp3 = 0;
+  @byte() readonly Sp3 = 0;
 
   /** slip ratio */
   @float() SlipRatio = 0;
