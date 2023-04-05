@@ -5,3 +5,4 @@ coverage/
 yarn-*.log
 .env.local
 junit.xml
+.idea

@@ -1,4 +1,5 @@
 import {
+  array,
   byte,
   byteArray,
   float,
@@ -6,9 +7,18 @@ import {
   int,
   short,
   string,
+  struct,
   unsigned,
+  Vec,
+  Vector,
   word,
 } from '../decorators';
+import { Struct } from '../packets';
+
+class DummyStruct extends Struct {
+  @string(2) String = 'ab';
+  @byte() Byte = 1;
+}
 
 describe('Class property decorators', () => {
   it('should return the correct jspack char for each binary data type', () => {
@@ -22,6 +32,14 @@ describe('Class property decorators', () => {
       @unsigned() Unsigned = 4294967295;
       @int() Int = -2147483648;
       @float() Float = 1.2e-38;
+      @Vector() Vector = [12.34, -56.78, 90.12];
+      @Vec() Vec = [1234, -5678, 901213];
+      @array(DummyStruct, 3) Array = [
+        new DummyStruct(),
+        new DummyStruct(),
+        new DummyStruct(),
+      ];
+      @struct(DummyStruct) Struct = new DummyStruct();
     }
 
     const packet = new TestClass();
@@ -35,5 +53,9 @@ describe('Class property decorators', () => {
     expect(getFormat(packet, 'Unsigned')).toEqual('L');
     expect(getFormat(packet, 'Int')).toEqual('l');
     expect(getFormat(packet, 'Float')).toEqual('f');
+    expect(getFormat(packet, 'Vector')).toEqual('fff');
+    expect(getFormat(packet, 'Vec')).toEqual('lll');
+    expect(getFormat(packet, 'Array')).toEqual('2sB2sB2sB');
+    expect(getFormat(packet, 'Struct')).toEqual('2sB');
   });
 });

@@ -5,11 +5,12 @@ import { InSimError } from '../errors';
 import { log as baseLog } from '../log';
 import { UDP } from '../UDP';
 import { OutSimPack } from './OutSimPack';
+import { OutSimPack2 } from './OutSimPack2';
 
 const log = baseLog.extend('outsim');
 
 type OutSimEvents = {
-  packet: (packet: OutSimPack) => void;
+  packet: (packet: OutSimPack | OutSimPack2) => void;
   connect: () => void;
   disconnect: () => void;
   timeout: () => void;
@@ -18,6 +19,8 @@ type OutSimEvents = {
 type OutSimConnectionOptions = {
   Host: string;
   Port: number;
+  /** OutSim Opts is hexadecimal - for all fields set OutSim Opts to 0x1FF */
+  OutSimOpts: number;
 };
 
 export class OutSim extends TypedEmitter<OutSimEvents> {
@@ -75,7 +78,10 @@ export class OutSim extends TypedEmitter<OutSimEvents> {
   }
 
   private handleMessage(data: Uint8Array) {
-    const outSimPack = new OutSimPack();
+    const outSimPack =
+      this._options.OutSimOpts > 0
+        ? new OutSimPack2(this._options.OutSimOpts)
+        : new OutSimPack();
     this.emit('packet', outSimPack.unpack(data));
   }
 }
@@ -84,5 +90,6 @@ OutSim.defaultMaxListeners = 255;
 
 const defaultOutSimOptions: OutSimConnectionOptions = {
   Host: '127.0.0.1',
-  Port: 29999,
+  Port: 29997,
+  OutSimOpts: 0,
 };
