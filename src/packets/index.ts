@@ -330,13 +330,4 @@ export {
   NodeLap,
   ObjectInfo,
 } from './structs';
-export type {
-  InSimPacket,
-  PacketData,
-  PacketDataWithOptionalReqI,
-  PacketDataWithRequiredReqI,
-  ReadonlyPropNames,
-  Receivable,
-  Sendable,
-  StructData,
-} from './types';
+export { InSimPacket } from './types';
