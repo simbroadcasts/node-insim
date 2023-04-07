@@ -10,37 +10,50 @@
   ],
   "license": "MIT",
   "private": false,
-  "type": "module",
-  "main": "dist/index.cjs",
-  "module": "dist/index.esm.js",
-  "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.esm.js",
-      "require": "./dist/index.cjs",
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.cjs"
+      "import": {
+        "types": "./dist/esm/index.d.mts",
+        "default": "./dist/esm/index.mjs"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      },
+      "default": "./dist/cjs/index.js"
     },
     "./packets": {
-      "import": "./dist/packets/index.esm.js",
-      "require": "./dist/packets/index.cjs",
-      "types": "./dist/packets/index.d.ts",
-      "default": "./dist/packets/index.cjs"
-    }
+      "import": {
+        "types": "./dist/esm/packets/index.d.mts",
+        "default": "./dist/esm/packets/index.mjs"
+      },
+      "require": {
+        "types": "./dist/cjs/packets/index.d.ts",
+        "default": "./dist/cjs/packets/index.js"
+      },
+      "default": "./dist/cjs/packets/index.js"
+    },
+    "./package.json": "./package.json"
   },
+  "types": "dist/cjs/index.d.ts",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.mjs",
   "typesVersions": {
     "*": {
       "packets": [
-        "dist/packets/index.d.ts"
+        "dist/cjs/packets/index.d.ts"
       ]
     }
   },
   "scripts": {
     "prebuild": "rimraf ./dist",
-    "build": "run-s build:js build:ts",
-    "build:js": "node ./scripts/build.js",
-    "build:ts": "tsc -p tsconfig.lib.json",
-    "build-local": "run-s build build-local:copy",
+    "build": "run-s build:*",
+    "build:js": "node ./scripts/build.mjs",
+    "build:ts-esm": "tsc -p tsconfig.lib-esm.json",
+    "build:ts-cjs": "tsc -p tsconfig.lib-cjs.json",
+    "build:ts-rename": "node ./scripts/rename-ts-esm-declarations.mjs",
+    "build-local": "run-s build build-local:*",
+    "build-local:clean": "rimraf ./dist-local",
     "build-local:copy": "copyfiles \"dist/**/*\" package.json dist-local",
     "dev": "cross-env DEBUG=* tsx watch ./src/index.ts",
     "dev:nodebug": "tsx watch ./src/index.ts",
@@ -59,7 +72,7 @@
     "lint:fix": "eslint \"./src/**/*\" --ext .js,.ts --fix",
     "generate": "run-s \"generate:plop {@}\" lint:fix format --",
     "generate:plop": "plop",
-    "bump": "node ./scripts/bump.js",
+    "bump": "node ./scripts/bump.mjs",
     "prepublishOnly": "run-s build"
   },
   "dependencies": {

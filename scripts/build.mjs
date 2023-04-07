@@ -6,7 +6,6 @@ const commonConfig = {
   platform: 'node',
   target: 'node18',
   packages: 'external',
-  outdir: 'dist',
   tsconfig: 'tsconfig.lib.json',
   logLevel: 'info',
 };
@@ -14,15 +13,14 @@ const commonConfig = {
 await esbuild.build({
   ...commonConfig,
   format: 'cjs',
-  outExtension: {
-    '.js': '.cjs',
-  },
+  outdir: 'dist/cjs',
 });
 
 await esbuild.build({
   ...commonConfig,
   format: 'esm',
+  outdir: 'dist/esm',
   outExtension: {
-    '.js': '.esm.js',
+    '.js': '.mjs',
   },
 });

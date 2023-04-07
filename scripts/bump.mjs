@@ -8,7 +8,7 @@ import readline from 'readline';
 import semver from 'semver';
 import { fileURLToPath } from 'url';
 
-import { checkAnswerOrExit, execSyncAndLog } from './utils.js';
+import { checkAnswerOrExit, execSyncAndLog } from './utils.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const mainBranch = 'master';
