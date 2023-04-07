@@ -30,7 +30,9 @@
   },
   "typesVersions": {
     "*": {
-      "packets": ["dist/packets/index.d.ts"]
+      "packets": [
+        "dist/packets/index.d.ts"
+      ]
     }
   },
   "scripts": {
