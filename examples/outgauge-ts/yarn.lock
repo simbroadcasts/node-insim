@@ -671,11 +671,11 @@ mz@^2.7.0:
     thenify-all "^1.0.0"
 
 "node-insim@file:../../dist-local":
-  version "0.9.1"
+  version "0.10.0"
   dependencies:
     debug "^4.3.4"
     lodash "^4.17.21"
-    parse-lfs-message "^1.2.1"
+    parse-lfs-message "^1.2.2"
     reflect-metadata "^0.1.13"
     supports-color "^9.2.3"
     tiny-typed-emitter "^2.1.0"
@@ -711,10 +711,10 @@ onetime@^5.1.2:
   dependencies:
     mimic-fn "^2.1.0"
 
-parse-lfs-message@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/parse-lfs-message/-/parse-lfs-message-1.2.1.tgz#dc625be2561e5f45c237446d9eebff793f648d49"
-  integrity sha512-McaoVf5OQ3A1MLP7GmiezJoY2el8fdRYCL7nnT+1IQ6Jdc/CUF1/eA3/76xLKLAVTMFfPxNX9T+jBrej19fQow==
+parse-lfs-message@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/parse-lfs-message/-/parse-lfs-message-1.2.2.tgz#8069c2f424c3d86c9d5b5818647b9b78a91d99cb"
+  integrity sha512-/3wZkfR3y5DGkjIJm0z2jCHzl/9FmYAWqA7aEKXFB7T3RIFzS7AaG+s4MdZfYzix6fCRT1a8fk4zLT0XvKUW6w==
 
 path-is-absolute@^1.0.0:
   version "1.0.1"
