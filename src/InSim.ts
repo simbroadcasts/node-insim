@@ -37,9 +37,11 @@ export class InSim extends TypedEmitter<InSimEvents> {
     this.on('connect', () =>
       log(`Connected to ${this._options.Host}:${this._options.Port}`),
     );
-    this.on('disconnect', () =>
-      log(`Disconnected from ${this._options.Host}:${this._options.Port}`),
-    );
+    this.on('disconnect', () => {
+      this.connection = null;
+
+      log(`Disconnected from ${this._options.Host}:${this._options.Port}`);
+    });
     this.on(PacketType.ISP_TINY, (packet) => this.handleKeepAlive(packet));
   }
 
@@ -155,12 +157,12 @@ export class InSim extends TypedEmitter<InSimEvents> {
   }
 
   disconnect() {
-    log('Disconnecting...');
     if (this.connection === null) {
       log('Cannot disconnect - not connected');
       return;
     }
 
+    log('Disconnecting...');
     this.connection.disconnect();
   }
 

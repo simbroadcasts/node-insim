@@ -31,6 +31,7 @@ export class TCP extends EventEmitter {
     });
 
     this.stream.on('close', () => {
+      log('Disconnected');
       this.emit('disconnect', this);
     });
 
