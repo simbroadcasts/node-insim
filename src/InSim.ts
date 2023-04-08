@@ -14,7 +14,7 @@ import {
   packetTypeToClass,
   TinyType,
 } from './packets';
-import { TCP } from './TCP';
+import { TCP } from './protocols';
 
 const log = baseLog.extend('insim');
 

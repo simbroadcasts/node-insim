@@ -1,7 +1,7 @@
 import * as dgram from 'dgram';
 import { TypedEmitter } from 'tiny-typed-emitter';
 
-import { log as baseLog } from './log';
+import { log as baseLog } from '../log';
 
 const log = baseLog.extend('udp');
 

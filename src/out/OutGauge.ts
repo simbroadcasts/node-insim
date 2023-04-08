@@ -3,7 +3,7 @@ import { TypedEmitter } from 'tiny-typed-emitter';
 
 import { InSimError } from '../errors';
 import { log as baseLog } from '../log';
-import { UDP } from '../UDP';
+import { UDP } from '../protocols';
 import { OutGaugePack } from './OutGaugePack';
 
 const log = baseLog.extend('outgauge');

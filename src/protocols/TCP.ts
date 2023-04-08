@@ -1,8 +1,8 @@
 import EventEmitter from 'events';
 import net from 'net';
 
-import { copyBuffer } from './lfspack';
-import { log as baseLog } from './log';
+import { copyBuffer } from '../lfspack';
+import { log as baseLog } from '../log';
 
 const log = baseLog.extend('tcp');
 
