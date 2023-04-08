@@ -23,7 +23,11 @@ outSim.on('timeout', () => {
   process.exit(1);
 });
 
-outSim.on('packet', (data: OutSimPack) => {
+outSim.on('packet', (data) => {
+  if (!(data instanceof OutSimPack)) {
+    return;
+  }
+
   console.clear();
   console.log(`Acceleration: ${data.AccelX} ${data.AccelY} ${data.AccelZ}`);
   console.log(`Velocity: ${data.VelX} ${data.VelY} ${data.VelZ}`);

@@ -13,7 +13,7 @@ outSim.connect({
   Host: process.env.HOST ?? '127.0.0.1',
   Port: process.env.PORT ? parseInt(process.env.PORT) : 29997,
   // Don't forget to set "OutSim Opts your_value" in cfg.txt!!! (or change .env file to match OUTSIMOPTS value from cfg.txt)
-  OutSimOpts: process.env.OUTSIMOPTS,
+  OutSimOpts: process.env.OUTSIMOPTS ? parseInt(process.env.OUTSIMOPTS, 10) : 0,
 });
 
 outSim.on('connect', () => log('Connected'));
@@ -25,7 +25,11 @@ outSim.on('timeout', () => {
   process.exit(1);
 });
 
-outSim.on('packet', (data: OutSimPack2) => {
+outSim.on('packet', (data) => {
+  if (!(data instanceof OutSimPack2)) {
+    return;
+  }
+
   console.clear();
   row('AngVel', formatVector(data.OSMain.AngVel));
   row('Heading', formatNumber(data.OSMain.Heading));

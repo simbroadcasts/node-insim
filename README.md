@@ -227,7 +227,12 @@ outSim.connect({
   Port: 29999,
 });
 
-outSim.on('packet', (data: OutSimPack) => {
+outSim.on('packet', (data) => {
+  // Make sure the simple OutSimPack packet is really received, as opposed to OutSimPack2
+  if (!(data instanceof OutSimPack)) {
+    return;
+  }
+
   console.clear();
   console.log(data.PosX);
 });
@@ -275,7 +280,7 @@ commands:
 ```shell
 yarn build-local
 cd examples/insim-connection-ts
-yarn
+yarn --force
 yarn dev
 ```
 
@@ -314,7 +319,7 @@ By default, the tests connect to `127.0.0.1:29999`. The InSim host and port can 
 yarn test:lfs
 ```
 
-### Run all example applications
+### Build all example applications
 
 This command will build `node-insim` locally, then go through each application in the
 `examples/` folder, install its dependencies and build the application.
