@@ -19,6 +19,13 @@
       ]
     }
   },
+  "files": [
+    "dist",
+    "!dist/types/protocols",
+    "!dist/types/decorators.d.ts",
+    "!dist/types/lfspack.d.ts",
+    "!dist/types/log.d.ts"
+  ],
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
@@ -107,9 +114,6 @@
     "tsx": "^3.12.6",
     "typescript": "^4.9.5"
   },
-  "files": [
-    "dist"
-  ],
   "clean-package": {
     "remove": [
       "clean-package",
