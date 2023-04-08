@@ -164,6 +164,11 @@
   dependencies:
     "@types/ms" "*"
 
+"@types/lodash@^4.14.182":
+  version "4.14.192"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.192.tgz#5790406361a2852d332d41635d927f1600811285"
+  integrity sha512-km+Vyn3BYm5ytMO13k9KTp27O75rbQ0NFw+U//g+PX7VZyjCioXaRFisqSIJRECljcTv73G3i6BpglNGHgUQ5A==
+
 "@types/ms@*":
   version "0.7.31"
   resolved "https://registry.npmjs.org/@types/ms/-/ms-0.7.31.tgz"
@@ -533,8 +538,10 @@ mz@^2.7.0:
     thenify-all "^1.0.0"
 
 "node-insim@file:../../dist-local":
-  version "0.10.0"
+  version "0.10.1"
   dependencies:
+    "@types/debug" "^4.1.7"
+    "@types/lodash" "^4.14.182"
     debug "^4.3.4"
     lodash "^4.17.21"
     parse-lfs-message "^1.2.2"

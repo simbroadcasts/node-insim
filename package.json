@@ -10,48 +10,35 @@
   ],
   "license": "MIT",
   "private": false,
-  "exports": {
-    ".": {
-      "import": {
-        "types": "./dist/esm/index.d.mts",
-        "default": "./dist/esm/index.mjs"
-      },
-      "require": {
-        "types": "./dist/cjs/index.d.ts",
-        "default": "./dist/cjs/index.js"
-      },
-      "default": "./dist/cjs/index.js"
-    },
-    "./packets": {
-      "import": {
-        "types": "./dist/esm/packets/index.d.mts",
-        "default": "./dist/esm/packets/index.mjs"
-      },
-      "require": {
-        "types": "./dist/cjs/packets/index.d.ts",
-        "default": "./dist/cjs/packets/index.js"
-      },
-      "default": "./dist/cjs/packets/index.js"
-    },
-    "./package.json": "./package.json"
-  },
-  "types": "dist/cjs/index.d.ts",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.mjs",
+  "main": "./dist/cjs/index.js",
+  "types": "./dist/types/index.d.ts",
   "typesVersions": {
     "*": {
       "packets": [
-        "dist/cjs/packets/index.d.ts"
+        "./dist/types/packets/index.d.ts"
       ]
     }
   },
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "node": "./dist/cjs/index.js",
+      "require": "./dist/cjs/index.js",
+      "import": "./dist/esm/index.js",
+      "default": "./dist/esm/index.js"
+    },
+    "./packets": {
+      "types": "./dist/types/packets/index.d.ts",
+      "node": "./dist/cjs/packets/index.js",
+      "require": "./dist/cjs/packets/index.js",
+      "import": "./dist/esm/packets/index.js",
+      "default": "./dist/esm/packets/index.js"
+    },
+    "./package.json": "./package.json"
+  },
   "scripts": {
     "prebuild": "rimraf ./dist",
-    "build": "run-s build:*",
-    "build:js": "node ./scripts/build.mjs",
-    "build:ts-esm": "tsc -p tsconfig.lib-esm.json",
-    "build:ts-cjs": "tsc -p tsconfig.lib-cjs.json",
-    "build:ts-rename": "node ./scripts/rename-ts-esm-declarations.mjs",
+    "build": "tsc -b ./src/tsconfig.cjs.json ./src/tsconfig.esm.json ./src/tsconfig.types.json",
     "build-local": "run-s build build-local:*",
     "build-local:clean": "rimraf ./dist-local",
     "build-local:copy": "copyfiles \"dist/**/*\" package.json dist-local",
@@ -73,9 +60,12 @@
     "generate": "run-s \"generate:plop {@}\" lint:fix format --",
     "generate:plop": "plop",
     "bump": "node ./scripts/bump.mjs",
-    "prepublishOnly": "run-s build"
+    "prepack": "run-s build",
+    "clean-pkg-json": "clean-pkg-json"
   },
   "dependencies": {
+    "@types/debug": "^4.1.7",
+    "@types/lodash": "^4.14.182",
     "debug": "^4.3.4",
     "lodash": "^4.17.21",
     "parse-lfs-message": "^1.2.2",
@@ -89,9 +79,7 @@
     "@babel/plugin-proposal-decorators": "^7.17.9",
     "@babel/preset-env": "^7.17.10",
     "@babel/preset-typescript": "^7.16.7",
-    "@types/debug": "^4.1.7",
     "@types/jest": "^29.5.0",
-    "@types/lodash": "^4.14.182",
     "@types/mitm": "^1.3.4",
     "@types/node": "^18.15.5",
     "@typescript-eslint/eslint-plugin": "^5.56.0",
@@ -101,7 +89,6 @@
     "copyfiles": "^2.4.1",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
-    "esbuild": "^0.17.12",
     "eslint": "^8.36.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.0.0",
@@ -118,6 +105,6 @@
     "typescript": "^4.9.5"
   },
   "files": [
-    "dist/"
+    "dist"
   ]
 }

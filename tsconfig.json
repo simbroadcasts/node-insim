@@ -1,20 +1,22 @@
 {
   "compilerOptions": {
     "strict": true,
-    "declaration": true,
     "moduleResolution": "Node",
     "target": "ESNext",
     "module": "NodeNext",
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
+    "noEmit": true,
     "allowJs": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": true,
     "forceConsistentCasingInFileNames": true,
-    "experimentalDecorators": true
-  },
-  "files": [],
-  "include": []
+    "experimentalDecorators": true,
+    "paths": {
+      "node-insim": ["./src/index"],
+      "node-insim/packets": ["./src/packets/index"]
+    }
+  }
 }

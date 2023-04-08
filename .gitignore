@@ -6,3 +6,4 @@ yarn-*.log
 .env.local
 junit.xml
 .idea
+*.backup
