@@ -13,6 +13,7 @@ type UDPEvents = {
   timeout: () => void;
 };
 
+/** @internal */
 export class UDP extends TypedEmitter<UDPEvents> {
   private socket: dgram.Socket | null = null;
   private timeout = 0;

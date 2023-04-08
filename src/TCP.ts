@@ -6,6 +6,7 @@ import { log as baseLog } from './log';
 
 const log = baseLog.extend('tcp');
 
+/** @internal */
 export class TCP extends EventEmitter {
   private stream: net.Socket | null = null;
 

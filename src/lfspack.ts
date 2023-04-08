@@ -357,7 +357,10 @@ const magic: Record<
 // pattern of stuff we're looking for
 const pattern = '(\\d+)?([AxcCbBhHsfdiIlL])';
 
-/** Determine the size of arraybuffer we'd need */
+/**
+ * Determine the size of arraybuffer we'd need
+ * @internal
+ */
 const determineLength = function (fmt: string): number {
   const re = new RegExp(pattern, 'g');
   let m: string[] | null,
@@ -371,7 +374,10 @@ const determineLength = function (fmt: string): number {
   return sum;
 };
 
-/** Pack a set of values, starting at offset, based on format */
+/**
+ * Pack a set of values, starting at offset, based on format
+ * @internal
+ */
 const pack = function (
   fmt: string,
   values: unknown[],
@@ -407,7 +413,10 @@ const pack = function (
   return new Uint8Array(dv.buffer);
 };
 
-/** Unpack an arraybuffer, starting at offset, based on format */
+/**
+ * Unpack an arraybuffer, starting at offset, based on format
+ * @internal
+ */
 const unpack = (fmt: string, ab: ArrayBuffer, offset = 0): unknown[] | null => {
   const littleendian = fmt.charAt(0) == '<';
   const re = new RegExp(pattern, 'g');
@@ -434,6 +443,7 @@ const unpack = (fmt: string, ab: ArrayBuffer, offset = 0): unknown[] | null => {
   return results;
 };
 
+/** @internal */
 function isAlphaNumeric(b: string): boolean {
   if (b >= '0' && b <= '9') return true;
   if (b >= 'A' && b <= 'Z') return true;
@@ -441,6 +451,7 @@ function isAlphaNumeric(b: string): boolean {
   return false;
 }
 
+/** @internal */
 function copyBuffer(buffer: Uint8Array): Uint8Array {
   const dest = new ArrayBuffer(buffer.byteLength);
   const newBuffer = new Uint8Array(dest);
@@ -449,4 +460,5 @@ function copyBuffer(buffer: Uint8Array): Uint8Array {
   return newBuffer;
 }
 
+/** @internal */
 export { copyBuffer, determineLength, pack, unpack };
