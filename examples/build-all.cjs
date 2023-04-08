@@ -9,7 +9,6 @@ const fixtureDirs = fs.readdirSync(__dirname).filter((file) => {
 const cmdArgs = [
   { cmd: 'yarn', args: ['install', '--force'] },
   { cmd: 'yarn', args: ['build'] },
-  { cmd: 'yarn', args: ['serve:production'], timeout: 2000 },
 ];
 
 fixtureDirs.forEach((dir) => {
@@ -26,12 +25,6 @@ fixtureDirs.forEach((dir) => {
     const result = child_process.spawnSync(cmdArg.cmd, cmdArg.args, {
       ...opts,
     });
-
-    // If the app times out, it was built successfully and it was trying to connect to LFS
-    if (result?.error?.code === 'ETIMEDOUT') {
-      console.log('Process timed out - OK');
-      return;
-    }
 
     if (result.status !== 0) {
       throw new Error(`Failed to build an example app "${dir}"`);

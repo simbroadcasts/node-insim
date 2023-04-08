@@ -317,7 +317,7 @@ yarn test:lfs
 ### Run all example applications
 
 This command will build `node-insim` locally, then go through each application in the
-`examples/` folder, install its dependencies, build and run the application.
+`examples/` folder, install its dependencies and build the application.
 
 ```shell
 yarn test:examples
