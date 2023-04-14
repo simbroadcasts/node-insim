@@ -51,24 +51,3 @@ jobs:
         with:
           name: Test Results (Node.js ${{ matrix.node-version }})
           path: junit.xml
-
-  publish-test-results:
-    name: 'Publish Tests Results'
-    needs: build-and-test
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      issues: read
-      checks: write
-      pull-requests: write
-    if: always()
-    steps:
-      - name: Download Artifacts
-        uses: actions/download-artifact@v2
-        with:
-          path: artifacts
-
-      - name: Publish Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v2
-        with:
-          junit_files: 'artifacts/**/*.xml'
