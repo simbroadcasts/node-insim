@@ -1,4 +1,4 @@
-import { byte, string } from '../decorators';
+import { byte, stringNull } from '../decorators';
 import { SendablePacket } from './base';
 import type { ScreenshotError } from './enums';
 import { PacketType } from './enums';
@@ -30,7 +30,7 @@ export class IS_SSH extends SendablePacket {
   @byte() private readonly Sp3 = 0;
 
   /** Name of screenshot file - last byte must be zero */
-  @string(32) Name = '';
+  @stringNull(32) Name = '';
 
   constructor(data?: IS_SSH_Data) {
     super();

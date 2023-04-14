@@ -1,4 +1,5 @@
 import parseLFSMessage from 'parse-lfs-message';
+import unicodeToLfs from 'unicode-to-lfs';
 
 const magic: Record<
   string,
@@ -289,8 +290,40 @@ const magic: Record<
   // char[]
   s: {
     length: 1,
-    pack(dv, value: string, offset, c) {
-      const val = String(value[0]);
+    pack(dv, value: [string], offset, c) {
+      const val = unicodeToLfs(value[0], {
+        isNullTerminated: false,
+        length: c,
+      });
+
+      for (let i = 0; i < c; i++) {
+        let code = 0;
+
+        if (i < val.length) code = val.charCodeAt(i);
+
+        dv.setUint8(offset + i, code);
+      }
+    },
+    unpack(dv, offset, c) {
+      const chars = [];
+      const bytes = [];
+
+      for (let i = 0; i < c; i++) {
+        chars.push(String.fromCharCode(dv.getUint8(offset + i)));
+        bytes.push(dv.getUint8(offset + i));
+      }
+
+      return [[chars.join(''), parseLFSMessage(new Uint8Array(bytes))]];
+    },
+  },
+  // char[] - null-terminated
+  S: {
+    length: 1,
+    pack(dv, value: [string], offset, c) {
+      const val = unicodeToLfs(value[0], {
+        isNullTerminated: true,
+        length: c,
+      });
 
       for (let i = 0; i < c; i++) {
         let code = 0;
@@ -355,7 +388,7 @@ const magic: Record<
 };
 
 // pattern of stuff we're looking for
-const pattern = '(\\d+)?([AxcCbBhHsfdiIlL])';
+const pattern = '(\\d+)?([AxcCbBhHsSfdiIlL])';
 
 /**
  * Determine the size of arraybuffer we'd need

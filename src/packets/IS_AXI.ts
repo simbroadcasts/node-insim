@@ -1,4 +1,4 @@
-import { byte, string, word } from '../decorators';
+import { byte, stringNull, word } from '../decorators';
 import { Packet } from './base';
 import { PacketType } from './enums';
 
@@ -31,5 +31,5 @@ export class IS_AXI extends Packet {
   @word() NumO = 0;
 
   /** The name of the layout last loaded (if loaded locally) */
-  @string(32) LName = '';
+  @stringNull(32) LName = '';
 }

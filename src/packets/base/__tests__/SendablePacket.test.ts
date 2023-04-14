@@ -1,4 +1,4 @@
-import { byte, byteArray, string, struct } from '../../../decorators';
+import { byte, byteArray, stringNull, struct } from '../../../decorators';
 import { stringToBytes } from '../../../tests';
 import { PacketType } from '../../';
 import { SendablePacket, SendableStruct } from '../../base';
@@ -6,7 +6,7 @@ import { SendablePacket, SendableStruct } from '../../base';
 class TestStruct extends SendableStruct {
   @byte() First = 5;
   @byte() Second = 10;
-  @string(3) Third = 'abc';
+  @stringNull(4) Third = 'abc';
 }
 
 describe('SendablePacket', () => {
@@ -39,7 +39,7 @@ describe('SendablePacket', () => {
         @byte() Size = 0;
         @byte() Type = PacketType.ISP_ISI;
         @byte() ReqI = 1;
-        @string(6) StringProperty = 'string';
+        @stringNull(6) StringProperty = 'string';
         @byte() NumberProperty = 0;
         @byteArray(4) NumberArray = [];
       }
@@ -72,7 +72,7 @@ describe('SendablePacket', () => {
         @byte() Size = 8;
         @byte() Type = PacketType.ISP_ISI;
         @byte() ReqI = 2;
-        @string(6) StringProperty = 'test';
+        @stringNull(6) StringProperty = 'test';
         @byte() NumberProperty = 25;
         @byteArray(4) NumberArray = [1, 3, 6, 7];
         @struct(TestStruct) Struct = new TestStruct();
@@ -93,6 +93,7 @@ describe('SendablePacket', () => {
         5,
         10,
         ...stringToBytes('abc'),
+        0,
       ]);
       const buffer = new CustomPacket().pack();
 

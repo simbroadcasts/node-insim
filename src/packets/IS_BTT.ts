@@ -1,4 +1,4 @@
-import { byte, string } from '../decorators';
+import { byte, stringNull } from '../decorators';
 import { Packet } from './base';
 import { PacketType } from './enums';
 
@@ -30,5 +30,5 @@ export class IS_BTT extends Packet {
   @byte() private readonly Sp3 = 0;
 
   /** Typed text, zero to {@link IS_BTN.TypeIn} specified in {@link IS_BTN} */
-  @string(96) Text = '';
+  @stringNull(96) Text = '';
 }

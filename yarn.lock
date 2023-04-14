@@ -5276,6 +5276,11 @@ unicode-property-aliases-ecmascript@^2.0.0:
   resolved "https://registry.yarnpkg.com/unicode-property-aliases-ecmascript/-/unicode-property-aliases-ecmascript-2.1.0.tgz#43d41e3be698bd493ef911077c9b131f827e8ccd"
   integrity sha512-6t3foTQI9qne+OZoVQB/8x8rk2k1eVy1gRXhV3oFQ5T6R1dqQ1xtin3XqSlx3+ATBkliTaR/hHyJBm+LVPNM8w==
 
+unicode-to-lfs@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/unicode-to-lfs/-/unicode-to-lfs-1.0.0.tgz#93935e4be9a9b2ce4cdee3720769584888e4674e"
+  integrity sha512-f1LwW3n5mv+q1q6TqY3wcY69k71YoQqxMDvruWLGq/M6DvD4egfm1AH8o9oALekEyUX8KsbdFQE0/MXSGX06UQ==
+
 untildify@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/untildify/-/untildify-4.0.0.tgz#2bc947b953652487e4600949fb091e3ae8cd919b"

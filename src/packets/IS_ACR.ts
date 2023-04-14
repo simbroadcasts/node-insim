@@ -1,4 +1,4 @@
-import { byte, getFormat, string } from '../decorators';
+import { byte, getFormat, stringNull } from '../decorators';
 import { InSimError } from '../errors';
 import { unpack } from '../lfspack';
 import { Packet } from './base';
@@ -29,7 +29,7 @@ export class IS_ACR extends Packet {
   @byte() Sp3 = 0;
 
   /** 4, 8, 12... 64 characters - last byte is zero */
-  @string(64) Text = '';
+  @stringNull(64) Text = '';
 
   unpack(buffer: Uint8Array): this {
     const data = unpack(`<${getFormat(this, 'Size')}`, buffer.buffer);

@@ -1,4 +1,4 @@
-import { byte, string } from '../decorators';
+import { byte, stringNull } from '../decorators';
 import { SendablePacket } from './base';
 import { PacketType } from './enums';
 import type { PacketData } from './types';
@@ -15,19 +15,11 @@ export class IS_MST extends SendablePacket {
   @byte() readonly Zero = 0;
 
   /** Last byte must be zero */
-  @string(MSG_MAX_LENGTH) Msg = '';
+  @stringNull(MSG_MAX_LENGTH) Msg = '';
 
   constructor(data?: IS_MST_Data) {
     super();
     this.initialize(data);
-  }
-
-  pack() {
-    if (this.Msg.length >= MSG_MAX_LENGTH - 1) {
-      this.Msg = this.Msg.substring(0, MSG_MAX_LENGTH - 1);
-    }
-
-    return super.pack();
   }
 }
 

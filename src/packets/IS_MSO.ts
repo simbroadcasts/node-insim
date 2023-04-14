@@ -1,4 +1,4 @@
-import { byte, getFormat, string } from '../decorators';
+import { byte, getFormat, stringNull } from '../decorators';
 import { InSimError } from '../errors';
 import { unpack } from '../lfspack';
 import { Packet } from './base';
@@ -31,7 +31,7 @@ export class IS_MSO extends Packet {
   @byte() TextStart = 0;
 
   /** 4, 8, 12... 128 characters - last byte is zero */
-  @string(128) Msg = '';
+  @stringNull(128) Msg = '';
 
   unpack(buffer: Uint8Array): this {
     const data = unpack(`<${getFormat(this, 'Size')}`, buffer.buffer);

@@ -1,4 +1,4 @@
-import { byte, string, word } from '../decorators';
+import { byte, string, stringNull, word } from '../decorators';
 import { SendablePacket } from './base';
 import type { InSimFlags } from './enums';
 import { PacketType } from './enums';
@@ -35,26 +35,14 @@ export class IS_ISI extends SendablePacket {
   @word() Interval = 0;
 
   /** Admin password (if set in LFS) */
-  @string(ADMIN_MAX_LENGTH) Admin = '';
+  @stringNull(ADMIN_MAX_LENGTH) Admin = '';
 
   /** A short name for your program */
-  @string(INAME_MAX_LENGTH) IName = '';
+  @stringNull(INAME_MAX_LENGTH) IName = '';
 
   constructor(data?: IS_ISI_Data) {
     super();
     this.initialize(data);
-  }
-
-  pack() {
-    if (this.IName.length > INAME_MAX_LENGTH) {
-      this.IName = this.IName.substring(0, INAME_MAX_LENGTH);
-    }
-
-    if (this.Admin.length > ADMIN_MAX_LENGTH) {
-      this.Admin = this.Admin.substring(0, ADMIN_MAX_LENGTH);
-    }
-
-    return super.pack();
   }
 }
 

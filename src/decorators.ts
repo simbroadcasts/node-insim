@@ -11,6 +11,14 @@ export function string(count: number) {
 }
 
 /**
+ * String of 1-byte characters ending with a NULL byte
+ * @internal
+ */
+export function stringNull(count: number) {
+  return Reflect.metadata(formatMetadataKey, `${count}S`);
+}
+
+/**
  * 1-byte signed integer
  * @internal
  */

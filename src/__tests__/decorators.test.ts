@@ -7,6 +7,7 @@ import {
   int,
   short,
   string,
+  stringNull,
   struct,
   unsigned,
   Vec,
@@ -25,6 +26,7 @@ describe('Class property decorators', () => {
     class TestClass {
       @string(1) Char = 'a';
       @string(3) String = 'abc';
+      @stringNull(3) StringNull = 'abc';
       @byte() Byte = 255;
       @byteArray(5) ByteArray = [34, 67, 255, 0, 5];
       @word() Word = 65535;
@@ -46,6 +48,7 @@ describe('Class property decorators', () => {
 
     expect(getFormat(packet, 'Char')).toEqual('c');
     expect(getFormat(packet, 'String')).toEqual('3s');
+    expect(getFormat(packet, 'StringNull')).toEqual('3S');
     expect(getFormat(packet, 'Byte')).toEqual('B');
     expect(getFormat(packet, 'ByteArray')).toEqual('5A');
     expect(getFormat(packet, 'Word')).toEqual('H');

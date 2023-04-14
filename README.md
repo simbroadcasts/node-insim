@@ -151,10 +151,11 @@ function onVersion(packet: IS_VER, inSim: InSim) {
 
 ### String encoding
 
-All strings in received packets are automatically converted from LFS encoding to UTF-8.
+All strings in received or sent packets are automatically converted from LFS encoding to
+Unicode and vice versa.
 
-If you need to access the raw string, use the `_raw` property in the packet
-instance, which contains all unconverted string properties.
+If you need to access the raw LFS-encoded string in a received packet, use the `_raw`
+property in the packet instance, which contains all unconverted string properties.
 
 ```ts
 import { InSim } from 'node-insim';
@@ -166,6 +167,25 @@ const inSim = new InSim();
 inSim.on(PacketType.ISP_ISM, (packet: IS_ISM) => {
   console.log(packet.HName); // UTF-8 string - ^1Drifter Team ^7★ Server
   console.log(packet._raw.HName); // raw string - ^1Drifter Team ^7^J Server\u0000\u0000\u0000\u0000
+});
+```
+
+When you send a Unicode string value in a packet, each character will get encoded into
+the correct LFS encoding, so LFS can display the text in a message or a button.
+
+```ts
+import { InSim } from 'node-insim';
+import { PacketType } from 'node-insim/packets';
+import type { IS_MSL } from 'node-insim/packets';
+
+const inSim = new InSim();
+
+inSim.on(PacketType.ISP_VER, (packet: IS_VER) => {
+  inSim.send(
+    new IS_MSL({
+      Msg: 'čau světe', // LFS will receive: ^Eèau svìte
+    }),
+  );
 });
 ```
 

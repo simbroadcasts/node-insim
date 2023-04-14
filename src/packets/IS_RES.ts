@@ -1,4 +1,4 @@
-import { byte, string, unsigned, word } from '../decorators';
+import { byte, string, stringNull, unsigned, word } from '../decorators';
 import { Packet } from './base';
 import type { ConfirmationFlags, PlayerFlags } from './enums';
 import { PacketType } from './enums';
@@ -17,16 +17,16 @@ export class IS_RES extends Packet {
   @byte() PLID = 0;
 
   /** Username */
-  @string(24) UName = '';
+  @stringNull(24) UName = '';
 
   /** Nickname */
-  @string(24) PName = '';
+  @stringNull(24) PName = '';
 
   /** Number plate - NO ZERO AT END! */
   @string(8) Plate = '';
 
   /** Skin prefix */
-  @string(4) CName = '';
+  @stringNull(4) CName = '';
 
   /** Race or autocross: total time / qualify: session time (ms) */
   @unsigned() TTime = 0;

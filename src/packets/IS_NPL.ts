@@ -1,4 +1,4 @@
-import { byte, string, word } from '../decorators';
+import { byte, string, stringNull, word } from '../decorators';
 import { Packet } from './base';
 import type {
   PassengerFlags,
@@ -32,16 +32,16 @@ export class IS_NPL extends Packet {
   @word() Flags: PlayerFlags | 0 = 0;
 
   /** Nickname */
-  @string(24) PName = '';
+  @stringNull(24) PName = '';
 
   /** Number plate - NO ZERO AT END! */
   @string(8) Plate = '';
 
   /** Car name */
-  @string(4) CName = '';
+  @stringNull(4) CName = '';
 
   /** Skin name - MAX_CAR_TEX_NAME */
-  @string(16) SName = '';
+  @stringNull(16) SName = '';
 
   /** Rear left tyre compound */
   @byte() TyreRL: TyreCompound = 0;

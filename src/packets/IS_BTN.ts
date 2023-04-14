@@ -1,3 +1,5 @@
+import unicodeToLfs from 'unicode-to-lfs';
+
 import { byte, string } from '../decorators';
 import { SendablePacket } from './base';
 import type { ButtonStyle, ButtonTextColour } from './enums';
@@ -117,8 +119,13 @@ export class IS_BTN extends SendablePacket {
     }
 
     const multiple = 4;
-    const length = this.Text.length;
-    const textSize = Math.min(length + (multiple - (length % multiple)), 240);
+    const MAX_LENGTH = 240;
+    const encodedText = unicodeToLfs(this.Text);
+    const length = encodedText.length;
+    const textSize = Math.min(
+      length + (multiple - (length % multiple)),
+      MAX_LENGTH,
+    );
     this.Size = IS_BTN.FIXED_DATA_SIZE + textSize;
 
     return super.pack({

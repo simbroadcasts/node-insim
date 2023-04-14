@@ -68,11 +68,6 @@ const map = new Map<[string, unknown[]], number[]>([
     ['LLL', [0, 222, 4294967295]],
     [0, 0, 0, 0, 0, 0, 0, 222, 255, 255, 255, 255],
   ],
-  // LFS-encoded string
-  [
-    ['3s', [['abc', 'abc']]],
-    [97, 98, 99],
-  ],
   // 4-byte float
   [
     ['fff', [0.000009999999747378752, 0, -345344442368]],
@@ -96,5 +91,17 @@ describe('lfspack', () => {
     it(`'${format}' should unpack [${buffer}] into [${values}]`, () => {
       expect(unpack(format, new Uint8Array(buffer).buffer)).toEqual(values);
     });
+  });
+
+  // Special case for strings
+  const buffer = [97, 98, 99, 32, 94, 69, 236, 154, 232, 0];
+  const format = '10s';
+  const values = ['abc ^Eì\x9Aè\0', 'abc ěšč'];
+
+  it(`'${format}' should pack [${values}] into [${buffer}]`, () => {
+    expect(pack(format, [values[1]])).toEqual(new Uint8Array(buffer));
+  });
+  it(`'${format}' should unpack [${buffer}] into [${values}]`, () => {
+    expect(unpack(format, new Uint8Array(buffer).buffer)).toEqual([values]);
   });
 });

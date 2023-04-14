@@ -1,4 +1,6 @@
-import { byte, string } from '../decorators';
+import unicodeToLfs from 'unicode-to-lfs';
+
+import { byte, stringNull } from '../decorators';
 import { SendablePacket } from './base';
 import type { MessageSound } from './enums';
 import { PacketType } from './enums';
@@ -29,7 +31,7 @@ export class IS_MTC extends SendablePacket {
   @byte() private readonly Sp3 = 0;
 
   /** Up to 128 characters of text - last byte must be zero */
-  @string(TEXT_MAX_LENGTH) Text = '';
+  @stringNull(TEXT_MAX_LENGTH) Text = '';
 
   constructor(data?: IS_MTC_Data) {
     super();
@@ -38,11 +40,8 @@ export class IS_MTC extends SendablePacket {
 
   pack() {
     const multiple = 4;
-    const length = this.Text.length;
-
-    if (length >= TEXT_MAX_LENGTH - 1) {
-      this.Text = this.Text.substring(0, TEXT_MAX_LENGTH - 1);
-    }
+    const encodedText = unicodeToLfs(this.Text);
+    const length = encodedText.length;
 
     const textSize = Math.min(
       length + (multiple - (length % multiple)),
@@ -51,7 +50,7 @@ export class IS_MTC extends SendablePacket {
     this.Size = IS_MTC.FIXED_DATA_SIZE + textSize;
 
     return super.pack({
-      Text: `${textSize}s`,
+      Text: `${textSize}S`,
     });
   }
 }

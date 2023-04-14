@@ -80,7 +80,8 @@
     "parse-lfs-message": "^1.2.2",
     "reflect-metadata": "^0.1.13",
     "supports-color": "^9.2.3",
-    "tiny-typed-emitter": "^2.1.0"
+    "tiny-typed-emitter": "^2.1.0",
+    "unicode-to-lfs": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.21.3",

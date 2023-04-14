@@ -1,4 +1,4 @@
-import { byte, byteArray, string } from '../../../decorators';
+import { byte, byteArray, string, stringNull } from '../../../decorators';
 import { PacketType } from '../..';
 import { Packet } from '../Packet';
 
@@ -27,6 +27,7 @@ describe('Packet', () => {
         @byte() Type = PacketType.ISP_ISI;
         @byte() ReqI = 1;
         @string(6) StringProperty = 'string';
+        @stringNull(6) StringNullProperty = 'string';
         @byte() NumberProperty = 0;
         @byteArray(4) NumberArray = [1, 2, 4, 6];
         InvalidProperty = 'invalid';
@@ -43,6 +44,7 @@ describe('Packet', () => {
         'Type',
         'ReqI',
         'StringProperty',
+        'StringNullProperty',
         'NumberProperty',
         'NumberArray',
       ]);
@@ -56,6 +58,7 @@ describe('Packet', () => {
         @byte() Type = PacketType.ISP_ISI;
         @byte() ReqI = 1;
         @string(6) StringProperty = 'string';
+        @stringNull(6) StringNullProperty = 'string';
         @byte() NumberProperty = 0;
         @byteArray(4) NumberArray = [1, 2, 4, 6];
         InvalidProperty = 'invalid';
@@ -67,7 +70,7 @@ describe('Packet', () => {
 
       const packet = new CustomPacket();
 
-      expect(packet.getFormat()).toEqual('BBB6sB4A');
+      expect(packet.getFormat()).toEqual('BBB6s6SB4A');
     });
 
     it('should override property format if provided', () => {
@@ -76,6 +79,7 @@ describe('Packet', () => {
         @byte() Type = PacketType.ISP_ISI;
         @byte() ReqI = 1;
         @string(6) StringProperty = 'string';
+        @stringNull(6) StringNullProperty = 'string';
         @byte() NumberProperty = 0;
         InvalidProperty = 'invalid';
 
@@ -88,7 +92,7 @@ describe('Packet', () => {
 
       const packet = new CustomPacket();
 
-      expect(packet.getFormat()).toEqual('BBB6sC');
+      expect(packet.getFormat()).toEqual('BBB6s6SC');
     });
   });
 });

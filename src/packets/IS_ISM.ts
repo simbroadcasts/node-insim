@@ -1,4 +1,4 @@
-import { byte, string } from '../decorators';
+import { byte, stringNull } from '../decorators';
 import { Packet } from './base';
 import { PacketType } from './enums';
 
@@ -36,7 +36,7 @@ export class IS_ISM extends Packet {
   @byte() private readonly Sp3 = 0;
 
   /** The name of the host joined or started */
-  @string(32) HName = '';
+  @stringNull(32) HName = '';
 }
 
 export enum MultiplayerHostMode {

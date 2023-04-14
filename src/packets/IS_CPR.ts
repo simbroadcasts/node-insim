@@ -1,4 +1,4 @@
-import { byte, string } from '../decorators';
+import { byte, string, stringNull } from '../decorators';
 import { Packet } from './base';
 import { PacketType } from './enums';
 
@@ -14,7 +14,7 @@ export class IS_CPR extends Packet {
   @byte() UCID = 0;
 
   /** New name */
-  @string(24) PName = '';
+  @stringNull(24) PName = '';
 
   /** Number plate - NO ZERO AT END! */
   @string(8) Plate = '';

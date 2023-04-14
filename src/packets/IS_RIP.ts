@@ -1,4 +1,4 @@
-import { byte, string, unsigned } from '../decorators';
+import { byte, stringNull, unsigned } from '../decorators';
 import { SendablePacket } from './base';
 import type { ReplayError, ReplayMode, ReplayOptions } from './enums';
 import { PacketType } from './enums';
@@ -48,7 +48,7 @@ export class IS_RIP extends SendablePacket {
   @unsigned() TTime = 0;
 
   /** Zero or replay name - last byte must be zero */
-  @string(RNAME_MAX_LENGTH) RName = '';
+  @stringNull(RNAME_MAX_LENGTH) RName = '';
 
   constructor(data?: IS_RIP_Data) {
     super();
@@ -58,10 +58,6 @@ export class IS_RIP extends SendablePacket {
   pack() {
     if (this.ReqI === 0) {
       throw new RangeError('IS_RIP - ReqI must be greater than 0');
-    }
-
-    if (this.RName.length >= RNAME_MAX_LENGTH - 1) {
-      this.RName = this.RName.substring(0, RNAME_MAX_LENGTH - 1);
     }
 
     return super.pack();
