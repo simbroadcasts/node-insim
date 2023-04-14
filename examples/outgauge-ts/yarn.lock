@@ -676,17 +676,17 @@ mz@^2.7.0:
     thenify-all "^1.0.0"
 
 "node-insim@file:../../dist-local":
-  version "1.0.0"
+  version "1.0.1"
   dependencies:
     "@types/debug" "^4.1.7"
     "@types/lodash" "^4.14.182"
     debug "^4.3.4"
     lodash "^4.17.21"
-    parse-lfs-message "^1.2.3"
+    parse-lfs-message "^1.2.4"
     reflect-metadata "^0.1.13"
     supports-color "^9.2.3"
     tiny-typed-emitter "^2.1.0"
-    unicode-to-lfs "^1.0.1"
+    unicode-to-lfs "^1.0.2"
 
 normalize-path@^3.0.0, normalize-path@~3.0.0:
   version "3.0.0"
@@ -719,10 +719,10 @@ onetime@^5.1.2:
   dependencies:
     mimic-fn "^2.1.0"
 
-parse-lfs-message@^1.2.3:
-  version "1.2.3"
-  resolved "https://registry.npmjs.org/parse-lfs-message/-/parse-lfs-message-1.2.3.tgz#b30bbc5ae39dd3a0794ffac46cfce141f8dc84eb"
-  integrity sha512-tPsKDMTC2TvTQz18bB2qOHXnlF9dsRBn34a92Lmv1s2wmrYKbxVYSy54k6F4i1QzeDnrpBnt1Pf8QQcWgNX7eQ==
+parse-lfs-message@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.npmjs.org/parse-lfs-message/-/parse-lfs-message-1.2.4.tgz#8c723a0dad87a993f48113e99bcb772451fa6f46"
+  integrity sha512-P3tXbk4VHJOA7lBaDe0JKrpKas82/kcPtvn7diA4fuYGpm4YgTCUdaCV1SkTZ0FVUuegLIRLs/v9PwqyrlBmNg==
 
 path-is-absolute@^1.0.0:
   version "1.0.1"
@@ -946,10 +946,10 @@ typescript@^5.0.2:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.0.2.tgz#891e1a90c5189d8506af64b9ef929fca99ba1ee5"
   integrity sha512-wVORMBGO/FAs/++blGNeAVdbNKtIh1rbBL2EyQ1+J9lClJ93KiiKe8PmFIVdXhHcyv44SL9oglmfeSsndo0jRw==
 
-unicode-to-lfs@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.npmjs.org/unicode-to-lfs/-/unicode-to-lfs-1.0.1.tgz#a7dc5ff1979aa50725ac0f79783049e9d2d7a940"
-  integrity sha512-CIPJD5fCgMvuBxjbVNWIoU10VFBiPisgEcwl/C98w4gv9OebPviJnVLj1asSEgrwqKa2aYKFsh9Sv25J8VCVpw==
+unicode-to-lfs@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.npmjs.org/unicode-to-lfs/-/unicode-to-lfs-1.0.2.tgz#5809dbac0677d2f4963c8ceaab3ed40bc0e28739"
+  integrity sha512-VWBnNlTcxR7HYtR80TzapJtmjnL4wC77kxyRuYi79eb8w3YWcCtFgFgi30yVb8rT+801FY4kByAM/i9ubOB/pg==
 
 webidl-conversions@^4.0.2:
   version "4.0.2"
