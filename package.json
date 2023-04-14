@@ -1,6 +1,6 @@
 {
   "name": "node-insim",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "An InSim library for NodeJS",
   "keywords": [
     "lfs",
