@@ -2,6 +2,14 @@
   "name": "node-insim",
   "version": "0.10.2",
   "description": "An InSim library for NodeJS",
+  "keywords": [
+    "lfs",
+    "live for speed",
+    "insim",
+    "node",
+    "nodejs",
+    "node.js"
+  ],
   "repository": "git@github.com:simbroadcasts/node-insim.git",
   "author": "Martin Kapal <flamecze@gmail.com>",
   "contributors": [
