@@ -24,9 +24,11 @@ type InSimConnectionOptions = {
   Port: number;
 };
 
-export type InSimOptions = IS_ISI_Data & InSimConnectionOptions;
+export type InSimOptions = Omit<IS_ISI_Data, 'InSimVer'> &
+  InSimConnectionOptions;
 
 export class InSim extends TypedEmitter<InSimEvents> {
+  /** Currently supported InSim version */
   static INSIM_VERSION = 9;
 
   /** A unique identifier of the InSim connection to a specific host */
@@ -49,7 +51,7 @@ export class InSim extends TypedEmitter<InSimEvents> {
 
       log(`Disconnected from ${this._options.Host}:${this._options.Port}`);
     });
-    this.on(PacketType.ISP_TINY, (packet) => this.handleKeepAlive(packet));
+    this.on(PacketType.ISP_TINY, this.handleKeepAlive);
   }
 
   /**
@@ -150,7 +152,7 @@ export class InSim extends TypedEmitter<InSimEvents> {
             ReqI: this._options.ReqI,
             Interval: this._options.Interval,
             IName: this._options.IName,
-            InSimVer: this._options.InSimVer,
+            InSimVer: InSim.INSIM_VERSION,
           }),
         );
       }
@@ -250,7 +252,6 @@ const defaultInSimOptions: InSimOptions = {
   ReqI: 0,
   UDPPort: 0,
   Flags: InSimFlags.ISF_RES_0,
-  InSimVer: InSim.INSIM_VERSION,
   Prefix: '',
   Interval: 0,
   Admin: '',
