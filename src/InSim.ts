@@ -31,8 +31,13 @@ export class InSim extends TypedEmitter<InSimEvents> {
   private connection: TCP | null = null;
   private sizeMultiplier = 4;
 
-  constructor() {
+  /** An optional unique identifier of the InSim connection to a specific host */
+  id?: string;
+
+  constructor(id?: string) {
     super();
+
+    this.id = id;
 
     this.on('connect', () =>
       log(`Connected to ${this._options.Host}:${this._options.Port}`),
