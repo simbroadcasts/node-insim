@@ -56,6 +56,11 @@ export class InSim extends TypedEmitter<InSimEvents> {
   connect(
     options: Omit<Partial<IS_ISI_Data>, 'InSimVer'> & InSimConnectionOptions,
   ) {
+    if (this.connection !== null) {
+      log('Cannot connect - already connected');
+      return;
+    }
+
     this._connect(options);
   }
 
