@@ -1,3 +1,4 @@
+import crypto from 'crypto';
 import defaults from 'lodash/defaults';
 import { TypedEmitter } from 'tiny-typed-emitter';
 
@@ -27,17 +28,18 @@ export type InSimOptions = IS_ISI_Data & InSimConnectionOptions;
 
 export class InSim extends TypedEmitter<InSimEvents> {
   static INSIM_VERSION = 9;
+
+  /** A unique identifier of the InSim connection to a specific host */
+  id: string;
+
   private _options: InSimOptions = defaultInSimOptions;
   private connection: TCP | null = null;
   private sizeMultiplier = 4;
 
-  /** An optional unique identifier of the InSim connection to a specific host */
-  id?: string;
-
   constructor(id?: string) {
     super();
 
-    this.id = id;
+    this.id = id ?? crypto.randomUUID();
 
     this.on('connect', () =>
       log(`Connected to ${this._options.Host}:${this._options.Port}`),
