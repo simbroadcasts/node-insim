@@ -10,9 +10,9 @@ TypeScript support.
 ## Introduction
 
 Node InSim provides a JavaScript API to communicate with the [Live for Speed](https://www.lfs.net/)
-InSim protocol over a TCP connection. After connecting to an LFS server via a hostname
-and a port, you are able to send InSim packets to the server and receive incoming
-packets from the server.
+InSim protocol over a TCP connection. After connecting to an LFS host via a hostname
+and a port, you are able to send InSim packets to the host and receive incoming
+packets from the host.
 
 All packet structures in Node InSim are identical to the structs defined in the
 [InSim protocol](https://en.lfsmanual.net/wiki/InSim.txt). All packet classes with all
@@ -40,12 +40,14 @@ yarn add node-insim
 
 ### Connecting
 
-To connect to an LFS server, you must enter its hostname, a port and a short name
-of your application.
+To connect to an LFS host, you must enter its hostname, a port and a short name of
+your InSim application.
 
-The InSim port must be configured in the LFS server settings. Also, make sure the
-public IP address from which your application is connecting is allowed to connect to
-the server InSim port.
+The InSim port must be configured in the LFS host settings. Also, make sure the public
+IP address from which your application is connecting is allowed to connect to the host's
+InSim port.
+
+#### Single host
 
 ```ts
 import { InSim } from 'node-insim';
@@ -55,6 +57,30 @@ const inSim = new InSim();
 inSim.connect({
   Host: '127.0.0.1',
   Port: 29999,
+  IName: 'Node InSim App',
+});
+```
+
+#### Multiple hosts
+
+Tho connect to multiple hosts at once, create a new `InSim` instance for each host.
+
+```ts
+import { InSim } from 'node-insim';
+
+const inSim1 = new InSim();
+
+inSim1.connect({
+  Host: '127.0.0.1',
+  Port: 29999,
+  IName: 'Node InSim App',
+});
+
+const inSim2 = new InSim();
+
+inSim2.connect({
+  Host: '127.0.0.2',
+  Port: 30000,
   IName: 'Node InSim App',
 });
 ```
@@ -146,6 +172,44 @@ function onVersion(packet: IS_VER, inSim: InSim) {
       SubT: TinyType.TINY_PING,
     }),
   );
+}
+```
+
+#### Multiple hosts
+
+You can use the `inSim` argument in the event handler callback to identify the source
+host of the received packets, for instance by the `options.Host` property.
+
+Alternatively, the `InSim` class constructor accepts an optional `id` argument, which
+can also be used to tell apart the InSim connections.
+
+```ts
+import { InSim } from 'node-insim';
+
+const inSim1 = new InSim('Host One');
+
+inSim1.connect({
+  Host: '127.0.0.1',
+  Port: 29999,
+  IName: 'Node InSim App',
+});
+
+const inSim2 = new InSim('Host Two');
+
+inSim2.connect({
+  Host: '127.0.0.2',
+  Port: 30000,
+  IName: 'Node InSim App',
+});
+
+inSim.on(PacketType.ISP_VER, onVersion);
+
+function onVersion(packet: IS_VER, inSim: InSim) {
+  console.log(`Connected to ${inSim.options.Host}:${inSim.options.Port}`);
+
+  if (inSim.id) {
+    console.log(`InSim connection ID: ${inSim.id}`);
+  }
 }
 ```
 
@@ -279,12 +343,14 @@ Node InSim.
 
 - JavaScript + CommonJS
   - [InSim connection](./examples/insim-connection-js)
+  - [InSim connection (multiple hosts)](./examples/insim-multiple-hosts-js)
   - [InSim Relay](./examples/insim-relay-js)
   - [OutGauge](./examples/outgauge-js)
   - [OutSim](./examples/outsim-basic-js)
   - [OutSim with Options](./examples/outsim-advanced-js)
 - TypeScript + ES Modules
   - [InSim connection](./examples/insim-connection-ts)
+  - [InSim connection (multiple hosts)](./examples/insim-multiple-hosts-ts)
   - [InSim Relay](./examples/insim-relay-ts)
   - [OutGauge](./examples/outgauge-ts)
   - [OutSim](./examples/outsim-basic-ts)
