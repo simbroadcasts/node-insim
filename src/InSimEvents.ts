@@ -117,6 +117,6 @@ export type InSimPacketEvents = {
 };
 
 export type InSimEvents = InSimPacketEvents & {
-  connect: () => void;
-  disconnect: () => void;
+  connect: (inSim: InSim) => void;
+  disconnect: (inSim: InSim) => void;
 };

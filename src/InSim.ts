@@ -152,11 +152,11 @@ export class InSim extends TypedEmitter<InSimEvents> {
           }),
         );
       }
-      this.emit('connect');
+      this.emit('connect', this);
     });
 
     this.connection.on('disconnect', () => {
-      this.emit('disconnect');
+      this.emit('disconnect', this);
     });
 
     this.connection.on('error', (error: Error) => {
