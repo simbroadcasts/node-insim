@@ -4,10 +4,13 @@ import debug from 'debug';
 import { InSim } from 'node-insim';
 import type { IS_VER } from 'node-insim/packets';
 import { IS_ISI_ReqI, PacketType } from 'node-insim/packets';
+import { myPlugin } from './plugin';
 
 const log = debug('node-insim-ts');
 
 const inSim = new InSim();
+
+myPlugin(inSim);
 
 inSim.connect({
   IName: 'Node InSim App',

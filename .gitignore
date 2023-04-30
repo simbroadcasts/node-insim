@@ -7,3 +7,4 @@ yarn-*.log
 junit.xml
 .idea
 *.backup
+.DS_Store

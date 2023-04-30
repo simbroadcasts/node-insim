@@ -1,6 +1,6 @@
 {
   "name": "node-insim",
-  "version": "1.0.2",
+  "version": "0.0.0-semantically-released",
   "description": "An InSim library for NodeJS with TypeScript support",
   "keywords": [
     "lfs",
@@ -52,6 +52,7 @@
     "./package.json": "./package.json"
   },
   "scripts": {
+    "commit": "cz",
     "prebuild": "rimraf ./dist",
     "build": "tsc -b ./src/tsconfig.cjs.json ./src/tsconfig.esm.json ./src/tsconfig.types.json",
     "build-local": "run-s build build-local:*",
@@ -74,11 +75,7 @@
     "lint:fix": "eslint \"./src/**/*\" --ext .js,.ts --fix",
     "generate": "run-s \"generate:plop {@}\" lint:fix format --",
     "generate:plop": "plop",
-    "bump": "node ./scripts/bump.mjs",
-    "clean-package": "clean-package",
-    "prepack": "run-s build clean-package",
-    "npm:pack": "npm pack && clean-package restore",
-    "npm:publish": "npm publish && clean-package restore"
+    "prepack": "run-s build"
   },
   "dependencies": {
     "@types/debug": "^4.1.7",
@@ -103,10 +100,9 @@
     "@typescript-eslint/eslint-plugin": "^5.56.0",
     "@typescript-eslint/parser": "^5.56.0",
     "babel-jest": "^29.5.0",
-    "chalk": "^5.2.0",
-    "clean-package": "^2.2.0",
     "copyfiles": "^2.4.1",
     "cross-env": "^7.0.3",
+    "cz-conventional-changelog": "^3.3.0",
     "dotenv": "^16.0.3",
     "eslint": "^8.36.0",
     "eslint-config-prettier": "^8.8.0",
@@ -119,15 +115,12 @@
     "plop": "^3.1.1",
     "prettier": "^2.8.5",
     "rimraf": "^4.4.0",
-    "semver": "^7.3.8",
     "tsx": "^3.12.6",
     "typescript": "^4.9.5"
   },
-  "clean-package": {
-    "remove": [
-      "clean-package",
-      "devDependencies",
-      "scripts"
-    ]
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }

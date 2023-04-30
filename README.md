@@ -442,22 +442,6 @@ You can run code format, lint + fix, build and test with the following command:
 yarn check-all
 ```
 
-### Bump package version
-
-```shell
-yarn bump # patch by default
-yarn bump patch
-yarn bump minor
-yarn bump major
-yarn bump 1.2.3
-```
-
-### Publish package on NPM
-
-```shell
-yarn npm:publish
-```
-
 ---
 
 ![Node Insim - An open source project by Sim Broadcasts](https://simbroadcasts.tv/assets/node-insim/node-insim-footer.png)
