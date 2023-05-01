@@ -63,7 +63,7 @@ inSim.connect({
 
 #### Multiple hosts
 
-Tho connect to multiple hosts at once, create a new `InSim` instance for each host.
+To connect to multiple hosts at once, create a new `InSim` instance for each host.
 
 ```ts
 import { InSim } from 'node-insim';
