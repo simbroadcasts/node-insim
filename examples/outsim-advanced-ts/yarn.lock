@@ -548,7 +548,7 @@ mz@^2.7.0:
     reflect-metadata "^0.1.13"
     supports-color "^9.2.3"
     tiny-typed-emitter "^2.1.0"
-    unicode-to-lfs "^1.0.2"
+    unicode-to-lfs "^2.0.0"
 
 normalize-path@^3.0.0, normalize-path@~3.0.0:
   version "3.0.0"
@@ -808,10 +808,10 @@ typescript@^5.0.2:
   resolved "https://registry.npmjs.org/typescript/-/typescript-5.0.3.tgz"
   integrity sha512-xv8mOEDnigb/tN9PSMTwSEqAnUvkoXMQlicOb0IUVDBSQCgBSaAAROUZYy2IcUy5qU6XajK5jjjO7TMWqBTKZA==
 
-unicode-to-lfs@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.npmjs.org/unicode-to-lfs/-/unicode-to-lfs-1.0.2.tgz#5809dbac0677d2f4963c8ceaab3ed40bc0e28739"
-  integrity sha512-VWBnNlTcxR7HYtR80TzapJtmjnL4wC77kxyRuYi79eb8w3YWcCtFgFgi30yVb8rT+801FY4kByAM/i9ubOB/pg==
+unicode-to-lfs@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/unicode-to-lfs/-/unicode-to-lfs-2.0.0.tgz#3abd1f161ef741da3d3df84d0206deb6cc1c86e9"
+  integrity sha512-5KHJgzDaQOPou5kgIoF3kSSRP9t2OkDScUb4yqZv7wpM2Tdufj7e00Bbb4K28O5LWh2IY3vwyctnu44hTmTEUQ==
 
 webidl-conversions@^4.0.2:
   version "4.0.2"
