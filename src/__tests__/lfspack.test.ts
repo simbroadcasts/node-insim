@@ -93,15 +93,19 @@ describe('lfspack', () => {
     });
   });
 
-  // Special case for strings
-  const buffer = [97, 98, 99, 32, 94, 69, 236, 154, 232, 0];
-  const format = '10s';
-  const values = ['abc ^Eì\x9Aè\0', 'abc ěšč'];
+  describe('strings', () => {
+    const buffer = [
+      97, 98, 99, 32, 94, 69, 236, 154, 232, 124, 42, 58, 92, 47, 63, 34, 60,
+      62, 35,
+    ];
+    const format = '19s';
+    const values = ['abc ^Eì\x9Aè|*:\\/?"<>#', 'abc ěšč|*:\\/?"<>#'];
 
-  it(`'${format}' should pack [${values}] into [${buffer}]`, () => {
-    expect(pack(format, [values[1]])).toEqual(new Uint8Array(buffer));
-  });
-  it(`'${format}' should unpack [${buffer}] into [${values}]`, () => {
-    expect(unpack(format, new Uint8Array(buffer).buffer)).toEqual([values]);
+    it(`'${format}' should pack [${values}] into [${buffer}]`, () => {
+      expect(pack(format, [values[1]])).toEqual(new Uint8Array(buffer));
+    });
+    it(`'${format}' should unpack [${buffer}] into [${values}]`, () => {
+      expect(unpack(format, new Uint8Array(buffer).buffer)).toEqual([values]);
+    });
   });
 });
