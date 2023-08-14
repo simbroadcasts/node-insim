@@ -5588,10 +5588,10 @@ unicode-property-aliases-ecmascript@^2.0.0:
   resolved "https://registry.yarnpkg.com/unicode-property-aliases-ecmascript/-/unicode-property-aliases-ecmascript-2.1.0.tgz#43d41e3be698bd493ef911077c9b131f827e8ccd"
   integrity sha512-6t3foTQI9qne+OZoVQB/8x8rk2k1eVy1gRXhV3oFQ5T6R1dqQ1xtin3XqSlx3+ATBkliTaR/hHyJBm+LVPNM8w==
 
-unicode-to-lfs@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.npmjs.org/unicode-to-lfs/-/unicode-to-lfs-1.0.2.tgz#5809dbac0677d2f4963c8ceaab3ed40bc0e28739"
-  integrity sha512-VWBnNlTcxR7HYtR80TzapJtmjnL4wC77kxyRuYi79eb8w3YWcCtFgFgi30yVb8rT+801FY4kByAM/i9ubOB/pg==
+unicode-to-lfs@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/unicode-to-lfs/-/unicode-to-lfs-2.0.0.tgz#3abd1f161ef741da3d3df84d0206deb6cc1c86e9"
+  integrity sha512-5KHJgzDaQOPou5kgIoF3kSSRP9t2OkDScUb4yqZv7wpM2Tdufj7e00Bbb4K28O5LWh2IY3vwyctnu44hTmTEUQ==
 
 universalify@^2.0.0:
   version "2.0.0"

@@ -11,7 +11,7 @@ const data: IS_ISI_Data = {
   InSimVer: 9,
   Prefix: '!',
   Interval: 30,
-  Admin: 'adminadminadmin',
+  Admin: 'admin|*:\\/?"<>#',
   IName: 'app app app app',
 };
 
@@ -28,7 +28,7 @@ const buffer = new Uint8Array([
   '!'.charCodeAt(0), // Prefix
   30, // Interval (1)
   0, // Interval (2)
-  ...stringToBytes('adminadminadmin\0'), // Admin[16]
+  ...stringToBytes('admin|*:\\/?"<>#\0'), // Admin[16]
   ...stringToBytes('app app app app\0'), // IName[16]
 ]);
 
