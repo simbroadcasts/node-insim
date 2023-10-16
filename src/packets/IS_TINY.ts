@@ -23,17 +23,16 @@ export class IS_TINY extends SendablePacket {
 
 export type IS_TINY_Data =
   | {
-      /** 0 unless it is an info request or a reply to an info request */
+      /** Info request ID */
       ReqI: number;
 
-      /** Subtype */
+      /** Info request subtype */
       SubT: InfoRequestTinyType;
     }
   | {
-      /** 0 unless it is an info request or a reply to an info request */
       ReqI?: never;
 
-      /** Subtype */
+      /** Sendable subtype */
       SubT: Exclude<SendableTinyType, InfoRequestTinyType>;
     };
 
