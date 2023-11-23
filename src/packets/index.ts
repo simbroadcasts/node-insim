@@ -176,6 +176,7 @@ export {
   JRRAction,
   Language,
   LeaveReason,
+  License,
   MessageSound,
   NormalInterfaceSubmode,
   ObjectHitFlags,

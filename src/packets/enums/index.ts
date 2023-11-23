@@ -21,6 +21,7 @@ export { InterfaceMode } from './InterfaceMode';
 export { JRRAction } from './JRRAction';
 export { Language } from './Language';
 export { LeaveReason } from './LeaveReason';
+export { License } from './License';
 export { LocalCarSwitches } from './LocalCarSwitches';
 export { MessageSound } from './MessageSound';
 export { NormalInterfaceSubmode } from './NormalInterfaceSubmode';
