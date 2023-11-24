@@ -177,6 +177,7 @@ export {
   Language,
   LeaveReason,
   License,
+  LocalCarSwitches,
   MessageSound,
   NormalInterfaceSubmode,
   ObjectHitFlags,
