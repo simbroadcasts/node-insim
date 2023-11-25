@@ -82,4 +82,7 @@ export enum TinyType {
 
   /** Info request: send {@link IS_MAL} listing the currently allowed mods */
   TINY_MAL,
+
+  /** Info request: send {@link IS_PLH} listing player handicaps */
+  TINY_PLH,
 }

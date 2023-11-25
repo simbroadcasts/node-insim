@@ -50,6 +50,7 @@ import { IS_PFL } from './IS_PFL';
 import { IS_PIT } from './IS_PIT';
 import { IS_PLA } from './IS_PLA';
 import { IS_PLC } from './IS_PLC';
+import { IS_PLH } from './IS_PLH';
 import { IS_PLL } from './IS_PLL';
 import { IS_PLP } from './IS_PLP';
 import { IS_PSF } from './IS_PSF';
@@ -143,6 +144,7 @@ export const packetTypeToClass: Record<PacketType, new () => Packet> = {
   [PacketType.ISP_CSC]: IS_CSC,
   [PacketType.ISP_CIM]: IS_CIM,
   [PacketType.ISP_MAL]: IS_MAL,
+  [PacketType.ISP_PLH]: IS_PLH,
   [PacketType.IRP_ARQ]: IR_ARQ,
   [PacketType.IRP_ARP]: IR_ARP,
   [PacketType.IRP_HLR]: IR_HLR,
@@ -192,6 +194,7 @@ export {
   PitLaneFact,
   PitWorkFlags,
   PlayerFlags,
+  PlayerHCapFlags,
   PlayerType,
   PMOAction,
   PMOFlags,
@@ -284,6 +287,8 @@ export { IS_PIT } from './IS_PIT';
 export { IS_PLA } from './IS_PLA';
 export type { IS_PLC_Data } from './IS_PLC';
 export { IS_PLC } from './IS_PLC';
+export type { IS_PLH_Data } from './IS_PLH';
+export { IS_PLH } from './IS_PLH';
 export { IS_PLL } from './IS_PLL';
 export { IS_PLP } from './IS_PLP';
 export { IS_PSF } from './IS_PSF';
@@ -331,5 +336,6 @@ export {
   HInfo,
   NodeLap,
   ObjectInfo,
+  PlayerHCap,
 } from './structs';
 export type { InSimPacket } from './types';

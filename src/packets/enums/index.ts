@@ -37,6 +37,7 @@ export { PenaltyValue } from './PenaltyValue';
 export { PitLaneFact } from './PitLaneFact';
 export { PitWorkFlags } from './PitWorkFlags';
 export { PlayerFlags } from './PlayerFlags';
+export { PlayerHCapFlags } from './PlayerHCapFlags';
 export { PlayerType } from './PlayerType';
 export { PMOAction } from './PMOAction';
 export { PMOFlags } from './PMOFlags';
