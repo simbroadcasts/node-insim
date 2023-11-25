@@ -1,6 +1,6 @@
 import { byte, unsigned } from '../decorators';
 import { SendablePacket } from './base';
-import type { CarFlags, LocalCarSwitches } from './enums';
+import type { CarFlags, LocalCarLights, LocalCarSwitches } from './enums';
 import { PacketType, SmallType } from './enums';
 
 /**
@@ -47,7 +47,8 @@ export type IS_SMALL_Data =
   | SMALL_STP_Data
   | SMALL_NLI_Data
   | SMALL_ALC_Data
-  | SMALL_LCS_Data;
+  | SMALL_LCS_Data
+  | SMALL_LCL_Data;
 
 type SMALL_SSP_Data = Data<{
   ReqI?: never;
@@ -112,11 +113,21 @@ type SMALL_ALC_Data = Data<{
 type SMALL_LCS_Data = Data<{
   ReqI?: never;
 
-  /** Instruction: set local car switches (lights, horn, siren) */
+  /** Instruction: set local car switches (flash, horn, siren) */
   SubT: SmallType.SMALL_LCS;
 
   /** Switches */
   UVal: LocalCarSwitches;
+}>;
+
+type SMALL_LCL_Data = Data<{
+  ReqI?: never;
+
+  /** Instruction: set local car lights */
+  SubT: SmallType.SMALL_LCL;
+
+  /** Switches */
+  UVal: LocalCarLights;
 }>;
 
 type Data<
@@ -135,6 +146,7 @@ export const SENDABLE_SMALL_TYPES = [
   SmallType.SMALL_NLI,
   SmallType.SMALL_ALC,
   SmallType.SMALL_LCS,
+  SmallType.SMALL_LCL,
 ] as const;
 
 export type SendableSmallType = (typeof SENDABLE_SMALL_TYPES)[number];

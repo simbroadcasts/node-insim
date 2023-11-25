@@ -22,6 +22,7 @@ export { JRRAction } from './JRRAction';
 export { Language } from './Language';
 export { LeaveReason } from './LeaveReason';
 export { License } from './License';
+export { LocalCarLights } from './LocalCarLights';
 export { LocalCarSwitches } from './LocalCarSwitches';
 export { MessageSound } from './MessageSound';
 export { NormalInterfaceSubmode } from './NormalInterfaceSubmode';
