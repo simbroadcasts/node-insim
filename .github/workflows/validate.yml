@@ -8,6 +8,7 @@ on:
 
 jobs:
   main:
+    name: "Build & Test"
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -88,6 +89,7 @@ jobs:
       contents: write # to create release tags (cycjimmy/semantic-release-action)
       issues: write # to post release that resolves an issue (cycjimmy/semantic-release-action)
 
+    name: "Release"
     needs: main
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'push' }}
