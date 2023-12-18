@@ -1,6 +1,6 @@
 import { byte, unsigned } from '../decorators';
 import { Packet } from './base';
-import type { Language } from './enums';
+import type { Language, License } from './enums';
 import { PacketType } from './enums';
 
 /**
@@ -19,7 +19,9 @@ export class IS_NCI extends Packet {
   /** Languages */
   @byte() Language: Language = 0;
 
-  @byte() private readonly Sp1 = 0;
+  /** 0:demo / 1:S1 ... */
+  @byte() License: License = 0;
+
   @byte() private readonly Sp2 = 0;
   @byte() private readonly Sp3 = 0;
 

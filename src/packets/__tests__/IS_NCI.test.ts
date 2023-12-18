@@ -1,6 +1,7 @@
 import type { PacketTestData } from '../../tests';
 import { testInfoPacket } from '../../tests';
 import { IS_NCI, Language, PacketType } from '..';
+import { License } from '../enums';
 
 const size = 16;
 
@@ -8,6 +9,7 @@ const data: PacketTestData<IS_NCI> = {
   ReqI: 1,
   UCID: 3,
   Language: Language.LFS_CZECH,
+  License: License.S3,
   UserID: 17115651,
   IPAddress: '12.34.56.78',
 };
@@ -18,7 +20,7 @@ const buffer = new Uint8Array([
   1, // ReqI
   3, // UCID
   12, // Language
-  0, // Sp1,
+  3, // License,
   0, // Sp2,
   0, // Sp3,
   3, // UserID (1)

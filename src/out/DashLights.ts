@@ -2,7 +2,7 @@ export enum DashLights {
   /** Shift light */
   DL_SHIFT = 1,
 
-  /** Full beam */
+  /** High beam */
   DL_FULLBEAM = 2,
 
   /** Handbrake */
@@ -32,7 +32,24 @@ export enum DashLights {
   /** ABS active or switched off */
   DL_ABS = 1024,
 
-  DL_SPARE = 2048,
+  /** Engine damage */
+  DL_ENGINE = 2048,
 
-  DL_NUM = 4096,
+  /** Rear fog light */
+  DL_FOG_REAR = 4096,
+
+  /** Front fog light */
+  DL_FOG_FRONT = 8192,
+
+  /** Low beam */
+  DL_LOWBEAM = 16384,
+
+  /** Low fuel warning light */
+  DL_FUELWARN = 32768,
+
+  /** Sidelights */
+  DL_SIDELIGHTS = 65536,
+
+  /** Neutral */
+  DL_NEUTRAL = 131072,
 }

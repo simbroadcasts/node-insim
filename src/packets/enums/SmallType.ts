@@ -26,6 +26,9 @@ export enum SmallType {
   /** Both ways: set or get allowed cars ({@link TINY_ALC}) */
   SMALL_ALC,
 
-  /** Instruction: set local car switches (lights, horn, siren) */
+  /** Instruction: set local car switches (flash, horn, siren) */
   SMALL_LCS,
+
+  /** Instruction: set local car lights */
+  SMALL_LCL,
 }

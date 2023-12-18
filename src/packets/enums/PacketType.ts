@@ -197,6 +197,9 @@ export enum PacketType {
   /** Both ways: set mods allowed */
   ISP_MAL,
 
+  /** Both ways: set player handicaps */
+  ISP_PLH,
+
   /** Instruction: request if we are host admin (after connecting to a host) */
   IRP_ARQ = 250,
 

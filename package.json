@@ -1,7 +1,7 @@
 {
   "name": "node-insim",
   "version": "0.0.0-semantically-released",
-  "description": "Ane InSim library for NodeJS with TypeScript support",
+  "description": "An InSim library for NodeJS with TypeScript support",
   "keywords": [
     "lfs",
     "live for speed",

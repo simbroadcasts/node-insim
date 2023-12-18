@@ -5,3 +5,4 @@ export { CompCar } from './CompCar';
 export { HInfo } from './HInfo';
 export { NodeLap } from './NodeLap';
 export { ObjectInfo } from './ObjectInfo';
+export { PlayerHCap } from './PlayerHCap';

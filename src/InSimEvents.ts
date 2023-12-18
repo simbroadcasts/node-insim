@@ -38,6 +38,7 @@ import type {
   IS_PFL,
   IS_PIT,
   IS_PLA,
+  IS_PLH,
   IS_PLL,
   IS_PLP,
   IS_PSF,
@@ -110,6 +111,7 @@ export type InSimPacketEvents = {
   [PacketType.ISP_CSC]: (packet: IS_CSC, inSim: InSim) => void;
   [PacketType.ISP_CIM]: (packet: IS_CIM, inSim: InSim) => void;
   [PacketType.ISP_MAL]: (packet: IS_MAL, inSim: InSim) => void;
+  [PacketType.ISP_PLH]: (packet: IS_PLH, inSim: InSim) => void;
   [PacketType.IRP_ARQ]: (packet: IR_ARQ, inSim: InSim) => void;
   [PacketType.IRP_ARP]: (packet: IR_ARP, inSim: InSim) => void;
   [PacketType.IRP_HOS]: (packet: IR_HOS, inSim: InSim) => void;
