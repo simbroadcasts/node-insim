@@ -15,8 +15,8 @@ and a port, you are able to send InSim packets to the host and receive incoming
 packets from the host.
 
 All packet structures in Node InSim are identical to the structs defined in the
-[InSim protocol](https://en.lfsmanual.net/wiki/InSim.txt). All packet classes with all
-their properties are documented according to the specification.
+[InSim protocol](https://en.lfsmanual.net/wiki/InSim.txt). All packet classes with all their properties are documented
+according to the specification.
 
 ### InSim compatibility
 
@@ -340,28 +340,25 @@ DEBUG=node-insim:tcp node insim.js # debug only TCP protocol messages
 
 You can find example applications using Node InSim in the [examples](./examples) folder.
 
-| Example                           |                                                        |                                                        |                                                                        |
-| --------------------------------- | ------------------------------------------------------ | ------------------------------------------------------ | ---------------------------------------------------------------------- |
-| InSim connection                  | [JavaScript + CJS](./examples/insim-connection-js)     | [TypeScript + ESM](./examples/insim-connection-ts)     | [TypeScipt + CJS + Node 16](./examples/insim-connection-ts-cjs-node16) |
-| InSim connection (multiple hosts) | [JavaScript + CJS](./examples/insim-multiple-hosts-js) | [TypeScript + ESM](./examples/insim-multiple-hosts-ts) |                                                                        |
-| InSim Relay                       | [JavaScript + CJS](./examples/insim-relay-js)          | [TypeScript + ESM](./examples/insim-relay-ts)          |                                                                        |
-| OutGauge                          | [JavaScript + CJS](./examples/outgauge-js)             | [TypeScript + ESM](./examples/outgauge-ts)             |                                                                        |
-| OutGauge with InSim buttons       | [JavaScript + CJS](./examples/outgauge-buttons-js)     | [TypeScript + ESM](./examples/outgauge-buttons-ts)     |                                                                        |
-| OutSim                            | [JavaScript + CJS](./examples/outsim-basic-js)         | [TypeScript + ESM](./examples/outsim-basic-ts)         |                                                                        |
-| OutSim with Options               | [JavaScript + CJS](./examples/outsim-advanced-js)      | [TypeScript + ESM](./examples/outsim-advanced-ts)      |                                                                        |
+| Example                           |                                                                |                                                                |
+| --------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
+| InSim connection                  | [JavaScript + CJS](./examples/javascript/insim-connection)     | [TypeScript + ESM](./examples/typescript/insim-connection)     |
+| InSim connection (multiple hosts) | [JavaScript + CJS](./examples/javascript/insim-multiple-hosts) | [TypeScript + ESM](./examples/typescript/insim-multiple-hosts) |
+| InSim Relay                       | [JavaScript + CJS](./examples/javascript/insim-relay)          | [TypeScript + ESM](./examples/typescript/insim-relay)          |
+| OutGauge                          | [JavaScript + CJS](./examples/javascript/outgauge)             | [TypeScript + ESM](./examples/typescript/outgauge)             |
+| OutGauge with InSim buttons       | [JavaScript + CJS](./examples/javascript/outgauge-buttons)     | [TypeScript + ESM](./examples/typescript/outgauge-buttons)     |
+| OutSim                            | [JavaScript + CJS](./examples/javascript/outsim-basic)         | [TypeScript + ESM](./examples/typescript/outsim-basic)         |
+| OutSim with Options               | [JavaScript + CJS](./examples/javascript/outsim-advanced)      | [TypeScript + ESM](./examples/typescript/outsim-advanced)      |
 
-Before you run an example, first make sure the local Node InSim package is built by
-running `yarn build-local` in the root folder. Then follow the instructions in each
-example's `README.md` file.
+Before you run an example, follow the instructions in each example's `README.md` file.
 
 For instance, to run the "InSim connection - TypeScript" example, run the following
 commands:
 
 ```shell
-yarn build-local
-cd examples/insim-connection-ts
-yarn --force
-yarn dev
+cd examples/typescript/insim-connection
+npm install
+npm start
 ```
 
 ## Development
@@ -401,8 +398,8 @@ yarn test:lfs
 
 ### Build all example applications
 
-This command will build `node-insim` locally, then go through each application in the
-`examples/` folder, install its dependencies and build the application.
+This command will go through each application in the `examples/` folder,
+install its dependencies, then build the application (typescript only).
 
 ```shell
 yarn test:examples

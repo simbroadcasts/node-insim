@@ -1,0 +1,13 @@
+{
+  "name": "node-insim-example-outgauge-js",
+  "version": "0.0.0",
+  "main": "main.js",
+  "private": true,
+  "scripts": {
+    "start": "node main.js"
+  },
+  "dependencies": {
+    "node-insim": "latest"
+  }
+}
+

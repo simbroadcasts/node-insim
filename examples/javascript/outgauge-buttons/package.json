@@ -1,0 +1,14 @@
+{
+  "name": "node-insim-example-outgauge-buttons-js",
+  "version": "0.0.0",
+  "main": "main.js",
+  "type": "commonjs",
+  "private": true,
+  "scripts": {
+    "start": "node main.js"
+  },
+  "dependencies": {
+    "node-insim": "latest"
+  }
+}
+

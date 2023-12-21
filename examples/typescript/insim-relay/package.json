@@ -1,0 +1,19 @@
+{
+  "name": "node-insim-example-insim-relay-ts",
+  "version": "0.0.0",
+  "main": "dist/main.js",
+  "private": true,
+  "scripts": {
+    "start": "tsx watch main.ts",
+    "build": "tsc",
+    "serve:production": "node dist/main.js"
+  },
+  "dependencies": {
+    "node-insim": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
+  }
+}
