@@ -35,7 +35,7 @@ export class UDP extends TypedEmitter<UDPEvents> {
       this.timeoutTimer = setTimeout(this.handleTimeout, this.timeout);
     }
 
-    this.socket.on('connect', () => {
+    this.socket.on('listening', () => {
       log('Connected');
       this.emit('connect');
     });
