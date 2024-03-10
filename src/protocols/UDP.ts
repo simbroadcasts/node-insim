@@ -26,6 +26,8 @@ export class UDP extends TypedEmitter<UDPEvents> {
 
   connect = (host: string, port: number) => {
     this.socket = dgram.createSocket('udp4');
+    log(`Connecting to ${host}:${port}...`);
+
     this.socket.bind({
       address: host,
       port,
@@ -36,15 +38,17 @@ export class UDP extends TypedEmitter<UDPEvents> {
     }
 
     this.socket.on('listening', () => {
-      log('Connected');
+      log('Listening');
       this.emit('connect');
     });
 
     this.socket.on('close', () => {
+      log('Connection closed');
       this.emit('disconnect');
     });
 
     this.socket.on('error', (error) => {
+      log('Error', error);
       this.emit('error', error);
     });
 
