@@ -1,4 +1,4 @@
-import { byte, string, stringNull, word } from '../decorators';
+import { byte, carName, string, stringNull, word } from '../decorators';
 import { Packet } from './base';
 import type {
   PassengerFlags,
@@ -37,8 +37,14 @@ export class IS_NPL extends Packet {
   /** Number plate - NO ZERO AT END! */
   @string(8) Plate = '';
 
-  /** Car name */
-  @stringNull(4) CName = '';
+  /**
+   * Car name
+   *
+   * The value can be one of these:
+   * - a 3-character abbreviation of an official LFS car (e.g. XRT)
+   * - a hexadecimal string representation of a car mod's SkinID (e.g. 5882E6)
+   **/
+  @carName() CName = '';
 
   /** Skin name - MAX_CAR_TEX_NAME */
   @stringNull(16) SName = '';
