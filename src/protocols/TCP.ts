@@ -1,38 +1,30 @@
-import EventEmitter from 'events';
 import net from 'net';
 
 import { copyBuffer } from '../lfspack';
 import { log as baseLog } from '../log';
+import { Protocol } from './Protocol';
 
 const log = baseLog.extend('tcp');
 
 /** @internal */
-export class TCP extends EventEmitter {
+export class TCP extends Protocol {
   private stream: net.Socket | null = null;
+  private tempBuf: Buffer | null = null;
 
-  private readonly host: string;
-  private readonly port: number;
-  private readonly sizeMultiplier: number;
-
-  tempBuf: Buffer | null = null;
-
-  constructor(host: string, port: number, sizeMultiplier = 1) {
-    super();
-    this.host = host;
-    this.port = port;
-    this.sizeMultiplier = sizeMultiplier;
+  constructor(host: string, port: number, packetSizeMultiplier = 1) {
+    super({ host, port, packetSizeMultiplier });
   }
 
   connect = () => {
     this.stream = net.connect(this.port, this.host);
 
     this.stream.on('connect', () => {
-      this.emit('connect', this);
+      this.emit('connect');
     });
 
     this.stream.on('close', () => {
       log('Disconnected');
-      this.emit('disconnect', this);
+      this.emit('disconnect');
     });
 
     this.stream.on('error', (error) => {
@@ -84,16 +76,16 @@ export class TCP extends EventEmitter {
       return;
     }
 
-    const size = this.tempBuf[0] * this.sizeMultiplier;
+    const size = this.tempBuf[0] * this.packetSizeMultiplier;
 
     if (this.tempBuf.length === size) {
       // We have at least one full packet
-      this.emit('packet', copyBuffer(this.tempBuf));
+      this.emit('data', copyBuffer(this.tempBuf));
 
       this.tempBuf = null;
     } else if (this.tempBuf.length > size) {
       // Process first packet...
-      this.emit('packet', copyBuffer(this.tempBuf.slice(0, size)));
+      this.emit('data', copyBuffer(this.tempBuf.slice(0, size)));
       this.tempBuf = this.tempBuf.slice(size, this.tempBuf.length);
       // Recurse on remaining buffer
       this.processBuf();
