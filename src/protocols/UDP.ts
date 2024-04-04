@@ -1,46 +1,63 @@
 import * as dgram from 'dgram';
-import { TypedEmitter } from 'tiny-typed-emitter';
 
 import { log as baseLog } from '../log';
+import { Protocol } from './Protocol';
 
 const log = baseLog.extend('udp');
 
-type UDPEvents = {
-  connect: () => void;
-  disconnect: () => void;
-  message: (message: Buffer) => void;
-  error: (error: Error) => void;
-  timeout: () => void;
-};
+type SocketInitialisationMode = 'bind' | 'connect';
+
+interface UDPOptions {
+  host: string;
+  port: number;
+  socketInitialisationMode: SocketInitialisationMode;
+  packetSizeMultiplier?: number;
+  timeout?: number;
+}
 
 /** @internal */
-export class UDP extends TypedEmitter<UDPEvents> {
+export class UDP extends Protocol {
   private socket: dgram.Socket | null = null;
-  private timeout = 0;
+  private readonly timeout: number = 0;
   private timeoutTimer: NodeJS.Timeout | null = null;
+  private readonly socketInitialisationMode: SocketInitialisationMode;
 
-  constructor(timeout = 0) {
-    super();
+  constructor({
+    host,
+    port,
+    socketInitialisationMode,
+    packetSizeMultiplier = 1,
+    timeout = 0,
+  }: UDPOptions) {
+    super({ host, port, packetSizeMultiplier });
     this.timeout = timeout;
+    this.socketInitialisationMode = socketInitialisationMode;
   }
 
-  connect = (host: string, port: number) => {
+  connect = () => {
     this.socket = dgram.createSocket('udp4');
-    log(`Connecting to ${host}:${port}...`);
+    log(`Connecting to ${this.host}:${this.port}...`);
 
-    this.socket.bind({
-      address: host,
-      port,
-    });
+    if (this.socketInitialisationMode === 'bind') {
+      this.socket.bind({
+        address: this.host,
+        port: this.port,
+      });
+      this.socket.on('listening', () => {
+        log('Listening');
+        this.emit('connect');
+      });
+    } else if (this.socketInitialisationMode === 'connect') {
+      this.socket.connect(this.port, this.host);
+      this.socket.on('connect', () => {
+        log('Connected');
+        this.emit('connect');
+      });
+    }
 
     if (this.timeout > 0) {
       this.timeoutTimer = setTimeout(this.handleTimeout, this.timeout);
     }
-
-    this.socket.on('listening', () => {
-      log('Listening');
-      this.emit('connect');
-    });
 
     this.socket.on('close', () => {
       log('Connection closed');
@@ -54,7 +71,7 @@ export class UDP extends TypedEmitter<UDPEvents> {
 
     this.socket.on('message', (data) => {
       log('Data received:', data.join());
-      this.emit('message', data);
+      this.emit('data', data);
 
       if (this.timeoutTimer) {
         clearTimeout(this.timeoutTimer);
@@ -78,6 +95,16 @@ export class UDP extends TypedEmitter<UDPEvents> {
       clearTimeout(this.timeoutTimer);
       this.timeoutTimer = null;
     }
+  };
+
+  send = (data: Uint8Array) => {
+    if (this.socket === null) {
+      log('Cannot send - not connected');
+      return;
+    }
+
+    log('Send data:', data.join());
+    this.socket.send(data);
   };
 
   handleTimeout = () => {

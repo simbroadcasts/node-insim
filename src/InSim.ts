@@ -15,13 +15,15 @@ import {
   packetTypeToClass,
   TinyType,
 } from './packets';
-import { TCP } from './protocols';
+import type { Protocol } from './protocols';
+import { TCP, UDP } from './protocols';
 
 const log = baseLog.extend('insim');
 
 type InSimConnectionOptions = {
   Host: string;
   Port: number;
+  Protocol?: 'TCP' | 'UDP';
 };
 
 export type InSimOptions = Omit<IS_ISI_Data, 'InSimVer'> &
@@ -34,8 +36,11 @@ export class InSim extends TypedEmitter<InSimEvents> {
   /** A unique identifier of the InSim connection to a specific host */
   id: string;
 
-  private _options: InSimOptions = defaultInSimOptions;
-  private connection: TCP | null = null;
+  private _options: Required<InSimOptions> = defaultInSimOptions;
+
+  /** The main connection to InSim (TCP or UDP) */
+  private connection: Protocol | null = null;
+
   private sizeMultiplier = 4;
 
   constructor(id?: string) {
@@ -118,6 +123,7 @@ export class InSim extends TypedEmitter<InSimEvents> {
       {
         Host: 'isrelay.lfs.net',
         Port: 47474,
+        Protocol: 'TCP',
       },
       true,
     );
@@ -129,18 +135,22 @@ export class InSim extends TypedEmitter<InSimEvents> {
   ) {
     this._options = defaults(options, defaultInSimOptions);
 
-    log(`Connecting to ${this._options.Host}:${this._options.Port}...`);
-
-    const sizeMultiplier = isRelay ? 1 : 4;
-
-    this.connection = new TCP(
-      this._options.Host,
-      this._options.Port,
-      sizeMultiplier,
+    log(
+      `Connecting to ${this._options.Host}:${this._options.Port} using ${this._options.Protocol}...`,
     );
-    this.connection.connect();
-    this.sizeMultiplier = sizeMultiplier;
 
+    this.sizeMultiplier = isRelay ? 1 : 4;
+
+    this.connection =
+      this._options.Protocol === 'TCP'
+        ? new TCP(this._options.Host, this._options.Port, this.sizeMultiplier)
+        : new UDP({
+            host: this._options.Host,
+            port: this._options.Port,
+            packetSizeMultiplier: this.sizeMultiplier,
+            socketInitialisationMode: 'connect',
+          });
+    this.connection.connect();
     this.connection.on('connect', () => {
       if (!isRelay) {
         this.send(
@@ -164,20 +174,19 @@ export class InSim extends TypedEmitter<InSimEvents> {
     });
 
     this.connection.on('error', (error: Error) => {
-      throw new InSimError(`TCP connection error: ${error.message}`);
+      throw new InSimError(
+        `${this._options.Protocol} connection error: ${error.message}`,
+      );
     });
 
-    this.connection.on('packet', (data) => this.handlePacket(data));
+    this.connection.on('data', (data) => this.handlePacket(data));
   }
 
   disconnect() {
-    if (this.connection === null) {
-      log('Cannot disconnect - not connected');
-      return;
+    if (this.connection !== null) {
+      log('Disconnecting...');
+      this.connection.disconnect();
     }
-
-    log('Disconnecting...');
-    this.connection.disconnect();
   }
 
   send(packet: SendablePacket) {
@@ -246,9 +255,10 @@ export class InSim extends TypedEmitter<InSimEvents> {
 
 InSim.defaultMaxListeners = 255;
 
-const defaultInSimOptions: InSimOptions = {
+const defaultInSimOptions: Required<InSimOptions> = {
   Host: '127.0.0.1',
   Port: 29999,
+  Protocol: 'TCP',
   ReqI: 0,
   UDPPort: 0,
   Flags: InSimFlags.ISF_RES_0,

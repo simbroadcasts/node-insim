@@ -85,6 +85,24 @@ inSim2.connect({
 });
 ```
 
+#### TCP / UDP
+
+By default, Node InSim opens a TCP connection. If you want to use UDP,
+set the `Protocol` option to `UDP` in the `connect` function.
+
+```ts
+import { InSim } from 'node-insim';
+
+const inSim = new InSim();
+
+inSim.connect({
+  Host: '127.0.0.1',
+  Port: 29999,
+  IName: 'Node InSim App',
+  Protocol: 'UDP',
+});
+```
+
 ### Sending packets
 
 InSim packets can be sent using the `send()` method on the `InSim` class instance,

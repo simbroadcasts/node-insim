@@ -45,8 +45,13 @@ export class OutSim extends TypedEmitter<OutSimEvents> {
 
     log(`Connecting to ${this._options.Host}:${this._options.Port}...`);
 
-    this.connection = new UDP(this.timeout);
-    this.connection.connect(this._options.Host, this._options.Port);
+    this.connection = new UDP({
+      host: this._options.Host,
+      port: this._options.Port,
+      timeout: this.timeout,
+      socketInitialisationMode: 'bind',
+    });
+    this.connection.connect();
 
     this.connection.on('connect', () => {
       this.emit('connect');
@@ -60,7 +65,7 @@ export class OutSim extends TypedEmitter<OutSimEvents> {
       throw new InSimError(`UDP connection error: ${error.message}`);
     });
 
-    this.connection.on('message', (data) => this.handleMessage(data));
+    this.connection.on('data', (data) => this.handleMessage(data));
 
     this.connection.on('timeout', () => {
       this.emit('timeout');

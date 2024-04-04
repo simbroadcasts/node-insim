@@ -1,6 +1,6 @@
 import Mitm from 'mitm';
 
-import { TCP } from '../protocols/TCP';
+import { TCP } from '../protocols';
 
 describe('TCP', () => {
   let mitm: ReturnType<typeof Mitm>;
@@ -27,7 +27,7 @@ describe('TCP', () => {
     });
 
     tcp.connect();
-    tcp.on('packet', (buffer: Uint8Array) => {
+    tcp.on('data', (buffer: Uint8Array) => {
       expect(buffer).toEqual(new Uint8Array([1, 3, 0, 0]));
       tcp.disconnect();
       done();
@@ -50,7 +50,7 @@ describe('TCP', () => {
     });
 
     tcp.connect();
-    tcp.on('packet', (buffer: Uint8Array) => {
+    tcp.on('data', (buffer: Uint8Array) => {
       expect(buffer).toEqual(new Uint8Array(packets[packetsReceived]));
 
       packetsReceived++;
