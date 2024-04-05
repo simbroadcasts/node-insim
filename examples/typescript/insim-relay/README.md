@@ -17,13 +17,11 @@ information](https://www.lfs.net/forum/thread/30740) thread on LFS forum.
 npm install
 ```
 
-## Connecting to LFS
+## Connecting to LFS relay
 
 ```shell
 npm start
 ```
-
-The app connects to `127.0.0.1:29999` by default.
 
 ## Production build
 
