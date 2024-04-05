@@ -362,6 +362,7 @@ You can find example applications using Node InSim in the [examples](./examples)
 | --------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
 | InSim connection                  | [JavaScript + CJS](./examples/javascript/insim-connection)     | [TypeScript + ESM](./examples/typescript/insim-connection)     |
 | InSim connection (multiple hosts) | [JavaScript + CJS](./examples/javascript/insim-multiple-hosts) | [TypeScript + ESM](./examples/typescript/insim-multiple-hosts) |
+| InSim connection (UDP)            | [JavaScript + CJS](./examples/javascript/insim-connection-udp) | [TypeScript + ESM](./examples/typescript/insim-connection-udp) |
 | InSim Relay                       | [JavaScript + CJS](./examples/javascript/insim-relay)          | [TypeScript + ESM](./examples/typescript/insim-relay)          |
 | OutGauge                          | [JavaScript + CJS](./examples/javascript/outgauge)             | [TypeScript + ESM](./examples/typescript/outgauge)             |
 | OutGauge with InSim buttons       | [JavaScript + CJS](./examples/javascript/outgauge-buttons)     | [TypeScript + ESM](./examples/typescript/outgauge-buttons)     |
