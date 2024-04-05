@@ -13,6 +13,10 @@ npm install
 
 ## Connecting to LFS
 
+Start LFS and type `/insim 29999` to open the InSim port.
+
+Run the example app:
+
 ```shell
 npm start
 ```
