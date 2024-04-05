@@ -1,4 +1,4 @@
-const { OutSim } = require('node-insim');
+const { OutSim, OutSimPack } = require('node-insim');
 
 const outSim = new OutSim(5000);
 
@@ -6,12 +6,16 @@ console.log('Connecting...');
 
 outSim.connect({
   Host: '127.0.0.1',
-  Port: 29998,
+  Port: 30000,
 });
 
-outSim.on('connect', () => console.log('Connected'));
+outSim.on('connect', () => {
+  console.log('Connected');
+});
 
-outSim.on('disconnect', () => console.log('Disconnected'));
+outSim.on('disconnect', () => {
+  console.log('Disconnected');
+});
 
 outSim.on('timeout', () => {
   console.log('Timed out');
@@ -19,6 +23,10 @@ outSim.on('timeout', () => {
 });
 
 outSim.on('packet', (data) => {
+  if (!(data instanceof OutSimPack)) {
+    return;
+  }
+
   console.clear();
   console.log(`Acceleration: ${data.AccelX} ${data.AccelY} ${data.AccelZ}`);
   console.log(`Velocity: ${data.VelX} ${data.VelY} ${data.VelZ}`);
