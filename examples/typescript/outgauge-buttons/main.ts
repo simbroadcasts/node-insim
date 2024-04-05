@@ -31,8 +31,8 @@ const outGauge = new OutGauge(5000);
 console.log('Connecting...');
 
 outGauge.connect({
-  Host: '0.0.0.0',
-  Port: 29999,
+  Host: '127.0.0.1',
+  Port: 29998,
 });
 
 outGauge.on('connect', () => console.log('OutGauge connected'));

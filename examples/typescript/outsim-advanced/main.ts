@@ -6,14 +6,17 @@ console.log('Connecting...');
 
 outSim.connect({
   Host: '127.0.0.1',
-  Port: 29997,
-  // Don't forget to set "OutSim Opts your_value" in cfg.txt!!! (or change this to match OUTSIMOPTS value from cfg.txt)
-  OutSimOpts: 0x1ff,
+  Port: 30000,
+  OutSimOpts: 0x1ff, // This value needs to match the "OutSim Opts" value in cfg.txt
 });
 
-outSim.on('connect', () => console.log('Connected'));
+outSim.on('connect', () => {
+  console.log('Connected');
+});
 
-outSim.on('disconnect', () => console.log('Disconnected'));
+outSim.on('disconnect', () => {
+  console.log('Disconnected');
+});
 
 outSim.on('timeout', () => {
   console.log('Timed out');
