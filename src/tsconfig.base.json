@@ -9,5 +9,5 @@
     }
   },
   "include": ["./**/*.ts"],
-  "exclude": ["./**/__tests__", "./tests.ts"]
+  "exclude": ["./**/*.test.ts", "./tests.ts"]
 }
