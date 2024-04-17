@@ -29,7 +29,7 @@ export class IS_NCN extends Packet {
   @byte() Total = 0;
 
   /** Bit 2: remote */
-  @byte() Flags: ConnectionFlags = 0;
+  @byte() Flags: ConnectionFlags | 0 = 0;
 
   @byte() private readonly Sp3 = 0;
 }

@@ -38,7 +38,7 @@ export class OutGaugePack extends Struct {
   /** Car name */
   @carName() Car = '';
 
-  @word() Flags: OutGaugeFlags = 0;
+  @word() Flags: OutGaugeFlags | 0 = 0;
 
   /** Reverse: 0, Neutral: 1, First: 2,... */
   @byte() Gear = 0;
@@ -68,10 +68,10 @@ export class OutGaugePack extends Struct {
   @float() OilTemp = 0;
 
   /** Dash lights available */
-  @unsigned() DashLights: DashLights = 0;
+  @unsigned() DashLights: DashLights | 0 = 0;
 
   /** Dash lights currently switched on */
-  @unsigned() ShowLights: DashLights = 0;
+  @unsigned() ShowLights: DashLights | 0 = 0;
 
   /** 0 to 1 */
   @float() Throttle = 0;

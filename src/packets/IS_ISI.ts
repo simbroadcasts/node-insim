@@ -23,7 +23,7 @@ export class IS_ISI extends SendablePacket {
   @word() UDPPort = 0;
 
   /** Bit flags for options */
-  @word() Flags: InSimFlags = 0;
+  @word() Flags: InSimFlags | 0 = 0;
 
   /** The INSIM_VERSION used by your program */
   @byte() InSimVer = 0;

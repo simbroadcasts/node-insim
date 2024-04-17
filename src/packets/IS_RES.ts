@@ -40,7 +40,7 @@ export class IS_RES extends Packet {
   @byte() NumStops = 0;
 
   /** confirmation flags: disqualified etc. */
-  @byte() Confirm: ConfirmationFlags = 0;
+  @byte() Confirm: ConfirmationFlags | 0 = 0;
 
   @byte() readonly SpB = 0;
 

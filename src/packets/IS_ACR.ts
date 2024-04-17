@@ -24,7 +24,7 @@ export class IS_ACR extends Packet {
   @byte() Admin: 0 | 1 = 0;
 
   /** 1 - processed / 2 - rejected / 3 - unknown command */
-  @byte() Result: AdminCommandResult = 0;
+  @byte() Result: AdminCommandResult | 0 = 0;
 
   @byte() Sp3 = 0;
 

@@ -17,5 +17,5 @@ export class IR_ERR extends Packet {
   @byte() ReqI = 0;
 
   /** Error number */
-  @byte() ErrNo: InSimRelayError = 0;
+  @byte() ErrNo: InSimRelayError | 0 = 0;
 }
