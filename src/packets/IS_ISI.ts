@@ -4,9 +4,6 @@ import type { InSimFlags } from './enums';
 import { PacketType } from './enums';
 import type { PacketDataWithOptionalReqI } from './types';
 
-const ADMIN_MAX_LENGTH = 16;
-const INAME_MAX_LENGTH = 16;
-
 /**
  * InSim Init - packet to initialise the InSim system
  */
@@ -35,10 +32,10 @@ export class IS_ISI extends SendablePacket {
   @word() Interval = 0;
 
   /** Admin password (if set in LFS) */
-  @stringNull(ADMIN_MAX_LENGTH) Admin = '';
+  @stringNull(16) Admin = '';
 
   /** A short name for your program */
-  @stringNull(INAME_MAX_LENGTH) IName = '';
+  @stringNull(16) IName = '';
 
   constructor(data?: IS_ISI_Data) {
     super();
