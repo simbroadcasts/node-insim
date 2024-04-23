@@ -1,5 +1,4 @@
 import { byte, struct, unsigned } from '../decorators';
-import { copyBuffer } from '../lfspack';
 import { Packet } from './base';
 import type { UCOAction } from './enums';
 import { PacketType } from './enums';
@@ -18,13 +17,13 @@ export class IS_UCO extends Packet {
   /** Player's unique id */
   @byte() PLID = 0;
 
-  @byte() private Sp0 = 0;
+  @byte() private readonly Sp0 = 0;
 
   /** Entering/leaving a circle or crossing a checkpoint */
   @byte() UCOAction: UCOAction = 0;
 
-  @byte() private Sp2 = 0;
-  @byte() private Sp3 = 0;
+  @byte() private readonly Sp2 = 0;
+  @byte() private readonly Sp3 = 0;
 
   /** Hundredths of a second since start (as in {@link SMALL_RTP}) */
   @unsigned() Time = 0;
