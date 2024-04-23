@@ -52,29 +52,5 @@ export class IS_UCO extends Packet {
    *
    * Index is 253. The circle index (seen in the layout editor) is stored in the Heading byte.
    **/
-  @struct(ObjectInfo) Info: ObjectInfo = new ObjectInfo();
-
-  unpack(buffer: Uint8Array): this {
-    super.unpack(buffer);
-
-    const carContactOffset = 12;
-    const carContactLength = new CarContOBJ().getFormatSize();
-
-    const carContactBuffer = copyBuffer(
-      buffer.slice(carContactOffset, carContactOffset + carContactLength),
-    );
-
-    this.C = new CarContOBJ().unpack(carContactBuffer);
-
-    const objectInfoOffset = carContactOffset + carContactLength;
-    const objectInfoLength = new ObjectInfo().getFormatSize();
-
-    const infoBuffer = copyBuffer(
-      buffer.slice(objectInfoOffset, objectInfoOffset + objectInfoLength),
-    );
-
-    this.Info = new ObjectInfo().unpack(infoBuffer);
-
-    return this;
-  }
+  @struct(ObjectInfo) Info = new ObjectInfo();
 }
