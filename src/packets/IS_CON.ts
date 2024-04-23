@@ -1,5 +1,4 @@
-import { byte, word } from '../decorators';
-import { copyBuffer } from '../lfspack';
+import { byte, struct, word } from '../decorators';
 import { Packet } from './base';
 import { PacketType } from './enums';
 import { CarContact } from './structs';
@@ -24,30 +23,8 @@ export class IS_CON extends Packet {
   @word() Time = 0;
 
   /** Contact object - car A */
-  A: CarContact = new CarContact();
+  @struct(CarContact) A = new CarContact();
 
   /** Contact object - car B */
-  B: CarContact = new CarContact();
-
-  unpack(buffer: Uint8Array): this {
-    super.unpack(buffer);
-
-    const carContactOffset = this.getFormatSize();
-    const carContactLength = new CarContact().getFormatSize();
-
-    const carContactBufferA = copyBuffer(
-      buffer.slice(carContactOffset, carContactOffset + carContactLength),
-    );
-    const carContactBufferB = copyBuffer(
-      buffer.slice(
-        carContactOffset + carContactLength,
-        carContactOffset + carContactLength * 2,
-      ),
-    );
-
-    this.A = new CarContact().unpack(carContactBufferA);
-    this.B = new CarContact().unpack(carContactBufferB);
-
-    return this;
-  }
+  @struct(CarContact) B = new CarContact();
 }
