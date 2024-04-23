@@ -1,4 +1,4 @@
-import { byte, string } from '../../decorators';
+import { byte, string, struct } from '../../decorators';
 import { stringToBytes } from '../../tests';
 import { PacketType } from '../enums';
 import { Struct } from './Struct';
@@ -91,9 +91,15 @@ describe('Struct', () => {
   });
 
   it('should unpack binary data', () => {
+    class SubStruct extends Struct {
+      @byte() Byte1 = 0;
+      @byte() Byte2 = 0;
+    }
+
     class CustomStruct extends Struct {
       @string(6) StringProperty = 'string';
       @byte() NumberProperty = 0;
+      @struct(SubStruct) SubStructProperty = new SubStruct();
     }
 
     const buffer = new Uint8Array([
@@ -101,10 +107,14 @@ describe('Struct', () => {
       0,
       0,
       25, // NumberProperty
+      2, // Byte1
+      4, // Byte2
     ]);
     const packet = new CustomStruct().unpack(buffer);
 
     expect(packet.StringProperty).toEqual('test');
     expect(packet.NumberProperty).toEqual(25);
+    expect(packet.SubStructProperty.Byte1).toEqual(2);
+    expect(packet.SubStructProperty.Byte2).toEqual(4);
   });
 });
