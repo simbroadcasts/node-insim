@@ -29,7 +29,7 @@ export class IS_UCO extends Packet {
   @unsigned() Time = 0;
 
   /** Car contact object */
-  @struct(CarContOBJ) C: CarContOBJ = new CarContOBJ();
+  @struct(CarContOBJ) C = new CarContOBJ();
 
   /**
    * Info about the checkpoint or circle
