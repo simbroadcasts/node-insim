@@ -1,4 +1,4 @@
-export type { InSimError } from './errors';
+export { InSimError } from './errors';
 export type { InSimOptions } from './InSim';
 export { InSim } from './InSim';
 export type { InSimEvents, InSimPacketEvents } from './InSimEvents';
