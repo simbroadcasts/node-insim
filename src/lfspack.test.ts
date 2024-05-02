@@ -108,4 +108,10 @@ describe('lfspack', () => {
       expect(unpack(format, new Uint8Array(buffer).buffer)).toEqual([values]);
     });
   });
+
+  describe('offset', () => {
+    it('should return NULL if offset is out of bounds', () => {
+      expect(pack('b', [1], 1)).toBeNull();
+    });
+  });
 });
