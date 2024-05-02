@@ -8,7 +8,6 @@ import { unpack } from './lfspack';
 import { log as baseLog } from './log';
 import type { IS_ISI_Data, SendablePacket } from './packets';
 import {
-  InSimFlags,
   IS_ISI,
   IS_TINY,
   PacketType,
@@ -261,7 +260,7 @@ const defaultInSimOptions: Required<InSimOptions> = {
   Protocol: 'TCP',
   ReqI: 0,
   UDPPort: 0,
-  Flags: InSimFlags.ISF_RES_0,
+  Flags: 0,
   Prefix: '',
   Interval: 0,
   Admin: '',
