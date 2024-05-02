@@ -1,4 +1,10 @@
 {
   "testEnvironment": "node",
-  "roots": ["<rootDir>/src"]
+  "roots": ["<rootDir>/src"],
+  "collectCoverageFrom": ["src/**/*.ts"],
+  "coveragePathIgnorePatterns": ["node_modules", "src/tests.ts", "dist"],
+  "moduleNameMapper": {
+    "^node-insim$": "<rootDir>/src/index",
+    "^node-insim/packets$": "<rootDir>/src/packets/index"
+  }
 }
