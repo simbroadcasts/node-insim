@@ -2,6 +2,7 @@ import {
   array,
   byte,
   byteArray,
+  double,
   float,
   getFormat,
   int,
@@ -34,6 +35,7 @@ describe('Class property decorators', () => {
       @unsigned() Unsigned = 4294967295;
       @int() Int = -2147483648;
       @float() Float = 1.2e-38;
+      @double() Double = 1.2e-308;
       @Vector() Vector = [12.34, -56.78, 90.12];
       @Vec() Vec = [1234, -5678, 901213];
       @array(DummyStruct, 3) Array = [
@@ -56,6 +58,7 @@ describe('Class property decorators', () => {
     expect(getFormat(packet, 'Unsigned')).toEqual('L');
     expect(getFormat(packet, 'Int')).toEqual('l');
     expect(getFormat(packet, 'Float')).toEqual('f');
+    expect(getFormat(packet, 'Double')).toEqual('d');
     expect(getFormat(packet, 'Vector')).toEqual('fff');
     expect(getFormat(packet, 'Vec')).toEqual('lll');
     expect(getFormat(packet, 'Array')).toEqual('2sB2sB2sB');
