@@ -64,6 +64,10 @@ jobs:
           name: Test Results (Node.js ${{ matrix.node-version }})
           path: junit.xml
 
+      - name: Update Coverage Badge
+        if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+        uses: we-cli/coverage-badge-action@main
+
   publish-test-results:
     name: 'Publish Test Results'
     needs: build-and-test
