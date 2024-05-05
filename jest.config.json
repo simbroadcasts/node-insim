@@ -2,6 +2,7 @@
   "testEnvironment": "node",
   "roots": ["<rootDir>/src"],
   "collectCoverageFrom": ["src/**/*.ts"],
+  "coverageReporters": ["json-summary"],
   "coveragePathIgnorePatterns": ["node_modules", "src/tests.ts", "dist"],
   "moduleNameMapper": {
     "^node-insim$": "<rootDir>/src/index",
