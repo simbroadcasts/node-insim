@@ -1,19 +1,34 @@
-import { byte } from '../decorators';
+import type { Parsed } from 'typed-binary';
+import { byte, object } from 'typed-binary';
+
 import { SendablePacket } from './base';
+import { size } from './base/SizeSchema';
 import { PacketType, TinyType } from './enums';
+
+const IS_TINY_Schema = object({
+  Size: size(4),
+  Type: byte,
+  ReqI: byte,
+  SubT: byte,
+});
 
 /**
  * General purpose 4 byte packet
  */
-export class IS_TINY extends SendablePacket {
-  @byte() readonly Size = 4;
-  @byte() readonly Type = PacketType.ISP_TINY;
+export class IS_TINY
+  extends SendablePacket
+  implements Parsed<typeof IS_TINY_Schema>
+{
+  protected schema = IS_TINY_Schema;
+
+  readonly Size = 4;
+  readonly Type = PacketType.ISP_TINY;
 
   /** 0 unless it is an info request or a reply to an info request */
-  @byte() ReqI = 0;
+  ReqI = 0;
 
   /** Subtype */
-  @byte() SubT: TinyType = TinyType.TINY_NONE;
+  SubT: TinyType = TinyType.TINY_NONE;
 
   constructor(data?: IS_TINY_Data) {
     super();

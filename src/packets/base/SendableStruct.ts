@@ -1,5 +1,6 @@
+import { BufferWriter } from 'typed-binary';
+
 import { InSimError } from '../../errors';
-import { pack } from '../../lfspack';
 import type { Receivable, Sendable } from '../types';
 import { Struct } from './Struct';
 
@@ -8,21 +9,12 @@ export abstract class SendableStruct
   implements Receivable, Sendable
 {
   pack(propertyFormatOverrides?: Record<string, string>) {
-    const propertyNames = this.getValidPropertyNames();
+    const buffer = new Uint8Array();
+    const writer = new BufferWriter(buffer);
 
-    const values = propertyNames.map(
-      (propertyName) =>
-        this[propertyName as unknown as Extract<keyof this, string>],
-    );
+    const values = this.schema.properties;
+    this.schema.write(writer, values);
 
-    const format = `<${this.getFormat(propertyFormatOverrides)}`;
-
-    const packedData = pack(format, values);
-
-    if (!packedData) {
-      throw new InSimError('Could not pack values into a packet');
-    }
-
-    return packedData;
+    return buffer;
   }
 }

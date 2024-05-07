@@ -5539,6 +5539,11 @@ typed-array-length@^1.0.4:
     for-each "^0.3.3"
     is-typed-array "^1.1.9"
 
+typed-binary@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.npmjs.org/typed-binary/-/typed-binary-4.0.0.tgz#82aab651da5efcce606cf010e3c14659756a9cf5"
+  integrity sha512-6ZXhbBePH4XZY57o23PV6O/HAYWcsAkCSwTKI6DrN5xMBwOV+I1G+MtytSY2v+QU3VPzB5Kz6268Q3qYD0XIYA==
+
 "typescript@^4.6.4 || ^5.0.0":
   version "5.0.4"
   resolved "https://registry.npmjs.org/typescript/-/typescript-5.0.4.tgz#b217fd20119bd61a94d4011274e0ab369058da3b"

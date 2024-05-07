@@ -1,9 +1,8 @@
-import { InSimError } from '../../errors';
-import { pack } from '../../lfspack';
+import { BufferWriter } from 'typed-binary';
+
 import type { PacketType } from '../enums';
 import type { Receivable, Sendable } from '../types';
 import { Packet } from './Packet';
-import { SendableStruct } from './SendableStruct';
 
 export abstract class SendablePacket
   extends Packet
@@ -14,43 +13,20 @@ export abstract class SendablePacket
   abstract ReqI: number;
 
   pack(propertyFormatOverrides?: Record<string, string>) {
+    const buffer = new ArrayBuffer(this.getFormatSize());
+    const writer = new BufferWriter(buffer);
+
     const propertyNames = this.getValidPropertyNames();
-    const format = `<${this.getFormat(propertyFormatOverrides)}`;
-    const values: unknown[] = [];
+    const values = propertyNames.reduce(
+      (acc, propertyName) => ({
+        ...acc,
+        [propertyName]: this[propertyName as keyof this],
+      }),
+      {},
+    );
 
-    propertyNames.forEach((propertyName) => {
-      const propertyValue = this[propertyName as keyof this];
+    this.schema.write(writer, values);
 
-      if (propertyName === 'Size') {
-        values.push(
-          (propertyValue as unknown as number) / this.SIZE_MULTIPLIER,
-        );
-        return;
-      }
-
-      // Spread all values of structs in packet properties
-      if (propertyValue instanceof SendableStruct) {
-        const struct = propertyValue as SendableStruct;
-
-        const structValues = struct
-          .getValidPropertyNames()
-          .map(
-            (structPropName) => struct[structPropName as keyof typeof struct],
-          );
-
-        values.push(...structValues);
-        return;
-      }
-
-      return values.push(propertyValue);
-    });
-
-    const packedData = pack(format, values);
-
-    if (!packedData) {
-      throw new InSimError('Could not pack values into a packet');
-    }
-
-    return packedData;
+    return new Uint8Array(buffer);
   }
 }
