@@ -3,7 +3,7 @@ import defaults from 'lodash/defaults';
 import { TypedEmitter } from 'tiny-typed-emitter';
 
 import { InSimError } from './errors';
-import type { InSimEvents, InSimPacketEvents } from './InSimEvents';
+import type { InSimEvents } from './InSimEvents';
 import { unpack } from './lfspack';
 import { log as baseLog } from './log';
 import type { IS_ISI_Data, SendablePacket } from './packets';
@@ -215,16 +215,16 @@ export class InSim extends TypedEmitter<InSimEvents> {
       return;
     }
 
-    const packetType = header[1];
+    const packetType = header[1] as PacketType;
 
-    const packetTypeString = PacketType[packetType as PacketType];
+    const packetTypeString = PacketType[packetType];
 
     if (packetTypeString === undefined) {
       log(`Unknown packet type received: ${packetType}`);
       return;
     }
 
-    const PacketClass = packetTypeToClass[packetType as PacketType];
+    const PacketClass = packetTypeToClass[packetType];
 
     if (PacketClass === undefined) {
       log(`Packet handler not found for ${packetTypeString}`);
@@ -234,11 +234,7 @@ export class InSim extends TypedEmitter<InSimEvents> {
     const packetInstance = new PacketClass();
     packetInstance.SIZE_MULTIPLIER = this.sizeMultiplier;
 
-    this.emit(
-      packetType as keyof InSimPacketEvents,
-      packetInstance.unpack(data) as never,
-      this,
-    );
+    this.emit(packetType, packetInstance.unpack(data) as never, this);
   }
 
   private handleKeepAlive(packet: IS_TINY) {

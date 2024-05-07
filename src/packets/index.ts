@@ -1,4 +1,3 @@
-import { Packet } from './base';
 import { PacketType } from './enums';
 import { IR_ARP } from './IR_ARP';
 import { IR_ARQ } from './IR_ARQ';
@@ -42,6 +41,7 @@ import { IS_MTC } from './IS_MTC';
 import { IS_NCI } from './IS_NCI';
 import { IS_NCN } from './IS_NCN';
 import { IS_NLP } from './IS_NLP';
+import { IS_NONE } from './IS_NONE';
 import { IS_NPL } from './IS_NPL';
 import { IS_OBH } from './IS_OBH';
 import { IS_OCO } from './IS_OCO';
@@ -73,12 +73,8 @@ import { IS_UCO } from './IS_UCO';
 import { IS_VER } from './IS_VER';
 import { IS_VTN } from './IS_VTN';
 
-export const packetTypeToClass: Record<PacketType, new () => Packet> = {
-  [PacketType.ISP_NONE]: class A extends Packet {
-    ReqI = 0;
-    Size = 0;
-    Type = 0;
-  },
+export const packetTypeToClass = {
+  [PacketType.ISP_NONE]: IS_NONE,
   [PacketType.ISP_ISI]: IS_ISI,
   [PacketType.ISP_VER]: IS_VER,
   [PacketType.ISP_TINY]: IS_TINY,
@@ -278,6 +274,7 @@ export { IS_MTC } from './IS_MTC';
 export { IS_NCI } from './IS_NCI';
 export { IS_NCN } from './IS_NCN';
 export { IS_NLP } from './IS_NLP';
+export { IS_NONE } from './IS_NONE';
 export { IS_NPL } from './IS_NPL';
 export { IS_OBH } from './IS_OBH';
 export type { IS_OCO_Data } from './IS_OCO';
