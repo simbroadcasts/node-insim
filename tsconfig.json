@@ -15,6 +15,7 @@
     "noImplicitAny": true,
     "forceConsistentCasingInFileNames": true,
     "experimentalDecorators": true,
+    "exactOptionalPropertyTypes": true,
     "paths": {
       "node-insim": ["./src/index"],
       "node-insim/packets": ["./src/packets/index"]
