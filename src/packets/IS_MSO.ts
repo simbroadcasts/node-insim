@@ -1,3 +1,5 @@
+import isArray from 'lodash/isArray';
+
 import { byte, getFormat, stringNull } from '../decorators';
 import { InSimError } from '../errors';
 import { unpack } from '../lfspack';
@@ -46,6 +48,21 @@ export class IS_MSO extends Packet {
     super.unpack(buffer, {
       Msg: `${msgLength}s`,
     });
+
+    const playerNameUnpacked = unpack(
+      `<${this.TextStart}s`,
+      buffer.buffer,
+      IS_MSO.FIXED_DATA_SIZE,
+    );
+
+    if (
+      playerNameUnpacked !== null &&
+      isArray(playerNameUnpacked[0]) &&
+      playerNameUnpacked[0].length === 2
+    ) {
+      const [, playerName] = playerNameUnpacked[0];
+      this.TextStart = playerName.length;
+    }
 
     return this;
   }

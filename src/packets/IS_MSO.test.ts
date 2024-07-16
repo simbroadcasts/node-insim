@@ -41,7 +41,7 @@ describe('IS_MSO', () => {
   });
 
   describe('non-ASCII characters in message', () => {
-    const size = 32;
+    const size = 36;
 
     const data: PacketTestData<IS_MSO> = {
       ReqI: 0,
@@ -49,8 +49,8 @@ describe('IS_MSO', () => {
       UCID: 2,
       PLID: 4,
       UserType: UserType.MSO_USER,
-      TextStart: 15,
-      Msg: '^7Player ^7: ^8cršč',
+      TextStart: 15, // After converting Msg from bytes into UTF-8
+      Msg: '^7Player ě ^7: ^8cršč',
     };
 
     const buffer = new Uint8Array([
@@ -61,7 +61,7 @@ describe('IS_MSO', () => {
       2, // UCID
       4, // PLID
       1, // UserType
-      15, // TextStart
+      17, // TextStart
       94, // Msg
       55,
       80,
@@ -70,6 +70,10 @@ describe('IS_MSO', () => {
       121,
       101,
       114,
+      32,
+      94,
+      69,
+      236,
       32,
       94,
       55,
