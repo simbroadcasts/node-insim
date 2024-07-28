@@ -30,7 +30,7 @@ export class IS_REO extends SendablePacket {
   @byte() readonly Type = PacketType.ISP_REO;
 
   /** 0 unless this is a reply to an {@link TINY_REO} request */
-  @byte() readonly ReqI = 0;
+  @byte() ReqI = 0;
 
   /** Number of players in race */
   @byte() NumP = 0;
