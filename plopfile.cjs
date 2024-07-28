@@ -54,19 +54,6 @@ module.exports = function (plop) {
         ISP_{{ name }},
       `,
       },
-      {
-        type: 'append',
-        path: 'src/InSimEvents.ts',
-        pattern: 'export type InSimPacketEvents = {',
-        template: `  [PacketType.ISP_{{ name }}]: (packet: IS_{{ name }}, inSim: InSim) => void;`,
-      },
-      {
-        type: 'modify',
-        path: 'src/InSimEvents.ts',
-        pattern: "} from '../../packets';",
-        template: `  IS_{{ name }},
-} from '../../packets';`,
-      },
     ],
   });
 };
