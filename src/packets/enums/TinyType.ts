@@ -85,4 +85,7 @@ export enum TinyType {
 
   /** Info request: send {@link IS_PLH} listing player handicaps */
   TINY_PLH,
+
+  /** Info request: send {@link IS_IPB} listing the IP bans */
+  TINY_IPB,
 }

@@ -61,6 +61,7 @@ export const SENDABLE_TINY_TYPES = [
   TinyType.TINY_SLC,
   TinyType.TINY_MAL,
   TinyType.TINY_PLH,
+  TinyType.TINY_IPB,
 ] as const;
 
 export const INFO_REQUEST_TINY_TYPES = [
@@ -85,6 +86,7 @@ export const INFO_REQUEST_TINY_TYPES = [
   TinyType.TINY_SLC,
   TinyType.TINY_MAL,
   TinyType.TINY_PLH,
+  TinyType.TINY_IPB,
 ] as const;
 
 export type SendableTinyType = (typeof SENDABLE_TINY_TYPES)[number];
