@@ -26,6 +26,7 @@ import { IS_FLG } from './IS_FLG';
 import { IS_HCP } from './IS_HCP';
 import { IS_HLV } from './IS_HLV';
 import { IS_III } from './IS_III';
+import { IS_IPB } from './IS_IPB';
 import { IS_ISI } from './IS_ISI';
 import { IS_ISM } from './IS_ISM';
 import { IS_JRR } from './IS_JRR';
@@ -141,6 +142,7 @@ export const packetTypeToClass = {
   [PacketType.ISP_CIM]: IS_CIM,
   [PacketType.ISP_MAL]: IS_MAL,
   [PacketType.ISP_PLH]: IS_PLH,
+  [PacketType.ISP_IPB]: IS_IPB,
   [PacketType.IRP_ARQ]: IR_ARQ,
   [PacketType.IRP_ARP]: IR_ARP,
   [PacketType.IRP_HLR]: IR_HLR,
@@ -251,6 +253,8 @@ export type { IS_HCP_Data } from './IS_HCP';
 export { IS_HCP } from './IS_HCP';
 export { IS_HLV } from './IS_HLV';
 export { IS_III } from './IS_III';
+export type { IS_IPB_Data } from './IS_IPB';
+export { IS_IPB } from './IS_IPB';
 export type { IS_ISI_Data } from './IS_ISI';
 export { IS_ISI, IS_ISI_ReqI } from './IS_ISI';
 export { IS_ISM, MultiplayerHostMode } from './IS_ISM';
