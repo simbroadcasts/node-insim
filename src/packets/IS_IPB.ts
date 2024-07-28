@@ -1,8 +1,7 @@
-import ip from 'ip';
-
 import { byte } from '../decorators';
 import { InSimError } from '../errors';
 import { copyBuffer, pack } from '../lfspack';
+import { ipToUnsignedInteger, isValidIPv4 } from '../utils/ip';
 import { SendablePacket } from './base';
 import { PacketType } from './enums';
 import type { PacketData } from './types';
@@ -65,7 +64,7 @@ export class IS_IPB extends SendablePacket {
     }
 
     const invalidIPs = this.BanIPs.filter(
-      (ipAddress) => !ip.isV4Format(ipAddress),
+      (ipAddress) => !isValidIPv4(ipAddress),
     );
 
     if (invalidIPs.length > 0) {
@@ -80,7 +79,7 @@ export class IS_IPB extends SendablePacket {
     const dataBuffer = super.pack();
 
     const maybeIPBuffer = this.BanIPs.map((ipAddress) =>
-      pack('L', [ip.toLong(ipAddress)]),
+      pack('L', [ipToUnsignedInteger(ipAddress)]),
     );
 
     if (maybeIPBuffer.some((buffer) => buffer === null)) {

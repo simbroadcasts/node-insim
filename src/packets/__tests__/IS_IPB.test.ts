@@ -312,8 +312,8 @@ describe('IS_IPB', () => {
   it('should throw an error if one of the IP addresses is in an invalid format', () => {
     expect(() => {
       new IS_IPB({
-        BanIPs: ['invalid_ip_address', '1.2.3.4'],
+        BanIPs: ['1.1.256.0', '1.2.3.4'],
       }).pack();
-    }).toThrowError('invalid_ip_address');
+    }).toThrowError('1.1.256.0');
   });
 });
