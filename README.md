@@ -36,6 +36,10 @@ or if you use Yarn:
 yarn add node-insim
 ```
 
+## Documentation
+
+For more detailed documentation of the public API, see https://simbroadcasts.github.io/node-insim/.
+
 ## Usage
 
 ### Connecting
