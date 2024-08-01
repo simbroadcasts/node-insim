@@ -129,7 +129,7 @@ export class Struct implements Receivable {
     return this;
   }
 
-  public parseArray(
+  private parseArray(
     instance: unknown[],
     data: unknown[],
     i: number,
@@ -147,7 +147,7 @@ export class Struct implements Receivable {
     return i;
   }
 
-  public parseObject(
+  private parseObject(
     instance: unknown,
     data: unknown[],
     i: number,
