@@ -8,7 +8,6 @@ on:
 jobs:
   publish-documentation:
     name: 'Publish Documentation'
-    needs: build-and-test
     permissions:
       id-token: write
       pages: write
