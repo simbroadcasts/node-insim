@@ -1,5 +1,6 @@
 node_modules/
 dist/
+docs/
 coverage/
 yarn-*.log
 .env.local
