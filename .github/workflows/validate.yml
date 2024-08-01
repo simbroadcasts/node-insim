@@ -88,6 +88,8 @@ jobs:
           junit_files: 'artifacts/**/*.xml'
 
   publish-documentation:
+    name: 'Publish Documentation'
+    needs: build-and-test
     permissions:
       id-token: write
       pages: write
