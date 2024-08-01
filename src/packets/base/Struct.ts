@@ -15,8 +15,10 @@ type RawProperties<TThis> = {
 };
 
 export class Struct implements Receivable {
+  /** @ignore */
   public SIZE_MULTIPLIER = 4;
 
+  /** All string properties in a raw format as it was received from LFS */
   public _raw: RawProperties<this> = {} as RawProperties<this>;
 
   protected initialize(data?: Partial<Data>) {
@@ -27,6 +29,7 @@ export class Struct implements Receivable {
     Object.assign(this, data);
   }
 
+  /** @ignore */
   public getValidPropertyNames(): string[] {
     const prototype = Object.getPrototypeOf(this);
     const ownPropertyNames = Object.getOwnPropertyNames(this) as string[];
@@ -39,6 +42,7 @@ export class Struct implements Receivable {
     );
   }
 
+  /** @ignore */
   public getFormat(propertyFormats?: Record<string, string>): string {
     const propertyNames = this.getValidPropertyNames();
 
@@ -51,10 +55,12 @@ export class Struct implements Receivable {
       .join('');
   }
 
+  /** @ignore */
   public getFormatSize(): number {
     return determineLength(`<${this.getFormat()}`);
   }
 
+  /** @ignore */
   public unpack(
     buffer: Uint8Array,
     propertyFormatOverrides?: Record<string, string>,
