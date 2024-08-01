@@ -71,6 +71,7 @@
     "lint:fix": "eslint \"./src/**/*\" --ext .js,.ts --fix",
     "generate": "run-s \"generate:plop {@}\" lint:fix format --",
     "generate:plop": "plop",
+    "docs:generate": "typedoc --tsconfig tsconfig.docs.json src/index.ts src/packets/index.ts",
     "prepare": "husky install",
     "prepack": "run-s build"
   },
@@ -115,6 +116,7 @@
     "prettier": "^2.8.5",
     "rimraf": "^4.4.0",
     "tsx": "^3.12.6",
+    "typedoc": "^0.26.5",
     "typescript": "^5.4.5"
   },
   "config": {

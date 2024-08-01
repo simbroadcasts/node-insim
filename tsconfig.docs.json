@@ -1,0 +1,8 @@
+{
+  "extends": ["./tsconfig.json"],
+  "compilerOptions": {
+    "moduleResolution": "Bundler",
+    "target": "ESNext",
+    "module": "ESNext"
+  }
+}
