@@ -2,10 +2,11 @@ import { byte } from '../decorators';{{#ifEquals variant "info"}}
 import { Packet } from './base';{{/ifEquals}}{{#ifNotEquals variant "info"}}
 import { SendablePacket } from './base';{{/ifNotEquals}}
 import { PacketType } from './enums';{{#ifNotEquals variant "info"}}
+// TODO keep only one of these
 import type {
-  PacketData, // TODO keep only one of these
+//  PacketData,
   PacketDataWithOptionalReqI,
-  PacketDataWithRequiredReqI,
+//  PacketDataWithRequiredReqI,
 } from './types';{{/ifNotEquals}}
 
 /**

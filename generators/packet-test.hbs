@@ -1,17 +1,18 @@
 {{#ifEquals variant "instruction"}}
-import { testInstructionPacket } from '../../tests';
-import type { IS_{{ name }}_Data } from '..';
+import { testInstructionPacket } from '../tests';
+import type { IS_{{ name }}_Data } from './IS_{{ name }}';
 {{/ifEquals}}
 {{#ifEquals variant "info"}}
-  import type { PacketTestData } from '../../tests';
-  import { testInfoPacket } from '../../tests';
+import type { PacketTestData } from '../tests';
+import { testInfoPacket } from '../tests';
 {{/ifEquals}}
 {{#ifEquals variant "both ways"}}
-  import type { PacketTestData } from '../../tests';
-  import { testInfoPacket, testInstructionPacket } from '../../tests';
-  import type { IS_{{ name }}_Data } from '..';
+import type { PacketTestData } from '../tests';
+import { testInfoPacket, testInstructionPacket } from '../tests';
+import type { IS_{{ name }}_Data } from './IS_{{ name }}';
 {{/ifEquals}}
-import { IS_{{ name }}, PacketType } from '..';
+import { IS_{{ name }} } from './IS_{{ name }}';
+import { PacketType } from './enums';
 
 const size = {{ size }};
 

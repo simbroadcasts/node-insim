@@ -38,7 +38,7 @@ module.exports = function (plop) {
       },
       {
         type: 'add',
-        path: 'src/packets/__tests__/IS_{{name}}.test.ts',
+        path: 'src/packets/IS_{{name}}.test.ts',
         templateFile: 'generators/packet-test.hbs',
       },
       {
