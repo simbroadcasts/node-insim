@@ -84,6 +84,17 @@ export class IS_BTN extends SendablePacket {
    *
    * Lowest 7 bits are the maximum number of characters to type in (0 to 95)
    * The highest bit (128) can be set to initialise dialog with the button's text
+   *
+   * On clicking the button, a text entry dialog will be opened, allowing the
+   * specified number of characters to be typed in. The caption on the text
+   * entry dialog is optionally customisable using {@link Text} in the
+   * {@link IS_BTN} packet. If the first character of IS_BTN's {@link Text}
+   * field is zero, LFS will read the caption up to the second zero.
+   * The visible button text then follows that second zero.
+   *
+   * Text: 65-66-67-0 would display button text "ABC" and no caption
+   *
+   * Text: 0-65-66-67-0-68-69-70-71-0-0-0 would display button text "DEFG" and caption "ABC"
    */
   @byte() TypeIn = 0;
 
