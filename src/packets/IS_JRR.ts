@@ -47,7 +47,7 @@ export class IS_JRR extends SendablePacket {
    *
    * To specify a start point, StartPos X, Y, Zbyte and Heading should be filled like
    * an autocross start position, Flags should be 0x80 and Index should be zero
-   **/
+   */
   @struct(ObjectInfo) StartPos: ObjectInfo = new ObjectInfo();
 
   constructor(data?: IS_JRR_Data) {

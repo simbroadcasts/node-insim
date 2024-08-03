@@ -64,7 +64,7 @@ export class IS_BTN extends SendablePacket {
    * Programmers of local InSim programs may wish to consider using a
    * configurable button range and possibly screen position, in case their
    * users will use more than one local InSim program at once.
-   * */
+   */
   @byte() ClickID = 0;
 
   /**
@@ -77,7 +77,7 @@ export class IS_BTN extends SendablePacket {
    * overwriting LFS buttons. Most buttons should be defined without this flag,
    * and positioned in the recommended area so LFS can keep a space clear in
    * the main screens.
-   * */
+   */
   @byte() Inst = 0;
 
   /** Button style flags */

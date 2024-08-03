@@ -24,6 +24,6 @@ export class IS_SLC extends Packet {
    * The value can be one of these:
    * - a 3-character abbreviation of an official LFS car (e.g. XRT)
    * - a hexadecimal string representation of a car mod's SkinID (e.g. 5882E6)
-   **/
+   */
   @carName() CName = '';
 }

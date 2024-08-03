@@ -26,7 +26,7 @@ export class ObjectInfo extends SendableStruct {
    * objects from scratch and you are not sure of the approximate altitude, you
    * can set Zbyte to its maximum value (240). This will place the object on
    * the first physical surface detected below that point.
-   * */
+   */
   @byte() Zbyte = 0;
 
   /** Flags - see NOTE1 at {@link https://www.lfs.net/programmer/lyt} */
@@ -38,7 +38,7 @@ export class ObjectInfo extends SendableStruct {
    * The first valid object index is 4 (AXO_CHALK_LINE).
    * The gaps are to allow for future objects.
    * Valid object indices are all less than 192.
-   * */
+   */
   @byte() Index: ObjectIndex = 0;
 
   /**

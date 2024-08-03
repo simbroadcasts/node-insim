@@ -69,7 +69,7 @@ export function unsigned() {
 /**
  * 4-byte signed integer
  * @internal
- **/
+ */
 export function int() {
   return Reflect.metadata(formatMetadataKey, 'l');
 }
@@ -93,7 +93,7 @@ export function double() {
 /**
  * 12-byte vector of 3 floats
  * @internal
- **/
+ */
 export function Vector() {
   return Reflect.metadata(formatMetadataKey, 'fff');
 }
@@ -125,7 +125,7 @@ export function array<S extends { new (): { getFormat: () => string } }>(
 /**
  * Struct
  * @internal
- **/
+ */
 export function struct<S extends { new (): { getFormat: () => string } }>(
   str: S,
 ) {
@@ -140,7 +140,7 @@ export function struct<S extends { new (): { getFormat: () => string } }>(
  * - a hexadecimal string representation of a car mod's SkinID (e.g. 5882E6)
  *
  * @internal
- **/
+ */
 export function carName() {
   return Reflect.metadata(formatMetadataKey, 'C');
 }

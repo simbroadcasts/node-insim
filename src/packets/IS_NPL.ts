@@ -43,7 +43,7 @@ export class IS_NPL extends Packet {
    * The value can be one of these:
    * - a 3-character abbreviation of an official LFS car (e.g. XRT)
    * - a hexadecimal string representation of a car mod's SkinID (e.g. 5882E6)
-   **/
+   */
   @carName() CName = '';
 
   /** Skin name - MAX_CAR_TEX_NAME */
@@ -93,7 +93,7 @@ export class IS_NPL extends Packet {
    *
    * - UF1 / LX4 / LX6: 0 = DEFAULT / 1 = OPEN ROOF
    * - GTR racing cars: 0 = DEFAULT / 1 = ALTERNATE
-   * */
+   */
   @byte() Config: CarConfiguration = CarConfiguration.DEFAULT;
 
   /** /showfuel yes: fuel percent / no: 255 */

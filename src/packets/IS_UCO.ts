@@ -50,6 +50,6 @@ export class IS_UCO extends Packet {
    * Identifying an InSim circle:
    *
    * Index is 253. The circle index (seen in the layout editor) is stored in the Heading byte.
-   **/
+   */
   @struct(ObjectInfo) Info = new ObjectInfo();
 }

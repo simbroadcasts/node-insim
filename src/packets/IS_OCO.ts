@@ -23,7 +23,7 @@ export class IS_OCO extends SendablePacket {
    *
    * Identifier byte can be used to override groups of temporary start lights.
    * It refers to the temporary lights identifier (0 to 63) seen in the layout editor.
-   **/
+   */
   @byte() Identifier = 0;
 
   /**
@@ -43,7 +43,7 @@ export class IS_OCO extends SendablePacket {
    * - bit 0 (1): red
    * - bit 1 (2): amber
    * - bit 3 (8): green
-   * */
+   */
   @byte() Data: OCOMainLights | OCOAutocrossStartLights | 0 = 0;
 
   constructor(data?: IS_OCO_Data) {
