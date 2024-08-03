@@ -200,6 +200,320 @@ describe('InSim', () => {
     });
   });
 
+  describe('sending messages or commands', () => {
+    let mitm: ReturnType<typeof Mitm>;
+
+    beforeEach(() => {
+      mitm = Mitm();
+    });
+
+    it('should send a command via IS_MST', (done) => {
+      const inSim = new InSim();
+
+      mitm.on('connection', (socket) => {
+        socket.on('data', (data) => {
+          expect(data).toEqual(
+            Buffer.from([
+              17, // Size / 4
+              13, // PacketType.ISP_MST
+              0, // ReqI
+              0, // Zero
+              47, // /
+              101, // e
+              110, // n
+              100, // d
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+            ]),
+          );
+          inSim.disconnect();
+          done();
+        });
+      });
+
+      inSim.connect({
+        Host: '127.0.0.1',
+        Port: 29999,
+      });
+
+      inSim.sendMessage('/end');
+    });
+
+    it('should send a message via IS_MST if it is shorter than 64 characters', (done) => {
+      const inSim = new InSim();
+
+      mitm.on('connection', (socket) => {
+        socket.on('data', (data) => {
+          expect(data).toEqual(
+            Buffer.from([
+              17, // Size / 4
+              13, // PacketType.ISP_MST
+              0, // ReqI
+              0, // Zero
+              84, // Msg[64]
+              104,
+              105,
+              115,
+              32,
+              105,
+              115,
+              32,
+              97,
+              32,
+              109,
+              101,
+              115,
+              115,
+              97,
+              103,
+              101,
+              32,
+              116,
+              104,
+              97,
+              116,
+              32,
+              105,
+              115,
+              32,
+              115,
+              104,
+              111,
+              114,
+              116,
+              101,
+              114,
+              32,
+              116,
+              104,
+              97,
+              110,
+              32,
+              54,
+              52,
+              32,
+              99,
+              104,
+              97,
+              114,
+              97,
+              99,
+              116,
+              101,
+              114,
+              115,
+              32,
+              101,
+              120,
+              97,
+              99,
+              116,
+              108,
+              121,
+              32,
+              54,
+              51,
+              0,
+            ]),
+          );
+          inSim.disconnect();
+          done();
+        });
+      });
+
+      inSim.connect({
+        Host: '127.0.0.1',
+        Port: 29999,
+      });
+
+      inSim.sendMessage(
+        'This is a message that is shorter than 64 characters exactly 63',
+      );
+    });
+
+    it('should send a message via IS_MSX if it is 64 characters or longer', (done) => {
+      const inSim = new InSim();
+
+      mitm.on('connection', (socket) => {
+        socket.on('data', (data) => {
+          expect(data).toEqual(
+            Buffer.from([
+              25, // Size / 4
+              39, // PacketType.ISP_MSX
+              0, // ReqI
+              0, // Zero
+              84, // Msg[96]
+              104,
+              105,
+              115,
+              32,
+              105,
+              115,
+              32,
+              97,
+              110,
+              111,
+              116,
+              104,
+              101,
+              114,
+              32,
+              108,
+              111,
+              110,
+              103,
+              32,
+              109,
+              101,
+              115,
+              115,
+              97,
+              103,
+              101,
+              32,
+              116,
+              104,
+              97,
+              116,
+              32,
+              105,
+              115,
+              32,
+              101,
+              120,
+              97,
+              99,
+              116,
+              108,
+              121,
+              32,
+              54,
+              52,
+              32,
+              99,
+              104,
+              97,
+              114,
+              97,
+              99,
+              116,
+              101,
+              114,
+              115,
+              32,
+              108,
+              111,
+              110,
+              103,
+              33,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+            ]),
+          );
+          inSim.disconnect();
+          done();
+        });
+      });
+
+      inSim.connect({
+        Host: '127.0.0.1',
+        Port: 29999,
+      });
+
+      inSim.sendMessage(
+        'This is another long message that is exactly 64 characters long!',
+      );
+    });
+  });
+
   describe('receiving packets', () => {
     let mitm: ReturnType<typeof Mitm>;
 
