@@ -3,7 +3,7 @@ import { SendablePacket } from './base';
 import { PacketType } from './enums';
 import type { PacketData } from './types';
 
-const MSG_MAX_LENGTH = 64;
+export const MST_MSG_MAX_LENGTH = 64;
 
 /**
  * MSg Type - send to LFS to type message or command
@@ -15,7 +15,7 @@ export class IS_MST extends SendablePacket {
   @byte() readonly Zero = 0;
 
   /** Last byte must be zero */
-  @stringNull(MSG_MAX_LENGTH) Msg = '';
+  @stringNull(MST_MSG_MAX_LENGTH) Msg = '';
 
   constructor(data?: IS_MST_Data) {
     super();
