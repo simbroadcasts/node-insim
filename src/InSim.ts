@@ -12,6 +12,7 @@ import {
   IS_TINY,
   PacketType,
   packetTypeToClass,
+  SmallType,
   TinyType,
 } from './packets';
 import type { Protocol } from './protocols';
@@ -208,7 +209,7 @@ export class InSim extends TypedEmitter<InSimEvents> {
   }
 
   async ping() {
-    new Promise<void>((resolve) => {
+    return new Promise<void>((resolve, reject) => {
       const reqId = 255;
 
       this.send(
@@ -224,7 +225,29 @@ export class InSim extends TypedEmitter<InSimEvents> {
         }
       });
 
-      this.on('disconnect', () => resolve());
+      this.on('disconnect', () => reject());
+    });
+  }
+
+  /** Request the current session time in hundredths of seconds. */
+  async getSessionTime() {
+    return new Promise<number>((resolve, reject) => {
+      const reqId = 255;
+
+      this.send(
+        new IS_TINY({
+          ReqI: reqId,
+          SubT: TinyType.TINY_GTH,
+        }),
+      );
+
+      this.once(PacketType.ISP_SMALL, (packet) => {
+        if (packet.ReqI === reqId && packet.SubT === SmallType.SMALL_RTP) {
+          resolve(packet.UVal);
+        }
+      });
+
+      this.on('disconnect', () => reject());
     });
   }
 
