@@ -207,6 +207,27 @@ export class InSim extends TypedEmitter<InSimEvents> {
     return this._options;
   }
 
+  async ping() {
+    new Promise<void>((resolve) => {
+      const reqId = 255;
+
+      this.send(
+        new IS_TINY({
+          ReqI: reqId,
+          SubT: TinyType.TINY_PING,
+        }),
+      );
+
+      this.once(PacketType.ISP_TINY, (packet) => {
+        if (packet.ReqI === reqId && packet.SubT === TinyType.TINY_REPLY) {
+          resolve();
+        }
+      });
+
+      this.on('disconnect', () => resolve());
+    });
+  }
+
   private async handlePacket(data: Uint8Array) {
     const header = unpack('<BB', data.buffer);
 
