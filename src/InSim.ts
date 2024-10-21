@@ -8,6 +8,8 @@ import type { InSimEvents } from './InSimEvents';
 import { unpack } from './lfspack';
 import { log as baseLog } from './log';
 import type { IS_ISI_Data, SendablePacket } from './packets';
+import { MessageSound } from './packets';
+import { IS_MTC } from './packets';
 import { IS_MST, IS_MSX } from './packets';
 import {
   IS_ISI,
@@ -244,6 +246,36 @@ export class InSim extends TypedEmitter<InSimEvents> {
     return this.send(
       new IS_MST({
         Msg: message,
+      }),
+    );
+  }
+
+  /** Send a message to a specific connection */
+  sendMessageToConnection(
+    ucid: number,
+    message: string,
+    sound: MessageSound = MessageSound.SND_SILENT,
+  ) {
+    this.send(
+      new IS_MTC({
+        UCID: ucid,
+        Text: message,
+        Sound: sound,
+      }),
+    );
+  }
+
+  /** Send a message to a specific player */
+  sendMessageToPlayer(
+    plid: number,
+    message: string,
+    sound: MessageSound = MessageSound.SND_SILENT,
+  ) {
+    this.send(
+      new IS_MTC({
+        PLID: plid,
+        Text: message,
+        Sound: sound,
       }),
     );
   }
