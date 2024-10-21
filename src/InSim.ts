@@ -1,12 +1,16 @@
 import crypto from 'crypto';
 import defaults from 'lodash/defaults';
 import { TypedEmitter } from 'tiny-typed-emitter';
+import unicodeToLfs from 'unicode-to-lfs';
 
 import { InSimError } from './errors';
 import type { InSimEvents } from './InSimEvents';
 import { unpack } from './lfspack';
 import { log as baseLog } from './log';
 import type { IS_ISI_Data, SendablePacket } from './packets';
+import { MessageSound } from './packets';
+import { IS_MTC } from './packets';
+import { IS_MST, IS_MSX } from './packets';
 import {
   IS_ISI,
   IS_TINY,
@@ -14,6 +18,7 @@ import {
   packetTypeToClass,
   TinyType,
 } from './packets';
+import { MST_MSG_MAX_LENGTH } from './packets/IS_MST';
 import type { Protocol } from './protocols';
 import { TCP, UDP } from './protocols';
 
@@ -205,6 +210,74 @@ export class InSim extends TypedEmitter<InSimEvents> {
 
   get options(): InSimOptions {
     return this._options;
+  }
+
+  /**
+   * Send a message or command to LFS
+   *
+   * If the message starts with a slash (`/`), it will be treated as a command.
+   * Otherwise, it will be treated as a message.
+   *
+   * The maximum length of the message is {@link MSX_MSG_MAX_LENGTH} characters.
+   */
+  sendMessage(message: string) {
+    log('Send message:', message);
+
+    const commandPrefix = '/';
+
+    if (message.startsWith(commandPrefix)) {
+      return this.send(
+        new IS_MST({
+          Msg: message,
+        }),
+      );
+    }
+
+    const encodedMessageLength = unicodeToLfs(message).length;
+
+    if (encodedMessageLength >= MST_MSG_MAX_LENGTH) {
+      return this.send(
+        new IS_MSX({
+          Msg: message,
+        }),
+      );
+    }
+
+    return this.send(
+      new IS_MST({
+        Msg: message,
+      }),
+    );
+  }
+
+  /** Send a message to a specific connection */
+  sendMessageToConnection(
+    ucid: number,
+    message: string,
+    sound: MessageSound = MessageSound.SND_SILENT,
+  ) {
+    this.send(
+      new IS_MTC({
+        UCID: ucid,
+        Text: message,
+        Sound: sound,
+      }),
+    );
+  }
+
+  /** Send a message to a specific player */
+  sendMessageToPlayer(
+    plid: number,
+    message: string,
+    sound: MessageSound = MessageSound.SND_SILENT,
+  ) {
+    this.send(
+      new IS_MTC({
+        PLID: plid,
+        Text: message,
+        Sound: sound,
+      }),
+    );
   }
 
   private async handlePacket(data: Uint8Array) {
