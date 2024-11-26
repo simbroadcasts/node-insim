@@ -267,7 +267,7 @@ export { IS_MCI } from './IS_MCI';
 export type { IS_MOD_Data } from './IS_MOD';
 export { IS_MOD } from './IS_MOD';
 export type { IS_MSL_Data } from './IS_MSL';
-export { IS_MSL } from './IS_MSL';
+export { IS_MSL, MSL_MSG_MAX_LENGTH } from './IS_MSL';
 export { IS_MSO } from './IS_MSO';
 export type { IS_MST_Data } from './IS_MST';
 export { IS_MST, MST_MSG_MAX_LENGTH } from './IS_MST';
