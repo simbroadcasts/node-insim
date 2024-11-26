@@ -8,15 +8,19 @@ import type { InSimEvents } from './InSimEvents';
 import { unpack } from './lfspack';
 import { log as baseLog } from './log';
 import type { IS_ISI_Data, SendablePacket } from './packets';
-import { IS_MST, IS_MSX } from './packets';
 import {
   IS_ISI,
+  IS_MSL,
+  IS_MST,
+  IS_MSX,
+  IS_MTC,
   IS_TINY,
+  MessageSound,
+  MST_MSG_MAX_LENGTH,
   PacketType,
   packetTypeToClass,
   TinyType,
 } from './packets';
-import { MST_MSG_MAX_LENGTH } from './packets/IS_MST';
 import type { Protocol } from './protocols';
 import { TCP, UDP } from './protocols';
 
@@ -34,6 +38,8 @@ export type InSimOptions = Omit<IS_ISI_Data, 'InSimVer'> &
 export class InSim extends TypedEmitter<InSimEvents> {
   /** Currently supported InSim version */
   static INSIM_VERSION = 9;
+
+  private static COMMAND_PREFIX = '/';
 
   /** A unique identifier of the InSim connection to a specific host */
   id: string;
@@ -221,9 +227,7 @@ export class InSim extends TypedEmitter<InSimEvents> {
   sendMessage(message: string) {
     log('Send message:', message);
 
-    const commandPrefix = '/';
-
-    if (message.startsWith(commandPrefix)) {
+    if (message.startsWith(InSim.COMMAND_PREFIX)) {
       return this.send(
         new IS_MST({
           Msg: message,
@@ -244,6 +248,40 @@ export class InSim extends TypedEmitter<InSimEvents> {
     return this.send(
       new IS_MST({
         Msg: message,
+      }),
+    );
+  }
+
+  /** Send a message to a specific connection */
+  sendMessageToConnection(
+    ucid: number,
+    message: string,
+    sound: MessageSound = MessageSound.SND_SILENT,
+  ) {
+    log('Send message to connection:', ucid, message);
+
+    this.send(
+      new IS_MTC({
+        UCID: ucid,
+        Text: message,
+        Sound: sound,
+      }),
+    );
+  }
+
+  /** Send a message to a specific player */
+  sendMessageToPlayer(
+    plid: number,
+    message: string,
+    sound: MessageSound = MessageSound.SND_SILENT,
+  ) {
+    log('Send message to player:', plid, message);
+
+    this.send(
+      new IS_MTC({
+        PLID: plid,
+        Text: message,
+        Sound: sound,
       }),
     );
   }
