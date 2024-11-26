@@ -252,6 +252,25 @@ export class InSim extends TypedEmitter<InSimEvents> {
     );
   }
 
+  /**
+   * Send a message which will appear on the local computer only.
+   *
+   * The maximum length of the message is {@link MSL_MSG_MAX_LENGTH} characters.
+   */
+  sendLocalMessage(
+    message: string,
+    sound: MessageSound = MessageSound.SND_SILENT,
+  ) {
+    log('Send local message:', message);
+
+    return this.send(
+      new IS_MSL({
+        Msg: message,
+        Sound: sound,
+      }),
+    );
+  }
+
   /** Send a message to a specific connection */
   sendMessageToConnection(
     ucid: number,
