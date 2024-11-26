@@ -155,6 +155,43 @@ pingPacket.SubT = TinyType.TINY_PING;
 inSim.send(pingPacket);
 ```
 
+### Sending messages
+
+The `InSim` class has helper methods useful for sending messages to LFS.
+
+#### Send a message which will appear on the local computer only
+
+```ts
+inSim.sendLocalMessage('Local message');
+```
+
+#### Send a command
+
+```ts
+inSim.sendMessage('/end');
+```
+
+#### Send a message
+
+- up to 63 characters - send an `IS_MST` packet
+- 64 characters or more - send an `IS_MSX` packet
+
+```ts
+inSim.sendMessage('This is a message');
+```
+
+#### Send a message to a specific connection by their UCID
+
+```ts
+inSim.sendMessageToConnection(4, 'This is a message targeting UCID 4');
+```
+
+#### Send a message to a specific player by their PLID
+
+```ts
+inSim.sendMessageToPlayer(4, 'This is a message targeting PLID 4');
+```
+
 ### Receiving packets
 
 The `InSim` class exposes an `on()` method, which is used to listen for incoming
