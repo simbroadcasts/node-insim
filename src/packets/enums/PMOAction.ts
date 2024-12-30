@@ -22,7 +22,7 @@ export enum PMOAction {
 
   /**
    * User pressed O without anything selected
-   * 
+   *
    * An {@link IS_AXM} with PMO_POSITION is sent with a single object in the packet if a user
    * presses O without any object type selected. Information only - no object is added.
    * The only valid values in Info are X, Y, Zbyte and Heading.
