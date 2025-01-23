@@ -206,6 +206,9 @@ export enum PacketType {
   /** Instruction: Set AI control value */
   ISP_AIC,
 
+  /** Info: Info about AI car */
+  ISP_AII,
+
   /** Instruction: request if we are host admin (after connecting to a host) */
   IRP_ARQ = 250,
 

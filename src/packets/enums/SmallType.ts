@@ -31,4 +31,7 @@ export enum SmallType {
 
   /** Instruction: set local car lights */
   SMALL_LCL,
+
+  /** Info: Get local AI info */
+  SMALL_AII,
 }

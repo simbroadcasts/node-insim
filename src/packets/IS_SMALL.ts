@@ -48,7 +48,8 @@ export type IS_SMALL_Data =
   | SMALL_NLI_Data
   | SMALL_ALC_Data
   | SMALL_LCS_Data
-  | SMALL_LCL_Data;
+  | SMALL_LCL_Data
+  | SMALL_AII_Data;
 
 type SMALL_SSP_Data = Data<{
   ReqI?: never;
@@ -130,6 +131,16 @@ type SMALL_LCL_Data = Data<{
   UVal: LocalCarLights;
 }>;
 
+type SMALL_AII_Data = Data<{
+  ReqI: number;
+
+  /** Info: Get local AI info */
+  SubT: SmallType.SMALL_AII;
+
+  /** Switches */
+  UVal: number;
+}>;
+
 type Data<
   TData extends {
     ReqI?: number;
@@ -147,6 +158,7 @@ export const SENDABLE_SMALL_TYPES = [
   SmallType.SMALL_ALC,
   SmallType.SMALL_LCS,
   SmallType.SMALL_LCL,
+  SmallType.SMALL_AII,
 ] as const;
 
 export type SendableSmallType = (typeof SENDABLE_SMALL_TYPES)[number];

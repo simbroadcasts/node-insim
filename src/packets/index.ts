@@ -7,6 +7,7 @@ import { IR_HOS } from './IR_HOS';
 import { IR_SEL } from './IR_SEL';
 import { IS_ACR } from './IS_ACR';
 import { IS_AIC } from './IS_AIC';
+import { IS_AII } from './IS_AII';
 import { IS_AXI } from './IS_AXI';
 import { IS_AXM } from './IS_AXM';
 import { IS_AXO } from './IS_AXO';
@@ -157,6 +158,8 @@ export const packetTypeToClass = {
 export { Packet, SendablePacket, SendableStruct, Struct } from './base';
 export {
   AdminCommandResult,
+  AICInput,
+  AIFlags,
   ButtonClickFlags,
   ButtonFunction,
   ButtonStyle,
