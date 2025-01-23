@@ -6,6 +6,7 @@ import { IR_HLR } from './IR_HLR';
 import { IR_HOS } from './IR_HOS';
 import { IR_SEL } from './IR_SEL';
 import { IS_ACR } from './IS_ACR';
+import { IS_AIC } from './IS_AIC';
 import { IS_AXI } from './IS_AXI';
 import { IS_AXM } from './IS_AXM';
 import { IS_AXO } from './IS_AXO';
@@ -143,6 +144,8 @@ export const packetTypeToClass = {
   [PacketType.ISP_MAL]: IS_MAL,
   [PacketType.ISP_PLH]: IS_PLH,
   [PacketType.ISP_IPB]: IS_IPB,
+  [PacketType.ISP_AIC]: IS_AIC,
+  [PacketType.ISP_AII]: IS_AII,
   [PacketType.IRP_ARQ]: IR_ARQ,
   [PacketType.IRP_ARP]: IR_ARP,
   [PacketType.IRP_HLR]: IR_HLR,
@@ -228,6 +231,9 @@ export { IR_HOS } from './IR_HOS';
 export type { IR_SEL_Data } from './IR_SEL';
 export { IR_SEL, IR_SEL_ReqI } from './IR_SEL';
 export { IS_ACR } from './IS_ACR';
+export type { IS_AIC_Data } from './IS_AIC';
+export { IS_AIC } from './IS_AIC';
+export { IS_AII } from './IS_AII';
 export { IS_AXI } from './IS_AXI';
 export type { IS_AXM_Data } from './IS_AXM';
 export { IS_AXM } from './IS_AXM';

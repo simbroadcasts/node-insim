@@ -1,4 +1,5 @@
 export { AdminCommandResult } from './AdminCommandResult';
+export { AICInput } from './AICInput';
 export { ButtonClickFlags } from './ButtonClickFlags';
 export { ButtonFunction } from './ButtonFunction';
 export { ButtonStyle } from './ButtonStyle';

@@ -203,6 +203,9 @@ export enum PacketType {
   /** Both ways: set IP bans */
   ISP_IPB,
 
+  /** Instruction: Set AI control value */
+  ISP_AIC,
+
   /** Instruction: request if we are host admin (after connecting to a host) */
   IRP_ARQ = 250,
 
