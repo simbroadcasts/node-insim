@@ -4,6 +4,7 @@ import { OutSimMain } from '../out/OutSimMain';
 import { Packet } from './base';
 import type { AIFlags } from './enums';
 import { PacketType } from './enums';
+import { AICGear } from './IS_AIC';
 
 /**
  * AI car info
@@ -22,7 +23,7 @@ export class IS_AII extends Packet {
   @byte() Flags: AIFlags | 0 = 0;
 
   /** Reverse: 0, Neutral: 1, First: 2... */
-  @byte() Gear = 0;
+  @byte() Gear: AICGear = AICGear.REVERSE;
 
   @byte() readonly Sp2 = 0;
   @byte() readonly Sp3 = 0;
