@@ -33,7 +33,8 @@ export class IS_AII extends Packet {
 
   /** Dash lights currently switched on (see DL_x in OutGauge section below) */
   @unsigned() ShowLights: DashLights | 0 = 0;
-  @unsigned() SPU1 = 0;
-  @unsigned() SPU2 = 0;
-  @unsigned() SPU3 = 0;
+
+  @unsigned() readonly SPU1 = 0;
+  @unsigned() readonly SPU2 = 0;
+  @unsigned() readonly SPU3 = 0;
 }
