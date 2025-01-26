@@ -14,11 +14,21 @@ export class IS_AIC extends SendablePacket {
   @byte() Size = 8;
 
   @byte() readonly Type = PacketType.ISP_AIC;
+
+  /** Optional - returned in any immediate response e.g. reply to {@link CS_SEND_AI_INFO} */
   @byte() ReqI = 0;
 
   /** Unique ID of AI player to control */
   @byte() PLID = 0;
 
+  /**
+   * Inputs in {@link AIInputVal} marked 'hold' must be set back to zero after some time.
+   * This can be done either by use of the Time field or by sending a later packet with Value = 0.
+   *
+   * E.g. Set Time to 10 when issuing a {@link CS_CHUP} - hold shift up lever for 0.1 sec.
+   *
+   * E.g. Set Time to 50 when issuing a {@link CS_HORN} - sound horn for 0.5 sec.
+   */
   Inputs: AIInputVal[] = [];
 
   private readonly inputsOffset = 4;
@@ -49,7 +59,15 @@ export class IS_AIC extends SendablePacket {
 }
 
 export class AIInputVal extends SendableStruct {
-  /** Select input value to set */
+  /** Select input value to set
+   *
+   * Inputs marked 'hold' must be set back to zero after some time.
+   * This can be done either by use of the Time field or by sending a later packet with Value = 0.
+   *
+   * E.g. Set Time to 10 when issuing a {@link CS_CHUP} - hold shift up lever for 0.1 sec.
+   *
+   * E.g. Set Time to 50 when issuing a {@link CS_HORN} - sound horn for 0.5 sec.
+   */
   @byte() Input: AICInput = 0;
 
   /**
@@ -119,7 +137,7 @@ export type AIInputValData =
   | {
       Input: AICInput.CS_HORN;
       Time?: number;
-      Value: OnOffValue;
+      Value: 1 | 2 | 3 | 4 | 5;
     }
   | {
       Input: AICInput.CS_FLASH;
@@ -172,17 +190,25 @@ export type AIInputValData =
       Value: AICToggleValue;
     }
   | {
+      Input: AICInput.CS_SEND_AI_INFO;
+      Time?: never;
+    }
+  | {
+      Input: AICInput.CS_REPEAT_AI_INFO;
+      Time: number;
+    }
+  | {
       Input: AICInput.CS_SET_HELP_FLAGS;
-      Time?: number;
+      Time?: never;
       Value: PlayerFlags;
     }
   | {
-      Input: AICInput.CS_RESET_ALL;
-      Time?: number;
+      Input: AICInput.CS_RESET_INPUTS;
+      Time?: never;
     }
   | {
       Input: AICInput.CS_STOP_CONTROL;
-      Time?: number;
+      Time?: never;
     };
 
 type OnOffValue = 0 | 1;
@@ -260,6 +286,14 @@ export enum AICLook {
   RIGHT_PLUS = 7,
 }
 
+/**
+ * Inputs marked 'hold' must be set back to zero after some time.
+ * This can be done either by use of the Time field or by sending a later packet with Value = 0.
+ *
+ * E.g. Set Time to 10 when issuing a {@link CS_CHUP} - hold shift up lever for 0.1 sec.
+ *
+ * E.g. Set Time to 50 when issuing a {@link CS_HORN} - sound horn for 0.5 sec.
+ */
 export enum AICInput {
   /** Steer: 1 hard left / 32768 centre / 65535 hard right */
   CS_MSX,
@@ -270,10 +304,10 @@ export enum AICInput {
   /** Brake */
   CS_BRAKE,
 
-  /** Shift up (set to 1 for a short time then set back to 0) */
+  /** Hold shift up lever */
   CS_CHUP,
 
-  /** Shift down */
+  /** Hold shift down lever */
   CS_CHDN,
 
   /** Ignition: 1 toggle / 2 switch off / 3 switch on */
@@ -288,10 +322,10 @@ export enum AICInput {
   /** Siren */
   CS_SIREN,
 
-  /** Horn */
+  /** Hold horn - 1 to 5 */
   CS_HORN,
 
-  /** Flash */
+  /** Hold flash */
   CS_FLASH,
 
   /** Clutch */
@@ -323,6 +357,15 @@ export enum AICInput {
 
   CS_NUM,
 
+  /** Send an {@link IS_AII} (AI Info) packet */
+  CS_SEND_AI_INFO = 240,
+
+  /**
+   * Start or stop sending regular {@link IS_AII} packets
+   * Time = time interval in hundredths of a second (0 : stop)
+   */
+  CS_REPEAT_AI_INFO = 241,
+
   /** Set help flags.
    *
    * Value can be any combination of
@@ -340,7 +383,7 @@ export enum AICInput {
    *
    * Most inputs are zero / {@link CS_MSX} is 32768 / {@link CS_GEAR} is 255
    */
-  CS_RESET_ALL = 254,
+  CS_RESET_INPUTS = 254,
 
   /**
    * Stop control
