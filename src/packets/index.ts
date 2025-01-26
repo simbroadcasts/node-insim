@@ -158,7 +158,6 @@ export const packetTypeToClass = {
 export { Packet, SendablePacket, SendableStruct, Struct } from './base';
 export {
   AdminCommandResult,
-  AICInput,
   AIFlags,
   ButtonClickFlags,
   ButtonFunction,
@@ -235,7 +234,17 @@ export type { IR_SEL_Data } from './IR_SEL';
 export { IR_SEL, IR_SEL_ReqI } from './IR_SEL';
 export { IS_ACR } from './IS_ACR';
 export type { IS_AIC_Data } from './IS_AIC';
-export { IS_AIC } from './IS_AIC';
+export {
+  AICGear,
+  AICHeadlights,
+  AICIndicators,
+  AICInput,
+  AICLook,
+  AICSteering,
+  AICToggleValue,
+  AIInputVal,
+  IS_AIC,
+} from './IS_AIC';
 export { IS_AII } from './IS_AII';
 export { IS_AXI } from './IS_AXI';
 export type { IS_AXM_Data } from './IS_AXM';

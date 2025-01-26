@@ -1,6 +1,6 @@
 import { byte, word } from '../decorators';
-import { SendablePacket } from './base';
-import type { AICInput } from './enums';
+import { SendablePacket, SendableStruct } from './base';
+import type { PlayerFlags } from './enums';
 import { PacketType } from './enums';
 import type { PacketData } from './types';
 
@@ -8,98 +8,197 @@ import type { PacketData } from './types';
  * AI Control
  */
 export class IS_AIC extends SendablePacket {
-  @byte() readonly Size = 8;
+  public static readonly MAX_INPUTS = 20; // NOTE: Increase if CS_NUM is increased
+
+  /** 4 + 4 * (number of inputs) */
+  @byte() Size = 8;
+
   @byte() readonly Type = PacketType.ISP_AIC;
   @byte() ReqI = 0;
-  @byte() readonly Zero = 0;
 
   /** Unique ID of AI player to control */
   @byte() PLID = 0;
 
-  /** Select input value to set */
-  @byte() Input: AICInput = 0;
+  Inputs: AIInputVal[] = [];
 
-  /** Value to set */
-  @word() Value = 0;
+  private readonly inputsOffset = 4;
 
   constructor(data?: IS_AIC_Data) {
     super();
     this.initialize(data);
   }
+
+  pack() {
+    if (this.Inputs.length > IS_AIC.MAX_INPUTS) {
+      throw new RangeError(
+        `IS_AIC - Too many inputs set (max is ${IS_AIC.MAX_INPUTS}`,
+      );
+    }
+
+    const inputLength = new AIInputVal().getFormatSize();
+    this.Size = this.inputsOffset + this.Inputs.length * inputLength;
+
+    const dataBuffer = super.pack();
+    const objectInfoBuffer = this.Inputs.reduce(
+      (acc, input) => new Uint8Array([...acc, ...input.pack()]),
+      new Uint8Array(),
+    );
+
+    return new Uint8Array([...dataBuffer, ...objectInfoBuffer]);
+  }
 }
+
+export class AIInputVal extends SendableStruct {
+  /** Select input value to set */
+  @byte() Input: AICInput = 0;
+
+  /**
+   * Time to hold (optional, hundredths of a second)
+   *
+   * If the Time value is set, that input will return to default after that time.
+   * This is probably most useful for {@link CS_CHUP} / {@link CS_CHDN} / {@link CS_FLASH} / {@link CS_HORN} inputs.
+   * If you don't use Time then you should send another packet to zero the input.
+   */
+  @byte() Time = 0;
+
+  /** Value to set */
+  @word() Value = 0;
+
+  constructor(data?: AIInputValData) {
+    super();
+    this.initialize(data);
+  }
+}
+
+export type AIInputValData =
+  | {
+      Input: AICInput.CS_MSX;
+      Time?: number;
+      Value: number | AICSteering;
+    }
+  | {
+      Input: AICInput.CS_BRAKE;
+      Time?: number;
+      Value: number;
+    }
+  | {
+      Input: AICInput.CS_THROTTLE;
+      Time?: number;
+      Value: number;
+    }
+  | {
+      Input: AICInput.CS_CHUP;
+      Time?: number;
+      Value: OnOffValue;
+    }
+  | {
+      Input: AICInput.CS_CHDN;
+      Time?: number;
+      Value: OnOffValue;
+    }
+  | {
+      Input: AICInput.CS_IGNITION;
+      Time?: number;
+      Value: AICToggleValue;
+    }
+  | {
+      Input: AICInput.CS_EXTRALIGHT;
+      Time?: number;
+      Value: AICToggleValue;
+    }
+  | {
+      Input: AICInput.CS_HEADLIGHTS;
+      Time?: number;
+      Value: AICHeadlights;
+    }
+  | {
+      Input: AICInput.CS_SIREN;
+      Time?: number;
+      Value: OnOffValue;
+    }
+  | {
+      Input: AICInput.CS_HORN;
+      Time?: number;
+      Value: OnOffValue;
+    }
+  | {
+      Input: AICInput.CS_FLASH;
+      Time?: number;
+      Value: OnOffValue;
+    }
+  | {
+      Input: AICInput.CS_CLUTCH;
+      Time?: number;
+      Value: number;
+    }
+  | {
+      Input: AICInput.CS_HANDBRAKE;
+      Time?: number;
+      Value: number;
+    }
+  | {
+      Input: AICInput.CS_INDICATORS;
+      Time?: number;
+      Value: AICIndicators;
+    }
+  | {
+      Input: AICInput.CS_GEAR;
+      Time?: number;
+      Value: AICGear;
+    }
+  | {
+      Input: AICInput.CS_LOOK;
+      Time?: number;
+      Value: AICLook;
+    }
+  | {
+      Input: AICInput.CS_PITSPEED;
+      Time?: number;
+      Value: AICToggleValue;
+    }
+  | {
+      Input: AICInput.CS_TCDISABLE;
+      Time?: number;
+      Value: AICToggleValue;
+    }
+  | {
+      Input: AICInput.CS_FOGREAR;
+      Time?: number;
+      Value: AICToggleValue;
+    }
+  | {
+      Input: AICInput.CS_FOGFRONT;
+      Time?: number;
+      Value: AICToggleValue;
+    }
+  | {
+      Input: AICInput.CS_SET_HELP_FLAGS;
+      Time?: number;
+      Value: PlayerFlags;
+    }
+  | {
+      Input: AICInput.CS_RESET_ALL;
+      Time?: number;
+    }
+  | {
+      Input: AICInput.CS_STOP_CONTROL;
+      Time?: number;
+    };
 
 type OnOffValue = 0 | 1;
 
-export type IS_AIC_Data = Omit<PacketData<IS_AIC>, 'Input' | 'Value'> &
-  (
-    | {
-        Input: AICInput.CS_MSX;
-        Value: number | AICSteering;
-      }
-    | {
-        Input: AICInput.CS_CHUP;
-        Value: OnOffValue;
-      }
-    | {
-        Input: AICInput.CS_CHDN;
-        Value: OnOffValue;
-      }
-    | {
-        Input: AICInput.CS_IGNITION;
-        Value: OnOffValue;
-      }
-    | {
-        Input: AICInput.CS_EXTRALIGHT;
-        Value: OnOffValue;
-      }
-    | {
-        Input: AICInput.CS_HEADLIGHTS;
-        Value: AICHeadlights;
-      }
-    | {
-        Input: AICInput.CS_SIREN;
-        Value: OnOffValue;
-      }
-    | {
-        Input: AICInput.CS_HORN;
-        Value: OnOffValue;
-      }
-    | {
-        Input: AICInput.CS_FLASH;
-        Value: OnOffValue;
-      }
-    | {
-        Input: AICInput.CS_INDICATORS;
-        Value: AICIndicators;
-      }
-    | {
-        Input: AICInput.CS_GEAR;
-        Value: AICGear;
-      }
-    | {
-        Input: AICInput.CS_LOOK;
-        Value: AICLook;
-      }
-    | {
-        Input: AICInput.CS_PITSPEED;
-        Value: OnOffValue;
-      }
-    | {
-        Input: AICInput.CS_TCDISABLE;
-        Value: OnOffValue;
-      }
-    | {
-        Input: AICInput.CS_FOGREAR;
-        Value: OnOffValue;
-      }
-    | {
-        Input: AICInput.CS_FOGFRONT;
-        Value: OnOffValue;
-      }
-  );
+export enum AICToggleValue {
+  TOGGLE = 1,
+  SWITCH_ON = 2,
+  SWITCH_OFF = 3,
+}
+
+export type IS_AIC_Data = PacketData<IS_AIC>;
 
 export enum AICSteering {
+  HARD_LEFT = 1,
   CENTRE = 32768,
+  HARD_RIGHT = 65535,
 }
 
 export enum AICHeadlights {
@@ -159,4 +258,94 @@ export enum AICLook {
 
   /** Look right more */
   RIGHT_PLUS = 7,
+}
+
+export enum AICInput {
+  /** Steer: 1 hard left / 32768 centre / 65535 hard right */
+  CS_MSX,
+
+  /** Throttle */
+  CS_THROTTLE,
+
+  /** Brake */
+  CS_BRAKE,
+
+  /** Shift up (set to 1 for a short time then set back to 0) */
+  CS_CHUP,
+
+  /** Shift down */
+  CS_CHDN,
+
+  /** Ignition: 1 toggle / 2 switch off / 3 switch on */
+  CS_IGNITION,
+
+  /** Extra light: 1 toggle / 2 switch off / 3 switch on */
+  CS_EXTRALIGHT,
+
+  /** Headlights: 1: off / 2: side / 3: low / 4: high */
+  CS_HEADLIGHTS,
+
+  /** Siren */
+  CS_SIREN,
+
+  /** Horn */
+  CS_HORN,
+
+  /** Flash */
+  CS_FLASH,
+
+  /** Clutch */
+  CS_CLUTCH,
+
+  /** Handbrake */
+  CS_HANDBRAKE,
+
+  /** 1: cancel / 2: left / 3: right / 4: hazard */
+  CS_INDICATORS,
+
+  /** Gear for shifter (leave at 255 for sequential control) */
+  CS_GEAR,
+
+  /** Look: 0: none / 4: left / 5: left+ / 6: right / 7: right+ */
+  CS_LOOK,
+
+  /** Pit speed limiter: 1 toggle / 2 switch off / 3 switch on */
+  CS_PITSPEED,
+
+  /** Traction control disable: 1 toggle / 2 switch off / 3 switch on */
+  CS_TCDISABLE,
+
+  /** Rear fog light: 1 toggle / 2 switch off / 3 switch on */
+  CS_FOGREAR,
+
+  /** Front fog light: 1 toggle / 2 switch off / 3 switch on */
+  CS_FOGFRONT,
+
+  CS_NUM,
+
+  /** Set help flags.
+   *
+   * Value can be any combination of
+   * - {@link PIF_AUTOGEARS}
+   * - {@link PIF_HELP_B}
+   * - {@link PIF_AUTOCLUTCH}
+   *
+   * Default value for an AI driver is {@link PIF_AUTOCLUTCH} only.
+   * If you set {@link PIF_AUTOGEARS} you don't need to set {@link PIF_AUTOCLUTCH}.
+   */
+  CS_SET_HELP_FLAGS = 253,
+
+  /**
+   * Reset all inputs
+   *
+   * Most inputs are zero / {@link CS_MSX} is 32768 / {@link CS_GEAR} is 255
+   */
+  CS_RESET_ALL = 254,
+
+  /**
+   * Stop control
+   *
+   * The AI driver will stop the car.
+   */
+  CS_STOP_CONTROL = 255,
 }
