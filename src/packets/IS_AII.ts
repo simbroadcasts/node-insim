@@ -19,7 +19,10 @@ export class IS_AII extends Packet {
   @byte() ReqI = 0;
 
   @byte() PLID = 0;
+
+  /** Identical to {@link OutSimMain} */
   @struct(OutSimMain) OSData = new OutSimMain();
+
   @byte() Flags: AIFlags | 0 = 0;
 
   /** Reverse: 0, Neutral: 1, First: 2... */
