@@ -70,16 +70,16 @@ export class InSim extends TypedEmitter<InSimEvents> {
   /**
    * Connect to a server via InSim.
    */
-  connect(
+  connect = (
     options: Omit<Partial<IS_ISI_Data>, 'InSimVer'> & InSimConnectionOptions,
-  ) {
+  ) => {
     if (this.connection !== null) {
       log('Cannot connect - already connected');
       return;
     }
 
     this._connect(options);
-  }
+  };
 
   /**
    * Connect to InSim Relay.
@@ -126,7 +126,7 @@ export class InSim extends TypedEmitter<InSimEvents> {
    * The relay will also accept, but not forward
    * TINY_NONE    // for relay-connection maintenance
    */
-  connectRelay() {
+  connectRelay = () => {
     this._connect(
       {
         Host: 'isrelay.lfs.net',
@@ -135,12 +135,12 @@ export class InSim extends TypedEmitter<InSimEvents> {
       },
       true,
     );
-  }
+  };
 
-  private _connect(
+  private _connect = (
     options: Partial<IS_ISI_Data> & InSimConnectionOptions,
     isRelay = false,
-  ) {
+  ) => {
     this._options = defaults(options, defaultInSimOptions);
 
     log(
@@ -188,16 +188,16 @@ export class InSim extends TypedEmitter<InSimEvents> {
     });
 
     this.connection.on('data', (data) => this.handlePacket(data));
-  }
+  };
 
-  disconnect() {
+  disconnect = () => {
     if (this.connection !== null) {
       log('Disconnecting...');
       this.connection.disconnect();
     }
-  }
+  };
 
-  send(packet: SendablePacket) {
+  send = (packet: SendablePacket) => {
     if (this.connection === null) {
       log('Cannot send a packet - not connected');
       return;
@@ -210,7 +210,7 @@ export class InSim extends TypedEmitter<InSimEvents> {
     const data = packet.pack();
 
     this.connection.send(data);
-  }
+  };
 
   get options(): InSimOptions {
     return this._options;
@@ -224,7 +224,7 @@ export class InSim extends TypedEmitter<InSimEvents> {
    *
    * The maximum length of the message is {@link MSX_MSG_MAX_LENGTH} characters.
    */
-  sendMessage(message: string) {
+  sendMessage = (message: string) => {
     log('Send message:', message);
 
     if (message.startsWith(InSim.COMMAND_PREFIX)) {
@@ -250,17 +250,17 @@ export class InSim extends TypedEmitter<InSimEvents> {
         Msg: message,
       }),
     );
-  }
+  };
 
   /**
    * Send a message which will appear on the local computer only.
    *
    * The maximum length of the message is {@link MSL_MSG_MAX_LENGTH} characters.
    */
-  sendLocalMessage(
+  sendLocalMessage = (
     message: string,
     sound: MessageSound = MessageSound.SND_SILENT,
-  ) {
+  ) => {
     log('Send local message:', message);
 
     return this.send(
@@ -269,14 +269,14 @@ export class InSim extends TypedEmitter<InSimEvents> {
         Sound: sound,
       }),
     );
-  }
+  };
 
   /** Send a message to a specific connection */
-  sendMessageToConnection(
+  sendMessageToConnection = (
     ucid: number,
     message: string,
     sound: MessageSound = MessageSound.SND_SILENT,
-  ) {
+  ) => {
     log('Send message to connection:', ucid, message);
 
     this.send(
@@ -286,14 +286,14 @@ export class InSim extends TypedEmitter<InSimEvents> {
         Sound: sound,
       }),
     );
-  }
+  };
 
   /** Send a message to a specific player */
-  sendMessageToPlayer(
+  sendMessageToPlayer = (
     plid: number,
     message: string,
     sound: MessageSound = MessageSound.SND_SILENT,
-  ) {
+  ) => {
     log('Send message to player:', plid, message);
 
     this.send(
@@ -303,9 +303,9 @@ export class InSim extends TypedEmitter<InSimEvents> {
         Sound: sound,
       }),
     );
-  }
+  };
 
-  private async handlePacket(data: Uint8Array) {
+  private handlePacket = async (data: Uint8Array) => {
     const header = unpack('<BB', data.buffer);
 
     if (!header) {
@@ -333,9 +333,9 @@ export class InSim extends TypedEmitter<InSimEvents> {
     packetInstance.SIZE_MULTIPLIER = this.sizeMultiplier;
 
     this.emit(packetType, packetInstance.unpack(data) as never, this);
-  }
+  };
 
-  private handleKeepAlive(packet: IS_TINY) {
+  private handleKeepAlive = (packet: IS_TINY) => {
     if (packet.SubT === TinyType.TINY_NONE) {
       this.send(
         new IS_TINY({
@@ -343,7 +343,7 @@ export class InSim extends TypedEmitter<InSimEvents> {
         }),
       );
     }
-  }
+  };
 }
 
 InSim.defaultMaxListeners = 255;
