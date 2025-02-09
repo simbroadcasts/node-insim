@@ -36,9 +36,9 @@ jobs:
           cmd: docs:generate
 
       - name: Upload Pages Artifact
-        uses: actions/upload-pages-artifact@v3.0.1
+        uses: actions/upload-pages-artifact@v3
         with:
           path: docs/
 
       - name: Deploy Documentation to GitHub Pages
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
