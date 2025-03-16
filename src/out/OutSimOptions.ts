@@ -1,5 +1,5 @@
 /** OutSim Options flags that make up OutSim Opts number in cfg.txt */
-export const enum OutSimOptions {
+export enum OutSimOptions {
   OSO_HEADER = 1,
   OSO_ID = 2,
   OSO_TIME = 4,
