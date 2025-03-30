@@ -93,17 +93,27 @@ describe('lfspack', () => {
     });
   });
 
-  describe('strings', () => {
+  describe('strings - pack', () => {
     const buffer = [
       97, 98, 99, 32, 94, 69, 236, 154, 232, 124, 42, 58, 92, 47, 63, 34, 60,
-      62, 35,
+      62, 35, 94, 94,
     ];
-    const format = '19s';
-    const values = ['abc ^Eì\x9Aè|*:\\/?"<>#', 'abc ěšč|*:\\/?"<>#'];
+    const format = '21s';
+    const value = 'abc ěšč|*:\\/?"<>#^^';
 
-    it(`'${format}' should pack [${values}] into [${buffer}]`, () => {
-      expect(pack(format, [values[1]])).toEqual(new Uint8Array(buffer));
+    it(`'${format}' should pack [${value}] into [${buffer}]`, () => {
+      expect(pack(format, [value])).toEqual(new Uint8Array(buffer));
     });
+  });
+
+  describe('strings - unpack', () => {
+    const buffer = [
+      97, 98, 99, 32, 94, 69, 236, 154, 232, 124, 42, 58, 92, 47, 63, 34, 60,
+      62, 35, 94, 94, 0,
+    ];
+    const format = '21s';
+    const values = ['abc ^Eì\x9Aè|*:\\/?"<>#^^', 'abc ěšč|*:\\/?"<>#^'];
+
     it(`'${format}' should unpack [${buffer}] into [${values}]`, () => {
       expect(unpack(format, new Uint8Array(buffer).buffer)).toEqual([values]);
     });
