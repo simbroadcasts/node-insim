@@ -312,6 +312,15 @@ inSim.on(PacketType.ISP_VER, (packet: IS_VER) => {
 });
 ```
 
+#### Special characters
+
+Special care needs to be taken when sending strings containing caret (`^`) and slash (`/`) characters:
+
+- A caret needs to be escaped as `^^` because the caret symbol acts as an escape character in LFS. Sending `^^hello` as a message will display `^hello` in LFS. Sending just `^hello` would appear as `#ello`.
+- A slash needs to be escaped as `^s`, otherwise it is treated as an LFS in-game command prefix when used in a message packet. Sending `^sjoin` as a message will display `/join` in LFS, whereas sending `/join` will make the player join the track.
+
+
+
 ### InSim Relay
 
 To connect to the InSim Relay service, use the `connectRelay()` method. Once connected,
