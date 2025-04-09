@@ -215,8 +215,8 @@ type OnOffValue = 0 | 1;
 
 export enum AICToggleValue {
   TOGGLE = 1,
-  SWITCH_ON = 2,
-  SWITCH_OFF = 3,
+  SWITCH_OFF = 2,
+  SWITCH_ON = 3,
 }
 
 export type IS_AIC_Data = PacketData<IS_AIC>;
