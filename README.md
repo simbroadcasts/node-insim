@@ -261,7 +261,8 @@ inSim2.connect({
   IName: 'Node InSim App',
 });
 
-inSim.on(PacketType.ISP_VER, onVersion);
+inSim1.on(PacketType.ISP_VER, onVersion);
+inSim2.on(PacketType.ISP_VER, onVersion);
 
 function onVersion(packet: IS_VER, inSim: InSim) {
   console.log(`Connected to ${inSim.options.Host}:${inSim.options.Port}`);
