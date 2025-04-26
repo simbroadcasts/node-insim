@@ -35,7 +35,7 @@ export class IS_MSO extends Packet {
   /** 4, 8, 12... 128 characters - last byte is zero */
   @stringNull(128) Msg = '';
 
-  unpack(buffer: Uint8Array): this {
+  unpack(buffer: Uint8Array<ArrayBuffer>): this {
     const data = unpack(`<${getFormat(this, 'Size')}`, buffer.buffer);
 
     if (!data || data.length === 0) {

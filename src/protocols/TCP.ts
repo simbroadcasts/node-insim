@@ -9,7 +9,7 @@ const log = baseLog.extend('tcp');
 /** @internal */
 export class TCP extends Protocol {
   private stream: net.Socket | null = null;
-  private tempBuf: Buffer | null = null;
+  private tempBuf: Uint8Array<ArrayBuffer> | null = null;
 
   constructor(host: string, port: number, packetSizeMultiplier = 1) {
     super({ host, port, packetSizeMultiplier });
@@ -31,8 +31,8 @@ export class TCP extends Protocol {
       this.emit('error', error);
     });
 
-    this.stream.on('data', (data) => {
-      log('Data received:', data instanceof Buffer ? data.join() : data);
+    this.stream.on('data', (data: Uint8Array<ArrayBuffer>) => {
+      log('Data received:', data.join());
 
       // Set or append to temp buffer
       if (this.tempBuf === null) {
@@ -45,7 +45,7 @@ export class TCP extends Protocol {
     });
   };
 
-  send = (data: Uint8Array) => {
+  send = (data: Uint8Array<ArrayBuffer>) => {
     if (this.stream === null) {
       log('Cannot send data - not connected');
       return;

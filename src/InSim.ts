@@ -305,7 +305,7 @@ export class InSim extends TypedEmitter<InSimEvents> {
     );
   };
 
-  private handlePacket = async (data: Uint8Array) => {
+  private handlePacket = async (data: Uint8Array<ArrayBuffer>) => {
     const header = unpack('<BB', data.buffer);
 
     if (!header) {

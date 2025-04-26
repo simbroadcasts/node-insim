@@ -22,7 +22,7 @@ export class IS_MCI extends Packet {
   /** Car info for each player, 1 to {@link MCI_MAX_CARS} (NumC) */
   Info: CompCar[] = [];
 
-  unpack(buffer: Uint8Array): this {
+  unpack(buffer: Uint8Array<ArrayBuffer>): this {
     super.unpack(buffer);
 
     const compCarSize = new CompCar().getFormatSize();

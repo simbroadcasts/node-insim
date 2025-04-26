@@ -27,7 +27,7 @@ describe('TCP', () => {
     });
 
     tcp.connect();
-    tcp.on('data', (buffer: Uint8Array) => {
+    tcp.on('data', (buffer) => {
       expect(buffer).toEqual(new Uint8Array([1, 3, 0, 0]));
       tcp.disconnect();
       done();
@@ -50,7 +50,7 @@ describe('TCP', () => {
     });
 
     tcp.connect();
-    tcp.on('data', (buffer: Uint8Array) => {
+    tcp.on('data', (buffer) => {
       expect(buffer).toEqual(new Uint8Array(packets[packetsReceived]));
 
       packetsReceived++;

@@ -31,7 +31,7 @@ export class IS_ACR extends Packet {
   /** 4, 8, 12... 64 characters - last byte is zero */
   @stringNull(64) Text = '';
 
-  unpack(buffer: Uint8Array): this {
+  unpack(buffer: Uint8Array<ArrayBuffer>): this {
     const data = unpack(`<${getFormat(this, 'Size')}`, buffer.buffer);
 
     if (!data || data.length === 0) {

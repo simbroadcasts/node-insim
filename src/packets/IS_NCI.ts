@@ -31,7 +31,7 @@ export class IS_NCI extends Packet {
   /** IP address formatted as 255.255.255.255 */
   @unsigned() IPAddress = '';
 
-  unpack(buffer: Uint8Array): this {
+  unpack(buffer: Uint8Array<ArrayBuffer>): this {
     super.unpack(buffer);
 
     this.IPAddress = buffer.slice(12, 16).join('.');

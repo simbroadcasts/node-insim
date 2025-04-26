@@ -29,7 +29,7 @@ export class IS_HLV extends Packet {
   /** Car contact object */
   C: CarContOBJ = new CarContOBJ();
 
-  unpack(buffer: Uint8Array): this {
+  unpack(buffer: Uint8Array<ArrayBuffer>): this {
     super.unpack(buffer);
 
     const start = this.getFormatSize();

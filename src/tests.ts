@@ -13,7 +13,7 @@ type TestPacketParams<Data extends PacketTestData<P>, P extends Packet> = {
   size: number;
   type: PacketType;
   data: Data;
-  buffer: Uint8Array;
+  buffer: Uint8Array<ArrayBuffer>;
 };
 
 export function testBothWaysPacket<
@@ -35,7 +35,7 @@ export function testInfoPacket<
       const actualValue = packet[key as keyof P];
       try {
         expect(actualValue).toEqual(expectedValue);
-      } catch (e) {
+      } catch {
         const diff = printDiffOrStringify(
           expectedValue,
           actualValue,
@@ -72,7 +72,7 @@ export function testInstructionPacketConstructor<
       const actualValue = packet[key as keyof Packet];
       try {
         expect(actualValue).toEqual(expectedValue);
-      } catch (e) {
+      } catch {
         const diff = printDiffOrStringify(
           expectedValue,
           actualValue,

@@ -35,7 +35,7 @@ export class IS_PLH extends SendablePacket {
     this.initialize(data);
   }
 
-  unpack(buffer: Uint8Array): this {
+  unpack(buffer: Uint8Array<ArrayBuffer>): this {
     super.unpack(buffer);
 
     const playerHandicapLength = new PlayerHCap().getFormatSize();

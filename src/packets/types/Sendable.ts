@@ -1,3 +1,3 @@
 export type Sendable = {
-  pack: () => Uint8Array;
+  pack: () => Uint8Array<ArrayBuffer>;
 };

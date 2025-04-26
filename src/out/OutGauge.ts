@@ -79,7 +79,7 @@ export class OutGauge extends TypedEmitter<OutGaugeEvents> {
     this.connection.disconnect();
   }
 
-  private handleMessage(data: Uint8Array) {
+  private handleMessage(data: Uint8Array<ArrayBuffer>) {
     const outGaugePack = new OutGaugePack();
     this.emit('packet', outGaugePack.unpack(data));
   }

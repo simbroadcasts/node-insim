@@ -79,7 +79,7 @@ export class OutSimPack extends Struct {
   /** Optional - only if OutSim ID is specified */
   @int() ID = 0;
 
-  unpack(buffer: Uint8Array): this {
+  unpack(buffer: Uint8Array<ArrayBuffer>): this {
     let outSimData = buffer;
 
     if (buffer.length === OutSimPack.MIN_SIZE) {

@@ -24,7 +24,7 @@ export class IR_HOS extends Packet {
   /** Host info for every host in the Relay. 1 to 6 of these in a {@link IR_HOS} */
   Info: HInfo[] = [];
 
-  unpack(buffer: Uint8Array): this {
+  unpack(buffer: Uint8Array<ArrayBuffer>): this {
     super.unpack(buffer);
 
     const hostInfoOffset = this.getFormatSize();

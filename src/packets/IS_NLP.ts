@@ -30,7 +30,7 @@ export class IS_NLP extends Packet {
   /** Node and lap of each player, 1 to {@link NLP_MAX_CARS} (NumP) */
   Info: NodeLap[] = [];
 
-  unpack(buffer: Uint8Array): this {
+  unpack(buffer: Uint8Array<ArrayBuffer>): this {
     super.unpack(buffer);
 
     const data = unpack(this.getFormat(), buffer.buffer);

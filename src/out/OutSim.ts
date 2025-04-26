@@ -82,7 +82,7 @@ export class OutSim extends TypedEmitter<OutSimEvents> {
     this.connection.disconnect();
   }
 
-  private handleMessage(data: Uint8Array) {
+  private handleMessage(data: Uint8Array<ArrayBuffer>) {
     const outSimPack =
       this._options.OutSimOpts > 0
         ? new OutSimPack2(this._options.OutSimOpts)

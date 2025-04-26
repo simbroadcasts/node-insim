@@ -62,7 +62,7 @@ export class Struct implements Receivable {
 
   /** @ignore */
   public unpack(
-    buffer: Uint8Array,
+    buffer: Uint8Array<ArrayBuffer>,
     propertyFormatOverrides?: Record<string, string>,
   ): this {
     const format = this.getFormat(propertyFormatOverrides);

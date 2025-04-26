@@ -3,7 +3,7 @@ import { TypedEmitter } from 'tiny-typed-emitter';
 type Events = {
   connect: () => void;
   disconnect: () => void;
-  data: (data: Uint8Array) => void;
+  data: (data: Uint8Array<ArrayBuffer>) => void;
   error: (error: Error) => void;
   timeout: () => void;
 };
@@ -33,5 +33,5 @@ export abstract class Protocol extends TypedEmitter<Events> {
 
   abstract connect(): void;
   abstract disconnect(): void;
-  abstract send(data: Uint8Array): void;
+  abstract send(data: Uint8Array<ArrayBuffer>): void;
 }

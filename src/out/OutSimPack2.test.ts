@@ -670,7 +670,7 @@ describe('OutSimPack2', () => {
       expect(packet.Sp3).toEqual(0);
       expect(packet.EngineAngVel).toEqual(0);
       expect(packet.MaxTorqueAtVel).toEqual(0);
-      // eslint-disable-next-line @typescript-eslint/no-loss-of-precision
+      // eslint-disable-next-line no-loss-of-precision
       expect(packet.CurrentLapDist).toEqual(123.42727661132812);
       expect(packet.IndexedDistance).toEqual(122.71770477294922);
       expect(packet.OSWheels).toHaveLength(4);
@@ -929,7 +929,7 @@ describe('OutSimPack2', () => {
       expect(packet.OSWheels[0].XForce).toEqual(4792.43310546875);
       expect(packet.OSWheels[0].YForce).toEqual(3517.847900390625);
       expect(packet.OSWheels[0].VerticalLoad).toEqual(4812.8447265625);
-      // eslint-disable-next-line @typescript-eslint/no-loss-of-precision
+      // eslint-disable-next-line no-loss-of-precision
       expect(packet.OSWheels[0].AngVel).toEqual(70.45999145507812);
       expect(packet.OSWheels[0].LeanRelToRoad).toEqual(0.02965652011334896);
       expect(packet.OSWheels[0].AirTemp).toEqual(40);
@@ -971,7 +971,7 @@ describe('OutSimPack2', () => {
       expect(packet.OSWheels[3].Steer).toEqual(-0.08383111655712128);
       expect(packet.OSWheels[3].XForce).toEqual(247.85545349121094);
       expect(packet.OSWheels[3].YForce).toEqual(-27.881364822387695);
-      // eslint-disable-next-line @typescript-eslint/no-loss-of-precision
+      // eslint-disable-next-line no-loss-of-precision
       expect(packet.OSWheels[3].VerticalLoad).toEqual(17.367630004882812);
       expect(packet.OSWheels[3].AngVel).toEqual(62.63266372680664);
       expect(packet.OSWheels[3].LeanRelToRoad).toEqual(0.048830192536115646);
@@ -1416,7 +1416,7 @@ describe('OutSimPack2', () => {
       expect(packet.Sp3).toEqual(0);
       expect(packet.EngineAngVel).toEqual(418.0706787109375);
       expect(packet.MaxTorqueAtVel).toEqual(345.3147277832031);
-      // eslint-disable-next-line @typescript-eslint/no-loss-of-precision
+      // eslint-disable-next-line no-loss-of-precision
       expect(packet.CurrentLapDist).toEqual(123.42727661132812);
       expect(packet.IndexedDistance).toEqual(122.71770477294922);
       expect(packet.OSWheels).toHaveLength(4);
@@ -1425,7 +1425,7 @@ describe('OutSimPack2', () => {
       expect(packet.OSWheels[0].XForce).toEqual(4792.43310546875);
       expect(packet.OSWheels[0].YForce).toEqual(3517.847900390625);
       expect(packet.OSWheels[0].VerticalLoad).toEqual(4812.8447265625);
-      // eslint-disable-next-line @typescript-eslint/no-loss-of-precision
+      // eslint-disable-next-line no-loss-of-precision
       expect(packet.OSWheels[0].AngVel).toEqual(70.45999145507812);
       expect(packet.OSWheels[0].LeanRelToRoad).toEqual(0.02965652011334896);
       expect(packet.OSWheels[0].AirTemp).toEqual(40);
@@ -1467,7 +1467,7 @@ describe('OutSimPack2', () => {
       expect(packet.OSWheels[3].Steer).toEqual(-0.08383111655712128);
       expect(packet.OSWheels[3].XForce).toEqual(247.85545349121094);
       expect(packet.OSWheels[3].YForce).toEqual(-27.881364822387695);
-      // eslint-disable-next-line @typescript-eslint/no-loss-of-precision
+      // eslint-disable-next-line no-loss-of-precision
       expect(packet.OSWheels[3].VerticalLoad).toEqual(17.367630004882812);
       expect(packet.OSWheels[3].AngVel).toEqual(62.63266372680664);
       expect(packet.OSWheels[3].LeanRelToRoad).toEqual(0.048830192536115646);

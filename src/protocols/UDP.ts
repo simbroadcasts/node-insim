@@ -69,7 +69,7 @@ export class UDP extends Protocol {
       this.emit('error', error);
     });
 
-    this.socket.on('message', (data) => {
+    this.socket.on('message', (data: Uint8Array<ArrayBuffer>) => {
       log('Data received:', data.join());
       this.emit('data', data);
 
@@ -97,7 +97,7 @@ export class UDP extends Protocol {
     }
   };
 
-  send = (data: Uint8Array) => {
+  send = (data: Uint8Array<ArrayBuffer>) => {
     if (this.socket === null) {
       log('Cannot send - not connected');
       return;

@@ -91,7 +91,7 @@ export class OutGaugePack extends Struct {
   /** Optional - only if OutGauge ID is specified */
   @int() ID = 0;
 
-  unpack(buffer: Uint8Array): this {
+  unpack(buffer: Uint8Array<ArrayBuffer>): this {
     let outGaugeData = buffer;
 
     if (buffer.length === OutGaugePack.MIN_SIZE) {
