@@ -1,6 +1,5 @@
 import { byte, char } from '../../decorators';
 import { SendableStruct } from '../base';
-import type { PlayerHCapFlags } from '../enums';
 import type { StructData } from '../types';
 
 export class PlayerHCap extends SendableStruct {
@@ -20,4 +19,15 @@ export class PlayerHCap extends SendableStruct {
     super();
     this.initialize(data);
   }
+}
+
+export enum PlayerHCapFlags {
+  /** Set added mass */
+  MASS = 1,
+
+  /** Set intake restriction */
+  INTAKE_RESTRICTION = 2,
+
+  /** Avoid showing a message on player's screen */
+  SILENT = 128,
 }

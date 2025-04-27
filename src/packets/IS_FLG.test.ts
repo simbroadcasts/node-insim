@@ -1,7 +1,7 @@
 import type { PacketTestData } from '../tests';
 import { testInfoPacket } from '../tests';
-import { FlagType, PacketType } from './enums';
-import { IS_FLG } from './IS_FLG';
+import { PacketType } from './enums';
+import { FlagType, IS_FLG } from './IS_FLG';
 
 const size = 8;
 

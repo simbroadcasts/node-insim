@@ -1,11 +1,8 @@
 import { testInstructionPacket } from '../tests';
-import {
-  ObjectIndex,
-  OCOAction,
-  OCOAutocrossStartLights,
-  PacketType,
-} from './enums';
+import { ObjectIndex, PacketType } from './enums';
 import type { IS_OCO_Data } from './IS_OCO';
+import { OCOAutocrossStartLights } from './IS_OCO';
+import { OCOAction } from './IS_OCO';
 import { IS_OCO } from './IS_OCO';
 
 const size = 8;

@@ -1,6 +1,5 @@
 import { byte } from '../decorators';
 import { SendablePacket } from './base';
-import type { ButtonFunction } from './enums';
 import { PacketType } from './enums';
 import { IS_BTN } from './IS_BTN';
 import type { PacketData } from './types';
@@ -53,6 +52,20 @@ export class IS_BFN extends SendablePacket {
 
     return super.pack();
   }
+}
+
+export enum ButtonFunction {
+  /** Instruction: delete one button or range of buttons (must set ClickID) */
+  BFN_DEL_BTN,
+
+  /** Instruction: clear all buttons made by this insim instance */
+  BFN_CLEAR,
+
+  /** Info: user cleared this insim instance's buttons */
+  BFN_USER_CLEAR,
+
+  /** User request: SHIFT+B or SHIFT+I - request for buttons */
+  BFN_REQUEST,
 }
 
 export type IS_BFN_Data = PacketData<IS_BFN>;

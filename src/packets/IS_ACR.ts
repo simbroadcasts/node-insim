@@ -2,7 +2,6 @@ import { byte, getFormat, stringNull } from '../decorators';
 import { InSimError } from '../errors';
 import { unpack } from '../lfspack';
 import { Packet } from './base';
-import type { AdminCommandResult } from './enums';
 import { PacketType } from './enums';
 
 /**
@@ -47,4 +46,10 @@ export class IS_ACR extends Packet {
 
     return this;
   }
+}
+
+export enum AdminCommandResult {
+  PROCESSED = 1,
+  REJECTED = 2,
+  UNKNOWN_COMMAND = 3,
 }

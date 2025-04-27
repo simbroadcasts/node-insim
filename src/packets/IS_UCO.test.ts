@@ -1,7 +1,7 @@
 import type { PacketTestData } from '../tests';
 import { testInfoPacket } from '../tests';
-import { PacketType, UCOAction } from './enums';
-import { IS_UCO } from './IS_UCO';
+import { PacketType } from './enums';
+import { IS_UCO, UCOAction } from './IS_UCO';
 import { CarContOBJ, ObjectInfo } from './structs';
 
 const size = 28;

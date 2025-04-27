@@ -1,7 +1,7 @@
 import type { PacketTestData } from '../tests';
 import { testInfoPacket } from '../tests';
-import { PacketType, PitLaneFact } from './enums';
-import { IS_PLA } from './IS_PLA';
+import { PacketType } from './enums';
+import { IS_PLA, PitLaneFact } from './IS_PLA';
 
 const size = 8;
 

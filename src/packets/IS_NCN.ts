@@ -1,6 +1,5 @@
 import { byte, stringNull } from '../decorators';
 import { Packet } from './base';
-import type { ConnectionFlags } from './enums';
 import { PacketType } from './enums';
 
 /**
@@ -32,4 +31,9 @@ export class IS_NCN extends Packet {
   @byte() Flags: ConnectionFlags | 0 = 0;
 
   @byte() private readonly Sp3 = 0;
+}
+
+export enum ConnectionFlags {
+  /** Remote */
+  REMOTE = 4,
 }

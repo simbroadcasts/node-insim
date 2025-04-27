@@ -1,6 +1,5 @@
 import { byte } from '../decorators';
 import { Packet } from './base';
-import type { ButtonClickFlags } from './enums';
 import { PacketType } from './enums';
 
 /**
@@ -26,4 +25,18 @@ export class IS_BTC extends Packet {
   @byte() CFlags: ButtonClickFlags | 0 = 0;
 
   @byte() private readonly Sp3 = 0;
+}
+
+export enum ButtonClickFlags {
+  /** Left click */
+  ISB_LMB = 1,
+
+  /** Right click */
+  ISB_RMB = 2,
+
+  /** Ctrl + click */
+  ISB_CTRL = 4,
+
+  /** Shift + click */
+  ISB_SHIFT = 8,
 }

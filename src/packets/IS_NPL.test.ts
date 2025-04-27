@@ -1,15 +1,13 @@
 import type { PacketTestData } from '../tests';
 import { stringToBytes, testInfoPacket } from '../tests';
+import { PacketType, PlayerFlags, TyreCompound } from './enums';
 import {
   CarConfiguration,
-  PacketType,
+  IS_NPL,
   PassengerFlags,
-  PlayerFlags,
   PlayerType,
   SetupFlags,
-  TyreCompound,
-} from './enums';
-import { IS_NPL } from './IS_NPL';
+} from './IS_NPL';
 
 const size = 76;
 

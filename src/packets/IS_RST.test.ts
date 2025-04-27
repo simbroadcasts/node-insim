@@ -1,7 +1,7 @@
 import type { PacketTestData } from '../tests';
 import { stringToBytes, testInfoPacket } from '../tests';
-import { PacketType, RaceFlags, Wind } from './enums';
-import { IS_RST } from './IS_RST';
+import { PacketType, Wind } from './enums';
+import { IS_RST, RaceFlags } from './IS_RST';
 
 const size = 28;
 

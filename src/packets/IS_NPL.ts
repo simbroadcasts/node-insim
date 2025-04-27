@@ -1,13 +1,7 @@
 import { byte, carName, string, stringNull, word } from '../decorators';
 import { Packet } from './base';
-import type {
-  PassengerFlags,
-  PlayerFlags,
-  PlayerType,
-  SetupFlags,
-  TyreCompound,
-} from './enums';
-import { CarConfiguration, PacketType } from './enums';
+import type { PlayerFlags, TyreCompound } from './enums';
+import { PacketType } from './enums';
 
 /**
  * New PLayer joining race (if PLID already exists, then leaving pits)
@@ -98,4 +92,63 @@ export class IS_NPL extends Packet {
 
   /** /showfuel yes: fuel percent / no: 255 */
   @byte() Fuel = 0;
+}
+
+export enum CarConfiguration {
+  /** Default */
+  DEFAULT,
+
+  /**
+   * UF1 / LX4 / LX6 = open roof
+   * GTR racing cars = alternate
+   */
+  OPEN_ROOF_OR_ALTERNATE,
+}
+
+export enum PassengerFlags {
+  /** Front passenger is male */
+  FRONT_MALE = 1,
+
+  /** Front passenger is female */
+  FRONT_FEMALE = 2,
+
+  /** Rear-left passenger is male */
+  REAR_LEFT_MALE = 4,
+
+  /** Rear-left passenger is female */
+  REAR_LEFT_FEMALE = 8,
+
+  /** Rear-middle passenger is male */
+  REAR_MIDDLE_MALE = 16,
+
+  /** Rear-middle passenger is female */
+  REAR_MIDDLE_FEMALE = 32,
+
+  /** Rear-right passenger is male */
+  REAR_RIGHT_MALE = 64,
+
+  /** Rear-right passenger is female */
+  REAR_RIGHT_FEMALE = 128,
+}
+
+export enum PlayerType {
+  /** Female */
+  FEMALE = 1,
+
+  /** AI */
+  AI = 2,
+
+  /** Remote */
+  REMOTE = 4,
+}
+
+export enum SetupFlags {
+  /** Symmetrical wheels */
+  SETF_SYMM_WHEELS = 1,
+
+  /** Traction control enabled */
+  SETF_TC_ENABLE = 2,
+
+  /** Anti-lock brakes enabled */
+  SETF_ABS_ENABLE = 4,
 }

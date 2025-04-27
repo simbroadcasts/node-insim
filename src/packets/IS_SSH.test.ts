@@ -1,7 +1,8 @@
 import type { PacketTestData } from '../tests';
 import { stringToBytes, testInfoPacket, testInstructionPacket } from '../tests';
-import { PacketType, ScreenshotError } from './enums';
+import { PacketType } from './enums';
 import type { IS_SSH_Data } from './IS_SSH';
+import { ScreenshotError } from './IS_SSH';
 import { IS_SSH } from './IS_SSH';
 
 const size = 40;

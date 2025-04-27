@@ -2,7 +2,6 @@ import { byte, float, struct, unsigned } from '../decorators';
 import type { DashLights } from '../out/DashLights';
 import { OutSimMain } from '../out/OutSimMain';
 import { Packet } from './base';
-import type { AIFlags } from './enums';
 import { PacketType } from './enums';
 import { AICGear } from './IS_AIC';
 
@@ -41,4 +40,15 @@ export class IS_AII extends Packet {
   @unsigned() readonly SPU1 = 0;
   @unsigned() readonly SPU2 = 0;
   @unsigned() readonly SPU3 = 0;
+}
+
+export enum AIFlags {
+  /** Detect if engine running */
+  AIFLAGS_IGNITION = 1,
+
+  /** Upshift lever currently held */
+  AIFLAGS_CHUP = 4,
+
+  /** Downshift lever currently held */
+  AIFLAGS_CHDN = 8,
 }

@@ -1,7 +1,7 @@
 import type { PacketTestData } from '../tests';
 import { testInfoPacket } from '../tests';
-import { ButtonClickFlags, PacketType } from './enums';
-import { IS_BTC } from './IS_BTC';
+import { PacketType } from './enums';
+import { ButtonClickFlags, IS_BTC } from './IS_BTC';
 import { IS_BTN } from './IS_BTN';
 
 const size = 8;

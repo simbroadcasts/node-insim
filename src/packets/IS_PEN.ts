@@ -1,6 +1,6 @@
 import { byte } from '../decorators';
 import { Packet } from './base';
-import type { PenaltyReason, PenaltyValue } from './enums';
+import type { PenaltyValue } from './enums';
 import { PacketType } from './enums';
 
 /**
@@ -29,4 +29,27 @@ export class IS_PEN extends Packet {
   @byte() Reason: PenaltyReason = 0;
 
   @byte() private readonly Sp3 = 0;
+}
+
+export enum PenaltyReason {
+  /** Unknown or cleared penalty */
+  PENR_UNKNOWN,
+
+  /** Penalty given by admin */
+  PENR_ADMIN,
+
+  /** Wrong way driving */
+  PENR_WRONG_WAY,
+
+  /** Starting before green light */
+  PENR_FALSE_START,
+
+  /** Speeding in pit lane */
+  PENR_SPEEDING,
+
+  /** Stop-go pit stop too short */
+  PENR_STOP_SHORT,
+
+  /** Compulsory stop is too late */
+  PENR_STOP_LATE,
 }

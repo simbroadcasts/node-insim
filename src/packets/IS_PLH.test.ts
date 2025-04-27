@@ -1,8 +1,8 @@
 import { testInfoPacket, testInstructionPacket } from '../tests';
-import { PacketType, PlayerHCapFlags } from './enums';
+import { PacketType } from './enums';
 import type { IS_PLH_Data } from './IS_PLH';
 import { IS_PLH } from './IS_PLH';
-import { PlayerHCap } from './structs';
+import { PlayerHCap, PlayerHCapFlags } from './structs';
 
 const size = 16;
 

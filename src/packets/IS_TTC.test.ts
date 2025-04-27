@@ -1,6 +1,7 @@
 import { testInstructionPacket } from '../tests';
-import { PacketType, TargetToConnectionType } from './enums';
+import { PacketType } from './enums';
 import type { IS_TTC_Data } from './IS_TTC';
+import { TargetToConnectionType } from './IS_TTC';
 import { IS_TTC } from './IS_TTC';
 
 const size = 8;

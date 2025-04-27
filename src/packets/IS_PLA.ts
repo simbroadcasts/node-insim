@@ -1,6 +1,5 @@
 import { byte } from '../decorators';
 import { Packet } from './base';
-import type { PitLaneFact } from './enums';
 import { PacketType } from './enums';
 
 /**
@@ -20,4 +19,21 @@ export class IS_PLA extends Packet {
   @byte() private readonly Sp1 = 0;
   @byte() private readonly Sp2 = 0;
   @byte() private readonly Sp3 = 0;
+}
+
+export enum PitLaneFact {
+  /** Left pit lane */
+  PITLANE_EXIT,
+
+  /** Entered pit lane */
+  PITLANE_ENTER,
+
+  /** Entered for no purpose */
+  PITLANE_NO_PURPOSE,
+
+  /** Entered for drive-through */
+  PITLANE_DT,
+
+  /** Entered for stop-go */
+  PITLANE_SG,
 }

@@ -1,7 +1,7 @@
 import type { PacketTestData } from '../tests';
 import { testInfoPacket } from '../tests';
-import { InSimRelayError, PacketType } from './enums';
-import { IR_ERR } from './IR_ERR';
+import { PacketType } from './enums';
+import { InSimRelayError, IR_ERR } from './IR_ERR';
 
 const size = 4 + 3 * 40;
 

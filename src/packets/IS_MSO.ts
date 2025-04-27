@@ -4,7 +4,6 @@ import { byte, getFormat, stringNull } from '../decorators';
 import { InSimError } from '../errors';
 import { unpack } from '../lfspack';
 import { Packet } from './base';
-import type { UserType } from './enums';
 import { PacketType } from './enums';
 
 /**
@@ -66,4 +65,18 @@ export class IS_MSO extends Packet {
 
     return this;
   }
+}
+
+export enum UserType {
+  /** System message */
+  MSO_SYSTEM,
+
+  /** Normal visible user message */
+  MSO_USER,
+
+  /** hidden message starting with special prefix (see {@link IS_ISI}) */
+  MSO_PREFIX,
+
+  /** Hidden message typed on local pc with /o command */
+  MSO_O,
 }

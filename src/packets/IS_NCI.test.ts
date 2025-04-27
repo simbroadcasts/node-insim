@@ -1,7 +1,7 @@
 import type { PacketTestData } from '../tests';
 import { testInfoPacket } from '../tests';
-import { Language, License, PacketType } from './enums';
-import { IS_NCI } from './IS_NCI';
+import { PacketType } from './enums';
+import { IS_NCI, Language, License } from './IS_NCI';
 
 const size = 16;
 

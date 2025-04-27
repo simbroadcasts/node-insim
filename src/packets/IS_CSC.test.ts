@@ -1,7 +1,7 @@
 import type { PacketTestData } from '../tests';
 import { testInfoPacket } from '../tests';
-import { CSCAction, PacketType } from './enums';
-import { IS_CSC } from './IS_CSC';
+import { PacketType } from './enums';
+import { CSCAction, IS_CSC } from './IS_CSC';
 import { CarContOBJ } from './structs';
 
 const size = 20;

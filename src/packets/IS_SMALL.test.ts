@@ -1,6 +1,7 @@
 import { testBothWaysPacket } from '../tests';
-import { CarFlags, PacketType, SmallType } from './enums';
+import { CarFlags, PacketType } from './enums';
 import type { IS_SMALL_Data } from './IS_SMALL';
+import { SmallType } from './IS_SMALL';
 import { IS_SMALL } from './IS_SMALL';
 
 const size = 8;

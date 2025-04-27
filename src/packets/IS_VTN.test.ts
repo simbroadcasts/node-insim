@@ -1,7 +1,7 @@
 import type { PacketTestData } from '../tests';
 import { testInfoPacket } from '../tests';
-import { PacketType, VoteAction } from './enums';
-import { IS_VTN } from './IS_VTN';
+import { PacketType } from './enums';
+import { IS_VTN, VoteAction } from './IS_VTN';
 
 const size = 8;
 

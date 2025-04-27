@@ -1,6 +1,5 @@
 import { byte, struct } from '../decorators';
 import { SendablePacket } from './base';
-import type { JRRAction } from './enums';
 import { PacketType } from './enums';
 import { ObjectInfo } from './structs';
 import type { PacketData } from './types';
@@ -57,3 +56,17 @@ export class IS_JRR extends SendablePacket {
 }
 
 export type IS_JRR_Data = PacketData<IS_JRR>;
+
+export enum JRRAction {
+  /** Reject new player */
+  JRR_REJECT = 0,
+
+  /** Allow new player */
+  JRR_SPAWN = 1,
+
+  /** Reset player's car */
+  JRR_RESET = 4,
+
+  /** Reset player's car without repairing damage */
+  JRR_RESET_NO_REPAIR = 5,
+}

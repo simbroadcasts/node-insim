@@ -1,6 +1,5 @@
 import { byte, stringNull } from '../decorators';
 import { SendablePacket } from './base';
-import type { ScreenshotError } from './enums';
 import { PacketType } from './enums';
 import type { PacketDataWithRequiredReqI } from './types';
 
@@ -47,3 +46,17 @@ export class IS_SSH extends SendablePacket {
 }
 
 export type IS_SSH_Data = Omit<PacketDataWithRequiredReqI<IS_SSH>, 'Error'>;
+
+export enum ScreenshotError {
+  /** OK: completed instruction */
+  SSH_OK,
+
+  /** Can't save a screenshot - dedicated host */
+  SSH_DEDICATED,
+
+  /** {@link IS_SSH} corrupted (e.g. Name does not end with zero) */
+  SSH_CORRUPTED,
+
+  /** Could not save the screenshot */
+  SSH_NO_SAVE,
+}

@@ -1,7 +1,7 @@
 import type { PacketTestData } from '../tests';
 import { stringToBytes, testInfoPacket } from '../tests';
-import { ConnectionFlags, PacketType } from './enums';
-import { IS_NCN } from './IS_NCN';
+import { PacketType } from './enums';
+import { ConnectionFlags, IS_NCN } from './IS_NCN';
 
 const size = 56;
 

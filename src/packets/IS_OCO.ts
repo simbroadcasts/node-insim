@@ -1,7 +1,6 @@
 import { byte } from '../decorators';
 import { SendablePacket } from './base';
-import type { OCOAutocrossStartLights, OCOMainLights } from './enums';
-import { ObjectIndex, OCOAction, PacketType } from './enums';
+import { ObjectIndex, PacketType } from './enums';
 import type { PacketData } from './types';
 
 /**
@@ -53,3 +52,30 @@ export class IS_OCO extends SendablePacket {
 }
 
 export type IS_OCO_Data = PacketData<IS_OCO>;
+
+export enum OCOAction {
+  /** Reserved */
+  OCO_ZERO,
+
+  /** Give up control of all lights */
+  OCO_LIGHTS_RESET = 4,
+
+  /** Use Data byte to set the bulbs */
+  OCO_LIGHTS_SET = 5,
+
+  /** Give up control of the specified lights */
+  OCO_LIGHTS_UNSET = 6,
+}
+
+export enum OCOAutocrossStartLights {
+  RED = 1,
+  AMBER = 2,
+  GREEN = 8,
+}
+
+export enum OCOMainLights {
+  RED_1 = 1,
+  RED_2 = 2,
+  RED_3 = 4,
+  GREEN = 8,
+}

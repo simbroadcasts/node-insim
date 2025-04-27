@@ -1,6 +1,5 @@
 import { byte } from '../decorators';
 import { Packet } from './base';
-import type { VoteAction } from './enums';
 import { PacketType } from './enums';
 
 /**
@@ -22,4 +21,18 @@ export class IS_VTN extends Packet {
 
   @byte() private readonly Spare2 = 0;
   @byte() private readonly Spare3 = 0;
+}
+
+export enum VoteAction {
+  /** No vote */
+  VOTE_NONE,
+
+  /** end race */
+  VOTE_END,
+
+  /** Restart */
+  VOTE_RESTART,
+
+  /** Qualify */
+  VOTE_QUALIFY,
 }

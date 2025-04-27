@@ -1,6 +1,6 @@
 import { byte, float, stringNull, word } from '../decorators';
 import { Packet } from './base';
-import type { RaceState, ServerStatus, StateFlags, Wind } from './enums';
+import type { StateFlags, Wind } from './enums';
 import { PacketType, ViewIdentifier } from './enums';
 
 /**
@@ -68,4 +68,15 @@ export class IS_STA extends Packet {
 
   @byte() Weather = 0;
   @byte() Wind: Wind = 0;
+}
+
+export enum RaceState {
+  NO_RACE,
+  RACE,
+  QUALIFYING,
+}
+
+export enum ServerStatus {
+  UNKNOWN,
+  SUCCESS,
 }

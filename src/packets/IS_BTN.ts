@@ -2,7 +2,6 @@ import unicodeToLfs from 'unicode-to-lfs';
 
 import { byte, string } from '../decorators';
 import { SendablePacket } from './base';
-import type { ButtonStyle, ButtonTextColour } from './enums';
 import { PacketType } from './enums';
 import type { PacketDataWithRequiredReqI } from './types';
 
@@ -149,4 +148,52 @@ export class IS_BTN extends SendablePacket {
   }
 }
 
+export enum ButtonStyle {
+  /** Click this button to send {@link IS_BTC} */
+  ISB_CLICK = 8,
+
+  /** Light button */
+  ISB_LIGHT = 16,
+
+  /** Dark button */
+  ISB_DARK = 32,
+
+  /** Align text to left */
+  ISB_LEFT = 64,
+
+  /** Align text to right */
+  ISB_RIGHT = 128,
+}
+
+export enum ButtonTextColour {
+  /** Not user editable */
+  LIGHT_GREY,
+
+  /** Default: yellow */
+  TITLE_COLOUR,
+
+  /** Default: black */
+  UNSELECTED_TEXT,
+
+  /** Default: white */
+  SELECTED_TEXT,
+
+  /** Default: green */
+  OK,
+
+  /** Default: red */
+  CANCEL,
+
+  /** Default: pale blue */
+  TEXT_STRING,
+
+  /** Default: grey */
+  UNAVAILABLE,
+}
+
 export type IS_BTN_Data = PacketDataWithRequiredReqI<IS_BTN>;
+
+export enum TypeIn {
+  /** Initialise dialog with the button's text */
+  INIT_VALUE_BUTTON_TEXT = 128,
+}

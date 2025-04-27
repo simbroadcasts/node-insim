@@ -1,6 +1,5 @@
 import { byte, struct, unsigned } from '../decorators';
 import { Packet } from './base';
-import type { CSCAction } from './enums';
 import { PacketType } from './enums';
 import { CarContOBJ } from './structs';
 
@@ -27,4 +26,12 @@ export class IS_CSC extends Packet {
 
   /** Car contact object */
   @struct(CarContOBJ) C = new CarContOBJ();
+}
+
+export enum CSCAction {
+  /** Car stopped */
+  CSC_STOP,
+
+  /** Car started */
+  CSC_START,
 }

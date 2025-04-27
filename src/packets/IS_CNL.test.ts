@@ -1,7 +1,7 @@
 import type { PacketTestData } from '../tests';
 import { testInfoPacket } from '../tests';
-import { LeaveReason, PacketType } from './enums';
-import { IS_CNL } from './IS_CNL';
+import { PacketType } from './enums';
+import { IS_CNL, LeaveReason } from './IS_CNL';
 
 const size = 8;
 

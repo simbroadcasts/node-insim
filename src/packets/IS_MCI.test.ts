@@ -1,8 +1,8 @@
 import type { PacketTestData } from '../tests';
 import { testInfoPacket } from '../tests';
-import { CompCarFlags, PacketType } from './enums';
+import { PacketType } from './enums';
 import { IS_MCI } from './IS_MCI';
-import { CompCar } from './structs';
+import { CompCar, CompCarFlags } from './structs';
 
 const size = 4 + 2 * 28;
 

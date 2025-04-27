@@ -1,6 +1,5 @@
 import { byte } from '../decorators';
 import { SendablePacket } from './base';
-import type { CharacterModifiers } from './enums';
 import { PacketType } from './enums';
 import type { PacketData } from './types';
 
@@ -31,6 +30,14 @@ export class IS_SCH extends SendablePacket {
     super();
     this.initialize(data);
   }
+}
+
+export enum CharacterModifiers {
+  /** Shift key */
+  SHIFT = 1,
+
+  /** Ctrl key */
+  CTRL = 2,
 }
 
 export type IS_SCH_Data = Pick<PacketData<IS_SCH>, 'CharB' | 'Flags'>;

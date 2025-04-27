@@ -1,6 +1,5 @@
 import { byte, struct, unsigned } from '../decorators';
 import { Packet } from './base';
-import type { UCOAction } from './enums';
 import { PacketType } from './enums';
 import { CarContOBJ, ObjectInfo } from './structs';
 
@@ -52,4 +51,18 @@ export class IS_UCO extends Packet {
    * Index is 253. The circle index (seen in the layout editor) is stored in the Heading byte.
    */
   @struct(ObjectInfo) Info = new ObjectInfo();
+}
+
+export enum UCOAction {
+  /** Etered a circle */
+  UCO_CIRCLE_ENTER,
+
+  /** Left a circle */
+  UCO_CIRCLE_LEAVE,
+
+  /** Crossed a checkpoint in forward direction */
+  UCO_CP_FWD,
+
+  /** Crossed a checkpoint in reverse direction */
+  UCO_CP_REV,
 }

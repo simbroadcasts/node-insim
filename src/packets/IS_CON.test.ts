@@ -1,8 +1,8 @@
 import type { PacketTestData } from '../tests';
 import { testInfoPacket } from '../tests';
-import { CarContactFlags, PacketType } from './enums';
+import { PacketType } from './enums';
 import { IS_CON } from './IS_CON';
-import { CarContact } from './structs';
+import { CarContact, CarContactFlags } from './structs';
 
 const size = 40;
 

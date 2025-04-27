@@ -1,7 +1,7 @@
 import type { PacketTestData } from '../tests';
 import { testInfoPacket } from '../tests';
-import { HLVCViolation, PacketType } from './enums';
-import { IS_HLV } from './IS_HLV';
+import { PacketType } from './enums';
+import { HLVCViolation, IS_HLV } from './IS_HLV';
 import { CarContOBJ } from './structs';
 
 const size = 16;

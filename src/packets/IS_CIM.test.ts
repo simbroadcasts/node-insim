@@ -1,12 +1,7 @@
 import type { PacketTestData } from '../tests';
 import { testInfoPacket } from '../tests';
-import {
-  InterfaceMode,
-  ObjectIndex,
-  PacketType,
-  ShiftUInterfaceSubmode,
-} from './enums';
-import { IS_CIM } from './IS_CIM';
+import { ObjectIndex, PacketType } from './enums';
+import { InterfaceMode, IS_CIM, ShiftUInterfaceSubmode } from './IS_CIM';
 
 const size = 8;
 

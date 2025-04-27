@@ -1,7 +1,7 @@
 import type { PacketTestData } from '../tests';
 import { testInfoPacket } from '../tests';
-import { ObjectHitFlags, ObjectIndex, PacketType } from './enums';
-import { IS_OBH } from './IS_OBH';
+import { ObjectIndex, PacketType } from './enums';
+import { IS_OBH, ObjectHitFlags } from './IS_OBH';
 import { CarContOBJ } from './structs';
 
 const size = 24;

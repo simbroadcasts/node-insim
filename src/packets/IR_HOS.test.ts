@@ -1,8 +1,8 @@
 import type { PacketTestData } from '../tests';
 import { stringToBytes, testInfoPacket } from '../tests';
-import { HostInfoFlags, PacketType } from './enums';
+import { PacketType } from './enums';
 import { IR_HOS } from './IR_HOS';
-import { HInfo } from './structs';
+import { HInfo, HostInfoFlags } from './structs';
 
 const size = 4 + 3 * 40;
 

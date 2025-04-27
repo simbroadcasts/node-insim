@@ -1,6 +1,7 @@
 import { testInstructionPacket } from '../tests';
-import { CharacterModifiers, PacketType } from './enums';
+import { PacketType } from './enums';
 import type { IS_SCH_Data } from './IS_SCH';
+import { CharacterModifiers } from './IS_SCH';
 import { IS_SCH } from './IS_SCH';
 
 const size = 8;

@@ -1,6 +1,7 @@
 import { testBothWaysPacket } from '../tests';
-import { PacketType, TinyType } from './enums';
+import { PacketType } from './enums';
 import type { IS_TINY_Data } from './IS_TINY';
+import { TinyType } from './IS_TINY';
 import { IS_TINY } from './IS_TINY';
 
 const size = 4;
