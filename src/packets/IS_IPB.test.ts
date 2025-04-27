@@ -1,7 +1,7 @@
-import { testInfoPacket, testInstructionPacket } from '../../tests';
-import { PacketType } from '../enums';
-import type { IS_IPB_Data } from '../IS_IPB';
-import { IS_IPB } from '../IS_IPB';
+import { testInfoPacket, testInstructionPacket } from '../tests';
+import { PacketType } from './enums';
+import type { IS_IPB_Data } from './IS_IPB';
+import { IS_IPB } from './IS_IPB';
 
 const size = 20;
 
