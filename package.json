@@ -77,9 +77,9 @@
   },
   "dependencies": {
     "@types/debug": "^4.1.12",
-    "@types/lodash": "^4.17.16",
+    "@types/lodash.defaults": "^4.2.9",
     "debug": "^4.4.0",
-    "lodash": "^4.17.21",
+    "lodash.defaults": "^4.2.0",
     "parse-lfs-message": "^1.2.4",
     "reflect-metadata": "^0.2.2",
     "supports-color": "^10.0.0",

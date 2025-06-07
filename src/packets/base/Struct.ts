@@ -1,5 +1,3 @@
-import isArray from 'lodash/isArray';
-
 import { getFormat } from '../../decorators';
 import { InSimError } from '../../errors';
 import { determineLength, unpack } from '../../lfspack';
@@ -97,14 +95,17 @@ export class Struct implements Receivable {
       }
 
       // Tuple of [rawString, decodedString]
-      if (isArray(value) && value.length === 2) {
+      if (Array.isArray(value) && value.length === 2) {
         this[propertyName as keyof this] = value[1] as this[keyof this];
         this._raw[propertyName as keyof RawProperties<this>] = value[0];
         i++;
         return;
       }
 
-      if (isArray(value) && isArray(this[propertyName as keyof this])) {
+      if (
+        Array.isArray(value) &&
+        Array.isArray(this[propertyName as keyof this])
+      ) {
         this[propertyName as keyof this] = value as this[keyof this];
         i++;
         return;
@@ -153,7 +154,7 @@ export class Struct implements Receivable {
     i: number,
     instanceName: string,
   ): number {
-    if (isArray(instance)) {
+    if (Array.isArray(instance)) {
       return this.parseArray(instance, data, i, instanceName);
     }
 

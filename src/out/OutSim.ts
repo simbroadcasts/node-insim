@@ -1,4 +1,4 @@
-import defaults from 'lodash/defaults';
+import defaults from 'lodash.defaults';
 import { TypedEmitter } from 'tiny-typed-emitter';
 
 import { InSimError } from '../errors';

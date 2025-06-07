@@ -1,5 +1,5 @@
 import crypto from 'crypto';
-import defaults from 'lodash/defaults';
+import defaults from 'lodash.defaults';
 import { TypedEmitter } from 'tiny-typed-emitter';
 import unicodeToLfs from 'unicode-to-lfs';
 
