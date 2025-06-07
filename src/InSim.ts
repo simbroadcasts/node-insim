@@ -305,6 +305,16 @@ export class InSim extends TypedEmitter<InSimEvents> {
     );
   };
 
+  sendAwait = <PacketTypeToReceive extends keyof typeof packetTypeToClass>(
+    packet: SendablePacket,
+    packetTypeToReceive: PacketTypeToReceive,
+    filterPacketData?: (
+      packet: InstanceType<(typeof packetTypeToClass)[PacketTypeToReceive]>,
+    ) => boolean,
+  ) => {
+    log('Sending Await...');
+  };
+
   private handlePacket = async (data: Uint8Array<ArrayBuffer>) => {
     const header = unpack('<BB', data.buffer);
 
