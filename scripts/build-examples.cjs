@@ -12,7 +12,7 @@ function buildApps(directory, options = {}) {
     });
 
   const cmdArgs = [
-    { cmd: 'npm', args: ['install', '--force'] },
+    { cmd: 'npm', args: ['install'] },
     ...(options.build ? [{ cmd: 'npm', args: ['run', 'build'] }] : []),
   ];
 
