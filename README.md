@@ -451,7 +451,6 @@ using `yarn generate`. It will create and update all the necessary files for you
 
 ```shell
 yarn test
-yarn test:watch
 ```
 
 ### Run tests against a real LFS application
