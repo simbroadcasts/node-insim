@@ -300,7 +300,7 @@ describe('InSim', () => {
           Port: 29999,
         });
 
-        inSim.sendMessage('/end');
+        inSim.sendMessage('/laps [number]');
       }));
 
     it('should send a message via IS_MST if it is shorter than 64 characters', () =>

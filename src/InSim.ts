@@ -224,7 +224,7 @@ export class InSim extends TypedEmitter<InSimEvents> {
    *
    * The maximum length of the message is {@link MSX_MSG_MAX_LENGTH} characters.
    */
-  sendMessage = (message: string) => {
+  sendMessage = (message: Message) => {
     log('Send message:', message);
 
     if (message.startsWith(InSim.COMMAND_PREFIX)) {
@@ -360,3 +360,5 @@ const defaultInSimOptions: Required<InSimOptions> = {
   Admin: '',
   IName: '',
 };
+
+type Message = `/end` | '/join' | '/spec' | '/entry' | `/laps` | (string & {});
