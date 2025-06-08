@@ -1,5 +1,0 @@
-{
-  "testEnvironment": "node",
-  "roots": ["<rootDir>/lfs-test"],
-  "setupFilesAfterEnv": ["<rootDir>/lfs-test/testSetup.ts"]
-}

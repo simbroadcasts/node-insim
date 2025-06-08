@@ -3,7 +3,7 @@ import { defineConfig } from 'vitest/config';
 export default defineConfig({
   test: {
     globals: true,
-    root: 'src',
+    include: ['src/**/*.test.ts'],
     coverage: {
       include: ['src/**/*.ts'],
       reporter: ['json-summary'],
