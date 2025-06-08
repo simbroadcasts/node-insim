@@ -15,6 +15,7 @@
     "noImplicitAny": true,
     "forceConsistentCasingInFileNames": true,
     "experimentalDecorators": true,
+    "types": ["vitest/globals"],
     "paths": {
       "node-insim": ["./src/index"],
       "node-insim/packets": ["./src/packets/index"]

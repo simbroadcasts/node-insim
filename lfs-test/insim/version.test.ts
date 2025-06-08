@@ -4,21 +4,22 @@ import { IS_ISI_ReqI, PacketType } from '../../src/packets';
 import { getInSimConnectionOptions } from '../helpers';
 
 describe('InSim version', () => {
-  it('should connect to LFS and receive the version', (done) => {
-    const inSim = new InSim();
+  it('should connect to LFS and receive the version', () =>
+    new Promise<void>((done) => {
+      const inSim = new InSim();
 
-    inSim.connect({
-      ...getInSimConnectionOptions(),
-      IName: 'Version test',
-      ReqI: IS_ISI_ReqI.SEND_VERSION,
-    });
-
-    inSim.on(PacketType.ISP_VER, function onVersion(packet: IS_VER) {
-      expect(packet.ReqI === 1);
-      inSim.disconnect();
-      inSim.once('disconnect', () => {
-        done();
+      inSim.connect({
+        ...getInSimConnectionOptions(),
+        IName: 'Version test',
+        ReqI: IS_ISI_ReqI.SEND_VERSION,
       });
-    });
-  });
+
+      inSim.on(PacketType.ISP_VER, function onVersion(packet: IS_VER) {
+        expect(packet.ReqI === 1);
+        inSim.disconnect();
+        inSim.once('disconnect', () => {
+          done();
+        });
+      });
+    }));
 });

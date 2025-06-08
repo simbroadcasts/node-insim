@@ -382,7 +382,7 @@ describe('IS_MAL', () => {
             '000121',
           ],
         }).pack(),
-      ).toThrowError('');
+      ).toThrowError();
     });
   });
 });

@@ -42,7 +42,7 @@ jobs:
       - name: Run Unit Tests
         uses: borales/actions-yarn@v5
         with:
-          cmd: test --ci --reporters=default --reporters=jest-junit --coverage
+          cmd: test --reporter=junit --outputFile=junit.xml --coverage
 
       - name: Build
         uses: borales/actions-yarn@v5

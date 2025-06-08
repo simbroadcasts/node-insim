@@ -59,11 +59,10 @@
     "dev:nodebug": "tsx watch ./src/index.ts",
     "test": "run-s test:compile \"test:run {@}\" --",
     "test:compile": "tsc -p tsconfig.test.json",
-    "test:run": "jest",
-    "test:watch": "run-s test:compile \"test:run --watch {@}\" --",
-    "test:lfs": "run-s test:compile \"test:run -c jest.config.lfs.json --runInBand {@}\" --",
+    "test:run": "vitest",
+    "test:lfs": "run-s test:compile \"test:run -c vitest.config.lfs.ts {@}\" --",
     "test:examples": "node scripts/build-examples.cjs",
-    "check-all": "run-s format lint:fix build test test:examples",
+    "check-all": "run-s format lint:fix build \"test --watch=false\" test:examples",
     "format": "run-s \"format:no-write --write\"",
     "format:no-write": "prettier \"./**/*.{cjs,js,ts,md,json,yml,yaml}\"",
     "format:check": "run-s \"format:no-write --check\"",
@@ -87,18 +86,13 @@
     "unicode-to-lfs": "^2.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.26.10",
-    "@babel/plugin-proposal-class-properties": "^7.18.6",
-    "@babel/plugin-proposal-decorators": "^7.25.9",
-    "@babel/preset-env": "^7.26.9",
-    "@babel/preset-typescript": "^7.27.0",
     "@types/ip": "^1.1.3",
     "@types/jest": "^29.5.14",
     "@types/mitm": "^1.3.8",
     "@types/node": "^22.15.2",
     "@typescript-eslint/eslint-plugin": "^8.31.0",
     "@typescript-eslint/parser": "^8.31.0",
-    "babel-jest": "^29.7.0",
+    "@vitest/coverage-v8": "^3.2.2",
     "cross-env": "^7.0.3",
     "cz-conventional-changelog": "^3.3.0",
     "dotenv": "^16.5.0",
@@ -116,7 +110,8 @@
     "rimraf": "^6.0.1",
     "tsx": "^4.19.3",
     "typedoc": "^0.28.3",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.2"
   },
   "config": {
     "commitizen": {
