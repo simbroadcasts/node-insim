@@ -1,4 +1,4 @@
-import { InSimError } from 'node-insim';
+import { InSimError } from './errors';
 
 describe('errors', () => {
   describe('InSimError', () => {
