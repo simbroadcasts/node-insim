@@ -1,4 +1,4 @@
-export type { InSimPacket } from './InSimPacket';
+export type { InSimPacket, InSimPacketClassInstance } from './InSimPacket';
 export type {
   PacketData,
   PacketDataWithOptionalReqI,
