@@ -544,7 +544,7 @@ describe('InSim', () => {
               1, // Size / 4
               3, // PacketType.ISP_TINY
               25, // ReqI
-              4, // TinyType.TINY_PING
+              4, // TinyType.TINY_REPLY
             ]),
           );
         });
@@ -592,6 +592,112 @@ describe('InSim', () => {
           Host: '127.0.0.1',
           Port: 29999,
         });
+      }));
+  });
+
+  describe('sending and awaiting packets', () => {
+    let mitm: ReturnType<typeof Mitm>;
+
+    beforeEach(() => {
+      mitm = Mitm();
+    });
+
+    it('should send and await an IS_ISM packet', () =>
+      new Promise<void>((done) => {
+        const inSim = new InSim();
+
+        mitm.on('connection', (socket) => {
+          socket.on('data', (data) => {
+            expect(data).toEqual(
+              Buffer.from([
+                1, // Size / 4
+                3, // PacketType.ISP_TINY
+                20, // ReqI
+                10, // TinyType.TINY_ISM
+              ]),
+            );
+            socket.write(
+              new Uint8Array([
+                10, // Size / 4
+                10, // PacketType.ISP_ISM
+                20, // ReqI
+                0, // Zero
+                1, // Host
+                0, // Sp1
+                0, // Sp2
+                0, // Sp3
+                ...stringToBytes('Very Long Server Name Is Longest'), // HName[32]
+              ]),
+            );
+            inSim.disconnect();
+          });
+        });
+
+        inSim.connect({
+          Host: '127.0.0.1',
+          Port: 29999,
+        });
+
+        inSim
+          .sendAwait(
+            new IS_TINY({
+              ReqI: 20,
+              SubT: TinyType.TINY_ISM,
+            }),
+            PacketType.ISP_ISM,
+          )
+          .then((packet) => {
+            expect(packet.ReqI).toEqual(20);
+            expect(packet.Type).toEqual(PacketType.ISP_ISM);
+            done();
+          });
+      }));
+
+    it('should send and await a ping packet', () =>
+      new Promise<void>((done) => {
+        const inSim = new InSim();
+
+        mitm.on('connection', (socket) => {
+          socket.on('data', (data) => {
+            expect(data).toEqual(
+              Buffer.from([
+                1, // Size / 4
+                3, // PacketType.ISP_TINY
+                25, // ReqI
+                3, // TinyType.TINY_PING
+              ]),
+            );
+            socket.write(
+              new Uint8Array([
+                1, // Size / 4
+                3, // PacketType.ISP_TINY
+                25, // ReqI
+                4, // TinyType.TINY_REPLY
+              ]),
+            );
+            inSim.disconnect();
+          });
+        });
+
+        inSim.connect({
+          Host: '127.0.0.1',
+          Port: 29999,
+        });
+
+        inSim
+          .sendAwait(
+            new IS_TINY({
+              ReqI: 25,
+              SubT: TinyType.TINY_PING,
+            }),
+            PacketType.ISP_TINY,
+            ({ SubT }) => SubT === TinyType.TINY_REPLY,
+          )
+          .then((packet) => {
+            expect(packet.ReqI).toEqual(25);
+            expect(packet.SubT).toEqual(TinyType.TINY_REPLY);
+            done();
+          });
       }));
   });
 });
