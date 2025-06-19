@@ -155,6 +155,72 @@ pingPacket.SubT = TinyType.TINY_PING;
 inSim.send(pingPacket);
 ```
 
+### Waiting for packets
+
+There are cases when you want to send a packet and then wait for a response in another packet. There is a helper method `sendAwait()` which waits for a given packet type and when it's received, it's resolved as a Promise. It also makes sure that the received packet's `ReqI` property matches the one entered in the sent packet.
+
+```ts
+import { InSim } from 'node-insim';
+import { IS_TINY, PacketType, TinyType } from 'node-insim/packets';
+
+const inSim = new InSim();
+
+inSim.connect({
+  Host: '127.0.0.1',
+  Port: 29999,
+  IName: 'Node InSim App',
+});
+
+inSim
+  .sendAwait(
+    new IS_TINY({
+      ReqI: 1,
+      SubT: TinyType.TINY_SST,
+    }),
+    PacketType.ISP_STA,
+  )
+  .then((packet) => {
+    console.log(packet.NumConns);
+  });
+```
+
+You can filter the received packet by its data using a callback in the 3rd argument:
+
+```ts
+import { InSim } from 'node-insim';
+import { IS_TINY, PacketType, TinyType } from 'node-insim/packets';
+
+const inSim = new InSim();
+
+inSim.connect({
+  Host: '127.0.0.1',
+  Port: 29999,
+  IName: 'Node InSim App',
+});
+
+inSim
+  .sendAwait(
+    new IS_TINY({
+      ReqI: 1,
+      SubT: TinyType.TINY_GTH,
+    }),
+    PacketType.ISP_SMALL,
+    ({ SubT }) => SubT === SmallType.SMALL_RTP,
+  )
+  .then((packet) => {
+    console.log('session time', packet.UVal);
+  });
+```
+
+#### Request-reply packet pairs
+
+| Name         | Request packet                            | Reply packet                                |
+| ------------ | ----------------------------------------- | ------------------------------------------- |
+| Ping         | `IS_TINY`<br />SubT: `TinyType.TINY_PING` | `IS_TINY`<br />SubT: `TinyType.TINY_REPLY`  |
+| Session time | `IS_TINY`<br />SubT: `TinyType.TINY_GTH`  | `IS_SMALL`<br />SubT: `SmallType.SMALL_RTP` |
+| State        | `IS_TINY`<br />SubT: `TinyType.TINY_SST`  | `IS_STA`                                    |
+| InSim multi  | `TINY_ISM`                                | `IS_ISM`                                    |
+
 ### Sending messages
 
 The `InSim` class has helper methods useful for sending messages to LFS.
