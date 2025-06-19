@@ -330,7 +330,10 @@ export class InSim extends TypedEmitter<InSimEvents> {
             return;
           }
 
-          if (filterPacketData(receivedPacket)) {
+          if (
+            receivedPacket.ReqI === packet.ReqI &&
+            filterPacketData(receivedPacket)
+          ) {
             resolve(receivedPacket);
           }
         };
