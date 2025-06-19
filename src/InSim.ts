@@ -309,9 +309,9 @@ export class InSim extends TypedEmitter<InSimEvents> {
   sendAwait = <TPacketTypeToAwait extends keyof typeof packetTypeToClass>(
     packet: SendablePacket,
     packetTypeToAwait: TPacketTypeToAwait,
-    filterPacketData?: (
+    filterPacketData: (
       packet: InSimPacketClassInstance<TPacketTypeToAwait>,
-    ) => boolean,
+    ) => boolean = () => true,
   ) => {
     return new Promise<InSimPacketClassInstance<TPacketTypeToAwait>>(
       (resolve, reject) => {
@@ -322,14 +322,11 @@ export class InSim extends TypedEmitter<InSimEvents> {
         }
 
         this.send(packet);
+
+        log('Await packet:', PacketType[packetTypeToAwait]);
         const packetListener = (
           receivedPacket: InSimPacketClassInstance<TPacketTypeToAwait>,
         ) => {
-          if (!filterPacketData) {
-            resolve(receivedPacket);
-            return;
-          }
-
           if (
             receivedPacket.ReqI === packet.ReqI &&
             filterPacketData(receivedPacket)
@@ -337,7 +334,6 @@ export class InSim extends TypedEmitter<InSimEvents> {
             resolve(receivedPacket);
           }
         };
-        log('Await packet:', PacketType[packetTypeToAwait]);
         this.once(packetTypeToAwait, packetListener);
 
         this.on('disconnect', () => {
