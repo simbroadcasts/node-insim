@@ -21,6 +21,7 @@ import {
   packetTypeToClass,
   TinyType,
 } from './packets';
+import type { InSimPacketClassInstance } from './packets/types';
 import type { Protocol } from './protocols';
 import { TCP, UDP } from './protocols';
 
@@ -302,6 +303,44 @@ export class InSim extends TypedEmitter<InSimEvents> {
         Text: message,
         Sound: sound,
       }),
+    );
+  };
+
+  sendAwait = <TPacketTypeToAwait extends keyof typeof packetTypeToClass>(
+    packet: SendablePacket,
+    packetTypeToAwait: TPacketTypeToAwait,
+    filterPacketData: (
+      packet: InSimPacketClassInstance<TPacketTypeToAwait>,
+    ) => boolean = () => true,
+  ) => {
+    return new Promise<InSimPacketClassInstance<TPacketTypeToAwait>>(
+      (resolve, reject) => {
+        if (this.connection === null) {
+          log('Cannot send a packet with await - not connected');
+          reject();
+          return;
+        }
+
+        this.send(packet);
+
+        log('Await packet:', PacketType[packetTypeToAwait]);
+        const packetListener = (
+          receivedPacket: InSimPacketClassInstance<TPacketTypeToAwait>,
+        ) => {
+          if (
+            receivedPacket.ReqI === packet.ReqI &&
+            filterPacketData(receivedPacket)
+          ) {
+            resolve(receivedPacket);
+          }
+        };
+        this.once(packetTypeToAwait, packetListener);
+
+        this.on('disconnect', () => {
+          this.removeListener(packetTypeToAwait, packetListener);
+          reject();
+        });
+      },
     );
   };
 
