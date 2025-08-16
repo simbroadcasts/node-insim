@@ -386,34 +386,6 @@ Special care needs to be taken when sending strings containing caret (`^`) and s
 - A caret needs to be escaped as `^^` because the caret symbol acts as an escape character in LFS. Sending `^^hello` as a message will display `^hello` in LFS. Sending just `^hello` would appear as `#ello`.
 - A slash needs to be escaped as `^s`, otherwise it is treated as an LFS in-game command prefix when used in a message packet. Sending `^sjoin` as a message will display `/join` in LFS, whereas sending `/join` will make the player join the track.
 
-### InSim Relay
-
-To connect to the InSim Relay service, use the `connectRelay()` method. Once connected,
-you can send and receive relay packets. The following example demonstrates how to show a
-list of hosts connected to the InSim Relay:
-
-```ts
-import { InSim } from 'node-insim';
-import { IR_HLR, IR_HOS, PacketType, HInfo } from 'node-insim/packets';
-
-inSim.connectRelay();
-
-inSim.on('connect', () => {
-  // Request a list of hosts
-  inSim.send(new IR_HLR());
-});
-
-inSim.on(PacketType.IRP_HOS, (packet: IR_HOS) => {
-  // Log the name of each received host
-  packet.Info.forEach((host: HInfo) => {
-    console.log(host.HName);
-  });
-});
-```
-
-More information about the InSim Relay protocol can be found in the [InSim Relay client
-information](https://www.lfs.net/forum/thread/30740) thread on LFS forum.
-
 ### OutGauge
 
 ```ts
@@ -478,7 +450,6 @@ You can find example applications using Node InSim in the [examples](./examples)
 | InSim connection                  | [JavaScript + CJS](./examples/javascript/insim-connection)     | [TypeScript + ESM](./examples/typescript/insim-connection)     |
 | InSim connection (multiple hosts) | [JavaScript + CJS](./examples/javascript/insim-multiple-hosts) | [TypeScript + ESM](./examples/typescript/insim-multiple-hosts) |
 | InSim connection (UDP)            | [JavaScript + CJS](./examples/javascript/insim-connection-udp) | [TypeScript + ESM](./examples/typescript/insim-connection-udp) |
-| InSim Relay                       | [JavaScript + CJS](./examples/javascript/insim-relay)          | [TypeScript + ESM](./examples/typescript/insim-relay)          |
 | OutGauge                          | [JavaScript + CJS](./examples/javascript/outgauge)             | [TypeScript + ESM](./examples/typescript/outgauge)             |
 | OutGauge with InSim buttons       | [JavaScript + CJS](./examples/javascript/outgauge-buttons)     | [TypeScript + ESM](./examples/typescript/outgauge-buttons)     |
 | OutSim                            | [JavaScript + CJS](./examples/javascript/outsim-basic)         | [TypeScript + ESM](./examples/typescript/outsim-basic)         |
