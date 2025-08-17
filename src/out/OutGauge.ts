@@ -20,12 +20,16 @@ type OutGaugeConnectionOptions = {
   Port: number;
 };
 
+type OutGaugeOptions = {
+  timeout?: number;
+};
+
 export class OutGauge extends TypedEmitter<OutGaugeEvents> {
   private _options: OutGaugeConnectionOptions = defaultOutGaugeOptions;
   private connection: UDP | null = null;
   private timeout = 0;
 
-  constructor(timeout = 0) {
+  constructor({ timeout = 0 }: OutGaugeOptions = {}) {
     super();
     this.timeout = timeout;
 
