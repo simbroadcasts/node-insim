@@ -23,12 +23,16 @@ type OutSimConnectionOptions = {
   OutSimOpts: number;
 };
 
+type OutSimOptions = {
+  timeout?: number;
+};
+
 export class OutSim extends TypedEmitter<OutSimEvents> {
   private _options: OutSimConnectionOptions = defaultOutSimOptions;
   private connection: UDP | null = null;
   private timeout = 0;
 
-  constructor(timeout = 0) {
+  constructor({ timeout = 0 }: OutSimOptions = {}) {
     super();
     this.timeout = timeout;
 
