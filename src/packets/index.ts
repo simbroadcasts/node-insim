@@ -1,10 +1,4 @@
 import { PacketType } from './enums';
-import { IR_ARP } from './IR_ARP';
-import { IR_ARQ } from './IR_ARQ';
-import { IR_ERR } from './IR_ERR';
-import { IR_HLR } from './IR_HLR';
-import { IR_HOS } from './IR_HOS';
-import { IR_SEL } from './IR_SEL';
 import { IS_ACR } from './IS_ACR';
 import { IS_AIC } from './IS_AIC';
 import { IS_AII } from './IS_AII';
@@ -147,12 +141,6 @@ export const packetTypeToClass = {
   [PacketType.ISP_IPB]: IS_IPB,
   [PacketType.ISP_AIC]: IS_AIC,
   [PacketType.ISP_AII]: IS_AII,
-  [PacketType.IRP_ARQ]: IR_ARQ,
-  [PacketType.IRP_ARP]: IR_ARP,
-  [PacketType.IRP_HLR]: IR_HLR,
-  [PacketType.IRP_HOS]: IR_HOS,
-  [PacketType.IRP_SEL]: IR_SEL,
-  [PacketType.IRP_ERR]: IR_ERR,
 };
 
 export { Packet, SendablePacket, SendableStruct, Struct } from './base';
@@ -169,15 +157,6 @@ export {
   ViewIdentifier,
   Wind,
 } from './enums';
-export { IR_ARP } from './IR_ARP';
-export type { IR_ARQ_Data } from './IR_ARQ';
-export { IR_ARQ } from './IR_ARQ';
-export { InSimRelayError, IR_ERR } from './IR_ERR';
-export type { IR_HLR_Data } from './IR_HLR';
-export { IR_HLR } from './IR_HLR';
-export { IR_HOS } from './IR_HOS';
-export type { IR_SEL_Data } from './IR_SEL';
-export { IR_SEL, IR_SEL_ReqI } from './IR_SEL';
 export { AdminCommandResult, IS_ACR } from './IS_ACR';
 export type { IS_AIC_Data } from './IS_AIC';
 export {
