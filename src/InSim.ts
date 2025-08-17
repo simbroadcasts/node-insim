@@ -79,76 +79,13 @@ export class InSim extends TypedEmitter<InSimEvents> {
       return;
     }
 
-    this._connect(options);
-  };
-
-  /**
-   * Connect to InSim Relay.
-   *
-   * After you are connected you can request a host list, so you can see
-   * which hosts you can connect to.
-   * Then you can send a packet to the Relay to select a host. After that
-   * the Relay will send you all insim data from that host.
-   *
-   * Some hosts require a spectator password in order to be selectable.
-   *
-   * You do not need to specify a spectator password if you use a valid administrator password.
-   *
-   * If you connect with an administrator password, you can send just about every
-   * regular InSim packet there is available in LFS, just like as if you were connected
-   * to the host directly.
-   *
-   * Regular insim packets that a relay client can send to host:
-   *
-   * For anyone
-   * TINY_VER
-   * TINY_PING
-   * TINY_SCP
-   * TINY_SST
-   * TINY_GTH
-   * TINY_ISM
-   * TINY_NCN
-   * TINY_NPL
-   * TINY_RES
-   * TINY_REO
-   * TINY_RST
-   * TINY_AXI
-   *
-   * Admin only
-   * TINY_VTC
-   * ISP_MST
-   * ISP_MSX
-   * ISP_MSL
-   * ISP_MTC
-   * ISP_SCH
-   * ISP_BFN
-   * ISP_BTN
-   *
-   * The relay will also accept, but not forward
-   * TINY_NONE    // for relay-connection maintenance
-   */
-  connectRelay = () => {
-    this._connect(
-      {
-        Host: 'isrelay.lfs.net',
-        Port: 47474,
-        Protocol: 'TCP',
-      },
-      true,
-    );
-  };
-
-  private _connect = (
-    options: Partial<IS_ISI_Data> & InSimConnectionOptions,
-    isRelay = false,
-  ) => {
     this._options = defaults(options, defaultInSimOptions);
 
     log(
       `Connecting to ${this._options.Host}:${this._options.Port} using ${this._options.Protocol}...`,
     );
 
-    this.sizeMultiplier = isRelay ? 1 : 4;
+    this.sizeMultiplier = 4;
 
     this.connection =
       this._options.Protocol === 'TCP'
@@ -161,20 +98,18 @@ export class InSim extends TypedEmitter<InSimEvents> {
           });
     this.connection.connect();
     this.connection.on('connect', () => {
-      if (!isRelay) {
-        this.send(
-          new IS_ISI({
-            Flags: this._options.Flags,
-            Prefix: this._options.Prefix,
-            Admin: this._options.Admin,
-            UDPPort: this._options.UDPPort,
-            ReqI: this._options.ReqI,
-            Interval: this._options.Interval,
-            IName: this._options.IName,
-            InSimVer: InSim.INSIM_VERSION,
-          }),
-        );
-      }
+      this.send(
+        new IS_ISI({
+          Flags: this._options.Flags,
+          Prefix: this._options.Prefix,
+          Admin: this._options.Admin,
+          UDPPort: this._options.UDPPort,
+          ReqI: this._options.ReqI,
+          Interval: this._options.Interval,
+          IName: this._options.IName,
+          InSimVer: InSim.INSIM_VERSION,
+        }),
+      );
       this.emit('connect', this);
     });
 

@@ -148,23 +148,6 @@ describe('InSim', () => {
       }));
   });
 
-  describe('InSim Relay connection', () => {
-    it('should connect using TCP', () =>
-      new Promise<void>((done) => {
-        const inSim = new InSim();
-
-        mitm.on('connection', (_socket, opts) => {
-          expect(opts.host).toEqual('isrelay.lfs.net');
-          expect(opts.port).toEqual(47474);
-
-          inSim.disconnect();
-          done();
-        });
-
-        inSim.connectRelay();
-      }));
-  });
-
   describe('sending packets', () => {
     let mitm: ReturnType<typeof Mitm>;
 
