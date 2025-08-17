@@ -1,6 +1,6 @@
 const { OutGauge } = require('node-insim');
 
-const outGauge = new OutGauge(5000);
+const outGauge = new OutGauge({ timeout: 5000 });
 
 console.log('Connecting...');
 

@@ -1,6 +1,6 @@
 import { OutSim, OutSimPack } from 'node-insim';
 
-const outSim = new OutSim(10000);
+const outSim = new OutSim({ timeout: 10000 });
 
 console.log('Connecting...');
 

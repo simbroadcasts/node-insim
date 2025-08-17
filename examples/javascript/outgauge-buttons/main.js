@@ -25,7 +25,7 @@ inSim.on('disconnect', () => {
   console.log('InSim disconnected');
 });
 
-const outGauge = new OutGauge(5000);
+const outGauge = new OutGauge({ timeout: 5000 });
 
 console.log('Connecting...');
 
