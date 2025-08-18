@@ -5,4 +5,14 @@ export type InSimPacket =
 
 export type InSimPacketClassInstance<
   TPacketType extends keyof typeof packetTypeToClass,
-> = (typeof packetTypeToClass)[TPacketType]['prototype'];
+> = Omit<
+  (typeof packetTypeToClass)[TPacketType]['prototype'],
+  | 'getFormat'
+  | 'getFormatSize'
+  | 'getValidPropertyNames'
+  | 'initialize'
+  | 'parseArray'
+  | 'parseObject'
+  | 'pack'
+  | 'unpack'
+>;

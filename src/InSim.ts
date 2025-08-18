@@ -309,7 +309,9 @@ export class InSim extends TypedEmitter<InSimEvents> {
     this.emit(packetType, packetInstance.unpack(data) as never, this);
   };
 
-  private handleKeepAlive = (packet: IS_TINY) => {
+  private handleKeepAlive = (
+    packet: InSimPacketClassInstance<PacketType.ISP_TINY>,
+  ) => {
     if (packet.SubT === TinyType.TINY_NONE) {
       this.send(
         new IS_TINY({
