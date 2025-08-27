@@ -8,7 +8,7 @@ const log = baseLog.extend('struct');
 
 type Data = Record<string, unknown>;
 
-type RawProperties<TThis> = {
+export type RawProperties<TThis> = {
   [P in keyof Omit<TThis, keyof Struct>]: TThis[P];
 };
 

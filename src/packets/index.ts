@@ -307,4 +307,4 @@ export {
   ObjectInfo,
   PlayerHCap,
 } from './structs';
-export type { InSimPacket } from './types';
+export type { InSimPacket, InSimPacketInstance } from './types';
