@@ -21,7 +21,7 @@ import {
   packetTypeToClass,
   TinyType,
 } from './packets';
-import type { InSimPacketClassInstance } from './packets/types';
+import type { InSimPacketInstance } from './packets/types';
 import type { Protocol } from './protocols';
 import { TCP, UDP } from './protocols';
 
@@ -245,10 +245,10 @@ export class InSim extends TypedEmitter<InSimEvents> {
     packet: SendablePacket,
     packetTypeToAwait: TPacketTypeToAwait,
     filterPacketData: (
-      packet: InSimPacketClassInstance<TPacketTypeToAwait>,
+      packet: InSimPacketInstance<TPacketTypeToAwait>,
     ) => boolean = () => true,
   ) => {
-    return new Promise<InSimPacketClassInstance<TPacketTypeToAwait>>(
+    return new Promise<InSimPacketInstance<TPacketTypeToAwait>>(
       (resolve, reject) => {
         if (this.connection === null) {
           log('Cannot send a packet with await - not connected');
@@ -260,7 +260,7 @@ export class InSim extends TypedEmitter<InSimEvents> {
 
         log('Await packet:', PacketType[packetTypeToAwait]);
         const packetListener = (
-          receivedPacket: InSimPacketClassInstance<TPacketTypeToAwait>,
+          receivedPacket: InSimPacketInstance<TPacketTypeToAwait>,
         ) => {
           if (
             receivedPacket.ReqI === packet.ReqI &&
@@ -309,7 +309,9 @@ export class InSim extends TypedEmitter<InSimEvents> {
     this.emit(packetType, packetInstance.unpack(data) as never, this);
   };
 
-  private handleKeepAlive = (packet: IS_TINY) => {
+  private handleKeepAlive = (
+    packet: InSimPacketInstance<PacketType.ISP_TINY>,
+  ) => {
     if (packet.SubT === TinyType.TINY_NONE) {
       this.send(
         new IS_TINY({

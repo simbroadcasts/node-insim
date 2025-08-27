@@ -265,15 +265,14 @@ packets by their type.
 
 ```ts
 import { InSim } from 'node-insim';
-import type { IS_VER } from 'node-insim/packets';
-import { PacketType } from 'node-insim/packets';
+import { InSimPacketInstance, PacketType } from 'node-insim/packets';
 
 const inSim = new InSim();
 
 inSim.on(PacketType.ISP_VER, onVersion);
 
-function onVersion(packet: IS_VER) {
-  console.log(`Connected to LFS ${packet.product} ${packet.Version}`);
+function onVersion(packet: InSimPacketInstance<PacketType.ISP_VER>) {
+  console.log(`Connected to LFS ${packet.Product} ${packet.Version}`);
 }
 ```
 
@@ -283,14 +282,17 @@ additional packets in response.
 
 ```ts
 import { InSim } from 'node-insim';
-import { PacketType } from 'node-insim/packets';
-import type { IS_VER } from 'node-insim/packets';
+import { InSimPacketInstance, PacketType, TinyType } from 'node-insim/packets';
+import type { IS_TINY } from 'node-insim/packets';
 
 const inSim = new InSim();
 
 inSim.on(PacketType.ISP_VER, onVersion);
 
-function onVersion(packet: IS_VER, inSim: InSim) {
+function onVersion(
+  packet: InSimPacketInstance<PacketType.ISP_VER>,
+  inSim: InSim,
+) {
   inSim.send(
     new IS_TINY({
       ReqI: 1,
@@ -310,6 +312,7 @@ can also be used to tell apart the InSim connections.
 
 ```ts
 import { InSim } from 'node-insim';
+import { InSimPacketInstance, PacketType } from 'node-insim/packets';
 
 const inSim1 = new InSim('Host One');
 
@@ -330,7 +333,10 @@ inSim2.connect({
 inSim1.on(PacketType.ISP_VER, onVersion);
 inSim2.on(PacketType.ISP_VER, onVersion);
 
-function onVersion(packet: IS_VER, inSim: InSim) {
+function onVersion(
+  packet: InSimPacketInstance<PacketType.ISP_VER>,
+  inSim: InSim,
+) {
   console.log(`Connected to ${inSim.options.Host}:${inSim.options.Port}`);
 
   if (inSim.id) {
@@ -350,11 +356,10 @@ property in the packet instance, which contains all unconverted string propertie
 ```ts
 import { InSim } from 'node-insim';
 import { PacketType } from 'node-insim/packets';
-import type { IS_ISM } from 'node-insim/packets';
 
 const inSim = new InSim();
 
-inSim.on(PacketType.ISP_ISM, (packet: IS_ISM) => {
+inSim.on(PacketType.ISP_ISM, (packet) => {
   console.log(packet.HName); // UTF-8 string - ^1Drifter Team ^7★ Server
   console.log(packet._raw.HName); // raw string - ^1Drifter Team ^7^J Server\u0000\u0000\u0000\u0000
 });
@@ -370,7 +375,7 @@ import type { IS_MSL } from 'node-insim/packets';
 
 const inSim = new InSim();
 
-inSim.on(PacketType.ISP_VER, (packet: IS_VER) => {
+inSim.on(PacketType.ISP_VER, (packet) => {
   inSim.send(
     new IS_MSL({
       Msg: 'čau světe', // LFS will receive: ^Eèau svìte
@@ -389,7 +394,7 @@ Special care needs to be taken when sending strings containing caret (`^`) and s
 ### OutGauge
 
 ```ts
-import { OutGauge, OutGaugePack } from 'node-insim';
+import { OutGauge } from 'node-insim';
 
 const outGauge = new OutGauge();
 
@@ -398,7 +403,7 @@ outGauge.connect({
   Port: 29999,
 });
 
-outGauge.on('packet', (data: OutGaugePack) => {
+outGauge.on('packet', (data) => {
   console.clear();
   console.log(data.RPM);
 });
