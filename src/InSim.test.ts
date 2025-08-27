@@ -631,7 +631,7 @@ describe('InSim', () => {
           )
           .then((packet) => {
             expect(packet.ReqI).toEqual(20);
-            expect(packet.Type).toEqual(PacketType.ISP_ISM);
+            expect(packet.HName).toEqual('Very Long Server Name Is Longest');
             done();
           });
       }));
