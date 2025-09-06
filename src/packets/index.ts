@@ -306,5 +306,6 @@ export {
   NodeLap,
   ObjectInfo,
   PlayerHCap,
+  PlayerHCapFlags,
 } from './structs';
 export type { InSimPacket } from './types';
