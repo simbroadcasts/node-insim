@@ -92,6 +92,14 @@ export class IS_NPL extends Packet {
 
   /** /showfuel yes: fuel percent / no: 255 */
   @byte() Fuel = 0;
+
+  public get isFemale() {
+    return (this.PType & PlayerType.FEMALE) !== 0;
+  }
+
+  public get isMale() {
+    return !this.isFemale;
+  }
 }
 
 export enum CarConfiguration {
@@ -152,3 +160,7 @@ export enum SetupFlags {
   /** Anti-lock brakes enabled */
   SETF_ABS_ENABLE = 4,
 }
+
+const a = new IS_NPL();
+
+console.log(a.isMale);
