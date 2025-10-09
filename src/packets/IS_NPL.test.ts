@@ -153,4 +153,120 @@ describe('IS_NPL', () => {
       buffer,
     });
   });
+
+  describe('computed properties', () => {
+    it('should return isMale = true if PType female flag is off', () => {
+      const buffer = new Uint8Array([
+        size / new IS_NPL().SIZE_MULTIPLIER, // Size
+        21, // Type
+        0, // ReqI
+        3, // PLID
+        5, // UCID
+        2, // PType
+        8, // Flags (0)
+        0, // Flags (1)
+        ...stringToBytes(pName), // PName[24]
+        ...stringToBytes(plate), // Plate[8]
+        ...stringToBytes('XRT'), // CName[4]
+        0,
+        ...stringToBytes(sName), // SName[16]
+        0, // TyreRL
+        1, // TyreRR
+        2, // TyreFL
+        3, // TyreFR
+        10, // H_Mass
+        15, // H_TRes
+        1, // Model
+        2, // Pass
+        4, // RWAdj
+        5, // FWAdj
+        0, // Sp2
+        0, // Sp3
+        4, // SetF
+        20, // NumP
+        1, // Config
+        34, // Fuel
+      ]);
+
+      const packet = new IS_NPL().unpack(buffer);
+
+      expect(packet.isMale).toEqual(true);
+    });
+
+    it('should return isMale = true if PType female flag is is on', () => {
+      const buffer = new Uint8Array([
+        size / new IS_NPL().SIZE_MULTIPLIER, // Size
+        21, // Type
+        0, // ReqI
+        3, // PLID
+        5, // UCID
+        3, // PType
+        8, // Flags (0)
+        0, // Flags (1)
+        ...stringToBytes(pName), // PName[24]
+        ...stringToBytes(plate), // Plate[8]
+        ...stringToBytes('XRT'), // CName[4]
+        0,
+        ...stringToBytes(sName), // SName[16]
+        0, // TyreRL
+        1, // TyreRR
+        2, // TyreFL
+        3, // TyreFR
+        10, // H_Mass
+        15, // H_TRes
+        1, // Model
+        2, // Pass
+        4, // RWAdj
+        5, // FWAdj
+        0, // Sp2
+        0, // Sp3
+        4, // SetF
+        20, // NumP
+        1, // Config
+        34, // Fuel
+      ]);
+
+      const packet = new IS_NPL().unpack(buffer);
+
+      expect(packet.isMale).toEqual(false);
+    });
+
+    it('should get passenger count', () => {
+      const buffer = new Uint8Array([
+        size / new IS_NPL().SIZE_MULTIPLIER, // Size
+        21, // Type
+        0, // ReqI
+        3, // PLID
+        5, // UCID
+        3, // PType
+        8, // Flags (0)
+        0, // Flags (1)
+        ...stringToBytes(pName), // PName[24]
+        ...stringToBytes(plate), // Plate[8]
+        ...stringToBytes('XRT'), // CName[4]
+        0,
+        ...stringToBytes(sName), // SName[16]
+        0, // TyreRL
+        1, // TyreRR
+        2, // TyreFL
+        3, // TyreFR
+        10, // H_Mass
+        15, // H_TRes
+        1, // Model
+        15, // Pass
+        4, // RWAdj
+        5, // FWAdj
+        0, // Sp2
+        0, // Sp3
+        4, // SetF
+        20, // NumP
+        1, // Config
+        34, // Fuel
+      ]);
+
+      const packet = new IS_NPL().unpack(buffer);
+
+      expect(packet.passengerCount).toEqual(4);
+    });
+  });
 });

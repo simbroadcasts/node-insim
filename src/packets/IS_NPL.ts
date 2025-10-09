@@ -1,7 +1,8 @@
 import { byte, carName, string, stringNull, word } from '../decorators';
+import { isFlagOn } from '../utils/bitwiseFlags';
 import { Packet } from './base';
-import type { PlayerFlags, TyreCompound } from './enums';
-import { PacketType } from './enums';
+import type { TyreCompound } from './enums';
+import { PacketType, PlayerFlags } from './enums';
 
 /**
  * New PLayer joining race (if PLID already exists, then leaving pits)
@@ -92,6 +93,72 @@ export class IS_NPL extends Packet {
 
   /** /showfuel yes: fuel percent / no: 255 */
   @byte() Fuel = 0;
+
+  public get isFemale() {
+    return (this.PType & PlayerType.FEMALE) !== 0;
+  }
+
+  public get isMale() {
+    return !this.isFemale;
+  }
+
+  public get isAI() {
+    return isFlagOn(this.PType, PlayerType.AI);
+  }
+
+  public get isRemote() {
+    return isFlagOn(this.PType, PlayerType.REMOTE);
+  }
+
+  public get isDriverOnLeftSide() {
+    return isFlagOn(this.Flags, PlayerFlags.PIF_LEFTSIDE);
+  }
+
+  public get hasAutoGearShift() {
+    return isFlagOn(this.Flags, PlayerFlags.PIF_AUTOGEARS);
+  }
+
+  public get hasShifter() {
+    return isFlagOn(this.Flags, PlayerFlags.PIF_SHIFTER);
+  }
+
+  public get hasBrakeHelp() {
+    return isFlagOn(this.Flags, PlayerFlags.PIF_HELP_B);
+  }
+
+  public get hasAxisClutch() {
+    return isFlagOn(this.Flags, PlayerFlags.PIF_AXIS_CLUTCH);
+  }
+
+  public get isInPits() {
+    return isFlagOn(this.Flags, PlayerFlags.PIF_INPITS);
+  }
+
+  public get hasAutoClutch() {
+    return isFlagOn(this.Flags, PlayerFlags.PIF_AUTOCLUTCH);
+  }
+
+  public get hasMouseSteering() {
+    return isFlagOn(this.Flags, PlayerFlags.PIF_MOUSE);
+  }
+
+  public get hasKeyboardSteeringNoHelp() {
+    return isFlagOn(this.Flags, PlayerFlags.PIF_KB_NO_HELP);
+  }
+
+  public get hasKeyboardSteeringStabilised() {
+    return isFlagOn(this.Flags, PlayerFlags.PIF_KB_STABILISED);
+  }
+
+  public get hasCustomView() {
+    return isFlagOn(this.Flags, PlayerFlags.PIF_CUSTOM_VIEW);
+  }
+
+  public get passengerCount() {
+    return Object.keys(PassengerFlags).filter((key) =>
+      isFlagOn(this.Pass, PassengerFlags[key as keyof typeof PassengerFlags]),
+    ).length;
+  }
 }
 
 export enum CarConfiguration {
