@@ -14,7 +14,8 @@ export type ReadonlyPropNames =
   | 'SpF1'
   | 'SPU1'
   | 'SPU2'
-  | 'SPU3';
+  | 'SPU3'
+  | 'SpW';
 
 type ReadonlyStructProps = keyof SendableStruct | ReadonlyPropNames;
 
