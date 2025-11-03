@@ -63,12 +63,12 @@ describe('IS_PLH', () => {
     buffer,
   });
 
-  it('should throw a range error if HCaps length is greater than 40', () => {
+  it('should throw a range error if HCaps length is greater than 48', () => {
     expect(() => {
       new IS_PLH({
-        NumP: 41,
+        NumP: 49,
         HCaps: [
-          ...new Array(41).fill(undefined).map(
+          ...new Array(49).fill(undefined).map(
             (_, index) =>
               new PlayerHCap({
                 PLID: index,

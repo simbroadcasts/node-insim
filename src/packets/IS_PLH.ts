@@ -13,7 +13,7 @@ import type { PacketData } from './types';
  * An output IS_PLH is sent to all InSim clients after an IS_PLH is received. The output IS_PLH contains an entry for all valid players that had handicaps updated. An IS_PLH is also output when a handicap is set by a text command /h_mass username X or /h_tres username X
  */
 export class IS_PLH extends SendablePacket {
-  public static readonly PLH_MAX_PLAYERS = 40; // NOTE: Increase if MAX_CARS_S2 is increased
+  public static readonly PLH_MAX_PLAYERS = 48; // NOTE: Increase if MAX_CARS_S2 is increased
 
   /** 4 + NumP * 4 */
   @byte() Size = 4;
