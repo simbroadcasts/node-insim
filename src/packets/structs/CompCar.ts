@@ -54,6 +54,9 @@ export enum CompCarFlags {
   /** This car is slow or stopped and in a dangerous place */
   CCI_YELLOW = 2,
 
+  /** This car is outside the path */
+  CCI_OOB = 4,
+
   /** This car is lagging (missing or delayed position packets) */
   CCI_LAG = 32,
 
