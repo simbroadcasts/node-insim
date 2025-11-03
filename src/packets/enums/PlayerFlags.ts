@@ -8,6 +8,9 @@ export enum PlayerFlags {
   /** Shifter */
   PIF_SHIFTER = 16,
 
+  /** Inertia steer */
+  PIF_INERTIA_STEER = 32,
+
   /** Brake help */
   PIF_HELP_B = 64,
 
