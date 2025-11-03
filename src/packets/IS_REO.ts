@@ -24,9 +24,9 @@ import type { PacketData } from './types';
  * - SubT: {@link TINY_REO}    (request an IS_REO)
  */
 export class IS_REO extends SendablePacket {
-  private MAX_DRIVERS = 40;
+  private static readonly REO_MAX_PLAYERS = 48;
 
-  @byte() readonly Size = 44;
+  @byte() readonly Size = 52;
   @byte() readonly Type = PacketType.ISP_REO;
 
   /** 0 unless this is a reply to an {@link TINY_REO} request */
@@ -36,7 +36,7 @@ export class IS_REO extends SendablePacket {
   @byte() NumP = 0;
 
   /** All PLIDs in new order */
-  @byteArray(40) PLID = Array<number>(40).fill(0);
+  @byteArray(IS_REO.REO_MAX_PLAYERS) PLID = Array<number>(40).fill(0);
 
   constructor(data?: IS_REO_Data) {
     super();
@@ -44,9 +44,9 @@ export class IS_REO extends SendablePacket {
   }
 
   pack() {
-    if (this.PLID.length > this.MAX_DRIVERS) {
+    if (this.PLID.length > IS_REO.REO_MAX_PLAYERS) {
       throw new RangeError(
-        `IS_REO - Too many players (max is ${this.MAX_DRIVERS}`,
+        `IS_REO - Too many players (max is ${IS_REO.REO_MAX_PLAYERS}`,
       );
     }
 
