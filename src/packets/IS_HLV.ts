@@ -1,4 +1,4 @@
-import { byte, word } from '../decorators';
+import { byte, unsigned, word } from '../decorators';
 import { copyBuffer } from '../lfspack';
 import { Packet } from './base';
 import { PacketType } from './enums';
@@ -21,9 +21,10 @@ export class IS_HLV extends Packet {
   @byte() HLVC: HLVCViolation = 0;
 
   @byte() private readonly Sp1 = 0;
+  @word() private readonly SpW = 0;
 
-  /** Looping time stamp (hundredths - time since reset - like {@link TINY_GTH}) */
-  @word() Time = 0;
+  /** Time stamp (ms) */
+  @unsigned() Time = 0;
 
   /** Car contact object */
   C: CarContOBJ = new CarContOBJ();
