@@ -59,7 +59,7 @@ export enum SmallType {
   /** Instruction: time step */
   SMALL_STP,
 
-  /** Info: race time packet (reply to {@link TINY_GTH}) */
+  /** Info: race time packet (reply to {@link TINY_GTM}) */
   SMALL_RTP,
 
   /** Instruction: set node lap interval */
