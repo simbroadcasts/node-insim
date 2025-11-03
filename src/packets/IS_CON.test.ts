@@ -10,7 +10,7 @@ const data: PacketTestData<IS_CON> = {
   ReqI: 0,
   Zero: 0,
   SpClose: 155,
-  Time: 1471,
+  Time: 571737535,
   A: new CarContact({
     PLID: 1,
     Info: CarContactFlags.CCI_BLUE | CarContactFlags.CCI_LAG,
@@ -50,8 +50,12 @@ const buffer = new Uint8Array([
   0, // Zero
   155, // SpClose (1)
   0, // SpClose (2)
+  0, // SpW (1)
+  0, // SpW (2)
   191, // Time (1)
   5, // Time (2)
+  20, // Time (3)
+  34, // Time (4)
   1, // A - PLID
   33, // A - Info
   0, // A - Sp2
