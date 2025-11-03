@@ -38,7 +38,7 @@ export type InSimOptions = Omit<IS_ISI_Data, 'InSimVer'> &
 
 export class InSim extends TypedEmitter<InSimEvents> {
   /** Currently supported InSim version */
-  static INSIM_VERSION = 9;
+  static INSIM_VERSION = 10;
 
   private static COMMAND_PREFIX = '/';
 

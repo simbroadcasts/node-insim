@@ -16,8 +16,8 @@ describe('InSim', () => {
     expect(typeof InSim).toEqual('function');
   });
 
-  it('should expose INSIM_VERSION equal to 9', () => {
-    expect(InSim.INSIM_VERSION).toEqual(9);
+  it('should expose INSIM_VERSION equal to 10', () => {
+    expect(InSim.INSIM_VERSION).toEqual(10);
   });
 
   describe('options', () => {
@@ -88,7 +88,7 @@ describe('InSim', () => {
                 117, // UDPPort (2)
                 64, // InSimFlags.ISF_CON (1)
                 0, // InSimFlags.ISF_CON (2)
-                9, // InSimVer
+                10, // InSimVer
                 '!'.charCodeAt(0), // Prefix
                 10, // Interval (1)
                 0, // Interval (2)
