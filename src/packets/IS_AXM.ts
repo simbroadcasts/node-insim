@@ -128,8 +128,7 @@ export enum PMOAction {
 export enum PMOFlags {
   /**
    * If PMO_FILE_END is set in a {@link PMO_LOADING_FILE} packet, LFS has reached
-   * the end of a layout file which it is loading. The added objects will then be
-   * optimised.
+   * the end of a layout file which it is loading.
    */
   PMO_FILE_END = 1,
 
