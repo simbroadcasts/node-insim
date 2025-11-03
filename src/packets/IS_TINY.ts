@@ -46,8 +46,8 @@ export enum TinyType {
   /** Info request: send state info */
   TINY_SST,
 
-  /** Info request: get time in hundredths (i.e. {@link SMALL_RTP}) */
-  TINY_GTH,
+  /** Info request: get time in milliseconds (i.e. {@link SMALL_RTP}) */
+  TINY_GTM,
 
   /** Info: multi player end */
   TINY_MPE,
@@ -136,7 +136,7 @@ export const SENDABLE_TINY_TYPES = [
   TinyType.TINY_VTC,
   TinyType.TINY_SCP,
   TinyType.TINY_SST,
-  TinyType.TINY_GTH,
+  TinyType.TINY_GTM,
   TinyType.TINY_ISM,
   TinyType.TINY_NCN,
   TinyType.TINY_NPL,
@@ -161,7 +161,7 @@ export const INFO_REQUEST_TINY_TYPES = [
   TinyType.TINY_PING,
   TinyType.TINY_SCP,
   TinyType.TINY_SST,
-  TinyType.TINY_GTH,
+  TinyType.TINY_GTM,
   TinyType.TINY_ISM,
   TinyType.TINY_NCN,
   TinyType.TINY_NPL,

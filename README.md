@@ -202,7 +202,7 @@ inSim
   .sendAwait(
     new IS_TINY({
       ReqI: 1,
-      SubT: TinyType.TINY_GTH,
+      SubT: TinyType.TINY_GTP,
     }),
     PacketType.ISP_SMALL,
     ({ SubT }) => SubT === SmallType.SMALL_RTP,
@@ -217,7 +217,7 @@ inSim
 | Name         | Request packet                            | Reply packet                                |
 | ------------ | ----------------------------------------- | ------------------------------------------- |
 | Ping         | `IS_TINY`<br />SubT: `TinyType.TINY_PING` | `IS_TINY`<br />SubT: `TinyType.TINY_REPLY`  |
-| Session time | `IS_TINY`<br />SubT: `TinyType.TINY_GTH`  | `IS_SMALL`<br />SubT: `SmallType.SMALL_RTP` |
+| Session time | `IS_TINY`<br />SubT: `TinyType.TINY_GTP`  | `IS_SMALL`<br />SubT: `SmallType.SMALL_RTP` |
 | State        | `IS_TINY`<br />SubT: `TinyType.TINY_SST`  | `IS_STA`                                    |
 | InSim multi  | `TINY_ISM`                                | `IS_ISM`                                    |
 
