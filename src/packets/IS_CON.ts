@@ -1,4 +1,4 @@
-import { byte, struct, word } from '../decorators';
+import { byte, struct, unsigned, word } from '../decorators';
 import { Packet } from './base';
 import { PacketType } from './enums';
 import { CarContact } from './structs';
@@ -11,7 +11,7 @@ import { CarContact } from './structs';
  * Set the {@link ISF_CON} flag in the {@link IS_ISI} to receive car contact reports.
  */
 export class IS_CON extends Packet {
-  @byte() readonly Size = 40;
+  @byte() readonly Size = 44;
   @byte() readonly Type = PacketType.ISP_CON;
   @byte() readonly ReqI = 0;
   @byte() readonly Zero = 0;
@@ -19,8 +19,10 @@ export class IS_CON extends Packet {
   /** High 4 bits: reserved / low 12 bits: closing speed (10 = 1 m/s) */
   @word() SpClose = 0;
 
-  /** Looping time stamp (hundredths - time since reset - like {@link TINY_GTH}) */
-  @word() Time = 0;
+  @word() private readonly SpW = 0;
+
+  /** Time stamp (ms) */
+  @unsigned() Time = 0;
 
   /** Contact object - car A */
   @struct(CarContact) A = new CarContact();
