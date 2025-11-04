@@ -9,7 +9,7 @@ const RNAME_MAX_LENGTH = 64;
  * Replay Information Packet
  *
  * You can load a replay or set the position in a replay with an IS_RIP packet. Replay positions and lengths are
- * specified in hundredths of a second. LFS will reply with another IS_RIP packet when the request is completed.
+ * specified in milliseconds. LFS will reply with another IS_RIP packet when the request is completed.
  *
  * You can request an IS_RIP packet at any time with this {@link IS_TINY}:
  *
@@ -42,10 +42,10 @@ export class IS_RIP extends SendablePacket {
 
   @byte() private readonly Sp3 = 0;
 
-  /** (hundredths) request: destination / reply: position */
+  /** (milliseconds) request: destination / reply: position */
   @unsigned() CTime = 0;
 
-  /** (hundredths) request: zero / reply: replay length */
+  /** (milliseconds) request: zero / reply: replay length */
   @unsigned() TTime = 0;
 
   /** Zero or replay name - last byte must be zero */
