@@ -21,7 +21,7 @@ export class IS_CSC extends Packet {
   @byte() private readonly Sp2 = 0;
   @byte() private readonly Sp3 = 0;
 
-  /** Hundredths of a second since start (as in {@link SMALL_RTP}) */
+  /** Milliseconds since start (as in {@link SMALL_RTP}) */
   @unsigned() Time = 0;
 
   /** Car contact object */
