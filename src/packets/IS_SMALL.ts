@@ -125,7 +125,7 @@ type SMALL_STP_Data = Data<{
   /** Instruction: time step */
   SubT: SmallType.SMALL_STP;
 
-  /** Number of hundredths of a second to update */
+  /** Number of milliseconds to update */
   UVal: number;
 }>;
 
