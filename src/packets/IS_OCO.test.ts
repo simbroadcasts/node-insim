@@ -9,7 +9,7 @@ const size = 8;
 
 const data: IS_OCO_Data = {
   OCOAction: OCOAction.OCO_LIGHTS_SET,
-  Index: ObjectIndex.AXO_START_LIGHTS,
+  Index: ObjectIndex.AXO_START_LIGHTS1,
   Identifier: 35,
   Data: OCOAutocrossStartLights.RED | OCOAutocrossStartLights.AMBER,
 };

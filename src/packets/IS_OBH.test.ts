@@ -22,7 +22,7 @@ const data: PacketTestData<IS_OBH> = {
   X: -10990,
   Y: -31058,
   Zbyte: 1,
-  Index: ObjectIndex.AXO_BANNER2,
+  Index: ObjectIndex.AXO_BANNER,
   OBHFlags:
     ObjectHitFlags.OBH_LAYOUT |
     ObjectHitFlags.OBH_CAN_MOVE |
@@ -56,7 +56,7 @@ const buffer = new Uint8Array([
   134, // Y (2)
   1, // Zbyte
   0, // Sp1
-  113, // Index
+  112, // Index
   11, // OBHFlags
 ]);
 
