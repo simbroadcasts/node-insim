@@ -79,3 +79,6 @@ export enum OCOMainLights {
   RED_3 = 4,
   GREEN = 8,
 }
+
+/** Special value to override the main start light system */
+export const OCO_INDEX_MAIN = 240;
