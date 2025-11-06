@@ -57,4 +57,16 @@ export class ObjectInfo extends SendableStruct {
     super();
     this.initialize(data);
   }
+
+  /**
+   * Floating object - remains at altitude specified by {@link Zbyte}.
+   * For all objects except the concrete objects AXO_CONCRETE_SLAB etc.
+   */
+  public get isFloatingObject() {
+    return (this.Flags & 0x80) > 0;
+  }
+
+  public get isCheckpoint1() {
+    return this.Index === 0 && (this.Flags & 0b11) === 0b01;
+  }
 }
