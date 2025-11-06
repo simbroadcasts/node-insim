@@ -15,7 +15,12 @@ export class IS_OCO extends SendablePacket {
   @byte() OCOAction: OCOAction = OCOAction.OCO_ZERO;
 
   /** Specifies which lights you want to override **/
-  @byte() Index: ObjectIndex = ObjectIndex.AXO_NULL;
+  @byte() Index:
+    | ObjectIndex.AXO_START_LIGHTS1
+    | ObjectIndex.AXO_START_LIGHTS2
+    | ObjectIndex.AXO_START_LIGHTS3
+    | typeof OCO_INDEX_MAIN
+    | ObjectIndex.AXO_NULL = ObjectIndex.AXO_NULL;
 
   /**
    * Identify particular start lights objects (0 to 63 or 255 = all)
