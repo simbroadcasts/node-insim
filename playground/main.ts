@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import fs from 'fs';
 import { InSim } from 'node-insim';
-import type { IS_VER } from 'node-insim/packets';
+import type { InSimPacketInstance } from 'node-insim/packets';
 import { IS_ISI_ReqI, PacketType } from 'node-insim/packets';
 import path from 'path';
 
@@ -33,8 +33,8 @@ inSim.on('disconnect', () => {
 
 inSim.on(PacketType.ISP_VER, onVersion);
 
-function onVersion(packet: IS_VER) {
-  console.log(`Connected to LFS ${packet.Product} ${packet.Version}`);
+function onVersion(packet: InSimPacketInstance<PacketType.ISP_VER>) {
+  console.log(`Connected to LFS ${packet} ${packet.Version}`);
 }
 
 process.on('uncaughtException', (error) => {
