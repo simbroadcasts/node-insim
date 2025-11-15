@@ -11,7 +11,7 @@ export class IS_AIC extends SendablePacket {
   public static readonly MAX_INPUTS = 20; // NOTE: Increase if CS_NUM is increased
 
   /** 4 + 4 * (number of inputs) */
-  @byte() Size = 8;
+  @byte() Size = 4;
 
   @byte() readonly Type = PacketType.ISP_AIC;
 
