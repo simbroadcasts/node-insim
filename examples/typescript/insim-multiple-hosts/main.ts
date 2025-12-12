@@ -1,6 +1,6 @@
 import { InSim } from 'node-insim';
-import type { IS_VER } from 'node-insim/packets';
-import { IS_ISI_ReqI, PacketType, IS_MSO } from 'node-insim/packets';
+import type { InSimPacketInstance } from 'node-insim/packets';
+import { IS_ISI_ReqI, PacketType } from 'node-insim/packets';
 
 // Host 1
 
@@ -51,13 +51,19 @@ function onDisconnect(inSim: InSim) {
   );
 }
 
-function onVersion(packet: IS_VER, inSim: InSim) {
+function onVersion(
+  packet: InSimPacketInstance<PacketType.ISP_VER>,
+  inSim: InSim,
+) {
   console.log(
     `Connected to LFS ${packet.Product} ${packet.Version} at ${inSim.options.Host}:${inSim.options.Port} (${inSim.id})`,
   );
 }
 
-function onMessage(packet: IS_MSO, inSim: InSim) {
+function onMessage(
+  packet: InSimPacketInstance<PacketType.ISP_MSO>,
+  inSim: InSim,
+) {
   console.log(
     `${inSim.options.Host}:${inSim.options.Port} (${inSim.id}) - message received: ${packet.Msg}`,
   );
