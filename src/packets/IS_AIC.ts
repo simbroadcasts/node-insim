@@ -2,7 +2,7 @@ import { byte, word } from '../decorators';
 import { SendablePacket, SendableStruct } from './base';
 import type { PlayerFlags } from './enums';
 import { PacketType } from './enums';
-import type { PacketData } from './types';
+import type { PacketDataWithOptionalReqI } from './types';
 
 /**
  * AI Control
@@ -11,7 +11,7 @@ export class IS_AIC extends SendablePacket {
   public static readonly MAX_INPUTS = 20; // NOTE: Increase if CS_NUM is increased
 
   /** 4 + 4 * (number of inputs) */
-  @byte() Size = 8;
+  @byte() Size = 4;
 
   @byte() readonly Type = PacketType.ISP_AIC;
 
@@ -219,7 +219,7 @@ export enum AICToggleValue {
   SWITCH_ON = 3,
 }
 
-export type IS_AIC_Data = PacketData<IS_AIC>;
+export type IS_AIC_Data = PacketDataWithOptionalReqI<IS_AIC>;
 
 export enum AICSteering {
   HARD_LEFT = 1,

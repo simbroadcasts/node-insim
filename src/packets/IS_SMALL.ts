@@ -175,7 +175,7 @@ type SMALL_AII_Data = Data<{
   /** Info: Get local AI info */
   SubT: SmallType.SMALL_AII;
 
-  /** Switches */
+  /** PLID to receive current information about a local car */
   UVal: number;
 }>;
 
