@@ -11,6 +11,6 @@ export type InSimPacketInstance<
   TPacketType extends keyof typeof packetTypeToClass,
 > = Omit<
   RawProperties<InSimPacketByType<TPacketType>['prototype']>,
-  ReadonlyPropNames | 'Size' | 'Type'
+  ReadonlyPropNames
 > &
   Pick<InSimPacketByType<TPacketType>['prototype'], '_raw'>;
