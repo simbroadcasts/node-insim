@@ -89,6 +89,7 @@ jobs:
 
   release:
     permissions:
+      id-token: write  # Required for OIDC
       contents: write # to create release tags (cycjimmy/semantic-release-action)
       issues: write # to post release that resolves an issue (cycjimmy/semantic-release-action)
 
