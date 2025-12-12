@@ -10,7 +10,10 @@
     "nodejs",
     "node.js"
   ],
-  "repository": "git@github.com:simbroadcasts/node-insim.git",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/simbroadcasts/node-insim.git"
+  },
   "author": "Martin Kapal <flamecze@gmail.com>",
   "contributors": [
     "Peter Butcher <pete@pbutcher.uk> (https://pbutcher.uk)",
@@ -121,7 +124,11 @@
   "release": {
     "branches": [
       "master",
-      { "name": "next", "channel": "next", "prerelease": true }
+      {
+        "name": "next",
+        "channel": "next",
+        "prerelease": true
+      }
     ]
   }
 }
