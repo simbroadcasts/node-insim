@@ -89,6 +89,7 @@ jobs:
 
   release:
     permissions:
+      id-token: write # Required for OIDC
       contents: write # to create release tags (cycjimmy/semantic-release-action)
       issues: write # to post release that resolves an issue (cycjimmy/semantic-release-action)
 
@@ -119,7 +120,7 @@ jobs:
           cmd: build
 
       - name: Release
-        uses: cycjimmy/semantic-release-action@v4
+        uses: cycjimmy/semantic-release-action@v6
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
