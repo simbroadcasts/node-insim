@@ -111,6 +111,9 @@ export enum TinyType {
 
   /** Info request: send {@link IS_IPB} listing the IP bans */
   TINY_IPB,
+
+  /** Info request: send a {@link SMALL_LCL} for local car's lights */
+  TINY_LCL,
 }
 
 export type IS_TINY_Data =
@@ -154,6 +157,7 @@ export const SENDABLE_TINY_TYPES = [
   TinyType.TINY_MAL,
   TinyType.TINY_PLH,
   TinyType.TINY_IPB,
+  TinyType.TINY_LCL,
 ] as const;
 
 export const INFO_REQUEST_TINY_TYPES = [
@@ -179,6 +183,7 @@ export const INFO_REQUEST_TINY_TYPES = [
   TinyType.TINY_MAL,
   TinyType.TINY_PLH,
   TinyType.TINY_IPB,
+  TinyType.TINY_LCL,
 ] as const;
 
 export type SendableTinyType = (typeof SENDABLE_TINY_TYPES)[number];
