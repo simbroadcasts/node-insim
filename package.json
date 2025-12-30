@@ -1,6 +1,6 @@
 {
   "name": "node-insim",
-  "version": "0.0.0-semantically-released",
+  "version": "6.0.1",
   "description": "An InSim library for NodeJS with TypeScript support",
   "keywords": [
     "lfs",
@@ -76,7 +76,8 @@
     "generate:plop": "plop",
     "docs:generate": "typedoc",
     "prepare": "husky",
-    "prepack": "run-s build"
+    "prepublishOnly": "run-s format:check lint build \"test --watch=false\" test:examples",
+    "local-release": "changeset version && changeset publish"
   },
   "dependencies": {
     "@types/debug": "^4.1.12",
@@ -90,6 +91,8 @@
     "unicode-to-lfs": "^2.0.0"
   },
   "devDependencies": {
+    "@changesets/changelog-github": "^0.5.2",
+    "@changesets/cli": "^2.29.8",
     "@types/ip": "^1.1.3",
     "@types/jest": "^29.5.14",
     "@types/mitm": "^1.3.8",
@@ -120,15 +123,5 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "packageManager": "yarn@1.22.22+sha256.c17d3797fb9a9115bf375e31bfd30058cac6bc9c3b8807a3d8cb2094794b51ca",
-  "release": {
-    "branches": [
-      "master",
-      {
-        "name": "next",
-        "channel": "next",
-        "prerelease": true
-      }
-    ]
-  }
+  "packageManager": "yarn@1.22.22+sha256.c17d3797fb9a9115bf375e31bfd30058cac6bc9c3b8807a3d8cb2094794b51ca"
 }
