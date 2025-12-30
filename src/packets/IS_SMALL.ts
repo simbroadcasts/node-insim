@@ -207,48 +207,59 @@ const LCL_SET_FOG_REAR = 16;
 const LCL_SET_FOG_FRONT = 32;
 const LCL_SET_EXTRA = 64;
 
+const SIGNALS_BIT_SHIFT = 16;
+const SIGNALS_BIT_MASK = 1 << SIGNALS_BIT_SHIFT;
+const LIGHTS_BIT_SHIFT = 18;
+const LIGHTS_BIT_MASK = 1 << LIGHTS_BIT_SHIFT;
+const FOG_REAR_BIT_SHIFT = 20;
+const FOG_REAR_BIT_MASK = 1 << FOG_REAR_BIT_SHIFT;
+const FOG_FRONT_BIT_SHIFT = 21;
+const FOG_FRONT_BIT_MASK = 1 << FOG_FRONT_BIT_SHIFT;
+const EXTRA_LIGHT_BIT_SHIFT = 22;
+const EXTRA_LIGHT_BIT_MASK = 1 << EXTRA_LIGHT_BIT_SHIFT;
+
 export enum LocalCarLights {
   /** Turn all signals off */
   SIGNALS_OFF = LCL_SET_SIGNALS,
 
   /** Turn left signals on */
-  SIGNALS_LEFT = LCL_SET_SIGNALS + (1 << 16),
+  SIGNALS_LEFT = LCL_SET_SIGNALS + SIGNALS_BIT_MASK,
 
   /** Turn right signals on */
-  SIGNALS_RIGHT = LCL_SET_SIGNALS + (2 << 16),
+  SIGNALS_RIGHT = LCL_SET_SIGNALS + SIGNALS_BIT_MASK,
 
   /** Turn hazards on */
-  SIGNALS_HAZARD = LCL_SET_SIGNALS + (3 << 16),
+  SIGNALS_HAZARD = LCL_SET_SIGNALS + SIGNALS_BIT_MASK,
 
   /** Turn lights off */
   LIGHTS_OFF = LCL_SET_LIGHTS,
 
   /** Turn side lights on */
-  LIGHTS_SIDE = LCL_SET_LIGHTS + (1 << 18),
+  LIGHTS_SIDE = LCL_SET_LIGHTS + LIGHTS_BIT_MASK,
 
   /** Turn low beam on */
-  LIGHTS_LOW = LCL_SET_LIGHTS + (2 << 18),
+  LIGHTS_LOW = LCL_SET_LIGHTS + LIGHTS_BIT_MASK,
 
   /** Turn high beam on */
-  LIGHTS_HIGH = LCL_SET_LIGHTS + (3 << 18),
+  LIGHTS_HIGH = LCL_SET_LIGHTS + LIGHTS_BIT_MASK,
 
   /** Turn rear fog light off */
   FOG_REAR_OFF = LCL_SET_FOG_REAR,
 
   /** Turn rear fog light on */
-  FOG_REAR = LCL_SET_FOG_REAR + (1 << 20),
+  FOG_REAR = LCL_SET_FOG_REAR + FOG_REAR_BIT_MASK,
 
   /** Turn front fog light off */
   FOG_FRONT_OFF = LCL_SET_FOG_FRONT,
 
   /** Turn front fog light on */
-  FOG_FRONT = LCL_SET_FOG_FRONT + (1 << 21),
+  FOG_FRONT = LCL_SET_FOG_FRONT + FOG_FRONT_BIT_MASK,
 
   /** Turn extra light off */
   EXTRA_OFF = LCL_SET_EXTRA,
 
   /** Turn extra light on */
-  EXTRA = LCL_SET_EXTRA + (1 << 22),
+  EXTRA = LCL_SET_EXTRA + EXTRA_LIGHT_BIT_MASK,
 }
 
 const LCS_SET_SIGNALS = 1;
