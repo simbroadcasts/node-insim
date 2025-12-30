@@ -30,7 +30,7 @@ export class ObjectInfo extends SendableStruct {
   @byte() Zbyte = 0;
 
   /** Flags - see NOTE1 at {@link https://www.lfs.net/programmer/lyt} */
-  @byte() Flags = 0;
+  @byte() Flags: ObjectFlags | number = 0;
 
   /**
    * Object index
@@ -57,4 +57,13 @@ export class ObjectInfo extends SendableStruct {
     super();
     this.initialize(data);
   }
+}
+
+export enum ObjectFlags {
+  /**
+   * Floating object - remains at altitude specified by Zbyte.
+   *
+   * For all objects except the concrete objects {@link AXO_CONCRETE_SLAB} etc.
+   */
+  FLOATING = 0x80,
 }
