@@ -77,6 +77,7 @@
     "docs:generate": "typedoc",
     "prepare": "husky",
     "prepublishOnly": "run-s format:check lint build \"test --watch=false\" test:examples",
+    "release": "changeset publish",
     "local-release": "changeset version && changeset publish"
   },
   "dependencies": {
