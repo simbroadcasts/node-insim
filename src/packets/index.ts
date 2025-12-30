@@ -304,6 +304,7 @@ export {
   CompCar,
   HInfo,
   NodeLap,
+  ObjectFlags,
   ObjectInfo,
   PlayerHCap,
   PlayerHCapFlags,

@@ -7,5 +7,5 @@ export { CompCarFlags } from './CompCar';
 export { HInfo } from './HInfo';
 export { HostInfoFlags } from './HInfo';
 export { NodeLap } from './NodeLap';
-export { ObjectInfo } from './ObjectInfo';
+export { ObjectFlags, ObjectInfo } from './ObjectInfo';
 export { PlayerHCap, PlayerHCapFlags } from './PlayerHCap';
