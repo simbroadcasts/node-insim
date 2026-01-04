@@ -20,7 +20,7 @@ according to the specification.
 
 ### InSim compatibility
 
-Node InSim is compatible with InSim version 9.
+Node InSim is compatible with InSim version 10.
 
 ## Installation
 
