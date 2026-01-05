@@ -31,6 +31,10 @@ inSim.on('disconnect', () => {
   console.log('Disconnected');
 });
 
+inSim.on('error', (error) => {
+  console.error('InSim error:', error);
+});
+
 inSim.on(PacketType.ISP_VER, onVersion);
 
 function onVersion(packet: InSimPacketInstance<PacketType.ISP_VER>) {

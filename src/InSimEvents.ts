@@ -13,4 +13,5 @@ export type InSimPacketEvents = {
 export type InSimEvents = InSimPacketEvents & {
   connect: (inSim: InSim) => void;
   disconnect: (inSim: InSim) => void;
+  error: (error: Error) => void;
 };

@@ -3,7 +3,6 @@ import defaults from 'lodash.defaults';
 import { TypedEmitter } from 'tiny-typed-emitter';
 import unicodeToLfs from 'unicode-to-lfs';
 
-import { InSimError } from './errors';
 import type { InSimEvents } from './InSimEvents';
 import { unpack } from './lfspack';
 import { log as baseLog } from './log';
@@ -118,9 +117,7 @@ export class InSim extends TypedEmitter<InSimEvents> {
     });
 
     this.connection.on('error', (error: Error) => {
-      throw new InSimError(
-        `${this._options.Protocol} connection error: ${error.message}`,
-      );
+      this.emit('error', error);
     });
 
     this.connection.on('data', (data) => this.handlePacket(data));
