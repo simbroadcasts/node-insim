@@ -1,5 +1,19 @@
 # node-insim
 
+## 6.2.0
+
+### Minor Changes
+
+- [`74b9dd5`](https://github.com/simbroadcasts/node-insim/commit/74b9dd52e10a5fef3929ae30a020ec911baf01f0) Thanks [@mkapal](https://github.com/mkapal)! - Emit an 'error' event on InSim error
+
+  Usage:
+
+  ```ts
+  inSim.on('error', (error) => {
+    console.error('InSim error:', error);
+  });
+  ```
+
 ## 6.1.0
 
 ### Minor Changes
