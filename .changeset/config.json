@@ -4,7 +4,7 @@
     "@changesets/changelog-github",
     { "repo": "simbroadcasts/node-insim" }
   ],
-  "commit": true,
+  "commit": false,
   "fixed": [],
   "linked": [],
   "access": "public",
