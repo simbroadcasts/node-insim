@@ -52,4 +52,7 @@ export enum DashLights {
 
   /** Neutral */
   DL_NEUTRAL = 131072,
+
+  /** Set if engine damage is severe */
+  DLF_ENGINE_SEVERE = 0x10000000,
 }
