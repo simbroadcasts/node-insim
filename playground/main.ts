@@ -38,7 +38,7 @@ inSim.on('error', (error) => {
 inSim.on(PacketType.ISP_VER, onVersion);
 
 function onVersion(packet: InSimPacketInstance<PacketType.ISP_VER>) {
-  console.log(`Connected to LFS ${packet} ${packet.Version}`);
+  console.log(`Connected to LFS ${packet.Product} ${packet.Version}`);
 }
 
 process.on('uncaughtException', (error) => {
