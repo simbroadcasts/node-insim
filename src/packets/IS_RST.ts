@@ -83,4 +83,22 @@ export enum RaceFlags {
 
   /** Cruise mode (wrong way allowed) */
   HOSTF_CRUISE = 512,
+
+  /** Remote cars fuel visible */
+  HOSTF_SHOW_FUEL = 1024,
+
+  /** Refuelling allowed */
+  HOSTF_CAN_REFUEL = 2048,
+
+  /** Allow vehicle mods */
+  HOSTF_ALLOW_MODS = 4096,
+
+  /** Allow unapproved mods */
+  HOSTF_UNAPPROVED = 8192,
+
+  /** Arrows on non-race small map use name colour */
+  HOSTF_TEAMARROWS = 16384,
+
+  /** Floodlights off */
+  HOSTF_NO_FLOOD = 32768,
 }
