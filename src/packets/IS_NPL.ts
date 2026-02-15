@@ -1,7 +1,17 @@
 import { byte, carName, string, stringNull, word } from '../decorators';
 import { Packet } from './base';
-import type { PlayerFlags, TyreCompound } from './enums';
+import type { TyreCompound } from './enums';
+import type { PlayerFlags } from './enums';
 import { PacketType } from './enums';
+
+type PlayerTypeView = number & {
+  readonly isFemale: boolean;
+  readonly isMale: boolean;
+  readonly isAI: boolean;
+  readonly isHuman: boolean;
+  readonly isRemote: boolean;
+  readonly isLocal: boolean;
+};
 
 /**
  * New PLayer joining race (if PLID already exists, then leaving pits)
@@ -20,10 +30,59 @@ export class IS_NPL extends Packet {
   @byte() UCID = 0;
 
   /** Bit 0: female / bit 1: AI / bit 2: remote */
-  @byte() PType: PlayerType | 0 = 0;
+  @byte() private _PType: number = 0;
+
+  get PType(): PlayerTypeView {
+    const value = this._PType;
+    console.log('value', value);
+
+    // Number object wrapper so TypeScript can treat it as `number` and we can hang getters off it.
+    const n = new Number(value) as unknown as PlayerTypeView & {
+      [Symbol.toPrimitive](hint: string): number;
+    };
+
+    Object.defineProperties(n, {
+      isFemale: {
+        get: () => (value & PlayerType.FEMALE) !== 0,
+        enumerable: true,
+      },
+      isMale: {
+        get: () => (value & PlayerType.FEMALE) === 0,
+        enumerable: true,
+      },
+      isAI: {
+        get: () => (value & PlayerType.AI) !== 0,
+        enumerable: true,
+      },
+      isHuman: {
+        get: () => (value & PlayerType.AI) === 0,
+        enumerable: true,
+      },
+      isRemote: {
+        get: () => (value & PlayerType.REMOTE) !== 0,
+        enumerable: true,
+      },
+      isLocal: {
+        get: () => (value & PlayerType.REMOTE) === 0,
+        enumerable: true,
+      },
+      [Symbol.toPrimitive]: {
+        value: () => {
+          console.log('toPrimitive', value);
+          return value;
+        },
+      },
+    });
+
+    return n;
+  }
+
+  set PType(v: number | PlayerTypeView) {
+    this._PType = Number(v);
+  }
 
   /** Player flags */
-  @word() Flags: PlayerFlags | 0 = 0;
+  @word() Flags: PlayerFlags | number = 0;
 
   /** Nickname */
   @stringNull(24) PName = '';
@@ -93,15 +152,55 @@ export class IS_NPL extends Packet {
   /** /showfuel yes: fuel percent / no: 255 */
   @byte() Fuel = 0;
 
-  /** Returns true if the player is female */
-  get isFemale() {
-    return (this.PType & PlayerType.FEMALE) !== 0;
-  }
-
-  /** Returns true if the player is male */
-  get isMale() {
-    return !this.isFemale;
-  }
+  // /** Returns `true` if the driver is on the left side */
+  // get isDriverOnLeftSide() {
+  //   return (this.Flags & PlayerFlags.PIF_LEFTSIDE) !== 0;
+  // }
+  //
+  // /** Returns `true` if automatic gear shift is enabled */
+  // get hasAutoGears() {
+  //   return (this.Flags & PlayerFlags.PIF_AUTOGEARS) !== 0;
+  // }
+  //
+  // /** Returns `true` if the player is using a shifter */
+  // get hasShifter() {
+  //   return (this.Flags & PlayerFlags.PIF_SHIFTER) !== 0;
+  // }
+  //
+  // /** Returns `true` if brake help is enabled */
+  // get hasBrakeHelp() {
+  //   return (this.Flags & PlayerFlags.PIF_HELP_B) !== 0;
+  // }
+  //
+  // /** Returns `true` if the player is in pits */
+  // get isInPits() {
+  //   return (this.Flags & PlayerFlags.PIF_INPITS) !== 0;
+  // }
+  //
+  // /** Returns `true` if auto clutch is enabled */
+  // get hasAutoClutch() {
+  //   return (this.Flags & PlayerFlags.PIF_AUTOCLUTCH) !== 0;
+  // }
+  //
+  // /** Returns `true` if mouse steering is enabled */
+  // get hasMouseSteering() {
+  //   return (this.Flags & PlayerFlags.PIF_MOUSE) !== 0;
+  // }
+  //
+  // /** Returns `true` if keyboard steering with no help is enabled */
+  // get hasKeyboardSteeringNoHelp() {
+  //   return (this.Flags & PlayerFlags.PIF_KB_NO_HELP) !== 0;
+  // }
+  //
+  // /** Returns `true` if keyboard steering stabilized is enabled */
+  // get hasKeyboardSteeringStabilised() {
+  //   return (this.Flags & PlayerFlags.PIF_KB_STABILISED) !== 0;
+  // }
+  //
+  // /** Returns `true` if the player is in custom view */
+  // get isInCustomView() {
+  //   return (this.Flags & PlayerFlags.PIF_CUSTOM_VIEW) !== 0;
+  // }
 }
 
 export enum CarConfiguration {
@@ -162,3 +261,10 @@ export enum SetupFlags {
   /** Anti-lock brakes enabled */
   SETF_ABS_ENABLE = 4,
 }
+
+const a = new IS_NPL();
+a.PType = PlayerType.FEMALE;
+
+console.log('a.PType', a.PType);
+console.log('a.PType === 1', a.PType === 1); // false (not ok)
+console.log('a.PType.isFemale', a.PType.isFemale); // true (ok)
