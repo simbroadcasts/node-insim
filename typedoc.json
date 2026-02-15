@@ -1,5 +1,8 @@
 {
   "$schema": "https://typedoc.org/schema.json",
-  "entryPoints": ["./src/index.ts", "./src/packets/index.ts"],
+  "entryPoints": [
+    "./packages/node-insim/src/index.ts",
+    "./packages/node-insim/src/lib/packets/index.ts"
+  ],
   "tsconfig": "tsconfig.docs.json"
 }

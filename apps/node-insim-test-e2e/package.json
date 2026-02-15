@@ -1,0 +1,26 @@
+{
+  "name": "@node-insim-test-monorepo/node-insim-test-e2e",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "implicitDependencies": [
+      "@node-insim-test-monorepo/node-insim-test-monorepo"
+    ],
+    "targets": {
+      "e2e": {
+        "executor": "@nx/jest:jest",
+        "outputs": [
+          "{projectRoot}/test-output/jest/coverage"
+        ],
+        "options": {
+          "jestConfig": "apps/node-insim-test-e2e/jest.config.cts",
+          "passWithNoTests": true
+        },
+        "dependsOn": [
+          "@node-insim-test-monorepo/node-insim-test-monorepo:build",
+          "@node-insim-test-monorepo/node-insim-test-monorepo:serve"
+        ]
+      }
+    }
+  }
+}

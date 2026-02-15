@@ -1,6 +1,6 @@
 {
-  "name": "node-insim",
-  "version": "6.2.0",
+  "name": "@node-insim/source",
+  "version": "0.0.0",
   "description": "An InSim library for NodeJS with TypeScript support",
   "keywords": [
     "lfs",
@@ -20,100 +20,60 @@
     "Gedas Valuntis <xspeedasx@gmail.com>"
   ],
   "license": "MIT",
-  "private": false,
-  "main": "./dist/cjs/index.js",
-  "types": "./dist/types/index.d.ts",
-  "typesVersions": {
-    "*": {
-      "packets": [
-        "./dist/types/packets/index.d.ts"
-      ]
-    }
-  },
-  "files": [
-    "dist",
-    "!dist/types/protocols",
-    "!dist/types/decorators.d.ts",
-    "!dist/types/lfspack.d.ts",
-    "!dist/types/log.d.ts"
-  ],
-  "exports": {
-    ".": {
-      "types": "./dist/types/index.d.ts",
-      "node": "./dist/cjs/index.js",
-      "require": "./dist/cjs/index.js",
-      "import": "./dist/esm/index.js",
-      "default": "./dist/esm/index.js"
-    },
-    "./packets": {
-      "types": "./dist/types/packets/index.d.ts",
-      "node": "./dist/cjs/packets/index.js",
-      "require": "./dist/cjs/packets/index.js",
-      "import": "./dist/esm/packets/index.js",
-      "default": "./dist/esm/packets/index.js"
-    },
-    "./package.json": "./package.json"
-  },
+  "private": true,
   "scripts": {
-    "prebuild": "rimraf ./dist",
-    "build": "tsc -b ./src/tsconfig.cjs.json ./src/tsconfig.esm.json ./src/tsconfig.types.json",
-    "dev": "cross-env DEBUG=* tsx watch ./src/index.ts",
-    "dev:nodebug": "tsx watch ./src/index.ts",
-    "playground": "tsx watch ./playground/main.ts",
-    "test": "run-s test:compile \"test:run {@}\" --",
-    "test:compile": "tsc -p tsconfig.test.json",
-    "test:run": "vitest",
-    "test:lfs": "run-s test:compile \"test:run -c vitest.config.lfs.ts {@}\" --",
-    "test:examples": "node scripts/build-examples.cjs",
-    "check-all": "run-s format lint:fix build \"test --watch=false\" test:examples",
-    "format": "run-s \"format:no-write --write\"",
-    "format:no-write": "prettier \"./**/*.{cjs,js,ts,md,json,yml,yaml}\"",
-    "format:check": "run-s \"format:no-write --check\"",
-    "lint": "eslint \"./src/**/*\" --ext .js,.ts",
-    "lint:fix": "eslint \"./src/**/*\" --ext .js,.ts --fix",
-    "generate": "run-s \"generate:plop {@}\" lint:fix format --",
-    "generate:plop": "plop",
-    "docs:generate": "typedoc",
-    "prepublishOnly": "run-s format:check lint build \"test --watch=false\" test:examples",
-    "release": "changeset publish",
-    "local-release": "changeset version && changeset publish"
+    "docs:generate": "typedoc"
   },
   "dependencies": {
-    "@types/debug": "^4.1.12",
-    "@types/lodash.defaults": "^4.2.9",
-    "debug": "^4.4.0",
-    "lodash.defaults": "^4.2.0",
-    "parse-lfs-message": "^1.2.4",
-    "reflect-metadata": "^0.2.2",
-    "supports-color": "^10.0.0",
-    "tiny-typed-emitter": "^2.1.0",
-    "unicode-to-lfs": "^2.0.0"
+    "axios": "^1.6.0",
+    "debug": "^4.4.0"
   },
   "devDependencies": {
-    "@changesets/changelog-github": "^0.5.2",
-    "@changesets/cli": "^2.29.8",
-    "@types/ip": "^1.1.3",
-    "@types/jest": "^29.5.14",
-    "@types/mitm": "^1.3.8",
-    "@types/node": "^22.15.2",
-    "@typescript-eslint/eslint-plugin": "^8.31.0",
-    "@typescript-eslint/parser": "^8.31.0",
-    "@vitest/coverage-v8": "^3.2.2",
-    "cross-env": "^7.0.3",
-    "dotenv": "^16.5.0",
-    "eslint": "^8.56.0",
-    "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-simple-import-sort": "^10.0.0",
-    "mitm": "^1.7.3",
-    "npm-run-all": "^4.1.5",
-    "plop": "^4.0.1",
-    "prettier": "^3.5.3",
-    "rimraf": "^6.0.1",
-    "tsx": "^4.19.3",
-    "typedoc": "^0.28.3",
-    "typescript": "^5.8.3",
-    "vitest": "^3.2.2"
+    "@eslint/js": "^9.8.0",
+    "@nx/esbuild": "22.5.1",
+    "@nx/eslint": "22.5.1",
+    "@nx/eslint-plugin": "22.5.1",
+    "@nx/jest": "22.5.1",
+    "@nx/js": "22.5.1",
+    "@nx/node": "22.5.1",
+    "@nx/workspace": "22.5.1",
+    "@swc-node/register": "~1.11.1",
+    "@swc/core": "~1.15.5",
+    "@swc/helpers": "~0.5.18",
+    "@swc/jest": "~0.2.38",
+    "@types/debug": "^4.1.12",
+    "@types/jest": "^30.0.0",
+    "@types/node": "20.19.9",
+    "dotenv": "^17.3.1",
+    "esbuild": "^0.19.2",
+    "eslint": "^9.8.0",
+    "eslint-config-prettier": "^10.0.0",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "jest": "^30.0.2",
+    "jest-environment-node": "^30.0.2",
+    "jest-matcher-utils": "^30.2.0",
+    "jest-util": "^30.0.2",
+    "jsonc-eslint-parser": "^2.1.0",
+    "nx": "22.5.1",
+    "prettier": "~3.6.2",
+    "ts-jest": "^29.4.0",
+    "ts-node": "10.9.1",
+    "tslib": "^2.3.0",
+    "typescript": "~5.9.2",
+    "typescript-eslint": "^8.40.0",
+    "verdaccio": "^6.0.5"
   },
-  "packageManager": "yarn@1.22.22+sha256.c17d3797fb9a9115bf375e31bfd30058cac6bc9c3b8807a3d8cb2094794b51ca"
+  "nx": {
+    "includedScripts": [],
+    "targets": {
+      "local-registry": {
+        "executor": "@nx/js:verdaccio",
+        "options": {
+          "port": 4873,
+          "config": ".verdaccio/config.yml",
+          "storage": "tmp/local-registry/storage"
+        }
+      }
+    }
+  }
 }
