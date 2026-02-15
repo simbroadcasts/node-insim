@@ -1,24 +1,19 @@
 {
-  "compilerOptions": {
-    "strict": true,
-    "moduleResolution": "Node",
-    "target": "ESNext",
-    "module": "NodeNext",
-    "skipLibCheck": true,
-    "skipDefaultLibCheck": true,
-    "baseUrl": ".",
-    "noEmit": true,
-    "allowJs": true,
-    "stripInternal": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "noImplicitAny": true,
-    "forceConsistentCasingInFileNames": true,
-    "experimentalDecorators": true,
-    "types": ["vitest/globals"],
-    "paths": {
-      "node-insim": ["./src/index"],
-      "node-insim/packets": ["./src/packets/index"]
+  "extends": "./tsconfig.base.json",
+  "compileOnSave": false,
+  "files": [],
+  "references": [
+    {
+      "path": "./apps/node-insim-test-e2e"
+    },
+    {
+      "path": "./packages/node-insim"
+    },
+    {
+      "path": "./apps/node-insim-test"
+    },
+    {
+      "path": "./apps/node-insim-playground"
     }
-  }
+  ]
 }

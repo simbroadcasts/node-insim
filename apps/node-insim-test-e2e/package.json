@@ -1,0 +1,22 @@
+{
+  "name": "@node-insim/node-insim-test-e2e",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "implicitDependencies": [
+      "node-insim-test"
+    ],
+    "targets": {
+      "e2e": {
+        "options": {
+          "passWithNoTests": true
+        },
+        "dependsOn": [
+          "node-insim-test:build",
+          "node-insim-test:serve"
+        ]
+      }
+    },
+    "// targets": "to see all targets run: nx show project @node-insim/node-insim-test-e2e --web"
+  }
+}
