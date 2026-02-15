@@ -1,9 +1,0 @@
-{
-  "compilerOptions": {
-    "moduleResolution": "Node",
-    "target": "ESNext",
-    "module": "CommonJS"
-  },
-  "extends": "./tsconfig.json",
-  "include": ["src/**/*.test.ts"]
-}
