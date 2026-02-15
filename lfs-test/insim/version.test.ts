@@ -1,5 +1,4 @@
 import { InSim } from '../../src';
-import type { IS_VER } from '../../src/packets';
 import { IS_ISI_ReqI, PacketType } from '../../src/packets';
 import { getInSimConnectionOptions } from '../helpers';
 
