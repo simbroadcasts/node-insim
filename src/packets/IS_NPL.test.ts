@@ -153,4 +153,56 @@ describe('IS_NPL', () => {
       buffer,
     });
   });
+
+  describe('property getters', () => {
+    describe('isFemale', () => {
+      it('should return `false` if no player flags are set', () => {
+        const npl = new IS_NPL();
+        expect(npl.isFemale).toEqual(false);
+      });
+
+      it('should return `true` if only `PlayerType.FEMALE` flag is set', () => {
+        const npl = new IS_NPL();
+        npl.PType = PlayerType.FEMALE;
+        expect(npl.isFemale).toEqual(true);
+      });
+
+      it('should return `true` if `PlayerType.FEMALE` flag is set with other flags', () => {
+        const npl = new IS_NPL();
+        npl.PType = PlayerType.FEMALE | PlayerType.AI | PlayerType.REMOTE;
+        expect(npl.isFemale).toEqual(true);
+      });
+
+      it('should return `false` if `PlayerType.FEMALE` flag is not set', () => {
+        const npl = new IS_NPL();
+        npl.PType = PlayerType.AI | PlayerType.REMOTE;
+        expect(npl.isFemale).toEqual(false);
+      });
+    });
+
+    describe('isMale', () => {
+      it('should return `true` if no player flags are set', () => {
+        const npl = new IS_NPL();
+        expect(npl.isMale).toEqual(true);
+      });
+
+      it('should return `false` if only `PlayerType.FEMALE` flag is set', () => {
+        const npl = new IS_NPL();
+        npl.PType = PlayerType.FEMALE;
+        expect(npl.isMale).toEqual(false);
+      });
+
+      it('should return `false` if `PlayerType.FEMALE` flag is set with other flags', () => {
+        const npl = new IS_NPL();
+        npl.PType = PlayerType.FEMALE | PlayerType.AI | PlayerType.REMOTE;
+        expect(npl.isMale).toEqual(false);
+      });
+
+      it('should return `true` if `PlayerType.FEMALE` flag is not set', () => {
+        const npl = new IS_NPL();
+        npl.PType = PlayerType.AI | PlayerType.REMOTE;
+        expect(npl.isMale).toEqual(true);
+      });
+    });
+  });
 });

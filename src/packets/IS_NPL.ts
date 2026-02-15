@@ -92,6 +92,16 @@ export class IS_NPL extends Packet {
 
   /** /showfuel yes: fuel percent / no: 255 */
   @byte() Fuel = 0;
+
+  /** Returns true if the player is female */
+  get isFemale() {
+    return (this.PType & PlayerType.FEMALE) !== 0;
+  }
+
+  /** Returns true if the player is male */
+  get isMale() {
+    return !this.isFemale;
+  }
 }
 
 export enum CarConfiguration {
