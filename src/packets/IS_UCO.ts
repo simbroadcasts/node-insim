@@ -54,7 +54,7 @@ export class IS_UCO extends Packet {
 }
 
 export enum UCOAction {
-  /** Etered a circle */
+  /** Entered a circle */
   UCO_CIRCLE_ENTER,
 
   /** Left a circle */
