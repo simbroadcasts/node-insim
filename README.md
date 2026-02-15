@@ -542,6 +542,35 @@ You can run code format, lint + fix, build and test with the following command:
 yarn check-all
 ```
 
+## Releases
+
+This project uses [Changesets](https://github.com/changesets/changesets) to manage publishing and release notes.
+
+### Making changes
+
+Before committing a bug fix, a new feature or a breaking change, run the following command to create a changeset:
+
+```shell
+yarn changeset
+```
+
+1. When prompted, choose if it's a patch, minor or a major change.
+2. Enter a summary for the change which will appear in the changelogs.
+3. When confirmed, a changeset Markdown file will be created in the [.changeset](.changeset) directory.
+4. Commit the new changeset file along with your source code changes.
+
+### Releasing a new version
+
+To bump the package version:
+
+1. Go to the GitHub Actions page of this repo.
+2. Select the [Release](https://github.com/simbroadcasts/node-insim/actions/workflows/release.yml) workflow.
+3. Click "Run workflow".
+
+This will bump Node InSim version according to the types of changes in the changesets and create a pull request. You can review the changes and merge the pull request once it's ready.
+
+Once the version has been bumped, trigger the [Release](https://github.com/simbroadcasts/node-insim/actions/workflows/release.yml) workflow again, which will publish a new version to NPM.
+
 ---
 
 ![Node Insim - An open source project by Sim Broadcasts](https://simbroadcasts.tv/assets/node-insim/node-insim-footer.png)
