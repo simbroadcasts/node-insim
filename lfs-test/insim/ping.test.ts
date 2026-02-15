@@ -23,7 +23,7 @@ describe('InSim ping', () => {
         }, 1000);
       });
 
-      inSim.on(PacketType.ISP_TINY, function onVersion(packet: IS_TINY) {
+      inSim.on(PacketType.ISP_TINY, (packet) => {
         expect(packet.SubT === TinyType.TINY_REPLY);
         expect(packet.ReqI === 1);
         inSim.disconnect();

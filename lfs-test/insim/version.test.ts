@@ -14,7 +14,7 @@ describe('InSim version', () => {
         ReqI: IS_ISI_ReqI.SEND_VERSION,
       });
 
-      inSim.on(PacketType.ISP_VER, function onVersion(packet: IS_VER) {
+      inSim.on(PacketType.ISP_VER, (packet) => {
         expect(packet.ReqI === 1);
         inSim.disconnect();
         inSim.once('disconnect', () => {
