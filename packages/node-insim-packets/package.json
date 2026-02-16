@@ -1,0 +1,29 @@
+{
+  "name": "node-insim-packets",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@node-insim/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "!**/*.tsbuildinfo"
+  ],
+  "dependencies": {
+    "debug": "^4.4.0",
+    "parse-lfs-message": "^1.2.4",
+    "supports-color": "^10.0.0",
+    "reflect-metadata": "^0.2.2",
+    "tslib": "^2.3.0",
+    "unicode-to-lfs": "^2.0.0"
+  }
+}

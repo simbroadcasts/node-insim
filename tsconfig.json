@@ -14,6 +14,9 @@
     },
     {
       "path": "./apps/node-insim-playground"
+    },
+    {
+      "path": "./packages/node-insim-packets"
     }
   ]
 }

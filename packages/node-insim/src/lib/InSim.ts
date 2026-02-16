@@ -1,14 +1,9 @@
 import crypto from 'crypto';
 import defaults from 'lodash.defaults';
-import { TypedEmitter } from 'tiny-typed-emitter';
-import unicodeToLfs from 'unicode-to-lfs';
-
-import type { InSimEvents } from './InSimEvents';
-import { unpack } from './lfspack';
-import { log as baseLog } from './log';
-import type { IS_ISI_Data, SendablePacket } from './packets';
+import type { InSimPacketInstance, SendablePacket } from 'node-insim-packets';
 import {
   IS_ISI,
+  type IS_ISI_Data,
   IS_MSL,
   IS_MST,
   IS_MSX,
@@ -17,10 +12,14 @@ import {
   MessageSound,
   MST_MSG_MAX_LENGTH,
   PacketType,
-  packetTypeToClass,
   TinyType,
-} from './packets';
-import type { InSimPacketInstance } from './packets/types';
+} from 'node-insim-packets';
+import { TypedEmitter } from 'tiny-typed-emitter';
+import unicodeToLfs from 'unicode-to-lfs';
+
+import type { InSimEvents } from './InSimEvents';
+import { unpack } from './lfspack';
+import { log as baseLog } from './log';
 import type { Protocol } from './protocols';
 import { TCP, UDP } from './protocols';
 

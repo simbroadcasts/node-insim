@@ -1,0 +1,60 @@
+import { Packet } from '../base/index.js';
+import { byte, short, struct, unsigned, word } from '../decorators.js';
+import type { ObjectIndex } from '../enums/index.js';
+import { PacketType } from '../enums/index.js';
+import { CarContOBJ } from '../structs/index.js';
+
+/**
+ * OBject Hit - car hit an autocross object or an unknown object
+ *
+ * Set the {@link ISF_OBH} flag in the {@link IS_ISI} to receive object contact reports.
+ */
+export class IS_OBH extends Packet {
+  @byte() readonly Size = 28;
+  @byte() readonly Type = PacketType.ISP_OBH;
+  @byte() readonly ReqI = 0;
+
+  /** Player's unique id */
+  @byte() PLID = 0;
+
+  /** High 4 bits: reserved / low 12 bits: closing speed (10 = 1 m/s) */
+  @word() SpClose = 0;
+
+  @word() private readonly SpW = 0;
+
+  /** Time stamp (ms) */
+  @unsigned() Time = 0;
+
+  /** Contact object */
+  @struct(CarContOBJ) C = new CarContOBJ();
+
+  /** Position (1 metre = 16) */
+  @short() X = 0;
+
+  /** Position (1 metre = 16) */
+  @short() Y = 0;
+
+  /** If {@link OBH_LAYOUT} is set: Zbyte as in {@link ObjectInfo} */
+  @byte() Zbyte = 0;
+
+  @byte() private readonly Sp1 = 0;
+
+  /** AXO_x as in {@link ObjectInfo} or zero if it is an unknown object */
+  @byte() Index: ObjectIndex = 0;
+
+  @byte() OBHFlags: ObjectHitFlags | 0 = 0;
+}
+
+export enum ObjectHitFlags {
+  /** An added object */
+  OBH_LAYOUT = 1,
+
+  /** A movable object */
+  OBH_CAN_MOVE = 2,
+
+  /** Was moving before this hit */
+  OBH_WAS_MOVING = 4,
+
+  /** Object in original position */
+  OBH_ON_SPOT = 8,
+}

@@ -63,5 +63,17 @@
     "version": {
       "preVersionCommand": "npx nx run-many -t build"
     }
+  },
+  "generators": {
+    "@nx/node": {
+      "library": {
+        "projectNameAndRootFormat": "as-provided",
+        "strict": "true",
+        "testEnvironment": "node",
+        "minimal": true,
+        "unitTestRunner": "jest",
+        "linter": "eslint"
+      }
+    }
   }
 }

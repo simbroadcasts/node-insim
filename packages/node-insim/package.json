@@ -24,14 +24,12 @@
     "!**/*.tsbuildinfo"
   ],
   "dependencies": {
-    "tslib": "^2.3.0",
     "debug": "^4.4.0",
     "lodash.defaults": "^4.2.0",
-    "parse-lfs-message": "^1.2.4",
-    "reflect-metadata": "^0.2.2",
+    "node-insim-packets": "workspace:*",
     "supports-color": "^10.0.0",
     "tiny-typed-emitter": "^2.1.0",
-    "unicode-to-lfs": "^2.0.0"
+    "tslib": "^2.3.0"
   },
   "devDependencies": {
     "@types/ip": "^1.1.3",
