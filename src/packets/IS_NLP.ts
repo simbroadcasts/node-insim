@@ -36,7 +36,7 @@ export class IS_NLP extends Packet {
     const data = unpack(this.getFormat(), buffer.buffer);
 
     if (!data) {
-      throw new InSimError('IS_MSO - Unpacked no data from buffer');
+      throw new InSimError('IS_NLP - Unpacked no data from buffer');
     }
 
     const nodeLapLength = new NodeLap().getFormatSize();
@@ -53,4 +53,4 @@ export class IS_NLP extends Packet {
   }
 }
 
-export const NLP_MAX_CARS = 40;
+export const NLP_MAX_CARS = 48;
