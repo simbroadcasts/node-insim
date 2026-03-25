@@ -55,6 +55,7 @@ export class IS_STA extends Packet {
    * 1-99    : number of laps...   laps  = rl
    * 100-190 : 100 to 1000 laps... laps  = (rl - 100) * 10 + 100
    * 191-238 : 1 to 48 hours...    hours = rl - 190
+   * 255     : no lap timing
    */
   @byte() RaceLaps = 0;
 
