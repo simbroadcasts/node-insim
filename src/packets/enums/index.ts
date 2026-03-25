@@ -5,6 +5,8 @@ export { ObjectIndex } from './ObjectIndex';
 export { PacketType } from './PacketType';
 export { PenaltyValue } from './PenaltyValue';
 export { PlayerFlags } from './PlayerFlags';
+export { RacerInfoFlags } from './RacerInfoFlags';
+export { SAIType } from './SAIType';
 export { StateFlags } from './StateFlags';
 export { TyreCompound } from './TyreCompound';
 export { ViewIdentifier } from './ViewIdentifier';

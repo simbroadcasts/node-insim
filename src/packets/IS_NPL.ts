@@ -1,6 +1,7 @@
 import { byte, carName, string, stringNull, word } from '../decorators';
 import { Packet } from './base';
-import type { PlayerFlags, TyreCompound } from './enums';
+import type { PlayerFlags, SAIType, TyreCompound } from './enums';
+import { RacerInfoFlags } from './enums';
 import { PacketType } from './enums';
 
 /**
@@ -73,7 +74,17 @@ export class IS_NPL extends Packet {
   /** Low 4 bits: tyre width reduction (front) */
   @byte() FWAdj = 0;
 
-  @byte() private readonly Sp2 = 0;
+  /** Racer info flags */
+  @byte() RIFlags: RacerInfoFlags | 0 = 0;
+
+  /** SAI type (as in `/sai` command) is determined from the Racer info flags */
+  get SAIType(): SAIType {
+    const RIF_SAI_MASK = RacerInfoFlags.RIF_SAI_0 | RacerInfoFlags.RIF_SAI_1;
+    const RIF_SAI_SHIFTS = 4;
+
+    return (this.RIFlags & RIF_SAI_MASK) >> RIF_SAI_SHIFTS;
+  }
+
   @byte() private readonly Sp3 = 0;
 
   /** Setup flags */
