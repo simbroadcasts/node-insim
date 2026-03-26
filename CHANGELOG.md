@@ -1,5 +1,16 @@
 # node-insim
 
+## 6.4.0
+
+### Minor Changes
+
+- [#96](https://github.com/simbroadcasts/node-insim/pull/96) [`517c2f6`](https://github.com/simbroadcasts/node-insim/commit/517c2f6106edb38847b19ba7fe25a3ae17bb6d5c) Thanks [@mkapal](https://github.com/mkapal)! - Increase `IS_NLP.NLP_MAX_CARS` to 48
+
+- [#96](https://github.com/simbroadcasts/node-insim/pull/96) [`0b3f64a`](https://github.com/simbroadcasts/node-insim/commit/0b3f64a818cc676d071ab259e235553db4e7c733) Thanks [@mkapal](https://github.com/mkapal)! - Add `RIFlags` property and `SAIType` getter to IS_NPL packet
+
+  - `RIFlags` contains racer info flags about whether a player joined after the race has started (`RIF_LATE_START`), or if it is an unmovable object without collision (`RIF_SAI_NON_SOLID`). The flags are available in a new enum `RacerInfoFlags`.
+  - `SAIType` is a derived value from `RIFlags` and returns the resulting `SAIType` enum value (movable, unmovable floating, unmovable at ground level, unmovable at ground angle).
+
 ## 6.3.0
 
 ### Minor Changes
