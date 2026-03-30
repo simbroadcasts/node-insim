@@ -9,7 +9,7 @@ const swcJestConfig = JSON.parse(
 swcJestConfig.swcrc = false;
 
 module.exports = {
-  displayName: '@node-insim-test-monorepo/node-insim-test-monorepo',
+  displayName: '@node-insim/node-insim-test-monorepo',
   preset: '../../jest.preset.js',
   testEnvironment: 'node',
   transform: {

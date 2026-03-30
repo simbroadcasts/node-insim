@@ -3,7 +3,7 @@ import { join } from 'path';
 
 describe('Node InSim tests', () => {
   it('should print the LFS and InSim version', () => {
-    const cliPath = join(process.cwd(), 'apps/node-insim-test/dist/main.js');
+    const cliPath = join(process.cwd(), '../node-insim-test/dist/main.js');
 
     const output = execSync(`node ${cliPath}`).toString();
 

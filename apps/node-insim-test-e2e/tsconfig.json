@@ -1,7 +1,7 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "outDir": "out-tsc/@node-insim-test-monorepo/node-insim-test-e2e",
+    "outDir": "out-tsc/@node-insim/node-insim-test-e2e",
     "esModuleInterop": true,
     "noUnusedLocals": false,
     "noImplicitAny": false

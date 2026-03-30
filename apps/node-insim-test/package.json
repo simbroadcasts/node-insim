@@ -1,5 +1,5 @@
 {
-  "name": "@node-insim-test-monorepo/node-insim-test-monorepo",
+  "name": "@node-insim/node-insim-test",
   "version": "0.0.1",
   "private": true,
   "nx": {
@@ -83,15 +83,15 @@
           "build"
         ],
         "options": {
-          "buildTarget": "@node-insim-test-monorepo/node-insim-test-monorepo:build",
+          "buildTarget": "@node-insim/node-insim-test-monorepo:build",
           "runBuildTargetDependencies": false
         },
         "configurations": {
           "development": {
-            "buildTarget": "@node-insim-test-monorepo/node-insim-test-monorepo:build:development"
+            "buildTarget": "@node-insim/node-insim-test-monorepo:build:development"
           },
           "production": {
-            "buildTarget": "@node-insim-test-monorepo/node-insim-test-monorepo:build:production"
+            "buildTarget": "@node-insim/node-insim-test-monorepo:build:production"
           }
         }
       },

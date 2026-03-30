@@ -1,7 +1,6 @@
 {
   "name": "node-insim",
   "version": "0.0.1",
-  "type": "commonjs",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -10,14 +9,14 @@
     ".": {
       "@node-insim/source": "./src/index.ts",
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.esm.js",
-      "require": "./dist/index.cjs.js"
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
     },
     "./packets": {
       "@node-insim/source": "./src/packets.ts",
       "types": "./dist/packets.d.ts",
-      "import": "./dist/packets.esm.js",
-      "require": "./dist/packets.cjs.js"
+      "import": "./dist/packets.js",
+      "default": "./dist/packets.js"
     }
   },
   "files": [
