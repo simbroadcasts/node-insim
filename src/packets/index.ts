@@ -302,7 +302,6 @@ export {
   CarContOBJ,
   CarHCP,
   CompCar,
-  HInfo,
   NodeLap,
   ObjectFlags,
   ObjectInfo,

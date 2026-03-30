@@ -4,8 +4,6 @@ export { CarContOBJ } from './CarContOBJ';
 export { CarHCP } from './CarHCP';
 export { CompCar } from './CompCar';
 export { CompCarFlags } from './CompCar';
-export { HInfo } from './HInfo';
-export { HostInfoFlags } from './HInfo';
 export { NodeLap } from './NodeLap';
 export { ObjectFlags, ObjectInfo } from './ObjectInfo';
 export { PlayerHCap, PlayerHCapFlags } from './PlayerHCap';
