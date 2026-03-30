@@ -1,10 +1,9 @@
 import defaults from 'lodash.defaults';
+import { InSimError, OutGaugePack } from 'node-insim-packets';
 import { TypedEmitter } from 'tiny-typed-emitter';
 
-import { InSimError } from '../errors';
-import { log as baseLog } from '../log';
-import { UDP } from '../protocols';
-import { OutGaugePack } from './OutGaugePack';
+import { log as baseLog } from '../log.js';
+import { UDP } from '../protocols/UDP.js';
 
 const log = baseLog.extend('outgauge');
 

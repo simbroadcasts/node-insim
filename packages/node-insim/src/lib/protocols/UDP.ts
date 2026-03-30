@@ -1,7 +1,7 @@
 import * as dgram from 'dgram';
 
-import { log as baseLog } from '../log';
-import { Protocol } from './Protocol';
+import { log as baseLog } from '../log.js';
+import { Protocol } from './Protocol.js';
 
 const log = baseLog.extend('udp');
 

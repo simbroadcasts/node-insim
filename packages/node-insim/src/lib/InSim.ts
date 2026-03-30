@@ -1,14 +1,10 @@
 import crypto from 'crypto';
 import defaults from 'lodash.defaults';
-import { TypedEmitter } from 'tiny-typed-emitter';
-import unicodeToLfs from 'unicode-to-lfs';
-
-import type { InSimEvents } from './InSimEvents';
-import { unpack } from './lfspack';
-import { log as baseLog } from './log';
-import type { IS_ISI_Data, SendablePacket } from './packets';
+import type { InSimPacketInstance, SendablePacket } from 'node-insim-packets';
+import { packetTypeToClass } from 'node-insim-packets';
 import {
   IS_ISI,
+  type IS_ISI_Data,
   IS_MSL,
   IS_MST,
   IS_MSX,
@@ -17,12 +13,16 @@ import {
   MessageSound,
   MST_MSG_MAX_LENGTH,
   PacketType,
-  packetTypeToClass,
   TinyType,
-} from './packets';
-import type { InSimPacketInstance } from './packets/types';
-import type { Protocol } from './protocols';
-import { TCP, UDP } from './protocols';
+} from 'node-insim-packets';
+import { TypedEmitter } from 'tiny-typed-emitter';
+import unicodeToLfs from 'unicode-to-lfs';
+
+import type { InSimEvents } from './InSimEvents.js';
+import { log as baseLog } from './log.js';
+import type { Protocol } from './protocols/Protocol.js';
+import { TCP } from './protocols/TCP.js';
+import { UDP } from './protocols/UDP.js';
 
 const log = baseLog.extend('insim');
 
@@ -277,14 +277,13 @@ export class InSim extends TypedEmitter<InSimEvents> {
   };
 
   private handlePacket = async (data: Uint8Array<ArrayBuffer>) => {
-    const header = unpack('<BB', data.buffer);
-
-    if (!header) {
+    if (data.buffer.byteLength < 2) {
       log(`Incomplete packet header received: ${data.join()}`);
       return;
     }
 
-    const packetType = header[1] as PacketType;
+    const dataView = new DataView(data.buffer);
+    const packetType = dataView.getUint8(1) as PacketType;
 
     const packetTypeString = PacketType[packetType];
 

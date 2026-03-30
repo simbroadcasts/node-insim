@@ -1,6 +1,7 @@
 {
   "name": "node-insim",
   "version": "0.0.1",
+  "type": "commonjs",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -9,14 +10,14 @@
     ".": {
       "@node-insim/source": "./src/index.ts",
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs.js"
     },
     "./packets": {
-      "@node-insim/source": "./src/lib/packets/index.ts",
-      "types": "./dist/lib/packets/index.d.ts",
-      "import": "./dist/lib/packets/index.js",
-      "default": "./dist/lib/packets/index.js"
+      "@node-insim/source": "./src/packets.ts",
+      "types": "./dist/packets.d.ts",
+      "import": "./dist/packets.esm.js",
+      "require": "./dist/packets.cjs.js"
     }
   },
   "files": [
@@ -24,13 +25,12 @@
     "!**/*.tsbuildinfo"
   ],
   "dependencies": {
-    "tslib": "^2.3.0",
     "debug": "^4.4.0",
     "lodash.defaults": "^4.2.0",
-    "parse-lfs-message": "^1.2.4",
-    "reflect-metadata": "^0.2.2",
+    "node-insim-packets": "workspace:*",
     "supports-color": "^10.0.0",
     "tiny-typed-emitter": "^2.1.0",
+    "tslib": "^2.3.0",
     "unicode-to-lfs": "^2.0.0"
   },
   "devDependencies": {

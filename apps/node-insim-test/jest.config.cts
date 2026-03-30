@@ -1,5 +1,4 @@
-/* eslint-disable */
-const { readFileSync } = require('fs');
+import { readFileSync } from 'fs';
 
 // Reading the SWC compilation config for the spec files
 const swcJestConfig = JSON.parse(

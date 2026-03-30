@@ -1,6 +1,6 @@
 import Mitm from 'mitm';
 
-import { TCP } from './TCP';
+import { TCP } from './TCP.js';
 
 describe('TCP', () => {
   let mitm: ReturnType<typeof Mitm>;

@@ -41,6 +41,21 @@
         "targetName": "test"
       },
       "exclude": ["apps/node-insim-test-e2e/**/*"]
+    },
+    {
+      "plugin": "@nx/rollup/plugin",
+      "options": {
+        "buildTargetName": "build",
+        "buildDepsTargetName": "build-deps",
+        "watchDepsTargetName": "watch-deps"
+      }
+    },
+    {
+      "plugin": "@nx/jest/plugin",
+      "options": {
+        "targetName": "e2e"
+      },
+      "include": ["apps/node-insim-test-e2e/**/*"]
     }
   ],
   "targetDefaults": {
@@ -59,9 +74,15 @@
     }
   },
   "release": {
+    "changelog": {
+      "projectChangelogs": true
+    },
+    "projects": ["packages/*"],
+    "projectsRelationship": "independent",
     "version": {
-      "preVersionCommand": "npx nx run-many -t build"
-    }
+      "preVersionCommand": "pnpm nx run-many -t build"
+    },
+    "versionPlans": true
   },
   "generators": {
     "@nx/node": {
@@ -78,5 +99,6 @@
   "analytics": false,
   "sync": {
     "applyChanges": true
-  }
+  },
+  "defaultBase": "master"
 }

@@ -1,8 +1,7 @@
 import net from 'net';
 
-import { copyBuffer } from '../lfspack';
-import { log as baseLog } from '../log';
-import { Protocol } from './Protocol';
+import { log as baseLog } from '../log.js';
+import { Protocol } from './Protocol.js';
 
 const log = baseLog.extend('tcp');
 
@@ -93,4 +92,13 @@ export class TCP extends Protocol {
       log('Got incomplete packet');
     }
   }
+}
+
+/** @internal */
+function copyBuffer(buffer: Uint8Array<ArrayBuffer>): Uint8Array<ArrayBuffer> {
+  const dest = new ArrayBuffer(buffer.byteLength);
+  const newBuffer = new Uint8Array(dest);
+  newBuffer.set(buffer);
+
+  return newBuffer;
 }

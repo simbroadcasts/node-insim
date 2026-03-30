@@ -8,12 +8,7 @@
     ],
     "targets": {
       "e2e": {
-        "executor": "@nx/jest:jest",
-        "outputs": [
-          "{projectRoot}/test-output/jest/coverage"
-        ],
         "options": {
-          "jestConfig": "apps/node-insim-test-e2e/jest.config.cts",
           "passWithNoTests": true
         },
         "dependsOn": [
@@ -21,6 +16,7 @@
           "@node-insim-test-monorepo/node-insim-test-monorepo:serve"
         ]
       }
-    }
+    },
+    "// targets": "to see all targets run: nx show project @node-insim-test-monorepo/node-insim-test-e2e --web"
   }
 }
