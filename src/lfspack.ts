@@ -100,6 +100,16 @@ const magic: Record<
         for (let i = 0; i < 3; i++) {
           dv.setUint8(offset + i, carName[i].charCodeAt(0));
         }
+      } else if (
+        isAlphaNumeric(carName[0]) &&
+        isAlphaNumeric(carName[1]) &&
+        isAlphaNumeric(carName[2]) &&
+        carName[3] === '_' &&
+        carName.length === 4
+      ) {
+        for (let i = 0; i < 4; i++) {
+          dv.setUint8(offset + i, carName[i].charCodeAt(0));
+        }
       } else {
         dv.setUint8(offset + 2, parseInt(`${carName[0]}${carName[1]}`, 16));
         dv.setUint8(offset + 1, parseInt(`${carName[2]}${carName[3]}`, 16));
@@ -118,6 +128,15 @@ const magic: Record<
         r[3] === '\x00'
       ) {
         return [r.slice(0, -1).join('')];
+      }
+
+      if (
+        isAlphaNumeric(r[0]) &&
+        isAlphaNumeric(r[1]) &&
+        isAlphaNumeric(r[2]) &&
+        r[3] === '_'
+      ) {
+        return [r.join('')];
       }
 
       return [
