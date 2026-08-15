@@ -1,5 +1,15 @@
 # node-insim
 
+## 6.5.0
+
+### Minor Changes
+
+- [`16eb122`](https://github.com/simbroadcasts/node-insim/commit/16eb122740e6c898101930f74d067889b7939e53) Thanks [@mkapal](https://github.com/mkapal)! - Remove `HInfo` and `HostInfoFlags` from packet structs - discontinued with InSim Relay
+
+### Patch Changes
+
+- [`d1b800d`](https://github.com/simbroadcasts/node-insim/commit/d1b800d8063a247ec0c5631bee53f59aedf61e07) Thanks [@mkapal](https://github.com/mkapal)! - Unpack `IS_RES.CName` property as car name
+
 ## 6.4.0
 
 ### Minor Changes
