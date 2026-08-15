@@ -40,7 +40,7 @@ describe('IS_MSO', () => {
     });
   });
 
-  describe.skip('non-ASCII characters in message', () => {
+  describe('non-ASCII characters in message', () => {
     const size = 36;
 
     const data: PacketTestData<IS_MSO> = {
