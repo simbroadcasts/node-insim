@@ -4,8 +4,7 @@ import type { ReadonlyPropNames } from './StructData';
 type ReadonlyProps = keyof SendablePacket | ReadonlyPropNames;
 
 type ReadonlySendablePropsExceptReqI =
-  | keyof Omit<SendablePacket, 'ReqI'>
-  | ReadonlyPropNames;
+  keyof Omit<SendablePacket, 'ReqI'> | ReadonlyPropNames;
 
 type OmitReadonlyProps<T> = Omit<T, ReadonlyProps>;
 

@@ -112,7 +112,7 @@ describe('lfspack', () => {
       62, 35, 94, 94, 0,
     ];
     const format = '21s';
-    const values = ['abc ^Eì\x9Aè|*:\\/?"<>#^^', 'abc ěšč|*:\\/?"<>#^'];
+    const values = ['abc ^Eì\x9Aè|*:\\/?"<>#^^', 'abc ěšč|*:\\/?"<>#^^'];
 
     it(`'${format}' should unpack [${buffer}] into [${values}]`, () => {
       expect(unpack(format, new Uint8Array(buffer).buffer)).toEqual([values]);

@@ -2,7 +2,8 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "noEmit": false,
-    "baseUrl": ".",
+    "rootDir": ".",
+    "lib": ["ES2017"],
     "paths": {
       "node-insim": ["./"],
       "node-insim/*": ["./*"]

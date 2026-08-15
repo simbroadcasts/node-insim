@@ -1,12 +1,10 @@
 {
   "compilerOptions": {
     "strict": true,
-    "moduleResolution": "Node",
     "target": "ESNext",
     "module": "NodeNext",
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "baseUrl": ".",
     "noEmit": true,
     "allowJs": true,
     "stripInternal": true,
@@ -15,7 +13,7 @@
     "noImplicitAny": true,
     "forceConsistentCasingInFileNames": true,
     "experimentalDecorators": true,
-    "types": ["vitest/globals"],
+    "types": ["vitest/globals", "node"],
     "paths": {
       "node-insim": ["./src/index"],
       "node-insim/packets": ["./src/packets/index"]

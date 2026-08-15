@@ -19,9 +19,8 @@ export class IS_CIM extends Packet {
 
   /** Submode identifier */
   @byte() SubMode:
-    | NormalInterfaceSubmode
-    | GarageInterfaceSubmode
-    | ShiftUInterfaceSubmode = 0;
+    NormalInterfaceSubmode | GarageInterfaceSubmode | ShiftUInterfaceSubmode =
+    0;
 
   /** Selected object type */
   @byte() SelType: ObjectIndex = 0;
