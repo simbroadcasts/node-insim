@@ -1,4 +1,4 @@
-import { byte, char } from '../../decorators';
+import { byte } from '../../decorators';
 import { SendableStruct } from '../base';
 import type { StructData } from '../types';
 
@@ -13,7 +13,7 @@ export class PlayerHCap extends SendableStruct {
   @byte() H_Mass = 0;
 
   /** 0 to 50 - intake restriction */
-  @char() H_TRes = 0;
+  @byte() H_TRes = 0;
 
   constructor(data?: StructData<PlayerHCap>) {
     super();
