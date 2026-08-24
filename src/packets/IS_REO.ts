@@ -36,7 +36,9 @@ export class IS_REO extends SendablePacket {
   @byte() NumP = 0;
 
   /** All PLIDs in new order */
-  @byteArray(IS_REO.REO_MAX_PLAYERS) PLID = Array<number>(40).fill(0);
+  @byteArray(IS_REO.REO_MAX_PLAYERS) PLID = Array<number>(
+    IS_REO.REO_MAX_PLAYERS,
+  ).fill(0);
 
   constructor(data?: IS_REO_Data) {
     super();
