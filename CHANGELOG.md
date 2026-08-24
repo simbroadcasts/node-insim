@@ -1,5 +1,23 @@
 # node-insim
 
+## 6.6.0
+
+### Minor Changes
+
+- [`49efc9d`](https://github.com/simbroadcasts/node-insim/commit/49efc9d5766bb011b904d6c3aacfdaea37b6d4bf) Thanks [@mkapal](https://github.com/mkapal)! - Add `IS_BTN.MAX_TEXT_LENGTH` static class property (240)
+
+- [`736c900`](https://github.com/simbroadcasts/node-insim/commit/736c900010cc62ab648c8f4e4aadae90e11207fc) Thanks [@mkapal](https://github.com/mkapal)! - Make `IS_BTN.FIXED_DATA_SIZE` static class property public
+
+### Patch Changes
+
+- [`33d13b9`](https://github.com/simbroadcasts/node-insim/commit/33d13b908b37aa7072acf704b47567571b4e7f78) Thanks [@mkapal](https://github.com/mkapal)! - Fix `PlayerHCap.H_TRes` to use the unsigned `@byte()` decorator instead of signed `@char()`
+
+- [`0eb6f05`](https://github.com/simbroadcasts/node-insim/commit/0eb6f052c4ec819b24a33ec6f6142c70af0c283e) Thanks [@mkapal](https://github.com/mkapal)! - Correct `IS_HLV.Size` (was 16, should be 20)
+
+- [`619034a`](https://github.com/simbroadcasts/node-insim/commit/619034af31fd52a7c9269329b0e4726bb2b66ade) Thanks [@mkapal](https://github.com/mkapal)! - Add the missing `CCI_RETIRED` flag to `CompCarFlags`
+
+- [`41b0d35`](https://github.com/simbroadcasts/node-insim/commit/41b0d35eb40fdae4b4ea0075a690f4d499cf1d85) Thanks [@mkapal](https://github.com/mkapal)! - Fix `IS_REO.PLID` default array length to match `REO_MAX_PLAYERS` (48)
+
 ## 6.5.0
 
 ### Minor Changes
