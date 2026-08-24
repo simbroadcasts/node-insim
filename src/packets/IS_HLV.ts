@@ -10,7 +10,7 @@ import { CarContOBJ } from './structs';
  * Set the {@link ISF_HLV} flag in the {@link IS_ISI} to receive reports of incidents that would violate HLVC.
  */
 export class IS_HLV extends Packet {
-  @byte() readonly Size = 16;
+  @byte() readonly Size = 20;
   @byte() readonly Type = PacketType.ISP_HLV;
   @byte() readonly ReqI = 0;
 
