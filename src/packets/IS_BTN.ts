@@ -37,6 +37,7 @@ export class IS_BTN extends SendablePacket {
   public static readonly IS_Y_MIN = 30;
   public static readonly IS_Y_MAX = 170;
   public static readonly MAX_CLICK_ID = 239;
+  public static readonly MAX_TEXT_LENGTH = 240;
   public static readonly FIXED_DATA_SIZE = 12;
 
   /** 12 + text size (a multiple of 4) */
