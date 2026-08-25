@@ -11,7 +11,8 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "esModuleInterop": true,
-    "noImplicitAny": true
+    "noImplicitAny": true,
+    "types": ["node"]
   },
   "ts-node": {
     "esm": true
