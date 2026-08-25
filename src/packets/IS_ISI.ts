@@ -87,4 +87,7 @@ export enum InSimFlags {
 
   /** Process join requests */
   ISF_REQ_JOIN = 2048,
+
+  /** Receive {@link IS_SET} packets from guests who send their setup */
+  ISF_SET = 4096,
 }
