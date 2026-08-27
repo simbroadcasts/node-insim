@@ -208,4 +208,7 @@ export enum PacketType {
 
   /** Info: Info about AI car */
   ISP_AII,
+
+  /** Info: Setup */
+  ISP_SET,
 }

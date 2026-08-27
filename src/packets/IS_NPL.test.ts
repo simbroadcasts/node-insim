@@ -54,8 +54,7 @@ describe('IS_NPL', () => {
       0, // Flags (1)
       ...stringToBytes(pName), // PName[24]
       ...stringToBytes(plate), // Plate[8]
-      ...stringToBytes('XRT'), // CName[4]
-      0,
+      ...stringToBytes('XRT\0'), // CName[4]
       ...stringToBytes(sName), // SName[16]
       0, // TyreRL
       1, // TyreRR

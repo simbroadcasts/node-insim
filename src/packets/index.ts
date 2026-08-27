@@ -57,6 +57,7 @@ import { IS_RIP } from './IS_RIP';
 import { IS_RST } from './IS_RST';
 import { IS_SCC } from './IS_SCC';
 import { IS_SCH } from './IS_SCH';
+import { IS_SET } from './IS_SET';
 import { IS_SFP } from './IS_SFP';
 import { IS_SLC } from './IS_SLC';
 import { IS_SMALL } from './IS_SMALL';
@@ -78,6 +79,7 @@ export const packetTypeToClass = {
   [PacketType.ISP_SMALL]: IS_SMALL,
   [PacketType.ISP_STA]: IS_STA,
   [PacketType.ISP_SCH]: IS_SCH,
+  [PacketType.ISP_SET]: IS_SET,
   [PacketType.ISP_SFP]: IS_SFP,
   [PacketType.ISP_SCC]: IS_SCC,
   [PacketType.ISP_CPP]: IS_CPP,
@@ -264,6 +266,12 @@ export type { IS_SCC_Data } from './IS_SCC';
 export { IS_SCC } from './IS_SCC';
 export type { IS_SCH_Data } from './IS_SCH';
 export { CharacterModifiers, IS_SCH } from './IS_SCH';
+export {
+  CentreDifferential,
+  Differential,
+  IS_SET,
+  TyreManufacturer,
+} from './IS_SET';
 export type { IS_SFP_Data, SendableStateFlags } from './IS_SFP';
 export { IS_SFP } from './IS_SFP';
 export { IS_SLC } from './IS_SLC';
