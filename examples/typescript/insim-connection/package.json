@@ -9,7 +9,7 @@
     "serve:production": "node dist/main.js"
   },
   "dependencies": {
-    "node-insim": "latest"
+    "node-insim": "*"
   },
   "devDependencies": {
     "@types/node": "^20.10.5",
