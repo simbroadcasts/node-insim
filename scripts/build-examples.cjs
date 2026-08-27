@@ -12,7 +12,10 @@ function buildApps(directory, options = {}) {
     });
 
   const cmdArgs = [
+    { cmd: 'rm', args: ['-rf', 'node_modules'] },
+    { cmd: 'rm', args: ['-rf', 'package-lock.json'] },
     { cmd: 'npm', args: ['install'] },
+    { cmd: 'git', args: ['add', 'package-lock.json'] },
     ...(options.build ? [{ cmd: 'npm', args: ['run', 'build'] }] : []),
   ];
 
