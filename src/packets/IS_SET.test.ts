@@ -88,12 +88,11 @@ const buffer = new Uint8Array([
   70, // Type
   0, // ReqI
   7, // PLID
-  ...stringToBytes('XRT'), // CName[4]
-  0,
-  0,
-  0,
-  0,
+  ...stringToBytes('XRT\0'), // CName[4]
   0, // Spare
+  0,
+  0,
+  0,
   50, // FuelLoad
   0, // Sp1
   0, // Sp2
