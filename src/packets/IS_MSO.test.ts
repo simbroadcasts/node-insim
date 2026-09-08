@@ -1,7 +1,7 @@
 import type { PacketTestData } from '../tests';
 import { stringToBytes, testInfoPacket } from '../tests';
 import { PacketType } from './enums';
-import { IS_MSO, UserType } from './IS_MSO';
+import { CodePage, IS_MSO, UserType } from './IS_MSO';
 
 describe('IS_MSO', () => {
   describe('ASCII characters in message', () => {
@@ -10,7 +10,7 @@ describe('IS_MSO', () => {
 
     const data: PacketTestData<IS_MSO> = {
       ReqI: 0,
-      Zero: 0,
+      MSOData: CodePage.LID_EUROPEAN,
       UCID: 2,
       PLID: 4,
       UserType: UserType.MSO_USER,
@@ -22,7 +22,7 @@ describe('IS_MSO', () => {
       size / new IS_MSO().SIZE_MULTIPLIER, // Size
       11, // Type
       0, // ReqI
-      0, // Zero
+      1, // MSOData
       2, // UCID
       4, // PLID
       1, // UserType
@@ -45,7 +45,7 @@ describe('IS_MSO', () => {
 
     const data: PacketTestData<IS_MSO> = {
       ReqI: 0,
-      Zero: 0,
+      MSOData: CodePage.LID_EUROPEAN,
       UCID: 2,
       PLID: 4,
       UserType: UserType.MSO_USER,
@@ -57,7 +57,7 @@ describe('IS_MSO', () => {
       size / new IS_MSO().SIZE_MULTIPLIER, // Size
       11, // Type
       0, // ReqI
-      0, // Zero
+      1, // MSOData
       2, // UCID
       4, // PLID
       1, // UserType
