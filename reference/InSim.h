@@ -22,6 +22,10 @@ const int INSIM_VERSION = 10;
 // CHANGES
 // =======
 
+// 0.8C27
+// ------
+// Code page identifier included in MSOData byte of IS_MSO packet
+
 // 0.8C5
 // -----
 // CCI_RETIRED bit added to the CompCar structure
@@ -674,7 +678,7 @@ struct IS_MSO // MSg Out - system messages and user messages - variable size
 	byte	Size;		// 12, 16, 20... 136 depending on Msg
 	byte	Type;		// ISP_MSO
 	byte	ReqI;		// 0
-	byte	Zero;
+	byte	MSOData;	// bits 0-3 (MSOData & 0x0f) - code page of the message (LID_x)
 
 	byte	UCID;		// connection's unique id (0 = host)
 	byte	PLID;		// player's unique id (if zero, use UCID)
@@ -936,7 +940,7 @@ struct IS_VTN // VoTe Notify
 	byte	Zero;
 
 	byte	UCID;		// connection's unique id
-	byte	Action;		// VOTE_X (Vote Action as defined above)
+	byte	Action;		// VOTE_x (Vote Action as defined above)
 	byte	Spare2;
 	byte	Spare3;
 };
@@ -950,7 +954,7 @@ struct IS_VTN // VoTe Notify
 
 // ReqI: 0
 // SubT: SMALL_VTA  	(VoTe Action)
-// UVal: action 		(VOTE_X - Vote Action as defined above)
+// UVal: action 		(VOTE_x - Vote Action as defined above)
 
 // You can instruct LFS host to cancel a vote using an IS_TINY
 
@@ -1724,6 +1728,36 @@ enum
 	LFS_ROMANIAN,				// 36
 	LFS_NUM_LANG				// 37
 };
+
+// Code pages
+
+enum
+{
+	LID_LATIN,					// 0
+	LID_EUROPEAN,				// 1
+	LID_TURKISH,				// 2
+	LID_BALTIC,					// 3
+	LID_JAPANESE,				// 4
+	LID_CYRILLIC,				// 5
+	LID_GREEK,					// 6
+	LID_TRADITIONAL_CHINESE,	// 7
+	LID_SIMPLIFIED_CHINESE,		// 8
+	LID_KOREAN,					// 9
+	LID_NUM_CP					// 10
+};
+
+// LFS code page letter and Windows code page identifiers - LID_NUM_CP
+
+// L	1252	Latin 1
+// E	1250	Central European
+// T	1254	Turkish
+// B	1257	Baltic
+// J	932		Japanese
+// C	1251	Cyrillic
+// G	1253	Greek
+// H	950		Traditional Chinese
+// S	936		Simplified Chinese
+// K	949		Korean
 
 // Leave reasons
 
