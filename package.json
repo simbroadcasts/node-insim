@@ -68,7 +68,7 @@
     "check-all": "run-s format lint:fix build \"test --watch=false\" test:examples",
     "format": "run-s \"format:no-write --write\"",
     "format:no-write": "prettier \"./**/*.{cjs,js,ts,md,json,yml,yaml}\"",
-    "format:check": "run-s \"format:no-write --check\"",
+    "format:check": "run-s \"format:no-write -- --check\"",
     "lint": "eslint \"./src/**/*\"",
     "lint:fix": "eslint \"./src/**/*\" --fix",
     "generate": "run-s \"generate:plop {@}\" lint:fix format --",
