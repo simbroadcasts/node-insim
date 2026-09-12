@@ -50,7 +50,7 @@ describe('IS_MSO', () => {
       PLID: 4,
       UserType: UserType.MSO_USER,
       TextStart: 15, // After converting Msg from bytes into UTF-8
-      Msg: '^7Player ě ^7: ^8cršč',
+      Msg: '^7Player ě ^7: ^9cršč',
     };
 
     const buffer = new Uint8Array([
@@ -80,7 +80,7 @@ describe('IS_MSO', () => {
       58,
       32,
       94,
-      56,
+      57,
       99,
       114,
       154,

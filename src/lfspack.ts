@@ -1,4 +1,4 @@
-import parseLFSMessage from 'parse-lfs-message';
+import parseLFSMessage, { type Codepage } from 'parse-lfs-message';
 import unicodeToLfs from 'unicode-to-lfs';
 
 type LfsPack = Record<
@@ -18,6 +18,7 @@ type LfsPack = Record<
       offset: number,
       c: number,
       littleendian?: boolean,
+      originalCodepage?: Codepage,
     ) => unknown;
   }
 >;
@@ -357,7 +358,7 @@ const lfsPack = {
         dv.setUint8(offset + i, code);
       }
     },
-    unpack(dv, offset, c) {
+    unpack(dv, offset, c, _, originalCodepage) {
       const chars = [];
       const bytes = [];
 
@@ -366,7 +367,14 @@ const lfsPack = {
         bytes.push(dv.getUint8(offset + i));
       }
 
-      return [[chars.join(''), parseLFSMessage(new Uint8Array(bytes))]];
+      return [
+        [
+          chars.join(''),
+          parseLFSMessage(new Uint8Array(bytes), {
+            originalCodepage,
+          }),
+        ],
+      ];
     },
   },
   // char[] - null-terminated
@@ -386,7 +394,7 @@ const lfsPack = {
         dv.setUint8(offset + i, code);
       }
     },
-    unpack(dv, offset, c) {
+    unpack(dv, offset, c, _, originalCodepage) {
       const chars = [];
       const bytes = [];
 
@@ -395,7 +403,14 @@ const lfsPack = {
         bytes.push(dv.getUint8(offset + i));
       }
 
-      return [[chars.join(''), parseLFSMessage(new Uint8Array(bytes))]];
+      return [
+        [
+          chars.join(''),
+          parseLFSMessage(new Uint8Array(bytes), {
+            originalCodepage,
+          }),
+        ],
+      ];
     },
   },
   // float
@@ -512,6 +527,7 @@ const unpack = <S extends string>(
   fmt: Format<S>,
   ab: ArrayBuffer,
   offset = 0,
+  OriginalCodepage?: Codepage,
 ): unknown[] | null => {
   const littleendian = fmt.charAt(0) === '<';
   const re = new RegExp(pattern, 'g');
@@ -531,7 +547,7 @@ const unpack = <S extends string>(
     if (offset + c * l > ab.byteLength) return null;
 
     results = results.concat(
-      entry.unpack(new DataView(ab), offset, c, littleendian),
+      entry.unpack(new DataView(ab), offset, c, littleendian, OriginalCodepage),
     );
 
     offset += c * l;

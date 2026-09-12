@@ -1,3 +1,5 @@
+import type { Codepage as CodepageChar } from 'parse-lfs-message';
+
 import { byte, getFormat, stringNull } from '../decorators';
 import { InSimError } from '../errors';
 import { unpack } from '../lfspack';
@@ -48,10 +50,30 @@ export class IS_MSO extends Packet {
       Msg: `${msgLength}s`,
     });
 
+    const originalCodePage = getOriginalCodepage(this.MSOData);
+    const msgUnpacked = unpack(
+      `${msgLength}S`,
+      buffer.buffer,
+      IS_MSO.FIXED_DATA_SIZE,
+      originalCodePage,
+    );
+
+    if (
+      msgUnpacked !== null &&
+      Array.isArray(msgUnpacked[0]) &&
+      msgUnpacked[0].length === 2
+    ) {
+      const [, msg] = msgUnpacked[0];
+      this.Msg = msg;
+    } else {
+      throw new InSimError('IS_MSO - Failed to unpack Msg');
+    }
+
     const playerNameUnpacked = unpack(
       `<${this.TextStart}s`,
       buffer.buffer,
       IS_MSO.FIXED_DATA_SIZE,
+      originalCodePage,
     );
 
     if (
@@ -117,4 +139,32 @@ export enum CodePage {
 
   /** Number of code pages */
   LID_NUM_CP,
+}
+
+type ValidCodePage = Exclude<CodePage, CodePage.LID_NUM_CP>;
+
+function getOriginalCodepage(msoData: number): CodepageChar {
+  if (!hasValidCodePage(msoData)) {
+    return 'L';
+  }
+
+  const codePageToOriginalCodepage: Record<ValidCodePage, CodepageChar> = {
+    [CodePage.LID_LATIN]: 'L',
+    [CodePage.LID_EUROPEAN]: 'E',
+    [CodePage.LID_TURKISH]: 'T',
+    [CodePage.LID_BALTIC]: 'B',
+    [CodePage.LID_JAPANESE]: 'J',
+    [CodePage.LID_CYRILLIC]: 'C',
+    [CodePage.LID_GREEK]: 'G',
+    [CodePage.LID_TRADITIONAL_CHINESE]: 'H',
+    [CodePage.LID_SIMPLIFIED_CHINESE]: 'S',
+    [CodePage.LID_KOREAN]: 'K',
+  };
+
+  return codePageToOriginalCodepage[msoData] ?? 'L';
+}
+
+function hasValidCodePage(msoData: number): msoData is ValidCodePage {
+  const maybeCodePage = msoData & 0x0f;
+  return !!CodePage[maybeCodePage];
 }
