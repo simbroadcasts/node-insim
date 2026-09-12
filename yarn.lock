@@ -3222,10 +3222,10 @@ parse-json@^4.0.0:
     error-ex "^1.3.1"
     json-parse-better-errors "^1.0.1"
 
-parse-lfs-message@1.2.8:
-  version "1.2.8"
-  resolved "https://registry.npmjs.org/parse-lfs-message/-/parse-lfs-message-1.2.8.tgz#d6bab2cac5aba6db6064bad633a624887db1f678"
-  integrity sha512-1dBq6gqz/0iqnXbFYaz3jbvu5Vrjt1AyKbWyIDish5z8pYUXPxgvDR/ZtXmRwfArT0VpNGRsbVjzBSa4XO/KeA==
+parse-lfs-message@1.3.0:
+  version "1.3.0"
+  resolved "https://registry.npmjs.org/parse-lfs-message/-/parse-lfs-message-1.3.0.tgz#cc3bcd0e24aca853a7120eb6c0b5ee6ce811ca68"
+  integrity sha512-7jzETffGM9y/Nna3ixMkzxB1FgvxuxEdw20uB78CQ8pGf8cAsbiy6rMs+eMHSjr/PB+1D1BC5ag4eu2c4aDO2Q==
 
 parse-passwd@^1.0.0:
   version "1.0.0"

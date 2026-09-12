@@ -119,6 +119,29 @@ describe('lfspack', () => {
     });
   });
 
+  describe('strings - unpack with a different original codepage', () => {
+    const buffer = [
+      94, // ^
+      74, // J
+      177,
+      178,
+      94, // ^
+      56, // 8
+      236, // ě
+      154, // š
+      232, // č
+      0,
+    ];
+    const format = '9s';
+    const values = ['^J±²^8ì\x9Aè', 'ｱｲ^9ěšč'];
+
+    it(`'${format}' should unpack [${buffer}] into [${values}]`, () => {
+      expect(unpack(format, new Uint8Array(buffer).buffer, 0, 'E')).toEqual([
+        values,
+      ]);
+    });
+  });
+
   describe('offset', () => {
     it('should return NULL if offset is out of bounds', () => {
       expect(pack('b', [1], 1)).toBeNull();
