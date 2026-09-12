@@ -1,5 +1,7 @@
 import 'reflect-metadata';
 
+import type { FormatBody } from './lfspack';
+
 const formatMetadataKey = Symbol('format');
 
 /**
@@ -7,7 +9,7 @@ const formatMetadataKey = Symbol('format');
  * @internal
  */
 export function string(count: number) {
-  return Reflect.metadata(formatMetadataKey, count === 1 ? 'c' : `${count}s`);
+  return lfsPackMetadata(count === 1 ? ('c' as const) : (`${count}s` as const));
 }
 
 /**
@@ -15,7 +17,7 @@ export function string(count: number) {
  * @internal
  */
 export function stringNull(count: number) {
-  return Reflect.metadata(formatMetadataKey, `${count}S`);
+  return lfsPackMetadata(`${count}S` as const);
 }
 
 /**
@@ -23,7 +25,7 @@ export function stringNull(count: number) {
  * @internal
  */
 export function char() {
-  return Reflect.metadata(formatMetadataKey, 'b');
+  return lfsPackMetadata('b');
 }
 
 /**
@@ -31,7 +33,7 @@ export function char() {
  * @internal
  */
 export function byte() {
-  return Reflect.metadata(formatMetadataKey, 'B');
+  return lfsPackMetadata('B');
 }
 
 /**
@@ -39,7 +41,7 @@ export function byte() {
  * @internal
  */
 export function byteArray(count: number) {
-  return Reflect.metadata(formatMetadataKey, `${count}A`);
+  return lfsPackMetadata(`${count}A` as const);
 }
 
 /**
@@ -47,7 +49,7 @@ export function byteArray(count: number) {
  * @internal
  */
 export function word() {
-  return Reflect.metadata(formatMetadataKey, 'H');
+  return lfsPackMetadata('H');
 }
 
 /**
@@ -55,7 +57,7 @@ export function word() {
  * @internal
  */
 export function short() {
-  return Reflect.metadata(formatMetadataKey, 'h');
+  return lfsPackMetadata('h');
 }
 
 /**
@@ -63,7 +65,7 @@ export function short() {
  * @internal
  */
 export function unsigned() {
-  return Reflect.metadata(formatMetadataKey, 'L');
+  return lfsPackMetadata('L');
 }
 
 /**
@@ -71,7 +73,7 @@ export function unsigned() {
  * @internal
  */
 export function int() {
-  return Reflect.metadata(formatMetadataKey, 'l');
+  return lfsPackMetadata('l');
 }
 
 /**
@@ -79,7 +81,7 @@ export function int() {
  * @internal
  */
 export function float() {
-  return Reflect.metadata(formatMetadataKey, 'f');
+  return lfsPackMetadata('f');
 }
 
 /**
@@ -87,7 +89,7 @@ export function float() {
  * @internal
  */
 export function double() {
-  return Reflect.metadata(formatMetadataKey, 'd');
+  return lfsPackMetadata('d');
 }
 
 /**
@@ -95,7 +97,7 @@ export function double() {
  * @internal
  */
 export function Vector() {
-  return Reflect.metadata(formatMetadataKey, 'fff');
+  return lfsPackMetadata('fff');
 }
 
 /**
@@ -103,7 +105,7 @@ export function Vector() {
  * @internal
  */
 export function Vec() {
-  return Reflect.metadata(formatMetadataKey, 'lll');
+  return lfsPackMetadata('lll');
 }
 
 /**
@@ -142,10 +144,15 @@ export function struct<S extends { new (): { getFormat: () => string } }>(
  * @internal
  */
 export function carName() {
-  return Reflect.metadata(formatMetadataKey, 'C');
+  return lfsPackMetadata('C');
 }
 
 /** @internal */
 export function getFormat<T extends object>(target: T, propertyKey: string) {
   return Reflect.getMetadata(formatMetadataKey, target, propertyKey);
+}
+
+/** @internal */
+function lfsPackMetadata<S extends string>(format: FormatBody<S>) {
+  return Reflect.metadata(formatMetadataKey, format);
 }

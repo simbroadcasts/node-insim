@@ -1,7 +1,7 @@
 import parseLFSMessage from 'parse-lfs-message';
 import unicodeToLfs from 'unicode-to-lfs';
 
-const magic: Record<
+type LfsPack = Record<
   string,
   {
     length: number;
@@ -20,7 +20,41 @@ const magic: Record<
       littleendian?: boolean,
     ) => unknown;
   }
-> = {
+>;
+
+type FormatCharacter = keyof typeof lfsPack;
+type FormatChunk = FormatCharacter | `${number}${FormatCharacter}`;
+
+/**
+ * Validates a literal format string as one or more concatenated
+ * {@link FormatChunk}s, e.g. `S`, `SS`, `24sDDDL`.
+ * @internal
+ */
+export type FormatBody<S extends string> =
+  S extends `${FormatChunk}${infer Rest}`
+    ? Rest extends ''
+      ? S
+      : FormatBody<Rest> extends never
+        ? never
+        : S
+    : never;
+
+/**
+ * A format string accepted by {@link pack}/{@link unpack}: one or more
+ * {@link FormatChunk}s, optionally prefixed with `<` to request little-endian
+ * packing.
+ */
+type Format<S extends string> = string extends S
+  ? string
+  : S extends `<${infer Rest}`
+    ? string extends Rest
+      ? string
+      : FormatBody<Rest> extends never
+        ? never
+        : S
+    : FormatBody<S>;
+
+const lfsPack = {
   // byte array
   A: {
     length: 1,
@@ -404,24 +438,27 @@ const magic: Record<
       return r;
     },
   },
-};
+} as const satisfies LfsPack;
 
-// pattern of stuff we're looking for
-const pattern = '(\\d+)?([AxcCbBhHsSfdiIlL])';
+const lfsPackGeneral = lfsPack as LfsPack;
+
+const formatChars = Object.keys(lfsPack);
+const pattern = `(\\d+)?([${formatChars.join('')}])`;
 
 /**
  * Determine the size of arraybuffer we'd need
  * @internal
  */
-const determineLength = function (fmt: string): number {
+const determineLength = function <S extends string>(fmt: Format<S>): number {
   const re = new RegExp(pattern, 'g');
-  let m: string[] | null,
+  let m: RegExpExecArray | null,
     sum = 0;
 
-  while ((m = re.exec(fmt)))
+  while ((m = re.exec(fmt))) {
     sum +=
-      (m[1] == undefined || m[1] == '' ? 1 : parseInt(m[1])) *
-      magic[m[2]].length;
+      (m[1] === undefined || m[1] === '' ? 1 : parseInt(m[1])) *
+      lfsPackGeneral[m[2]].length;
+  }
 
   return sum;
 };
@@ -430,12 +467,12 @@ const determineLength = function (fmt: string): number {
  * Pack a set of values, starting at offset, based on format
  * @internal
  */
-const pack = function (
-  fmt: string,
+const pack = function <S extends string>(
+  fmt: Format<S>,
   values: unknown[],
   offset = 0,
 ): Uint8Array<ArrayBuffer> | null {
-  const littleendian = fmt.charAt(0) == '<';
+  const littleendian = fmt.charAt(0) === '<';
   offset = offset ? offset : 0;
 
   const ab = new ArrayBuffer(determineLength(fmt)),
@@ -447,16 +484,18 @@ const pack = function (
     i = 0;
 
   while ((m = re.exec(fmt))) {
-    if (magic[m[2]] == undefined) throw new Error('Unknown format type');
+    const entry = lfsPackGeneral[m[2]];
 
-    c = m[1] == undefined || m[1] == '' ? 1 : parseInt(m[1]);
-    l = magic[m[2]].length;
+    if (entry === undefined) throw new Error('Unknown format type');
+
+    c = m[1] === undefined || m[1] === '' ? 1 : parseInt(m[1]);
+    l = entry.length;
 
     if (offset + c * l > ab.byteLength) return null;
 
     const value = values.slice(i, i + 1);
 
-    magic[m[2]].pack(dv, value, offset, c, littleendian);
+    entry.pack(dv, value, offset, c, littleendian);
 
     offset += c * l;
     i += 1;
@@ -469,8 +508,12 @@ const pack = function (
  * Unpack an arraybuffer, starting at offset, based on format
  * @internal
  */
-const unpack = (fmt: string, ab: ArrayBuffer, offset = 0): unknown[] | null => {
-  const littleendian = fmt.charAt(0) == '<';
+const unpack = <S extends string>(
+  fmt: Format<S>,
+  ab: ArrayBuffer,
+  offset = 0,
+): unknown[] | null => {
+  const littleendian = fmt.charAt(0) === '<';
   const re = new RegExp(pattern, 'g');
   let results: unknown[] = [],
     m,
@@ -478,15 +521,17 @@ const unpack = (fmt: string, ab: ArrayBuffer, offset = 0): unknown[] | null => {
     l;
 
   while ((m = re.exec(fmt))) {
-    if (magic[m[2]] == undefined) throw new Error('Unknown format type');
+    const entry = lfsPackGeneral[m[2]];
 
-    c = m[1] == undefined || m[1] == '' ? 1 : parseInt(m[1]);
-    l = magic[m[2]].length;
+    if (entry === undefined) throw new Error('Unknown format type');
+
+    c = m[1] === undefined || m[1] === '' ? 1 : parseInt(m[1]);
+    l = entry.length;
 
     if (offset + c * l > ab.byteLength) return null;
 
     results = results.concat(
-      magic[m[2]].unpack(new DataView(ab), offset, c, littleendian),
+      entry.unpack(new DataView(ab), offset, c, littleendian),
     );
 
     offset += c * l;
