@@ -1,5 +1,18 @@
 # node-insim
 
+## 6.7.0
+
+### Minor Changes
+
+- [#115](https://github.com/simbroadcasts/node-insim/pull/115) [`96200aa`](https://github.com/simbroadcasts/node-insim/commit/96200aa8c36ce6e052c14eefd1ba6a7b1eeea50a) Thanks [@mkapal](https://github.com/mkapal)! - Add `IS_SET` packet
+  Add `ISF_SET` flag to `InSimFlags`
+
+- [#122](https://github.com/simbroadcasts/node-insim/pull/122) [`8c5fded`](https://github.com/simbroadcasts/node-insim/commit/8c5fdeda849e2666d995e374bf6313ae630a5e9c) Thanks [@mkapal](https://github.com/mkapal)! - Rename `IS_MSO.Zero` to `IS_MSO.MSOData` and add `CodePage` enum for the message's code page (bits 0-3 of `MSOData`)
+
+### Patch Changes
+
+- [#122](https://github.com/simbroadcasts/node-insim/pull/122) [`805ed3c`](https://github.com/simbroadcasts/node-insim/commit/805ed3c33c9c034fbb89183b23b6d53f7e9b1935) Thanks [@mkapal](https://github.com/mkapal)! - Use original code page from `IS_MSO.MSOData` when parsing `IS_MSO.Msg` property with `^8` control characters
+
 ## 6.6.0
 
 ### Minor Changes
