@@ -5,12 +5,6 @@
 - Node.js v18
 - LFS
 
-## Installation
-
-```shell
-npm install
-```
-
 ## Connecting to LFS
 
 Open `cfg.txt` in your LFS installation folder and edit the following lines:
@@ -26,12 +20,7 @@ OutGauge ID 0
 Run the example app:
 
 ```shell
-npm start
+yarn example examples/typescript/outgauge/main.ts
 ```
 
-## Production build
-
-```shell
-npm run build
-npm run serve:production
-```
+Run from the root of the repository.

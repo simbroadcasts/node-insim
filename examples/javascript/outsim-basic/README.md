@@ -5,12 +5,6 @@
 - Node.js v18
 - LFS
 
-## Installation
-
-```shell
-npm install
-```
-
 ## Connecting to LFS
 
 Open `cfg.txt` in your LFS installation folder and edit the following lines:
@@ -27,5 +21,7 @@ OutSim Opts 0
 Run the example app:
 
 ```shell
-npm start
+yarn example examples/javascript/outsim-basic/main.js
 ```
+
+Run from the root of the repository.

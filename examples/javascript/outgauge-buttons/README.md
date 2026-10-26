@@ -5,12 +5,6 @@
 - Node.js v18
 - LFS
 
-## Installation
-
-```shell
-npm install
-```
-
 ## Connecting to LFS
 
 Open `cfg.txt` in your LFS installation folder and edit the following lines:
@@ -28,5 +22,7 @@ Start LFS and type `/insim 29999` to open the InSim port.
 Run the example app:
 
 ```shell
-npm start
+yarn example examples/javascript/outgauge-buttons/main.js
 ```
+
+Run from the root of the repository.

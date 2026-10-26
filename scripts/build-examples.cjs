@@ -2,46 +2,70 @@ const fs = require('fs');
 const path = require('path');
 const child_process = require('child_process');
 
-const examplesDir = path.join(__dirname, '..', 'examples');
+const rootDir = path.join(__dirname, '..');
+const examplesDir = path.join(rootDir, 'examples');
 
-function buildApps(directory, options = {}) {
-  const fixtureDirs = fs
-    .readdirSync(path.join(examplesDir, directory))
-    .filter((file) => {
-      return fs.statSync(path.join(examplesDir, directory, file)).isDirectory();
-    });
+const RUN_TIMEOUT_MS = 3000;
 
-  const cmdArgs = [
-    { cmd: 'npm', args: ['install'] },
-    ...(options.build ? [{ cmd: 'npm', args: ['run', 'build'] }] : []),
-  ];
+function typeCheckExamples() {
+  console.log('> tsc -p tsconfig.examples.json --noEmit');
 
-  fixtureDirs.forEach((appDir) => {
-    cmdArgs.forEach((cmdArg) => {
-      const appPath = path.join(examplesDir, directory, appDir);
-      console.log(`> ${appPath} : ${cmdArg.cmd} ${cmdArg.args.join(' ')}`);
+  const result = child_process.spawnSync(
+    'npx',
+    ['tsc', '-p', 'tsconfig.examples.json', '--noEmit'],
+    { cwd: rootDir, stdio: 'inherit' },
+  );
 
-      const opts = {
-        cwd: appPath,
-        stdio: 'inherit',
-        timeout: cmdArg.timeout, // Let the app running for a while
-      };
-
-      const result = child_process.spawnSync(cmdArg.cmd, cmdArg.args, {
-        ...opts,
-      });
-
-      if (result.status !== 0) {
-        throw new Error(
-          `Failed to build an example app "${directory}/${appDir}"`,
-        );
-      }
-    });
-  });
+  if (result.status !== 0) {
+    throw new Error('Type checking of example apps failed');
+  }
 }
 
-buildApps('javascript', { build: false });
-buildApps('typescript', { build: true });
+function findMainFiles(directory) {
+  const languageDir = path.join(examplesDir, directory);
+
+  return fs
+    .readdirSync(languageDir)
+    .filter((file) => fs.statSync(path.join(languageDir, file)).isDirectory())
+    .map((appDir) => {
+      const extension = directory === 'typescript' ? 'ts' : 'js';
+      return path.join(languageDir, appDir, `main.${extension}`);
+    });
+}
+
+function smokeRunExample(mainFile) {
+  const relativePath = path.relative(rootDir, mainFile);
+  console.log(`> tsx ${relativePath}`);
+
+  const result = child_process.spawnSync('npx', ['tsx', mainFile], {
+    cwd: rootDir,
+    timeout: RUN_TIMEOUT_MS,
+    encoding: 'utf-8',
+  });
+
+  // ETIMEDOUT means the app was still running when the timeout killed it
+  // (expected for UDP-based OutSim/OutGauge examples, which never see a
+  // handshake failure to exit on their own) - that's a pass.
+  if (result.error && result.error.code === 'ETIMEDOUT') {
+    return;
+  }
+
+  // Any other spawn error (e.g. tsx not found) or a non-zero exit code
+  // (e.g. can't resolve "node-insim", syntax error) is a real failure.
+  // A clean exit (status 0, e.g. connection refused with no LFS running)
+  // is a pass.
+  if (result.error || result.status !== 0) {
+    console.log(result.stdout);
+    console.error(result.stderr);
+    throw new Error(`Example app "${relativePath}" failed to run`);
+  }
+}
+
+typeCheckExamples();
+
+['javascript', 'typescript'].forEach((directory) => {
+  findMainFiles(directory).forEach(smokeRunExample);
+});
 
 console.log('-----------------------------------------');
 console.log('All example apps were built successfully!');

@@ -460,15 +460,20 @@ You can find example applications using Node InSim in the [examples](./examples)
 | OutSim                            | [JavaScript + CJS](./examples/javascript/outsim-basic)         | [TypeScript + ESM](./examples/typescript/outsim-basic)         |
 | OutSim with Options               | [JavaScript + CJS](./examples/javascript/outsim-advanced)      | [TypeScript + ESM](./examples/typescript/outsim-advanced)      |
 
-Before you run an example, follow the instructions in each example's `README.md` file.
+Examples run directly against this repository's `src` folder (no separate
+install step per example, no dependency on a published npm release). Before
+you run an example, follow the instructions in each example's `README.md`
+file.
 
-For instance, to run the "InSim connection - TypeScript" example, run the following
-commands:
+For instance, to run the "InSim connection - TypeScript" example, clone this
+repository, install its dependencies, then run the example from the
+repository root:
 
 ```shell
-cd examples/typescript/insim-connection
-npm install
-npm start
+git clone https://github.com/simbroadcasts/node-insim.git
+cd node-insim
+yarn install
+yarn example examples/typescript/insim-connection/main.ts
 ```
 
 ## Development
@@ -505,10 +510,11 @@ By default, the tests connect to `127.0.0.1:29999`. The InSim host and port can 
 yarn test:lfs
 ```
 
-### Build all example applications
+### Test all example applications
 
-This command will go through each application in the `examples/` folder,
-install its dependencies, then build the application (typescript only).
+This command type-checks every TypeScript example against `src`, then runs
+each example app (JavaScript and TypeScript) to make sure it starts up
+correctly.
 
 ```shell
 yarn test:examples

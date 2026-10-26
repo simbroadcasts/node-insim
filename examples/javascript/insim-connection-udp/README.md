@@ -5,12 +5,6 @@
 - Node.js v18
 - LFS
 
-## Installation
-
-```shell
-npm install
-```
-
 ## Connecting to LFS
 
 Start LFS and type `/insim 29999` to open the InSim port.
@@ -18,7 +12,9 @@ Start LFS and type `/insim 29999` to open the InSim port.
 Run the example app:
 
 ```shell
-npm start
+yarn example examples/javascript/insim-connection-udp/main.js
 ```
+
+Run from the root of the repository.
 
 The app connects to `127.0.0.1:29999` by default.
