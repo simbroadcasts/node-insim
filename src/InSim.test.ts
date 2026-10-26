@@ -1,8 +1,20 @@
+import * as dgram from 'dgram';
 import Mitm from 'mitm';
+import type { AddressInfo } from 'net';
 
 import { InSim } from './InSim';
 import { InSimFlags, IS_TINY, PacketType, TinyType } from './packets';
 import { stringToBytes } from './tests';
+
+function getFreePort(): Promise<number> {
+  return new Promise((resolve) => {
+    const socket = dgram.createSocket('udp4');
+    socket.bind(0, '127.0.0.1', () => {
+      const { port } = socket.address() as AddressInfo;
+      socket.close(() => resolve(port));
+    });
+  });
+}
 
 describe('InSim', () => {
   let mitm: ReturnType<typeof Mitm>;
@@ -146,6 +158,112 @@ describe('InSim', () => {
           Port: 29999,
         });
       }));
+  });
+
+  describe('UDPPort', () => {
+    let mitm: ReturnType<typeof Mitm>;
+
+    beforeEach(() => {
+      mitm = Mitm();
+    });
+
+    it('should bind to the specified UDPPort when connected via UDP', async () => {
+      const lfsPort = await getFreePort();
+      const udpPort = await getFreePort();
+
+      return new Promise<void>((done) => {
+        const fakeLfs = dgram.createSocket('udp4');
+        fakeLfs.bind(lfsPort, '127.0.0.1');
+
+        const inSim = new InSim();
+
+        fakeLfs.on('message', (_data, rinfo) => {
+          // LFS only sees the specified UDPPort as the source, confirming
+          // the local socket is bound to it rather than an ephemeral port.
+          expect(rinfo.port).toEqual(udpPort);
+
+          fakeLfs.send(Buffer.from([1, 3, 25, 3]), udpPort, '127.0.0.1');
+        });
+
+        inSim.on(PacketType.ISP_TINY, (packet) => {
+          expect(packet.SubT).toEqual(TinyType.TINY_PING);
+          fakeLfs.close();
+          inSim.disconnect();
+          done();
+        });
+
+        inSim.connect({
+          Host: '127.0.0.1',
+          Port: lfsPort,
+          Protocol: 'UDP',
+          UDPPort: udpPort,
+        });
+      });
+    });
+
+    it('should open a secondary UDP listener when connected via TCP with a non-zero UDPPort', async () => {
+      const udpPort = await getFreePort();
+
+      return new Promise<void>((done) => {
+        const inSim = new InSim();
+        const peer = dgram.createSocket('udp4');
+
+        inSim.on(PacketType.ISP_TINY, (packet) => {
+          expect(packet.SubT).toEqual(TinyType.TINY_PING);
+          clearInterval(interval);
+          peer.close();
+          inSim.disconnect();
+          done();
+        });
+
+        inSim.connect({
+          Host: '127.0.0.1',
+          Port: 29999,
+          UDPPort: udpPort,
+        });
+
+        // Retry until the secondary UDP socket has finished binding.
+        const interval = setInterval(() => {
+          peer.send(Buffer.from([1, 3, 25, 3]), udpPort, '127.0.0.1');
+        }, 20);
+      });
+    });
+
+    it('should close the secondary UDP listener on disconnect', async () => {
+      const udpPort = await getFreePort();
+
+      return new Promise<void>((done) => {
+        const inSim = new InSim();
+
+        const tryBind = () => {
+          const probe = dgram.createSocket('udp4');
+          probe.once('listening', () => {
+            probe.close();
+            done();
+          });
+          probe.once('error', () => {
+            probe.close();
+            setTimeout(tryBind, 20);
+          });
+          probe.bind(udpPort, '127.0.0.1');
+        };
+
+        mitm.on('connection', () => {
+          // Give the secondary UDP socket time to bind, then disconnect and
+          // confirm the port is freed again.
+          setTimeout(() => {
+            inSim.disconnect();
+            tryBind();
+          }, 20);
+        });
+
+        inSim.connect({
+          Host: '127.0.0.1',
+          Port: 29999,
+          UDPPort: udpPort,
+        });
+      });
+    });
   });
 
   describe('sending packets', () => {

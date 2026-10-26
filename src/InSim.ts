@@ -49,6 +49,12 @@ export class InSim extends TypedEmitter<InSimEvents> {
   /** The main connection to InSim (TCP or UDP) */
   private connection: Protocol | null = null;
 
+  /**
+   * A secondary UDP connection used to receive {@link IS_NLP} / {@link IS_MCI}
+   * packets when connected via TCP with a non-zero `UDPPort`.
+   */
+  private secondaryConnection: UDP | null = null;
+
   private sizeMultiplier = 4;
 
   constructor(id?: string) {
@@ -61,6 +67,7 @@ export class InSim extends TypedEmitter<InSimEvents> {
     );
     this.on('disconnect', () => {
       this.connection = null;
+      this.secondaryConnection = null;
 
       log(`Disconnected from ${this._options.Host}:${this._options.Port}`);
     });
@@ -93,7 +100,17 @@ export class InSim extends TypedEmitter<InSimEvents> {
             host: this._options.Host,
             port: this._options.Port,
             packetSizeMultiplier: this.sizeMultiplier,
-            socketInitialisationMode: 'connect',
+            // NOTE 1: with UDPPort zero, LFS replies to the port of the
+            // incoming packet (an OS-assigned ephemeral port works here).
+            // With a non-zero UDPPort, LFS replies to that specified port,
+            // so the local socket must be bound to it.
+            socketInitialisationMode:
+              this._options.UDPPort === 0 ? 'connect' : 'bind',
+            localPort:
+              this._options.UDPPort === 0 ? undefined : this._options.UDPPort,
+            // Bind to all local interfaces rather than `Host`, since `Host`
+            // is the remote LFS address and may not be a local address.
+            bindAddress: '0.0.0.0',
           });
     this.connection.connect();
     this.connection.on('connect', () => {
@@ -121,12 +138,36 @@ export class InSim extends TypedEmitter<InSimEvents> {
     });
 
     this.connection.on('data', (data) => this.handlePacket(data));
+
+    // NOTE 2: with TCP and a non-zero UDPPort, LFS sends IS_NLP / IS_MCI
+    // packets to that UDP port instead of over the TCP connection, so a
+    // secondary UDP listener is needed to receive them.
+    if (this._options.Protocol === 'TCP' && this._options.UDPPort !== 0) {
+      this.secondaryConnection = new UDP({
+        host: this._options.Host,
+        port: this._options.Port,
+        packetSizeMultiplier: this.sizeMultiplier,
+        socketInitialisationMode: 'bind',
+        localPort: this._options.UDPPort,
+        bindAddress: '0.0.0.0',
+      });
+      this.secondaryConnection.connect();
+      this.secondaryConnection.on('data', (data) => this.handlePacket(data));
+      this.secondaryConnection.on('error', (error: Error) => {
+        this.emit('error', error);
+      });
+    }
   };
 
   disconnect = () => {
     if (this.connection !== null) {
       log('Disconnecting...');
       this.connection.disconnect();
+    }
+
+    if (this.secondaryConnection !== null) {
+      this.secondaryConnection.disconnect();
+      this.secondaryConnection = null;
     }
   };
 

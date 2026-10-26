@@ -11,6 +11,10 @@ interface UDPOptions {
   host: string;
   port: number;
   socketInitialisationMode: SocketInitialisationMode;
+  /** Local port to bind to in 'bind' mode. Defaults to `port`. */
+  localPort?: number;
+  /** Local address to bind to in 'bind' mode. Defaults to `host`. */
+  bindAddress?: string;
   packetSizeMultiplier?: number;
   timeout?: number;
 }
@@ -21,17 +25,23 @@ export class UDP extends Protocol {
   private readonly timeout: number = 0;
   private timeoutTimer: NodeJS.Timeout | null = null;
   private readonly socketInitialisationMode: SocketInitialisationMode;
+  private readonly localPort: number;
+  private readonly bindAddress: string;
 
   constructor({
     host,
     port,
     socketInitialisationMode,
+    localPort,
+    bindAddress,
     packetSizeMultiplier = 1,
     timeout = 0,
   }: UDPOptions) {
     super({ host, port, packetSizeMultiplier });
     this.timeout = timeout;
     this.socketInitialisationMode = socketInitialisationMode;
+    this.localPort = localPort ?? port;
+    this.bindAddress = bindAddress ?? host;
   }
 
   connect = () => {
@@ -40,8 +50,8 @@ export class UDP extends Protocol {
 
     if (this.socketInitialisationMode === 'bind') {
       this.socket.bind({
-        address: this.host,
-        port: this.port,
+        address: this.bindAddress,
+        port: this.localPort,
       });
       this.socket.on('listening', () => {
         log('Listening');
@@ -104,7 +114,12 @@ export class UDP extends Protocol {
     }
 
     log('Send data:', data.join());
-    this.socket.send(data);
+
+    if (this.socketInitialisationMode === 'bind') {
+      this.socket.send(data, this.port, this.host);
+    } else {
+      this.socket.send(data);
+    }
   };
 
   handleTimeout = () => {

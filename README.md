@@ -107,6 +107,38 @@ inSim.connect({
 });
 ```
 
+##### UDPPort
+
+The `UDPPort` option controls where LFS sends its packets, per the InSim
+specification:
+
+- When connected via **UDP**:
+  - `UDPPort: 0` (default) - LFS sends all packets back to the port of the
+    incoming packet.
+  - `UDPPort: <port>` - LFS sends all packets to the specified port instead.
+    Node InSim binds its local socket to that port to receive them.
+- When connected via **TCP**:
+  - `UDPPort: 0` (default) - LFS sends `IS_NLP` / `IS_MCI` packets over the
+    TCP connection, along with everything else.
+  - `UDPPort: <port>` - LFS sends `IS_NLP` / `IS_MCI` packets to the
+    specified UDP port instead of over TCP. Node InSim opens a second, UDP
+    socket bound to that port to receive them; everything else (including
+    all outgoing packets) still goes over TCP.
+
+```ts
+import { InSim } from 'node-insim';
+
+const inSim = new InSim();
+
+// Receive IS_NLP / IS_MCI over UDP while keeping the main TCP connection
+inSim.connect({
+  Host: '127.0.0.1',
+  Port: 29999,
+  IName: 'Node InSim App',
+  UDPPort: 30000,
+});
+```
+
 ### Sending packets
 
 InSim packets can be sent using the `send()` method on the `InSim` class instance,
